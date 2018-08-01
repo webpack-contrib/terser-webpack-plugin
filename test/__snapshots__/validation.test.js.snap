@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validation 1`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m['doesntExist']  [34mis an invalid additional property[39m
+"
+`;
+
+exports[`validation 2`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m.cache  [34mshould match exactly one schema in oneOf[39m
+  [2moptions[22m.cache  [34mshould be string[39m
+  [2moptions[22m.cache  [34mshould be boolean[39m
+"
+`;
+
+exports[`validation 3`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m.parallel  [34mshould match exactly one schema in oneOf[39m
+  [2moptions[22m.parallel  [34mshould be integer[39m
+  [2moptions[22m.parallel  [34mshould be boolean[39m
+"
+`;
+
+exports[`validation 4`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m.parallel  [34mshould match exactly one schema in oneOf[39m
+  [2moptions[22m.parallel  [34mshould be integer[39m
+  [2moptions[22m.parallel  [34mshould be boolean[39m
+"
+`;
+
+exports[`validation 5`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m.sourceMap  [34mshould be boolean[39m
+"
+`;
+
+exports[`validation 6`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m.terserOptions  [34mshould be object[39m
+"
+`;
+
+exports[`validation 7`] = `
+"Terser Plugin
+
+  [4mOptions Validation Error[24m
+
+  [2moptions[22m.warningsFilter  [34mshould pass \\"instanceof\\" keyword validation[39m
+"
+`;

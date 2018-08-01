@@ -1,0 +1,665 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `
+"(function(e){var t={};function r(n){if(t[n]){return t[n].exports}var o=t[n]={i:n,l:false,exports:{}};e[n].call(o.exports,o,o.exports,r);o.l=true;return o.exports}r.m=e;r.c=t;r.d=function(e,t,n){if(!r.o(e,t)){Object.defineProperty(e,t,{enumerable:true,get:n})}};r.r=function(e){if(typeof Symbol!==\\"undefined\\"&&Symbol.toStringTag){Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"})}Object.defineProperty(e,\\"__esModule\\",{value:true})};r.t=function(e,t){if(t&1)e=r(e);if(t&8)return e;if(t&4&&typeof e===\\"object\\"&&e&&e.__esModule)return e;var n=Object.create(null);r.r(n);Object.defineProperty(n,\\"default\\",{enumerable:true,value:e});if(t&2&&typeof e!=\\"string\\")for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n};r.n=function(e){var t=e&&e.__esModule?function t(){return e[\\"default\\"]}:function t(){return e};r.d(t,\\"a\\",t);return t};r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)};r.p=\\"\\";return r(r.s=0)})([function(e,t){
+/* @preserve*/
+const r=2+2;e.exports=function e(){const t=2+2;console.log(t+1+2)}}]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (object value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (object value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`compress\` option (object value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`5\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`5\`): main.8d40deb6b0808fa8489e.js 1`] = `
+"!function(modules) {
+    var installedModules = {};
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
+    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+            enumerable: !0,
+            get: getter
+        });
+    }, __webpack_require__.r = function(exports) {
+        \\"undefined\\" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+            value: \\"Module\\"
+        }), Object.defineProperty(exports, \\"__esModule\\", {
+            value: !0
+        });
+    }, __webpack_require__.t = function(value, mode) {
+        if (1 & mode && (value = __webpack_require__(value)), 8 & mode) return value;
+        if (4 & mode && \\"object\\" == typeof value && value && value.__esModule) return value;
+        var ns = Object.create(null);
+        if (__webpack_require__.r(ns), Object.defineProperty(ns, \\"default\\", {
+            enumerable: !0,
+            value: value
+        }), 2 & mode && \\"string\\" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+            return value[key];
+        }.bind(null, key));
+        return ns;
+    }, __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function() {
+            return module.default;
+        } : function() {
+            return module;
+        };
+        return __webpack_require__.d(getter, \\"a\\", getter), getter;
+    }, __webpack_require__.o = function(object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    }, __webpack_require__.p = \\"\\", __webpack_require__(__webpack_require__.s = 0);
+}([ function(module, exports) {
+    var Person = {
+        firstName: null,
+        lastName: null
+    }, Employee = Object.create(Person, {
+        id: {
+            value: null,
+            enumerable: !0,
+            configurable: !0,
+            writable: !0
+        }
+    }), Manager = Object.create(Employee, {
+        department: {
+            value: null,
+            enumerable: !0,
+            configurable: !0,
+            writable: !0
+        }
+    });
+    module.exports = {
+        Person: Person,
+        Employee: Employee,
+        Manager: Manager
+    };
+} ]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`5\`): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`6\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`6\`): main.53ad61d00bbe5b9f6c13.js 1`] = `
+"!function(modules) {
+    var installedModules = {};
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
+    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+            enumerable: !0,
+            get: getter
+        });
+    }, __webpack_require__.r = function(exports) {
+        \\"undefined\\" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+            value: \\"Module\\"
+        }), Object.defineProperty(exports, \\"__esModule\\", {
+            value: !0
+        });
+    }, __webpack_require__.t = function(value, mode) {
+        if (1 & mode && (value = __webpack_require__(value)), 8 & mode) return value;
+        if (4 & mode && \\"object\\" == typeof value && value && value.__esModule) return value;
+        var ns = Object.create(null);
+        if (__webpack_require__.r(ns), Object.defineProperty(ns, \\"default\\", {
+            enumerable: !0,
+            value
+        }), 2 & mode && \\"string\\" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+            return value[key];
+        }.bind(null, key));
+        return ns;
+    }, __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function() {
+            return module.default;
+        } : function() {
+            return module;
+        };
+        return __webpack_require__.d(getter, \\"a\\", getter), getter;
+    }, __webpack_require__.o = function(object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    }, __webpack_require__.p = \\"\\", __webpack_require__(__webpack_require__.s = 0);
+}([ function(module, exports) {
+    module.exports = class {
+        constructor(principal, years, rate) {
+            this.principal = principal, this.years = years, this.rate = rate;
+        }
+        get monthlyPayment() {
+            let monthlyRate = this.rate / 100 / 12;
+            return this.principal * monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), 12 * this.years));
+        }
+        get amortization() {
+            let monthlyPayment = this.monthlyPayment, monthlyRate = this.rate / 100 / 12, balance = this.principal, amortization = [];
+            for (let y = 0; y < this.years; y++) {
+                let interestY = 0, principalY = 0;
+                for (let m = 0; m < 12; m++) {
+                    let interestM = balance * monthlyRate, principalM = monthlyPayment - interestM;
+                    interestY += interestM, principalY += principalM, balance -= principalM;
+                }
+                amortization.push({
+                    principalY,
+                    interestY,
+                    balance
+                });
+            }
+            return amortization;
+        }
+    };
+} ]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`6\`): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`7\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`7\`): main.c418c512b70ac464b10f.js 1`] = `
+"!function(modules) {
+    var installedModules = {};
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
+    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+            enumerable: !0,
+            get: getter
+        });
+    }, __webpack_require__.r = function(exports) {
+        \\"undefined\\" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+            value: \\"Module\\"
+        }), Object.defineProperty(exports, \\"__esModule\\", {
+            value: !0
+        });
+    }, __webpack_require__.t = function(value, mode) {
+        if (1 & mode && (value = __webpack_require__(value)), 8 & mode) return value;
+        if (4 & mode && \\"object\\" == typeof value && value && value.__esModule) return value;
+        var ns = Object.create(null);
+        if (__webpack_require__.r(ns), Object.defineProperty(ns, \\"default\\", {
+            enumerable: !0,
+            value
+        }), 2 & mode && \\"string\\" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+            return value[key];
+        }.bind(null, key));
+        return ns;
+    }, __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function() {
+            return module.default;
+        } : function() {
+            return module;
+        };
+        return __webpack_require__.d(getter, \\"a\\", getter), getter;
+    }, __webpack_require__.o = function(object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    }, __webpack_require__.p = \\"\\", __webpack_require__(__webpack_require__.s = 0);
+}([ function(module, exports) {
+    module.exports = function(base, exponent) {
+        return base ** exponent;
+    };
+} ]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`7\`): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`8\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`8\`): main.922516ac1fd22d776a0a.js 1`] = `
+"!function(modules) {
+    var installedModules = {};
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: !1,
+            exports: {}
+        };
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
+    }
+    __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+            enumerable: !0,
+            get: getter
+        });
+    }, __webpack_require__.r = function(exports) {
+        \\"undefined\\" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+            value: \\"Module\\"
+        }), Object.defineProperty(exports, \\"__esModule\\", {
+            value: !0
+        });
+    }, __webpack_require__.t = function(value, mode) {
+        if (1 & mode && (value = __webpack_require__(value)), 8 & mode) return value;
+        if (4 & mode && \\"object\\" == typeof value && value && value.__esModule) return value;
+        var ns = Object.create(null);
+        if (__webpack_require__.r(ns), Object.defineProperty(ns, \\"default\\", {
+            enumerable: !0,
+            value
+        }), 2 & mode && \\"string\\" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+            return value[key];
+        }.bind(null, key));
+        return ns;
+    }, __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function() {
+            return module.default;
+        } : function() {
+            return module;
+        };
+        return __webpack_require__.d(getter, \\"a\\", getter), getter;
+    }, __webpack_require__.o = function(object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    }, __webpack_require__.p = \\"\\", __webpack_require__(__webpack_require__.s = 0);
+}([ function(module, exports) {
+    module.exports = async function(url) {
+        try {
+            let request = await fetch(url), text = await request.text();
+            return JSON.parse(text);
+        } catch (error) {
+            console.log(\`ERROR: \${error.stack}\`);
+        }
+    };
+} ]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ecma\` option (value is \`8\`): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ie8\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ie8\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ie8\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ie8\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ie8\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e[\\"default\\"]}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`ie8\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_classnames\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_classnames\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var _={};function __webpack_require__(r){if(_[r])return _[r].exports;var t=_[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,__webpack_require__),t.l=!0,t.exports}__webpack_require__.m=e,__webpack_require__.c=_,__webpack_require__.d=function(e,_,r){__webpack_require__.o(e,_)||Object.defineProperty(e,_,{enumerable:!0,get:r})},__webpack_require__.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},__webpack_require__.t=function(e,_){if(1&_&&(e=__webpack_require__(e)),8&_)return e;if(4&_&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(__webpack_require__.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&_&&\\"string\\"!=typeof e)for(var t in e)__webpack_require__.d(r,t,function(_){return e[_]}.bind(null,t));return r},__webpack_require__.n=function(e){var _=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(_,\\"a\\",_),_},__webpack_require__.o=function(e,_){return Object.prototype.hasOwnProperty.call(e,_)},__webpack_require__.p=\\"\\",__webpack_require__(__webpack_require__.s=0)}([function(e,_){e.exports=function Foo(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`keep_fnames\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `"!function(modules){var installedModules={};function __webpack_require__(moduleId){if(installedModules[moduleId])return installedModules[moduleId].exports;var module=installedModules[moduleId]={i:moduleId,l:!1,exports:{}};return modules[moduleId].call(module.exports,module,module.exports,__webpack_require__),module.l=!0,module.exports}__webpack_require__.m=modules,__webpack_require__.c=installedModules,__webpack_require__.d=function(exports,name,getter){__webpack_require__.o(exports,name)||Object.defineProperty(exports,name,{enumerable:!0,get:getter})},__webpack_require__.r=function(exports){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(exports,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(exports,\\"__esModule\\",{value:!0})},__webpack_require__.t=function(value,mode){if(1&mode&&(value=__webpack_require__(value)),8&mode)return value;if(4&mode&&\\"object\\"==typeof value&&value&&value.__esModule)return value;var ns=Object.create(null);if(__webpack_require__.r(ns),Object.defineProperty(ns,\\"default\\",{enumerable:!0,value:value}),2&mode&&\\"string\\"!=typeof value)for(var key in value)__webpack_require__.d(ns,key,function(key){return value[key]}.bind(null,key));return ns},__webpack_require__.n=function(module){var getter=module&&module.__esModule?function(){return module.default}:function(){return module};return __webpack_require__.d(getter,\\"a\\",getter),getter},__webpack_require__.o=function(object,property){return Object.prototype.hasOwnProperty.call(object,property)},__webpack_require__.p=\\"\\",__webpack_require__(__webpack_require__.s=0)}([function(module,exports){module.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (object value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (object value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`mangle\` option (object value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`nameCache\` option (empty object value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`nameCache\` option (empty object value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`nameCache\` option (empty object value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): main.d6148510169c0239e313.js 1`] = `
+"!function(e) {
+    var t = {};
+    function n(r) {
+        if (t[r]) return t[r].exports;
+        var o = t[r] = {
+            i: r,
+            l: !1,
+            exports: {}
+        };
+        return e[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+    }
+    n.m = e, n.c = t, n.d = function(e, t, r) {
+        n.o(e, t) || Object.defineProperty(e, t, {
+            enumerable: !0,
+            get: r
+        });
+    }, n.r = function(e) {
+        \\"undefined\\" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+            value: \\"Module\\"
+        }), Object.defineProperty(e, \\"__esModule\\", {
+            value: !0
+        });
+    }, n.t = function(e, t) {
+        if (1 & t && (e = n(e)), 8 & t) return e;
+        if (4 & t && \\"object\\" == typeof e && e && e.__esModule) return e;
+        var r = Object.create(null);
+        if (n.r(r), Object.defineProperty(r, \\"default\\", {
+            enumerable: !0,
+            value: e
+        }), 2 & t && \\"string\\" != typeof e) for (var o in e) n.d(r, o, function(t) {
+            return e[t];
+        }.bind(null, o));
+        return r;
+    }, n.n = function(e) {
+        var t = e && e.__esModule ? function() {
+            return e.default;
+        } : function() {
+            return e;
+        };
+        return n.d(t, \\"a\\", t), t;
+    }, n.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t);
+    }, n.p = \\"\\", n(n.s = 0);
+}([ function(e, t) {
+    e.exports = function() {
+        console.log(7);
+    };
+} ]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`beautify\`): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): main.d6148510169c0239e313.js 1`] = `
+"/******/!function(e){// webpackBootstrap
+/******/ // The module cache
+/******/var t={};
+/******/
+/******/ // The require function
+/******/function n(r){
+/******/
+/******/ // Check if module is in cache
+/******/if(t[r])
+/******/return t[r].exports;
+/******/
+/******/ // Create a new module (and put it into the cache)
+/******/var o=t[r]={
+/******/i:r,
+/******/l:!1,
+/******/exports:{}
+/******/};
+/******/
+/******/ // Execute the module function
+/******/
+/******/
+/******/ // Return the exports of the module
+/******/return e[r].call(o.exports,o,o.exports,n),
+/******/
+/******/ // Flag the module as loaded
+/******/o.l=!0,o.exports;
+/******/}
+/******/
+/******/
+/******/ // expose the modules object (__webpack_modules__)
+/******/
+/******/
+/******/
+/******/ // Load entry module and return exports
+/******/n.m=e,
+/******/
+/******/ // expose the module cache
+/******/n.c=t,
+/******/
+/******/ // define getter function for harmony exports
+/******/n.d=function(e,t,r){
+/******/n.o(e,t)||
+/******/Object.defineProperty(e,t,{enumerable:!0,get:r})
+/******/},
+/******/
+/******/ // define __esModule on exports
+/******/n.r=function(e){
+/******/\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&
+/******/Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"})
+/******/,Object.defineProperty(e,\\"__esModule\\",{value:!0})},
+/******/
+/******/ // create a fake namespace object
+/******/ // mode & 1: value is a module id, require it
+/******/ // mode & 2: merge all properties of value into the ns
+/******/ // mode & 4: return value when already ns object
+/******/ // mode & 8|1: behave like require
+/******/n.t=function(e,t){
+/******/if(
+/******/1&t&&(e=n(e)),8&t)return e;
+/******/if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;
+/******/var r=Object.create(null);
+/******/
+/******/if(n.r(r),
+/******/Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));
+/******/return r;
+/******/},
+/******/
+/******/ // getDefaultExport function for compatibility with non-harmony modules
+/******/n.n=function(e){
+/******/var t=e&&e.__esModule?
+/******/function(){return e.default}:
+/******/function(){return e};
+/******/
+/******/return n.d(t,\\"a\\",t),t;
+/******/},
+/******/
+/******/ // Object.prototype.hasOwnProperty.call
+/******/n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},
+/******/
+/******/ // __webpack_public_path__
+/******/n.p=\\"\\",n(n.s=0);
+/******/}
+/************************************************************************/
+/******/([
+/* 0 */
+/***/function(e,t){e.exports=function(){console.log(7)}}
+/******/]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`output\` option (object value with \`true\` value for \`comments\`): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`parse\` option (object value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`parse\` option (object value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`parse\` option (object value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`safari10\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`safari10\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`safari10\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`safari10\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`safari10\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`safari10\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`toplevel\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`toplevel\` option (boolean \`false\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`toplevel\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`toplevel\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`toplevel\` option (boolean \`true\` value): main.d6148510169c0239e313.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`toplevel\` option (boolean \`true\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`unknown\` option: errors 1`] = `
+Array [
+  "Error: main.d6148510169c0239e313.js from Terser
+DefaultsError: \`unknown\` is not a supported option",
+]
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`unknown\` option: main.d6148510169c0239e313.js 1`] = `
+"/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = \\"\\";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+// foo
+/* @preserve*/
+// bar
+const a = 2 + 2;
+
+module.exports = function Foo() {
+  const b = 2 + 2;
+  console.log(b + 1 + 2);
+};
+
+
+/***/ })
+/******/ ]);"
+`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`unknown\` option: warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`warnings\` option (boolean \`false\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`warnings\` option (boolean \`false\` value): main.0f43adb0a2c212ae2ade.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=0)}([function(e,t){}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`warnings\` option (boolean \`false\` value): warnings 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`warnings\` option (boolean \`true\` value): errors 1`] = `Array []`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`warnings\` option (boolean \`true\` value): main.0f43adb0a2c212ae2ade.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=0)}([function(e,t){}]);"`;
+
+exports[`when applied with \`terserOptions\` options matches snapshot for \`warnings\` option (boolean \`true\` value): warnings 1`] = `
+Array [
+  "Terser Plugin: Dropping unreachable code [main.0f43adb0a2c212ae2ade.js:91,41]",
+  "Terser Plugin: Dropping unused function foo [main.0f43adb0a2c212ae2ade.js:91,9]",
+]
+`;

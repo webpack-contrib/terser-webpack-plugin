@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "test": {},
+    "include": {},
+    "exclude": {},
+    "cache": {
+      "oneOf": [{ "type": "boolean" }, { "type": "string" }]
+    },
+    "cacheKeys": {
+      "instanceof": "Function"
+    },
+    "parallel": {
+      "oneOf": [{ "type": "boolean" }, { "type": "integer" }]
+    },
+    "sourceMap": {
+      "type": "boolean"
+    },
+    "minify": {
+      "instanceof": "Function"
+    },
+    "terserOptions": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "extractComments": {},
+    "warningsFilter": {
+      "instanceof": "Function"
+    }
+  },
+  "additionalProperties": false
+}
