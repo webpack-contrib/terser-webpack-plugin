@@ -1,70 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`validation 1`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m['doesntExist']  [34mis an invalid additional property[39m
+options should NOT have additional properties
 "
 `;
 
 exports[`validation 2`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m.cache  [34mshould match exactly one schema in oneOf[39m
-  [2moptions[22m.cache  [34mshould be string[39m
-  [2moptions[22m.cache  [34mshould be boolean[39m
+options.cache should be boolean
+options.cache should be string
+options.cache should match exactly one schema in oneOf
 "
 `;
 
 exports[`validation 3`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m.parallel  [34mshould match exactly one schema in oneOf[39m
-  [2moptions[22m.parallel  [34mshould be integer[39m
-  [2moptions[22m.parallel  [34mshould be boolean[39m
+options.parallel should be boolean
+options.parallel should be integer
+options.parallel should match exactly one schema in oneOf
 "
 `;
 
 exports[`validation 4`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m.parallel  [34mshould match exactly one schema in oneOf[39m
-  [2moptions[22m.parallel  [34mshould be integer[39m
-  [2moptions[22m.parallel  [34mshould be boolean[39m
+options.parallel should be boolean
+options.parallel should be integer
+options.parallel should match exactly one schema in oneOf
 "
 `;
 
 exports[`validation 5`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m.sourceMap  [34mshould be boolean[39m
+options.sourceMap should be boolean
 "
 `;
 
 exports[`validation 6`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m.terserOptions  [34mshould be object[39m
+options.terserOptions should be object
 "
 `;
 
 exports[`validation 7`] = `
-"Terser Plugin
+"Terser Plugin Invalid Options
 
-  [4mOptions Validation Error[24m
-
-  [2moptions[22m.warningsFilter  [34mshould pass \\"instanceof\\" keyword validation[39m
+options.warningsFilter should pass \\"instanceof\\" keyword validation
 "
 `;
