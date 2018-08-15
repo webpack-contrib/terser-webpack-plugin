@@ -19,10 +19,13 @@ export default class TaskRunner {
     const { cache, parallel } = options;
     this.cacheDir =
       cache === true ? findCacheDir({ name: 'terser-webpack-plugin' }) : cache;
+    // In some cases cpus() returns undefined
+    // https://github.com/nodejs/node/issues/19022
+    const cpus = os.cpus() || { length: 1 };
     this.maxConcurrentWorkers =
       parallel === true
-        ? os.cpus().length - 1
-        : Math.min(Number(parallel) || 0, os.cpus().length - 1);
+        ? cpus.length - 1
+        : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
   run(tasks, callback) {
