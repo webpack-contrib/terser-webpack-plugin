@@ -68,14 +68,19 @@ describe('when applied with `parallel` option', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
-        os.cpus().length - 1
-      );
-      expect(workerFarmMock.mock.calls.length).toBe(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerFarm.end.mock.calls.length).toBe(1);
+      const cpus = os.cpus() || { length: 1 };
+      const maxConcurrentWorkers = cpus.length - 1;
+
+      if (maxConcurrentWorkers > 1) {
+        expect(workerFarm.mock.calls.length).toBe(1);
+        expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+          os.cpus().length - 1
+        );
+        expect(workerFarmMock.mock.calls.length).toBe(
+          Object.keys(stats.compilation.assets).length
+        );
+        expect(workerFarm.end.mock.calls.length).toBe(1);
+      }
 
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');
@@ -97,12 +102,17 @@ describe('when applied with `parallel` option', () => {
       const errors = stats.compilation.errors.map(cleanErrorStack);
       const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(2);
-      expect(workerFarmMock.mock.calls.length).toBe(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerFarm.end.mock.calls.length).toBe(1);
+      const cpus = os.cpus() || { length: 1 };
+      const maxConcurrentWorkers = cpus.length - 1;
+
+      if (maxConcurrentWorkers > 1) {
+        expect(workerFarm.mock.calls.length).toBe(1);
+        expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(2);
+        expect(workerFarmMock.mock.calls.length).toBe(
+          Object.keys(stats.compilation.assets).length
+        );
+        expect(workerFarm.end.mock.calls.length).toBe(1);
+      }
 
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');

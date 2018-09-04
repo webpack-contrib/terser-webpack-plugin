@@ -1,3 +1,5 @@
+import path from 'path';
+
 import MemoryFileSystem from 'memory-fs'; // eslint-disable-line import/no-extraneous-dependencies
 import webpack from 'webpack';
 
@@ -26,7 +28,10 @@ export function compile(compiler) {
   return new Promise((resolve, reject) => {
     // eslint-disable-line consistent-return
     compiler.run((err, stats) => {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
+
       return resolve(stats);
     });
   });
@@ -70,6 +75,17 @@ export function countPlugins({ hooks }) {
 
 export function removeCWD(str) {
   return str.split(`${process.cwd()}/`).join('');
+}
+
+export function normalizeSourceMap(source) {
+  if (source.map && source.map.sources) {
+    // eslint-disable-next-line no-param-reassign
+    source.map.sources = source.map.sources.map((sourceFromMap) =>
+      path.relative(process.cwd(), sourceFromMap).replace(/\\/g, '/')
+    );
+  }
+
+  return source;
 }
 
 export function cleanErrorStack(error) {
