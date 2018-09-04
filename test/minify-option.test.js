@@ -1,8 +1,11 @@
-import path from 'path';
-
 import TerserPlugin from '../src';
 
-import { cleanErrorStack, compile, createCompiler } from './helpers';
+import {
+  cleanErrorStack,
+  compile,
+  createCompiler,
+  normalizeSourceMap,
+} from './helpers';
 
 describe('when applied with `minify` option', () => {
   it('matches snapshot for `uglify-js` minifier', () => {
@@ -91,17 +94,6 @@ describe('when applied with `minify` option', () => {
       },
     });
 
-    function removeAbsoluteSourceMapSources(source) {
-      if (source.map && source.map.sources) {
-        // eslint-disable-next-line no-param-reassign
-        source.map.sources = source.map.sources.map((sourceFromMap) =>
-          path.relative(process.cwd(), sourceFromMap)
-        );
-      }
-
-      return source;
-    }
-
     new TerserPlugin({
       sourceMap: true,
       minify(file, sourceMap) {
@@ -134,9 +126,7 @@ describe('when applied with `minify` option', () => {
           Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
         ) {
           expect(
-            removeAbsoluteSourceMapSources(
-              stats.compilation.assets[file].sourceAndMap()
-            )
+            normalizeSourceMap(stats.compilation.assets[file].sourceAndMap())
           ).toMatchSnapshot(file);
         }
       }
