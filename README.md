@@ -49,7 +49,7 @@ And run `webpack` via your preferred method.
 
 ### `test`
 
-Type: `Sting|RegExp|Array<RegExp>`
+Type: `String|RegExp|Array<String|RegExp>`
 Default: `/\.js(\?.*)?$/i`
 
 Test to match files against.
@@ -63,7 +63,7 @@ new TerserPlugin({
 
 ### `include`
 
-Type: `Sting|RegExp|Array<RegExp>`
+Type: `String|RegExp|Array<String|RegExp>`
 Default: `undefined`
 
 Files to include.
@@ -77,7 +77,7 @@ new TerserPlugin({
 
 ### `exclude`
 
-Type: `String|RegExp|Array<String,RegExp>`
+Type: `String|RegExp|Array<String|RegExp>`
 Default: `undefined`
 
 Files to exclude.
@@ -362,7 +362,7 @@ new TerserPlugin({
 
 ##### `filename`
 
-Type: `Regex|Function<(string) -> {String}>`
+Type: `Regex|Function<(string) -> String>`
 Default: `${file}.LICENSE`
 
 The file where the extracted comments will be stored.
