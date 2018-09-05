@@ -41,7 +41,7 @@ describe('when applied with `test` option', () => {
     });
   });
 
-  it('matches snapshot for a single `test` value', () => {
+  it('matches snapshot for a single `test` value ({RegExp})', () => {
     new TerserPlugin({
       test: /(m)?js\.js(\?.*)?$/i,
     }).apply(compiler);
@@ -63,9 +63,53 @@ describe('when applied with `test` option', () => {
     });
   });
 
-  it('matches snapshot for multiple `test` values', () => {
+  it('matches snapshot for a single `test` value ({String})', () => {
+    new TerserPlugin({
+      test: 'js.js',
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for multiple `test` values ({RegExp})', () => {
     new TerserPlugin({
       test: [/(m)?js\.js(\?.*)?$/i, /AsyncImportExport\.js(\?.*)?$/i],
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for multiple `test` values ({String})', () => {
+    new TerserPlugin({
+      test: ['js.js', 'AsyncImportExport.js'],
     }).apply(compiler);
 
     return compile(compiler).then((stats) => {
