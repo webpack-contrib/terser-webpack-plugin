@@ -56,7 +56,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
   // Use /^\**!|@preserve|@license|@cc_on/ RegExp
   if (typeof options.extractComments === 'boolean') {
     condition.preserve = commentsOpts;
-    condition.extract = /^\**!|@preserve|@license|@cc_on/;
+    condition.extract = /^\**!|@preserve|@license|@cc_on/i;
   } else if (
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
