@@ -138,8 +138,8 @@ workflows:
               only: /.*/
       - node10-canary:
           requires:
-          - analysis
-          - node6-latest
+            - analysis
+            - node6-latest
           filters:
             tags:
               only: /.*/
