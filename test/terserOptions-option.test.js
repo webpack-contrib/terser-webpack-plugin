@@ -379,6 +379,58 @@ describe('when applied with `terserOptions` options', () => {
     });
   });
 
+  it('matches snapshot for `module` option (boolean `false` value)', () => {
+    const compiler = createCompiler();
+
+    new TerserPlugin({
+      terserOptions: {
+        module: false,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for `mangle` option (boolean `true` value)', () => {
+    const compiler = createCompiler();
+
+    new TerserPlugin({
+      terserOptions: {
+        module: true,
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
   it('matches snapshot for `output` option (object value with `true` value for `beautify`)', () => {
     const compiler = createCompiler();
 
