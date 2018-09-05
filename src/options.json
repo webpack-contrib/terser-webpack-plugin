@@ -1,17 +1,91 @@
 {
-  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "file-conditions": {
+      "anyOf": [
+        {
+          "instanceof": "RegExp"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
   "properties": {
-    "test": {},
-    "include": {},
-    "exclude": {},
+    "test": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/file-conditions"
+        },
+        {
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/file-conditions"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      ]
+    },
+    "include": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/file-conditions"
+        },
+        {
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/file-conditions"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      ]
+    },
+    "exclude": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/file-conditions"
+        },
+        {
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/file-conditions"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      ]
+    },
     "cache": {
-      "oneOf": [{ "type": "boolean" }, { "type": "string" }]
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ]
     },
     "cacheKeys": {
       "instanceof": "Function"
     },
     "parallel": {
-      "oneOf": [{ "type": "boolean" }, { "type": "integer" }]
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        }
+      ]
     },
     "sourceMap": {
       "type": "boolean"
@@ -23,10 +97,70 @@
       "additionalProperties": true,
       "type": "object"
     },
-    "extractComments": {},
+    "extractComments": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "instanceof": "RegExp"
+        },
+        {
+          "instanceof": "Function"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "condition": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "instanceof": "RegExp"
+                },
+                {
+                  "instanceof": "Function"
+                }
+              ]
+            },
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "instanceof": "Function"
+                }
+              ]
+            },
+            "banner": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "instanceof": "Function"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
     "warningsFilter": {
       "instanceof": "Function"
     }
   },
-  "additionalProperties": false
+  "type": "object"
 }
