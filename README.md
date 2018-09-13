@@ -262,7 +262,7 @@ new TerserPlugin({
 
 ### `extractComments`
 
-Type: `Boolean|String|RegExp|Function<(node, comment) -> Boolean|Object>`
+Type: `Boolean|String|RegExp|Function<(node, comment) -> Boolean|Object>|Object`
 Default: `false`
 
 Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a)).
@@ -362,7 +362,7 @@ new TerserPlugin({
 
 ##### `filename`
 
-Type: `Regex|Function<(string) -> String>`
+Type: `String|Function<(string) -> String>`
 Default: `${file}.LICENSE`
 
 The file where the extracted comments will be stored.

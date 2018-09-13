@@ -3,54 +3,200 @@
 exports[`validation 1`] = `
 "Terser Plugin Invalid Options
 
-options should NOT have additional properties
+options.test should pass \\"instanceof\\" keyword validation
+options.test should be string
+options.test should match some schema in anyOf
+options.test should be array
+options.test should match some schema in anyOf
 "
 `;
 
 exports[`validation 2`] = `
 "Terser Plugin Invalid Options
 
-options.cache should be boolean
-options.cache should be string
-options.cache should match exactly one schema in oneOf
+options.test should pass \\"instanceof\\" keyword validation
+options.test should be string
+options.test should match some schema in anyOf
+options.test.0 should pass \\"instanceof\\" keyword validation
+options.test.0 should be string
+options.test.0 should match some schema in anyOf
+options.test.0 should match some schema in anyOf
+options.test should match some schema in anyOf
 "
 `;
 
 exports[`validation 3`] = `
 "Terser Plugin Invalid Options
 
-options.parallel should be boolean
-options.parallel should be integer
-options.parallel should match exactly one schema in oneOf
+options.include should pass \\"instanceof\\" keyword validation
+options.include should be string
+options.include should match some schema in anyOf
+options.include should be array
+options.include should match some schema in anyOf
 "
 `;
 
 exports[`validation 4`] = `
 "Terser Plugin Invalid Options
 
-options.parallel should be boolean
-options.parallel should be integer
-options.parallel should match exactly one schema in oneOf
+options.include should pass \\"instanceof\\" keyword validation
+options.include should be string
+options.include should match some schema in anyOf
+options.include.0 should pass \\"instanceof\\" keyword validation
+options.include.0 should be string
+options.include.0 should match some schema in anyOf
+options.include.0 should match some schema in anyOf
+options.include should match some schema in anyOf
 "
 `;
 
 exports[`validation 5`] = `
 "Terser Plugin Invalid Options
 
-options.sourceMap should be boolean
+options.exclude should pass \\"instanceof\\" keyword validation
+options.exclude should be string
+options.exclude should match some schema in anyOf
+options.exclude should be array
+options.exclude should match some schema in anyOf
 "
 `;
 
 exports[`validation 6`] = `
 "Terser Plugin Invalid Options
 
-options.terserOptions should be object
+options.exclude should pass \\"instanceof\\" keyword validation
+options.exclude should be string
+options.exclude should match some schema in anyOf
+options.exclude.0 should pass \\"instanceof\\" keyword validation
+options.exclude.0 should be string
+options.exclude.0 should match some schema in anyOf
+options.exclude.0 should match some schema in anyOf
+options.exclude should match some schema in anyOf
 "
 `;
 
 exports[`validation 7`] = `
 "Terser Plugin Invalid Options
 
+options.cache should be boolean
+options.cache should be string
+options.cache should match some schema in anyOf
+"
+`;
+
+exports[`validation 8`] = `
+"Terser Plugin Invalid Options
+
+options.cacheKeys should pass \\"instanceof\\" keyword validation
+"
+`;
+
+exports[`validation 9`] = `
+"Terser Plugin Invalid Options
+
+options.parallel should be boolean
+options.parallel should be integer
+options.parallel should match some schema in anyOf
+"
+`;
+
+exports[`validation 10`] = `
+"Terser Plugin Invalid Options
+
+options.parallel should be boolean
+options.parallel should be integer
+options.parallel should match some schema in anyOf
+"
+`;
+
+exports[`validation 11`] = `
+"Terser Plugin Invalid Options
+
+options.sourceMap should be boolean
+"
+`;
+
+exports[`validation 12`] = `
+"Terser Plugin Invalid Options
+
+options.minify should pass \\"instanceof\\" keyword validation
+"
+`;
+
+exports[`validation 13`] = `
+"Terser Plugin Invalid Options
+
+options.terserOptions should be object
+"
+`;
+
+exports[`validation 14`] = `
+"Terser Plugin Invalid Options
+
+options.extractComments should be boolean
+options.extractComments should be string
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments.condition should be boolean
+options.extractComments.condition should be string
+options.extractComments.condition should pass \\"instanceof\\" keyword validation
+options.extractComments.condition should pass \\"instanceof\\" keyword validation
+options.extractComments.condition should match some schema in anyOf
+options.extractComments should match some schema in anyOf
+"
+`;
+
+exports[`validation 15`] = `
+"Terser Plugin Invalid Options
+
+options.extractComments should be boolean
+options.extractComments should be string
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments.filename should be string
+options.extractComments.filename should pass \\"instanceof\\" keyword validation
+options.extractComments.filename should match some schema in anyOf
+options.extractComments should match some schema in anyOf
+"
+`;
+
+exports[`validation 16`] = `
+"Terser Plugin Invalid Options
+
+options.extractComments should be boolean
+options.extractComments should be string
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments.banner should be boolean
+options.extractComments.banner should be string
+options.extractComments.banner should pass \\"instanceof\\" keyword validation
+options.extractComments.banner should match some schema in anyOf
+options.extractComments should match some schema in anyOf
+"
+`;
+
+exports[`validation 17`] = `
+"Terser Plugin Invalid Options
+
+options.extractComments should be boolean
+options.extractComments should be string
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments should pass \\"instanceof\\" keyword validation
+options.extractComments should NOT have additional properties
+options.extractComments should match some schema in anyOf
+"
+`;
+
+exports[`validation 18`] = `
+"Terser Plugin Invalid Options
+
 options.warningsFilter should pass \\"instanceof\\" keyword validation
+"
+`;
+
+exports[`validation 19`] = `
+"Terser Plugin Invalid Options
+
+options should NOT have additional properties
 "
 `;
