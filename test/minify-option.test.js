@@ -7,6 +7,19 @@ import {
   normalizeSourceMap,
 } from './helpers';
 
+// Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
+
+jest.mock('worker-farm', () => {
+  const mock = jest.fn((options, worker) =>
+    jest.fn((data, callback) =>
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      require(worker)(data, callback)
+    )
+  );
+  mock.end = jest.fn();
+  return mock;
+});
+
 describe('when applied with `minify` option', () => {
   it('matches snapshot for `uglify-js` minifier', () => {
     const compiler = createCompiler({
