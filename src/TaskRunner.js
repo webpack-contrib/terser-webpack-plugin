@@ -7,12 +7,7 @@ import serialize from 'serialize-javascript';
 
 import minify from './minify';
 
-let workerFile = require.resolve('./worker');
-
-try {
-  // run test
-  workerFile = require.resolve('../dist/worker');
-} catch (e) {} // eslint-disable-line no-empty
+const worker = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
@@ -43,7 +38,7 @@ export default class TaskRunner {
               maxConcurrentCallsPerWorker: 1,
             }
           : { maxConcurrentWorkers: this.maxConcurrentWorkers };
-      this.workers = workerFarm(workerOptions, workerFile);
+      this.workers = workerFarm(workerOptions, worker);
       this.boundWorkers = (options, cb) => this.workers(serialize(options), cb);
     } else {
       this.boundWorkers = (options, cb) => {
