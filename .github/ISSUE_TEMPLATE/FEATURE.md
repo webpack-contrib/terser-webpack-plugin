@@ -19,7 +19,7 @@ about: Suggest an idea for this project
 * Node Version:
 * NPM Version:
 * webpack Version:
-* ${package} Version:
+* terser-webpack-plugin Version:
 
 ### Feature Proposal
 
