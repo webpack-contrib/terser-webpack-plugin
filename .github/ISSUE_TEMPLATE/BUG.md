@@ -19,7 +19,7 @@ about: Something went awry and you'd like to tell us about it.
 * Node Version:
 * NPM Version:
 * webpack Version:
-* ${package} Version:
+* terser-webpack-plugin Version:
 
 ### Expected Behavior
 
