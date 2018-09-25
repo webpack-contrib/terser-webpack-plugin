@@ -302,18 +302,18 @@ class TerserPlugin {
           // Write extracted comments to commentsFile
           if (commentsFile && extractedComments.length > 0) {
             // Filter out duplicate comments, if commentsFile already exits
-            let filteredComments = extractedComments;
+            let dedupedComments = extractedComments;
             if (commentsFile in compilation.assets) {
               const commentsFileSource = compilation.assets[
                 commentsFile
               ].source();
 
-              filteredComments = filteredComments.filter(
-                (comment) => commentsFileSource.indexOf(comment) === -1
+              dedupedComments = dedupedComments.filter(
+                (comment) => !commentsFileSource.includes(comment)
               );
             }
 
-            if (filteredComments.length) {
+            if (dedupedComments.length > 0) {
               // Add a banner to the original file
               if (this.options.extractComments.banner !== false) {
                 let banner =
@@ -334,7 +334,7 @@ class TerserPlugin {
                 }
               }
 
-              const commentsString = `${filteredComments.join('\n\n')}\n`;
+              const commentsString = `${dedupedComments.join('\n\n')}\n`;
 
               if (commentsFile in compilation.assets) {
                 // commentsFile already exists, append new comments...
