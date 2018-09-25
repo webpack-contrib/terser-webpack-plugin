@@ -64,13 +64,9 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
 exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
 "/***/
 
-/***/
-
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
@@ -86,437 +82,75 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
 
 // webpackBootstrap
 
-/******/
-
 // install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // The module cache
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // object to store loaded and loading chunks
-
-/******/
 
 // undefined = chunk not loaded, null = chunk preloaded/prefetched
 
-/******/
-
 // Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // This file contains only the entry chunk.
 
-/******/
-
 // The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // JSONP chunk loading for javascript
 
-/******/
-
-/******/
-
-/******/
-
 // 0 means \\"already installed\\".
-
-/******/
-
-/******/
 
 // a Promise means \\"currently loading\\".
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // start chunk loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // avoid mem leaks in IE.
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // expose the modules object (__webpack_modules__)
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
-/******/
-
 // on error function for async loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -549,8 +183,6 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
 /*
 * Foo
 */
-
-/******/
 "
 `;
 
@@ -564,217 +196,49 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
 
 // webpackBootstrap
 
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
 /************************************************************************/
 
-/******/
-
 /* 0 */
-
-/* 1 */
-
-/***/
 
 /* 1 */
 
@@ -784,10 +248,6 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
  * Information.
  * @license MIT
  */
-
-/***/
-
-/******/
 "
 `;
 
@@ -838,13 +298,9 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
 exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
 "/***/
 
-/***/
-
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
@@ -860,437 +316,75 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
 
 // webpackBootstrap
 
-/******/
-
 // install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // The module cache
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // object to store loaded and loading chunks
-
-/******/
 
 // undefined = chunk not loaded, null = chunk preloaded/prefetched
 
-/******/
-
 // Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // This file contains only the entry chunk.
 
-/******/
-
 // The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // JSONP chunk loading for javascript
 
-/******/
-
-/******/
-
-/******/
-
 // 0 means \\"already installed\\".
-
-/******/
-
-/******/
 
 // a Promise means \\"currently loading\\".
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // start chunk loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // avoid mem leaks in IE.
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // expose the modules object (__webpack_modules__)
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
-/******/
-
 // on error function for async loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -1323,8 +417,6 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
 /*
 * Foo
 */
-
-/******/
 "
 `;
 
@@ -1338,217 +430,49 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
 
 // webpackBootstrap
 
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
 /************************************************************************/
 
-/******/
-
 /* 0 */
-
-/* 1 */
-
-/***/
 
 /* 1 */
 
@@ -1558,10 +482,6 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
  * Information.
  * @license MIT
  */
-
-/***/
-
-/******/
 "
 `;
 
@@ -1750,437 +670,75 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 
 // webpackBootstrap
 
-/******/
-
 // install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // The module cache
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // object to store loaded and loading chunks
-
-/******/
 
 // undefined = chunk not loaded, null = chunk preloaded/prefetched
 
-/******/
-
 // Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // This file contains only the entry chunk.
 
-/******/
-
 // The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // JSONP chunk loading for javascript
 
-/******/
-
-/******/
-
-/******/
-
 // 0 means \\"already installed\\".
-
-/******/
-
-/******/
 
 // a Promise means \\"currently loading\\".
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // start chunk loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // avoid mem leaks in IE.
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // expose the modules object (__webpack_modules__)
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
-/******/
-
 // on error function for async loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -2214,246 +772,14 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 * Foo
 */
 
-/******/
-
-/******/
-
-// webpackBootstrap
-
-/******/
-
-// The module cache
-
-/******/
-
-/******/
-
-/******/
-
-// The require function
-
-/******/
-
-/******/
-
-/******/
-
-// Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Create a new module (and put it into the cache)
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Execute the module function
-
-/******/
-
-/******/
-
-/******/
-
-// Return the exports of the module
-
-/******/
-
-/******/
-
-/******/
-
-// Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// expose the modules object (__webpack_modules__)
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
-
-// expose the module cache
-
-/******/
-
-/******/
-
-/******/
-
-// define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// define __esModule on exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// create a fake namespace object
-
-/******/
-
-// mode & 1: value is a module id, require it
-
-/******/
-
-// mode & 2: merge all properties of value into the ns
-
-/******/
-
-// mode & 4: return value when already ns object
-
-/******/
-
-// mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// getDefaultExport function for compatibility with non-harmony modules
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
-
-// __webpack_public_path__
-
-/******/
-
-/******/
-
-/************************************************************************/
-
-/******/
-
-/* 0 */
-
 /* 1 */
-
-/***/
-
-/* 1 */
-
-/***/
 
 /**
  * Information.
  * @license MIT
  */
 
-/***/
-
-/******/
-
-/***/
-
-/***/
-
-/*! Legal Comment */
-
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
@@ -2477,13 +803,9 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): chunks/2.2.c684797999dda47217cc.license.js 1`] = `
 "/***/
 
-/***/
-
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
@@ -2499,437 +821,75 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 
 // webpackBootstrap
 
-/******/
-
 // install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // The module cache
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // object to store loaded and loading chunks
-
-/******/
 
 // undefined = chunk not loaded, null = chunk preloaded/prefetched
 
-/******/
-
 // Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // This file contains only the entry chunk.
 
-/******/
-
 // The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // JSONP chunk loading for javascript
 
-/******/
-
-/******/
-
-/******/
-
 // 0 means \\"already installed\\".
-
-/******/
-
-/******/
 
 // a Promise means \\"currently loading\\".
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // start chunk loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // avoid mem leaks in IE.
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // expose the modules object (__webpack_modules__)
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
-/******/
-
 // on error function for async loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -2962,8 +922,6 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 /*
 * Foo
 */
-
-/******/
 "
 `;
 
@@ -2977,217 +935,49 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 
 // webpackBootstrap
 
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
-
-/******/
-
 /************************************************************************/
 
-/******/
-
 /* 0 */
-
-/* 1 */
-
-/***/
 
 /* 1 */
 
@@ -3197,10 +987,6 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
  * Information.
  * @license MIT
  */
-
-/***/
-
-/******/
 "
 `;
 

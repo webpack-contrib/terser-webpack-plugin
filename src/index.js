@@ -301,44 +301,50 @@ class TerserPlugin {
 
           // Write extracted comments to commentsFile
           if (commentsFile && extractedComments.length > 0) {
-            // Add a banner to the original file
-            if (this.options.extractComments.banner !== false) {
-              let banner =
-                this.options.extractComments.banner ||
-                `For license information please see ${path.posix.basename(
-                  commentsFile
-                )}`;
+            // Filter out duplicate comments, if commentsFile already exits
+            let filteredComments = extractedComments;
+            if (commentsFile in compilation.assets) {
+              const commentsFileSource = compilation.assets[
+                commentsFile
+              ].source();
 
-              if (typeof banner === 'function') {
-                banner = banner(commentsFile);
-              }
-
-              if (banner) {
-                outputSource = new ConcatSource(
-                  `/*! ${banner} */\n`,
-                  outputSource
-                );
-              }
+              filteredComments = filteredComments.filter(
+                (comment) => commentsFileSource.indexOf(comment) === -1
+              );
             }
 
-            const commentsSource = new RawSource(
-              `${extractedComments.join('\n\n')}\n`
-            );
+            if (filteredComments.length) {
+              // Add a banner to the original file
+              if (this.options.extractComments.banner !== false) {
+                let banner =
+                  this.options.extractComments.banner ||
+                  `For license information please see ${path.posix.basename(
+                    commentsFile
+                  )}`;
 
-            if (commentsFile in compilation.assets) {
-              // commentsFile already exists, append new comments...
-              if (compilation.assets[commentsFile] instanceof ConcatSource) {
+                if (typeof banner === 'function') {
+                  banner = banner(commentsFile);
+                }
+
+                if (banner) {
+                  outputSource = new ConcatSource(
+                    `/*! ${banner} */\n`,
+                    outputSource
+                  );
+                }
+              }
+
+              const commentsString = `${filteredComments.join('\n\n')}\n`;
+
+              if (commentsFile in compilation.assets) {
+                // commentsFile already exists, append new comments...
                 compilation.assets[commentsFile].add('\n');
-                compilation.assets[commentsFile].add(commentsSource);
+                compilation.assets[commentsFile].add(commentsString);
               } else {
                 compilation.assets[commentsFile] = new ConcatSource(
-                  compilation.assets[commentsFile],
-                  '\n',
-                  commentsSource
+                  commentsString
                 );
               }
-            } else {
-              compilation.assets[commentsFile] = commentsSource;
             }
           }
 
