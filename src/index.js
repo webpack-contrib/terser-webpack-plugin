@@ -165,7 +165,7 @@ class TerserPlugin {
       const processedAssets = new WeakSet();
       const tasks = [];
 
-      chunks
+      Array.from(chunks)
         .reduce((acc, chunk) => acc.concat(chunk.files || []), [])
         .concat(compilation.additionalChunkAssets || [])
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
