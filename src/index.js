@@ -28,6 +28,7 @@ class TerserPlugin {
       sourceMap = false,
       cache = false,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
+      compactCache = false,
       parallel = false,
       include,
       exclude,
@@ -40,6 +41,7 @@ class TerserPlugin {
       sourceMap,
       cache,
       cacheKeys,
+      compactCache,
       parallel,
       include,
       exclude,
@@ -159,6 +161,7 @@ class TerserPlugin {
     const optimizeFn = (compilation, chunks, callback) => {
       const taskRunner = new TaskRunner({
         cache: this.options.cache,
+        compactCache: this.options.compactCache,
         parallel: this.options.parallel,
       });
 

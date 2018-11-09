@@ -366,4 +366,103 @@ describe('when applied with `cache` option', () => {
       }
     });
   });
+
+  it('matches snapshot for `true` value with compactCache set to `true', () => {
+    new TerserPlugin({ cache: true, compactCache: true }).apply(compiler);
+
+    cacache.get = jest.fn(cacache.get);
+    cacache.put = jest.fn(cacache.put);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+
+      const countAssets = Object.keys(stats.compilation.assets).length;
+
+      return (
+        Promise.resolve()
+          .then(() => cacache.ls(cacheDir))
+          .then((cacheEntriesList) => {
+            const cacheKeys = Object.keys(cacheEntriesList);
+
+            // Make sure that we cached files
+            expect(cacheKeys.length).toBe(countAssets);
+
+            cacheKeys.forEach((cacheEntry) => {
+              // eslint-disable-next-line no-new-func
+              const cacheEntryOptions = new Function(
+                `'use strict'\nreturn ${cacheEntry}`
+              )();
+              const basename = path.basename(cacheEntryOptions.path);
+
+              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
+                basename
+              );
+            });
+
+            cacache.get.mockClear();
+            cacache.put.mockClear();
+          })
+          // Run second compilation to ensure obsolete cache is purged
+          .then(() => {
+            const newCompiler = createCompiler({
+              entry: {
+                one: `${__dirname}/fixtures/entry.js`,
+                two: `${__dirname}/fixtures/entry.js`,
+                three: `${__dirname}/fixtures/entry.js`,
+              },
+            });
+            new TerserPlugin({ cache: true, compactCache: true }).apply(
+              newCompiler
+            );
+            return compile(newCompiler);
+          })
+          .then((newStats) => {
+            const newErrors = newStats.compilation.errors.map(cleanErrorStack);
+            const newWarnings = newStats.compilation.warnings.map(
+              cleanErrorStack
+            );
+
+            expect(newErrors).toMatchSnapshot('errors');
+            expect(newWarnings).toMatchSnapshot('warnings');
+
+            for (const file in newStats.compilation.assets) {
+              if (
+                Object.prototype.hasOwnProperty.call(
+                  newStats.compilation.assets,
+                  file
+                )
+              ) {
+                expect(
+                  newStats.compilation.assets[file].source()
+                ).toMatchSnapshot(file);
+              }
+            }
+
+            const newCountAssets = Object.keys(newStats.compilation.assets)
+              .length;
+
+            return Promise.resolve()
+              .then(() => cacache.ls(cacheDir))
+              .then((cacheEntriesList) => {
+                const cacheKeys = Object.keys(cacheEntriesList);
+
+                // Make sure that cache size shrunk
+                expect(cacheKeys.length).toBe(newCountAssets);
+              });
+          })
+      );
+    });
+  });
 });

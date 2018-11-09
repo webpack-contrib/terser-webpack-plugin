@@ -11,7 +11,7 @@ const worker = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
-    const { cache, parallel } = options;
+    const { cache, parallel, compactCache } = options;
     this.cacheDir =
       cache === true ? findCacheDir({ name: 'terser-webpack-plugin' }) : cache;
     // In some cases cpus() returns undefined
@@ -21,6 +21,7 @@ export default class TaskRunner {
       parallel === true
         ? cpus.length - 1
         : Math.min(Number(parallel) || 0, cpus.length - 1);
+    this.compactCache = compactCache;
   }
 
   run(tasks, callback) {
@@ -50,6 +51,8 @@ export default class TaskRunner {
       };
     }
 
+    const usedCacheKeys = [];
+
     let toRun = tasks.length;
     const results = [];
     const step = (index, data) => {
@@ -57,11 +60,27 @@ export default class TaskRunner {
       results[index] = data;
 
       if (!toRun) {
-        callback(null, results);
+        if (this.cacheDir && this.compactCache) {
+          cacache.ls(this.cacheDir).then((data) => {
+            const unusedKeys = Object.keys(data).filter(
+              (key) => !usedCacheKeys.includes(key)
+            );
+
+            Promise.all(
+              unusedKeys.map((key) => cacache.rm.entry(this.cacheDir, key))
+            )
+              .then(cacache.verify(this.cacheDir))
+              .then(() => callback(null, results));
+          });
+        } else {
+          callback(null, results);
+        }
       }
     };
 
     tasks.forEach((task, index) => {
+      const cacheKeys = serialize(task.cacheKeys);
+      usedCacheKeys.push(cacheKeys);
       const enqueue = () => {
         this.boundWorkers(task, (error, data) => {
           const result = error ? { error } : data;
@@ -69,11 +88,7 @@ export default class TaskRunner {
 
           if (this.cacheDir && !result.error) {
             cacache
-              .put(
-                this.cacheDir,
-                serialize(task.cacheKeys),
-                JSON.stringify(data)
-              )
+              .put(this.cacheDir, cacheKeys, JSON.stringify(data))
               .then(done, done);
           } else {
             done();
@@ -83,7 +98,7 @@ export default class TaskRunner {
 
       if (this.cacheDir) {
         cacache
-          .get(this.cacheDir, serialize(task.cacheKeys))
+          .get(this.cacheDir, cacheKeys)
           .then(({ data }) => step(index, JSON.parse(data)), enqueue);
       } else {
         enqueue();

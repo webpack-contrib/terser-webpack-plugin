@@ -154,6 +154,13 @@ new TerserPlugin({
 })
 ```
 
+### `compactCache`
+
+Type: `Boolean`
+Default: `false`
+
+When set to `true` removes unused cache entries after each run
+
 ### `parallel`
 
 Type: `Boolean|Number`
