@@ -478,6 +478,30 @@ module.exports = {
 };
 ```
 
+### Remove Comments
+
+If you avoid building with comments, set **terserOptions.output.comments** to **false** as in this config:
+
+```js
+// in your webpack.config.js
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  //...
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: false
+          }
+        },
+      })
+    ]
+  }
+};
+```
+
 ### Custom Minify Function
 
 Override default minify function - use `uglify-js` for minification.
