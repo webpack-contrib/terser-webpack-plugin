@@ -237,7 +237,7 @@ new TerserPlugin({
 Type: `Object`
 Default: [default](https://github.com/fabiosantoscode/terser#minify-options)
 
-Terser minify options.
+Terser minify [options](https://github.com/terser-js/terser#minify-options).
 
 ```js
 // in your webpack.config.js
