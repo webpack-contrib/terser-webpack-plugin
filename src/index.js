@@ -22,7 +22,7 @@ class TerserPlugin {
     const {
       minify,
       terserOptions = {},
-      test = /\.js(\?.*)?$/i,
+      test = /\.m?js(\?.*)?$/i,
       warningsFilter = () => true,
       extractComments = false,
       sourceMap = false,
