@@ -78,25 +78,23 @@ options.exclude should match some schema in anyOf
 exports[`validation 7`] = `
 "Terser Plugin Invalid Options
 
-options.cache should be boolean
-options.cache should be string
-options.cache should match some schema in anyOf
+options.chunkFilter should pass \\"instanceof\\" keyword validation
 "
 `;
 
 exports[`validation 8`] = `
 "Terser Plugin Invalid Options
 
-options.cacheKeys should pass \\"instanceof\\" keyword validation
+options.cache should be boolean
+options.cache should be string
+options.cache should match some schema in anyOf
 "
 `;
 
 exports[`validation 9`] = `
 "Terser Plugin Invalid Options
 
-options.parallel should be boolean
-options.parallel should be integer
-options.parallel should match some schema in anyOf
+options.cacheKeys should pass \\"instanceof\\" keyword validation
 "
 `;
 
@@ -112,25 +110,34 @@ options.parallel should match some schema in anyOf
 exports[`validation 11`] = `
 "Terser Plugin Invalid Options
 
-options.sourceMap should be boolean
+options.parallel should be boolean
+options.parallel should be integer
+options.parallel should match some schema in anyOf
 "
 `;
 
 exports[`validation 12`] = `
 "Terser Plugin Invalid Options
 
-options.minify should pass \\"instanceof\\" keyword validation
+options.sourceMap should be boolean
 "
 `;
 
 exports[`validation 13`] = `
 "Terser Plugin Invalid Options
 
-options.terserOptions should be object
+options.minify should pass \\"instanceof\\" keyword validation
 "
 `;
 
 exports[`validation 14`] = `
+"Terser Plugin Invalid Options
+
+options.terserOptions should be object
+"
+`;
+
+exports[`validation 15`] = `
 "Terser Plugin Invalid Options
 
 options.extractComments should be boolean
@@ -146,7 +153,7 @@ options.extractComments should match some schema in anyOf
 "
 `;
 
-exports[`validation 15`] = `
+exports[`validation 16`] = `
 "Terser Plugin Invalid Options
 
 options.extractComments should be boolean
@@ -160,7 +167,7 @@ options.extractComments should match some schema in anyOf
 "
 `;
 
-exports[`validation 16`] = `
+exports[`validation 17`] = `
 "Terser Plugin Invalid Options
 
 options.extractComments should be boolean
@@ -175,7 +182,7 @@ options.extractComments should match some schema in anyOf
 "
 `;
 
-exports[`validation 17`] = `
+exports[`validation 18`] = `
 "Terser Plugin Invalid Options
 
 options.extractComments should be boolean
@@ -187,14 +194,14 @@ options.extractComments should match some schema in anyOf
 "
 `;
 
-exports[`validation 18`] = `
+exports[`validation 19`] = `
 "Terser Plugin Invalid Options
 
 options.warningsFilter should pass \\"instanceof\\" keyword validation
 "
 `;
 
-exports[`validation 19`] = `
+exports[`validation 20`] = `
 "Terser Plugin Invalid Options
 
 options should NOT have additional properties
