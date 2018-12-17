@@ -267,7 +267,8 @@ class TerserPlugin {
 
         results.forEach((data, index) => {
           const { file, input, inputSourceMap, commentsFile } = tasks[index];
-          const { error, map, code, warnings, extractedComments } = data;
+          const { error, map, code, warnings } = data;
+          let { extractedComments } = data;
 
           let sourceMap = null;
 
@@ -306,44 +307,56 @@ class TerserPlugin {
 
           // Write extracted comments to commentsFile
           if (commentsFile && extractedComments.length > 0) {
-            // Add a banner to the original file
-            if (this.options.extractComments.banner !== false) {
-              let banner =
-                this.options.extractComments.banner ||
-                `For license information please see ${path.posix.basename(
-                  commentsFile
-                )}`;
+            if (commentsFile in compilation.assets) {
+              const commentsFileSource = compilation.assets[
+                commentsFile
+              ].source();
 
-              if (typeof banner === 'function') {
-                banner = banner(commentsFile);
-              }
-
-              if (banner) {
-                outputSource = new ConcatSource(
-                  `/*! ${banner} */\n`,
-                  outputSource
-                );
-              }
+              extractedComments = extractedComments.filter(
+                (comment) => !commentsFileSource.includes(comment)
+              );
             }
 
-            const commentsSource = new RawSource(
-              `${extractedComments.join('\n\n')}\n`
-            );
+            if (extractedComments.length > 0) {
+              // Add a banner to the original file
+              if (this.options.extractComments.banner !== false) {
+                let banner =
+                  this.options.extractComments.banner ||
+                  `For license information please see ${path.posix.basename(
+                    commentsFile
+                  )}`;
 
-            if (commentsFile in compilation.assets) {
-              // commentsFile already exists, append new comments...
-              if (compilation.assets[commentsFile] instanceof ConcatSource) {
-                compilation.assets[commentsFile].add('\n');
-                compilation.assets[commentsFile].add(commentsSource);
-              } else {
-                compilation.assets[commentsFile] = new ConcatSource(
-                  compilation.assets[commentsFile],
-                  '\n',
-                  commentsSource
-                );
+                if (typeof banner === 'function') {
+                  banner = banner(commentsFile);
+                }
+
+                if (banner) {
+                  outputSource = new ConcatSource(
+                    `/*! ${banner} */\n`,
+                    outputSource
+                  );
+                }
               }
-            } else {
-              compilation.assets[commentsFile] = commentsSource;
+
+              const commentsSource = new RawSource(
+                `${extractedComments.join('\n\n')}\n`
+              );
+
+              if (commentsFile in compilation.assets) {
+                // commentsFile already exists, append new comments...
+                if (compilation.assets[commentsFile] instanceof ConcatSource) {
+                  compilation.assets[commentsFile].add('\n');
+                  compilation.assets[commentsFile].add(commentsSource);
+                } else {
+                  compilation.assets[commentsFile] = new ConcatSource(
+                    compilation.assets[commentsFile],
+                    '\n',
+                    commentsSource
+                  );
+                }
+              } else {
+                compilation.assets[commentsFile] = commentsSource;
+              }
             }
           }
 

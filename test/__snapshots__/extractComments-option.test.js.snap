@@ -1,15 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): chunks/2.2.c684797999dda47217cc.js 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"`;
+exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): chunks/4.4.861772efb54e39beeb22.js 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"`;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/four.633d42581129e094410e.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
 "/*! Legal Foo */
 
 // Foo
@@ -24,20 +26,24 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`/
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/two.855663346e1e9f4f3ad4.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"`;
+exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/three.80c55e9fcce4c2639772.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): filename/two.ad627b4b0879131696ff.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"`;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`/Foo/\` value (regexp): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): chunks/2.2.c684797999dda47217cc.js 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"`;
+exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): chunks/4.4.861772efb54e39beeb22.js 1`] = `"(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"`;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/four.633d42581129e094410e.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
 "/*! Legal Foo */
 
 // Foo
@@ -52,471 +58,168 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`F
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/two.855663346e1e9f4f3ad4.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"`;
+exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/three.80c55e9fcce4c2639772.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): filename/two.ad627b4b0879131696ff.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"`;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`Foo\` value (string): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! For license information please see 2.2.c684797999dda47217cc.js.LICENSE */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! For license information please see 4.4.861772efb54e39beeb22.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): chunks/4.4.861772efb54e39beeb22.js.LICENSE 1`] = `
 "/***/
-
-/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/four.633d42581129e094410e.js 1`] = `
+"/*! For license information please see four.633d42581129e094410e.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/four.633d42581129e094410e.js.LICENSE 1`] = `
 "/******/
 
 // webpackBootstrap
 
-/******/
-
-// install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// object to store loaded and loading chunks
-
-/******/
-
-// undefined = chunk not loaded, null = chunk preloaded/prefetched
-
-/******/
-
-// Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// This file contains only the entry chunk.
-
-/******/
-
-// The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// JSONP chunk loading for javascript
-
-/******/
-
-/******/
-
-/******/
-
-// 0 means \\"already installed\\".
-
-/******/
-
-/******/
-
-// a Promise means \\"currently loading\\".
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// start chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// avoid mem leaks in IE.
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
+// Load entry module and return exports
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
 
-/******/
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// install a JSONP callback for chunk loading
+
+// The module cache
+
+// object to store loaded and loading chunks
+
+// undefined = chunk not loaded, null = chunk preloaded/prefetched
+
+// Promise = chunk loading, 0 = chunk loaded
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// This file contains only the entry chunk.
+
+// The chunk loading function for additional chunks
+
+// JSONP chunk loading for javascript
+
+// 0 means \\"already installed\\".
+
+// a Promise means \\"currently loading\\".
+
+// setup Promise in chunk cache
+
+// start chunk loading
+
+// script path function
+
+// avoid mem leaks in IE.
+
+// expose the modules object (__webpack_modules__)
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
 
 // on error function for async loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -549,232 +252,128 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
 /*
 * Foo
 */
-
-/******/
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! For license information please see two.855663346e1e9f4f3ad4.js.LICENSE */
-!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! For license information please see three.80c55e9fcce4c2639772.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/two.855663346e1e9f4f3ad4.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/three.80c55e9fcce4c2639772.js.LICENSE 1`] = `
 "/******/
 
 // webpackBootstrap
 
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! For license information please see two.ad627b4b0879131696ff.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): filename/two.ad627b4b0879131696ff.js.LICENSE 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// The module cache
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// expose the modules object (__webpack_modules__)
+
+// Load entry module and return exports
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
 
 /************************************************************************/
 
-/******/
-
 /* 0 */
-
-/* 1 */
-
-/***/
 
 /* 1 */
 
@@ -784,17 +383,13 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`a
  * Information.
  * @license MIT
  */
-
-/***/
-
-/******/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`all\` value (string): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: chunks/2.2.c684797999dda47217cc.js 1`] = `
-"(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){
+exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){
 /*! Legal Comment */
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random()}}]);"
@@ -802,8 +397,17 @@ n.exports=Math.random()}}]);"
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: filename/one.4aae4a5989995588a200.js 1`] = `
-"!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),
+exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: filename/four.633d42581129e094410e.js 1`] = `
+"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),
 /*! Legal Comment */
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -819,7 +423,24 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
 e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: filename/two.855663346e1e9f4f3ad4.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: filename/two.ad627b4b0879131696ff.js 1`] = `
 "!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){
 /**
  * Information.
@@ -830,467 +451,162 @@ e.exports=Math.random()}]);"
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`false\` value: warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! For license information please see 2.2.c684797999dda47217cc.js.LICENSE */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! For license information please see 4.4.861772efb54e39beeb22.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: chunks/4.4.861772efb54e39beeb22.js.LICENSE 1`] = `
 "/***/
-
-/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/four.633d42581129e094410e.js 1`] = `
+"/*! For license information please see four.633d42581129e094410e.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/four.633d42581129e094410e.js.LICENSE 1`] = `
 "/******/
 
 // webpackBootstrap
 
-/******/
-
-// install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// object to store loaded and loading chunks
-
-/******/
-
-// undefined = chunk not loaded, null = chunk preloaded/prefetched
-
-/******/
-
-// Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// This file contains only the entry chunk.
-
-/******/
-
-// The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// JSONP chunk loading for javascript
-
-/******/
-
-/******/
-
-/******/
-
-// 0 means \\"already installed\\".
-
-/******/
-
-/******/
-
-// a Promise means \\"currently loading\\".
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// start chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// avoid mem leaks in IE.
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
+// Load entry module and return exports
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
 
-/******/
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// install a JSONP callback for chunk loading
+
+// The module cache
+
+// object to store loaded and loading chunks
+
+// undefined = chunk not loaded, null = chunk preloaded/prefetched
+
+// Promise = chunk loading, 0 = chunk loaded
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// This file contains only the entry chunk.
+
+// The chunk loading function for additional chunks
+
+// JSONP chunk loading for javascript
+
+// 0 means \\"already installed\\".
+
+// a Promise means \\"currently loading\\".
+
+// setup Promise in chunk cache
+
+// start chunk loading
+
+// script path function
+
+// avoid mem leaks in IE.
+
+// expose the modules object (__webpack_modules__)
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
 
 // on error function for async loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -1323,232 +639,128 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
 /*
 * Foo
 */
-
-/******/
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! For license information please see two.855663346e1e9f4f3ad4.js.LICENSE */
-!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! For license information please see three.80c55e9fcce4c2639772.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/two.855663346e1e9f4f3ad4.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/three.80c55e9fcce4c2639772.js.LICENSE 1`] = `
 "/******/
 
 // webpackBootstrap
 
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! For license information please see two.ad627b4b0879131696ff.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: filename/two.ad627b4b0879131696ff.js.LICENSE 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// The module cache
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// expose the modules object (__webpack_modules__)
+
+// Load entry module and return exports
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
 
 /************************************************************************/
 
-/******/
-
 /* 0 */
-
-/* 1 */
-
-/***/
 
 /* 1 */
 
@@ -1558,21 +770,17 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`f
  * Information.
  * @license MIT
  */
-
-/***/
-
-/******/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`function value: warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! For license information please see 2.2.c684797999dda47217cc.js.LICENSE */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! For license information please see 4.4.861772efb54e39beeb22.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): chunks/4.4.861772efb54e39beeb22.js.LICENSE 1`] = `
 "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
@@ -1581,12 +789,25 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`s
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/four.633d42581129e094410e.js 1`] = `
+"/*! For license information please see four.633d42581129e094410e.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/four.633d42581129e094410e.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
 "/*! Legal Comment */
 
 /**
@@ -1605,12 +826,30 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`s
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! For license information please see two.855663346e1e9f4f3ad4.js.LICENSE */
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! For license information please see three.80c55e9fcce4c2639772.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/three.80c55e9fcce4c2639772.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! For license information please see two.ad627b4b0879131696ff.js.LICENSE */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/two.855663346e1e9f4f3ad4.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): filename/two.ad627b4b0879131696ff.js.LICENSE 1`] = `
 "/**
  * Information.
  * @license MIT
@@ -1620,33 +859,39 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`s
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`some\` value (string): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! For license information please see 2.2.c684797999dda47217cc.js.LICENSE */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){
-/** @license Copyright 2112 Moon. **/
-n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! For license information please see 4.4.861772efb54e39beeb22.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: chunks/4.4.861772efb54e39beeb22.js.LICENSE 1`] = `
 "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: errors 1`] = `Array []`;
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),
-/**
- * Utility functions for the foo package.
- * @license Apache-2.0
- */
-e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/four.633d42581129e094410e.js 1`] = `
+"/*! For license information please see four.633d42581129e094410e.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/four.633d42581129e094410e.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
 "/*! Legal Comment */
 
 /**
@@ -1665,8 +910,135 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`t
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! For license information please see two.855663346e1e9f4f3ad4.js.LICENSE */
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! For license information please see three.80c55e9fcce4c2639772.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/three.80c55e9fcce4c2639772.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! For license information please see two.ad627b4b0879131696ff.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: filename/two.ad627b4b0879131696ff.js.LICENSE 1`] = `
+"/**
+ * Information.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and dedupe duplicate comments: warnings 1`] = `Array []`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! For license information please see 4.4.861772efb54e39beeb22.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){
+/** @license Copyright 2112 Moon. **/
+n.exports=Math.random()}}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: chunks/4.4.861772efb54e39beeb22.js.LICENSE 1`] = `
+"/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: errors 1`] = `Array []`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/four.633d42581129e094410e.js 1`] = `
+"/*! For license information please see four.633d42581129e094410e.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/four.633d42581129e094410e.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
+"/*! Legal Comment */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+/*! Legal Foo */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! For license information please see three.80c55e9fcce4c2639772.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/three.80c55e9fcce4c2639772.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! For license information please see two.ad627b4b0879131696ff.js.LICENSE */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){
 /**
  * Information.
@@ -1675,7 +1047,7 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`t
 e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/two.855663346e1e9f4f3ad4.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: filename/two.ad627b4b0879131696ff.js.LICENSE 1`] = `
 "/**
  * Information.
  * @license MIT
@@ -1685,12 +1057,12 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`t
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value and preserve \`@license\` comments: warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! For license information please see 2.2.c684797999dda47217cc.js.LICENSE */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! For license information please see 4.4.861772efb54e39beeb22.js.LICENSE */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: chunks/2.2.c684797999dda47217cc.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: chunks/4.4.861772efb54e39beeb22.js.LICENSE 1`] = `
 "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
@@ -1699,12 +1071,25 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`t
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! For license information please see one.4aae4a5989995588a200.js.LICENSE */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/four.633d42581129e094410e.js 1`] = `
+"/*! For license information please see four.633d42581129e094410e.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/one.4aae4a5989995588a200.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/four.633d42581129e094410e.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! For license information please see one.ab371a4a4817b210bdc0.js.LICENSE */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/one.ab371a4a4817b210bdc0.js.LICENSE 1`] = `
 "/*! Legal Comment */
 
 /**
@@ -1723,12 +1108,30 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`t
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! For license information please see two.855663346e1e9f4f3ad4.js.LICENSE */
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! For license information please see three.80c55e9fcce4c2639772.js.LICENSE */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/three.80c55e9fcce4c2639772.js.LICENSE 1`] = `
+"/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! For license information please see two.ad627b4b0879131696ff.js.LICENSE */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/two.855663346e1e9f4f3ad4.js.LICENSE 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: filename/two.ad627b4b0879131696ff.js.LICENSE 1`] = `
 "/**
  * Information.
  * @license MIT
@@ -1738,9 +1141,166 @@ exports[`when applied with \`extractComments\` option matches snapshot for a \`t
 
 exports[`when applied with \`extractComments\` option matches snapshot for a \`true\` value: warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): chunks/2.2.c684797999dda47217cc.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: chunks/4.4.861772efb54e39beeb22.js 1`] = `
 "/*! License information can be found in extracted-comments.js */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: errors 1`] = `Array []`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: extracted-comments.js 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// The module cache
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// expose the modules object (__webpack_modules__)
+
+// Load entry module and return exports
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
+
+/************************************************************************/
+
+/***/
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+// install a JSONP callback for chunk loading
+
+// object to store loaded and loading chunks
+
+// undefined = chunk not loaded, null = chunk preloaded/prefetched
+
+// Promise = chunk loading, 0 = chunk loaded
+
+// This file contains only the entry chunk.
+
+// The chunk loading function for additional chunks
+
+// JSONP chunk loading for javascript
+
+// 0 means \\"already installed\\".
+
+// a Promise means \\"currently loading\\".
+
+// setup Promise in chunk cache
+
+// start chunk loading
+
+// script path function
+
+// avoid mem leaks in IE.
+
+// on error function for async loading
+
+/* 0 */
+
+/* import() */
+
+/*! Legal Comment */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+/*! Legal Foo */
+
+// Foo
+
+/*
+ Foo Bar
+ */
+
+/*
+* Foo
+*/
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/* 1 */
+
+/**
+ * Information.
+ * @license MIT
+ */
+
+/** @license Copyright 2112 Moon. **/
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: filename/four.633d42581129e094410e.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments: warnings 1`] = `Array []`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): errors 1`] = `Array []`;
@@ -1750,441 +1310,84 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 
 // webpackBootstrap
 
-/******/
-
-// install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// object to store loaded and loading chunks
-
-/******/
-
-// undefined = chunk not loaded, null = chunk preloaded/prefetched
-
-/******/
-
-// Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// This file contains only the entry chunk.
-
-/******/
-
-// The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// JSONP chunk loading for javascript
-
-/******/
-
-/******/
-
-/******/
-
-// 0 means \\"already installed\\".
-
-/******/
-
-/******/
-
-// a Promise means \\"currently loading\\".
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// start chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// avoid mem leaks in IE.
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
+// Load entry module and return exports
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
 
-/******/
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+// install a JSONP callback for chunk loading
+
+// object to store loaded and loading chunks
+
+// undefined = chunk not loaded, null = chunk preloaded/prefetched
+
+// Promise = chunk loading, 0 = chunk loaded
+
+// This file contains only the entry chunk.
+
+// The chunk loading function for additional chunks
+
+// JSONP chunk loading for javascript
+
+// 0 means \\"already installed\\".
+
+// a Promise means \\"currently loading\\".
+
+// setup Promise in chunk cache
+
+// start chunk loading
+
+// script path function
+
+// avoid mem leaks in IE.
 
 // on error function for async loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Load entry module and return exports
-
-/******/
-
-/******/
-
-/************************************************************************/
-
-/******/
-
 /* 0 */
-
-/***/
 
 /* import() */
 
@@ -2214,722 +1417,200 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 * Foo
 */
 
-/******/
-
-/******/
-
-// webpackBootstrap
-
-/******/
-
-// The module cache
-
-/******/
-
-/******/
-
-/******/
-
-// The require function
-
-/******/
-
-/******/
-
-/******/
-
-// Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Create a new module (and put it into the cache)
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Execute the module function
-
-/******/
-
-/******/
-
-/******/
-
-// Return the exports of the module
-
-/******/
-
-/******/
-
-/******/
-
-// Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// expose the modules object (__webpack_modules__)
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
-
-// expose the module cache
-
-/******/
-
-/******/
-
-/******/
-
-// define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// define __esModule on exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// create a fake namespace object
-
-/******/
-
-// mode & 1: value is a module id, require it
-
-/******/
-
-// mode & 2: merge all properties of value into the ns
-
-/******/
-
-// mode & 4: return value when already ns object
-
-/******/
-
-// mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// getDefaultExport function for compatibility with non-harmony modules
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
-
-// __webpack_public_path__
-
-/******/
-
-/******/
-
-/************************************************************************/
-
-/******/
-
-/* 0 */
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
 
 /* 1 */
-
-/***/
-
-/* 1 */
-
-/***/
 
 /**
  * Information.
  * @license MIT
  */
 
-/***/
-
-/******/
-
-/***/
-
-/***/
-
-/*! Legal Comment */
-
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): filename/one.4aae4a5989995588a200.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): filename/four.633d42581129e094410e.js 1`] = `
 "/*! License information can be found in extracted-comments.js */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): filename/two.855663346e1e9f4f3ad4.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! License information can be found in extracted-comments.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): filename/two.ad627b4b0879131696ff.js 1`] = `
 "/*! License information can be found in extracted-comments.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to a single file): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! License information can be found in chunks/2.2.c684797999dda47217cc.license.js */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! License information can be found in chunks/4.4.861772efb54e39beeb22.license.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): chunks/2.2.c684797999dda47217cc.license.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): chunks/4.4.861772efb54e39beeb22.license.js 1`] = `
 "/***/
-
-/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
-
-/***/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! License information can be found in filename/one.4aae4a5989995588a200.license.js */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/four.633d42581129e094410e.js 1`] = `
+"/*! License information can be found in filename/four.633d42581129e094410e.license.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/one.4aae4a5989995588a200.license.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/four.633d42581129e094410e.license.js 1`] = `
 "/******/
 
 // webpackBootstrap
 
-/******/
-
-// install a JSONP callback for chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// object to store loaded and loading chunks
-
-/******/
-
-// undefined = chunk not loaded, null = chunk preloaded/prefetched
-
-/******/
-
-// Promise = chunk loading, 0 = chunk loaded
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// This file contains only the entry chunk.
-
-/******/
-
-// The chunk loading function for additional chunks
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// JSONP chunk loading for javascript
-
-/******/
-
-/******/
-
-/******/
-
-// 0 means \\"already installed\\".
-
-/******/
-
-/******/
-
-// a Promise means \\"currently loading\\".
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// setup Promise in chunk cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// start chunk loading
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// script path function
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-// avoid mem leaks in IE.
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
+// Load entry module and return exports
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
 
-/******/
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! License information can be found in filename/one.ab371a4a4817b210bdc0.license.js */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/one.ab371a4a4817b210bdc0.license.js 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// install a JSONP callback for chunk loading
+
+// The module cache
+
+// object to store loaded and loading chunks
+
+// undefined = chunk not loaded, null = chunk preloaded/prefetched
+
+// Promise = chunk loading, 0 = chunk loaded
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// This file contains only the entry chunk.
+
+// The chunk loading function for additional chunks
+
+// JSONP chunk loading for javascript
+
+// 0 means \\"already installed\\".
+
+// a Promise means \\"currently loading\\".
+
+// setup Promise in chunk cache
+
+// start chunk loading
+
+// script path function
+
+// avoid mem leaks in IE.
+
+// expose the modules object (__webpack_modules__)
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
 
 // on error function for async loading
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
 
-/******/
-
-/******/
-
 /************************************************************************/
-
-/******/
 
 /* 0 */
 
@@ -2962,232 +1643,128 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 /*
 * Foo
 */
-
-/******/
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! License information can be found in filename/two.855663346e1e9f4f3ad4.license.js */
-!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! License information can be found in filename/three.80c55e9fcce4c2639772.license.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/two.855663346e1e9f4f3ad4.license.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/three.80c55e9fcce4c2639772.license.js 1`] = `
 "/******/
 
 // webpackBootstrap
 
-/******/
-
 // The module cache
-
-/******/
-
-/******/
-
-/******/
 
 // The require function
 
-/******/
-
-/******/
-
-/******/
-
 // Check if module is in cache
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // Create a new module (and put it into the cache)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Execute the module function
-
-/******/
-
-/******/
-
-/******/
 
 // Return the exports of the module
 
-/******/
-
-/******/
-
-/******/
-
 // Flag the module as loaded
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // expose the modules object (__webpack_modules__)
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Load entry module and return exports
-
-/******/
-
-/******/
-
-/******/
 
 // expose the module cache
 
-/******/
-
-/******/
-
-/******/
-
 // define getter function for harmony exports
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // define __esModule on exports
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // create a fake namespace object
-
-/******/
 
 // mode & 1: value is a module id, require it
 
-/******/
-
 // mode & 2: merge all properties of value into the ns
-
-/******/
 
 // mode & 4: return value when already ns object
 
-/******/
-
 // mode & 8|1: behave like require
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
 
 // getDefaultExport function for compatibility with non-harmony modules
 
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
-/******/
-
 // Object.prototype.hasOwnProperty.call
-
-/******/
-
-/******/
-
-/******/
 
 // __webpack_public_path__
 
-/******/
+/************************************************************************/
 
-/******/
+/***/
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! License information can be found in filename/two.ad627b4b0879131696ff.license.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): filename/two.ad627b4b0879131696ff.license.js 1`] = `
+"/******/
+
+// webpackBootstrap
+
+// The module cache
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// expose the modules object (__webpack_modules__)
+
+// Load entry module and return exports
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
 
 /************************************************************************/
 
-/******/
-
 /* 0 */
-
-/* 1 */
-
-/***/
 
 /* 1 */
 
@@ -3197,33 +1774,42 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
  * Information.
  * @license MIT
  */
-
-/***/
-
-/******/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (extracts comments to multiple files): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): chunks/2.2.c684797999dda47217cc.js 1`] = `
-"/*! License information can be found in chunks/2.2.c684797999dda47217cc.license.js */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){n.exports=Math.random()}}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"/*! License information can be found in chunks/4.4.861772efb54e39beeb22.license.js */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): chunks/2.2.c684797999dda47217cc.license.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): chunks/4.4.861772efb54e39beeb22.license.js 1`] = `
 "/** @license Copyright 2112 Moon. **/
 "
 `;
 
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/one.4aae4a5989995588a200.js 1`] = `
-"/*! License information can be found in filename/one.4aae4a5989995588a200.license.js */
-!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),e.exports=Math.random()}]);"
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/four.633d42581129e094410e.js 1`] = `
+"/*! License information can be found in filename/four.633d42581129e094410e.license.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/one.4aae4a5989995588a200.license.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/four.633d42581129e094410e.license.js 1`] = `
+"/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"/*! License information can be found in filename/one.ab371a4a4817b210bdc0.license.js */
+!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),e.exports=Math.random()}]);"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/one.ab371a4a4817b210bdc0.license.js 1`] = `
 "/**
  * Utility functions for the foo package.
  * @license Apache-2.0
@@ -3231,12 +1817,30 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 "
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/two.855663346e1e9f4f3ad4.js 1`] = `
-"/*! License information can be found in filename/two.855663346e1e9f4f3ad4.license.js */
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/three.80c55e9fcce4c2639772.js 1`] = `
+"/*! License information can be found in filename/three.80c55e9fcce4c2639772.license.js */
+!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/three.80c55e9fcce4c2639772.license.js 1`] = `
+"/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/two.ad627b4b0879131696ff.js 1`] = `
+"/*! License information can be found in filename/two.ad627b4b0879131696ff.license.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/two.855663346e1e9f4f3ad4.license.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): filename/two.ad627b4b0879131696ff.license.js 1`] = `
 "/**
  * Information.
  * @license MIT
@@ -3246,8 +1850,8 @@ exports[`when applied with \`extractComments\` option matches snapshot for a obj
 
 exports[`when applied with \`extractComments\` option matches snapshot for a object value (no codition, extract only \`/@license/i\` comments): warnings 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot when is not specify: chunks/2.2.c684797999dda47217cc.js 1`] = `
-"(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2:function(n,o){
+exports[`when applied with \`extractComments\` option matches snapshot when is not specify: chunks/4.4.861772efb54e39beeb22.js 1`] = `
+"(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){
 /*! Legal Comment */
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random()}}]);"
@@ -3255,8 +1859,17 @@ n.exports=Math.random()}}]);"
 
 exports[`when applied with \`extractComments\` option matches snapshot when is not specify: errors 1`] = `Array []`;
 
-exports[`when applied with \`extractComments\` option matches snapshot when is not specify: filename/one.4aae4a5989995588a200.js 1`] = `
-"!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={0:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{2:\\"c684797999dda47217cc\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(2).then(n.t.bind(null,2,7)),
+exports[`when applied with \`extractComments\` option matches snapshot when is not specify: filename/four.633d42581129e094410e.js 1`] = `
+"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot when is not specify: filename/one.ab371a4a4817b210bdc0.js 1`] = `
+"!function(e){function t(t){for(var n,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],r[o]&&l.push(r[o][0]),r[o]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(c&&c(t);l.length;)l.shift()()}var n={},r={1:0};function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.e=function(e){var t=[],n=r[e];if(0!==n)if(n)t.push(n[2]);else{var u=new Promise(function(t,o){n=r[e]=[t,o]});t.push(n[2]=u);var i,a=document.getElementsByTagName(\\"head\\")[0],c=document.createElement(\\"script\\");c.charset=\\"utf-8\\",c.timeout=120,o.nc&&c.setAttribute(\\"nonce\\",o.nc),c.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".\\"+{4:\\"861772efb54e39beeb22\\"}[e]+\\".js\\"}(e),i=function(t){c.onerror=c.onload=null,clearTimeout(l);var n=r[e];if(0!==n){if(n){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src,i=new Error(\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\");i.type=o,i.request=u,n[1](i)}r[e]=void 0}};var l=setTimeout(function(){i({type:\\"timeout\\",target:c})},12e4);c.onerror=c.onload=i,a.appendChild(c)}return Promise.all(t)},o.m=e,o.c=n,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,n){n.e(4).then(n.t.bind(null,4,7)),
 /*! Legal Comment */
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -3272,7 +1885,24 @@ exports[`when applied with \`extractComments\` option matches snapshot when is n
 e.exports=Math.random()}]);"
 `;
 
-exports[`when applied with \`extractComments\` option matches snapshot when is not specify: filename/two.855663346e1e9f4f3ad4.js 1`] = `
+exports[`when applied with \`extractComments\` option matches snapshot when is not specify: filename/three.80c55e9fcce4c2639772.js 1`] = `
+"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+e.exports=Math.random()}});"
+`;
+
+exports[`when applied with \`extractComments\` option matches snapshot when is not specify: filename/two.ad627b4b0879131696ff.js 1`] = `
 "!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){
 /**
  * Information.
