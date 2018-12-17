@@ -109,6 +109,35 @@ module.exports = {
 };
 ```
 
+### `chunkFilter`
+
+Type: `Function<(chunk) -> boolean>`
+Default: `() => true`
+
+Allowing to filter which chunks should be uglified (by default all chunks are uglified).
+Return `true` to uglify the chunk, `false` otherwise.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        chunkFilter: (chunk) => {
+          // Exclude uglification for the `vendor` chunk
+          if (chunk.name === 'vendor') {
+            return false;
+          }
+          
+          return true;
+        }
+      }),
+    ],
+  },
+};
+```
+
 ### `cache`
 
 Type: `Boolean|String`
