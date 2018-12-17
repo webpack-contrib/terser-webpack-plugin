@@ -49,7 +49,7 @@ And run `webpack` via your preferred method.
 ### `test`
 
 Type: `String|RegExp|Array<String|RegExp>`
-Default: `/\.js(\?.*)?$/i`
+Default: `/\.m?js(\?.*)?$/i`
 
 Test to match files against.
 
