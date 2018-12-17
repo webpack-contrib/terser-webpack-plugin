@@ -39,7 +39,14 @@ export default class TaskRunner {
             }
           : { maxConcurrentWorkers: this.maxConcurrentWorkers };
       this.workers = workerFarm(workerOptions, worker);
-      this.boundWorkers = (options, cb) => this.workers(serialize(options), cb);
+      this.boundWorkers = (options, cb) => {
+        try {
+          this.workers(serialize(options), cb);
+        } catch (error) {
+          // worker-farm can fail with ENOMEM or something else
+          cb(error);
+        }
+      };
     } else {
       this.boundWorkers = (options, cb) => {
         try {

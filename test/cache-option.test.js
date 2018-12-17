@@ -30,7 +30,8 @@ describe('when applied with `cache` option', () => {
   });
 
   afterEach(() =>
-    Promise.all([cacache.rm.all(cacheDir), cacache.rm.all(otherCacheDir)]));
+    Promise.all([cacache.rm.all(cacheDir), cacache.rm.all(otherCacheDir)])
+  );
 
   it('matches snapshot for `false` value', () => {
     new TerserPlugin({ cache: false }).apply(compiler);
