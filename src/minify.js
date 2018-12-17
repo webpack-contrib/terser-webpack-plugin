@@ -29,8 +29,8 @@ const buildTerserOptions = ({
     mangle == null
       ? true
       : typeof mangle === 'boolean'
-        ? mangle
-        : { ...mangle },
+      ? mangle
+      : { ...mangle },
   output: {
     shebang: true,
     comments: false,
