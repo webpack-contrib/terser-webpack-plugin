@@ -64,6 +64,9 @@
         }
       ]
     },
+    "chunkFilter": {
+      "instanceof": "Function"
+    },
     "cache": {
       "anyOf": [
         {
