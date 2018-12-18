@@ -10,6 +10,8 @@ describe('when applied with `extractComments` option', () => {
       entry: {
         one: `${__dirname}/fixtures/comments.js`,
         two: `${__dirname}/fixtures/comments-2.js`,
+        three: `${__dirname}/fixtures/comments-3.js`,
+        four: `${__dirname}/fixtures/comments-4.js`,
       },
       output: {
         filename: 'filename/[name].[chunkhash].js',
@@ -274,6 +276,54 @@ describe('when applied with `extractComments` option', () => {
         filename(file) {
           return file.replace(/(\.\w+)$/, '.license$1');
         },
+        banner(licenseFile) {
+          return `License information can be found in ${licenseFile}`;
+        },
+      },
+    }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for a `true` value and dedupe duplicate comments', () => {
+    new TerserPlugin({ extractComments: true }).apply(compiler);
+
+    return compile(compiler).then((stats) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+
+      for (const file in stats.compilation.assets) {
+        if (
+          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
+        ) {
+          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
+        }
+      }
+    });
+  });
+
+  it('matches snapshot for a object value (extracts comments to a single file) and dedupe duplicate comments', () => {
+    new TerserPlugin({
+      extractComments: {
+        condition: true,
+        filename: 'extracted-comments.js',
         banner(licenseFile) {
           return `License information can be found in ${licenseFile}`;
         },

@@ -127,11 +127,15 @@ const buildComments = (options, terserOptions, extractedComments) => {
   // comments according to the two conditions
   return (astNode, comment) => {
     if (condition.extract(astNode, comment)) {
-      extractedComments.push(
+      const commentText =
         comment.type === 'comment2'
           ? `/*${comment.value}*/`
-          : `//${comment.value}`
-      );
+          : `//${comment.value}`;
+
+      // Don't include duplicate comments
+      if (!extractedComments.includes(commentText)) {
+        extractedComments.push(commentText);
+      }
     }
 
     return condition.preserve(astNode, comment);
