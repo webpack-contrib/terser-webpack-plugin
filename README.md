@@ -129,9 +129,9 @@ module.exports = {
           if (chunk.name === 'vendor') {
             return false;
           }
-          
+
           return true;
-        }
+        },
       }),
     ],
   },
@@ -313,7 +313,7 @@ module.exports = {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        minify(file, sourceMap) {
+        minify: (file, sourceMap) => {
           const extractedComments = [];
 
           // Custom logic for extract comments
@@ -441,7 +441,7 @@ module.exports = {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        extractComments: function(astNode, comment) {
+        extractComments: (astNode, comment) => {
           if (/@extract/i.test(comment.value)) {
             return true;
           }
@@ -467,10 +467,10 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
-          filename(file) {
+          filename: (file) => {
             return `${file}.LICENSE`;
           },
-          banner(licenseFile) {
+          banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
           },
         },
@@ -495,10 +495,10 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: 'some',
-          filename(file) {
+          filename: (file) => {
             return `${file}.LICENSE`;
           },
-          banner(licenseFile) {
+          banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
           },
         },
@@ -526,7 +526,7 @@ module.exports = {
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
           filename: 'extracted-comments.js',
-          banner(licenseFile) {
+          banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
           },
         },
@@ -554,10 +554,10 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: true,
-          filename(file) {
+          filename: (file) => {
             return `${file}.LICENSE`;
           },
-          banner(commentsFile) {
+          banner: (commentsFile) => {
             return `My custom banner about license information ${commentsFile}`;
           },
         },
@@ -678,7 +678,7 @@ module.exports = {
       new TerserPlugin({
         // Uncomment lines below for cache invalidation correctly
         // cache: true,
-        // cacheKeys(defaultCacheKeys) {
+        // cacheKeys: (defaultCacheKeys) => {
         //   delete defaultCacheKeys.terser;
         //
         //   return Object.assign(
@@ -687,7 +687,7 @@ module.exports = {
         //     { 'uglify-js': require('uglify-js/package.json').version },
         //   );
         // },
-        minify(file, sourceMap) {
+        minify: (file, sourceMap) => {
           // https://github.com/mishoo/UglifyJS2#minify-options
           const uglifyJsOptions = {
             /* your `uglify-js` package options */
