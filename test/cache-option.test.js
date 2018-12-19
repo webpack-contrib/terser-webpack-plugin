@@ -1,5 +1,3 @@
-import path from 'path';
-
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 
@@ -16,10 +14,11 @@ describe('when applied with `cache` option', () => {
   beforeEach(() => {
     compiler = createCompiler({
       entry: {
-        one: `${__dirname}/fixtures/entry.js`,
-        two: `${__dirname}/fixtures/entry.js`,
-        three: `${__dirname}/fixtures/entry.js`,
-        four: `${__dirname}/fixtures/entry.js`,
+        one: `${__dirname}/fixtures/cache.js`,
+        two: `${__dirname}/fixtures/cache-1.js`,
+        three: `${__dirname}/fixtures/cache-2.js`,
+        four: `${__dirname}/fixtures/cache-3.js`,
+        five: `${__dirname}/fixtures/cache-4.js`,
       },
     });
 
@@ -105,18 +104,6 @@ describe('when applied with `cache` option', () => {
             // Make sure that we cached files
             expect(cacheKeys.length).toBe(countAssets);
 
-            cacheKeys.forEach((cacheEntry) => {
-              // eslint-disable-next-line no-new-func
-              const cacheEntryOptions = new Function(
-                `'use strict'\nreturn ${cacheEntry}`
-              )();
-              const basename = path.basename(cacheEntryOptions.path);
-
-              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
-                basename
-              );
-            });
-
             cacache.get.mockClear();
             cacache.put.mockClear();
           })
@@ -191,18 +178,6 @@ describe('when applied with `cache` option', () => {
 
             // Make sure that we cached files
             expect(cacheKeys.length).toBe(countAssets);
-
-            cacheKeys.forEach((cacheEntry) => {
-              // eslint-disable-next-line no-new-func
-              const cacheEntryOptions = new Function(
-                `'use strict'\nreturn ${cacheEntry}`
-              )();
-              const basename = path.basename(cacheEntryOptions.path);
-
-              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
-                basename
-              );
-            });
 
             cacache.get.mockClear();
             cacache.put.mockClear();
@@ -294,14 +269,10 @@ describe('when applied with `cache` option', () => {
               const cacheEntryOptions = new Function(
                 `'use strict'\nreturn ${cacheEntry}`
               )();
-              const basename = path.basename(cacheEntryOptions.path);
 
               expect(cacheEntryOptions.myCacheKey).toBe(1);
               expect(cacheEntryOptions.myCacheKeyBasedOnFile).toMatch(
                 /file-(.+)?\.js/
-              );
-              expect([basename, cacheEntryOptions.hash]).toMatchSnapshot(
-                basename
               );
             });
 
