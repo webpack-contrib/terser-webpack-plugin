@@ -158,14 +158,13 @@ describe('when applied with `minify` option', () => {
 
     new TerserPlugin({
       parallel: true,
-      minify(file) {
+      minify: (file) =>
         // eslint-disable-next-line global-require
-        return require('terser').minify(file, {
+        require('terser').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
-        });
-      },
+        }),
     }).apply(compiler);
 
     return compile(compiler).then((stats) => {
@@ -230,7 +229,7 @@ describe('when applied with `minify` option', () => {
 
     new TerserPlugin({
       parallel: true,
-      minify() {
+      minify: () => {
         throw Error('Error');
       },
     }).apply(compiler);
