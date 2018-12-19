@@ -228,14 +228,12 @@ class TerserPlugin {
             };
 
             if (this.options.cache) {
-              const { outputPath } = compiler;
               const defaultCacheKeys = {
                 // eslint-disable-next-line global-require
                 terser: require('terser/package.json').version,
                 // eslint-disable-next-line global-require
                 'terser-webpack-plugin': require('../package.json').version,
                 'terser-webpack-plugin-options': this.options,
-                path: `${outputPath ? `${outputPath}/` : ''}${file}`,
                 hash: crypto
                   .createHash('md4')
                   .update(input)
