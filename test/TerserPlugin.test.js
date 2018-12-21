@@ -1,4 +1,6 @@
 import RequestShortener from 'webpack/lib/RequestShortener';
+import MainTemplate from 'webpack/lib/MainTemplate';
+import ChunkTemplate from 'webpack/lib/ChunkTemplate';
 
 import TerserPlugin from '../src/index';
 
@@ -42,7 +44,17 @@ describe('TerserPlugin', () => {
     });
   });
 
-  it.only('should works regenerate hash', () => {
+  it('should regenerate hash', () => {
+    const originalMainTemplateUpdateHashForChunk =
+      MainTemplate.prototype.updateHashForChunk;
+    const originalChunkTemplateUpdateHashForChunk =
+      ChunkTemplate.prototype.updateHashForChunk;
+    const mockMainTemplateUpdateHashForChunk = jest.fn();
+    const mockChunkTemplateUpdateHashFocChunk = jest.fn();
+
+    MainTemplate.prototype.updateHashForChunk = mockMainTemplateUpdateHashForChunk;
+    ChunkTemplate.prototype.updateHashForChunk = mockChunkTemplateUpdateHashFocChunk;
+
     const compiler = createCompiler({
       entry: {
         js: `${__dirname}/fixtures/entry.js`,
@@ -66,6 +78,15 @@ describe('TerserPlugin', () => {
       expect(errors).toMatchSnapshot('errors');
       expect(warnings).toMatchSnapshot('warnings');
 
+      // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
+      // First call do `webpack`.
+      // Second call do `TerserPlugin`.
+
+      // We have 1 async chunk (1 * 2 = 2 calls for ChunkTemplate)
+      expect(mockMainTemplateUpdateHashForChunk).toHaveBeenCalledTimes(8);
+      // We have 4 initial chunks (4 * 2 = 8 calls for MainTemplate)
+      expect(mockChunkTemplateUpdateHashFocChunk).toHaveBeenCalledTimes(2);
+
       for (const file in stats.compilation.assets) {
         if (
           Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
@@ -73,6 +94,9 @@ describe('TerserPlugin', () => {
           expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
         }
       }
+
+      MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
+      ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;
     });
   });
 
