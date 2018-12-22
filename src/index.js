@@ -9,6 +9,8 @@ import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
 import validateOptions from 'schema-utils';
+import serialize from 'serialize-javascript';
+import terserPackageJson from 'terser/package.json';
 
 import schema from './options.json';
 import TaskRunner from './TaskRunner';
@@ -229,8 +231,7 @@ class TerserPlugin {
 
             if (this.options.cache) {
               const defaultCacheKeys = {
-                // eslint-disable-next-line global-require
-                terser: require('terser/package.json').version,
+                terser: terserPackageJson.version,
                 // eslint-disable-next-line global-require
                 'terser-webpack-plugin': require('../package.json').version,
                 'terser-webpack-plugin-options': this.options,
@@ -390,6 +391,21 @@ class TerserPlugin {
     compiler.hooks.compilation.tap(plugin, (compilation) => {
       if (this.options.sourceMap) {
         compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+      }
+
+      const { mainTemplate, chunkTemplate } = compilation;
+
+      // Regenerate `contenthash` for minified assets
+      for (const template of [mainTemplate, chunkTemplate]) {
+        template.hooks.hashForChunk.tap(plugin, (hash) => {
+          const data = serialize({
+            terser: terserPackageJson.version,
+            terserOptions: this.options.terserOptions,
+          });
+
+          hash.update('TerserPlugin');
+          hash.update(data);
+        });
       }
 
       compilation.hooks.optimizeChunkAssets.tapAsync(

@@ -9,7 +9,7 @@
   "bugs": "https://github.com/webpack-contrib/terser-webpack-plugin/issues",
   "main": "dist/cjs.js",
   "engines": {
-    "node": ">= 6.9.0 <7.0.0 || >= 8.9.0"
+    "node": ">= 6.9.0"
   },
   "scripts": {
     "start": "npm run build -- -w",
@@ -35,7 +35,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "webpack": "^4.3.0"
+    "webpack": "^4.0.0"
   },
   "dependencies": {
     "cacache": "^11.0.2",
