@@ -305,7 +305,11 @@ class TerserPlugin {
           }
 
           // Write extracted comments to commentsFile
-          if (commentsFile && extractedComments.length > 0) {
+          if (
+            commentsFile &&
+            extractedComments &&
+            extractedComments.length > 0
+          ) {
             if (commentsFile in compilation.assets) {
               const commentsFileSource = compilation.assets[
                 commentsFile
