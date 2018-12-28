@@ -232,6 +232,7 @@ class TerserPlugin {
             if (this.options.cache) {
               const defaultCacheKeys = {
                 terser: terserPackageJson.version,
+                'node_version': process.version,
                 // eslint-disable-next-line global-require
                 'terser-webpack-plugin': require('../package.json').version,
                 'terser-webpack-plugin-options': this.options,
