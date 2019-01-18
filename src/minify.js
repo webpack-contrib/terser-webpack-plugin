@@ -7,7 +7,7 @@ const buildTerserOptions = ({
   ecma,
   warnings,
   parse = {},
-  compress = {},
+  compress = { inlining: false },
   mangle,
   module,
   output,
