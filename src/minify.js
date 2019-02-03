@@ -1,7 +1,7 @@
 /* eslint-disable
   arrow-body-style
 */
-import terser from 'terser';
+import { minify as terserMinify } from 'terser';
 
 const buildTerserOptions = ({
   ecma,
@@ -175,7 +175,7 @@ const minify = (options) => {
     );
   }
 
-  const { error, map, code, warnings } = terser.minify(
+  const { error, map, code, warnings } = terserMinify(
     { [file]: input },
     terserOptions
   );
