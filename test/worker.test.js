@@ -83,7 +83,8 @@ describe('matches snapshot', () => {
       },
       extractComments: {
         condition: 'should be extracted',
-        filename: (file) => file.replace(/(\.\w+)$/, '.license$1'),
+        // TODO https://github.com/yahoo/serialize-javascript/issues/44
+        // filename: (file) => file.replace(/(\.\w+)$/, '.license$1'),
         banner: (licenseFile) =>
           `License information can be found in ${licenseFile}`,
       },
