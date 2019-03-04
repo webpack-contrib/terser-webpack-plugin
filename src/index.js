@@ -393,31 +393,43 @@ class TerserPlugin {
 
     const plugin = { name: this.constructor.name };
 
-    compiler.hooks.compilation.tap(plugin, (compilation) => {
-      if (this.options.sourceMap) {
-        compilation.hooks.buildModule.tap(plugin, buildModuleFn);
-      }
+    if (compiler.hooks) {
+      compiler.hooks.compilation.tap(plugin, (compilation) => {
+        if (this.options.sourceMap) {
+          compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+        }
 
-      const { mainTemplate, chunkTemplate } = compilation;
+        const { mainTemplate, chunkTemplate } = compilation;
 
-      // Regenerate `contenthash` for minified assets
-      for (const template of [mainTemplate, chunkTemplate]) {
-        template.hooks.hashForChunk.tap(plugin, (hash) => {
-          const data = serialize({
-            terser: terserPackageJson.version,
-            terserOptions: this.options.terserOptions,
+        // Regenerate `contenthash` for minified assets
+        for (const template of [mainTemplate, chunkTemplate]) {
+          template.hooks.hashForChunk.tap(plugin, (hash) => {
+            const data = serialize({
+              terser: terserPackageJson.version,
+              terserOptions: this.options.terserOptions,
+            });
+
+            hash.update('TerserPlugin');
+            hash.update(data);
           });
+        }
 
-          hash.update('TerserPlugin');
-          hash.update(data);
-        });
-      }
-
-      compilation.hooks.optimizeChunkAssets.tapAsync(
-        plugin,
-        optimizeFn.bind(this, compilation)
-      );
-    });
+        compilation.hooks.optimizeChunkAssets.tapAsync(
+          plugin,
+          optimizeFn.bind(this, compilation)
+        );
+      });
+    } else {
+      compiler.plugin('compilation', (compilation) => {
+        if (this.options.sourceMap) {
+          compilation.plugin('build-module', buildModuleFn);
+        }
+        compilation.plugin(
+          'optimize-chunk-assets',
+          optimizeFn.bind(this, compilation)
+        );
+      });
+    }
   }
 }
 
