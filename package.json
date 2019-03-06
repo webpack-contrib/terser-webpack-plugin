@@ -1,11 +1,11 @@
 {
-  "name": "terser-webpack-plugin",
+  "name": "terser-webpack-plugin-legacy",
   "version": "1.2.3",
   "description": "Terser plugin for webpack",
   "license": "MIT",
   "repository": "webpack-contrib/terser-webpack-plugin",
   "author": "webpack Contrib Team",
-  "homepage": "https://github.com/webpack-contrib/terser-webpack-plugin",
+  "homepage": "https://github.com/webpack-contrib/terser-webpack-plugin/tree/webpack-3",
   "bugs": "https://github.com/webpack-contrib/terser-webpack-plugin/issues",
   "main": "dist/cjs.js",
   "engines": {
@@ -37,7 +37,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "webpack": "^4.0.0"
+    "webpack": "^3.0.0"
   },
   "dependencies": {
     "cacache": "^11.0.2",

@@ -12,20 +12,22 @@
 [![chat][chat]][chat-url]
 [![size][size]][size-url]
 
-# terser-webpack-plugin
+# terser-webpack-plugin-legacy
 
 This plugin uses [terser](https://github.com/terser-js/terser) to minify your JavaScript.
 
 ## Requirements
 
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
+This module requires a minimum of Node v6.9.0 and Webpack v3.0.0.
+
+Webpack v4 users should use the non-legacy `terser-webpack-plugin`.
 
 ## Getting Started
 
-To begin, you'll need to install `terser-webpack-plugin`:
+To begin, you'll need to install `terser-webpack-plugin-legacy`:
 
 ```console
-$ npm install terser-webpack-plugin --save-dev
+$ npm install terser-webpack-plugin-legacy --save-dev
 ```
 
 Then add the plugin to your `webpack` config. For example:
@@ -33,7 +35,7 @@ Then add the plugin to your `webpack` config. For example:
 **webpack.config.js**
 
 ```js
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin-legacy');
 
 module.exports = {
   optimization: {
