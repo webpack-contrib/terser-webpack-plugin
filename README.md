@@ -16,9 +16,7 @@
 
 This plugin uses [terser](https://github.com/terser-js/terser) to minify your JavaScript.
 
-## Requirements
-
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
+> ℹ️ For `webpack@3` use [terser-webpack-plugin-legacy](https://www.npmjs.com/package/terser-webpack-plugin-legacy) package
 
 ## Getting Started
 
