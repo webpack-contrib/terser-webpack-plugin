@@ -104,7 +104,7 @@ describe('when options.sourceMap', () => {
   });
 
   it('matches snapshot for a single `true` value (`devtool` is `source-map`) and source map invalid', () => {
-    const emitBrokenSourceMapPlugin = new class EmitBrokenSourceMapPlugin {
+    const emitBrokenSourceMapPlugin = new (class EmitBrokenSourceMapPlugin {
       apply(pluginCompiler) {
         pluginCompiler.hooks.compilation.tap(
           { name: this.constructor.name },
@@ -136,7 +136,7 @@ describe('when options.sourceMap', () => {
           }
         );
       }
-    }();
+    })();
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
