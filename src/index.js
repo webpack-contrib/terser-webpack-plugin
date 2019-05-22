@@ -156,9 +156,7 @@ class TerserPlugin {
   }
 
   apply(compiler) {
-    this.options.sourceMap =
-      this.options.sourceMap ||
-      (compiler.options.devtool &&
+    this.options.sourceMap = (compiler.options.devtool &&
         /source-?map/.test(compiler.options.devtool)) ||
       (compiler.options.plugins &&
         compiler.options.plugins.some(
