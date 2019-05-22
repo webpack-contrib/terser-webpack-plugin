@@ -8,6 +8,7 @@ import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
+import SourceMapDevToolPlugin from 'webpack/lib/SourceMapDevToolPlugin';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -155,6 +156,15 @@ class TerserPlugin {
   }
 
   apply(compiler) {
+    this.options.sourceMap =
+      this.options.sourceMap ||
+      (compiler.options.devtool &&
+        /source-?map/.test(compiler.options.devtool)) ||
+      (compiler.options.plugins &&
+        compiler.options.plugins.some(
+          (p) => p instanceof SourceMapDevToolPlugin
+        ));
+
     const buildModuleFn = (moduleArg) => {
       // to get detailed location info about errors
       moduleArg.useSourceMap = true;
@@ -187,7 +197,6 @@ class TerserPlugin {
 
           try {
             let input;
-
             if (this.options.sourceMap && asset.sourceAndMap) {
               const { source, map } = asset.sourceAndMap();
 
