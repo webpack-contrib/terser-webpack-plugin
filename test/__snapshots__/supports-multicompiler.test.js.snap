@@ -10,7 +10,7 @@ Object {
   "afterResolvers": 2,
   "beforeCompile": 0,
   "beforeRun": 1,
-  "compilation": 41,
+  "compilation": 42,
   "compile": 0,
   "contextModuleFactory": 0,
   "done": 1,
