@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.2.4...v1.3.0) (2019-05-24)
+
+
+### Features
+
+* update terser to 4 version ([#97](https://github.com/webpack-contrib/terser-webpack-plugin/issues/97)) ([15d1595](https://github.com/webpack-contrib/terser-webpack-plugin/commit/15d1595))
+
+
+
 ### [1.2.4](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.2.3...v1.2.4) (2019-05-15)
 
 
