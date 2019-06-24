@@ -156,9 +156,14 @@ class TerserPlugin {
   }
 
   apply(compiler) {
-    this.options.sourceMap = this.options.sourceMap === undefined ? 
-      (compiler.options.devtool && /source-?map/.test(compiler.options.devtool)) || 
-      (compiler.options.plugins && compiler.options.plugins.some((p) => p instanceof SourceMapDevToolPlugin))
+    this.options.sourceMap =
+      this.options.sourceMap === undefined
+        ? (compiler.options.devtool &&
+            /source-?map/.test(compiler.options.devtool)) ||
+          (compiler.options.plugins &&
+            compiler.options.plugins.some(
+              (p) => p instanceof SourceMapDevToolPlugin
+            ))
         : this.options.sourceMap;
 
     const buildModuleFn = (moduleArg) => {
@@ -193,6 +198,7 @@ class TerserPlugin {
 
           try {
             let input;
+
             if (this.options.sourceMap && asset.sourceAndMap) {
               const { source, map } = asset.sourceAndMap();
 
