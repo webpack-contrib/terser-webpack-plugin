@@ -44,7 +44,7 @@
     "schema-utils": "^1.0.0",
     "serialize-javascript": "^1.7.0",
     "source-map": "^0.6.1",
-    "terser": "^4.0.0",
+    "terser": "^4.0.2",
     "webpack-sources": "^1.3.0",
     "worker-farm": "^1.7.0"
   },
