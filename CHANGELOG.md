@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.3.0...v1.4.0) (2019-07-31)
+
+
+### Features
+
+* generate higher quality SourceMaps ([#109](https://github.com/webpack-contrib/terser-webpack-plugin/issues/109)) ([9d777f0](https://github.com/webpack-contrib/terser-webpack-plugin/commit/9d777f0))
+
 ## [1.3.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.2.4...v1.3.0) (2019-05-24)
 
 
