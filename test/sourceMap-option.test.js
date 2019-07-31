@@ -2,6 +2,19 @@ import TerserPlugin from '../src/index';
 
 import { createCompiler, compile, cleanErrorStack } from './helpers';
 
+expect.addSnapshotSerializer({
+  test: (value) => {
+    // For string that are valid JSON
+    if (typeof value !== 'string') return false;
+    try {
+      return typeof JSON.parse(value) === 'object';
+    } catch (e) {
+      return false;
+    }
+  },
+  print: (value) => JSON.stringify(JSON.parse(value), null, 2),
+});
+
 describe('when options.sourceMap', () => {
   it('matches snapshot for a single `false` value (`devtool` is `source-map`)', () => {
     const compiler = createCompiler({
