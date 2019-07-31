@@ -55,7 +55,7 @@ Object {
   "code": "function foo(f){if(f)return bar()}",
   "error": undefined,
   "extractedComments": Array [],
-  "map": "{\\"version\\":3,\\"sources\\":[\\"test1.js\\"],\\"names\\":[\\"foo\\",\\"x\\",\\"not_called1\\"],\\"mappings\\":\\"AAAA,SAASA,IAAIC,GACT,GACIA,EAAA,OACAC\\"}",
+  "map": "{\\"version\\":3,\\"sources\\":[\\"test6.js\\"],\\"names\\":[\\"foo\\",\\"x\\",\\"bar\\"],\\"mappings\\":\\"AAAA,SAASA,IAAIC,GAAK,GAAIA,EAAK,OAAOC\\"}",
   "warnings": undefined,
 }
 `;
