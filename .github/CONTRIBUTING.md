@@ -131,6 +131,30 @@ Migration: see webpack/webpack#5225
 
 ```
 
+## Testing Your Pull Request
+
+You may have the need to test your changes in a real-world project or dependent
+module. Thankfully, Github provides a means to do this. Add a dependency to the
+`package.json` for such a project as follows:
+
+```json
+{
+  "devDependencies": {
+    "terser-webpack-plugin": "webpack-contrib/terser-webpack-plugin#{id}/head"
+  }
+}
+```
+
+Where `{id}` is the # ID of your Pull Request.
+
+## Contributor License Agreement
+
+When submitting your contribution, a CLA (Contributor License Agreement) bot will come by to verify that you signed the [CLA](https://cla.js.foundation/webpack-contrib/terser-webpack-plugin).
+If it is your first time, it will link you to the right place to sign it.
+However, if you have committed your contributions using an email that is not the same as your email used on GitHub, the CLA bot can't accept your contribution.
+
+Run `git config user.email` to see your Git email, and verify it with [your GitHub email](https://github.com/settings/emails).
+
 ## Thanks
 
 For your interest, time, understanding, and for following this simple guide.
