@@ -158,11 +158,9 @@ const minify = (options) => {
   // Copy terser options
   const terserOptions = buildTerserOptions(options.terserOptions);
 
-  // Add source map data
+  // Let terser generate a SourceMap
   if (inputSourceMap) {
-    terserOptions.sourceMap = {
-      content: inputSourceMap,
-    };
+    terserOptions.sourceMap = true;
   }
 
   const extractedComments = [];
