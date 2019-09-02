@@ -7,7 +7,7 @@ import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
-import ModuleFilenameHelpers from 'webpack/lib/ModuleFilenameHelpers';
+import { ModuleFilenameHelpers } from 'webpack';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
