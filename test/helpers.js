@@ -52,8 +52,8 @@ export function createCompiler(options = {}) {
           output: {
             pathinfo: false,
             path: `${__dirname}/dist`,
-            filename: '[name].[chunkhash].js',
-            chunkFilename: '[id].[name].[chunkhash].js',
+            filename: '[name].js',
+            chunkFilename: '[id].[name].js',
           },
           plugins: [],
           ...options,
