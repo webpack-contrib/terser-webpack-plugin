@@ -49,6 +49,8 @@ const buildTerserOptions = ({
   safari10,
 });
 
+const someCommentsRegExp = /^\**!|@preserve|@license|@cc_on/i;
+
 const buildComments = (options, terserOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = terserOptions.output.comments;
@@ -56,7 +58,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
   // Use /^\**!|@preserve|@license|@cc_on/i RegExp
   if (typeof options.extractComments === 'boolean') {
     condition.preserve = commentsOpts;
-    condition.extract = /^\**!|@preserve|@license|@cc_on/i;
+    condition.extract = someCommentsRegExp;
   } else if (
     typeof options.extractComments === 'string' ||
     options.extractComments instanceof RegExp
@@ -72,7 +74,11 @@ const buildComments = (options, terserOptions, extractedComments) => {
   ) {
     // Extract condition is given in extractComments.condition
     condition.preserve = commentsOpts;
-    condition.extract = options.extractComments.condition;
+    condition.extract =
+      typeof options.extractComments.condition === 'boolean' &&
+      options.extractComments.condition
+        ? 'some'
+        : options.extractComments.condition;
   } else {
     // No extract condition is given. Extract comments that match commentsOpts instead of preserving them
     condition.preserve = false;
@@ -102,7 +108,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
           condition[key] = (astNode, comment) => {
             return (
               comment.type === 'comment2' &&
-              /^\**!|@preserve|@license|@cc_on/i.test(comment.value)
+              someCommentsRegExp.test(comment.value)
             );
           };
 
