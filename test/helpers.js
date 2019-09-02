@@ -38,28 +38,29 @@ export function compile(compiler) {
 }
 
 export function createCompiler(options = {}) {
-  const compiler = webpack(
-    Array.isArray(options)
-      ? options
-      : {
-          mode: 'production',
-          bail: true,
-          cache: false,
-          entry: `${__dirname}/fixtures/entry.js`,
-          optimization: {
-            minimize: false,
-          },
-          output: {
-            pathinfo: false,
-            path: `${__dirname}/dist`,
-            filename: '[name].js',
-            chunkFilename: '[id].[name].js',
-          },
-          plugins: [],
-          ...options,
-        }
-  );
+  const config = Array.isArray(options)
+    ? options
+    : {
+        mode: 'production',
+        bail: true,
+        cache: false,
+        entry: `${__dirname}/fixtures/entry.js`,
+        optimization: {
+          minimize: false,
+        },
+        output: {
+          pathinfo: false,
+          path: `${__dirname}/dist`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        plugins: [],
+        ...options,
+      };
+  const compiler = webpack(config);
+
   compiler.outputFileSystem = new MemoryFileSystem();
+
   return compiler;
 }
 

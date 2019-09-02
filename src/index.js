@@ -7,7 +7,7 @@ import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
-import { ModuleFilenameHelpers } from 'webpack';
+import { SourceMapDevToolPlugin, ModuleFilenameHelpers } from 'webpack';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -31,7 +31,7 @@ class TerserPlugin {
       chunkFilter = () => true,
       warningsFilter = () => true,
       extractComments = false,
-      sourceMap = false,
+      sourceMap,
       cache = false,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = false,
@@ -158,10 +158,16 @@ class TerserPlugin {
   }
 
   apply(compiler) {
-    const buildModuleFn = (moduleArg) => {
-      // to get detailed location info about errors
-      moduleArg.useSourceMap = true;
-    };
+    this.options.sourceMap =
+      // eslint-disable-next-line no-undefined
+      this.options.sourceMap === undefined
+        ? (compiler.options.devtool &&
+            /source-?map/.test(compiler.options.devtool)) ||
+          (compiler.options.plugins &&
+            compiler.options.plugins.some(
+              (p) => p instanceof SourceMapDevToolPlugin
+            ))
+        : Boolean(this.options.sourceMap);
 
     const optimizeFn = (compilation, chunks, callback) => {
       const taskRunner = new TaskRunner({
@@ -399,7 +405,10 @@ class TerserPlugin {
 
     compiler.hooks.compilation.tap(plugin, (compilation) => {
       if (this.options.sourceMap) {
-        compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+        compilation.hooks.buildModule.tap(plugin, (moduleArg) => {
+          // to get detailed location info about errors
+          moduleArg.useSourceMap = true;
+        });
       }
 
       const { mainTemplate, chunkTemplate } = compilation;

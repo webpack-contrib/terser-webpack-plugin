@@ -274,6 +274,11 @@ module.exports = {
 Type: `Boolean`
 Default: `false`
 
+The plugin respect the [`devtool`](https://webpack.js.org/configuration/devtool/) and the [`plugins`](https://webpack.js.org/configuration/plugins/) options.
+
+Using any value other than `false` and `eval`, automatically enable source map generation.
+Using the `SourceMapDevToolPlugin` plugin automatically enable source map generation too.
+
 Use source maps to map error message locations to modules (this slows down the compilation).
 If you use your own `minify` function please read the `minify` section for handling source maps correctly.
 
