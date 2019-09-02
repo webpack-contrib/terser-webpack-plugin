@@ -9,7 +9,7 @@
   "bugs": "https://github.com/webpack-contrib/terser-webpack-plugin/issues",
   "main": "dist/cjs.js",
   "engines": {
-    "node": ">= 6.9.0"
+    "node": ">= 8.9.0"
   },
   "scripts": {
     "start": "npm run build -- -w",
@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "cacache": "^12.0.3",
-    "find-cache-dir": "^2.1.0",
-    "is-wsl": "^1.1.0",
-    "schema-utils": "^1.0.0",
+    "find-cache-dir": "^3.0.0",
+    "is-wsl": "^2.1.0",
+    "schema-utils": "^2.2.0",
     "serialize-javascript": "^1.9.0",
     "source-map": "^0.6.1",
     "terser": "^4.2.1",
@@ -58,8 +58,8 @@
     "babel-jest": "^24.9.0",
     "commitlint-azure-pipelines-cli": "^1.0.2",
     "cross-env": "^5.2.1",
-    "del": "^4.1.1",
-    "del-cli": "^1.1.0",
+    "del": "^5.1.0",
+    "del-cli": "^2.0.0",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-import": "^2.18.2",

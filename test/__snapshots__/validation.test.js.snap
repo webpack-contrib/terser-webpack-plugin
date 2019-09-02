@@ -1,209 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`validation 1`] = `
-"Terser Plugin Invalid Options
-
-options.test should pass \\"instanceof\\" keyword validation
-options.test should be string
-options.test should match some schema in anyOf
-options.test should be array
-options.test should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.test should be one of these:
+   RegExp | string | [RegExp | string, ...]
+   Details:
+    * options.test should be one of these:
+      RegExp | string
+      Details:
+       * options.test should be an instance of RegExp.
+       * options.test should be a string.
+    * options.test should be an array:
+      [RegExp | string, ...]"
 `;
 
 exports[`validation 2`] = `
-"Terser Plugin Invalid Options
-
-options.test should pass \\"instanceof\\" keyword validation
-options.test should be string
-options.test should match some schema in anyOf
-options.test.0 should pass \\"instanceof\\" keyword validation
-options.test.0 should be string
-options.test.0 should match some schema in anyOf
-options.test.0 should match some schema in anyOf
-options.test should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.test should be one of these:
+   RegExp | string | [RegExp | string, ...]
+   Details:
+    * options.test[0] should be one of these:
+      RegExp | string
+      Details:
+       * options.test[0] should be an instance of RegExp.
+       * options.test[0] should be a string."
 `;
 
 exports[`validation 3`] = `
-"Terser Plugin Invalid Options
-
-options.include should pass \\"instanceof\\" keyword validation
-options.include should be string
-options.include should match some schema in anyOf
-options.include should be array
-options.include should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.include should be one of these:
+   RegExp | string | [RegExp | string, ...]
+   Details:
+    * options.include should be one of these:
+      RegExp | string
+      Details:
+       * options.include should be an instance of RegExp.
+       * options.include should be a string.
+    * options.include should be an array:
+      [RegExp | string, ...]"
 `;
 
 exports[`validation 4`] = `
-"Terser Plugin Invalid Options
-
-options.include should pass \\"instanceof\\" keyword validation
-options.include should be string
-options.include should match some schema in anyOf
-options.include.0 should pass \\"instanceof\\" keyword validation
-options.include.0 should be string
-options.include.0 should match some schema in anyOf
-options.include.0 should match some schema in anyOf
-options.include should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.include should be one of these:
+   RegExp | string | [RegExp | string, ...]
+   Details:
+    * options.include[0] should be one of these:
+      RegExp | string
+      Details:
+       * options.include[0] should be an instance of RegExp.
+       * options.include[0] should be a string."
 `;
 
 exports[`validation 5`] = `
-"Terser Plugin Invalid Options
-
-options.exclude should pass \\"instanceof\\" keyword validation
-options.exclude should be string
-options.exclude should match some schema in anyOf
-options.exclude should be array
-options.exclude should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.exclude should be one of these:
+   RegExp | string | [RegExp | string, ...]
+   Details:
+    * options.exclude should be one of these:
+      RegExp | string
+      Details:
+       * options.exclude should be an instance of RegExp.
+       * options.exclude should be a string.
+    * options.exclude should be an array:
+      [RegExp | string, ...]"
 `;
 
 exports[`validation 6`] = `
-"Terser Plugin Invalid Options
-
-options.exclude should pass \\"instanceof\\" keyword validation
-options.exclude should be string
-options.exclude should match some schema in anyOf
-options.exclude.0 should pass \\"instanceof\\" keyword validation
-options.exclude.0 should be string
-options.exclude.0 should match some schema in anyOf
-options.exclude.0 should match some schema in anyOf
-options.exclude should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.exclude should be one of these:
+   RegExp | string | [RegExp | string, ...]
+   Details:
+    * options.exclude[0] should be one of these:
+      RegExp | string
+      Details:
+       * options.exclude[0] should be an instance of RegExp.
+       * options.exclude[0] should be a string."
 `;
 
 exports[`validation 7`] = `
-"Terser Plugin Invalid Options
-
-options.chunkFilter should pass \\"instanceof\\" keyword validation
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.chunkFilter should be an instance of function."
 `;
 
 exports[`validation 8`] = `
-"Terser Plugin Invalid Options
-
-options.cache should be boolean
-options.cache should be string
-options.cache should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.cache should be one of these:
+   boolean | string
+   Details:
+    * options.cache should be a boolean.
+    * options.cache should be a string."
 `;
 
 exports[`validation 9`] = `
-"Terser Plugin Invalid Options
-
-options.cacheKeys should pass \\"instanceof\\" keyword validation
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.cacheKeys should be an instance of function."
 `;
 
 exports[`validation 10`] = `
-"Terser Plugin Invalid Options
-
-options.parallel should be boolean
-options.parallel should be integer
-options.parallel should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.parallel should be one of these:
+   boolean | integer
+   Details:
+    * options.parallel should be a boolean.
+    * options.parallel should be a integer."
 `;
 
 exports[`validation 11`] = `
-"Terser Plugin Invalid Options
-
-options.parallel should be boolean
-options.parallel should be integer
-options.parallel should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.parallel should be one of these:
+   boolean | integer
+   Details:
+    * options.parallel should be a boolean.
+    * options.parallel should be a integer."
 `;
 
 exports[`validation 12`] = `
-"Terser Plugin Invalid Options
-
-options.sourceMap should be boolean
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.sourceMap should be a boolean."
 `;
 
 exports[`validation 13`] = `
-"Terser Plugin Invalid Options
-
-options.minify should pass \\"instanceof\\" keyword validation
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.minify should be an instance of function."
 `;
 
 exports[`validation 14`] = `
-"Terser Plugin Invalid Options
-
-options.terserOptions should be object
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.terserOptions should be an object:
+   object { … }"
 `;
 
 exports[`validation 15`] = `
-"Terser Plugin Invalid Options
-
-options.extractComments should be boolean
-options.extractComments should be string
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments.condition should be boolean
-options.extractComments.condition should be string
-options.extractComments.condition should pass \\"instanceof\\" keyword validation
-options.extractComments.condition should pass \\"instanceof\\" keyword validation
-options.extractComments.condition should match some schema in anyOf
-options.extractComments should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.extractComments should be one of these:
+   boolean | string | RegExp | function | object { condition?, filename?, banner? }
+   Details:
+    * options.extractComments.condition should be one of these:
+      boolean | string | RegExp | function
+      Details:
+       * options.extractComments.condition should be a boolean.
+       * options.extractComments.condition should be a string.
+       * options.extractComments.condition should be an instance of RegExp.
+       * options.extractComments.condition should be an instance of function."
 `;
 
 exports[`validation 16`] = `
-"Terser Plugin Invalid Options
-
-options.extractComments should be boolean
-options.extractComments should be string
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments.filename should be string
-options.extractComments.filename should pass \\"instanceof\\" keyword validation
-options.extractComments.filename should match some schema in anyOf
-options.extractComments should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.extractComments should be one of these:
+   boolean | string | RegExp | function | object { condition?, filename?, banner? }
+   Details:
+    * options.extractComments.filename should be one of these:
+      string | function
+      Details:
+       * options.extractComments.filename should be a string.
+       * options.extractComments.filename should be an instance of function."
 `;
 
 exports[`validation 17`] = `
-"Terser Plugin Invalid Options
-
-options.extractComments should be boolean
-options.extractComments should be string
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments.banner should be boolean
-options.extractComments.banner should be string
-options.extractComments.banner should pass \\"instanceof\\" keyword validation
-options.extractComments.banner should match some schema in anyOf
-options.extractComments should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.extractComments should be one of these:
+   boolean | string | RegExp | function | object { condition?, filename?, banner? }
+   Details:
+    * options.extractComments.banner should be one of these:
+      boolean | string | function
+      Details:
+       * options.extractComments.banner should be a boolean.
+       * options.extractComments.banner should be a string.
+       * options.extractComments.banner should be an instance of function."
 `;
 
 exports[`validation 18`] = `
-"Terser Plugin Invalid Options
-
-options.extractComments should be boolean
-options.extractComments should be string
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments should pass \\"instanceof\\" keyword validation
-options.extractComments should NOT have additional properties
-options.extractComments should match some schema in anyOf
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.extractComments has an unknown property 'unknown'. These properties are valid:
+   object { condition?, filename?, banner? }"
 `;
 
 exports[`validation 19`] = `
-"Terser Plugin Invalid Options
-
-options.warningsFilter should pass \\"instanceof\\" keyword validation
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options.warningsFilter should be an instance of function."
 `;
 
 exports[`validation 20`] = `
-"Terser Plugin Invalid Options
-
-options should NOT have additional properties
-"
+"Invalid options object. Terser Plugin has been initialised using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { test?, include?, exclude?, chunkFilter?, cache?, cacheKeys?, parallel?, sourceMap?, minify?, terserOptions?, extractComments?, warningsFilter? }"
 `;

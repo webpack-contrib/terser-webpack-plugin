@@ -19,7 +19,10 @@ const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
 class TerserPlugin {
   constructor(options = {}) {
-    validateOptions(schema, options, 'Terser Plugin');
+    validateOptions(schema, options, {
+      name: 'Terser Plugin',
+      baseDataPath: 'options',
+    });
 
     const {
       minify,
@@ -79,34 +82,34 @@ class TerserPlugin {
     return new SourceMapConsumer(inputSourceMap);
   }
 
-  static buildError(err, file, sourceMap, requestShortener) {
+  static buildError(error, file, sourceMap, requestShortener) {
     // Handling error which should have line, col, filename and message
-    if (err.line) {
+    if (error.line) {
       const original =
         sourceMap &&
         sourceMap.originalPositionFor({
-          line: err.line,
-          column: err.col,
+          line: error.line,
+          column: error.col,
         });
 
       if (original && original.source && requestShortener) {
         return new Error(
-          `${file} from Terser\n${err.message} [${requestShortener.shorten(
+          `${file} from Terser\n${error.message} [${requestShortener.shorten(
             original.source
-          )}:${original.line},${original.column}][${file}:${err.line},${
-            err.col
+          )}:${original.line},${original.column}][${file}:${error.line},${
+            error.col
           }]`
         );
       }
 
       return new Error(
-        `${file} from Terser\n${err.message} [${file}:${err.line},${err.col}]`
+        `${file} from Terser\n${error.message} [${file}:${error.line},${error.col}]`
       );
-    } else if (err.stack) {
-      return new Error(`${file} from Terser\n${err.stack}`);
+    } else if (error.stack) {
+      return new Error(`${file} from Terser\n${error.stack}`);
     }
 
-    return new Error(`${file} from Terser\n${err.message}`);
+    return new Error(`${file} from Terser\n${error.message}`);
   }
 
   static buildWarning(
