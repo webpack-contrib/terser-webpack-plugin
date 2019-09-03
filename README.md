@@ -226,7 +226,7 @@ module.exports = {
 ### `parallel`
 
 Type: `Boolean|Number`
-Default: `false`
+Default: `true`
 
 Use multi-process parallel running to improve the build speed.
 Default number of concurrent runs: `os.cpus().length - 1`.

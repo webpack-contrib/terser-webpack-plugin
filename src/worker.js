@@ -1,4 +1,4 @@
-import minify from './minify';
+const minify = require('./minify');
 
 module.exports = (options, callback) => {
   try {

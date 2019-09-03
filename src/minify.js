@@ -1,7 +1,4 @@
-/* eslint-disable
-  arrow-body-style
-*/
-import { minify as terserMinify } from 'terser';
+const { minify: terserMinify } = require('terser');
 
 const buildTerserOptions = ({
   ecma,
@@ -187,4 +184,4 @@ const minify = (options) => {
   return { error, map, code, warnings, extractedComments };
 };
 
-export default minify;
+module.exports = minify;

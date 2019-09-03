@@ -1,6 +1,3 @@
-/* eslint-disable
-  no-param-reassign
-*/
 import crypto from 'crypto';
 import path from 'path';
 
@@ -34,7 +31,7 @@ class TerserPlugin {
       sourceMap = false,
       cache = false,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
-      parallel = false,
+      parallel = true,
       include,
       exclude,
     } = options;
@@ -160,6 +157,7 @@ class TerserPlugin {
   apply(compiler) {
     const buildModuleFn = (moduleArg) => {
       // to get detailed location info about errors
+      // eslint-disable-next-line no-param-reassign
       moduleArg.useSourceMap = true;
     };
 
@@ -356,6 +354,7 @@ class TerserPlugin {
                   compilation.assets[commentsFile].add('\n');
                   compilation.assets[commentsFile].add(commentsSource);
                 } else {
+                  // eslint-disable-next-line no-param-reassign
                   compilation.assets[commentsFile] = new ConcatSource(
                     compilation.assets[commentsFile],
                     '\n',
@@ -363,12 +362,14 @@ class TerserPlugin {
                   );
                 }
               } else {
+                // eslint-disable-next-line no-param-reassign
                 compilation.assets[commentsFile] = commentsSource;
               }
             }
           }
 
           // Updating assets
+          // eslint-disable-next-line no-param-reassign
           processedAssets.add((compilation.assets[file] = outputSource));
 
           // Handling warnings

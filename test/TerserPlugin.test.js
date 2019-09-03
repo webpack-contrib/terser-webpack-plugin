@@ -22,7 +22,7 @@ describe('TerserPlugin', () => {
     mappings: '',
   };
 
-  it('should works (without options)', async () => {
+  it('should work (without options)', async () => {
     const compiler = createCompiler();
 
     new TerserPlugin().apply(compiler);

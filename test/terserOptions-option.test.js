@@ -581,6 +581,7 @@ describe('terserOptions option', () => {
     const compiler = createCompiler();
 
     new TerserPlugin({
+      parallel: false,
       terserOptions: {
         output: {
           unknown: true,
