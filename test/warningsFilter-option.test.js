@@ -1,8 +1,8 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, createCompiler, compile } from './helpers';
+import { cleanErrorStack, createCompiler, compile, getAssets } from './helpers';
 
-describe('when applied with `warningsFilter` option', () => {
+describe('warningsFilter option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('when applied with `warningsFilter` option', () => {
     });
   });
 
-  it('matches snapshot for a `function` value and `sourceMap` is `false` (filter by message)', () => {
+  it('should match snapshot for a "function" value and the "sourceMap" option is "false" (filter by message)', async () => {
     new TerserPlugin({
       warningsFilter(warning) {
         if (/Dropping unreachable code/.test(warning)) {
@@ -29,24 +29,17 @@ describe('when applied with `warningsFilter` option', () => {
       sourceMap: false,
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a `function` value and `sourceMap` is `true` (filter by message)', () => {
+  it('should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by message)', async () => {
     new TerserPlugin({
       warningsFilter(warning) {
         if (/Dropping unreachable code/.test(warning)) {
@@ -61,24 +54,17 @@ describe('when applied with `warningsFilter` option', () => {
       sourceMap: true,
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a `function` value and `sourceMap` is `true` (filter by source)', () => {
+  it('should match snapshot for a "function" value and the "sourceMap" value is "true" (filter by source)', async () => {
     new TerserPlugin({
       warningsFilter(warning, source) {
         if (/unreachable-code\.js/.test(source)) {
@@ -93,24 +79,17 @@ describe('when applied with `warningsFilter` option', () => {
       sourceMap: true,
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a `function` value and `sourceMap` is `true` (filter by file)', () => {
+  it('should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by file)', async () => {
     new TerserPlugin({
       warningsFilter(warning, source, file) {
         if (/two\.(.*)?\.js/.test(file)) {
@@ -125,20 +104,13 @@ describe('when applied with `warningsFilter` option', () => {
       sourceMap: true,
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 });

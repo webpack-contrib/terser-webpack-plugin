@@ -176,8 +176,8 @@ class TerserPlugin {
 
       Array.from(chunks)
         .filter((chunk) => chunkFilter && chunkFilter(chunk))
-        .reduce((acc, chunk) => acc.concat(chunk.files || []), [])
-        .concat(compilation.additionalChunkAssets || [])
+        .reduce((acc, chunk) => acc.concat(Array.from(chunk.files || [])), [])
+        .concat(Array.from(compilation.additionalChunkAssets || []))
         .filter(ModuleFilenameHelpers.matchObject.bind(null, this.options))
         .forEach((file) => {
           let inputSourceMap;

@@ -1,11 +1,6 @@
 import TerserPlugin from '../src';
 
-import {
-  cleanErrorStack,
-  compile,
-  createCompiler,
-  normalizeSourceMap,
-} from './helpers';
+import { cleanErrorStack, compile, createCompiler, getAssets } from './helpers';
 
 // Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
 
@@ -16,12 +11,14 @@ jest.mock('worker-farm', () => {
       require(worker)(data, callback)
     )
   );
+
   mock.end = jest.fn();
+
   return mock;
 });
 
-describe('when applied with `minify` option', () => {
-  it('matches snapshot for `uglify-js` minifier', () => {
+describe('minify option', () => {
+  it('should snapshot for the "uglify-js" minifier', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
       output: {
@@ -42,24 +39,17 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for `uglify-js` minifier while extracting comments', () => {
+  it('should snapshot snapshot for the "uglify-js" minifier with extracting comments', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
       output: {
@@ -81,24 +71,17 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for `terser` minifier', () => {
+  it('should snapshot for the "terser" minifier', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
@@ -119,25 +102,19 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for `terser` minifier and `sourceMap` is `true`', () => {
+  it('should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true"', async () => {
     const compiler = createCompiler({
+      devtool: 'source-map',
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
         path: `${__dirname}/dist-terser`,
@@ -166,26 +143,17 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(
-            normalizeSourceMap(stats.compilation.assets[file].sourceAndMap())
-          ).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for `terser` minifier and `parallel` is `true`', () => {
+  it('should snapshot for the "terser" minifier when the "parallel" option is "true"', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
@@ -207,24 +175,17 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for errors into `minify` option', () => {
+  it('should snapshot for errors into the "minify" option', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
@@ -240,24 +201,16 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
   });
 
-  it('matches snapshot for errors into `minify` option and `parallel` is `true`', () => {
+  it('should snapshot for errors into the "minify" option when the "parallel" option is "true"', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
@@ -274,20 +227,12 @@ describe('when applied with `minify` option', () => {
       },
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
   });
 });

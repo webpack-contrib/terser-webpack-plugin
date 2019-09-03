@@ -4,7 +4,7 @@ import workerFarm from 'worker-farm';
 
 import TerserPlugin from '../src/index';
 
-import { createCompiler, compile, cleanErrorStack } from './helpers';
+import { createCompiler, compile, cleanErrorStack, getAssets } from './helpers';
 
 jest.mock('os', () => {
   const actualOs = require.requireActual('os');
@@ -31,7 +31,7 @@ jest.mock('worker-farm', () => {
   return mock;
 });
 
-describe('when applied with `parallel` option', () => {
+describe('parallel option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -49,80 +49,61 @@ describe('when applied with `parallel` option', () => {
     });
   });
 
-  it('matches snapshot for `false` value', () => {
+  it('should match snapshot for the "false" value', async () => {
     new TerserPlugin({ parallel: false }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(workerFarm.mock.calls.length).toBe(0);
-      expect(workerFarm.end.mock.calls.length).toBe(0);
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    expect(workerFarm.mock.calls.length).toBe(0);
+    expect(workerFarm.end.mock.calls.length).toBe(0);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for `true` value', () => {
+  it('should match snapshot for the "true" value', async () => {
     new TerserPlugin({ parallel: true }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
-        os.cpus().length - 1
-      );
-      expect(workerFarmMock.mock.calls.length).toBe(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerFarm.end.mock.calls.length).toBe(1);
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+      os.cpus().length - 1
+    );
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for `2` value (number)', () => {
+  it('should match snapshot for the "2" value', async () => {
     new TerserPlugin({ parallel: 2 }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(2);
-      expect(workerFarmMock.mock.calls.length).toBe(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerFarm.end.mock.calls.length).toBe(1);
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(2);
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 });

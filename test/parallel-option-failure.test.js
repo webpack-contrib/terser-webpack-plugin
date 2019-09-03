@@ -4,7 +4,7 @@ import cacache from 'cacache';
 import workerFarm from 'worker-farm';
 import findCacheDir from 'find-cache-dir';
 
-import UglifyJsPlugin from '../src/index';
+import TerserPlugin from '../src/index';
 
 import { createCompiler, compile, cleanErrorStack } from './helpers';
 
@@ -36,7 +36,7 @@ jest.mock('worker-farm', () => {
 
 const cacheDir = findCacheDir({ name: 'terser-webpack-plugin' });
 
-describe('when applied with `parallel` option', () => {
+describe('parallel option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -53,53 +53,39 @@ describe('when applied with `parallel` option', () => {
     return cacache.rm.all(cacheDir);
   });
 
-  it('matches snapshot for errors into `worker-farm`', () => {
-    new UglifyJsPlugin({ parallel: true, cache: false }).apply(compiler);
+  it('should match snapshot for errors into the "worker-farm" package', async () => {
+    new TerserPlugin({ parallel: true, cache: false }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarmMock.mock.calls.length).toBe(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerFarm.end.mock.calls.length).toBe(1);
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
   });
 
-  it('matches snapshot for errors into `worker-farm` and `cache` is `true`', () => {
-    new UglifyJsPlugin({ parallel: true, cache: true }).apply(compiler);
+  it('should match snapshot for errors into the "worker-farm" package whe the "cache" option is "true"', async () => {
+    new TerserPlugin({ parallel: true, cache: true }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(workerFarm.mock.calls.length).toBe(1);
-      expect(workerFarmMock.mock.calls.length).toBe(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerFarm.end.mock.calls.length).toBe(1);
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
   });
 });

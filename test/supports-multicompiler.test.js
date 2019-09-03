@@ -8,10 +8,11 @@ import {
   createCompiler,
   countPlugins,
   compile,
+  getAssets,
 } from './helpers';
 
-describe('when using MultiCompiler', () => {
-  it('matches snapshot with empty options', () => {
+describe('multi-compiler mode', () => {
+  it('should match snapshot with empty options', async () => {
     const multiCompiler = createCompiler([
       {
         mode: 'production',
@@ -74,29 +75,19 @@ describe('when using MultiCompiler', () => {
 
     expect(multiCompiler).toBeInstanceOf(MultiCompiler);
 
-    return compile(multiCompiler).then((multiStats) => {
-      expect(multiStats).toBeInstanceOf(MultiStats);
+    const multiStats = await compile(multiCompiler);
 
-      multiStats.stats.forEach((stats) => {
-        const errors = stats.compilation.errors.map(cleanErrorStack);
-        const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    expect(multiStats).toBeInstanceOf(MultiStats);
 
-        expect(errors.length).toEqual(0);
-        expect(warnings.length).toEqual(0);
+    multiStats.stats.forEach((stats, index) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-        expect(errors).toMatchSnapshot('errors');
-        expect(warnings).toMatchSnapshot('warnings');
-
-        for (const file in stats.compilation.assets) {
-          if (
-            Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-          ) {
-            expect(stats.compilation.assets[file].source()).toMatchSnapshot(
-              file
-            );
-          }
-        }
-      });
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+      expect(getAssets(stats, multiCompiler.compilers[index])).toMatchSnapshot(
+        'assets'
+      );
     });
   });
 });

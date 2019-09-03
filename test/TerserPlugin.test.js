@@ -4,7 +4,7 @@ import ChunkTemplate from 'webpack/lib/ChunkTemplate';
 
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, compile, createCompiler } from './helpers';
+import { cleanErrorStack, compile, createCompiler, getAssets } from './helpers';
 
 describe('TerserPlugin', () => {
   const rawSourceMap = {
@@ -22,29 +22,22 @@ describe('TerserPlugin', () => {
     mappings: '',
   };
 
-  it('should works (without options)', () => {
+  it('should works (without options)', async () => {
     const compiler = createCompiler();
 
     new TerserPlugin().apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('should regenerate hash', () => {
+  it('should regenerate hash', async () => {
     const originalMainTemplateUpdateHashForChunk =
       MainTemplate.prototype.updateHashForChunk;
     const originalChunkTemplateUpdateHashForChunk =
@@ -71,33 +64,27 @@ describe('TerserPlugin', () => {
 
     new TerserPlugin().apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
-      // First call do `webpack`.
-      // Second call do `TerserPlugin`.
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
 
-      // We have 1 async chunk (1 * 2 = 2 calls for ChunkTemplate)
-      expect(mockMainTemplateUpdateHashForChunk).toHaveBeenCalledTimes(8);
-      // We have 4 initial chunks (4 * 2 = 8 calls for MainTemplate)
-      expect(mockChunkTemplateUpdateHashFocChunk).toHaveBeenCalledTimes(2);
+    // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
+    // First call do `webpack`.
+    // Second call do `TerserPlugin`.
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
+    // We have 1 async chunk (1 * 2 = 2 calls for ChunkTemplate)
+    expect(mockMainTemplateUpdateHashForChunk).toHaveBeenCalledTimes(8);
+    // We have 4 initial chunks (4 * 2 = 8 calls for MainTemplate)
+    expect(mockChunkTemplateUpdateHashFocChunk).toHaveBeenCalledTimes(2);
 
-      MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
-      ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;
-    });
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+
+    MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
+    ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;
   });
 
   it('isSourceMap method', () => {
