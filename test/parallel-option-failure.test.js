@@ -1,12 +1,15 @@
 import os from 'os';
 
-import cacache from 'cacache';
 import workerFarm from 'worker-farm';
-import findCacheDir from 'find-cache-dir';
 
 import TerserPlugin from '../src/index';
 
-import { createCompiler, compile, cleanErrorStack } from './helpers';
+import {
+  createCompiler,
+  compile,
+  cleanErrorStack,
+  removeCache,
+} from './helpers';
 
 jest.mock('os', () => {
   const actualOs = require.requireActual('os');
@@ -34,8 +37,6 @@ jest.mock('worker-farm', () => {
   return mock;
 });
 
-const cacheDir = findCacheDir({ name: 'terser-webpack-plugin' });
-
 describe('parallel option', () => {
   let compiler;
 
@@ -50,8 +51,10 @@ describe('parallel option', () => {
       },
     });
 
-    return cacache.rm.all(cacheDir);
+    return Promise.all([removeCache()]);
   });
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for errors into the "worker-farm" package', async () => {
     new TerserPlugin({ parallel: true, cache: false }).apply(compiler);

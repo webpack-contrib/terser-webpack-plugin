@@ -9,9 +9,14 @@ import {
   countPlugins,
   compile,
   getAssets,
+  removeCache,
 } from './helpers';
 
 describe('multi-compiler mode', () => {
+  beforeEach(() => Promise.all([removeCache()]));
+
+  afterEach(() => Promise.all([removeCache()]));
+
   it('should match snapshot with empty options', async () => {
     const multiCompiler = createCompiler([
       {

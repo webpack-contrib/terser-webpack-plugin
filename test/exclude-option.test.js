@@ -1,6 +1,12 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, createCompiler, compile, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  createCompiler,
+  compile,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 describe('exclude option', () => {
   let compiler;
@@ -13,7 +19,11 @@ describe('exclude option', () => {
         entry: `${__dirname}/fixtures/entry.js`,
       },
     });
+
+    return Promise.all([removeCache()]);
   });
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for a single RegExp value', async () => {
     new TerserPlugin({

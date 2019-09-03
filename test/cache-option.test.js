@@ -1,17 +1,34 @@
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 
+import TaskRunner from '../src/TaskRunner';
 import TerserPlugin from '../src/index';
 
-import { createCompiler, compile, cleanErrorStack, getAssets } from './helpers';
+import {
+  createCompiler,
+  compile,
+  cleanErrorStack,
+  getAssets,
+  removeCache,
+} from './helpers';
 
-const cacheDir = findCacheDir({ name: 'terser-webpack-plugin' });
+const uniqueCacheDirectory = findCacheDir({ name: 'unique-cache-directory' });
+const uniqueOtherDirectory = findCacheDir({
+  name: 'unique-other-cache-directory',
+});
 const otherCacheDir = findCacheDir({ name: 'other-cache-directory' });
+const otherOtherCacheDir = findCacheDir({
+  name: 'other-other-cache-directory',
+});
+
+jest.setTimeout(30000);
 
 describe('cache option', () => {
   let compiler;
 
   beforeEach(() => {
+    jest.clearAllMocks();
+
     compiler = createCompiler({
       entry: {
         one: `${__dirname}/fixtures/cache.js`,
@@ -23,45 +40,33 @@ describe('cache option', () => {
     });
 
     return Promise.all([
-      cacache.rm.all(cacheDir),
-      cacache.rm.all(otherCacheDir),
+      removeCache(),
+      removeCache(uniqueCacheDirectory),
+      removeCache(uniqueOtherDirectory),
+      removeCache(otherCacheDir),
+      removeCache(otherOtherCacheDir),
     ]);
   });
 
-  afterEach(() =>
-    Promise.all([cacache.rm.all(cacheDir), cacache.rm.all(otherCacheDir)])
-  );
-
-  it('should match snapshot for the "false" value', async () => {
-    new TerserPlugin({ cache: false }).apply(compiler);
-
-    cacache.get = jest.fn(cacache.get);
-    cacache.put = jest.fn(cacache.put);
-
-    const stats = await compile(compiler);
-
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
-
-    // Cache disabled so we don't run `get` or `put`
-    expect(cacache.get.mock.calls.length).toBe(0);
-    expect(cacache.put.mock.calls.length).toBe(0);
-
-    const cacheEntriesList = await cacache.ls(cacheDir);
-    const cacheKeys = Object.keys(cacheEntriesList);
-
-    expect(cacheKeys.length).toBe(0);
+  afterEach(() => {
+    return Promise.all([
+      removeCache(),
+      removeCache(uniqueCacheDirectory),
+      removeCache(uniqueOtherDirectory),
+      removeCache(otherCacheDir),
+      removeCache(otherOtherCacheDir),
+    ]);
   });
 
-  it('should match snapshot for the "true" value', async () => {
-    new TerserPlugin({ cache: true }).apply(compiler);
+  it('should match snapshot when a value is not specify', async () => {
+    const cacacheGetSpy = jest.spyOn(cacache, 'get');
+    const cacachePutSpy = jest.spyOn(cacache, 'put');
 
-    cacache.get = jest.fn(cacache.get);
-    cacache.put = jest.fn(cacache.put);
+    jest.spyOn(TaskRunner, 'getCacheDirectory').mockImplementation(() => {
+      return uniqueCacheDirectory;
+    });
+
+    new TerserPlugin({ cache: true }).apply(compiler);
 
     const stats = await compile(compiler);
 
@@ -75,16 +80,9 @@ describe('cache option', () => {
     const countAssets = Object.keys(stats.compilation.assets).length;
 
     // Try to found cached files, but we don't have their in cache
-    expect(cacache.get.mock.calls.length).toBe(countAssets);
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(countAssets);
     // Put files in cache
-    expect(cacache.put.mock.calls.length).toBe(countAssets);
-
-    const cacheEntriesList = await cacache.ls(cacheDir);
-
-    const cacheKeys = Object.keys(cacheEntriesList);
-
-    // Make sure that we cached files
-    expect(cacheKeys.length).toBe(countAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(countAssets);
 
     cacache.get.mockClear();
     cacache.put.mockClear();
@@ -102,15 +100,39 @@ describe('cache option', () => {
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
     // Now we have cached files so we get them and don't put new
-    expect(cacache.get.mock.calls.length).toBe(newCountAssets);
-    expect(cacache.put.mock.calls.length).toBe(0);
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(newCountAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(0);
   });
 
-  it('should match snapshot for the "other-cache-directory" value', async () => {
-    new TerserPlugin({ cache: otherCacheDir }).apply(compiler);
+  it('should match snapshot for the "false" value', async () => {
+    const cacacheGetSpy = jest.spyOn(cacache, 'get');
+    const cacachePutSpy = jest.spyOn(cacache, 'put');
 
-    cacache.get = jest.fn(cacache.get);
-    cacache.put = jest.fn(cacache.put);
+    new TerserPlugin({ cache: false }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+
+    // Cache disabled so we don't run `get` or `put`
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(0);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should match snapshot for the "true" value', async () => {
+    const cacacheGetSpy = jest.spyOn(cacache, 'get');
+    const cacachePutSpy = jest.spyOn(cacache, 'put');
+
+    jest.spyOn(TaskRunner, 'getCacheDirectory').mockImplementation(() => {
+      return uniqueOtherDirectory;
+    });
+
+    new TerserPlugin({ cache: true }).apply(compiler);
 
     const stats = await compile(compiler);
 
@@ -124,15 +146,9 @@ describe('cache option', () => {
     const countAssets = Object.keys(stats.compilation.assets).length;
 
     // Try to found cached files, but we don't have their in cache
-    expect(cacache.get.mock.calls.length).toBe(countAssets);
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(countAssets);
     // Put files in cache
-    expect(cacache.put.mock.calls.length).toBe(countAssets);
-
-    const cacheEntriesList = await cacache.ls(otherCacheDir);
-    const cacheKeys = Object.keys(cacheEntriesList);
-
-    // Make sure that we cached files
-    expect(cacheKeys.length).toBe(countAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(countAssets);
 
     cacache.get.mockClear();
     cacache.put.mockClear();
@@ -149,14 +165,59 @@ describe('cache option', () => {
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
-    // Now we have cached files so we get their and don't put
-    expect(cacache.get.mock.calls.length).toBe(newCountAssets);
-    expect(cacache.put.mock.calls.length).toBe(0);
+    // Now we have cached files so we get them and don't put new
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(newCountAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(0);
   });
 
-  it('should match snapshot for the "true" value when "cacheKey" is custom "function"', async () => {
+  it('should match snapshot for the "other-cache-directory" value', async () => {
+    const cacacheGetSpy = jest.spyOn(cacache, 'get');
+    const cacachePutSpy = jest.spyOn(cacache, 'put');
+
+    new TerserPlugin({ cache: otherCacheDir }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+
+    const countAssets = Object.keys(stats.compilation.assets).length;
+
+    // Try to found cached files, but we don't have their in cache
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(countAssets);
+    // Put files in cache
+    expect(cacachePutSpy).toHaveBeenCalledTimes(countAssets);
+
+    cacache.get.mockClear();
+    cacache.put.mockClear();
+
+    const newStats = await compile(compiler);
+
+    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
+    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
+
+    expect(newErrors).toMatchSnapshot('errors');
+    expect(newWarnings).toMatchSnapshot('warnings');
+
+    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+
+    const newCountAssets = Object.keys(newStats.compilation.assets).length;
+
+    // Now we have cached files so we get them and don't put new
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(newCountAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should match snapshot when "cacheKey" is custom "function"', async () => {
+    const cacacheGetSpy = jest.spyOn(cacache, 'get');
+    const cacachePutSpy = jest.spyOn(cacache, 'put');
+
     new TerserPlugin({
-      cache: true,
+      cache: otherOtherCacheDir,
       cacheKeys: (defaultCacheKeys, file) => {
         // eslint-disable-next-line no-param-reassign
         defaultCacheKeys.myCacheKey = 1;
@@ -167,9 +228,6 @@ describe('cache option', () => {
       },
     }).apply(compiler);
 
-    cacache.get = jest.fn(cacache.get);
-    cacache.put = jest.fn(cacache.put);
-
     const stats = await compile(compiler);
 
     const errors = stats.compilation.errors.map(cleanErrorStack);
@@ -182,25 +240,9 @@ describe('cache option', () => {
     const countAssets = Object.keys(stats.compilation.assets).length;
 
     // Try to found cached files, but we don't have their in cache
-    expect(cacache.get.mock.calls.length).toBe(countAssets);
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(countAssets);
     // Put files in cache
-    expect(cacache.put.mock.calls.length).toBe(countAssets);
-
-    const cacheEntriesList = await cacache.ls(cacheDir);
-    const cacheKeys = Object.keys(cacheEntriesList);
-
-    // Make sure that we cached files
-    expect(cacheKeys.length).toBe(countAssets);
-
-    cacheKeys.forEach((cacheEntry) => {
-      // eslint-disable-next-line no-new-func
-      const cacheEntryOptions = new Function(
-        `'use strict'\nreturn ${cacheEntry}`
-      )();
-
-      expect(cacheEntryOptions.myCacheKey).toBe(1);
-      expect(cacheEntryOptions.myCacheKeyBasedOnFile).toMatch(/file-(.+)?\.js/);
-    });
+    expect(cacachePutSpy).toHaveBeenCalledTimes(countAssets);
 
     cacache.get.mockClear();
     cacache.put.mockClear();
@@ -216,9 +258,9 @@ describe('cache option', () => {
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
-    // Now we have cached files so we get their and don't put
-    expect(cacache.get.mock.calls.length).toBe(newCountAssets);
-    expect(cacache.put.mock.calls.length).toBe(0);
+    // Now we have cached files so we get them and don't put new
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(newCountAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(0);
   });
 
   it('should match snapshot for errors into the "cacheKeys" option', async () => {

@@ -13,16 +13,23 @@ const worker = require.resolve('./worker');
 export default class TaskRunner {
   constructor(options = {}) {
     const { cache, parallel } = options;
-    this.cacheDir =
-      cache === true
-        ? findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir()
-        : cache;
+
+    this.cacheDir = cache === true ? TaskRunner.getCacheDirectory() : cache;
+    this.maxConcurrentWorkers = TaskRunner.getMaxConcurrentWorkers(parallel);
+  }
+
+  static getCacheDirectory() {
+    return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
+  }
+
+  static getMaxConcurrentWorkers(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
     const cpus = os.cpus() || { length: 1 };
+
     // WSL sometimes freezes, error seems to be on the WSL side
     // https://github.com/webpack-contrib/terser-webpack-plugin/issues/21
-    this.maxConcurrentWorkers = isWsl
+    return isWsl
       ? 1
       : parallel === true
       ? cpus.length - 1

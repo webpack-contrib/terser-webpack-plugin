@@ -1,6 +1,12 @@
 import TerserPlugin from '../src/index';
 
-import { createCompiler, compile, cleanErrorStack, getAssets } from './helpers';
+import {
+  createCompiler,
+  compile,
+  cleanErrorStack,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 expect.addSnapshotSerializer({
   test: (value) => {
@@ -19,6 +25,10 @@ expect.addSnapshotSerializer({
 });
 
 describe('when options.sourceMap', () => {
+  beforeEach(() => Promise.all([removeCache()]));
+
+  afterEach(() => Promise.all([removeCache()]));
+
   it('matches snapshot for a single `false` value (`devtool` is `source-map`)', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/entry.js`,

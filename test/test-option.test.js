@@ -1,6 +1,12 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, createCompiler, compile, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  createCompiler,
+  compile,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 describe('test option', () => {
   let compiler;
@@ -19,7 +25,11 @@ describe('test option', () => {
         chunkFilename: '[id].[name].js?ver=[hash]',
       },
     });
+
+    return Promise.all([removeCache()]);
   });
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot with empty value', async () => {
     new TerserPlugin().apply(compiler);

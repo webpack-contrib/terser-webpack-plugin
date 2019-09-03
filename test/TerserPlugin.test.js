@@ -4,7 +4,13 @@ import ChunkTemplate from 'webpack/lib/ChunkTemplate';
 
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, compile, createCompiler, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  compile,
+  createCompiler,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 describe('TerserPlugin', () => {
   const rawSourceMap = {
@@ -21,6 +27,10 @@ describe('TerserPlugin', () => {
     sources: [],
     mappings: '',
   };
+
+  beforeEach(() => Promise.all([removeCache()]));
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should work (without options)', async () => {
     const compiler = createCompiler();
