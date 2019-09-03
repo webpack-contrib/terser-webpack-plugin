@@ -1,8 +1,8 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, createCompiler, compile } from './helpers';
+import { cleanErrorStack, createCompiler, compile, getAssets } from './helpers';
 
-describe('when applied with `test` option', () => {
+describe('test option', () => {
   let compiler;
 
   beforeEach(() => {
@@ -21,115 +21,80 @@ describe('when applied with `test` option', () => {
     });
   });
 
-  it('matches snapshot with empty value', () => {
+  it('should match snapshot with empty value', async () => {
     new TerserPlugin().apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a single `test` value ({RegExp})', () => {
+  it('should match snapshot for a single `test` value ({RegExp})', async () => {
     new TerserPlugin({
       test: /(m)?js\.js(\?.*)?$/i,
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a single `test` value ({String})', () => {
+  it('should match snapshot for a single "test" value ({String})', async () => {
     new TerserPlugin({
       test: 'js.js',
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for multiple `test` values ({RegExp})', () => {
+  it('should match snapshot for multiple "test" values ({RegExp})', async () => {
     new TerserPlugin({
       test: [/(m)?js\.js(\?.*)?$/i, /AsyncImportExport\.js(\?.*)?$/i],
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for multiple `test` values ({String})', () => {
+  it('should match snapshot for multiple "test" values ({String})', async () => {
     new TerserPlugin({
       test: ['js.js', 'AsyncImportExport.js'],
     }).apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot and uglify `mjs`', () => {
+  it('should match snapshot and uglify "mjs"', async () => {
     compiler = createCompiler({
       entry: {
         js: `${__dirname}/fixtures/entry.js`,
@@ -146,20 +111,13 @@ describe('when applied with `test` option', () => {
 
     new TerserPlugin().apply(compiler);
 
-    return compile(compiler).then((stats) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+    const stats = await compile(compiler);
 
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-      for (const file in stats.compilation.assets) {
-        if (
-          Object.prototype.hasOwnProperty.call(stats.compilation.assets, file)
-        ) {
-          expect(stats.compilation.assets[file].source()).toMatchSnapshot(file);
-        }
-      }
-    });
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 });
