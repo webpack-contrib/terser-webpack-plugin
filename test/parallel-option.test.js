@@ -27,7 +27,9 @@ jest.mock('worker-farm', () => {
         require(worker)(data, callback)
       ))
   );
+
   mock.end = jest.fn();
+
   return mock;
 });
 
@@ -47,6 +49,28 @@ describe('parallel option', () => {
         four: `${__dirname}/fixtures/entry.js`,
       },
     });
+  });
+
+  it('should match snapshot when a value is not specify', async () => {
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+      os.cpus().length - 1
+    );
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
   it('should match snapshot for the "false" value', async () => {
