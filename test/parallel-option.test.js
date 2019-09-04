@@ -4,7 +4,13 @@ import workerFarm from 'worker-farm';
 
 import TerserPlugin from '../src/index';
 
-import { createCompiler, compile, cleanErrorStack, getAssets } from './helpers';
+import {
+  createCompiler,
+  compile,
+  cleanErrorStack,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 jest.mock('os', () => {
   const actualOs = require.requireActual('os');
@@ -49,7 +55,11 @@ describe('parallel option', () => {
         four: `${__dirname}/fixtures/entry.js`,
       },
     });
+
+    return Promise.all([removeCache()]);
   });
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot when a value is not specify', async () => {
     new TerserPlugin().apply(compiler);

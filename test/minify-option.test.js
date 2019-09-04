@@ -1,6 +1,12 @@
 import TerserPlugin from '../src';
 
-import { cleanErrorStack, compile, createCompiler, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  compile,
+  createCompiler,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 // Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
 
@@ -18,6 +24,10 @@ jest.mock('worker-farm', () => {
 });
 
 describe('minify option', () => {
+  beforeEach(() => Promise.all([removeCache()]));
+
+  afterEach(() => Promise.all([removeCache()]));
+
   it('should snapshot for the "uglify-js" minifier', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,

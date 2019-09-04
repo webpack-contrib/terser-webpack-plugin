@@ -1,6 +1,12 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, createCompiler, compile, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  createCompiler,
+  compile,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 describe('warningsFilter option', () => {
   let compiler;
@@ -12,7 +18,11 @@ describe('warningsFilter option', () => {
         two: `${__dirname}/fixtures/unreachable-code-2.js`,
       },
     });
+
+    return Promise.all([removeCache()]);
   });
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for a "function" value and the "sourceMap" option is "false" (filter by message)', async () => {
     new TerserPlugin({

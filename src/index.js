@@ -29,7 +29,7 @@ class TerserPlugin {
       warningsFilter = () => true,
       extractComments = false,
       sourceMap = false,
-      cache = false,
+      cache = true,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = true,
       include,

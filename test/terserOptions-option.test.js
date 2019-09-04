@@ -1,8 +1,18 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, createCompiler, compile, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  createCompiler,
+  compile,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 describe('terserOptions option', () => {
+  beforeEach(() => Promise.all([removeCache()]));
+
+  afterEach(() => Promise.all([removeCache()]));
+
   it('should match snapshot for the "ecma" option with the "5" value', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/ecma-5/entry.js`,

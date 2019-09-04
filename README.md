@@ -139,7 +139,7 @@ module.exports = {
 ### `cache`
 
 Type: `Boolean|String`
-Default: `false`
+Default: `true`
 
 Enable file caching.
 Default path to cache directory: `node_modules/.cache/terser-webpack-plugin`.
@@ -598,25 +598,6 @@ module.exports = {
 ```
 
 ## Examples
-
-### Cache And Parallel
-
-Enable cache and multi-process parallel running.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-      }),
-    ],
-  },
-};
-```
 
 ### Preserve Comments
 

@@ -1,6 +1,12 @@
 import TerserPlugin from '../src/index';
 
-import { cleanErrorStack, compile, createCompiler, getAssets } from './helpers';
+import {
+  cleanErrorStack,
+  compile,
+  createCompiler,
+  getAssets,
+  removeCache,
+} from './helpers';
 
 describe('extractComments option', () => {
   let compiler;
@@ -18,7 +24,11 @@ describe('extractComments option', () => {
         chunkFilename: 'chunks/[id].[name].[chunkhash].js',
       },
     });
+
+    return Promise.all([removeCache()]);
   });
+
+  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot when a value is not specify', async () => {
     new TerserPlugin().apply(compiler);
