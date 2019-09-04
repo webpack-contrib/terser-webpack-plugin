@@ -1,4 +1,5 @@
 import os from 'os';
+import util from 'util';
 
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
@@ -8,21 +9,22 @@ import isWsl from 'is-wsl';
 
 import minify from './minify';
 
-const worker = require.resolve('./worker');
+const workerPath = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
-    const { cache, parallel } = options;
-
-    this.cacheDir = cache === true ? TaskRunner.getCacheDirectory() : cache;
-    this.maxConcurrentWorkers = TaskRunner.getMaxConcurrentWorkers(parallel);
+    this.options = options;
+    this.cacheDir = TaskRunner.getCacheDirectory(this.options.cache);
+    this.numberWorkers = TaskRunner.getNumberWorkers(this.options.parallel);
   }
 
-  static getCacheDirectory() {
-    return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
+  static getCacheDirectory(cache) {
+    return cache === true
+      ? findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir()
+      : cache;
   }
 
-  static getMaxConcurrentWorkers(parallel) {
+  static getNumberWorkers(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
     const cpus = os.cpus() || { length: 1 };
@@ -36,79 +38,64 @@ export default class TaskRunner {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  run(tasks, callback) {
-    /* istanbul ignore if */
-    if (!tasks.length) {
-      callback(null, []);
-      return;
+  async runTask(task) {
+    if (this.workers) {
+      return util.promisify(this.workers)(serialize(task));
     }
 
-    if (this.maxConcurrentWorkers > 1 && tasks.length > 1) {
-      const workerOptions =
+    return minify(task);
+  }
+
+  async run(tasks) {
+    if (tasks.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    if (this.numberWorkers > 1 && tasks.length > 1) {
+      this.workers = workerFarm(
         process.platform === 'win32'
           ? {
-              maxConcurrentWorkers: this.maxConcurrentWorkers,
+              maxConcurrentWorkers: this.numberWorkers,
               maxConcurrentCallsPerWorker: 1,
             }
-          : { maxConcurrentWorkers: this.maxConcurrentWorkers };
-      this.workers = workerFarm(workerOptions, worker);
-      this.boundWorkers = (options, cb) => {
-        try {
-          this.workers(serialize(options), cb);
-        } catch (error) {
-          // worker-farm can fail with ENOMEM or something else
-          cb(error);
-        }
-      };
-    } else {
-      this.boundWorkers = (options, cb) => {
-        try {
-          cb(null, minify(options));
-        } catch (error) {
-          cb(error);
-        }
-      };
+          : { maxConcurrentWorkers: this.numberWorkers },
+        workerPath
+      );
     }
 
-    let toRun = tasks.length;
-    const results = [];
-    const step = (index, data) => {
-      toRun -= 1;
-      results[index] = data;
+    return Promise.all(
+      tasks.map((task) => {
+        const enqueue = async () => {
+          let result;
 
-      if (!toRun) {
-        callback(null, results);
-      }
-    };
-
-    tasks.forEach((task, index) => {
-      const enqueue = () => {
-        this.boundWorkers(task, (error, data) => {
-          const result = error ? { error } : data;
-          const done = () => step(index, result);
+          try {
+            result = await this.runTask(task);
+          } catch (error) {
+            result = { error };
+          }
 
           if (this.cacheDir && !result.error) {
-            cacache
+            return cacache
               .put(
                 this.cacheDir,
                 serialize(task.cacheKeys),
-                JSON.stringify(data)
+                JSON.stringify(result)
               )
-              .then(done, done);
-          } else {
-            done();
+              .then(() => result, () => result);
           }
-        });
-      };
 
-      if (this.cacheDir) {
-        cacache
-          .get(this.cacheDir, serialize(task.cacheKeys))
-          .then(({ data }) => step(index, JSON.parse(data)), enqueue);
-      } else {
-        enqueue();
-      }
-    });
+          return result;
+        };
+
+        if (this.cacheDir) {
+          return cacache
+            .get(this.cacheDir, serialize(task.cacheKeys))
+            .then(({ data }) => JSON.parse(data), enqueue);
+        }
+
+        return enqueue();
+      })
+    );
   }
 
   exit() {

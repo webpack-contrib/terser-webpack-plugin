@@ -161,7 +161,7 @@ class TerserPlugin {
       moduleArg.useSourceMap = true;
     };
 
-    const optimizeFn = (compilation, chunks, callback) => {
+    const optimizeFn = async (compilation, chunks) => {
       const taskRunner = new TaskRunner({
         cache: this.options.cache,
         parallel: this.options.parallel,
@@ -259,141 +259,131 @@ class TerserPlugin {
           }
         });
 
-      taskRunner.run(tasks, (tasksError, results) => {
-        if (tasksError) {
-          compilation.errors.push(tasksError);
+      const completedTasks = await taskRunner.run(tasks);
+
+      taskRunner.exit();
+
+      completedTasks.forEach((completedTask, index) => {
+        const { file, input, inputSourceMap, commentsFile } = tasks[index];
+        const { error, map, code, warnings } = completedTask;
+        let { extractedComments } = completedTask;
+
+        let sourceMap = null;
+
+        if (error || (warnings && warnings.length > 0)) {
+          sourceMap = TerserPlugin.buildSourceMap(inputSourceMap);
+        }
+
+        // Handling results
+        // Error case: add errors, and go to next file
+        if (error) {
+          compilation.errors.push(
+            TerserPlugin.buildError(
+              error,
+              file,
+              sourceMap,
+              new RequestShortener(compiler.context)
+            )
+          );
 
           return;
         }
 
-        results.forEach((data, index) => {
-          const { file, input, inputSourceMap, commentsFile } = tasks[index];
-          const { error, map, code, warnings } = data;
-          let { extractedComments } = data;
+        let outputSource;
 
-          let sourceMap = null;
+        if (map) {
+          outputSource = new SourceMapSource(
+            code,
+            file,
+            JSON.parse(map),
+            input,
+            inputSourceMap,
+            true
+          );
+        } else {
+          outputSource = new RawSource(code);
+        }
 
-          if (error || (warnings && warnings.length > 0)) {
-            sourceMap = TerserPlugin.buildSourceMap(inputSourceMap);
-          }
+        // Write extracted comments to commentsFile
+        if (commentsFile && extractedComments && extractedComments.length > 0) {
+          if (commentsFile in compilation.assets) {
+            const commentsFileSource = compilation.assets[
+              commentsFile
+            ].source();
 
-          // Handling results
-          // Error case: add errors, and go to next file
-          if (error) {
-            compilation.errors.push(
-              TerserPlugin.buildError(
-                error,
-                file,
-                sourceMap,
-                new RequestShortener(compiler.context)
-              )
+            extractedComments = extractedComments.filter(
+              (comment) => !commentsFileSource.includes(comment)
             );
-
-            return;
           }
 
-          let outputSource;
+          if (extractedComments.length > 0) {
+            // Add a banner to the original file
+            if (this.options.extractComments.banner !== false) {
+              let banner =
+                this.options.extractComments.banner ||
+                `For license information please see ${path.posix.basename(
+                  commentsFile
+                )}`;
 
-          if (map) {
-            outputSource = new SourceMapSource(
-              code,
-              file,
-              JSON.parse(map),
-              input,
-              inputSourceMap,
-              true
-            );
-          } else {
-            outputSource = new RawSource(code);
-          }
-
-          // Write extracted comments to commentsFile
-          if (
-            commentsFile &&
-            extractedComments &&
-            extractedComments.length > 0
-          ) {
-            if (commentsFile in compilation.assets) {
-              const commentsFileSource = compilation.assets[
-                commentsFile
-              ].source();
-
-              extractedComments = extractedComments.filter(
-                (comment) => !commentsFileSource.includes(comment)
-              );
-            }
-
-            if (extractedComments.length > 0) {
-              // Add a banner to the original file
-              if (this.options.extractComments.banner !== false) {
-                let banner =
-                  this.options.extractComments.banner ||
-                  `For license information please see ${path.posix.basename(
-                    commentsFile
-                  )}`;
-
-                if (typeof banner === 'function') {
-                  banner = banner(commentsFile);
-                }
-
-                if (banner) {
-                  outputSource = new ConcatSource(
-                    `/*! ${banner} */\n`,
-                    outputSource
-                  );
-                }
+              if (typeof banner === 'function') {
+                banner = banner(commentsFile);
               }
 
-              const commentsSource = new RawSource(
-                `${extractedComments.join('\n\n')}\n`
-              );
+              if (banner) {
+                outputSource = new ConcatSource(
+                  `/*! ${banner} */\n`,
+                  outputSource
+                );
+              }
+            }
 
-              if (commentsFile in compilation.assets) {
-                // commentsFile already exists, append new comments...
-                if (compilation.assets[commentsFile] instanceof ConcatSource) {
-                  compilation.assets[commentsFile].add('\n');
-                  compilation.assets[commentsFile].add(commentsSource);
-                } else {
-                  // eslint-disable-next-line no-param-reassign
-                  compilation.assets[commentsFile] = new ConcatSource(
-                    compilation.assets[commentsFile],
-                    '\n',
-                    commentsSource
-                  );
-                }
+            const commentsSource = new RawSource(
+              `${extractedComments.join('\n\n')}\n`
+            );
+
+            if (commentsFile in compilation.assets) {
+              // commentsFile already exists, append new comments...
+              if (compilation.assets[commentsFile] instanceof ConcatSource) {
+                compilation.assets[commentsFile].add('\n');
+                compilation.assets[commentsFile].add(commentsSource);
               } else {
                 // eslint-disable-next-line no-param-reassign
-                compilation.assets[commentsFile] = commentsSource;
+                compilation.assets[commentsFile] = new ConcatSource(
+                  compilation.assets[commentsFile],
+                  '\n',
+                  commentsSource
+                );
               }
+            } else {
+              // eslint-disable-next-line no-param-reassign
+              compilation.assets[commentsFile] = commentsSource;
             }
           }
+        }
 
-          // Updating assets
-          // eslint-disable-next-line no-param-reassign
-          processedAssets.add((compilation.assets[file] = outputSource));
+        // Updating assets
+        // eslint-disable-next-line no-param-reassign
+        processedAssets.add((compilation.assets[file] = outputSource));
 
-          // Handling warnings
-          if (warnings && warnings.length > 0) {
-            warnings.forEach((warning) => {
-              const builtWarning = TerserPlugin.buildWarning(
-                warning,
-                file,
-                sourceMap,
-                new RequestShortener(compiler.context),
-                this.options.warningsFilter
-              );
+        // Handling warnings
+        if (warnings && warnings.length > 0) {
+          warnings.forEach((warning) => {
+            const builtWarning = TerserPlugin.buildWarning(
+              warning,
+              file,
+              sourceMap,
+              new RequestShortener(compiler.context),
+              this.options.warningsFilter
+            );
 
-              if (builtWarning) {
-                compilation.warnings.push(builtWarning);
-              }
-            });
-          }
-        });
-
-        taskRunner.exit();
-
-        callback();
+            if (builtWarning) {
+              compilation.warnings.push(builtWarning);
+            }
+          });
+        }
       });
+
+      return Promise.resolve();
     };
 
     const plugin = { name: this.constructor.name };
@@ -418,7 +408,7 @@ class TerserPlugin {
         });
       }
 
-      compilation.hooks.optimizeChunkAssets.tapAsync(
+      compilation.hooks.optimizeChunkAssets.tapPromise(
         plugin,
         optimizeFn.bind(this, compilation)
       );
