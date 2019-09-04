@@ -27,7 +27,7 @@ class TerserPlugin {
       test = /\.m?js(\?.*)?$/i,
       chunkFilter = () => true,
       warningsFilter = () => true,
-      extractComments = false,
+      extractComments = true,
       sourceMap = false,
       cache = true,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
