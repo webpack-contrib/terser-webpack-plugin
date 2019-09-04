@@ -43,7 +43,7 @@ export default class TaskRunner {
       return;
     }
 
-    if (this.maxConcurrentWorkers > 1) {
+    if (this.maxConcurrentWorkers > 1 && tasks.length > 1) {
       const workerOptions =
         process.platform === 'win32'
           ? {

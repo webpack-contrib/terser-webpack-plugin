@@ -140,4 +140,71 @@ describe('parallel option', () => {
     expect(warnings).toMatchSnapshot('warnings');
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
+
+  it('should match snapshot for the "true" value and only one file passed', async () => {
+    compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+    });
+
+    new TerserPlugin({ parallel: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(workerFarm.mock.calls.length).toBe(0);
+    expect(workerFarm.end.mock.calls.length).toBe(0);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot for the "true" value and two files passed', async () => {
+    compiler = createCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/entry.js`,
+        two: `${__dirname}/fixtures/entry.js`,
+      },
+    });
+
+    new TerserPlugin({ parallel: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarm.mock.calls[0][0].maxConcurrentWorkers).toBe(
+      os.cpus().length - 1
+    );
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot for errors into the "worker-farm" package', async () => {
+    new TerserPlugin({ parallel: true, cache: false }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(workerFarm.mock.calls.length).toBe(1);
+    expect(workerFarmMock.mock.calls.length).toBe(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerFarm.end.mock.calls.length).toBe(1);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+  });
 });

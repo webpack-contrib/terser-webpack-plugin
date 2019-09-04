@@ -48,6 +48,7 @@ describe('parallel option', () => {
     compiler = createCompiler({
       entry: {
         one: `${__dirname}/fixtures/entry.js`,
+        two: `${__dirname}/fixtures/entry.js`,
       },
     });
 
