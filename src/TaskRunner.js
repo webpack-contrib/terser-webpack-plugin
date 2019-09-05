@@ -4,7 +4,6 @@ import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
-import isWsl from 'is-wsl';
 
 import minify from './minify';
 
@@ -28,11 +27,7 @@ export default class TaskRunner {
     // https://github.com/nodejs/node/issues/19022
     const cpus = os.cpus() || { length: 1 };
 
-    // WSL sometimes freezes, error seems to be on the WSL side
-    // https://github.com/webpack-contrib/terser-webpack-plugin/issues/21
-    return isWsl
-      ? 1
-      : parallel === true
+    return parallel === true
       ? cpus.length - 1
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
