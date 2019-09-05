@@ -57,7 +57,7 @@ describe('parallel option', () => {
 
   afterEach(() => Promise.all([removeCache()]));
 
-  it('should match snapshot for errors into the "worker-farm" package', async () => {
+  it('should match snapshot for errors into the "jest-worker" package', async () => {
     new TerserPlugin({ parallel: true, cache: false }).apply(compiler);
 
     const stats = await compile(compiler);
@@ -78,7 +78,7 @@ describe('parallel option', () => {
     expect(warnings).toMatchSnapshot('warnings');
   });
 
-  it('should match snapshot for errors into the "worker-farm" package whe the "cache" option is "true"', async () => {
+  it('should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true"', async () => {
     new TerserPlugin({ parallel: true, cache: true }).apply(compiler);
 
     const stats = await compile(compiler);

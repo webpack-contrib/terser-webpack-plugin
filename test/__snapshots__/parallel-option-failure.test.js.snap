@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parallel option should match snapshot for errors into the "worker-farm" package whe the "cache" option is "true": errors 1`] = `
+exports[`parallel option should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true": errors 1`] = `
 Array [
   "Error: one.js from Terser
 Error: jest-worker failed",
@@ -9,9 +9,9 @@ Error: jest-worker failed",
 ]
 `;
 
-exports[`parallel option should match snapshot for errors into the "worker-farm" package whe the "cache" option is "true": warnings 1`] = `Array []`;
+exports[`parallel option should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true": warnings 1`] = `Array []`;
 
-exports[`parallel option should match snapshot for errors into the "worker-farm" package: errors 1`] = `
+exports[`parallel option should match snapshot for errors into the "jest-worker" package: errors 1`] = `
 Array [
   "Error: one.js from Terser
 Error: jest-worker failed",
@@ -20,4 +20,4 @@ Error: jest-worker failed",
 ]
 `;
 
-exports[`parallel option should match snapshot for errors into the "worker-farm" package: warnings 1`] = `Array []`;
+exports[`parallel option should match snapshot for errors into the "jest-worker" package: warnings 1`] = `Array []`;
