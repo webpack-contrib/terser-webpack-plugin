@@ -28,7 +28,7 @@ class TerserPlugin {
       chunkFilter = () => true,
       warningsFilter = () => true,
       extractComments = true,
-      sourceMap = false,
+      sourceMap,
       cache = true,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = true,
@@ -155,6 +155,14 @@ class TerserPlugin {
   }
 
   apply(compiler) {
+    this.options.sourceMap =
+      typeof this.options.sourceMap === 'undefined'
+        ? compiler.options.devtool &&
+          /^((inline|hidden|nosources)-)?source-?map/.test(
+            compiler.options.devtool
+          )
+        : Boolean(this.options.sourceMap);
+
     const buildModuleFn = (moduleArg) => {
       // to get detailed location info about errors
       // eslint-disable-next-line no-param-reassign
