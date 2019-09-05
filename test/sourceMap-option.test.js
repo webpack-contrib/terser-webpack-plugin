@@ -206,4 +206,94 @@ describe('sourceMap', () => {
     expect(warnings).toMatchSnapshot('warnings');
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
+
+  it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'source-map',
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot when the "devtool" option has the "sourcemap" value', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'sourcemap',
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'inline-source-map',
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'hidden-source-map',
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'nosources-source-map',
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
 });

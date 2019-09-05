@@ -284,12 +284,15 @@ module.exports = {
 Type: `Boolean`
 Default: `false`
 
-**Only works with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
+**Works only with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
 
 Why?
 
 - `eval` wraps modules in `eval("string")` and the minimizer does not handle strings.
 - `cheap` has not column information and minimizer generate only a single line, which leave only a single mapping.
+
+The plugin respect the [`devtool`](https://webpack.js.org/configuration/devtool/).
+Using supported `devtool` values enable source map generation.
 
 Use source maps to map error message locations to modules (this slows down the compilation).
 If you use your own `minify` function please read the `minify` section for handling source maps correctly.
