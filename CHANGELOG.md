@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.4.1...v2.0.0) (2019-09-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum require Node.js version is `8.9.0`
+* the `extractComments` option is `true` by default
+* the `cache` option is `true` by default
+* the `parallel` option is `true` by default
+* using the `extractComments.condition` option with `true` value extract only `some` comments
+
+
+### Bug Fixes
+
+* do not run parallel mode when you have only one file ([#134](https://github.com/webpack-contrib/terser-webpack-plugin/issues/134)) ([8b88b39](https://github.com/webpack-contrib/terser-webpack-plugin/commit/8b88b39))
+* make `extractComments` API more consistent ([#129](https://github.com/webpack-contrib/terser-webpack-plugin/issues/129)) ([37d2df0](https://github.com/webpack-contrib/terser-webpack-plugin/commit/37d2df0))
+* parallel on wsl ([#138](https://github.com/webpack-contrib/terser-webpack-plugin/issues/138)) ([0537591](https://github.com/webpack-contrib/terser-webpack-plugin/commit/0537591))
+
+
+### Features
+
+* enable the cache option by default ([#132](https://github.com/webpack-contrib/terser-webpack-plugin/issues/132)) ([960d249](https://github.com/webpack-contrib/terser-webpack-plugin/commit/960d249))
+* enable the extractComments option by default ([ad2471c](https://github.com/webpack-contrib/terser-webpack-plugin/commit/ad2471c))
+* enable the parallel option by default ([#131](https://github.com/webpack-contrib/terser-webpack-plugin/issues/131)) ([7b342af](https://github.com/webpack-contrib/terser-webpack-plugin/commit/7b342af))
+* respect `devtool` values for source map generation ([#140](https://github.com/webpack-contrib/terser-webpack-plugin/issues/140)) ([dd37ca1](https://github.com/webpack-contrib/terser-webpack-plugin/commit/dd37ca1))
+
 ### [1.4.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.4.0...v1.4.1) (2019-07-31)
 
 
