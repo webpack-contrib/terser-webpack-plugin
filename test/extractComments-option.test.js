@@ -195,6 +195,27 @@ describe('extractComments option', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
+  it('should match snapshot when extracts without condition', async () => {
+    new TerserPlugin({
+      extractComments: {
+        condition: true,
+        filename: 'extracted-comments.js',
+        banner(licenseFile) {
+          return `License information can be found in ${licenseFile}`;
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
   it('should match snapshot for the `true` value and preserve "@license" comments', async () => {
     new TerserPlugin({
       terserOptions: {

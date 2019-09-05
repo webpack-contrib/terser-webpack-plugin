@@ -261,7 +261,7 @@ class TerserPlugin {
 
       const completedTasks = await taskRunner.run(tasks);
 
-      taskRunner.exit();
+      await taskRunner.exit();
 
       completedTasks.forEach((completedTask, index) => {
         const { file, input, inputSourceMap, commentsFile } = tasks[index];

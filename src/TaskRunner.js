@@ -1,9 +1,8 @@
 import os from 'os';
-import util from 'util';
 
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
-import workerFarm from 'worker-farm';
+import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 import isWsl from 'is-wsl';
 
@@ -39,8 +38,8 @@ export default class TaskRunner {
   }
 
   async runTask(task) {
-    if (this.workers) {
-      return util.promisify(this.workers)(serialize(task));
+    if (this.worker) {
+      return this.worker.transform(serialize(task));
     }
 
     return minify(task);
@@ -52,15 +51,7 @@ export default class TaskRunner {
     }
 
     if (this.numberWorkers > 1 && tasks.length > 1) {
-      this.workers = workerFarm(
-        process.platform === 'win32'
-          ? {
-              maxConcurrentWorkers: this.numberWorkers,
-              maxConcurrentCallsPerWorker: 1,
-            }
-          : { maxConcurrentWorkers: this.numberWorkers },
-        workerPath
-      );
+      this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
     }
 
     return Promise.all(
@@ -98,9 +89,11 @@ export default class TaskRunner {
     );
   }
 
-  exit() {
-    if (this.workers) {
-      workerFarm.end(this.workers);
+  async exit() {
+    if (!this.worker) {
+      return Promise.resolve();
     }
+
+    return this.worker.end();
   }
 }
