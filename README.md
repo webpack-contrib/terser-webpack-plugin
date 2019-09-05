@@ -16,8 +16,6 @@
 
 This plugin uses [terser](https://github.com/terser-js/terser) to minify your JavaScript.
 
-> ℹ️ For `webpack@3` use [terser-webpack-plugin-legacy](https://www.npmjs.com/package/terser-webpack-plugin-legacy) package
-
 ## Getting Started
 
 To begin, you'll need to install `terser-webpack-plugin`:
