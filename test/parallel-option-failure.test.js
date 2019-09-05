@@ -1,6 +1,6 @@
 import os from 'os';
 
-import workerFarm from 'worker-farm';
+import Worker from 'jest-worker';
 
 import TerserPlugin from '../src/index';
 
@@ -22,28 +22,28 @@ jest.mock('os', () => {
 });
 
 // Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
-let workerFarmMock;
+let workerTransform;
+let workerEnd;
 
-jest.mock('worker-farm', () => {
-  const mock = jest.fn(
-    () =>
-      (workerFarmMock = jest.fn(() => {
-        throw new Error('worker-farm failed');
-      }))
-  );
-
-  mock.end = jest.fn();
-
-  return mock;
+jest.mock('jest-worker', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      transform: (workerTransform = jest.fn(() => {
+        throw new Error('jest-worker failed');
+      })),
+      end: (workerEnd = jest.fn()),
+    };
+  });
 });
+
+const workerPath = require.resolve('../src/worker');
 
 describe('parallel option', () => {
   let compiler;
 
   beforeEach(() => {
-    os.cpus.mockClear();
-    workerFarm.mockClear();
-    workerFarm.end.mockClear();
+    jest.clearAllMocks();
 
     compiler = createCompiler({
       entry: {
@@ -65,11 +65,14 @@ describe('parallel option', () => {
     const errors = stats.compilation.errors.map(cleanErrorStack);
     const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-    expect(workerFarm.mock.calls.length).toBe(1);
-    expect(workerFarmMock.mock.calls.length).toBe(
+    expect(Worker).toHaveBeenCalledTimes(1);
+    expect(Worker).toHaveBeenLastCalledWith(workerPath, {
+      numWorkers: os.cpus().length - 1,
+    });
+    expect(workerTransform).toHaveBeenCalledTimes(
       Object.keys(stats.compilation.assets).length
     );
-    expect(workerFarm.end.mock.calls.length).toBe(1);
+    expect(workerEnd).toHaveBeenCalledTimes(1);
 
     expect(errors).toMatchSnapshot('errors');
     expect(warnings).toMatchSnapshot('warnings');
@@ -83,11 +86,14 @@ describe('parallel option', () => {
     const errors = stats.compilation.errors.map(cleanErrorStack);
     const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-    expect(workerFarm.mock.calls.length).toBe(1);
-    expect(workerFarmMock.mock.calls.length).toBe(
+    expect(Worker).toHaveBeenCalledTimes(1);
+    expect(Worker).toHaveBeenLastCalledWith(workerPath, {
+      numWorkers: os.cpus().length - 1,
+    });
+    expect(workerTransform).toHaveBeenCalledTimes(
       Object.keys(stats.compilation.assets).length
     );
-    expect(workerFarm.end.mock.calls.length).toBe(1);
+    expect(workerEnd).toHaveBeenCalledTimes(1);
 
     expect(errors).toMatchSnapshot('errors');
     expect(warnings).toMatchSnapshot('warnings');

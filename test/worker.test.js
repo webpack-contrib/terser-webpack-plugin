@@ -2,19 +2,16 @@ import serialize from 'serialize-javascript';
 
 import worker from '../src/worker';
 
-describe('matches snapshot', () => {
-  it('normalizes when options.extractComments is regex', () => {
+describe('worker', () => {
+  it('should match snapshot when options.extractComments is regex', () => {
     const options = {
       file: 'test1.js',
       input: 'var foo = 1;/* hello */',
       extractComments: /foo/,
     };
-    worker(serialize(options), (error, data) => {
-      if (error) {
-        throw error;
-      }
-      expect(data).toMatchSnapshot(options.file);
-    });
+    const workerResult = worker.transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot(options.file);
   });
 
   it('normalizes when terserOptions.output.comments is string: all', () => {
@@ -27,15 +24,12 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(serialize(options), (error, data) => {
-      if (error) {
-        throw error;
-      }
-      expect(data).toMatchSnapshot(options.file);
-    });
+    const workerResult = worker.transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('normalizes when terserOptions.output.comments is string: some', () => {
+  it('should match snapshot when terserOptions.output.comments is string: some', () => {
     const options = {
       file: 'test3.js',
       input: 'var foo = 1;/* hello */',
@@ -45,15 +39,12 @@ describe('matches snapshot', () => {
         },
       },
     };
-    worker(serialize(options), (error, data) => {
-      if (error) {
-        throw error;
-      }
-      expect(data).toMatchSnapshot(options.file);
-    });
+    const workerResult = worker.transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('normalizes when terserOptions.extractComments is number', () => {
+  it('should match snapshot when terserOptions.extractComments is number', () => {
     const options = {
       file: 'test4.js',
       input: 'var foo = 1;/* hello */',
@@ -64,15 +55,12 @@ describe('matches snapshot', () => {
       },
       extractComments: 1,
     };
-    worker(serialize(options), (error, data) => {
-      if (error) {
-        throw error;
-      }
-      expect(data).toMatchSnapshot(options.file);
-    });
+    const workerResult = worker.transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('when applied with extract option set to a single file', () => {
+  it('should match snapshot with extract option set to a single file', () => {
     const options = {
       file: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
@@ -83,21 +71,17 @@ describe('matches snapshot', () => {
       },
       extractComments: {
         condition: 'should be extracted',
-        // TODO https://github.com/yahoo/serialize-javascript/issues/44
-        // filename: (file) => file.replace(/(\.\w+)$/, '.license$1'),
+        filename: (file) => file.replace(/(\.\w+)$/, '.license$1'),
         banner: (licenseFile) =>
           `License information can be found in ${licenseFile}`,
       },
     };
-    worker(serialize(options), (error, data) => {
-      if (error) {
-        throw error;
-      }
-      expect(data).toMatchSnapshot(options.file);
-    });
+    const workerResult = worker.transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('when options.inputSourceMap', () => {
+  it('should match snapshot with options.inputSourceMap', () => {
     const options = {
       file: 'test6.js',
       input: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
@@ -108,11 +92,8 @@ describe('matches snapshot', () => {
         mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
       },
     };
-    worker(serialize(options), (error, data) => {
-      if (error) {
-        throw error;
-      }
-      expect(data).toMatchSnapshot(options.file);
-    });
+    const workerResult = worker.transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot(options.file);
   });
 });
