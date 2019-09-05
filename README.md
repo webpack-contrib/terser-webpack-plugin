@@ -35,6 +35,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [new TerserPlugin()],
   },
 };
@@ -56,6 +57,7 @@ Test to match files against.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         test: /\.js(\?.*)?$/i,
@@ -77,6 +79,7 @@ Files to include.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         include: /\/includes/,
@@ -98,6 +101,7 @@ Files to exclude.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         exclude: /\/excludes/,
@@ -120,6 +124,7 @@ Return `true` to uglify the chunk, `false` otherwise.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         chunkFilter: (chunk) => {
@@ -155,6 +160,7 @@ Enable/disable file caching.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         cache: true,
@@ -173,6 +179,7 @@ Enable file caching and set path to cache directory.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         cache: 'path/to/cache',
@@ -209,6 +216,7 @@ Default cache keys:
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         cache: true,
@@ -242,6 +250,7 @@ Enable/disable multi-process parallel running.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         parallel: true,
@@ -260,6 +269,7 @@ Enable multi-process parallel running and set number of concurrent runs.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         parallel: 4,
@@ -284,6 +294,7 @@ If you use your own `minify` function please read the `minify` section for handl
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         sourceMap: true,
@@ -309,6 +320,7 @@ Useful for using and testing unpublished versions or forks.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         minify: (file, sourceMap) => {
@@ -341,6 +353,7 @@ Terser minify [options](https://github.com/terser-js/terser#minify-options).
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -383,6 +396,7 @@ Enable/disable extracting comments.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: true,
@@ -401,6 +415,7 @@ Extract `all` or `some` (use `/^\**!|@preserve|@license|@cc_on/i` RegExp) commen
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: 'all',
@@ -419,6 +434,7 @@ All comments that match the given expression will be extracted to the separate f
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: /@extract/i,
@@ -437,6 +453,7 @@ All comments that match the given expression will be extracted to the separate f
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: (astNode, comment) => {
@@ -461,6 +478,7 @@ Allow to customize condition for extract comments, specify extracted file name a
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: {
@@ -489,6 +507,7 @@ Condition what comments you need extract.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: {
@@ -519,6 +538,7 @@ Default is to append the suffix `.LICENSE` to the original filename.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: {
@@ -548,6 +568,7 @@ Will be wrapped into comment.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         extractComments: {
@@ -578,6 +599,7 @@ Return `true` to keep the warning, `false` otherwise.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         warningsFilter: (warning, source) => {
@@ -608,6 +630,7 @@ Extract all legal comments (i.e. `/^\**!|@preserve|@license|@cc_on/i`) and prese
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -631,6 +654,7 @@ If you avoid building with comments, set **terserOptions.output.comments** to **
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -653,6 +677,7 @@ Override default minify function - use `uglify-js` for minification.
 ```js
 module.exports = {
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         // Uncomment lines below for cache invalidation correctly
