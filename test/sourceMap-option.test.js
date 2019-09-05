@@ -24,12 +24,12 @@ expect.addSnapshotSerializer({
   print: (value) => JSON.stringify(JSON.parse(value), null, 2),
 });
 
-describe('when options.sourceMap', () => {
+describe('sourceMap', () => {
   beforeEach(() => Promise.all([removeCache()]));
 
   afterEach(() => Promise.all([removeCache()]));
 
-  it('matches snapshot for a single `false` value (`devtool` is `source-map`)', async () => {
+  it('should match snapshot for a "false" value (the "devtool" option has the "source-map" value)', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
@@ -47,7 +47,7 @@ describe('when options.sourceMap', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a single `false` value (`devtool` is `false`)', async () => {
+  it('should match snapshot for a "false" value (the "devtool" option has the "false" value)', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
@@ -65,7 +65,7 @@ describe('when options.sourceMap', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a single `true` value (`devtool` is `source-map`)', async () => {
+  it('should match snapshot for a "true" value (the "devtool" option has the "source-map" value)', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
@@ -83,7 +83,61 @@ describe('when options.sourceMap', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a single `true` value (`devtool` is `false`)', async () => {
+  it('should match snapshot for a "true" value (the "devtool" option has the "inline-source-map" value)', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'inline-source-map',
+    });
+
+    new TerserPlugin({ sourceMap: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot for a "true" value (the "devtool" option has the "hidden-source-map" value)', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'hidden-source-map',
+    });
+
+    new TerserPlugin({ sourceMap: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot for a "true" value (the "devtool" option has the "nosources-source-map" value)', async () => {
+    const compiler = createCompiler({
+      entry: `${__dirname}/fixtures/entry.js`,
+      devtool: 'nosources-source-map',
+    });
+
+    new TerserPlugin({ sourceMap: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot for a "true" value (the "devtool" option has the "false" value)', async () => {
     const compiler = createCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
@@ -101,7 +155,7 @@ describe('when options.sourceMap', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('matches snapshot for a single `true` value (`devtool` is `source-map`) and source map invalid', async () => {
+  it('should match snapshot for a "true" value (the "devtool" option has the "source-map" value) and source map invalid', async () => {
     const emitBrokenSourceMapPlugin = new (class EmitBrokenSourceMapPlugin {
       apply(pluginCompiler) {
         pluginCompiler.hooks.compilation.tap(
