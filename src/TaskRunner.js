@@ -41,7 +41,7 @@ export default class TaskRunner {
   }
 
   async run(tasks) {
-    if (this.numberWorkers > 1 && tasks.length > 1) {
+    if (this.numberWorkers > 1) {
       this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
     }
 

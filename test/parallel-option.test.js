@@ -154,7 +154,14 @@ describe('parallel option', () => {
     const errors = stats.compilation.errors.map(cleanErrorStack);
     const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
-    expect(Worker).toHaveBeenCalledTimes(0);
+    expect(Worker).toHaveBeenCalledTimes(1);
+    expect(Worker).toHaveBeenLastCalledWith(workerPath, {
+      numWorkers: os.cpus().length - 1,
+    });
+    expect(workerTransform).toHaveBeenCalledTimes(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerEnd).toHaveBeenCalledTimes(1);
 
     expect(errors).toMatchSnapshot('errors');
     expect(warnings).toMatchSnapshot('warnings');

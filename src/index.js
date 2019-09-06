@@ -262,18 +262,18 @@ class TerserPlugin {
           }
         });
 
-      let completedTasks = [];
-
-      if (tasks.length > 0) {
-        const taskRunner = new TaskRunner({
-          cache: this.options.cache,
-          parallel: this.options.parallel,
-        });
-
-        completedTasks = await taskRunner.run(tasks);
-
-        await taskRunner.exit();
+      if (tasks.length === 0) {
+        return Promise.resolve();
       }
+
+      const taskRunner = new TaskRunner({
+        cache: this.options.cache,
+        parallel: this.options.parallel,
+      });
+
+      const completedTasks = await taskRunner.run(tasks);
+
+      await taskRunner.exit();
 
       completedTasks.forEach((completedTask, index) => {
         const { file, input, inputSourceMap, commentsFile } = tasks[index];
