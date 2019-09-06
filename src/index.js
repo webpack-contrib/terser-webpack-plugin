@@ -170,11 +170,6 @@ class TerserPlugin {
     };
 
     const optimizeFn = async (compilation, chunks) => {
-      const taskRunner = new TaskRunner({
-        cache: this.options.cache,
-        parallel: this.options.parallel,
-      });
-
       const processedAssets = new WeakSet();
       const tasks = [];
 
@@ -267,9 +262,18 @@ class TerserPlugin {
           }
         });
 
-      const completedTasks = await taskRunner.run(tasks);
+      let completedTasks = [];
 
-      await taskRunner.exit();
+      if (tasks.length > 0) {
+        const taskRunner = new TaskRunner({
+          cache: this.options.cache,
+          parallel: this.options.parallel,
+        });
+
+        completedTasks = await taskRunner.run(tasks);
+
+        await taskRunner.exit();
+      }
 
       completedTasks.forEach((completedTask, index) => {
         const { file, input, inputSourceMap, commentsFile } = tasks[index];
