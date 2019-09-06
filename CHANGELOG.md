@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.0.0...v2.0.1) (2019-09-06)
+
+
+### Bug Fixes
+
+* reduce memory usage ([#145](https://github.com/webpack-contrib/terser-webpack-plugin/issues/145)) ([815e533](https://github.com/webpack-contrib/terser-webpack-plugin/commit/815e533))
+* revert do not run parallel mode when you have only one file ([#146](https://github.com/webpack-contrib/terser-webpack-plugin/issues/146)) ([6613a97](https://github.com/webpack-contrib/terser-webpack-plugin/commit/6613a97))
+
 ## [2.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.4.1...v2.0.0) (2019-09-05)
 
 
