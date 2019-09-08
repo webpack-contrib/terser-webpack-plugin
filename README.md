@@ -386,7 +386,7 @@ module.exports = {
 ### `extractComments`
 
 Type: `Boolean|String|RegExp|Function<(node, comment) -> Boolean|Object>|Object`
-Default: `false`
+Default: `true`
 
 Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a)).
 By default extract only comments using `/^\**!|@preserve|@license|@cc_on/i` regexp condition and remove remaining comments.
