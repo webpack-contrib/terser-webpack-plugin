@@ -280,7 +280,7 @@ module.exports = {
 ### `sourceMap`
 
 Type: `Boolean`
-Default: `false`
+Default: `false` (see below for details around `devtool`)
 
 **Works only with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
 
