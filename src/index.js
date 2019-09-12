@@ -216,11 +216,34 @@ class TerserPlugin {
 
             if (this.options.extractComments) {
               commentsFile =
-                this.options.extractComments.filename || `${file}.LICENSE`;
+                this.options.extractComments.filename ||
+                '[file].LICENSE[query]';
 
+              // Todo remove this in next major release
               if (typeof commentsFile === 'function') {
-                commentsFile = commentsFile(file);
+                commentsFile = commentsFile.bind(null, file);
               }
+
+              let query = '';
+              let filename = file;
+
+              const querySplit = filename.indexOf('?');
+
+              if (querySplit >= 0) {
+                query = filename.substr(querySplit);
+                filename = filename.substr(0, querySplit);
+              }
+
+              const lastSlashIndex = filename.lastIndexOf('/');
+
+              const basename =
+                lastSlashIndex === -1
+                  ? filename
+                  : filename.substr(lastSlashIndex + 1);
+
+              const data = { filename, basename, query };
+
+              commentsFile = compilation.getPath(commentsFile, data);
             }
 
             const task = {

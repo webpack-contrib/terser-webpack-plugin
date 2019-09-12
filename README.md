@@ -489,8 +489,11 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
-          filename: (file) => {
-            return `${file}.LICENSE`;
+          filename: (file, fileData) => {
+            // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
+            // You must consider this
+            // The "fileData" argument contains object with "filename", "basename", "query"
+            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
           },
           banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
@@ -518,8 +521,10 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: 'some',
-          filename: (file) => {
-            return `${file}.LICENSE`;
+          filename: (file, fileData) => {
+            // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
+            // You must consider this
+            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
           },
           banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
@@ -534,7 +539,9 @@ module.exports = {
 ##### `filename`
 
 Type: `String|Function<(string) -> String>`
-Default: `${file}.LICENSE`
+Default: `[file].LICENSE[query]`
+
+Available placeholders: `[file]`, `[query]` and `[filebase]`.
 
 The file where the extracted comments will be stored.
 Default is to append the suffix `.LICENSE` to the original filename.
@@ -579,8 +586,10 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: true,
-          filename: (file) => {
-            return `${file}.LICENSE`;
+          filename: (file, fileData) => {
+            // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
+            // You must consider this
+            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
           },
           banner: (commentsFile) => {
             return `My custom banner about license information ${commentsFile}`;
