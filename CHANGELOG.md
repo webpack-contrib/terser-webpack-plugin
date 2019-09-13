@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file. See [standa
 * the `cache` option is `true` by default
 * the `parallel` option is `true` by default
 * using the `extractComments.condition` option with `true` value extract only `some` comments
+* the `sourceMap` option now defaults to depending on the `devtool` Webpack option
 
 
 ### Bug Fixes
