@@ -154,6 +154,28 @@ class TerserPlugin {
     return `Terser Plugin: ${warningMessage}${locationMessage}`;
   }
 
+  static removeQueryString(filename) {
+    let targetFilename = filename;
+
+    const queryStringIdx = targetFilename.indexOf('?');
+
+    if (queryStringIdx >= 0) {
+      targetFilename = targetFilename.substr(0, queryStringIdx);
+    }
+
+    return targetFilename;
+  }
+
+  static hasAsset(commentFilename, assets) {
+    const assetFilenames = Object.keys(assets).map((assetFilename) =>
+      TerserPlugin.removeQueryString(assetFilename)
+    );
+
+    return assetFilenames.includes(
+      TerserPlugin.removeQueryString(commentFilename)
+    );
+  }
+
   apply(compiler) {
     this.options.sourceMap =
       typeof this.options.sourceMap === 'undefined'
@@ -212,16 +234,16 @@ class TerserPlugin {
             }
 
             // Handling comment extraction
-            let commentsFile = false;
+            let commentsFilename = false;
 
             if (this.options.extractComments) {
-              commentsFile =
+              commentsFilename =
                 this.options.extractComments.filename ||
                 '[file].LICENSE[query]';
 
               // Todo remove this in next major release
-              if (typeof commentsFile === 'function') {
-                commentsFile = commentsFile.bind(null, file);
+              if (typeof commentsFilename === 'function') {
+                commentsFilename = commentsFilename.bind(null, file);
               }
 
               let query = '';
@@ -243,14 +265,28 @@ class TerserPlugin {
 
               const data = { filename, basename, query };
 
-              commentsFile = compilation.getPath(commentsFile, data);
+              commentsFilename = compilation.getPath(commentsFilename, data);
+            }
+
+            if (
+              commentsFilename &&
+              TerserPlugin.hasAsset(commentsFilename, compilation.assets)
+            ) {
+              // Todo make error and stop uglifing in next major release
+              compilation.warnings.push(
+                new Error(
+                  `The comment file "${TerserPlugin.removeQueryString(
+                    commentsFilename
+                  )}" conflicts with an existing asset, this may lead to code corruption, please use a different name`
+                )
+              );
             }
 
             const task = {
               file,
               input,
               inputSourceMap,
-              commentsFile,
+              commentsFilename,
               extractComments: this.options.extractComments,
               terserOptions: this.options.terserOptions,
               minify: this.options.minify,
@@ -299,7 +335,7 @@ class TerserPlugin {
       await taskRunner.exit();
 
       completedTasks.forEach((completedTask, index) => {
-        const { file, input, inputSourceMap, commentsFile } = tasks[index];
+        const { file, input, inputSourceMap, commentsFilename } = tasks[index];
         const { error, map, code, warnings } = completedTask;
         let { extractedComments } = completedTask;
 
@@ -339,11 +375,15 @@ class TerserPlugin {
           outputSource = new RawSource(code);
         }
 
-        // Write extracted comments to commentsFile
-        if (commentsFile && extractedComments && extractedComments.length > 0) {
-          if (commentsFile in compilation.assets) {
+        // Write extracted comments to commentsFilename
+        if (
+          commentsFilename &&
+          extractedComments &&
+          extractedComments.length > 0
+        ) {
+          if (commentsFilename in compilation.assets) {
             const commentsFileSource = compilation.assets[
-              commentsFile
+              commentsFilename
             ].source();
 
             extractedComments = extractedComments.filter(
@@ -357,11 +397,11 @@ class TerserPlugin {
               let banner =
                 this.options.extractComments.banner ||
                 `For license information please see ${path.posix.basename(
-                  commentsFile
+                  commentsFilename
                 )}`;
 
               if (typeof banner === 'function') {
-                banner = banner(commentsFile);
+                banner = banner(commentsFilename);
               }
 
               if (banner) {
@@ -376,22 +416,24 @@ class TerserPlugin {
               `${extractedComments.join('\n\n')}\n`
             );
 
-            if (commentsFile in compilation.assets) {
+            if (commentsFilename in compilation.assets) {
               // commentsFile already exists, append new comments...
-              if (compilation.assets[commentsFile] instanceof ConcatSource) {
-                compilation.assets[commentsFile].add('\n');
-                compilation.assets[commentsFile].add(commentsSource);
+              if (
+                compilation.assets[commentsFilename] instanceof ConcatSource
+              ) {
+                compilation.assets[commentsFilename].add('\n');
+                compilation.assets[commentsFilename].add(commentsSource);
               } else {
                 // eslint-disable-next-line no-param-reassign
-                compilation.assets[commentsFile] = new ConcatSource(
-                  compilation.assets[commentsFile],
+                compilation.assets[commentsFilename] = new ConcatSource(
+                  compilation.assets[commentsFilename],
                   '\n',
                   commentsSource
                 );
               }
             } else {
               // eslint-disable-next-line no-param-reassign
-              compilation.assets[commentsFile] = commentsSource;
+              compilation.assets[commentsFilename] = commentsSource;
             }
           }
         }

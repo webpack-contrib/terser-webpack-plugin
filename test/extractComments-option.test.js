@@ -406,4 +406,53 @@ describe('extractComments option', () => {
     expect(warnings).toMatchSnapshot('warnings');
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
+
+  it('should match snapshot and throw error when comment file exists in assets', async () => {
+    compiler = createCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/comments.js`,
+      },
+    });
+
+    new TerserPlugin({
+      extractComments: {
+        condition: true,
+        filename: 'one.js',
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+  });
+
+  it('should match snapshot and throw error when comment file exists in assets', async () => {
+    compiler = createCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/comments.js`,
+      },
+      output: {
+        filename: '[name].js?[chunkhash]',
+      },
+    });
+
+    new TerserPlugin({
+      extractComments: {
+        condition: true,
+        filename: 'one.js?foo=bar',
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+  });
 });
