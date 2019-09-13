@@ -265,7 +265,9 @@ class TerserPlugin {
 
               const data = { filename, basename, query };
 
-              commentsFilename = compilation.getPath(commentsFilename, data);
+              commentsFilename = compilation
+                .getPath(commentsFilename, data)
+                .replace(/\\/g, '/');
             }
 
             if (
@@ -396,9 +398,9 @@ class TerserPlugin {
             if (this.options.extractComments.banner !== false) {
               let banner =
                 this.options.extractComments.banner ||
-                `For license information please see ${path.posix.basename(
-                  commentsFilename
-                )}`;
+                `For license information please see ${path
+                  .relative(path.dirname(file), commentsFilename)
+                  .replace(/\\/g, '/')}`;
 
               if (typeof banner === 'function') {
                 banner = banner(commentsFilename);
