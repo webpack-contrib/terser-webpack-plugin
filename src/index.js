@@ -265,9 +265,7 @@ class TerserPlugin {
 
               const data = { filename, basename, query };
 
-              commentsFilename = compilation
-                .getPath(commentsFilename, data)
-                .replace(/\\/g, '/');
+              commentsFilename = compilation.getPath(commentsFilename, data);
             }
 
             if (
