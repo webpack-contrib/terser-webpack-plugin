@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.0.1...v2.1.0) (2019-09-16)
+
+
+### Bug Fixes
+
+* correct interpretation url for extracted comment file ([#157](https://github.com/webpack-contrib/terser-webpack-plugin/issues/157)) ([aba8ba7](https://github.com/webpack-contrib/terser-webpack-plugin/commit/aba8ba7))
+
+
+### Features
+
+* emit warning when comment file conlict with an existing asset ([#156](https://github.com/webpack-contrib/terser-webpack-plugin/issues/156)) ([2b4d2a4](https://github.com/webpack-contrib/terser-webpack-plugin/commit/2b4d2a4))
+* improve naming of extracted file with comments ([#154](https://github.com/webpack-contrib/terser-webpack-plugin/issues/154)) ([5fe3337](https://github.com/webpack-contrib/terser-webpack-plugin/commit/5fe3337))
+
 ### [2.0.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.0.0...v2.0.1) (2019-09-06)
 
 
