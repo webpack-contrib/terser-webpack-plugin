@@ -506,28 +506,4 @@ describe('extractComments option', () => {
     expect(warnings).toMatchSnapshot('warnings');
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
-
-  it('should match snapshot for nested comment file with "\\"', async () => {
-    compiler = createCompiler({
-      entry: {
-        one: `${__dirname}/fixtures/comments.js`,
-      },
-    });
-
-    new TerserPlugin({
-      extractComments: {
-        condition: true,
-        filename: 'comments\\directory\\one.js',
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
-  });
 });
