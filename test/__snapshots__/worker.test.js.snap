@@ -14,7 +14,9 @@ exports[`worker should match snapshot when options.extractComments is regex: tes
 Object {
   "code": "var foo=1;",
   "error": undefined,
-  "extractedComments": Array [],
+  "extractedComments": Array [
+    "/* hello */",
+  ],
   "map": undefined,
   "warnings": undefined,
 }

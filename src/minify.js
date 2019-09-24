@@ -29,10 +29,7 @@ const buildTerserOptions = ({
       ? mangle
       : { ...mangle },
   output: {
-    shebang: true,
-    comments: false,
     beautify: false,
-    semicolons: true,
     ...output,
   },
   module,
@@ -46,41 +43,44 @@ const buildTerserOptions = ({
   safari10,
 });
 
-const someCommentsRegExp = /^\**!|@preserve|@license|@cc_on/i;
+function isObject(value) {
+  const type = typeof value;
+
+  return value != null && (type === 'object' || type === 'function');
+}
 
 const buildComments = (options, terserOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = terserOptions.output.comments;
   const { extractComments } = options;
 
-  // Use /^\**!|@preserve|@license|@cc_on/i RegExp
-  if (typeof extractComments === 'boolean') {
-    condition.preserve = commentsOpts;
-    condition.extract = someCommentsRegExp;
+  condition.preserve =
+    typeof commentsOpts !== 'undefined' ? commentsOpts : false;
+
+  if (typeof extractComments === 'boolean' && extractComments) {
+    condition.extract = 'some';
   } else if (
     typeof extractComments === 'string' ||
     extractComments instanceof RegExp
   ) {
-    // extractComments specifies the extract condition and commentsOpts specifies the preserve condition
-    condition.preserve = commentsOpts;
     condition.extract = extractComments;
   } else if (typeof extractComments === 'function') {
-    condition.preserve = commentsOpts;
     condition.extract = extractComments;
-  } else if (
-    Object.prototype.hasOwnProperty.call(extractComments, 'condition')
-  ) {
-    // Extract condition is given in extractComments.condition
-    condition.preserve = commentsOpts;
+  } else if (isObject(extractComments)) {
     condition.extract =
       typeof extractComments.condition === 'boolean' &&
       extractComments.condition
         ? 'some'
-        : extractComments.condition;
+        : typeof extractComments.condition !== 'undefined'
+        ? extractComments.condition
+        : 'some';
   } else {
-    // No extract condition is given. Extract comments that match commentsOpts instead of preserving them
-    condition.preserve = false;
-    condition.extract = commentsOpts;
+    // No extract
+    // Preserve using "commentsOpts" or "some"
+    // Todo remove this in next major release
+    condition.preserve =
+      typeof commentsOpts !== 'undefined' ? commentsOpts : 'some';
+    condition.extract = false;
   }
 
   // Ensure that both conditions are functions
@@ -106,7 +106,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
           condition[key] = (astNode, comment) => {
             return (
               comment.type === 'comment2' &&
-              someCommentsRegExp.test(comment.value)
+              /^\**!|@preserve|@license|@cc_on/i.test(comment.value)
             );
           };
 
@@ -147,13 +147,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
 };
 
 const minify = (options) => {
-  const {
-    file,
-    input,
-    inputSourceMap,
-    extractComments,
-    minify: minifyFn,
-  } = options;
+  const { file, input, inputSourceMap, minify: minifyFn } = options;
 
   if (minifyFn) {
     return minifyFn({ [file]: input }, inputSourceMap);
@@ -169,13 +163,11 @@ const minify = (options) => {
 
   const extractedComments = [];
 
-  if (extractComments) {
-    terserOptions.output.comments = buildComments(
-      options,
-      terserOptions,
-      extractedComments
-    );
-  }
+  terserOptions.output.comments = buildComments(
+    options,
+    terserOptions,
+    extractedComments
+  );
 
   const { error, map, code, warnings } = terserMinify(
     { [file]: input },

@@ -241,7 +241,7 @@ describe('extractComments option', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
-  it('should match snapshot when no condition, extracts only `/@license/i` comments', async () => {
+  it('should match snapshot when no condition, preserve only `/@license/i` comments and extract "some" comments', async () => {
     expect.assertions(13);
 
     new TerserPlugin({
@@ -494,6 +494,245 @@ describe('extractComments option', () => {
       extractComments: {
         condition: true,
         filename: 'one.js',
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and extract "some" comments', async () => {
+    new TerserPlugin({
+      extractComments: true,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" and extract "some" comments', async () => {
+    new TerserPlugin({
+      extractComments: true,
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and do not preserve and extract "all" comments', async () => {
+    new TerserPlugin({
+      extractComments: 'all',
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" and extract "all" comments', async () => {
+    new TerserPlugin({
+      extractComments: 'all',
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and do not preserve and extract "all" comments', async () => {
+    new TerserPlugin({
+      extractComments: () => true,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" and extract "all" comments', async () => {
+    new TerserPlugin({
+      extractComments: () => true,
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and do not preserve and extract "some" comments', async () => {
+    new TerserPlugin({
+      extractComments: {},
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" and extract "some" comments', async () => {
+    new TerserPlugin({
+      extractComments: {},
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" and extract "some" comments', async () => {
+    new TerserPlugin({
+      extractComments: {
+        condition: 'some',
+      },
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" and do not extract comments', async () => {
+    new TerserPlugin({
+      extractComments: {
+        condition: false,
+      },
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "some" do not extract comments', async () => {
+    new TerserPlugin({
+      extractComments: false,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and preserve "all" do not extract comments', async () => {
+    new TerserPlugin({
+      extractComments: false,
+      terserOptions: {
+        output: {
+          comments: 'all',
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot and do not preserve or extract comments', async () => {
+    new TerserPlugin({
+      extractComments: false,
+      terserOptions: {
+        output: {
+          comments: false,
+        },
       },
     }).apply(compiler);
 

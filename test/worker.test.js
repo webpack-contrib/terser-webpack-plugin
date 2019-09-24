@@ -7,7 +7,7 @@ describe('worker', () => {
     const options = {
       file: 'test1.js',
       input: 'var foo = 1;/* hello */',
-      extractComments: /foo/,
+      extractComments: /hello/,
     };
     const workerResult = worker.transform(serialize(options));
 
