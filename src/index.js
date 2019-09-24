@@ -48,14 +48,7 @@ class TerserPlugin {
       include,
       exclude,
       minify,
-      terserOptions: {
-        output: {
-          comments: extractComments
-            ? false
-            : /^\**!|@preserve|@license|@cc_on/i,
-        },
-        ...terserOptions,
-      },
+      terserOptions,
     };
   }
 

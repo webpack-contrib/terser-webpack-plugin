@@ -662,7 +662,7 @@ module.exports = {
 
 ### Remove Comments
 
-If you avoid building with comments, set **terserOptions.output.comments** to **false** as in this config:
+If you avoid building with comments, use this config:
 
 **webpack.config.js**
 
@@ -677,6 +677,7 @@ module.exports = {
             comments: false,
           },
         },
+        extractComments: false,
       }),
     ],
   },
