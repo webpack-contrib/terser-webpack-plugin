@@ -638,7 +638,7 @@ module.exports = {
 
 ### Preserve Comments
 
-Extract all legal comments (i.e. `/^\**!|@preserve|@license|@cc_on/i`) and preserve `/@license/i` comments.
+Extract all legal comments (i.e. `/^\**!|@preserve|@cc_on/i`) and preserve `/@license/i` comments.
 
 **webpack.config.js**
 
@@ -653,7 +653,6 @@ module.exports = {
             comments: /@license/i,
           },
         },
-        extractComments: true,
       }),
     ],
   },

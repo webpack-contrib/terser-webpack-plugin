@@ -51,35 +51,38 @@ const someCommentsRegExp = /^\**!|@preserve|@license|@cc_on/i;
 const buildComments = (options, terserOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = terserOptions.output.comments;
+  const { extractComments } = options;
 
   // Use /^\**!|@preserve|@license|@cc_on/i RegExp
-  if (typeof options.extractComments === 'boolean') {
+  if (typeof extractComments === 'boolean' && extractComments) {
     condition.preserve = commentsOpts;
     condition.extract = someCommentsRegExp;
   } else if (
-    typeof options.extractComments === 'string' ||
-    options.extractComments instanceof RegExp
+    typeof extractComments === 'string' ||
+    extractComments instanceof RegExp
   ) {
     // extractComments specifies the extract condition and commentsOpts specifies the preserve condition
     condition.preserve = commentsOpts;
-    condition.extract = options.extractComments;
-  } else if (typeof options.extractComments === 'function') {
+    condition.extract = extractComments;
+  } else if (typeof extractComments === 'function') {
     condition.preserve = commentsOpts;
-    condition.extract = options.extractComments;
+    condition.extract = extractComments;
   } else if (
-    Object.prototype.hasOwnProperty.call(options.extractComments, 'condition')
+    extractComments &&
+    Object.prototype.hasOwnProperty.call(extractComments, 'condition')
   ) {
     // Extract condition is given in extractComments.condition
     condition.preserve = commentsOpts;
     condition.extract =
-      typeof options.extractComments.condition === 'boolean' &&
-      options.extractComments.condition
+      typeof extractComments.condition === 'boolean' &&
+      extractComments.condition
         ? 'some'
-        : options.extractComments.condition;
+        : extractComments.condition;
   } else {
-    // No extract condition is given. Extract comments that match commentsOpts instead of preserving them
-    condition.preserve = false;
-    condition.extract = commentsOpts;
+    // No extract condition is given
+    // Preserve specified or 'some' comments
+    condition.preserve = commentsOpts || someCommentsRegExp;
+    condition.extract = false;
   }
 
   // Ensure that both conditions are functions
@@ -146,13 +149,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
 };
 
 const minify = (options) => {
-  const {
-    file,
-    input,
-    inputSourceMap,
-    extractComments,
-    minify: minifyFn,
-  } = options;
+  const { file, input, inputSourceMap, minify: minifyFn } = options;
 
   if (minifyFn) {
     return minifyFn({ [file]: input }, inputSourceMap);
@@ -168,13 +165,11 @@ const minify = (options) => {
 
   const extractedComments = [];
 
-  if (extractComments) {
-    terserOptions.output.comments = buildComments(
-      options,
-      terserOptions,
-      extractedComments
-    );
-  }
+  terserOptions.output.comments = buildComments(
+    options,
+    terserOptions,
+    extractedComments
+  );
 
   const { error, map, code, warnings } = terserMinify(
     { [file]: input },
