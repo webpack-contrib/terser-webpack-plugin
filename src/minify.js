@@ -51,31 +51,32 @@ const someCommentsRegExp = /^\**!|@preserve|@license|@cc_on/i;
 const buildComments = (options, terserOptions, extractedComments) => {
   const condition = {};
   const commentsOpts = terserOptions.output.comments;
+  const { extractComments } = options;
 
   // Use /^\**!|@preserve|@license|@cc_on/i RegExp
-  if (typeof options.extractComments === 'boolean') {
+  if (typeof extractComments === 'boolean') {
     condition.preserve = commentsOpts;
     condition.extract = someCommentsRegExp;
   } else if (
-    typeof options.extractComments === 'string' ||
-    options.extractComments instanceof RegExp
+    typeof extractComments === 'string' ||
+    extractComments instanceof RegExp
   ) {
     // extractComments specifies the extract condition and commentsOpts specifies the preserve condition
     condition.preserve = commentsOpts;
-    condition.extract = options.extractComments;
-  } else if (typeof options.extractComments === 'function') {
+    condition.extract = extractComments;
+  } else if (typeof extractComments === 'function') {
     condition.preserve = commentsOpts;
-    condition.extract = options.extractComments;
+    condition.extract = extractComments;
   } else if (
-    Object.prototype.hasOwnProperty.call(options.extractComments, 'condition')
+    Object.prototype.hasOwnProperty.call(extractComments, 'condition')
   ) {
     // Extract condition is given in extractComments.condition
     condition.preserve = commentsOpts;
     condition.extract =
-      typeof options.extractComments.condition === 'boolean' &&
-      options.extractComments.condition
+      typeof extractComments.condition === 'boolean' &&
+      extractComments.condition
         ? 'some'
-        : options.extractComments.condition;
+        : extractComments.condition;
   } else {
     // No extract condition is given. Extract comments that match commentsOpts instead of preserving them
     condition.preserve = false;
