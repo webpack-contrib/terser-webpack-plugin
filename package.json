@@ -1,6 +1,6 @@
 {
   "name": "terser-webpack-plugin",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Terser plugin for webpack",
   "license": "MIT",
   "repository": "webpack-contrib/terser-webpack-plugin",
