@@ -26,8 +26,8 @@ describe('multi-compiler mode', () => {
         entry: `${__dirname}/fixtures/entry.js`,
         output: {
           path: `${__dirname}/dist`,
-          filename: '[name].[chunkhash].js',
-          chunkFilename: '[id].[name].[chunkhash].js',
+          filename: '[name]-1.js',
+          chunkFilename: '[id]-1.[name].js',
         },
         optimization: {
           minimize: false,
@@ -40,8 +40,8 @@ describe('multi-compiler mode', () => {
         entry: `${__dirname}/fixtures/entry.js`,
         output: {
           path: `${__dirname}/dist`,
-          filename: '[name].[chunkhash].js',
-          chunkFilename: '[id].[name].[chunkhash].js',
+          filename: '[name]-2.js',
+          chunkFilename: '[id]-2.[name].js',
         },
         optimization: {
           minimize: false,
@@ -55,8 +55,8 @@ describe('multi-compiler mode', () => {
         entry: `${__dirname}/fixtures/import-export/entry.js`,
         output: {
           path: `${__dirname}/dist-MultiCompiler`,
-          filename: '[name].[chunkhash].js',
-          chunkFilename: '[id].[name].[chunkhash].js',
+          filename: '[name]-3.js',
+          chunkFilename: '[id]-3.[name].js',
         },
         optimization: {
           minimize: false,
