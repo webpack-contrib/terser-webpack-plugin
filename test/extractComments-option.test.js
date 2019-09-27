@@ -20,8 +20,8 @@ describe('extractComments option', () => {
         four: `${__dirname}/fixtures/comments-4.js`,
       },
       output: {
-        filename: 'filename/[name].[chunkhash].js',
-        chunkFilename: 'chunks/[id].[name].[chunkhash].js',
+        filename: 'filename/[name].js',
+        chunkFilename: 'chunks/[id].[name].js',
       },
     });
 
