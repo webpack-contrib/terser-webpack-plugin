@@ -77,7 +77,6 @@ const buildComments = (options, terserOptions, extractedComments) => {
   } else {
     // No extract
     // Preserve using "commentsOpts" or "some"
-    // Todo remove this in next major release
     condition.preserve =
       typeof commentsOpts !== 'undefined' ? commentsOpts : 'some';
     condition.extract = false;
@@ -106,7 +105,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
           condition[key] = (astNode, comment) => {
             return (
               comment.type === 'comment2' &&
-              /^\**!|@preserve|@license|@cc_on/i.test(comment.value)
+              /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
             );
           };
 

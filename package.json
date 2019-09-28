@@ -43,7 +43,7 @@
     "schema-utils": "^2.4.1",
     "serialize-javascript": "^2.1.0",
     "source-map": "^0.6.1",
-    "terser": "^4.3.3",
+    "terser": "^4.3.4",
     "webpack-sources": "^1.4.3"
   },
   "devDependencies": {
@@ -62,7 +62,7 @@
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-import": "^2.18.2",
-    "husky": "^3.0.5",
+    "husky": "^3.0.7",
     "jest": "^24.9.0",
     "jest-junit": "^8.0.0",
     "lint-staged": "^9.4.0",
