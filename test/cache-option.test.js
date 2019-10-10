@@ -20,8 +20,11 @@ const otherCacheDir = findCacheDir({ name: 'other-cache-directory' });
 const otherOtherCacheDir = findCacheDir({
   name: 'other-other-cache-directory',
 });
+const otherOtherOtherCacheDir = findCacheDir({
+  name: 'other-other-other-cache-directory',
+});
 
-// jest.setTimeout(30000);
+jest.setTimeout(30000);
 
 describe('cache option', () => {
   let compiler;
@@ -43,6 +46,7 @@ describe('cache option', () => {
       removeCache(uniqueOtherDirectory),
       removeCache(otherCacheDir),
       removeCache(otherOtherCacheDir),
+      removeCache(otherOtherOtherCacheDir),
     ]);
   });
 
@@ -53,6 +57,7 @@ describe('cache option', () => {
       removeCache(uniqueOtherDirectory),
       removeCache(otherCacheDir),
       removeCache(otherOtherCacheDir),
+      removeCache(otherOtherOtherCacheDir),
     ]);
   });
 
@@ -295,5 +300,69 @@ describe('cache option', () => {
 
     expect(errors).toMatchSnapshot('errors');
     expect(warnings).toMatchSnapshot('warnings');
+  });
+
+  it('should match snapshot and invalid cache when entry point was renamed', async () => {
+    const cacacheGetSpy = jest.spyOn(cacache, 'get');
+    const cacachePutSpy = jest.spyOn(cacache, 'put');
+
+    const getCacheDirectorySpy = jest
+      .spyOn(TaskRunner, 'getCacheDirectory')
+      .mockImplementation(() => {
+        return otherOtherOtherCacheDir;
+      });
+
+    new TerserPlugin({ cache: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+
+    const countAssets = Object.keys(stats.compilation.assets).length;
+
+    // Try to found cached files, but we don't have their in cache
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(countAssets);
+    // Put files in cache
+    expect(cacachePutSpy).toHaveBeenCalledTimes(countAssets);
+
+    cacache.get.mockClear();
+    cacache.put.mockClear();
+
+    compiler = createCompiler({
+      entry: {
+        onne: `${__dirname}/fixtures/cache.js`,
+        two: `${__dirname}/fixtures/cache-1.js`,
+        three: `${__dirname}/fixtures/cache-2.js`,
+        four: `${__dirname}/fixtures/cache-3.js`,
+        five: `${__dirname}/fixtures/cache-4.js`,
+      },
+    });
+
+    new TerserPlugin({ cache: true }).apply(compiler);
+
+    const newStats = await compile(compiler);
+
+    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
+    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
+
+    expect(newErrors).toMatchSnapshot('errors');
+    expect(newWarnings).toMatchSnapshot('warnings');
+
+    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+
+    const newCountAssets = Object.keys(newStats.compilation.assets).length;
+
+    // Now we have cached files so we get them and don't put new
+    expect(cacacheGetSpy).toHaveBeenCalledTimes(newCountAssets);
+    expect(cacachePutSpy).toHaveBeenCalledTimes(1);
+
+    cacacheGetSpy.mockRestore();
+    cacachePutSpy.mockRestore();
+    getCacheDirectorySpy.mockRestore();
   });
 });
