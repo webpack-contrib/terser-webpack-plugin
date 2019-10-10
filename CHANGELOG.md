@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.1.2...v2.1.3) (2019-10-10)
+
+
+### Bug Fixes
+
+* invalidate cache when a file name was changed ([#171](https://github.com/webpack-contrib/terser-webpack-plugin/issues/171)) ([7e1d370](https://github.com/webpack-contrib/terser-webpack-plugin/commit/7e1d370ce2520c7c23689c19b22cfbea0265957e))
+
 ### [2.1.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.1.1...v2.1.2) (2019-09-28)
 
 
