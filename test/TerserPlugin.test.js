@@ -156,6 +156,52 @@ describe('TerserPlugin', () => {
     expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
   });
 
+  it('should work and respect "terser" errors (the "parallel" option is "true")', async () => {
+    const compiler = createCompiler();
+
+    new TerserPlugin({
+      parallel: true,
+      minify(input) {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(`${input}1()2()3()`);
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(/node_modules(\/|\\)terser/.test(stats.compilation.errors[0])).toBe(
+      true
+    );
+  });
+
+  it('should work and respect "terser" errors (the "parallel" option is "false")', async () => {
+    const compiler = createCompiler();
+
+    new TerserPlugin({
+      parallel: false,
+      minify(input) {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(`${input}1()2()3()`);
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(/node_modules(\/|\\)terser/.test(stats.compilation.errors[0])).toBe(
+      true
+    );
+  });
+
   it('should regenerate hash', async () => {
     const originalMainTemplateUpdateHashForChunk =
       MainTemplate.prototype.updateHashForChunk;

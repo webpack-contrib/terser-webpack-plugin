@@ -88,14 +88,32 @@ class TerserPlugin {
             original.source
           )}:${original.line},${original.column}][${file}:${error.line},${
             error.col
-          }]`
+          }]${
+            error.stack
+              ? `\n${error.stack
+                  .split('\n')
+                  .slice(1)
+                  .join('\n')}`
+              : ''
+          }`
         );
       }
 
       return new Error(
-        `${file} from Terser\n${error.message} [${file}:${error.line},${error.col}]`
+        `${file} from Terser\n${error.message} [${file}:${error.line},${
+          error.col
+        }]${
+          error.stack
+            ? `\n${error.stack
+                .split('\n')
+                .slice(1)
+                .join('\n')}`
+            : ''
+        }`
       );
-    } else if (error.stack) {
+    }
+
+    if (error.stack) {
       return new Error(`${file} from Terser\n${error.stack}`);
     }
 
