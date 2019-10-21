@@ -171,19 +171,31 @@ class TerserPlugin {
   }
 
   apply(compiler) {
+    const { devtool, output } = compiler.options;
+
     this.options.sourceMap =
       typeof this.options.sourceMap === 'undefined'
-        ? compiler.options.devtool &&
-          /^((inline|hidden|nosources)-)?source-?map/.test(
-            compiler.options.devtool
-          )
+        ? devtool &&
+          !devtool.includes('eval') &&
+          !devtool.includes('cheap') &&
+          (devtool.includes('source-map') ||
+            // Todo remove when `webpack@5` support will be dropped
+            devtool.includes('sourcemap'))
         : Boolean(this.options.sourceMap);
 
-    const buildModuleFn = (moduleArg) => {
-      // to get detailed location info about errors
-      // eslint-disable-next-line no-param-reassign
-      moduleArg.useSourceMap = true;
-    };
+    if (
+      typeof this.options.terserOptions.module === 'undefined' &&
+      typeof output.module !== 'undefined'
+    ) {
+      this.options.terserOptions.module = output.module;
+    }
+
+    if (
+      typeof this.options.terserOptions.ecma === 'undefined' &&
+      typeof output.ecmaVersion !== 'undefined'
+    ) {
+      this.options.terserOptions.ecma = output.ecmaVersion;
+    }
 
     const optimizeFn = async (compilation, chunks) => {
       const processedAssets = new WeakSet();
@@ -474,7 +486,11 @@ class TerserPlugin {
 
     compiler.hooks.compilation.tap(plugin, (compilation) => {
       if (this.options.sourceMap) {
-        compilation.hooks.buildModule.tap(plugin, buildModuleFn);
+        compilation.hooks.buildModule.tap(plugin, (moduleArg) => {
+          // to get detailed location info about errors
+          // eslint-disable-next-line no-param-reassign
+          moduleArg.useSourceMap = true;
+        });
       }
 
       const { mainTemplate, chunkTemplate } = compilation;
