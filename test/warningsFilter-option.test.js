@@ -102,7 +102,7 @@ describe('warningsFilter option', () => {
   it('should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by file)', async () => {
     new TerserPlugin({
       warningsFilter(warning, source, file) {
-        if (/two\.(.*)?\.js/.test(file)) {
+        if (/two\.js/.test(file)) {
           return true;
         }
 
@@ -112,6 +112,25 @@ describe('warningsFilter option', () => {
         warnings: true,
       },
       sourceMap: true,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should match snapshot for an empty "function" value', async () => {
+    new TerserPlugin({
+      warningsFilter() {},
+      terserOptions: {
+        warnings: true,
+      },
+      sourceMap: false,
     }).apply(compiler);
 
     const stats = await compile(compiler);
