@@ -4,7 +4,7 @@ import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
-import { ModuleFilenameHelpers } from 'webpack';
+import { ModuleFilenameHelpers, SourceMapDevToolPlugin } from 'webpack';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -171,16 +171,23 @@ class TerserPlugin {
   }
 
   apply(compiler) {
-    const { devtool, output } = compiler.options;
+    const { devtool, output, plugins } = compiler.options;
 
     this.options.sourceMap =
       typeof this.options.sourceMap === 'undefined'
-        ? devtool &&
-          !devtool.includes('eval') &&
-          !devtool.includes('cheap') &&
-          (devtool.includes('source-map') ||
-            // Todo remove when `webpack@5` support will be dropped
-            devtool.includes('sourcemap'))
+        ? (devtool &&
+            !devtool.includes('eval') &&
+            !devtool.includes('cheap') &&
+            (devtool.includes('source-map') ||
+              // Todo remove when `webpack@5` support will be dropped
+              devtool.includes('sourcemap'))) ||
+          (plugins &&
+            plugins.some(
+              (plugin) =>
+                plugin instanceof SourceMapDevToolPlugin &&
+                plugin.options &&
+                plugin.options.columns
+            ))
         : Boolean(this.options.sourceMap);
 
     if (

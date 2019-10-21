@@ -7,6 +7,7 @@ import TerserPlugin from '../src/index';
 import {
   cleanErrorStack,
   compile,
+  countPlugins,
   createCompiler,
   getAssets,
   removeCache,
@@ -36,6 +37,114 @@ describe('TerserPlugin', () => {
     const compiler = createCompiler();
 
     new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should work in multi compiler mode', async () => {
+    const multiCompiler = createCompiler([
+      {
+        mode: 'production',
+        bail: true,
+        cache: false,
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist`,
+          filename: '[name]-1.js',
+          chunkFilename: '[id]-1.[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: false,
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist`,
+          filename: '[name]-2.js',
+          chunkFilename: '[id]-2.[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins: [new TerserPlugin()],
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: false,
+        entry: `${__dirname}/fixtures/import-export/entry.js`,
+        output: {
+          path: `${__dirname}/dist-MultiCompiler`,
+          filename: '[name]-3.js',
+          chunkFilename: '[id]-3.[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins: [new TerserPlugin()],
+      },
+    ]);
+
+    const emptyPluginCount = countPlugins(multiCompiler.compilers[0]);
+    const expectedPluginCount = countPlugins(multiCompiler.compilers[1]);
+
+    expect(emptyPluginCount).not.toEqual(expectedPluginCount);
+
+    multiCompiler.compilers.slice(2).forEach((compiler) => {
+      const pluginCount = countPlugins(compiler);
+
+      expect(pluginCount).not.toEqual(emptyPluginCount);
+      expect(pluginCount).toEqual(expectedPluginCount);
+      expect(pluginCount).toMatchSnapshot('compiler plugin count');
+    });
+
+    const multiStats = await compile(multiCompiler);
+
+    multiStats.stats.forEach((stats, index) => {
+      const errors = stats.compilation.errors.map(cleanErrorStack);
+      const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+      expect(errors).toMatchSnapshot('errors');
+      expect(warnings).toMatchSnapshot('warnings');
+      expect(getAssets(stats, multiCompiler.compilers[index])).toMatchSnapshot(
+        'assets'
+      );
+    });
+  });
+
+  it('should work as a plugin', async () => {
+    const compiler = createCompiler({
+      plugins: [new TerserPlugin()],
+    });
+
+    const stats = await compile(compiler);
+
+    const errors = stats.compilation.errors.map(cleanErrorStack);
+    const warnings = stats.compilation.warnings.map(cleanErrorStack);
+
+    expect(errors).toMatchSnapshot('errors');
+    expect(warnings).toMatchSnapshot('warnings');
+    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+  });
+
+  it('should work as a minimizer', async () => {
+    const compiler = createCompiler({
+      optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+      },
+    });
 
     const stats = await compile(compiler);
 
