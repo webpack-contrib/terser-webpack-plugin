@@ -603,11 +603,13 @@ module.exports = {
 
 ### `warningsFilter`
 
-Type: `Function<(warning, source) -> Boolean>`
+Type: `Function<(warning, source, file) -> Boolean>`
 Default: `() => true`
 
 Allow to filter [terser](https://github.com/terser-js/terser) warnings.
-Return `true` to keep the warning, `false` otherwise.
+Return `true` to keep the warning, a falsy value (`false`/`null`/`undefined`) otherwise.
+
+> ⚠️ The `source` argument will contain `undefined` if you don't use source maps.
 
 **webpack.config.js**
 
@@ -617,12 +619,16 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        warningsFilter: (warning, source) => {
+        warningsFilter: (warning, source, file) => {
           if (/Dropping unreachable code/i.test(warning)) {
             return true;
           }
 
-          if (/filename\.js/i.test(source)) {
+          if (/source\.js/i.test(source)) {
+            return true;
+          }
+
+          if (/file\.js/i.test(file)) {
             return true;
           }
 
