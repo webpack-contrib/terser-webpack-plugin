@@ -4,7 +4,11 @@ import path from 'path';
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
-import { ModuleFilenameHelpers, SourceMapDevToolPlugin } from 'webpack';
+import {
+  ModuleFilenameHelpers,
+  SourceMapDevToolPlugin,
+  JavascriptModulesPlugin,
+} from 'webpack';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -518,19 +522,32 @@ class TerserPlugin {
         });
       }
 
-      const { mainTemplate, chunkTemplate } = compilation;
+      if (JavascriptModulesPlugin) {
+        const hooks = JavascriptModulesPlugin.getCompilationHooks(compilation);
+        const data = serialize({
+          terser: terserPackageJson.version,
+          terserOptions: this.options.terserOptions,
+        });
 
-      // Regenerate `contenthash` for minified assets
-      for (const template of [mainTemplate, chunkTemplate]) {
-        template.hooks.hashForChunk.tap(plugin, (hash) => {
-          const data = serialize({
-            terser: terserPackageJson.version,
-            terserOptions: this.options.terserOptions,
-          });
-
+        hooks.chunkHash.tap(plugin, (chunk, hash) => {
           hash.update('TerserPlugin');
           hash.update(data);
         });
+      } else {
+        // Todo remove after drop `webpack@4` compatibility
+        const { mainTemplate, chunkTemplate } = compilation;
+        const data = serialize({
+          terser: terserPackageJson.version,
+          terserOptions: this.options.terserOptions,
+        });
+
+        // Regenerate `contenthash` for minified assets
+        for (const template of [mainTemplate, chunkTemplate]) {
+          template.hooks.hashForChunk.tap(plugin, (hash) => {
+            hash.update('TerserPlugin');
+            hash.update(data);
+          });
+        }
       }
 
       compilation.hooks.optimizeChunkAssets.tapPromise(
