@@ -7,7 +7,7 @@ import RequestShortener from 'webpack/lib/RequestShortener';
 import {
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
-  JavascriptModulesPlugin,
+  javascript,
 } from 'webpack';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
@@ -522,8 +522,10 @@ class TerserPlugin {
         });
       }
 
-      if (JavascriptModulesPlugin) {
-        const hooks = JavascriptModulesPlugin.getCompilationHooks(compilation);
+      if (javascript && javascript.JavascriptModulesPlugin) {
+        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
+          compilation
+        );
         const data = serialize({
           terser: terserPackageJson.version,
           terserOptions: this.options.terserOptions,
