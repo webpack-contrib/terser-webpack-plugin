@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.1.3...v2.2.0) (2019-10-22)
+
+
+### Features
+
+* map `webpack@5` options to `terser` options ([#177](https://github.com/webpack-contrib/terser-webpack-plugin/issues/177)) ([f4c47aa](https://github.com/webpack-contrib/terser-webpack-plugin/commit/f4c47aa0e3de27bbab3ae0a90a461841bbce5988))
+* pass an asset path for the `warningsFilter` option ([#176](https://github.com/webpack-contrib/terser-webpack-plugin/issues/176)) ([9a0a575](https://github.com/webpack-contrib/terser-webpack-plugin/commit/9a0a575585be21118cb4e3611d30e665a6337c3d))
+* propagate an error stacktrace from `terser` ([#179](https://github.com/webpack-contrib/terser-webpack-plugin/issues/179)) ([a11e66b](https://github.com/webpack-contrib/terser-webpack-plugin/commit/a11e66b17ae2bb146ded4e64c948d5eece834378))
+* enable the `sourceMap` option when the `SourceMapDevToolPlugin` plugin used (non cheap) ([#178](https://github.com/webpack-contrib/terser-webpack-plugin/issues/178)) ([d01c1b5](https://github.com/webpack-contrib/terser-webpack-plugin/commit/d01c1b5fef7f0593c91c1be3d4eb36220c3f465d))
+
+
+### Bug Fixes
+
+* get rid deprecation warnings for `webpack@5` ([#180](https://github.com/webpack-contrib/terser-webpack-plugin/issues/180)) ([504ea8b](https://github.com/webpack-contrib/terser-webpack-plugin/commit/504ea8b2017e6fa9b8a5f2123025ee5b7b4d80b1))
+
 ### [2.1.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.1.2...v2.1.3) (2019-10-10)
 
 
