@@ -43,7 +43,7 @@
     "schema-utils": "^2.5.0",
     "serialize-javascript": "^2.1.0",
     "source-map": "^0.6.1",
-    "terser": "^4.3.9",
+    "terser": "4.4.0",
     "webpack-sources": "^1.4.3"
   },
   "devDependencies": {
