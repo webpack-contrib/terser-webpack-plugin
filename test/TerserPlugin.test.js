@@ -1,4 +1,5 @@
 import RequestShortener from 'webpack/lib/RequestShortener';
+import { javascript } from 'webpack';
 import MainTemplate from 'webpack/lib/MainTemplate';
 import ChunkTemplate from 'webpack/lib/ChunkTemplate';
 
@@ -51,7 +52,7 @@ describe('TerserPlugin', () => {
       {
         mode: 'production',
         bail: true,
-        cache: false,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
         entry: `${__dirname}/fixtures/entry.js`,
         output: {
           path: `${__dirname}/dist`,
@@ -65,7 +66,7 @@ describe('TerserPlugin', () => {
       {
         mode: 'production',
         bail: true,
-        cache: false,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
         entry: `${__dirname}/fixtures/entry.js`,
         output: {
           path: `${__dirname}/dist`,
@@ -80,7 +81,7 @@ describe('TerserPlugin', () => {
       {
         mode: 'production',
         bail: true,
-        cache: false,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
         entry: `${__dirname}/fixtures/import-export/entry.js`,
         output: {
           path: `${__dirname}/dist-MultiCompiler`,
@@ -185,52 +186,93 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should regenerate hash', async () => {
-    const originalMainTemplateUpdateHashForChunk =
-      MainTemplate.prototype.updateHashForChunk;
-    const originalChunkTemplateUpdateHashForChunk =
-      ChunkTemplate.prototype.updateHashForChunk;
-    const mockMainTemplateUpdateHashForChunk = jest.fn();
-    const mockChunkTemplateUpdateHashFocChunk = jest.fn();
+  if (getCompiler.isWebpack4()) {
+    it('should regenerate hash', async () => {
+      const originalMainTemplateUpdateHashForChunk =
+        MainTemplate.prototype.updateHashForChunk;
+      const originalChunkTemplateUpdateHashForChunk =
+        ChunkTemplate.prototype.updateHashForChunk;
+      const mockMainTemplateUpdateHashForChunk = jest.fn();
+      const mockChunkTemplateUpdateHashFocChunk = jest.fn();
 
-    MainTemplate.prototype.updateHashForChunk = mockMainTemplateUpdateHashForChunk;
-    ChunkTemplate.prototype.updateHashForChunk = mockChunkTemplateUpdateHashFocChunk;
+      MainTemplate.prototype.updateHashForChunk = mockMainTemplateUpdateHashForChunk;
+      ChunkTemplate.prototype.updateHashForChunk = mockChunkTemplateUpdateHashFocChunk;
 
-    const compiler = getCompiler({
-      entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
-      },
-      output: {
-        path: `${__dirname}/dist`,
-        filename: '[name].[contenthash].js',
-        chunkFilename: '[id].[name].[contenthash].js',
-      },
+      const compiler = getCompiler({
+        entry: {
+          js: `${__dirname}/fixtures/entry.js`,
+          mjs: `${__dirname}/fixtures/entry.mjs`,
+          importExport: `${__dirname}/fixtures/import-export/entry.js`,
+          AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        },
+        output: {
+          path: `${__dirname}/dist`,
+          filename: '[name].[contenthash].js',
+          chunkFilename: '[id].[name].[contenthash].js',
+        },
+      });
+
+      new TerserPlugin().apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
+      // First call do `webpack`.
+      // Second call do `TerserPlugin`.
+
+      // We have 1 async chunk (1 * 2 = 2 calls for ChunkTemplate)
+      expect(mockMainTemplateUpdateHashForChunk).toHaveBeenCalledTimes(8);
+      // We have 4 initial chunks (4 * 2 = 8 calls for MainTemplate)
+      expect(mockChunkTemplateUpdateHashFocChunk).toHaveBeenCalledTimes(2);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+
+      MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
+      ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;
     });
+  } else {
+    it('should regenerate hash', async () => {
+      const mockUpdateHashForChunk = jest.fn();
+      const compiler = getCompiler({
+        entry: {
+          js: `${__dirname}/fixtures/entry.js`,
+          mjs: `${__dirname}/fixtures/entry.mjs`,
+          importExport: `${__dirname}/fixtures/import-export/entry.js`,
+          AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        },
+        output: {
+          path: `${__dirname}/dist`,
+          filename: '[name].[contenthash].js',
+          chunkFilename: '[id].[name].[contenthash].js',
+        },
+      });
 
-    new TerserPlugin().apply(compiler);
+      compiler.hooks.thisCompilation.tap('TerserPlugin', (compilation) => {
+        javascript.JavascriptModulesPlugin.getCompilationHooks(
+          compilation
+        ).chunkHash.tap('TerserPlugin', mockUpdateHashForChunk);
+      });
 
-    const stats = await compile(compiler);
+      new TerserPlugin().apply(compiler);
 
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+      const stats = await compile(compiler);
 
-    // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
-    // First call do `webpack`.
-    // Second call do `TerserPlugin`.
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
-    // We have 1 async chunk (1 * 2 = 2 calls for ChunkTemplate)
-    expect(mockMainTemplateUpdateHashForChunk).toHaveBeenCalledTimes(8);
-    // We have 4 initial chunks (4 * 2 = 8 calls for MainTemplate)
-    expect(mockChunkTemplateUpdateHashFocChunk).toHaveBeenCalledTimes(2);
+      // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
+      // First call do `webpack`.
+      // Second call do `TerserPlugin`.
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      // We have 1 async chunk (1 * 2 = 2 calls) and 4 initial chunks (4 * 2 = 8 calls)
+      expect(mockUpdateHashForChunk).toHaveBeenCalledTimes(10);
 
-    MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
-    ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;
-  });
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    });
+  }
 
   it('isSourceMap method', () => {
     expect(TerserPlugin.isSourceMap(null)).toBe(false);

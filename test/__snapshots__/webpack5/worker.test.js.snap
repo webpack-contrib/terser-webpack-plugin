@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`worker normalizes when terserOptions.output.comments is string: all: test2.js 1`] = `
+Object {
+  "code": "var foo=1;/* hello */",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`worker should match snapshot when options.extractComments is regex: test1.js 1`] = `
+Object {
+  "code": "var foo=1;",
+  "error": undefined,
+  "extractedComments": Array [
+    "/* hello */",
+  ],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`worker should match snapshot when terserOptions.extractComments is number: test4.js 1`] = `
+Object {
+  "code": "var foo=1;",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`worker should match snapshot when terserOptions.output.comments is string: some: test3.js 1`] = `
+Object {
+  "code": "var foo=1;",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`worker should match snapshot with extract option set to a single file: test5.js 1`] = `
+Object {
+  "code": "/******/function hello(o){console.log(o)}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": undefined,
+  "warnings": undefined,
+}
+`;
+
+exports[`worker should match snapshot with options.inputSourceMap: test6.js 1`] = `
+Object {
+  "code": "function foo(f){if(f)return bar()}",
+  "error": undefined,
+  "extractedComments": Array [],
+  "map": "{\\"version\\":3,\\"sources\\":[\\"test6.js\\"],\\"names\\":[\\"foo\\",\\"x\\",\\"bar\\"],\\"mappings\\":\\"AAAA,SAASA,IAAIC,GAAK,GAAIA,EAAK,OAAOC\\"}",
+  "warnings": undefined,
+}
+`;

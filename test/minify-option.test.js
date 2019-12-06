@@ -18,6 +18,7 @@ describe('minify option', () => {
     const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
       output: {
+        ecmaVersion: 5,
         path: `${__dirname}/dist-uglify-js`,
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
@@ -46,6 +47,7 @@ describe('minify option', () => {
     const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
       output: {
+        ecmaVersion: 5,
         path: `${__dirname}/dist-uglify-js`,
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
