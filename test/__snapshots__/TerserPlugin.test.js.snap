@@ -12,7 +12,7 @@ Message [test.js:1,1]]
 
 exports[`TerserPlugin buildError method 3`] = `
 [Error: test.js from Terser
-Message [./one.js:1,1][test.js:1,1]]
+Message [http://example.com/www/js/one.js:1,1][test.js:1,1]]
 `;
 
 exports[`TerserPlugin buildError method 4`] = `
@@ -62,9 +62,9 @@ exports[`TerserPlugin buildWarning method 2`] = `"Terser Plugin: Warning [test.j
 
 exports[`TerserPlugin buildWarning method 3`] = `"Terser Plugin: Warning [test.js:1,1]"`;
 
-exports[`TerserPlugin buildWarning method 4`] = `"Terser Plugin: Warning [./one.js:1,1]"`;
+exports[`TerserPlugin buildWarning method 4`] = `"Terser Plugin: Warning [http://example.com/www/js/one.js:1,1]"`;
 
-exports[`TerserPlugin buildWarning method 5`] = `"Terser Plugin: Warning [./one.js:1,1]"`;
+exports[`TerserPlugin buildWarning method 5`] = `"Terser Plugin: Warning [http://example.com/www/js/one.js:1,1]"`;
 
 exports[`TerserPlugin buildWarning method 6`] = `null`;
 
