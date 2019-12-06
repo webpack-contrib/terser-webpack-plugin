@@ -310,7 +310,7 @@ describe('TerserPlugin', () => {
         otherErrorWithLineAndCol,
         'test.js',
         TerserPlugin.buildSourceMap(rawSourceMap),
-        new RequestShortener('http://example.com/www/js/')
+        new RequestShortener('/example.com/www/js/')
       )
     ).toMatchSnapshot();
 
@@ -342,7 +342,7 @@ describe('TerserPlugin', () => {
         'Warning [test.js:1,1]',
         'test.js',
         TerserPlugin.buildSourceMap(rawSourceMap),
-        new RequestShortener('http://example.com/www/js/')
+        new RequestShortener('/example.com/www/js/')
       )
     ).toMatchSnapshot();
     expect(
@@ -350,7 +350,7 @@ describe('TerserPlugin', () => {
         'Warning [test.js:1,1]',
         'test.js',
         TerserPlugin.buildSourceMap(rawSourceMap),
-        new RequestShortener('http://example.com/www/js/'),
+        new RequestShortener('/example.com/www/js/'),
         () => true
       )
     ).toMatchSnapshot();
@@ -359,7 +359,7 @@ describe('TerserPlugin', () => {
         'Warning [test.js:1,1]',
         'test.js',
         TerserPlugin.buildSourceMap(rawSourceMap),
-        new RequestShortener('http://example.com/www/js/'),
+        new RequestShortener('/example.com/www/js/'),
         () => false
       )
     ).toMatchSnapshot();

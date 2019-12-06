@@ -63,7 +63,10 @@ export default class TaskRunner {
                 serialize(task.cacheKeys),
                 JSON.stringify(result)
               )
-              .then(() => result, () => result);
+              .then(
+                () => result,
+                () => result
+              );
           }
 
           return result;
