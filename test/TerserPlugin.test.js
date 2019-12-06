@@ -5,11 +5,12 @@ import ChunkTemplate from 'webpack/lib/ChunkTemplate';
 import TerserPlugin from '../src/index';
 
 import {
-  cleanErrorStack,
   compile,
   countPlugins,
-  createCompiler,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -34,22 +35,19 @@ describe('TerserPlugin', () => {
   afterEach(() => Promise.all([removeCache()]));
 
   it('should work (without options)', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin().apply(compiler);
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should work in multi compiler mode', async () => {
-    const multiCompiler = createCompiler([
+    const multiCompiler = getCompiler([
       {
         mode: 'production',
         bail: true,
@@ -112,34 +110,28 @@ describe('TerserPlugin', () => {
     const multiStats = await compile(multiCompiler);
 
     multiStats.stats.forEach((stats, index) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
-      expect(getAssets(stats, multiCompiler.compilers[index])).toMatchSnapshot(
-        'assets'
-      );
+      expect(
+        readsAssets(multiCompiler.compilers[index], stats)
+      ).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
     });
   });
 
   it('should work as a plugin', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       plugins: [new TerserPlugin()],
     });
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should work as a minimizer', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       optimization: {
         minimize: true,
         minimizer: [new TerserPlugin()],
@@ -148,16 +140,13 @@ describe('TerserPlugin', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should work and respect "terser" errors (the "parallel" option is "true")', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       parallel: true,
@@ -169,18 +158,15 @@ describe('TerserPlugin', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
     expect(/node_modules(\/|\\)terser/.test(stats.compilation.errors[0])).toBe(
       true
     );
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should work and respect "terser" errors (the "parallel" option is "false")', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       parallel: false,
@@ -192,14 +178,11 @@ describe('TerserPlugin', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
     expect(/node_modules(\/|\\)terser/.test(stats.compilation.errors[0])).toBe(
       true
     );
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should regenerate hash', async () => {
@@ -213,7 +196,7 @@ describe('TerserPlugin', () => {
     MainTemplate.prototype.updateHashForChunk = mockMainTemplateUpdateHashForChunk;
     ChunkTemplate.prototype.updateHashForChunk = mockChunkTemplateUpdateHashFocChunk;
 
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: {
         js: `${__dirname}/fixtures/entry.js`,
         mjs: `${__dirname}/fixtures/entry.mjs`,
@@ -231,11 +214,8 @@ describe('TerserPlugin', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     // On each chunk we have 2 calls (we have 1 async chunk and 4 initial).
     // First call do `webpack`.
@@ -246,7 +226,7 @@ describe('TerserPlugin', () => {
     // We have 4 initial chunks (4 * 2 = 8 calls for MainTemplate)
     expect(mockChunkTemplateUpdateHashFocChunk).toHaveBeenCalledTimes(2);
 
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
 
     MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
     ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;

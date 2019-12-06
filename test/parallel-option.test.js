@@ -5,10 +5,11 @@ import Worker from 'jest-worker';
 import TerserPlugin from '../src/index';
 
 import {
-  createCompiler,
   compile,
-  cleanErrorStack,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -47,7 +48,7 @@ describe('parallel option', () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         one: `${__dirname}/fixtures/entry.js`,
         two: `${__dirname}/fixtures/entry.js`,
@@ -66,9 +67,6 @@ describe('parallel option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
       numWorkers: os.cpus().length - 1,
@@ -78,9 +76,9 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "false" value', async () => {
@@ -88,23 +86,17 @@ describe('parallel option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
     expect(Worker).toHaveBeenCalledTimes(0);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "true" value', async () => {
     new TerserPlugin({ parallel: true }).apply(compiler);
 
     const stats = await compile(compiler);
-
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
@@ -115,18 +107,15 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "2" value', async () => {
     new TerserPlugin({ parallel: 2 }).apply(compiler);
 
     const stats = await compile(compiler);
-
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
@@ -137,22 +126,19 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "true" value and only one file passed', async () => {
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
     });
 
     new TerserPlugin({ parallel: true }).apply(compiler);
 
     const stats = await compile(compiler);
-
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
@@ -163,13 +149,13 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "true" value and two files passed', async () => {
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         one: `${__dirname}/fixtures/entry.js`,
         two: `${__dirname}/fixtures/entry.js`,
@@ -180,9 +166,6 @@ describe('parallel option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
       numWorkers: os.cpus().length - 1,
@@ -192,8 +175,8 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });

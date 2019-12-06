@@ -1,8 +1,8 @@
-import TerserPlugin from '../src';
-import CJSTerserPlugin from '../src/cjs';
+import src from '../src';
+import cjs from '../src/cjs';
 
 describe('CJS', () => {
-  it('should exported plugin', () => {
-    expect(CJSTerserPlugin).toEqual(TerserPlugin);
+  it('should export loader', () => {
+    expect(cjs).toEqual(src);
   });
 });

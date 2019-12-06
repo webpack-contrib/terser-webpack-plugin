@@ -1,10 +1,11 @@
 import TerserPlugin from '../src';
 
 import {
-  cleanErrorStack,
   compile,
-  createCompiler,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -14,7 +15,7 @@ describe('minify option', () => {
   afterEach(() => Promise.all([removeCache()]));
 
   it('should snapshot for the "uglify-js" minifier', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
       output: {
         path: `${__dirname}/dist-uglify-js`,
@@ -36,16 +37,13 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should snapshot snapshot for the "uglify-js" minifier with extracting comments', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es5.js`,
       output: {
         path: `${__dirname}/dist-uglify-js`,
@@ -68,16 +66,13 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should snapshot for the "terser" minifier', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
         path: `${__dirname}/dist-terser`,
@@ -99,16 +94,13 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true"', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       devtool: 'source-map',
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
@@ -140,16 +132,13 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should snapshot for the "terser" minifier when the "parallel" option is "true"', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
         path: `${__dirname}/dist-terser`,
@@ -172,16 +161,13 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should snapshot for errors into the "minify" option', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
         path: `${__dirname}/dist-terser`,
@@ -198,15 +184,12 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should snapshot for errors into the "minify" option when the "parallel" option is "true"', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/minify/es6.js`,
       output: {
         path: `${__dirname}/dist-terser`,
@@ -224,10 +207,7 @@ describe('minify option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });

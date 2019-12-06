@@ -1,12 +1,11 @@
-export default function compile(compiler) {
+export default (compiler) => {
   return new Promise((resolve, reject) => {
-    // eslint-disable-line consistent-return
-    compiler.run((err, stats) => {
-      if (err) {
-        return reject(err);
+    compiler.run((error, stats) => {
+      if (error) {
+        return reject(error);
       }
 
       return resolve(stats);
     });
   });
-}
+};
