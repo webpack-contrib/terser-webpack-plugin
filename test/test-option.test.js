@@ -1,10 +1,11 @@
 import TerserPlugin from '../src/index';
 
 import {
-  cleanErrorStack,
-  createCompiler,
   compile,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -12,7 +13,7 @@ describe('test option', () => {
   let compiler;
 
   beforeEach(() => {
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         js: `${__dirname}/fixtures/entry.js`,
         mjs: `${__dirname}/fixtures/entry.mjs`,
@@ -36,12 +37,9 @@ describe('test option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a single `test` value ({RegExp})', async () => {
@@ -51,12 +49,9 @@ describe('test option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a single "test" value ({String})', async () => {
@@ -66,12 +61,9 @@ describe('test option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for multiple "test" values ({RegExp})', async () => {
@@ -81,12 +73,9 @@ describe('test option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for multiple "test" values ({String})', async () => {
@@ -96,16 +85,13 @@ describe('test option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot and uglify "mjs"', async () => {
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         js: `${__dirname}/fixtures/entry.js`,
         mjs: `${__dirname}/fixtures/entry.mjs`,
@@ -123,11 +109,8 @@ describe('test option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });

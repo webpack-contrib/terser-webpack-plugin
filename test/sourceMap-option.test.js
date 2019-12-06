@@ -3,10 +3,11 @@ import { SourceMapDevToolPlugin } from 'webpack';
 import TerserPlugin from '../src/index';
 
 import {
-  createCompiler,
   compile,
-  cleanErrorStack,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -32,7 +33,7 @@ describe('sourceMap', () => {
   afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for a "false" value (the "devtool" option has the "source-map" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
     });
@@ -41,16 +42,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "false" value (the "devtool" option has the "false" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
     });
@@ -59,16 +57,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "source-map" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
     });
@@ -77,16 +72,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "inline-source-map" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'inline-source-map',
     });
@@ -95,16 +87,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "hidden-source-map" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'hidden-source-map',
     });
@@ -113,16 +102,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "nosources-source-map" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'nosources-source-map',
     });
@@ -131,16 +117,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "false" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
     });
@@ -149,12 +132,9 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "source-map" value) and source map invalid', async () => {
@@ -191,7 +171,7 @@ describe('sourceMap', () => {
         );
       }
     })();
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
       plugins: [emitBrokenSourceMapPlugin],
@@ -201,16 +181,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'source-map',
     });
@@ -219,16 +196,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot when the "devtool" option has the "sourcemap" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'sourcemap',
     });
@@ -237,16 +211,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'inline-source-map',
     });
@@ -255,16 +226,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'hidden-source-map',
     });
@@ -273,16 +241,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'nosources-source-map',
     });
@@ -291,16 +256,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "eval" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'eval',
     });
@@ -309,16 +271,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for a "true" value (the "devtool" option has the "cheap-source-map" value)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: 'cheap-source-map',
     });
@@ -327,16 +286,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the `SourceMapDevToolPlugin` plugin (like `source-map`)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
       plugins: [
@@ -352,16 +308,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the `SourceMapDevToolPlugin` plugin (like `cheap-source-map`)', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
       devtool: false,
       plugins: [
@@ -377,16 +330,13 @@ describe('sourceMap', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for multi compiler mode with source maps', async () => {
-    const multiCompiler = createCompiler([
+    const multiCompiler = getCompiler([
       {
         mode: 'production',
         devtool: 'eval',
@@ -470,14 +420,11 @@ describe('sourceMap', () => {
     const multiStats = await compile(multiCompiler);
 
     multiStats.stats.forEach((stats, index) => {
-      const errors = stats.compilation.errors.map(cleanErrorStack);
-      const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-      expect(errors).toMatchSnapshot('errors');
-      expect(warnings).toMatchSnapshot('warnings');
-      expect(getAssets(stats, multiCompiler.compilers[index])).toMatchSnapshot(
-        'assets'
-      );
+      expect(
+        readsAssets(multiCompiler.compilers[index], stats)
+      ).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
     });
   });
 });

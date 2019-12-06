@@ -1,9 +1,9 @@
 import path from 'path';
 
 import webpack from 'webpack';
-import MemoryFileSystem from 'memory-fs';
+import { createFsFromVolume, Volume } from 'memfs';
 
-export default function createCompiler(options = {}) {
+export default function getCompiler(options = {}) {
   const compiler = webpack(
     Array.isArray(options)
       ? options
@@ -26,7 +26,11 @@ export default function createCompiler(options = {}) {
         }
   );
 
-  compiler.outputFileSystem = new MemoryFileSystem();
+  const outputFileSystem = createFsFromVolume(new Volume());
+  // Todo remove when we drop webpack@4 support
+  outputFileSystem.join = path.join.bind(path);
+
+  compiler.outputFileSystem = outputFileSystem;
 
   return compiler;
 }

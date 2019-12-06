@@ -1,10 +1,11 @@
 import TerserPlugin from '../src/index';
 
 import {
-  cleanErrorStack,
-  createCompiler,
   compile,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -12,7 +13,7 @@ describe('chunkFilter option', () => {
   let compiler;
 
   beforeEach(() => {
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         included: `${__dirname}/fixtures/included1.js`,
         entry: `${__dirname}/fixtures/entry.js`,
@@ -37,11 +38,8 @@ describe('chunkFilter option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getWarnings(stats)).toMatchSnapshot('errors');
+    expect(getErrors(stats)).toMatchSnapshot('warnings');
   });
 });

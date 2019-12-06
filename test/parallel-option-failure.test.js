@@ -5,9 +5,10 @@ import Worker from 'jest-worker';
 import TerserPlugin from '../src/index';
 
 import {
-  createCompiler,
   compile,
-  cleanErrorStack,
+  getCompiler,
+  getErrors,
+  getWarnings,
   removeCache,
 } from './helpers';
 
@@ -45,7 +46,7 @@ describe('parallel option', () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         one: `${__dirname}/fixtures/entry.js`,
         two: `${__dirname}/fixtures/entry.js`,
@@ -62,9 +63,6 @@ describe('parallel option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
       numWorkers: os.cpus().length - 1,
@@ -74,8 +72,8 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true"', async () => {
@@ -83,9 +81,6 @@ describe('parallel option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
       numWorkers: os.cpus().length - 1,
@@ -95,7 +90,7 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });

@@ -1,17 +1,25 @@
-import cleanErrorStack from './cleanErrorStack';
 import compile from './compile';
 import countPlugins from './countPlugins';
-import createCompiler from './createCompiler';
-import getAssets from './getAssets';
+import execute from './execute';
 import getCacheDirectory from './getCacheDirectory';
+import getCompiler from './getCompiler';
+import getErrors from './getErrors';
+import getWarnings from './getWarnings';
+import readAsset from './readAsset';
+import readsAssets from './readAssets';
+import normalizeErrors from './normalizeErrors';
 import removeCache from './removeCache';
 
 export {
-  cleanErrorStack,
   compile,
   countPlugins,
-  createCompiler,
-  getAssets,
+  execute,
   getCacheDirectory,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  normalizeErrors,
+  readAsset,
+  readsAssets,
   removeCache,
 };

@@ -1,10 +1,11 @@
 import TerserPlugin from '../src/index';
 
 import {
-  cleanErrorStack,
-  createCompiler,
   compile,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -14,7 +15,7 @@ describe('terserOptions option', () => {
   afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for the "ecma" option with the "5" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/ecma-5/entry.js`,
     });
 
@@ -31,16 +32,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "ecma" option with the "6" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/ecma-6/entry.js`,
     });
 
@@ -57,16 +55,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "ecma" option with the "7" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/ecma-7/entry.js`,
     });
 
@@ -83,16 +78,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "ecma" option with the "8" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/ecma-8/entry.js`,
     });
 
@@ -109,16 +101,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "warnings" option with the "false" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/unreachable-code.js`,
     });
 
@@ -130,16 +119,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "warnings" option with the "true" value', async () => {
-    const compiler = createCompiler({
+    const compiler = getCompiler({
       entry: `${__dirname}/fixtures/unreachable-code.js`,
     });
 
@@ -151,16 +137,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "parse.ecma" option with the "8" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -172,16 +155,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "compress" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -191,16 +171,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "compress" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -210,16 +187,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "compress" option with an object value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -231,16 +205,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "mangle" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -250,16 +221,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "mangle" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -269,16 +237,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "mangle" option with object values', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -290,16 +255,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "module" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -309,16 +271,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "mangle" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -328,16 +287,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "output.beautify" option with "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -349,16 +305,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "output.comments" option with the "true"', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -370,16 +323,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "toplevel" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -389,16 +339,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "toplevel" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -408,16 +355,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "nameCache" option with a empty object value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -427,16 +371,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "ie8" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -446,16 +387,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "ie8" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -465,16 +403,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "keep_classnames" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -484,16 +419,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "keep_classnames" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -503,16 +435,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "keep_fnames" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -522,16 +451,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "keep_fnames" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -541,16 +467,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "safari10" option with the "false" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -560,16 +483,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "safari10" option with the "true" value', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       terserOptions: {
@@ -579,16 +499,13 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot for the "unknown" option', async () => {
-    const compiler = createCompiler();
+    const compiler = getCompiler();
 
     new TerserPlugin({
       parallel: false,
@@ -601,10 +518,7 @@ describe('terserOptions option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });

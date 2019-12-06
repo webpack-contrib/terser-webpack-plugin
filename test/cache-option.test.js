@@ -5,10 +5,11 @@ import TaskRunner from '../src/TaskRunner';
 import TerserPlugin from '../src/index';
 
 import {
-  createCompiler,
   compile,
-  cleanErrorStack,
-  getAssets,
+  getCompiler,
+  getErrors,
+  getWarnings,
+  readsAssets,
   removeCache,
 } from './helpers';
 
@@ -30,7 +31,7 @@ describe('cache option', () => {
   let compiler;
 
   beforeEach(() => {
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         one: `${__dirname}/fixtures/cache.js`,
         two: `${__dirname}/fixtures/cache-1.js`,
@@ -73,12 +74,9 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const countAssets = Object.keys(stats.compilation.assets).length;
 
@@ -92,13 +90,9 @@ describe('cache option', () => {
 
     const newStats = await compile(compiler);
 
-    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
-
-    expect(newErrors).toMatchSnapshot('errors');
-    expect(newWarnings).toMatchSnapshot('warnings');
-
-    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
@@ -119,12 +113,9 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     // Cache disabled so we don't run `get` or `put`
     expect(cacacheGetSpy).toHaveBeenCalledTimes(0);
@@ -148,12 +139,9 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const countAssets = Object.keys(stats.compilation.assets).length;
 
@@ -167,13 +155,9 @@ describe('cache option', () => {
 
     const newStats = await compile(compiler);
 
-    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
-
-    expect(newErrors).toMatchSnapshot('errors');
-    expect(newWarnings).toMatchSnapshot('warnings');
-
-    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
@@ -194,12 +178,9 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const countAssets = Object.keys(stats.compilation.assets).length;
 
@@ -213,13 +194,9 @@ describe('cache option', () => {
 
     const newStats = await compile(compiler);
 
-    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
-
-    expect(newErrors).toMatchSnapshot('errors');
-    expect(newWarnings).toMatchSnapshot('warnings');
-
-    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
@@ -249,12 +226,9 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const countAssets = Object.keys(stats.compilation.assets).length;
 
@@ -268,12 +242,9 @@ describe('cache option', () => {
 
     const newStats = await compile(compiler);
 
-    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
-
-    expect(newErrors).toMatchSnapshot('errors');
-    expect(newWarnings).toMatchSnapshot('warnings');
-    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
@@ -295,11 +266,8 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
   it('should match snapshot and invalid cache when entry point was renamed', async () => {
@@ -316,12 +284,9 @@ describe('cache option', () => {
 
     const stats = await compile(compiler);
 
-    const errors = stats.compilation.errors.map(cleanErrorStack);
-    const warnings = stats.compilation.warnings.map(cleanErrorStack);
-
-    expect(errors).toMatchSnapshot('errors');
-    expect(warnings).toMatchSnapshot('warnings');
-    expect(getAssets(stats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const countAssets = Object.keys(stats.compilation.assets).length;
 
@@ -333,7 +298,7 @@ describe('cache option', () => {
     cacache.get.mockClear();
     cacache.put.mockClear();
 
-    compiler = createCompiler({
+    compiler = getCompiler({
       entry: {
         onne: `${__dirname}/fixtures/cache.js`,
         two: `${__dirname}/fixtures/cache-1.js`,
@@ -347,13 +312,9 @@ describe('cache option', () => {
 
     const newStats = await compile(compiler);
 
-    const newErrors = newStats.compilation.errors.map(cleanErrorStack);
-    const newWarnings = newStats.compilation.warnings.map(cleanErrorStack);
-
-    expect(newErrors).toMatchSnapshot('errors');
-    expect(newWarnings).toMatchSnapshot('warnings');
-
-    expect(getAssets(newStats, compiler)).toMatchSnapshot('assets');
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
 
     const newCountAssets = Object.keys(newStats.compilation.assets).length;
 
