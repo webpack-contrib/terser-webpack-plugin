@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.2.1...v2.2.2) (2019-12-06)
+
+
+### SECURITY
+
+* update `serialize-javascript` to `2.1.1` version.
+
 ### [2.2.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.2.0...v2.2.1) (2019-10-22)
 
 

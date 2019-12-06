@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`minify option should snapshot for errors into the "minify" option when the "parallel" option is "true": errors 1`] = `
+Array [
+  "Error: main.js from Terser
+Error: Error",
+]
+`;
+
+exports[`minify option should snapshot for errors into the "minify" option when the "parallel" option is "true": warnings 1`] = `Array []`;
+
+exports[`minify option should snapshot for errors into the "minify" option: errors 1`] = `
+Array [
+  "Error: main.js from Terser
+Error: Error",
+]
+`;
+
+exports[`minify option should snapshot for errors into the "minify" option: warnings 1`] = `Array []`;
+
+exports[`minify option should snapshot for the "terser" minifier when the "parallel" option is "true": assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\"})();",
+}
+`;
+
+exports[`minify option should snapshot for the "terser" minifier when the "parallel" option is "true": errors 1`] = `Array []`;
+
+exports[`minify option should snapshot for the "terser" minifier when the "parallel" option is "true": warnings 1`] = `Array []`;
+
+exports[`minify option should snapshot for the "terser" minifier: assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\"})();",
+}
+`;
+
+exports[`minify option should snapshot for the "terser" minifier: errors 1`] = `Array []`;
+
+exports[`minify option should snapshot for the "terser" minifier: warnings 1`] = `Array []`;
+
+exports[`minify option should snapshot for the "uglify-js" minifier: assets 1`] = `
+Object {
+  "main.js": "!function(){var r={293:function(e){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}},o={};!function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{}};return r[n](t,t.exports,e),t.exports}(293)}();",
+}
+`;
+
+exports[`minify option should snapshot for the "uglify-js" minifier: errors 1`] = `Array []`;
+
+exports[`minify option should snapshot for the "uglify-js" minifier: warnings 1`] = `Array []`;
+
+exports[`minify option should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true": assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\"})();
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"sources\\":[],\\"names\\":[],\\"mappings\\":\\"\\",\\"file\\":\\"main.js\\",\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true": errors 1`] = `Array []`;
+
+exports[`minify option should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true": warnings 1`] = `Array []`;
+
+exports[`minify option should snapshot snapshot for the "uglify-js" minifier with extracting comments: assets 1`] = `
+Object {
+  "main.js": "!function(){var r={293:function(e){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}},o={};!function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{}};return r[n](t,t.exports,e),t.exports}(293)}();",
+}
+`;
+
+exports[`minify option should snapshot snapshot for the "uglify-js" minifier with extracting comments: errors 1`] = `Array []`;
+
+exports[`minify option should snapshot snapshot for the "uglify-js" minifier with extracting comments: warnings 1`] = `Array []`;

@@ -2,6 +2,8 @@ import serialize from 'serialize-javascript';
 
 import worker from '../src/worker';
 
+import getCompiler from './helpers/getCompiler';
+
 describe('worker', () => {
   it('should match snapshot when options.extractComments is regex', () => {
     const options = {
@@ -71,7 +73,10 @@ describe('worker', () => {
       },
       extractComments: {
         condition: 'should be extracted',
-        filename: (file) => file.replace(/(\.\w+)$/, '.license$1'),
+        filename: (file) =>
+          getCompiler.isWebpack4()
+            ? file.replace(/(\.\w+)$/, '.license$1')
+            : file.filename.replace(/(\.\w+)$/, '.license$1'),
         banner: (licenseFile) =>
           `License information can be found in ${licenseFile}`,
       },

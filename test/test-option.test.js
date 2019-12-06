@@ -22,8 +22,12 @@ describe('test option', () => {
       },
       output: {
         path: `${__dirname}/dist`,
-        filename: '[name].js?var=[hash]',
-        chunkFilename: '[id].[name].js?ver=[hash]',
+        filename: `[name].js?var=[${
+          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
+        }]`,
+        chunkFilename: `[id].[name].js?ver=[${
+          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
+        }]`,
       },
     });
 
@@ -100,8 +104,12 @@ describe('test option', () => {
       },
       output: {
         path: `${__dirname}/dist`,
-        filename: '[name].mjs?var=[hash]',
-        chunkFilename: '[id].[name].mjs?ver=[hash]',
+        filename: `[name].mjs?var=[${
+          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
+        }]`,
+        chunkFilename: `[id].[name].mjs?ver=[${
+          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
+        }]`,
       },
     });
 
