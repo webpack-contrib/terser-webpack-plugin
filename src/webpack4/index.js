@@ -1,5 +1,3 @@
-import crypto from 'crypto';
-
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
 
@@ -26,40 +24,5 @@ export default class Webpack4 {
         hash.update(data);
       });
     }
-  }
-
-  static createTask(
-    compilation,
-    options,
-    { file, input, inputSourceMap, commentsFilename }
-  ) {
-    const task = {
-      file,
-      input,
-      inputSourceMap,
-      commentsFilename,
-      extractComments: options.extractComments,
-      terserOptions: options.terserOptions,
-      minify: options.minify,
-    };
-
-    if (options.cache) {
-      const defaultCacheKeys = {
-        terser: terserPackageJson.version,
-        // eslint-disable-next-line global-require
-        'terser-webpack-plugin': require('../../package.json').version,
-        'terser-webpack-plugin-options': options,
-        nodeVersion: process.version,
-        filename: file,
-        contentHash: crypto
-          .createHash('md4')
-          .update(input)
-          .digest('hex'),
-      };
-
-      task.cacheKeys = options.cacheKeys(defaultCacheKeys, file);
-    }
-
-    return task;
   }
 }
