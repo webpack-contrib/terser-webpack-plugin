@@ -82,7 +82,7 @@ jobs:
         displayName: 'Install dependencies'
       - script: npm i webpack@$(webpack_version)
         displayName: 'Install "webpack@$(webpack_version)"'
-      - script: npm run test:coverage -- --ci --reporters="default" --reporters="jest-junit" || $(continue_on_error)
+      - script: npm run test:coverage -- --ci --snapshot-resolver="./test/helpers/snapshotResolver.js" --reporters="default" --reporters="jest-junit" || $(continue_on_error)
         displayName: 'Run tests with coverage'
       - task: PublishTestResults@2
         inputs:
@@ -139,7 +139,7 @@ jobs:
         displayName: 'Install dependencies'
       - script: npm i webpack@$(webpack_version)
         displayName: 'Install "webpack@$(webpack_version)"'
-      - script: npm run test:coverage -- --ci --reporters="default" --reporters="jest-junit" || $(continue_on_error)
+      - script: npm run test:coverage -- --ci --snapshot-resolver="./test/helpers/snapshotResolver.js" --reporters="default" --reporters="jest-junit" || $(continue_on_error)
         displayName: 'Run tests with coverage'
       - task: PublishTestResults@2
         inputs:
@@ -199,7 +199,7 @@ jobs:
         displayName: 'Install dependencies'
       - script: npm i webpack@$(webpack_version)
         displayName: 'Install "webpack@$(webpack_version)"'
-      - script: npm run test:coverage -- --ci --reporters="default" --reporters="jest-junit" || $(continue_on_error)
+      - script: npm run test:coverage -- --ci --snapshot-resolver="./test/helpers/snapshotResolver.js" --reporters="default" --reporters="jest-junit" || $(continue_on_error)
         displayName: 'Run tests with coverage'
       - task: PublishTestResults@2
         inputs:

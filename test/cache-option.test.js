@@ -1,7 +1,7 @@
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 
-import Webpack4Cache from '../src/webpack4/Cache';
+import TaskRunner from '../src/TaskRunner';
 import TerserPlugin from '../src/index';
 
 import {
@@ -68,7 +68,7 @@ if (getCompiler.isWebpack4()) {
       const cacachePutSpy = jest.spyOn(cacache, 'put');
 
       const getCacheDirectorySpy = jest
-        .spyOn(Webpack4Cache, 'getCacheDirectory')
+        .spyOn(TaskRunner, 'getCacheDirectory')
         .mockImplementation(() => uniqueCacheDirectory);
 
       new TerserPlugin({ cache: true }).apply(compiler);
@@ -131,7 +131,7 @@ if (getCompiler.isWebpack4()) {
       const cacachePutSpy = jest.spyOn(cacache, 'put');
 
       const getCacheDirectorySpy = jest
-        .spyOn(Webpack4Cache, 'getCacheDirectory')
+        .spyOn(TaskRunner, 'getCacheDirectory')
         .mockImplementation(() => {
           return uniqueOtherDirectory;
         });
@@ -276,7 +276,7 @@ if (getCompiler.isWebpack4()) {
       const cacachePutSpy = jest.spyOn(cacache, 'put');
 
       const getCacheDirectorySpy = jest
-        .spyOn(Webpack4Cache, 'getCacheDirectory')
+        .spyOn(TaskRunner, 'getCacheDirectory')
         .mockImplementation(() => {
           return otherOtherOtherCacheDir;
         });

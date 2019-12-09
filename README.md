@@ -141,8 +141,6 @@ module.exports = {
 
 ### `cache`
 
-> ⚠ Doesn't work with webpack 5!
-
 Type: `Boolean|String`
 Default: `true`
 
@@ -190,8 +188,6 @@ module.exports = {
 ```
 
 ### `cacheKeys`
-
-> ⚠ Doesn't work with webpack 5!
 
 Type: `Function<(defaultCacheKeys, file) -> Object>`
 Default: `defaultCacheKeys => defaultCacheKeys`
@@ -495,8 +491,6 @@ module.exports = {
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
           filename: (file, fileData) => {
-            // ⚠ webpack 5: there is only fileData parameter
-
             // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
             // You must consider this
             // The "fileData" argument contains object with "filename", "basename", "query"
@@ -529,8 +523,6 @@ module.exports = {
         extractComments: {
           condition: 'some',
           filename: (file, fileData) => {
-            // ⚠ webpack 5: there is only fileData parameter
-
             // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
             // You must consider this
             return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
@@ -550,7 +542,7 @@ module.exports = {
 Type: `String|Function<(string) -> String>`
 Default: `[file].LICENSE[query]`
 
-Available placeholders: `[file]`, `[query]` and `[filebase]` (`[base]` for webpack 5).
+Available placeholders: `[file]`, `[query]` and `[filebase]`.
 
 The file where the extracted comments will be stored.
 Default is to append the suffix `.LICENSE` to the original filename.
@@ -596,8 +588,6 @@ module.exports = {
         extractComments: {
           condition: true,
           filename: (file, fileData) => {
-            // ⚠ webpack 5: there is only fileData parameter
-
             // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
             // You must consider this
             return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
