@@ -7,7 +7,7 @@ import RequestShortener from 'webpack/lib/RequestShortener';
 import {
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
-  javascript,
+  version as webpackVersion,
 } from 'webpack';
 import validateOptions from 'schema-utils';
 import terserPackageJson from 'terser/package.json';
@@ -54,11 +54,12 @@ class TerserPlugin {
       terserOptions,
     };
 
-    this.webpackCompat = javascript
-      ? // eslint-disable-next-line global-require
-        require('./webpack5').default
-      : // eslint-disable-next-line global-require
-        require('./webpack4').default;
+    this.webpackCompat =
+      webpackVersion[0] === 4
+        ? // eslint-disable-next-line global-require
+          require('./webpack4').default
+        : // eslint-disable-next-line global-require
+          require('./webpack5').default;
   }
 
   static isSourceMap(input) {
