@@ -10,7 +10,7 @@ export default function getCompiler(options = {}) {
       : {
           mode: 'production',
           bail: true,
-          cache: false,
+          cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
           entry: path.resolve(__dirname, '../fixtures/entry.js'),
           optimization: {
             minimize: false,
@@ -34,3 +34,5 @@ export default function getCompiler(options = {}) {
 
   return compiler;
 }
+
+getCompiler.isWebpack4 = () => webpack.version[0] === '4';
