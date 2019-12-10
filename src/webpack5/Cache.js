@@ -1,9 +1,7 @@
 import crypto from 'crypto';
-import os from 'os';
 
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import getLazyHashedEtag from 'webpack/lib/cache/getLazyHashedEtag';
-import findCacheDir from 'find-cache-dir';
 import serialize from 'serialize-javascript';
 
 export default class Cache {
@@ -11,10 +9,6 @@ export default class Cache {
     this.options = options;
     this.compilation = compilation;
     this.cacheInfoMap = new WeakMap();
-  }
-
-  static getCacheDirectory() {
-    return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
   ensureCacheInfo(task) {
@@ -65,13 +59,18 @@ export default class Cache {
     const cacheInfo = this.ensureCacheInfo(task, this.compilation);
 
     return new Promise((resolve, reject) => {
-      this.compilation.store(cacheInfo.ident, cacheInfo.eTag, data, (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
+      this.compilation.cache.store(
+        cacheInfo.ident,
+        cacheInfo.eTag,
+        data,
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(data);
+          }
         }
-      });
+      );
     });
   }
 }
