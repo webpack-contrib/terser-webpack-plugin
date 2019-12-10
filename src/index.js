@@ -365,7 +365,12 @@ class TerserPlugin {
               task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
             }
           } else {
-            task.cacheKeys = { terser: terserPackageJson.version };
+            task.cacheKeys = {
+              terser: terserPackageJson.version,
+              // eslint-disable-next-line global-require
+              'terser-webpack-plugin': require('../package.json').version,
+              'terser-webpack-plugin-options': this.options,
+            };
           }
 
           tasks.push(task);

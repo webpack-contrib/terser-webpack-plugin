@@ -16,7 +16,7 @@ export default class Cache {
 
     if (!item) {
       const cacheKeys = crypto
-        .createHash('md5')
+        .createHash('md4')
         .update(serialize(task.cacheKeys))
         .digest('hex');
 
