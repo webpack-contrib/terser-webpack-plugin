@@ -4,11 +4,13 @@ import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 import serialize from 'serialize-javascript';
 
-export default class Cache {
-  constructor(options) {
+export default class Webpack4Cache {
+  constructor(compilation, options) {
     this.options = options;
     this.cacheDir =
-      options.cache === true ? Cache.getCacheDirectory() : options.cache;
+      options.cache === true
+        ? Webpack4Cache.getCacheDirectory()
+        : options.cache;
   }
 
   static getCacheDirectory() {

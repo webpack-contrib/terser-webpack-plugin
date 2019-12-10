@@ -7,9 +7,11 @@ import RequestShortener from 'webpack/lib/RequestShortener';
 import {
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
+  javascript,
   version as webpackVersion,
 } from 'webpack';
 import validateOptions from 'schema-utils';
+import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
 
 import schema from './options.json';
@@ -53,13 +55,6 @@ class TerserPlugin {
       minify,
       terserOptions,
     };
-
-    this.webpackCompat =
-      webpackVersion[0] === 4
-        ? // eslint-disable-next-line global-require
-          require('./webpack4').default
-        : // eslint-disable-next-line global-require
-          require('./webpack5').default;
   }
 
   static isSourceMap(input) {
@@ -198,8 +193,8 @@ class TerserPlugin {
     );
   }
 
-  isWebpack4() {
-    return this.webpackCompat.name === 'Webpack4';
+  static isWebpack4() {
+    return webpackVersion[0] === '4';
   }
 
   apply(compiler) {
@@ -298,7 +293,7 @@ class TerserPlugin {
             commentsFilename =
               this.options.extractComments.filename || '[file].LICENSE[query]';
 
-            if (this.isWebpack4()) {
+            if (TerserPlugin.isWebpack4()) {
               // Todo remove this in next major release
               if (typeof commentsFilename === 'function') {
                 commentsFilename = commentsFilename.bind(null, file);
@@ -352,7 +347,7 @@ class TerserPlugin {
             minify: this.options.minify,
           };
 
-          if (this.isWebpack4()) {
+          if (TerserPlugin.isWebpack4()) {
             if (this.options.cache) {
               const defaultCacheKeys = {
                 terser: terserPackageJson.version,
@@ -390,8 +385,14 @@ class TerserPlugin {
         return Promise.resolve();
       }
 
+      const CacheEngine = TerserPlugin.isWebpack4()
+        ? // eslint-disable-next-line global-require
+          require('./Webpack4Cache').default
+        : // eslint-disable-next-line global-require
+          require('./Webpack5Cache').default;
+
       const taskRunner = new TaskRunner({
-        cache: this.webpackCompat.getCache(compilation, this.options),
+        cache: new CacheEngine(compilation, this.options),
         parallel: this.options.parallel,
       });
 
@@ -528,7 +529,7 @@ class TerserPlugin {
       return Promise.resolve();
     };
 
-    const plugin = { name: 'TerserPlugin' };
+    const plugin = { name: this.constructor.name };
 
     compiler.hooks.compilation.tap(plugin, (compilation) => {
       if (this.options.sourceMap) {
@@ -539,7 +540,35 @@ class TerserPlugin {
         });
       }
 
-      this.webpackCompat.updateAssetsHash(compilation, this.options);
+      if (!TerserPlugin.isWebpack4()) {
+        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
+          compilation
+        );
+        const data = serialize({
+          terser: terserPackageJson.version,
+          terserOptions: this.options.terserOptions,
+        });
+
+        hooks.chunkHash.tap(plugin, (chunk, hash) => {
+          hash.update('TerserPlugin');
+          hash.update(data);
+        });
+      } else {
+        // Todo remove after drop `webpack@4` compatibility
+        const { mainTemplate, chunkTemplate } = compilation;
+        const data = serialize({
+          terser: terserPackageJson.version,
+          terserOptions: this.options.terserOptions,
+        });
+
+        // Regenerate `contenthash` for minified assets
+        for (const template of [mainTemplate, chunkTemplate]) {
+          template.hooks.hashForChunk.tap(plugin, (hash) => {
+            hash.update('TerserPlugin');
+            hash.update(data);
+          });
+        }
+      }
 
       compilation.hooks.optimizeChunkAssets.tapPromise(
         plugin,

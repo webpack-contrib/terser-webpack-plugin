@@ -1,7 +1,7 @@
 import cacache from 'cacache';
 import findCacheDir from 'find-cache-dir';
 
-import Webpack4Cache from '../src/webpack4/Cache';
+import Webpack4Cache from '../src/Webpack4Cache';
 import TerserPlugin from '../src/index';
 
 import {

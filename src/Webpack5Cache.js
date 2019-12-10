@@ -5,7 +5,7 @@ import getLazyHashedEtag from 'webpack/lib/cache/getLazyHashedEtag';
 import serialize from 'serialize-javascript';
 
 export default class Cache {
-  constructor(options, compilation) {
+  constructor(compilation, options) {
     this.options = options;
     this.compilation = compilation;
     this.cacheInfoMap = new WeakMap();
