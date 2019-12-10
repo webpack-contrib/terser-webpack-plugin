@@ -1,7 +1,6 @@
 import path from 'path';
 
 import webpack from 'webpack';
-import webpackPackageJson from 'webpack/package.json';
 import { createFsFromVolume, Volume } from 'memfs';
 
 export default function getCompiler(options = {}) {
@@ -36,4 +35,4 @@ export default function getCompiler(options = {}) {
   return compiler;
 }
 
-getCompiler.isWebpack4 = () => webpackPackageJson.version[0] === '4';
+getCompiler.isWebpack4 = () => webpack.version[0] === '4';

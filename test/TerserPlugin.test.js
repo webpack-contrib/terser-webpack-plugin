@@ -186,8 +186,8 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  if (getCompiler.isWebpack4()) {
-    it('should regenerate hash', async () => {
+  it('should regenerate hash', async () => {
+    if (getCompiler.isWebpack4()) {
       const originalMainTemplateUpdateHashForChunk =
         MainTemplate.prototype.updateHashForChunk;
       const originalChunkTemplateUpdateHashForChunk =
@@ -232,9 +232,7 @@ describe('TerserPlugin', () => {
 
       MainTemplate.prototype.updateHashForChunk = originalMainTemplateUpdateHashForChunk;
       ChunkTemplate.prototype.updateHashForChunk = originalChunkTemplateUpdateHashForChunk;
-    });
-  } else {
-    it('should regenerate hash', async () => {
+    } else {
       const mockUpdateHashForChunk = jest.fn();
       const compiler = getCompiler({
         entry: {
@@ -271,8 +269,8 @@ describe('TerserPlugin', () => {
       expect(mockUpdateHashForChunk).toHaveBeenCalledTimes(10);
 
       expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    });
-  }
+    }
+  });
 
   it('isSourceMap method', () => {
     expect(TerserPlugin.isSourceMap(null)).toBe(false);
