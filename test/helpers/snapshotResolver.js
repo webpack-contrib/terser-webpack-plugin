@@ -1,9 +1,9 @@
 const path = require('path');
 
-const webpackPackageJson = require('webpack/package.json');
+const webpack = require('webpack');
 
 // eslint-disable-next-line global-require
-const [webpackVersion] = webpackPackageJson.version;
+const [webpackVersion] = webpack.version;
 const snapshotExtension = `.snap.webpack${webpackVersion}`;
 
 // eslint-disable-next-line no-console

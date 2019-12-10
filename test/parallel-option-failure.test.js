@@ -59,11 +59,7 @@ describe('parallel option', () => {
   afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for errors into the "jest-worker" package', async () => {
-    new TerserPlugin(
-      getCompiler.isWebpack4()
-        ? { parallel: true, cache: false }
-        : { parallel: true }
-    ).apply(compiler);
+    new TerserPlugin({ parallel: true, cache: false }).apply(compiler);
 
     const stats = await compile(compiler);
 
@@ -80,23 +76,21 @@ describe('parallel option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  if (getCompiler.isWebpack4()) {
-    it('should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true"', async () => {
-      new TerserPlugin({ parallel: true, cache: true }).apply(compiler);
+  it('should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true"', async () => {
+    new TerserPlugin({ parallel: true, cache: true }).apply(compiler);
 
-      const stats = await compile(compiler);
+    const stats = await compile(compiler);
 
-      expect(Worker).toHaveBeenCalledTimes(1);
-      expect(Worker).toHaveBeenLastCalledWith(workerPath, {
-        numWorkers: os.cpus().length - 1,
-      });
-      expect(workerTransform).toHaveBeenCalledTimes(
-        Object.keys(stats.compilation.assets).length
-      );
-      expect(workerEnd).toHaveBeenCalledTimes(1);
-
-      expect(getErrors(stats)).toMatchSnapshot('errors');
-      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(Worker).toHaveBeenCalledTimes(1);
+    expect(Worker).toHaveBeenLastCalledWith(workerPath, {
+      numWorkers: os.cpus().length - 1,
     });
-  }
+    expect(workerTransform).toHaveBeenCalledTimes(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerEnd).toHaveBeenCalledTimes(1);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });
