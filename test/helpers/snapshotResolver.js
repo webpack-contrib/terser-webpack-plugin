@@ -2,23 +2,25 @@ const path = require('path');
 
 const webpackPackageJson = require('webpack/package.json');
 
-const webpackVersion =
-  // eslint-disable-next-line global-require
-  process.env.WEBPACK_VERSION || webpackPackageJson.version[0];
+// eslint-disable-next-line global-require
+const [webpackVersion] = webpackPackageJson.version;
+const snapshotExtension = `.snap.webpack${webpackVersion}`;
+
+// eslint-disable-next-line no-console
+console.log('Current webpack version:', webpackVersion);
 
 module.exports = {
   resolveSnapshotPath: (testPath) =>
     path.join(
       path.dirname(testPath),
       '__snapshots__',
-      `webpack${webpackVersion}`,
-      `${path.basename(testPath)}.snap`
+      `${path.basename(testPath)}${snapshotExtension}`
     ),
   resolveTestPath: (snapshotPath) =>
     snapshotPath
-      .replace(path.join('/__snapshots__', `webpack${webpackVersion}`), '')
-      .slice(0, -'.snap'.length),
-  testPathForConsistencyCheck: path.posix.join(
+      .replace(`${path.sep}__snapshots__`, '')
+      .slice(0, -snapshotExtension.length),
+  testPathForConsistencyCheck: path.join(
     'consistency_check',
     '__tests__',
     'example.test.js'

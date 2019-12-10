@@ -36,6 +36,4 @@ export default function getCompiler(options = {}) {
   return compiler;
 }
 
-getCompiler.isWebpack4 = () =>
-  // eslint-disable-next-line global-require
-  (process.env.WEBPACK_VERSION || webpackPackageJson.version[0]) === '4';
+getCompiler.isWebpack4 = () => webpackPackageJson.version[0] === '4';
