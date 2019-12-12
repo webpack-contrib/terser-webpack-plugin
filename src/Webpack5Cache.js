@@ -8,40 +8,31 @@ export default class Cache {
   constructor(compilation, options) {
     this.options = options;
     this.compilation = compilation;
-    this.cacheInfoMap = new WeakMap();
-  }
-
-  ensureCacheInfo(task) {
-    let item = this.cacheInfoMap.get(task);
-
-    if (!item) {
-      const cacheKeys = crypto
-        .createHash('md4')
-        .update(serialize(task.cacheKeys))
-        .digest('hex');
-
-      item = {
-        ident: `${this.compilation.compilerPath}/TerserWebpackPlugin/${cacheKeys}/${task.file}`,
-        eTag: getLazyHashedEtag(task.asset),
-      };
-
-      this.cacheInfoMap.set(task, item);
-    }
-
-    return item;
   }
 
   isEnabled() {
     return !!this.compilation.cache;
   }
 
+  createCacheIdent(task) {
+    const cacheKeys = crypto
+      .createHash('md4')
+      .update(serialize(task.cacheKeys))
+      .digest('hex');
+
+    return `${this.compilation.compilerPath}/TerserWebpackPlugin/${cacheKeys}/${task.file}`;
+  }
+
   get(task) {
-    const cacheInfo = this.ensureCacheInfo(task);
+    // eslint-disable-next-line no-param-reassign
+    task.cacheIdent = task.cacheIdent || this.createCacheIdent(task);
+    // eslint-disable-next-line no-param-reassign
+    task.cacheETag = task.cacheETag || getLazyHashedEtag(task.asset);
 
     return new Promise((resolve, reject) => {
       this.compilation.cache.get(
-        cacheInfo.ident,
-        cacheInfo.eTag,
+        task.cacheIdent,
+        task.cacheETag,
         (err, result) => {
           if (err) {
             reject(err);
@@ -56,12 +47,10 @@ export default class Cache {
   }
 
   store(task, data) {
-    const cacheInfo = this.ensureCacheInfo(task, this.compilation);
-
     return new Promise((resolve, reject) => {
       this.compilation.cache.store(
-        cacheInfo.ident,
-        cacheInfo.eTag,
+        task.cacheIdent,
+        task.cacheETag,
         data,
         (err) => {
           if (err) {
