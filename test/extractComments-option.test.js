@@ -9,6 +9,25 @@ import {
   removeCache,
 } from './helpers';
 
+function createFilenameFn() {
+  return getCompiler.isWebpack4()
+    ? (file, fileData) => {
+        expect(file).toBeDefined();
+        expect(fileData).toBeDefined();
+
+        // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
+        // You must consider this
+        return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
+      }
+    : (fileData) => {
+        expect(fileData).toBeDefined();
+
+        // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
+        // You must consider this
+        return `${fileData.filename}.LICENSE${fileData.query}`;
+      };
+}
+
 describe('extractComments option', () => {
   let compiler;
 
@@ -126,19 +145,12 @@ describe('extractComments option', () => {
   });
 
   it('should match snapshot when extracts comments to multiple files', async () => {
-    expect.assertions(13);
+    expect.assertions(getCompiler.isWebpack4() ? 13 : 8);
 
     new TerserPlugin({
       extractComments: {
         condition: true,
-        filename: (file, fileData) => {
-          expect(file).toBeDefined();
-          expect(fileData).toBeDefined();
-
-          // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-          // You must consider this
-          return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
-        },
+        filename: createFilenameFn(),
         banner: (licenseFile) => {
           return `License information can be found in ${licenseFile}`;
         },
@@ -206,7 +218,7 @@ describe('extractComments option', () => {
   });
 
   it('should match snapshot when no condition, preserve only `/@license/i` comments and extract "some" comments', async () => {
-    expect.assertions(13);
+    expect.assertions(getCompiler.isWebpack4() ? 13 : 8);
 
     new TerserPlugin({
       terserOptions: {
@@ -215,14 +227,7 @@ describe('extractComments option', () => {
         },
       },
       extractComments: {
-        filename: (file, fileData) => {
-          expect(file).toBeDefined();
-          expect(fileData).toBeDefined();
-
-          // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-          // You must consider this
-          return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
-        },
+        filename: createFilenameFn(),
         banner: (licenseFile) => {
           return `License information can be found in ${licenseFile}`;
         },
@@ -321,7 +326,7 @@ describe('extractComments option', () => {
   });
 
   it('should match snapshot when extracts comments to files with query string and when filename is a function', async () => {
-    expect.assertions(13);
+    expect.assertions(getCompiler.isWebpack4() ? 13 : 8);
 
     compiler = getCompiler({
       entry: {
@@ -339,14 +344,7 @@ describe('extractComments option', () => {
     new TerserPlugin({
       extractComments: {
         condition: true,
-        filename: (file, fileData) => {
-          expect(file).toBeDefined();
-          expect(fileData).toBeDefined();
-
-          // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-          // You must consider this
-          return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
-        },
+        filename: createFilenameFn(),
       },
     }).apply(compiler);
 

@@ -1,7 +1,5 @@
 import os from 'os';
 
-import cacache from 'cacache';
-import findCacheDir from 'find-cache-dir';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 
@@ -11,15 +9,8 @@ const workerPath = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
-    this.options = options;
-    this.cacheDir = TaskRunner.getCacheDirectory(this.options.cache);
-    this.numberWorkers = TaskRunner.getNumberWorkers(this.options.parallel);
-  }
-
-  static getCacheDirectory(cache) {
-    return cache === true
-      ? findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir()
-      : cache;
+    this.cache = options.cache;
+    this.numberWorkers = TaskRunner.getNumberWorkers(options.parallel);
   }
 
   static getNumberWorkers(parallel) {
@@ -56,26 +47,18 @@ export default class TaskRunner {
             result = { error };
           }
 
-          if (this.cacheDir && !result.error) {
-            return cacache
-              .put(
-                this.cacheDir,
-                serialize(task.cacheKeys),
-                JSON.stringify(result)
-              )
-              .then(
-                () => result,
-                () => result
-              );
+          if (this.cache.isEnabled() && !result.error) {
+            return this.cache.store(task, result).then(
+              () => result,
+              () => result
+            );
           }
 
           return result;
         };
 
-        if (this.cacheDir) {
-          return cacache
-            .get(this.cacheDir, serialize(task.cacheKeys))
-            .then(({ data }) => JSON.parse(data), enqueue);
+        if (this.cache.isEnabled()) {
+          return this.cache.get(task).then((data) => data, enqueue);
         }
 
         return enqueue();

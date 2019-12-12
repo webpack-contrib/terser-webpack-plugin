@@ -8,6 +8,7 @@ import {
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
   javascript,
+  version as webpackVersion,
 } from 'webpack';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
@@ -192,6 +193,10 @@ class TerserPlugin {
     );
   }
 
+  static isWebpack4() {
+    return webpackVersion[0] === '4';
+  }
+
   apply(compiler) {
     const { devtool, output, plugins } = compiler.options;
 
@@ -288,9 +293,11 @@ class TerserPlugin {
             commentsFilename =
               this.options.extractComments.filename || '[file].LICENSE[query]';
 
-            // Todo remove this in next major release
-            if (typeof commentsFilename === 'function') {
-              commentsFilename = commentsFilename.bind(null, file);
+            if (TerserPlugin.isWebpack4()) {
+              // Todo remove this in next major release
+              if (typeof commentsFilename === 'function') {
+                commentsFilename = commentsFilename.bind(null, file);
+              }
             }
 
             let query = '';
@@ -330,6 +337,7 @@ class TerserPlugin {
           }
 
           const task = {
+            asset,
             file,
             input,
             inputSourceMap,
@@ -339,21 +347,30 @@ class TerserPlugin {
             minify: this.options.minify,
           };
 
-          if (this.options.cache) {
-            const defaultCacheKeys = {
+          if (TerserPlugin.isWebpack4()) {
+            if (this.options.cache) {
+              const defaultCacheKeys = {
+                terser: terserPackageJson.version,
+                // eslint-disable-next-line global-require
+                'terser-webpack-plugin': require('../package.json').version,
+                'terser-webpack-plugin-options': this.options,
+                nodeVersion: process.version,
+                filename: file,
+                contentHash: crypto
+                  .createHash('md4')
+                  .update(input)
+                  .digest('hex'),
+              };
+
+              task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
+            }
+          } else {
+            task.cacheKeys = {
               terser: terserPackageJson.version,
               // eslint-disable-next-line global-require
               'terser-webpack-plugin': require('../package.json').version,
               'terser-webpack-plugin-options': this.options,
-              nodeVersion: process.version,
-              filename: file,
-              contentHash: crypto
-                .createHash('md4')
-                .update(input)
-                .digest('hex'),
             };
-
-            task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
           }
 
           tasks.push(task);
@@ -373,8 +390,14 @@ class TerserPlugin {
         return Promise.resolve();
       }
 
+      const CacheEngine = TerserPlugin.isWebpack4()
+        ? // eslint-disable-next-line global-require
+          require('./Webpack4Cache').default
+        : // eslint-disable-next-line global-require
+          require('./Webpack5Cache').default;
+
       const taskRunner = new TaskRunner({
-        cache: this.options.cache,
+        cache: new CacheEngine(compilation, this.options),
         parallel: this.options.parallel,
       });
 
@@ -522,7 +545,7 @@ class TerserPlugin {
         });
       }
 
-      if (javascript && javascript.JavascriptModulesPlugin) {
+      if (!TerserPlugin.isWebpack4()) {
         const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
           compilation
         );
