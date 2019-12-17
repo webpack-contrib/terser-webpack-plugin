@@ -157,7 +157,7 @@ const minify = (options) => {
 
   // Let terser generate a SourceMap
   if (inputSourceMap) {
-    terserOptions.sourceMap = true;
+    terserOptions.sourceMap = { asObject: true };
   }
 
   const extractedComments = [];

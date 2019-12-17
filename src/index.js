@@ -437,7 +437,7 @@ class TerserPlugin {
           outputSource = new SourceMapSource(
             code,
             file,
-            JSON.parse(map),
+            map,
             input,
             inputSourceMap,
             true
