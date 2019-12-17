@@ -5415,10 +5415,10 @@ exports[`extractComments option should match snapshot for a "function" value: wa
 
 exports[`extractComments option should match snapshot for comment file when filename is nested: assets 1`] = `
 Object {
-  "nested/directory/1.js?25230a6dbf5eaf7a3c2b": "/*! For license information please see ../../one.js */
+  "nested/directory/1.js?099192633c45c35374f0": "/*! For license information please see ../../one.js */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[1],[,function(n,o){n.exports=Math.random()}]]);",
-  "nested/directory/one.js?73d245132cdd9cd5d8ea": "/*! For license information please see ../../one.js */
-!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={0:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"nested/directory/\\"+({}[e]||e)+\\".js?\\"+{1:\\"25230a6dbf5eaf7a3c2b\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(1).then(r.t.bind(null,1,7)),e.exports=Math.random()}]);",
+  "nested/directory/one.js?48a8001fecc6cb256242": "/*! For license information please see ../../one.js */
+!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={0:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"nested/directory/\\"+({}[e]||e)+\\".js?\\"+{1:\\"099192633c45c35374f0\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(1).then(r.t.bind(null,1,7)),e.exports=Math.random()}]);",
   "one.js": "/*! Legal Comment */
 
 /**
@@ -6373,20 +6373,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string and when filename is a function: assets 1`] = `
 Object {
-  "chunks/4.4.js.LICENSE?f2d7cf92c5c748f550ec": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE?cc6b8060c9052cc3dfed": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/4.4.js?f2d7cf92c5c748f550ec": "/*! For license information please see 4.4.js.LICENSE?f2d7cf92c5c748f550ec */
+  "chunks/4.4.js?cc6b8060c9052cc3dfed": "/*! For license information please see 4.4.js.LICENSE?cc6b8060c9052cc3dfed */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?a545a8ef37ed1f362c5a": "/**
+  "filename/four.js.LICENSE?a3d997aa5d1a52961110": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?a545a8ef37ed1f362c5a": "/*! For license information please see four.js.LICENSE?a545a8ef37ed1f362c5a */
+  "filename/four.js?a3d997aa5d1a52961110": "/*! For license information please see four.js.LICENSE?a3d997aa5d1a52961110 */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js.LICENSE?74532d6fc80a1b3b4fc8": "/*! Legal Comment */
+  "filename/one.js.LICENSE?214b29d10ccb54d8b589": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6402,9 +6402,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?74532d6fc80a1b3b4fc8": "/*! For license information please see one.js.LICENSE?74532d6fc80a1b3b4fc8 */
-!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,f=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&f.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);f.length;)f.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"f2d7cf92c5c748f550ec\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(f);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var f=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/three.js.LICENSE?415500b5f5bba8bdcfda": "/**
+  "filename/one.js?214b29d10ccb54d8b589": "/*! For license information please see one.js.LICENSE?214b29d10ccb54d8b589 */
+!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"cc6b8060c9052cc3dfed\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
+  "filename/three.js.LICENSE?e59397d2ec9daa17bfdc": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6414,14 +6414,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?415500b5f5bba8bdcfda": "/*! For license information please see three.js.LICENSE?415500b5f5bba8bdcfda */
+  "filename/three.js?e59397d2ec9daa17bfdc": "/*! For license information please see three.js.LICENSE?e59397d2ec9daa17bfdc */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/two.js.LICENSE?930ce50f67f04a992b42": "/**
+  "filename/two.js.LICENSE?89bb2d3285f583c21af2": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?930ce50f67f04a992b42": "/*! For license information please see two.js.LICENSE?930ce50f67f04a992b42 */
+  "filename/two.js?89bb2d3285f583c21af2": "/*! For license information please see two.js.LICENSE?89bb2d3285f583c21af2 */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
 }
 `;
@@ -6432,20 +6432,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string and with placeholders: assets 1`] = `
 Object {
-  "chunks/4.4.js.LICENSE?query=?f2d7cf92c5c748f550ec&filebase=4.4.js": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE?query=?cc6b8060c9052cc3dfed&filebase=4.4.js": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/4.4.js?f2d7cf92c5c748f550ec": "/*! License information can be found in chunks/4.4.js.LICENSE?query=?f2d7cf92c5c748f550ec&filebase=4.4.js */
+  "chunks/4.4.js?cc6b8060c9052cc3dfed": "/*! License information can be found in chunks/4.4.js.LICENSE?query=?cc6b8060c9052cc3dfed&filebase=4.4.js */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?query=?a545a8ef37ed1f362c5a&filebase=four.js": "/**
+  "filename/four.js.LICENSE?query=?a3d997aa5d1a52961110&filebase=four.js": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?a545a8ef37ed1f362c5a": "/*! License information can be found in filename/four.js.LICENSE?query=?a545a8ef37ed1f362c5a&filebase=four.js */
+  "filename/four.js?a3d997aa5d1a52961110": "/*! License information can be found in filename/four.js.LICENSE?query=?a3d997aa5d1a52961110&filebase=four.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js.LICENSE?query=?74532d6fc80a1b3b4fc8&filebase=one.js": "/*! Legal Comment */
+  "filename/one.js.LICENSE?query=?214b29d10ccb54d8b589&filebase=one.js": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6461,9 +6461,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?74532d6fc80a1b3b4fc8": "/*! License information can be found in filename/one.js.LICENSE?query=?74532d6fc80a1b3b4fc8&filebase=one.js */
-!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,f=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&f.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);f.length;)f.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"f2d7cf92c5c748f550ec\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(f);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var f=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/three.js.LICENSE?query=?415500b5f5bba8bdcfda&filebase=three.js": "/**
+  "filename/one.js?214b29d10ccb54d8b589": "/*! License information can be found in filename/one.js.LICENSE?query=?214b29d10ccb54d8b589&filebase=one.js */
+!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"cc6b8060c9052cc3dfed\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
+  "filename/three.js.LICENSE?query=?e59397d2ec9daa17bfdc&filebase=three.js": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6473,14 +6473,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?415500b5f5bba8bdcfda": "/*! License information can be found in filename/three.js.LICENSE?query=?415500b5f5bba8bdcfda&filebase=three.js */
+  "filename/three.js?e59397d2ec9daa17bfdc": "/*! License information can be found in filename/three.js.LICENSE?query=?e59397d2ec9daa17bfdc&filebase=three.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/two.js.LICENSE?query=?930ce50f67f04a992b42&filebase=two.js": "/**
+  "filename/two.js.LICENSE?query=?89bb2d3285f583c21af2&filebase=two.js": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?930ce50f67f04a992b42": "/*! License information can be found in filename/two.js.LICENSE?query=?930ce50f67f04a992b42&filebase=two.js */
+  "filename/two.js?89bb2d3285f583c21af2": "/*! License information can be found in filename/two.js.LICENSE?query=?89bb2d3285f583c21af2&filebase=two.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
 }
 `;
@@ -6491,20 +6491,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string: assets 1`] = `
 Object {
-  "chunks/4.4.js.LICENSE?f2d7cf92c5c748f550ec": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE?cc6b8060c9052cc3dfed": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/4.4.js?f2d7cf92c5c748f550ec": "/*! For license information please see 4.4.js.LICENSE?f2d7cf92c5c748f550ec */
+  "chunks/4.4.js?cc6b8060c9052cc3dfed": "/*! For license information please see 4.4.js.LICENSE?cc6b8060c9052cc3dfed */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?a545a8ef37ed1f362c5a": "/**
+  "filename/four.js.LICENSE?a3d997aa5d1a52961110": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?a545a8ef37ed1f362c5a": "/*! For license information please see four.js.LICENSE?a545a8ef37ed1f362c5a */
+  "filename/four.js?a3d997aa5d1a52961110": "/*! For license information please see four.js.LICENSE?a3d997aa5d1a52961110 */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js.LICENSE?74532d6fc80a1b3b4fc8": "/*! Legal Comment */
+  "filename/one.js.LICENSE?214b29d10ccb54d8b589": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6520,9 +6520,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?74532d6fc80a1b3b4fc8": "/*! For license information please see one.js.LICENSE?74532d6fc80a1b3b4fc8 */
-!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,f=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&f.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);f.length;)f.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"f2d7cf92c5c748f550ec\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(f);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var f=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/three.js.LICENSE?415500b5f5bba8bdcfda": "/**
+  "filename/one.js?214b29d10ccb54d8b589": "/*! For license information please see one.js.LICENSE?214b29d10ccb54d8b589 */
+!function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"cc6b8060c9052cc3dfed\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
+  "filename/three.js.LICENSE?e59397d2ec9daa17bfdc": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6532,14 +6532,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?415500b5f5bba8bdcfda": "/*! For license information please see three.js.LICENSE?415500b5f5bba8bdcfda */
+  "filename/three.js?e59397d2ec9daa17bfdc": "/*! For license information please see three.js.LICENSE?e59397d2ec9daa17bfdc */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/two.js.LICENSE?930ce50f67f04a992b42": "/**
+  "filename/two.js.LICENSE?89bb2d3285f583c21af2": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?930ce50f67f04a992b42": "/*! For license information please see two.js.LICENSE?930ce50f67f04a992b42 */
+  "filename/two.js?89bb2d3285f583c21af2": "/*! For license information please see two.js.LICENSE?89bb2d3285f583c21af2 */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
 }
 `;

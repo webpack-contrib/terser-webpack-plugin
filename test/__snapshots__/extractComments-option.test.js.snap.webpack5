@@ -4094,10 +4094,10 @@ exports[`extractComments option should match snapshot for a "function" value: wa
 
 exports[`extractComments option should match snapshot for comment file when filename is nested: assets 1`] = `
 Object {
-  "nested/directory/627.js?99533ce659959fb71881": "/*! For license information please see ../../one.js */
+  "nested/directory/627.js?b7f374007999b0d749f3": "/*! For license information please see ../../one.js */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[627],{627:o=>{o.exports=Math.random()}}]);",
-  "nested/directory/one.js?75fb6cadd1dc3e110fb1": "/*! For license information please see ../../one.js */
-(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"nested/directory/\\"+e+\\".js?99533ce659959fb71881\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var d=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(f);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),p=o&&o.target&&o.target.src;d.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+p+\\")\\",d.name=\\"ChunkLoadError\\",d.type=u,d.request=p,a(d)}};var f=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],d=0,f=[];d<i.length;d++)a=i[d],t.o(e,a)&&e[a]&&f.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);f.length;)f.shift()()};var n=o})(),t(900)})();",
+  "nested/directory/one.js?fb649ed7f7dff38918a1": "/*! For license information please see ../../one.js */
+(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"nested/directory/\\"+e+\\".js?b7f374007999b0d749f3\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var d=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(f);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),p=o&&o.target&&o.target.src;d.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+p+\\")\\",d.name=\\"ChunkLoadError\\",d.type=u,d.request=p,a(d)}};var f=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],d=0,f=[];d<i.length;d++)a=i[d],t.o(e,a)&&e[a]&&f.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);f.length;)f.shift()()};var n=o})(),t(900)})();",
   "one.js": "/*! Legal Comment */
 
 /**
@@ -5000,20 +5000,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string and when filename is a function: assets 1`] = `
 Object {
-  "chunks/627.627.js.LICENSE?99533ce659959fb71881": "/*! Legal Comment */
+  "chunks/627.627.js.LICENSE?b7f374007999b0d749f3": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/627.627.js?99533ce659959fb71881": "/*! For license information please see 627.627.js.LICENSE?99533ce659959fb71881 */
+  "chunks/627.627.js?b7f374007999b0d749f3": "/*! For license information please see 627.627.js.LICENSE?b7f374007999b0d749f3 */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[627],{627:o=>{o.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?56e718df374034b271a7": "/**
+  "filename/four.js.LICENSE?d98fedbb2c69f0baecc7": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?56e718df374034b271a7": "/*! For license information please see four.js.LICENSE?56e718df374034b271a7 */
+  "filename/four.js?d98fedbb2c69f0baecc7": "/*! For license information please see four.js.LICENSE?d98fedbb2c69f0baecc7 */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
-  "filename/one.js.LICENSE?c33a8818c3facff055cd": "/*! Legal Comment */
+  "filename/one.js.LICENSE?fee73ec5a497104c9d2a": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -5029,9 +5029,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?c33a8818c3facff055cd": "/*! For license information please see one.js.LICENSE?c33a8818c3facff055cd */
-(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?99533ce659959fb71881\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var f=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(p);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),c=o&&o.target&&o.target.src;f.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+c+\\")\\",f.name=\\"ChunkLoadError\\",f.type=u,f.request=c,a(f)}};var p=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],f=0,p=[];f<i.length;f++)a=i[f],t.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);p.length;)p.shift()()};var n=o})(),t(900)})();",
-  "filename/three.js.LICENSE?2828f1d336de8dcba6b7": "/**
+  "filename/one.js?fee73ec5a497104c9d2a": "/*! For license information please see one.js.LICENSE?fee73ec5a497104c9d2a */
+(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?b7f374007999b0d749f3\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var f=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(p);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),d=o&&o.target&&o.target.src;f.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+d+\\")\\",f.name=\\"ChunkLoadError\\",f.type=u,f.request=d,a(f)}};var p=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],f=0,p=[];f<i.length;f++)a=i[f],t.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);p.length;)p.shift()()};var n=o})(),t(900)})();",
+  "filename/three.js.LICENSE?b2f123df060c826bcdac": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -5041,14 +5041,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?2828f1d336de8dcba6b7": "/*! For license information please see three.js.LICENSE?2828f1d336de8dcba6b7 */
+  "filename/three.js?b2f123df060c826bcdac": "/*! For license information please see three.js.LICENSE?b2f123df060c826bcdac */
 (()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
-  "filename/two.js.LICENSE?981e6ff2b7df62a3c43b": "/**
+  "filename/two.js.LICENSE?06b6fb2112eac2a3f277": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?981e6ff2b7df62a3c43b": "/*! For license information please see two.js.LICENSE?981e6ff2b7df62a3c43b */
+  "filename/two.js?06b6fb2112eac2a3f277": "/*! For license information please see two.js.LICENSE?06b6fb2112eac2a3f277 */
 (()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
 }
 `;
@@ -5063,14 +5063,14 @@ Object {
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/627.627.js?99533ce659959fb71881": "/*! License information can be found in chunks/627.627.js.LICENSE?query=&filebase=627.627.js */
+  "chunks/627.627.js?b7f374007999b0d749f3": "/*! License information can be found in chunks/627.627.js.LICENSE?query=&filebase=627.627.js */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[627],{627:o=>{o.exports=Math.random()}}]);",
   "filename/four.js.LICENSE?query=&filebase=four.js": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?56e718df374034b271a7": "/*! License information can be found in filename/four.js.LICENSE?query=&filebase=four.js */
+  "filename/four.js?d98fedbb2c69f0baecc7": "/*! License information can be found in filename/four.js.LICENSE?query=&filebase=four.js */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
   "filename/one.js.LICENSE?query=&filebase=one.js": "/*! Legal Comment */
 
@@ -5088,8 +5088,8 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?c33a8818c3facff055cd": "/*! License information can be found in filename/one.js.LICENSE?query=&filebase=one.js */
-(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?99533ce659959fb71881\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var f=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(p);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),c=o&&o.target&&o.target.src;f.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+c+\\")\\",f.name=\\"ChunkLoadError\\",f.type=u,f.request=c,a(f)}};var p=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],f=0,p=[];f<i.length;f++)a=i[f],t.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);p.length;)p.shift()()};var n=o})(),t(900)})();",
+  "filename/one.js?fee73ec5a497104c9d2a": "/*! License information can be found in filename/one.js.LICENSE?query=&filebase=one.js */
+(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?b7f374007999b0d749f3\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var f=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(p);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),d=o&&o.target&&o.target.src;f.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+d+\\")\\",f.name=\\"ChunkLoadError\\",f.type=u,f.request=d,a(f)}};var p=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],f=0,p=[];f<i.length;f++)a=i[f],t.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);p.length;)p.shift()()};var n=o})(),t(900)})();",
   "filename/three.js.LICENSE?query=&filebase=three.js": "/**
  * Duplicate comment in same file.
  * @license MIT
@@ -5100,14 +5100,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?2828f1d336de8dcba6b7": "/*! License information can be found in filename/three.js.LICENSE?query=&filebase=three.js */
+  "filename/three.js?b2f123df060c826bcdac": "/*! License information can be found in filename/three.js.LICENSE?query=&filebase=three.js */
 (()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
   "filename/two.js.LICENSE?query=&filebase=two.js": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?981e6ff2b7df62a3c43b": "/*! License information can be found in filename/two.js.LICENSE?query=&filebase=two.js */
+  "filename/two.js?06b6fb2112eac2a3f277": "/*! License information can be found in filename/two.js.LICENSE?query=&filebase=two.js */
 (()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
 }
 `;
@@ -5122,14 +5122,14 @@ Object {
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/627.627.js?99533ce659959fb71881": "/*! For license information please see 627.627.js.LICENSE */
+  "chunks/627.627.js?b7f374007999b0d749f3": "/*! For license information please see 627.627.js.LICENSE */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[627],{627:o=>{o.exports=Math.random()}}]);",
   "filename/four.js.LICENSE": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?56e718df374034b271a7": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js?d98fedbb2c69f0baecc7": "/*! For license information please see four.js.LICENSE */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
   "filename/one.js.LICENSE": "/*! Legal Comment */
 
@@ -5147,8 +5147,8 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?c33a8818c3facff055cd": "/*! For license information please see one.js.LICENSE */
-(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?99533ce659959fb71881\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var f=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(p);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),c=o&&o.target&&o.target.src;f.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+c+\\")\\",f.name=\\"ChunkLoadError\\",f.type=u,f.request=c,a(f)}};var p=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],f=0,p=[];f<i.length;f++)a=i[f],t.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);p.length;)p.shift()()};var n=o})(),t(900)})();",
+  "filename/one.js?fee73ec5a497104c9d2a": "/*! For license information please see one.js.LICENSE */
+(()=>{var e={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},r={};function t(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return e[o](n,n.exports,t),n.exports}t.m=e,t.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);t.r(o);var n={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)n[r]=()=>e[r];return n.default=()=>e,t.d(o,n),o},t.d=(e,r)=>{for(var o in r)t.o(r,o)&&!t.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:r[o]})},t.f={},t.e=e=>Promise.all(Object.keys(t.f).reduce((r,o)=>(t.f[o](e,r),r),[])),t.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?b7f374007999b0d749f3\\",t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),t.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},t.p=\\"\\",(()=>{var e={255:0};t.f.j=(r,o)=>{var n=t.o(e,r)?e[r]:void 0;if(0!==n)if(n)o.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});o.push(n[2]=a);var i,u=t.p+t.u(r),s=document.createElement(\\"script\\");s.charset=\\"utf-8\\",s.timeout=120,t.nc&&s.setAttribute(\\"nonce\\",t.nc),s.src=u;var f=new Error;i=o=>{i=()=>{},s.onerror=s.onload=null,clearTimeout(p);var a=(()=>{if(t.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n))return n[1]})();if(a){var u=o&&(\\"load\\"===o.type?\\"missing\\":o.type),d=o&&o.target&&o.target.src;f.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+u+\\": \\"+d+\\")\\",f.name=\\"ChunkLoadError\\",f.type=u,f.request=d,a(f)}};var p=setTimeout(()=>{i({type:\\"timeout\\",target:s})},12e4);s.onerror=s.onload=i,document.head.appendChild(s)}};var r=window.webpackJsonp=window.webpackJsonp||[],o=r.push.bind(r);r.push=function(r){for(var o,a,i=r[0],u=r[1],s=r[3],f=0,p=[];f<i.length;f++)a=i[f],t.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)t.o(u,o)&&(t.m[o]=u[o]);for(s&&s(t),n&&n(r);p.length;)p.shift()()};var n=o})(),t(900)})();",
   "filename/three.js.LICENSE": "/**
  * Duplicate comment in same file.
  * @license MIT
@@ -5159,14 +5159,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?2828f1d336de8dcba6b7": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js?b2f123df060c826bcdac": "/*! For license information please see three.js.LICENSE */
 (()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
   "filename/two.js.LICENSE": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?981e6ff2b7df62a3c43b": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js?06b6fb2112eac2a3f277": "/*! For license information please see two.js.LICENSE */
 (()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
 }
 `;
