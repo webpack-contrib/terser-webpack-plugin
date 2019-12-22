@@ -36,6 +36,7 @@ jest.mock('jest-worker', () => {
         require(workerPath).transform(data)
       )),
       end: (workerEnd = jest.fn()),
+      getStderr: jest.fn(),
     };
   });
 });
