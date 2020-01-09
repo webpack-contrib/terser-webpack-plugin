@@ -41,7 +41,7 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     strategy:
-      maxParallel: 5
+      maxParallel: 4
       matrix:
         node-13:
           node_version: ^13.0.0
@@ -51,9 +51,6 @@ jobs:
           webpack_version: latest
         node-10:
           node_version: ^10.13.0
-          webpack_version: latest
-        node-8:
-          node_version: ^8.9.0
           webpack_version: latest
         node-10-canary:
           node_version: ^10.13.0
@@ -97,7 +94,7 @@ jobs:
     pool:
       vmImage: macOS-latest
     strategy:
-      maxParallel: 5
+      maxParallel: 4
       matrix:
         node-13:
           node_version: ^13.0.0
@@ -107,9 +104,6 @@ jobs:
           webpack_version: latest
         node-10:
           node_version: ^10.13.0
-          webpack_version: latest
-        node-8:
-          node_version: ^8.9.0
           webpack_version: latest
         node-10-canary:
           node_version: ^10.13.0
@@ -153,7 +147,7 @@ jobs:
     pool:
       vmImage: windows-latest
     strategy:
-      maxParallel: 5
+      maxParallel: 4
       matrix:
         node-13:
           node_version: ^13.0.0
@@ -163,9 +157,6 @@ jobs:
           webpack_version: latest
         node-10:
           node_version: ^10.13.0
-          webpack_version: latest
-        node-8:
-          node_version: ^8.9.0
           webpack_version: latest
         node-10-canary:
           node_version: ^10.13.0
