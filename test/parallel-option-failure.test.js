@@ -34,6 +34,9 @@ jest.mock('jest-worker', () => {
         throw new Error('jest-worker failed');
       })),
       end: (workerEnd = jest.fn()),
+      getStderr: jest.fn(() => {
+        console.warn('jest-worker warning from getStderr');
+      }),
     };
   });
 });
@@ -65,7 +68,13 @@ describe('parallel option', () => {
         : { parallel: true }
     ).apply(compiler);
 
+    const warning = jest.spyOn(console, 'warn');
+
     const stats = await compile(compiler);
+
+    expect(warning).toHaveBeenLastCalledWith(
+      'jest-worker warning from getStderr'
+    );
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
@@ -84,7 +93,13 @@ describe('parallel option', () => {
     it('should match snapshot for errors into the "jest-worker" package whe the "cache" option is "true"', async () => {
       new TerserPlugin({ parallel: true, cache: true }).apply(compiler);
 
+      const warning = jest.spyOn(console, 'warn');
+
       const stats = await compile(compiler);
+
+      expect(warning).toHaveBeenLastCalledWith(
+        'jest-worker warning from getStderr'
+      );
 
       expect(Worker).toHaveBeenCalledTimes(1);
       expect(Worker).toHaveBeenLastCalledWith(workerPath, {
