@@ -31,7 +31,7 @@ export default class TaskRunner {
     return minify(task);
   }
 
-  async run(tasks) {
+  async run(tasks, onCompletedTask) {
     if (this.numberWorkers > 1) {
       this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
 
@@ -40,8 +40,26 @@ export default class TaskRunner {
       if (this.worker.getStderr()) this.worker.getStderr().pipe(process.stderr);
     }
 
-    return Promise.all(
-      tasks.map((task) => {
+    let inputIndex = -1;
+    let outputIndex = 0;
+    const handlers = {};
+
+    const offerResult = (idx, task, completedTask) => {
+      return new Promise((resolve) => {
+        handlers[idx] = () => {
+          onCompletedTask(task, completedTask);
+          delete handlers[idx];
+          resolve();
+        };
+        while (outputIndex in handlers) {
+          handlers[outputIndex]();
+          outputIndex += 1;
+        }
+      });
+    };
+
+    const runTasks = async () => {
+      for (const task of tasks) {
         const enqueue = async () => {
           let result;
 
@@ -61,13 +79,22 @@ export default class TaskRunner {
           return result;
         };
 
-        if (this.cache.isEnabled()) {
-          return this.cache.get(task).then((data) => data, enqueue);
-        }
+        const promise = this.cache.isEnabled()
+          ? this.cache.get(task).then((data) => data, enqueue)
+          : enqueue();
 
-        return enqueue();
-      })
-    );
+        inputIndex += 1;
+
+        // eslint-disable-next-line no-await-in-loop
+        await offerResult(inputIndex, task, await promise);
+      }
+    };
+
+    const workerPromises = [];
+    for (let i = 0; i < Math.max(1, this.numberWorkers); i++) {
+      workerPromises.push(runTasks());
+    }
+    await Promise.all(workerPromises);
   }
 
   async exit() {

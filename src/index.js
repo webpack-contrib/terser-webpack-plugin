@@ -191,7 +191,7 @@ class TerserPlugin {
     return webpackVersion[0] === '4';
   }
 
-  generateTasks(compiler, compilation, chunks, processedAssets) {
+  *generateTasks(compiler, compilation, chunks, processedAssets) {
     const existingAssets = new Set(
       Object.keys(compilation.assets).map((assetFilename) =>
         TerserPlugin.removeQueryString(assetFilename)
@@ -215,11 +215,10 @@ class TerserPlugin {
     );
     const files = [].concat(additionalChunkAssets).concat(chunksFiles);
 
-    const tasks = [];
-
-    files.forEach((file) => {
+    for (const file of files) {
       if (!matchObject(file)) {
-        return;
+        // eslint-disable-next-line no-continue
+        continue;
       }
 
       let inputSourceMap;
@@ -227,7 +226,8 @@ class TerserPlugin {
       const asset = compilation.assets[file];
 
       if (processedAssets.has(asset)) {
-        return;
+        // eslint-disable-next-line no-continue
+        continue;
       }
 
       try {
@@ -339,7 +339,7 @@ class TerserPlugin {
           };
         }
 
-        tasks.push(task);
+        yield task;
       } catch (error) {
         compilation.errors.push(
           TerserPlugin.buildError(
@@ -350,9 +350,7 @@ class TerserPlugin {
           )
         );
       }
-    });
-
-    return tasks;
+    }
   }
 
   apply(compiler) {
@@ -398,10 +396,6 @@ class TerserPlugin {
         processedAssets
       );
 
-      if (tasks.length === 0) {
-        return Promise.resolve();
-      }
-
       const CacheEngine = TerserPlugin.isWebpack4()
         ? // eslint-disable-next-line global-require
           require('./Webpack4Cache').default
@@ -413,12 +407,8 @@ class TerserPlugin {
         parallel: this.options.parallel,
       });
 
-      const completedTasks = await taskRunner.run(tasks);
-
-      await taskRunner.exit();
-
-      completedTasks.forEach((completedTask, index) => {
-        const { file, input, inputSourceMap, commentsFilename } = tasks[index];
+      const handleCompletedTask = (task, completedTask) => {
+        const { file, input, inputSourceMap, commentsFilename } = task;
         const { error, map, code, warnings } = completedTask;
         let { extractedComments } = completedTask;
 
@@ -541,7 +531,10 @@ class TerserPlugin {
             }
           });
         }
-      });
+      };
+
+      await taskRunner.run(tasks, handleCompletedTask);
+      await taskRunner.exit();
 
       return Promise.resolve();
     };
