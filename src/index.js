@@ -184,13 +184,7 @@ class TerserPlugin {
   }
 
   static hasAsset(commentFilename, assets) {
-    const assetFilenames = Object.keys(assets).map((assetFilename) =>
-      TerserPlugin.removeQueryString(assetFilename)
-    );
-
-    return assetFilenames.includes(
-      TerserPlugin.removeQueryString(commentFilename)
-    );
+    return assets.has(TerserPlugin.removeQueryString(commentFilename));
   }
 
   static isWebpack4() {
@@ -198,6 +192,12 @@ class TerserPlugin {
   }
 
   generateTasks(compiler, compilation, chunks, processedAssets) {
+    const existingAssets = new Set(
+      Object.keys(compilation.assets).map((assetFilename) =>
+        TerserPlugin.removeQueryString(assetFilename)
+      )
+    );
+
     const matchObject = ModuleFilenameHelpers.matchObject.bind(
       // eslint-disable-next-line no-undefined
       undefined,
@@ -290,7 +290,7 @@ class TerserPlugin {
 
         if (
           commentsFilename &&
-          TerserPlugin.hasAsset(commentsFilename, compilation.assets)
+          TerserPlugin.hasAsset(commentsFilename, existingAssets)
         ) {
           // Todo make error and stop uglifing in next major release
           compilation.warnings.push(
