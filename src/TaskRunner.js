@@ -35,9 +35,13 @@ export default class TaskRunner {
     if (this.numberWorkers > 1) {
       this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
 
-      // show syntax error from jest-worker
+      // Show syntax error from jest-worker
       // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
-      if (this.worker.getStderr()) this.worker.getStderr().pipe(process.stderr);
+      const workerStderr = this.worker.getStderr();
+
+      if (workerStderr) {
+        workerStderr.pipe(process.stderr);
+      }
     }
 
     return Promise.all(
