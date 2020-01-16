@@ -292,7 +292,7 @@ class TerserPlugin {
           commentsFilename &&
           TerserPlugin.hasAsset(commentsFilename, existingAssets)
         ) {
-          // Todo make error and stop uglifing in next major release
+          // Todo make error and stop uglifying in next major release
           compilation.warnings.push(
             new Error(
               `The comment file "${TerserPlugin.removeQueryString(
