@@ -2,17 +2,17 @@
 
 exports[`extractComments option should match snapshot and do not preserve and extract "all" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/***/
+  "chunks/4.4.js.LICENSE.txt": "/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/******/
+  "filename/four.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -65,9 +65,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/******/
+  "filename/one.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -175,9 +175,9 @@ Object {
 * Foo
 */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/******/
+  "filename/three.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -235,9 +235,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/******/
+  "filename/two.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -299,17 +299,17 @@ Object {
 
 exports[`extractComments option should match snapshot and do not preserve and extract "all" comments: assets 2`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/***/
+  "chunks/4.4.js.LICENSE.txt": "/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/******/
+  "filename/four.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -362,9 +362,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/******/
+  "filename/one.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -472,9 +472,9 @@ Object {
 * Foo
 */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/******/
+  "filename/three.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -532,9 +532,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/******/
+  "filename/two.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -604,22 +604,22 @@ exports[`extractComments option should match snapshot and do not preserve and ex
 
 exports[`extractComments option should match snapshot and do not preserve and extract "some" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -635,9 +635,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -647,9 +647,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -677,22 +677,22 @@ exports[`extractComments option should match snapshot and do not preserve or ext
 
 exports[`extractComments option should match snapshot and extract "some" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -708,9 +708,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -720,9 +720,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -1250,7 +1250,7 @@ exports[`extractComments option should match snapshot and preserve "all" and do 
 
 exports[`extractComments option should match snapshot and preserve "all" and extract "all" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{
 /***/4:
 /***/function(n,o){
@@ -1258,13 +1258,13 @@ Object {
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random();
 /***/}}]);",
-  "chunks/4.4.js.LICENSE": "/***/
+  "chunks/4.4.js.LICENSE.txt": "/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -1358,7 +1358,7 @@ n.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/four.js.LICENSE": "/******/
+  "filename/four.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -1411,7 +1411,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // install a JSONP callback for chunk loading
 /******/function t(t){
@@ -1622,7 +1622,7 @@ e.exports=Math.random();
 */
 e.exports=Math.random()}
 /******/]);",
-  "filename/one.js.LICENSE": "/******/
+  "filename/one.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -1730,7 +1730,7 @@ e.exports=Math.random()}
 * Foo
 */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -1832,7 +1832,7 @@ e.exports=Math.random()}
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/three.js.LICENSE": "/******/
+  "filename/three.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -1890,7 +1890,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -1985,7 +1985,7 @@ e.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/]);",
-  "filename/two.js.LICENSE": "/******/
+  "filename/two.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -2047,7 +2047,7 @@ e.exports=Math.random();
 
 exports[`extractComments option should match snapshot and preserve "all" and extract "all" comments: assets 2`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{
 /***/4:
 /***/function(n,o){
@@ -2055,13 +2055,13 @@ Object {
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random();
 /***/}}]);",
-  "chunks/4.4.js.LICENSE": "/***/
+  "chunks/4.4.js.LICENSE.txt": "/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -2155,7 +2155,7 @@ n.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/four.js.LICENSE": "/******/
+  "filename/four.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -2208,7 +2208,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // install a JSONP callback for chunk loading
 /******/function t(t){
@@ -2419,7 +2419,7 @@ e.exports=Math.random();
 */
 e.exports=Math.random()}
 /******/]);",
-  "filename/one.js.LICENSE": "/******/
+  "filename/one.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -2527,7 +2527,7 @@ e.exports=Math.random()}
 * Foo
 */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -2629,7 +2629,7 @@ e.exports=Math.random()}
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/three.js.LICENSE": "/******/
+  "filename/three.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -2687,7 +2687,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -2782,7 +2782,7 @@ e.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/]);",
-  "filename/two.js.LICENSE": "/******/
+  "filename/two.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -2852,7 +2852,7 @@ exports[`extractComments option should match snapshot and preserve "all" and ext
 
 exports[`extractComments option should match snapshot and preserve "all" and extract "some" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{
 /***/4:
 /***/function(n,o){
@@ -2860,11 +2860,11 @@ Object {
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random();
 /***/}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -2958,12 +2958,12 @@ n.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // install a JSONP callback for chunk loading
 /******/function t(t){
@@ -3174,7 +3174,7 @@ e.exports=Math.random();
 */
 e.exports=Math.random()}
 /******/]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -3190,7 +3190,7 @@ e.exports=Math.random()}
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -3292,7 +3292,7 @@ e.exports=Math.random()}
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -3302,7 +3302,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -3397,7 +3397,7 @@ e.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -3407,7 +3407,7 @@ e.exports=Math.random();
 
 exports[`extractComments option should match snapshot and preserve "all" and extract "some" comments: assets 2`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{
 /***/4:
 /***/function(n,o){
@@ -3415,11 +3415,11 @@ Object {
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random();
 /***/}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -3513,12 +3513,12 @@ n.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // install a JSONP callback for chunk loading
 /******/function t(t){
@@ -3729,7 +3729,7 @@ e.exports=Math.random();
 */
 e.exports=Math.random()}
 /******/]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -3745,7 +3745,7 @@ e.exports=Math.random()}
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -3847,7 +3847,7 @@ e.exports=Math.random()}
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -3857,7 +3857,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -3952,7 +3952,7 @@ e.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -3962,7 +3962,7 @@ e.exports=Math.random();
 
 exports[`extractComments option should match snapshot and preserve "all" and extract "some" comments: assets 3`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{
 /***/4:
 /***/function(n,o){
@@ -3970,11 +3970,11 @@ Object {
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random();
 /***/}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -4068,12 +4068,12 @@ n.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // install a JSONP callback for chunk loading
 /******/function t(t){
@@ -4284,7 +4284,7 @@ e.exports=Math.random();
 */
 e.exports=Math.random()}
 /******/]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -4300,7 +4300,7 @@ e.exports=Math.random()}
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -4402,7 +4402,7 @@ e.exports=Math.random()}
 e.exports=Math.random();
 /***/}
 /******/});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -4412,7 +4412,7 @@ e.exports=Math.random();
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 /******/!function(e){// webpackBootstrap
 /******/ // The module cache
 /******/var t={};
@@ -4507,7 +4507,7 @@ e.exports=Math.random();
 e.exports=Math.random();
 /***/}
 /******/]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -5114,17 +5114,17 @@ Array [
 
 exports[`extractComments option should match snapshot for a "function" value: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/***/
+  "chunks/4.4.js.LICENSE.txt": "/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/******/
+  "filename/four.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5177,9 +5177,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/******/
+  "filename/one.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5287,9 +5287,9 @@ Object {
 * Foo
 */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/******/
+  "filename/three.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5347,9 +5347,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/******/
+  "filename/two.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5479,9 +5479,9 @@ exports[`extractComments option should match snapshot for the "/Foo/" value: ass
 Object {
   "chunks/4.4.js": "(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
   "filename/four.js": "!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Foo */
+  "filename/one.js.LICENSE.txt": "/*! Legal Foo */
 
 // Foo
 
@@ -5506,9 +5506,9 @@ exports[`extractComments option should match snapshot for the "Foo" value: asset
 Object {
   "chunks/4.4.js": "(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
   "filename/four.js": "!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Foo */
+  "filename/one.js.LICENSE.txt": "/*! Legal Foo */
 
 // Foo
 
@@ -5531,17 +5531,17 @@ exports[`extractComments option should match snapshot for the "Foo" value: warni
 
 exports[`extractComments option should match snapshot for the "all" value: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/***/
+  "chunks/4.4.js.LICENSE.txt": "/***/
 
 /*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/******/
+  "filename/four.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5594,9 +5594,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/******/
+  "filename/one.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5704,9 +5704,9 @@ Object {
 * Foo
 */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/******/
+  "filename/three.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5764,9 +5764,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/******/
+  "filename/two.js.LICENSE.txt": "/******/
 
 // webpackBootstrap
 
@@ -5832,22 +5832,22 @@ exports[`extractComments option should match snapshot for the "all" value: warni
 
 exports[`extractComments option should match snapshot for the "extractComments.condition" with the "true" value: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -5863,9 +5863,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -5875,9 +5875,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -5944,22 +5944,22 @@ exports[`extractComments option should match snapshot for the "false" value: war
 
 exports[`extractComments option should match snapshot for the "some" value: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -5975,9 +5975,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -5987,9 +5987,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -6003,22 +6003,22 @@ exports[`extractComments option should match snapshot for the "some" value: warn
 
 exports[`extractComments option should match snapshot for the "true" value: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6034,9 +6034,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6046,9 +6046,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -6062,22 +6062,22 @@ exports[`extractComments option should match snapshot for the "true" value: warn
 
 exports[`extractComments option should match snapshot for the \`true\` value and dedupe duplicate comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6093,9 +6093,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6105,9 +6105,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -6121,34 +6121,34 @@ exports[`extractComments option should match snapshot for the \`true\` value and
 
 exports[`extractComments option should match snapshot for the \`true\` value and preserve "@license" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){
 /**
  * Duplicate comment in difference files.
  * @license MIT
  */
 e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),
 /**
  * Utility functions for the foo package.
  * @license Apache-2.0
  */
 e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6164,7 +6164,7 @@ e.exports=Math.random()}]);",
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){
 /**
  * Duplicate comment in same file.
@@ -6179,7 +6179,7 @@ e.exports=Math.random()}]);",
  * @license MIT
  */
 e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6189,14 +6189,14 @@ e.exports=Math.random()}});",
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){
 /**
  * Information.
  * @license MIT
  */
 e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -6210,22 +6210,22 @@ exports[`extractComments option should match snapshot for the \`true\` value and
 
 exports[`extractComments option should match snapshot when a value is not specify: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! For license information please see four.js.LICENSE */
+  "filename/four.js": "/*! For license information please see four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! For license information please see one.js.LICENSE */
+  "filename/one.js": "/*! For license information please see one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6241,9 +6241,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! For license information please see three.js.LICENSE */
+  "filename/three.js": "/*! For license information please see three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6253,9 +6253,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! For license information please see two.js.LICENSE */
+  "filename/two.js": "/*! For license information please see two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -6373,20 +6373,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string and when filename is a function: assets 1`] = `
 Object {
-  "chunks/4.4.js.LICENSE?0d35f63957729e81b118": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt?0d35f63957729e81b118": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/4.4.js?0d35f63957729e81b118": "/*! For license information please see 4.4.js.LICENSE?0d35f63957729e81b118 */
+  "chunks/4.4.js?0d35f63957729e81b118": "/*! For license information please see 4.4.js.LICENSE.txt?0d35f63957729e81b118 */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?35134103952620121f05": "/**
+  "filename/four.js.LICENSE.txt?35134103952620121f05": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?35134103952620121f05": "/*! For license information please see four.js.LICENSE?35134103952620121f05 */
+  "filename/four.js?35134103952620121f05": "/*! For license information please see four.js.LICENSE.txt?35134103952620121f05 */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js.LICENSE?19e885e9e2dc0b871339": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt?19e885e9e2dc0b871339": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6402,9 +6402,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?19e885e9e2dc0b871339": "/*! For license information please see one.js.LICENSE?19e885e9e2dc0b871339 */
+  "filename/one.js?19e885e9e2dc0b871339": "/*! For license information please see one.js.LICENSE.txt?19e885e9e2dc0b871339 */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"0d35f63957729e81b118\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/three.js.LICENSE?13cb6ccc89341ab206cb": "/**
+  "filename/three.js.LICENSE.txt?13cb6ccc89341ab206cb": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6414,14 +6414,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?13cb6ccc89341ab206cb": "/*! For license information please see three.js.LICENSE?13cb6ccc89341ab206cb */
+  "filename/three.js?13cb6ccc89341ab206cb": "/*! For license information please see three.js.LICENSE.txt?13cb6ccc89341ab206cb */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/two.js.LICENSE?684900904c1034ab900f": "/**
+  "filename/two.js.LICENSE.txt?684900904c1034ab900f": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?684900904c1034ab900f": "/*! For license information please see two.js.LICENSE?684900904c1034ab900f */
+  "filename/two.js?684900904c1034ab900f": "/*! For license information please see two.js.LICENSE.txt?684900904c1034ab900f */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
 }
 `;
@@ -6432,20 +6432,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string and with placeholders: assets 1`] = `
 Object {
-  "chunks/4.4.js.LICENSE?query=?0d35f63957729e81b118&filebase=4.4.js": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt?query=?0d35f63957729e81b118&filebase=4.4.js": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/4.4.js?0d35f63957729e81b118": "/*! License information can be found in chunks/4.4.js.LICENSE?query=?0d35f63957729e81b118&filebase=4.4.js */
+  "chunks/4.4.js?0d35f63957729e81b118": "/*! License information can be found in chunks/4.4.js.LICENSE.txt?query=?0d35f63957729e81b118&filebase=4.4.js */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?query=?35134103952620121f05&filebase=four.js": "/**
+  "filename/four.js.LICENSE.txt?query=?35134103952620121f05&filebase=four.js": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?35134103952620121f05": "/*! License information can be found in filename/four.js.LICENSE?query=?35134103952620121f05&filebase=four.js */
+  "filename/four.js?35134103952620121f05": "/*! License information can be found in filename/four.js.LICENSE.txt?query=?35134103952620121f05&filebase=four.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js.LICENSE?query=?19e885e9e2dc0b871339&filebase=one.js": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt?query=?19e885e9e2dc0b871339&filebase=one.js": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6461,9 +6461,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?19e885e9e2dc0b871339": "/*! License information can be found in filename/one.js.LICENSE?query=?19e885e9e2dc0b871339&filebase=one.js */
+  "filename/one.js?19e885e9e2dc0b871339": "/*! License information can be found in filename/one.js.LICENSE.txt?query=?19e885e9e2dc0b871339&filebase=one.js */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"0d35f63957729e81b118\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/three.js.LICENSE?query=?13cb6ccc89341ab206cb&filebase=three.js": "/**
+  "filename/three.js.LICENSE.txt?query=?13cb6ccc89341ab206cb&filebase=three.js": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6473,14 +6473,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?13cb6ccc89341ab206cb": "/*! License information can be found in filename/three.js.LICENSE?query=?13cb6ccc89341ab206cb&filebase=three.js */
+  "filename/three.js?13cb6ccc89341ab206cb": "/*! License information can be found in filename/three.js.LICENSE.txt?query=?13cb6ccc89341ab206cb&filebase=three.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/two.js.LICENSE?query=?684900904c1034ab900f&filebase=two.js": "/**
+  "filename/two.js.LICENSE.txt?query=?684900904c1034ab900f&filebase=two.js": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?684900904c1034ab900f": "/*! License information can be found in filename/two.js.LICENSE?query=?684900904c1034ab900f&filebase=two.js */
+  "filename/two.js?684900904c1034ab900f": "/*! License information can be found in filename/two.js.LICENSE.txt?query=?684900904c1034ab900f&filebase=two.js */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
 }
 `;
@@ -6491,20 +6491,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string: assets 1`] = `
 Object {
-  "chunks/4.4.js.LICENSE?0d35f63957729e81b118": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt?0d35f63957729e81b118": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/4.4.js?0d35f63957729e81b118": "/*! For license information please see 4.4.js.LICENSE?0d35f63957729e81b118 */
+  "chunks/4.4.js?0d35f63957729e81b118": "/*! For license information please see 4.4.js.LICENSE.txt?0d35f63957729e81b118 */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE?35134103952620121f05": "/**
+  "filename/four.js.LICENSE.txt?35134103952620121f05": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?35134103952620121f05": "/*! For license information please see four.js.LICENSE?35134103952620121f05 */
+  "filename/four.js?35134103952620121f05": "/*! For license information please see four.js.LICENSE.txt?35134103952620121f05 */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/one.js.LICENSE?19e885e9e2dc0b871339": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt?19e885e9e2dc0b871339": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6520,9 +6520,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/one.js?19e885e9e2dc0b871339": "/*! For license information please see one.js.LICENSE?19e885e9e2dc0b871339 */
+  "filename/one.js?19e885e9e2dc0b871339": "/*! For license information please see one.js.LICENSE.txt?19e885e9e2dc0b871339 */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js?\\"+{4:\\"0d35f63957729e81b118\\"}[e]}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/three.js.LICENSE?13cb6ccc89341ab206cb": "/**
+  "filename/three.js.LICENSE.txt?13cb6ccc89341ab206cb": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6532,14 +6532,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?13cb6ccc89341ab206cb": "/*! For license information please see three.js.LICENSE?13cb6ccc89341ab206cb */
+  "filename/three.js?13cb6ccc89341ab206cb": "/*! For license information please see three.js.LICENSE.txt?13cb6ccc89341ab206cb */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/two.js.LICENSE?684900904c1034ab900f": "/**
+  "filename/two.js.LICENSE.txt?684900904c1034ab900f": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?684900904c1034ab900f": "/*! For license information please see two.js.LICENSE?684900904c1034ab900f */
+  "filename/two.js?684900904c1034ab900f": "/*! For license information please see two.js.LICENSE.txt?684900904c1034ab900f */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
 }
 `;
@@ -6550,22 +6550,22 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to multiple files: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! License information can be found in chunks/4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! License information can be found in chunks/4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! License information can be found in filename/four.js.LICENSE */
+  "filename/four.js": "/*! License information can be found in filename/four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! License information can be found in filename/one.js.LICENSE */
+  "filename/one.js": "/*! License information can be found in filename/one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6581,9 +6581,9 @@ Object {
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! License information can be found in filename/three.js.LICENSE */
+  "filename/three.js": "/*! License information can be found in filename/three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6593,9 +6593,9 @@ Object {
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! License information can be found in filename/two.js.LICENSE */
+  "filename/two.js": "/*! License information can be found in filename/two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
@@ -6661,34 +6661,34 @@ exports[`extractComments option should match snapshot when extracts without cond
 
 exports[`extractComments option should match snapshot when no condition, preserve only \`/@license/i\` comments and extract "some" comments: assets 1`] = `
 Object {
-  "chunks/4.4.js": "/*! License information can be found in chunks/4.4.js.LICENSE */
+  "chunks/4.4.js": "/*! License information can be found in chunks/4.4.js.LICENSE.txt */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[4],{4:function(n,o){
 /** @license Copyright 2112 Moon. **/
 n.exports=Math.random()}}]);",
-  "chunks/4.4.js.LICENSE": "/*! Legal Comment */
+  "chunks/4.4.js.LICENSE.txt": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "filename/four.js": "/*! License information can be found in filename/four.js.LICENSE */
+  "filename/four.js": "/*! License information can be found in filename/four.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=3)}({3:function(e,t){
 /**
  * Duplicate comment in difference files.
  * @license MIT
  */
 e.exports=Math.random()}});",
-  "filename/four.js.LICENSE": "/**
+  "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/one.js": "/*! License information can be found in filename/one.js.LICENSE */
+  "filename/one.js": "/*! License information can be found in filename/one.js.LICENSE.txt */
 !function(e){function t(t){for(var r,o,u=t[0],i=t[1],a=0,l=[];a<u.length;a++)o=u[a],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&l.push(n[o][0]),n[o]=0;for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r]);for(c&&c(t);l.length;)l.shift()()}var r={},n={1:0};function o(t){if(r[t])return r[t].exports;var n=r[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.e=function(e){var t=[],r=n[e];if(0!==r)if(r)t.push(r[2]);else{var u=new Promise((function(t,o){r=n[e]=[t,o]}));t.push(r[2]=u);var i,a=document.createElement(\\"script\\");a.charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.src=function(e){return o.p+\\"chunks/\\"+e+\\".\\"+({}[e]||e)+\\".js\\"}(e);var c=new Error;i=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=n[e];if(0!==r){if(r){var o=t&&(\\"load\\"===t.type?\\"missing\\":t.type),u=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+e+\\" failed.\\\\n(\\"+o+\\": \\"+u+\\")\\",c.name=\\"ChunkLoadError\\",c.type=o,c.request=u,r[1](c)}n[e]=void 0}};var l=setTimeout((function(){i({type:\\"timeout\\",target:a})}),12e4);a.onerror=a.onload=i,document.head.appendChild(a)}return Promise.all(t)},o.m=e,o.c=r,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var n in e)o.d(r,n,function(t){return e[t]}.bind(null,n));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o.oe=function(e){throw console.error(e),e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=t,u=u.slice();for(var a=0;a<u.length;a++)t(u[a]);var c=i;o(o.s=0)}([function(e,t,r){r.e(4).then(r.t.bind(null,4,7)),
 /**
  * Utility functions for the foo package.
  * @license Apache-2.0
  */
 e.exports=Math.random()}]);",
-  "filename/one.js.LICENSE": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
 /**
  * @preserve Copyright 2009 SomeThirdParty.
@@ -6704,7 +6704,7 @@ e.exports=Math.random()}]);",
 
 /*! Legal Foo */
 ",
-  "filename/three.js": "/*! License information can be found in filename/three.js.LICENSE */
+  "filename/three.js": "/*! License information can be found in filename/three.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=2)}({2:function(e,t){
 /**
  * Duplicate comment in same file.
@@ -6719,7 +6719,7 @@ e.exports=Math.random()}]);",
  * @license MIT
  */
 e.exports=Math.random()}});",
-  "filename/three.js.LICENSE": "/**
+  "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in same file.
  * @license MIT
  */
@@ -6729,14 +6729,14 @@ e.exports=Math.random()}});",
  * @license MIT
  */
 ",
-  "filename/two.js": "/*! License information can be found in filename/two.js.LICENSE */
+  "filename/two.js": "/*! License information can be found in filename/two.js.LICENSE.txt */
 !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=1)}([,function(e,t){
 /**
  * Information.
  * @license MIT
  */
 e.exports=Math.random()}]);",
-  "filename/two.js.LICENSE": "/**
+  "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */

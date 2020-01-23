@@ -12,9 +12,9 @@ exports[`terserOptions option should match snapshot for the "compress" option wi
 
 exports[`terserOptions option should match snapshot for the "compress" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "/*! For license information please see main.js.LICENSE */
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
 (()=>{var o={791:o=>{const r=2+2;o.exports=function o(){const r=2+2;console.log(r+1+2)}}};var r={};function t(n){if(r[n]){return r[n].exports}var e=r[n]={exports:{}};o[n](e,e.exports,t);return e.exports}t(791)})();",
-  "main.js.LICENSE": "/* @preserve*/
+  "main.js.LICENSE.txt": "/* @preserve*/
 ",
 }
 `;

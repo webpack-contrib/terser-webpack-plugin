@@ -291,7 +291,8 @@ class TerserPlugin {
 
           if (this.options.extractComments) {
             commentsFilename =
-              this.options.extractComments.filename || '[file].LICENSE[query]';
+              this.options.extractComments.filename ||
+              '[file].LICENSE.txt[query]';
 
             if (TerserPlugin.isWebpack4()) {
               // Todo remove this in next major release
