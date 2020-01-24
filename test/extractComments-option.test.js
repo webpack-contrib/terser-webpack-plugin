@@ -17,14 +17,14 @@ function createFilenameFn() {
 
         // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
         // You must consider this
-        return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
+        return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
       }
     : (fileData) => {
         expect(fileData).toBeDefined();
 
         // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
         // You must consider this
-        return `${fileData.filename}.LICENSE${fileData.query}`;
+        return `${fileData.filename}.LICENSE.txt${fileData.query}`;
       };
 }
 
@@ -309,7 +309,7 @@ describe('extractComments option', () => {
     new TerserPlugin({
       extractComments: {
         condition: true,
-        filename: `[file].LICENSE?query=[query]&filebase=[${
+        filename: `[file].LICENSE.txt?query=[query]&filebase=[${
           getCompiler.isWebpack4() ? 'filebase' : 'base'
         }]`,
         banner(licenseFile) {

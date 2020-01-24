@@ -395,7 +395,7 @@ Default: `true`
 
 Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a)).
 By default extract only comments using `/^\**!|@preserve|@license|@cc_on/i` regexp condition and remove remaining comments.
-If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE`.
+If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE.txt`.
 The `terserOptions.output.comments` option specifies whether the comment will be preserved, i.e. it is possible to preserve some comments (e.g. annotations) while extracting others or even preserving comments that have been extracted.
 
 #### `Boolean`
@@ -500,7 +500,7 @@ module.exports = {
             // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
             // You must consider this
             // The "fileData" argument contains object with "filename", "basename", "query"
-            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
+            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
           },
           banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
@@ -533,7 +533,7 @@ module.exports = {
 
             // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
             // You must consider this
-            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
+            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
           },
           banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
@@ -548,12 +548,12 @@ module.exports = {
 ##### `filename`
 
 Type: `String|Function<(string) -> String>`
-Default: `[file].LICENSE[query]`
+Default: `[file].LICENSE.txt[query]`
 
 Available placeholders: `[file]`, `[query]` and `[filebase]` (`[base]` for webpack 5).
 
 The file where the extracted comments will be stored.
-Default is to append the suffix `.LICENSE` to the original filename.
+Default is to append the suffix `.LICENSE.txt` to the original filename.
 
 **webpack.config.js**
 
@@ -600,7 +600,7 @@ module.exports = {
 
             // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
             // You must consider this
-            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE$2');
+            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
           },
           banner: (commentsFile) => {
             return `My custom banner about license information ${commentsFile}`;
