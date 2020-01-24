@@ -49,29 +49,33 @@ export default class TaskRunner {
 
     const scheduledTasks = tasks.map((task) => {
       const enqueue = async () => {
-        let result;
+        let taskResult;
 
         try {
-          result = await this.runTask(task);
+          taskResult = await this.runTask(task);
         } catch (error) {
-          result = { error };
+          taskResult = { error };
         }
 
-        if (this.cache.isEnabled() && !result.error) {
-          return this.cache.store(task, result).then(
-            () => result,
-            () => result
+        const { callback } = task;
+
+        if (this.cache.isEnabled() && !taskResult.error) {
+          taskResult = await this.cache.store(task, taskResult).then(
+            () => taskResult,
+            () => taskResult
           );
         }
 
-        return result;
+        callback(taskResult);
+
+        return taskResult;
       };
 
-      if (this.cache.isEnabled()) {
-        return this.cache.get(task).then((data) => data, enqueue);
-      }
-
-      return queue.add(enqueue);
+      return queue.add(
+        this.cache.isEnabled()
+          ? async () => this.cache.get(task).then((data) => data, enqueue)
+          : enqueue
+      );
     });
 
     return Promise.all(scheduledTasks);
