@@ -10,6 +10,7 @@ const workerPath = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
+    this.files = options.files;
     this.cache = options.cache;
     this.numberWorkers = TaskRunner.getNumberWorkers(options.parallel);
   }
@@ -32,7 +33,7 @@ export default class TaskRunner {
     return minify(task);
   }
 
-  async run(tasks) {
+  async run(taskGenerator) {
     if (this.numberWorkers > 1) {
       this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
 
@@ -46,8 +47,10 @@ export default class TaskRunner {
     }
 
     const queue = new PQueue({ concurrency: this.numberWorkers });
+    const scheduledTasks = [];
 
-    const scheduledTasks = tasks.map((task) => {
+    for (const file of this.files) {
+      const task = taskGenerator(file).next().value;
       const enqueue = async () => {
         let taskResult;
 
@@ -71,12 +74,14 @@ export default class TaskRunner {
         return taskResult;
       };
 
-      return queue.add(
-        this.cache.isEnabled()
-          ? async () => this.cache.get(task).then((data) => data, enqueue)
-          : enqueue
+      scheduledTasks.push(
+        queue.add(
+          this.cache.isEnabled()
+            ? async () => this.cache.get(task).then((data) => data, enqueue)
+            : enqueue
+        )
       );
-    });
+    }
 
     return Promise.all(scheduledTasks);
   }
