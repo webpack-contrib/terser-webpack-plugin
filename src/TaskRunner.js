@@ -1,5 +1,6 @@
 import os from 'os';
 
+import PQueue from 'p-queue';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 
@@ -44,34 +45,36 @@ export default class TaskRunner {
       }
     }
 
-    return Promise.all(
-      tasks.map((task) => {
-        const enqueue = async () => {
-          let result;
+    const queue = new PQueue({ concurrency: this.numberWorkers });
 
-          try {
-            result = await this.runTask(task);
-          } catch (error) {
-            result = { error };
-          }
+    const scheduledTasks = tasks.map((task) => {
+      const enqueue = async () => {
+        let result;
 
-          if (this.cache.isEnabled() && !result.error) {
-            return this.cache.store(task, result).then(
-              () => result,
-              () => result
-            );
-          }
-
-          return result;
-        };
-
-        if (this.cache.isEnabled()) {
-          return this.cache.get(task).then((data) => data, enqueue);
+        try {
+          result = await this.runTask(task);
+        } catch (error) {
+          result = { error };
         }
 
-        return enqueue();
-      })
-    );
+        if (this.cache.isEnabled() && !result.error) {
+          return this.cache.store(task, result).then(
+            () => result,
+            () => result
+          );
+        }
+
+        return result;
+      };
+
+      if (this.cache.isEnabled()) {
+        return this.cache.get(task).then((data) => data, enqueue);
+      }
+
+      return queue.add(enqueue);
+    });
+
+    return Promise.all(scheduledTasks);
   }
 
   async exit() {
