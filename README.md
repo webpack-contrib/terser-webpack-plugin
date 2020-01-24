@@ -752,7 +752,7 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 
 ## License
 
-[MIT](./LICENSE.txt)
+[MIT](./LICENSE)
 
 [npm]: https://img.shields.io/npm/v/terser-webpack-plugin.svg
 [npm-url]: https://npmjs.com/package/terser-webpack-plugin
