@@ -50,8 +50,7 @@ export default class TaskRunner {
     const scheduledTasks = [];
 
     for (const file of this.files) {
-      const task = taskGenerator(file).next().value;
-      const enqueue = async () => {
+      const enqueue = async (task) => {
         let taskResult;
 
         try {
@@ -60,8 +59,6 @@ export default class TaskRunner {
           taskResult = { error };
         }
 
-        const { callback } = task;
-
         if (this.cache.isEnabled() && !taskResult.error) {
           taskResult = await this.cache.store(task, taskResult).then(
             () => taskResult,
@@ -69,17 +66,24 @@ export default class TaskRunner {
           );
         }
 
-        callback(taskResult);
+        task.callback(taskResult);
 
         return taskResult;
       };
 
       scheduledTasks.push(
-        limit(() =>
-          this.cache.isEnabled()
-            ? this.cache.get(task).then((data) => data, enqueue)
-            : enqueue()
-        )
+        limit(() => {
+          const task = taskGenerator(file).next().value;
+
+          if (this.cache.isEnabled()) {
+            return this.cache.get(task).then(
+              (data) => data,
+              () => enqueue(task)
+            );
+          }
+
+          return enqueue(task);
+        })
       );
     }
 
