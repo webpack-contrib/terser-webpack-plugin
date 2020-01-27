@@ -27,9 +27,9 @@ exports[`warningsFilter option should match snapshot for a "function" value and 
 
 exports[`warningsFilter option should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by file): warnings 1`] = `
 Array [
+  "Terser Plugin: Dropping side-effect-free statement [two.js:1,9]",
   "Terser Plugin: Dropping unreachable code [webpack://./test/fixtures/unreachable-code-2.js:1,40]",
   "Terser Plugin: Dropping unused function foo [webpack://./test/fixtures/unreachable-code-2.js:1,0]",
-  "Terser Plugin: Dropping side-effect-free statement [two.js:1,9]",
 ]
 `;
 
@@ -44,8 +44,8 @@ exports[`warningsFilter option should match snapshot for a "function" value and 
 
 exports[`warningsFilter option should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by message): warnings 1`] = `
 Array [
-  "Terser Plugin: Dropping unreachable code [webpack://./test/fixtures/unreachable-code.js:1,40]",
   "Terser Plugin: Dropping unreachable code [webpack://./test/fixtures/unreachable-code-2.js:1,40]",
+  "Terser Plugin: Dropping unreachable code [webpack://./test/fixtures/unreachable-code.js:1,40]",
 ]
 `;
 
