@@ -197,18 +197,10 @@ class TerserPlugin {
     return webpackVersion[0] === '4';
   }
 
-  *taskGenerator(compiler, compilation, matchObject, processedAssets, file) {
-    if (!matchObject(file)) {
-      return;
-    }
-
+  *taskGenerator(compiler, compilation, file) {
     let inputSourceMap;
 
     const asset = compilation.assets[file];
-
-    if (processedAssets.has(asset)) {
-      return;
-    }
 
     try {
       let input;
@@ -387,7 +379,7 @@ class TerserPlugin {
 
         // Updating assets
         // eslint-disable-next-line no-param-reassign
-        processedAssets.add((compilation.assets[file] = outputSource));
+        compilation.assets[file] = outputSource;
 
         // Handling warnings
         if (warnings && warnings.length > 0) {
@@ -493,23 +485,25 @@ class TerserPlugin {
     }
 
     const optimizeFn = async (compilation, chunks) => {
-      const processedAssets = new WeakSet();
       const matchObject = ModuleFilenameHelpers.matchObject.bind(
         // eslint-disable-next-line no-undefined
         undefined,
         this.options
       );
-      const additionalChunkAssets = Array.from(
-        compilation.additionalChunkAssets || []
-      );
-      const filteredChunks = Array.from(chunks).filter(
-        (chunk) => this.options.chunkFilter && this.options.chunkFilter(chunk)
-      );
-      const chunksFiles = filteredChunks.reduce(
-        (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-        []
-      );
-      const files = [].concat(additionalChunkAssets).concat(chunksFiles);
+      const files = []
+        .concat(Array.from(compilation.additionalChunkAssets || []))
+        .concat(
+          Array.from(chunks)
+            .filter(
+              (chunk) =>
+                this.options.chunkFilter && this.options.chunkFilter(chunk)
+            )
+            .reduce(
+              (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
+              []
+            )
+        )
+        .filter((file) => matchObject(file));
 
       if (files.length === 0) {
         return Promise.resolve();
@@ -524,9 +518,7 @@ class TerserPlugin {
       const taskGenerator = this.taskGenerator.bind(
         this,
         compiler,
-        compilation,
-        matchObject,
-        processedAssets
+        compilation
       );
       const taskRunner = new TaskRunner({
         files,

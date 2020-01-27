@@ -46,7 +46,9 @@ export default class TaskRunner {
       }
     }
 
-    const limit = pLimit(this.numberWorkers);
+    const limit = pLimit(
+      this.numberWorkers === 0 ? Infinity : this.numberWorkers
+    );
     const scheduledTasks = [];
 
     for (const file of this.files) {
@@ -77,7 +79,7 @@ export default class TaskRunner {
 
           if (this.cache.isEnabled()) {
             return this.cache.get(task).then(
-              (data) => data,
+              (taskResult) => task.callback(taskResult),
               () => enqueue(task)
             );
           }
