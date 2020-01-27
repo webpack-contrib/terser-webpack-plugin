@@ -101,7 +101,7 @@ describe('parallel option', () => {
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
-      numWorkers: os.cpus().length - 1,
+      numWorkers: Math.min(4, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
       Object.keys(stats.compilation.assets).length
@@ -132,7 +132,7 @@ describe('parallel option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should match snapshot for the "true" value and only one file passed', async () => {
+  it('should match snapshot for the "true" value when only one file passed', async () => {
     compiler = getCompiler({
       entry: `${__dirname}/fixtures/entry.js`,
     });
@@ -143,7 +143,7 @@ describe('parallel option', () => {
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
-      numWorkers: os.cpus().length - 1,
+      numWorkers: Math.min(1, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
       Object.keys(stats.compilation.assets).length
@@ -155,11 +155,77 @@ describe('parallel option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should match snapshot for the "true" value and two files passed', async () => {
+  it('should match snapshot for the "true" value and the number of files is less than the number of cores', async () => {
+    const entries = {};
+
+    for (let i = 0; i < os.cpus().length / 2; i++) {
+      entries[`entry-${i}`] = `${__dirname}/fixtures/entry.js`;
+    }
+
+    compiler = getCompiler({ entry: entries });
+
+    new TerserPlugin({ parallel: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(Worker).toHaveBeenCalledTimes(1);
+    expect(Worker).toHaveBeenLastCalledWith(workerPath, {
+      numWorkers: Math.min(Object.keys(entries).length, os.cpus().length - 1),
+    });
+    expect(workerTransform).toHaveBeenCalledTimes(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerEnd).toHaveBeenCalledTimes(1);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should match snapshot for the "true" value and the number of files is same than the number of cores', async () => {
+    const entries = {};
+
+    for (let i = 0; i < os.cpus().length; i++) {
+      entries[`entry-${i}`] = `${__dirname}/fixtures/entry.js`;
+    }
+
+    compiler = getCompiler({ entry: entries });
+
+    new TerserPlugin({ parallel: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(Worker).toHaveBeenCalledTimes(1);
+    expect(Worker).toHaveBeenLastCalledWith(workerPath, {
+      numWorkers: Math.min(Object.keys(entries).length, os.cpus().length - 1),
+    });
+    expect(workerTransform).toHaveBeenCalledTimes(
+      Object.keys(stats.compilation.assets).length
+    );
+    expect(workerEnd).toHaveBeenCalledTimes(1);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should match snapshot for the "true" value and the number of files is more than the number of cores', async () => {
+    const entries = {};
+
+    for (let i = 0; i < os.cpus().length * 2; i++) {
+      entries[`entry-${i}`] = `${__dirname}/fixtures/entry.js`;
+    }
+
     compiler = getCompiler({
       entry: {
         one: `${__dirname}/fixtures/entry.js`,
         two: `${__dirname}/fixtures/entry.js`,
+        three: `${__dirname}/fixtures/entry.js`,
+        four: `${__dirname}/fixtures/entry.js`,
+        five: `${__dirname}/fixtures/entry.js`,
+        six: `${__dirname}/fixtures/entry.js`,
+        seven: `${__dirname}/fixtures/entry.js`,
+        eight: `${__dirname}/fixtures/entry.js`,
       },
     });
 
@@ -169,7 +235,7 @@ describe('parallel option', () => {
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
-      numWorkers: os.cpus().length - 1,
+      numWorkers: Math.min(Object.keys(entries).length, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
       Object.keys(stats.compilation.assets).length

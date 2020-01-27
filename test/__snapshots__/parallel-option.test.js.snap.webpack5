@@ -26,26 +26,56 @@ exports[`parallel option should match snapshot for the "false" value: errors 1`]
 
 exports[`parallel option should match snapshot for the "false" value: warnings 1`] = `Array []`;
 
-exports[`parallel option should match snapshot for the "true" value and only one file passed: assets 1`] = `
+exports[`parallel option should match snapshot for the "true" value and the number of files is less than the number of cores: assets 1`] = `
+Object {
+  "entry-0.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry-1.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is less than the number of cores: errors 1`] = `Array []`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is less than the number of cores: warnings 1`] = `Array []`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is more than the number of cores: assets 1`] = `
+Object {
+  "eight.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "five.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "four.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "seven.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "six.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "three.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is more than the number of cores: errors 1`] = `Array []`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is more than the number of cores: warnings 1`] = `Array []`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is same than the number of cores: assets 1`] = `
+Object {
+  "entry-0.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry-1.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry-2.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry-3.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is same than the number of cores: errors 1`] = `Array []`;
+
+exports[`parallel option should match snapshot for the "true" value and the number of files is same than the number of cores: warnings 1`] = `Array []`;
+
+exports[`parallel option should match snapshot for the "true" value when only one file passed: assets 1`] = `
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
 }
 `;
 
-exports[`parallel option should match snapshot for the "true" value and only one file passed: errors 1`] = `Array []`;
+exports[`parallel option should match snapshot for the "true" value when only one file passed: errors 1`] = `Array []`;
 
-exports[`parallel option should match snapshot for the "true" value and only one file passed: warnings 1`] = `Array []`;
-
-exports[`parallel option should match snapshot for the "true" value and two files passed: assets 1`] = `
-Object {
-  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-}
-`;
-
-exports[`parallel option should match snapshot for the "true" value and two files passed: errors 1`] = `Array []`;
-
-exports[`parallel option should match snapshot for the "true" value and two files passed: warnings 1`] = `Array []`;
+exports[`parallel option should match snapshot for the "true" value when only one file passed: warnings 1`] = `Array []`;
 
 exports[`parallel option should match snapshot for the "true" value: assets 1`] = `
 Object {

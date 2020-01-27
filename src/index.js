@@ -521,12 +521,13 @@ class TerserPlugin {
         compilation
       );
       const taskRunner = new TaskRunner({
+        taskGenerator,
         files,
         cache: new CacheEngine(compilation, this.options),
         parallel: this.options.parallel,
       });
 
-      await taskRunner.run(taskGenerator);
+      await taskRunner.run();
       await taskRunner.exit();
 
       return Promise.resolve();
