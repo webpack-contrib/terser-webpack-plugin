@@ -173,13 +173,7 @@ const minify = (options) => {
     terserOptions
   );
 
-  return {
-    error,
-    map,
-    code,
-    warnings,
-    extractedComments: extractedComments.sort(),
-  };
+  return { error, map, code, warnings, extractedComments };
 };
 
 module.exports = minify;
