@@ -80,6 +80,11 @@ export default class TaskRunner {
         limit(() => {
           const task = taskGenerator(file).next().value;
 
+          if (!task) {
+            // Something went wrong, for example the `cacheKeys` option throw an error
+            return Promise.resolve();
+          }
+
           if (this.cache.isEnabled()) {
             return this.cache.get(task).then(
               (taskResult) => task.callback(taskResult),
