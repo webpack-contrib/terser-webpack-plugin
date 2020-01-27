@@ -35,7 +35,10 @@ export default class TaskRunner {
 
   async run(taskGenerator) {
     if (this.numberWorkers > 1) {
-      this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
+      this.worker = new Worker(workerPath, {
+        // Do not create unnecessary workers when the number of files is less than the available cores
+        numWorkers: Math.min(this.files.length, this.numberWorkers),
+      });
 
       // Show syntax error from jest-worker
       // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
