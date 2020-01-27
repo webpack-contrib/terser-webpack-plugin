@@ -1,6 +1,6 @@
 import os from 'os';
 
-import PQueue from 'p-queue';
+import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 
@@ -46,7 +46,7 @@ export default class TaskRunner {
       }
     }
 
-    const queue = new PQueue({ concurrency: this.numberWorkers });
+    const limit = pLimit(this.numberWorkers);
     const scheduledTasks = [];
 
     for (const file of this.files) {
@@ -75,10 +75,10 @@ export default class TaskRunner {
       };
 
       scheduledTasks.push(
-        queue.add(
+        limit(() =>
           this.cache.isEnabled()
-            ? async () => this.cache.get(task).then((data) => data, enqueue)
-            : enqueue
+            ? this.cache.get(task).then((data) => data, enqueue)
+            : enqueue()
         )
       );
     }
