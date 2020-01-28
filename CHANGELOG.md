@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.2...v2.3.3) (2020-01-28)
+
+
+### Bug Fixes
+
+* license files now have .txt suffix by default ([#210](https://github.com/webpack-contrib/terser-webpack-plugin/issues/210)) ([de02f7b](https://github.com/webpack-contrib/terser-webpack-plugin/commit/de02f7b229a6ef91baa353681b1c546784672ab6))
+* reduce memory usage ([abfd950](https://github.com/webpack-contrib/terser-webpack-plugin/commit/abfd9506207cf392de63a0629de82145efff2361))
+
 ### [2.3.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.1...v2.3.2) (2020-01-09)
 
 
