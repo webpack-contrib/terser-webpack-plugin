@@ -197,7 +197,7 @@ class TerserPlugin {
     return webpackVersion[0] === '4';
   }
 
-  *taskGenerator(compiler, compilation, file) {
+  *taskGenerator(compiler, compilation, allExtractedComments, file) {
     let inputSourceMap;
 
     const asset = compilation.assets[file];
@@ -276,7 +276,7 @@ class TerserPlugin {
 
       const callback = (taskResult) => {
         const { error, map, code, warnings } = taskResult;
-        let { extractedComments } = taskResult;
+        const { extractedComments } = taskResult;
 
         let sourceMap = null;
 
@@ -320,59 +320,33 @@ class TerserPlugin {
           extractedComments &&
           extractedComments.length > 0
         ) {
-          if (commentsFilename in compilation.assets) {
-            const commentsFileSource = compilation.assets[
-              commentsFilename
-            ].source();
-
-            extractedComments = extractedComments.filter(
-              (comment) => !commentsFileSource.includes(comment)
-            );
+          if (!allExtractedComments[commentsFilename]) {
+            // eslint-disable-next-line no-param-reassign
+            allExtractedComments[commentsFilename] = [];
           }
 
-          if (extractedComments.length > 0) {
-            // Add a banner to the original file
-            if (this.options.extractComments.banner !== false) {
-              let banner =
-                this.options.extractComments.banner ||
-                `For license information please see ${path
-                  .relative(path.dirname(file), commentsFilename)
-                  .replace(/\\/g, '/')}`;
+          // eslint-disable-next-line no-param-reassign
+          allExtractedComments[commentsFilename] = allExtractedComments[
+            commentsFilename
+          ].concat(extractedComments);
 
-              if (typeof banner === 'function') {
-                banner = banner(commentsFilename);
-              }
+          // Add a banner to the original file
+          if (this.options.extractComments.banner !== false) {
+            let banner =
+              this.options.extractComments.banner ||
+              `For license information please see ${path
+                .relative(path.dirname(file), commentsFilename)
+                .replace(/\\/g, '/')}`;
 
-              if (banner) {
-                outputSource = new ConcatSource(
-                  `/*! ${banner} */\n`,
-                  outputSource
-                );
-              }
+            if (typeof banner === 'function') {
+              banner = banner(commentsFilename);
             }
 
-            const commentsSource = new RawSource(
-              `${extractedComments.join('\n\n')}\n`
-            );
-
-            if (commentsFilename in compilation.assets) {
-              // commentsFile already exists, append new comments...
-              if (
-                compilation.assets[commentsFilename] instanceof ConcatSource
-              ) {
-                compilation.assets[commentsFilename].add('\n');
-                compilation.assets[commentsFilename].add(commentsSource);
-              } else {
-                // eslint-disable-next-line no-param-reassign
-                compilation.assets[commentsFilename] = new ConcatSource(
-                  compilation.assets[commentsFilename],
-                  '\n',
-                  commentsSource
-                );
-              }
-            } else {
-              // eslint-disable-next-line no-param-reassign
-              compilation.assets[commentsFilename] = commentsSource;
+            if (banner) {
+              outputSource = new ConcatSource(
+                `/*! ${banner} */\n`,
+                outputSource
+              );
             }
           }
         }
@@ -515,10 +489,12 @@ class TerserPlugin {
         : // eslint-disable-next-line global-require
           require('./Webpack5Cache').default;
 
+      const allExtractedComments = {};
       const taskGenerator = this.taskGenerator.bind(
         this,
         compiler,
-        compilation
+        compilation,
+        allExtractedComments
       );
       const taskRunner = new TaskRunner({
         taskGenerator,
@@ -529,6 +505,17 @@ class TerserPlugin {
 
       await taskRunner.run();
       await taskRunner.exit();
+
+      Object.keys(allExtractedComments).forEach((commentsFilename) => {
+        const extractedComments = new Set([
+          ...allExtractedComments[commentsFilename].sort(),
+        ]);
+
+        // eslint-disable-next-line no-param-reassign
+        compilation.assets[commentsFilename] = new RawSource(
+          `${Array.from(extractedComments).join('\n\n')}\n`
+        );
+      });
 
       return Promise.resolve();
     };
