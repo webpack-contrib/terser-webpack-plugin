@@ -1,5 +1,6 @@
 import os from 'os';
 
+import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 
@@ -9,11 +10,15 @@ const workerPath = require.resolve('./worker');
 
 export default class TaskRunner {
   constructor(options = {}) {
+    this.taskGenerator = options.taskGenerator;
+    this.files = options.files;
     this.cache = options.cache;
-    this.numberWorkers = TaskRunner.getNumberWorkers(options.parallel);
+    this.availableNumberOfCores = TaskRunner.getAvailableNumberOfCores(
+      options.parallel
+    );
   }
 
-  static getNumberWorkers(parallel) {
+  static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
     const cpus = os.cpus() || { length: 1 };
@@ -31,9 +36,18 @@ export default class TaskRunner {
     return minify(task);
   }
 
-  async run(tasks) {
-    if (this.numberWorkers > 1) {
-      this.worker = new Worker(workerPath, { numWorkers: this.numberWorkers });
+  async run() {
+    const { availableNumberOfCores, cache, files, taskGenerator } = this;
+
+    let concurrency = Infinity;
+
+    if (availableNumberOfCores > 0) {
+      // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
+      const numWorkers = Math.min(files.length, availableNumberOfCores);
+
+      concurrency = numWorkers;
+
+      this.worker = new Worker(workerPath, { numWorkers });
 
       // Show syntax error from jest-worker
       // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
@@ -44,34 +58,53 @@ export default class TaskRunner {
       }
     }
 
-    return Promise.all(
-      tasks.map((task) => {
-        const enqueue = async () => {
-          let result;
+    const limit = pLimit(concurrency);
+    const scheduledTasks = [];
 
-          try {
-            result = await this.runTask(task);
-          } catch (error) {
-            result = { error };
+    for (const file of files) {
+      const enqueue = async (task) => {
+        let taskResult;
+
+        try {
+          taskResult = await this.runTask(task);
+        } catch (error) {
+          taskResult = { error };
+        }
+
+        if (cache.isEnabled() && !taskResult.error) {
+          taskResult = await cache.store(task, taskResult).then(
+            () => taskResult,
+            () => taskResult
+          );
+        }
+
+        task.callback(taskResult);
+
+        return taskResult;
+      };
+
+      scheduledTasks.push(
+        limit(() => {
+          const task = taskGenerator(file).next().value;
+
+          if (!task) {
+            // Something went wrong, for example the `cacheKeys` option throw an error
+            return Promise.resolve();
           }
 
-          if (this.cache.isEnabled() && !result.error) {
-            return this.cache.store(task, result).then(
-              () => result,
-              () => result
+          if (cache.isEnabled()) {
+            return cache.get(task).then(
+              (taskResult) => task.callback(taskResult),
+              () => enqueue(task)
             );
           }
 
-          return result;
-        };
+          return enqueue(task);
+        })
+      );
+    }
 
-        if (this.cache.isEnabled()) {
-          return this.cache.get(task).then((data) => data, enqueue);
-        }
-
-        return enqueue();
-      })
-    );
+    return Promise.all(scheduledTasks);
   }
 
   async exit() {

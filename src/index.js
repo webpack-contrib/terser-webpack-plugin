@@ -197,219 +197,86 @@ class TerserPlugin {
     return webpackVersion[0] === '4';
   }
 
-  apply(compiler) {
-    const { devtool, output, plugins } = compiler.options;
+  *taskGenerator(compiler, compilation, allExtractedComments, file) {
+    let inputSourceMap;
 
-    this.options.sourceMap =
-      typeof this.options.sourceMap === 'undefined'
-        ? (devtool &&
-            !devtool.includes('eval') &&
-            !devtool.includes('cheap') &&
-            (devtool.includes('source-map') ||
-              // Todo remove when `webpack@5` support will be dropped
-              devtool.includes('sourcemap'))) ||
-          (plugins &&
-            plugins.some(
-              (plugin) =>
-                plugin instanceof SourceMapDevToolPlugin &&
-                plugin.options &&
-                plugin.options.columns
-            ))
-        : Boolean(this.options.sourceMap);
+    const asset = compilation.assets[file];
 
-    if (
-      typeof this.options.terserOptions.module === 'undefined' &&
-      typeof output.module !== 'undefined'
-    ) {
-      this.options.terserOptions.module = output.module;
-    }
+    try {
+      let input;
 
-    if (
-      typeof this.options.terserOptions.ecma === 'undefined' &&
-      typeof output.ecmaVersion !== 'undefined'
-    ) {
-      this.options.terserOptions.ecma = output.ecmaVersion;
-    }
+      if (this.options.sourceMap && asset.sourceAndMap) {
+        const { source, map } = asset.sourceAndMap();
 
-    const optimizeFn = async (compilation, chunks) => {
-      const processedAssets = new WeakSet();
-      const matchObject = ModuleFilenameHelpers.matchObject.bind(
-        // eslint-disable-next-line no-undefined
-        undefined,
-        this.options
-      );
-      const additionalChunkAssets = Array.from(
-        compilation.additionalChunkAssets || []
-      );
-      const filteredChunks = Array.from(chunks).filter(
-        (chunk) => this.options.chunkFilter && this.options.chunkFilter(chunk)
-      );
-      const chunksFiles = filteredChunks.reduce(
-        (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-        []
-      );
-      const files = [].concat(additionalChunkAssets).concat(chunksFiles);
-      const tasks = [];
+        input = source;
 
-      files.forEach((file) => {
-        if (!matchObject(file)) {
-          return;
-        }
+        if (TerserPlugin.isSourceMap(map)) {
+          inputSourceMap = map;
+        } else {
+          inputSourceMap = map;
 
-        let inputSourceMap;
-
-        const asset = compilation.assets[file];
-
-        if (processedAssets.has(asset)) {
-          return;
-        }
-
-        try {
-          let input;
-
-          if (this.options.sourceMap && asset.sourceAndMap) {
-            const { source, map } = asset.sourceAndMap();
-
-            input = source;
-
-            if (TerserPlugin.isSourceMap(map)) {
-              inputSourceMap = map;
-            } else {
-              inputSourceMap = map;
-
-              compilation.warnings.push(
-                new Error(`${file} contains invalid source map`)
-              );
-            }
-          } else {
-            input = asset.source();
-            inputSourceMap = null;
-          }
-
-          // Handling comment extraction
-          let commentsFilename = false;
-
-          if (this.options.extractComments) {
-            commentsFilename =
-              this.options.extractComments.filename ||
-              '[file].LICENSE.txt[query]';
-
-            if (TerserPlugin.isWebpack4()) {
-              // Todo remove this in next major release
-              if (typeof commentsFilename === 'function') {
-                commentsFilename = commentsFilename.bind(null, file);
-              }
-            }
-
-            let query = '';
-            let filename = file;
-
-            const querySplit = filename.indexOf('?');
-
-            if (querySplit >= 0) {
-              query = filename.substr(querySplit);
-              filename = filename.substr(0, querySplit);
-            }
-
-            const lastSlashIndex = filename.lastIndexOf('/');
-
-            const basename =
-              lastSlashIndex === -1
-                ? filename
-                : filename.substr(lastSlashIndex + 1);
-
-            const data = { filename, basename, query };
-
-            commentsFilename = compilation.getPath(commentsFilename, data);
-          }
-
-          if (
-            commentsFilename &&
-            TerserPlugin.hasAsset(commentsFilename, compilation.assets)
-          ) {
-            // Todo make error and stop uglifing in next major release
-            compilation.warnings.push(
-              new Error(
-                `The comment file "${TerserPlugin.removeQueryString(
-                  commentsFilename
-                )}" conflicts with an existing asset, this may lead to code corruption, please use a different name`
-              )
-            );
-          }
-
-          const task = {
-            asset,
-            file,
-            input,
-            inputSourceMap,
-            commentsFilename,
-            extractComments: this.options.extractComments,
-            terserOptions: this.options.terserOptions,
-            minify: this.options.minify,
-          };
-
-          if (TerserPlugin.isWebpack4()) {
-            if (this.options.cache) {
-              const defaultCacheKeys = {
-                terser: terserPackageJson.version,
-                // eslint-disable-next-line global-require
-                'terser-webpack-plugin': require('../package.json').version,
-                'terser-webpack-plugin-options': this.options,
-                nodeVersion: process.version,
-                filename: file,
-                contentHash: crypto
-                  .createHash('md4')
-                  .update(input)
-                  .digest('hex'),
-              };
-
-              task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
-            }
-          } else {
-            task.cacheKeys = {
-              terser: terserPackageJson.version,
-              // eslint-disable-next-line global-require
-              'terser-webpack-plugin': require('../package.json').version,
-              'terser-webpack-plugin-options': this.options,
-            };
-          }
-
-          tasks.push(task);
-        } catch (error) {
-          compilation.errors.push(
-            TerserPlugin.buildError(
-              error,
-              file,
-              TerserPlugin.buildSourceMap(inputSourceMap),
-              new RequestShortener(compiler.context)
-            )
+          compilation.warnings.push(
+            new Error(`${file} contains invalid source map`)
           );
         }
-      });
-
-      if (tasks.length === 0) {
-        return Promise.resolve();
+      } else {
+        input = asset.source();
+        inputSourceMap = null;
       }
 
-      const CacheEngine = TerserPlugin.isWebpack4()
-        ? // eslint-disable-next-line global-require
-          require('./Webpack4Cache').default
-        : // eslint-disable-next-line global-require
-          require('./Webpack5Cache').default;
+      // Handling comment extraction
+      let commentsFilename = false;
 
-      const taskRunner = new TaskRunner({
-        cache: new CacheEngine(compilation, this.options),
-        parallel: this.options.parallel,
-      });
+      if (this.options.extractComments) {
+        commentsFilename =
+          this.options.extractComments.filename || '[file].LICENSE.txt[query]';
 
-      const completedTasks = await taskRunner.run(tasks);
+        if (TerserPlugin.isWebpack4()) {
+          // Todo remove this in next major release
+          if (typeof commentsFilename === 'function') {
+            commentsFilename = commentsFilename.bind(null, file);
+          }
+        }
 
-      await taskRunner.exit();
+        let query = '';
+        let filename = file;
 
-      completedTasks.forEach((completedTask, index) => {
-        const { file, input, inputSourceMap, commentsFilename } = tasks[index];
-        const { error, map, code, warnings } = completedTask;
-        let { extractedComments } = completedTask;
+        const querySplit = filename.indexOf('?');
+
+        if (querySplit >= 0) {
+          query = filename.substr(querySplit);
+          filename = filename.substr(0, querySplit);
+        }
+
+        const lastSlashIndex = filename.lastIndexOf('/');
+
+        const basename =
+          lastSlashIndex === -1
+            ? filename
+            : filename.substr(lastSlashIndex + 1);
+
+        const data = { filename, basename, query };
+
+        commentsFilename = compilation.getPath(commentsFilename, data);
+      }
+
+      if (
+        commentsFilename &&
+        TerserPlugin.hasAsset(commentsFilename, compilation.assets)
+      ) {
+        // Todo make error and stop uglifing in next major release
+        compilation.warnings.push(
+          new Error(
+            `The comment file "${TerserPlugin.removeQueryString(
+              commentsFilename
+            )}" conflicts with an existing asset, this may lead to code corruption, please use a different name`
+          )
+        );
+      }
+
+      const callback = (taskResult) => {
+        const { error, map, code, warnings } = taskResult;
+        const { extractedComments } = taskResult;
 
         let sourceMap = null;
 
@@ -453,66 +320,40 @@ class TerserPlugin {
           extractedComments &&
           extractedComments.length > 0
         ) {
-          if (commentsFilename in compilation.assets) {
-            const commentsFileSource = compilation.assets[
-              commentsFilename
-            ].source();
-
-            extractedComments = extractedComments.filter(
-              (comment) => !commentsFileSource.includes(comment)
-            );
+          if (!allExtractedComments[commentsFilename]) {
+            // eslint-disable-next-line no-param-reassign
+            allExtractedComments[commentsFilename] = [];
           }
 
-          if (extractedComments.length > 0) {
-            // Add a banner to the original file
-            if (this.options.extractComments.banner !== false) {
-              let banner =
-                this.options.extractComments.banner ||
-                `For license information please see ${path
-                  .relative(path.dirname(file), commentsFilename)
-                  .replace(/\\/g, '/')}`;
+          // eslint-disable-next-line no-param-reassign
+          allExtractedComments[commentsFilename] = allExtractedComments[
+            commentsFilename
+          ].concat(extractedComments);
 
-              if (typeof banner === 'function') {
-                banner = banner(commentsFilename);
-              }
+          // Add a banner to the original file
+          if (this.options.extractComments.banner !== false) {
+            let banner =
+              this.options.extractComments.banner ||
+              `For license information please see ${path
+                .relative(path.dirname(file), commentsFilename)
+                .replace(/\\/g, '/')}`;
 
-              if (banner) {
-                outputSource = new ConcatSource(
-                  `/*! ${banner} */\n`,
-                  outputSource
-                );
-              }
+            if (typeof banner === 'function') {
+              banner = banner(commentsFilename);
             }
 
-            const commentsSource = new RawSource(
-              `${extractedComments.join('\n\n')}\n`
-            );
-
-            if (commentsFilename in compilation.assets) {
-              // commentsFile already exists, append new comments...
-              if (
-                compilation.assets[commentsFilename] instanceof ConcatSource
-              ) {
-                compilation.assets[commentsFilename].add('\n');
-                compilation.assets[commentsFilename].add(commentsSource);
-              } else {
-                // eslint-disable-next-line no-param-reassign
-                compilation.assets[commentsFilename] = new ConcatSource(
-                  compilation.assets[commentsFilename],
-                  '\n',
-                  commentsSource
-                );
-              }
-            } else {
-              // eslint-disable-next-line no-param-reassign
-              compilation.assets[commentsFilename] = commentsSource;
+            if (banner) {
+              outputSource = new ConcatSource(
+                `/*! ${banner} */\n`,
+                outputSource
+              );
             }
           }
         }
 
         // Updating assets
         // eslint-disable-next-line no-param-reassign
-        processedAssets.add((compilation.assets[file] = outputSource));
+        compilation.assets[file] = outputSource;
 
         // Handling warnings
         if (warnings && warnings.length > 0) {
@@ -530,6 +371,150 @@ class TerserPlugin {
             }
           });
         }
+      };
+
+      const task = {
+        asset,
+        file,
+        input,
+        inputSourceMap,
+        commentsFilename,
+        extractComments: this.options.extractComments,
+        terserOptions: this.options.terserOptions,
+        minify: this.options.minify,
+        callback,
+      };
+
+      if (TerserPlugin.isWebpack4()) {
+        if (this.options.cache) {
+          const defaultCacheKeys = {
+            terser: terserPackageJson.version,
+            // eslint-disable-next-line global-require
+            'terser-webpack-plugin': require('../package.json').version,
+            'terser-webpack-plugin-options': this.options,
+            nodeVersion: process.version,
+            filename: file,
+            contentHash: crypto
+              .createHash('md4')
+              .update(input)
+              .digest('hex'),
+          };
+
+          task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
+        }
+      } else {
+        task.cacheKeys = {
+          terser: terserPackageJson.version,
+          // eslint-disable-next-line global-require
+          'terser-webpack-plugin': require('../package.json').version,
+          'terser-webpack-plugin-options': this.options,
+        };
+      }
+
+      yield task;
+    } catch (error) {
+      compilation.errors.push(
+        TerserPlugin.buildError(
+          error,
+          file,
+          TerserPlugin.buildSourceMap(inputSourceMap),
+          new RequestShortener(compiler.context)
+        )
+      );
+    }
+  }
+
+  apply(compiler) {
+    const { devtool, output, plugins } = compiler.options;
+
+    this.options.sourceMap =
+      typeof this.options.sourceMap === 'undefined'
+        ? (devtool &&
+            !devtool.includes('eval') &&
+            !devtool.includes('cheap') &&
+            (devtool.includes('source-map') ||
+              // Todo remove when `webpack@5` support will be dropped
+              devtool.includes('sourcemap'))) ||
+          (plugins &&
+            plugins.some(
+              (plugin) =>
+                plugin instanceof SourceMapDevToolPlugin &&
+                plugin.options &&
+                plugin.options.columns
+            ))
+        : Boolean(this.options.sourceMap);
+
+    if (
+      typeof this.options.terserOptions.module === 'undefined' &&
+      typeof output.module !== 'undefined'
+    ) {
+      this.options.terserOptions.module = output.module;
+    }
+
+    if (
+      typeof this.options.terserOptions.ecma === 'undefined' &&
+      typeof output.ecmaVersion !== 'undefined'
+    ) {
+      this.options.terserOptions.ecma = output.ecmaVersion;
+    }
+
+    const optimizeFn = async (compilation, chunks) => {
+      const matchObject = ModuleFilenameHelpers.matchObject.bind(
+        // eslint-disable-next-line no-undefined
+        undefined,
+        this.options
+      );
+      const files = []
+        .concat(Array.from(compilation.additionalChunkAssets || []))
+        .concat(
+          Array.from(chunks)
+            .filter(
+              (chunk) =>
+                this.options.chunkFilter && this.options.chunkFilter(chunk)
+            )
+            .reduce(
+              (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
+              []
+            )
+        )
+        .filter((file) => matchObject(file));
+
+      if (files.length === 0) {
+        return Promise.resolve();
+      }
+
+      const CacheEngine = TerserPlugin.isWebpack4()
+        ? // eslint-disable-next-line global-require
+          require('./Webpack4Cache').default
+        : // eslint-disable-next-line global-require
+          require('./Webpack5Cache').default;
+
+      const allExtractedComments = {};
+      const taskGenerator = this.taskGenerator.bind(
+        this,
+        compiler,
+        compilation,
+        allExtractedComments
+      );
+      const taskRunner = new TaskRunner({
+        taskGenerator,
+        files,
+        cache: new CacheEngine(compilation, this.options),
+        parallel: this.options.parallel,
+      });
+
+      await taskRunner.run();
+      await taskRunner.exit();
+
+      Object.keys(allExtractedComments).forEach((commentsFilename) => {
+        const extractedComments = new Set([
+          ...allExtractedComments[commentsFilename].sort(),
+        ]);
+
+        // eslint-disable-next-line no-param-reassign
+        compilation.assets[commentsFilename] = new RawSource(
+          `${Array.from(extractedComments).join('\n\n')}\n`
+        );
       });
 
       return Promise.resolve();

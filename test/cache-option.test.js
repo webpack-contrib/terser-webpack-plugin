@@ -71,7 +71,7 @@ if (getCompiler.isWebpack4()) {
         .spyOn(Webpack4Cache, 'getCacheDirectory')
         .mockImplementation(() => uniqueCacheDirectory);
 
-      new TerserPlugin({ cache: true }).apply(compiler);
+      new TerserPlugin().apply(compiler);
 
       const stats = await compile(compiler);
 

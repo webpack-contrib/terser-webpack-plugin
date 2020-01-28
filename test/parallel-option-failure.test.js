@@ -78,7 +78,7 @@ describe('parallel option', () => {
 
     expect(Worker).toHaveBeenCalledTimes(1);
     expect(Worker).toHaveBeenLastCalledWith(workerPath, {
-      numWorkers: os.cpus().length - 1,
+      numWorkers: Math.min(2, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
       Object.keys(stats.compilation.assets).length
@@ -103,7 +103,7 @@ describe('parallel option', () => {
 
       expect(Worker).toHaveBeenCalledTimes(1);
       expect(Worker).toHaveBeenLastCalledWith(workerPath, {
-        numWorkers: os.cpus().length - 1,
+        numWorkers: Math.min(2, os.cpus().length - 1),
       });
       expect(workerTransform).toHaveBeenCalledTimes(
         Object.keys(stats.compilation.assets).length
