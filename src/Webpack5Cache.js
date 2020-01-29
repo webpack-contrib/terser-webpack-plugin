@@ -1,13 +1,14 @@
-import crypto from 'crypto';
-
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import getLazyHashedEtag from 'webpack/lib/cache/getLazyHashedEtag';
 import serialize from 'serialize-javascript';
 
+import { getHasher } from './hash-helper';
+
 export default class Cache {
-  constructor(compilation, options) {
-    this.options = options;
+  constructor(compiler, compilation, options) {
+    this.compiler = compiler;
     this.compilation = compilation;
+    this.options = options;
   }
 
   isEnabled() {
@@ -15,8 +16,7 @@ export default class Cache {
   }
 
   createCacheIdent(task) {
-    const cacheKeys = crypto
-      .createHash('md4')
+    const cacheKeys = getHasher(this.compiler)
       .update(serialize(task.cacheKeys))
       .digest('hex');
 
