@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import path from 'path';
 
 import { SourceMapConsumer } from 'source-map';
@@ -10,6 +9,7 @@ import {
   javascript,
   version as webpackVersion,
 } from 'webpack';
+import createHash from 'webpack/lib/util/createHash';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -571,13 +571,7 @@ class TerserPlugin {
     const hashFunction =
       compiler && compiler.output && compiler.output.hashFunction;
 
-    if (typeof hashFunction === 'string') {
-      return crypto.createHash(hashFunction);
-    } else if (typeof hashFunction === 'function') {
-      return hashFunction();
-    }
-
-    return crypto.createHash('md4');
+    return createHash(hashFunction || 'md4');
   }
 }
 

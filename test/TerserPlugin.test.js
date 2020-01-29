@@ -417,8 +417,12 @@ describe('getHasher', () => {
   });
 
   it('should return hasher with function as hashFunction', () => {
+    function sha1() {
+      return crypto.createHash('SHA1');
+    }
+
     const compiler = {
-      output: { hashFunction: () => crypto.createHash('SHA1') },
+      output: { hashFunction: sha1 },
     };
     const hasher = TerserPlugin.getHasher(compiler);
 
