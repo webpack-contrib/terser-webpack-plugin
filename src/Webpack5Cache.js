@@ -2,7 +2,7 @@
 import getLazyHashedEtag from 'webpack/lib/cache/getLazyHashedEtag';
 import serialize from 'serialize-javascript';
 
-import { getHasher } from './hash-helper';
+import TerserPlugin from './index';
 
 export default class Cache {
   constructor(compiler, compilation, options) {
@@ -16,7 +16,7 @@ export default class Cache {
   }
 
   createCacheIdent(task) {
-    const cacheKeys = getHasher(this.compiler)
+    const cacheKeys = TerserPlugin.getHasher(this.compiler)
       .update(serialize(task.cacheKeys))
       .digest('hex');
 

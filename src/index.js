@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import path from 'path';
 
 import { SourceMapConsumer } from 'source-map';
@@ -15,7 +16,6 @@ import terserPackageJson from 'terser/package.json';
 
 import schema from './options.json';
 import TaskRunner from './TaskRunner';
-import { getHasher } from './hash-helper';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -394,7 +394,7 @@ class TerserPlugin {
             'terser-webpack-plugin-options': this.options,
             nodeVersion: process.version,
             filename: file,
-            contentHash: getHasher(compiler)
+            contentHash: TerserPlugin.getHasher(compiler)
               .update(input)
               .digest('hex'),
           };
@@ -565,6 +565,19 @@ class TerserPlugin {
         optimizeFn.bind(this, compilation)
       );
     });
+  }
+
+  static getHasher(compiler = null) {
+    const hashFunction =
+      compiler && compiler.output && compiler.output.hashFunction;
+
+    if (typeof hashFunction === 'string') {
+      return crypto.createHash(hashFunction);
+    } else if (typeof hashFunction === 'function') {
+      return hashFunction();
+    }
+
+    return crypto.createHash('md4');
   }
 }
 
