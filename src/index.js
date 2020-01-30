@@ -4,12 +4,12 @@ import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import {
+  util,
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
   javascript,
   version as webpackVersion,
 } from 'webpack';
-import createHash from 'webpack/lib/util/createHash';
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -571,7 +571,7 @@ class TerserPlugin {
     const hashFunction =
       compiler && compiler.output && compiler.output.hashFunction;
 
-    return createHash(hashFunction || 'md4');
+    return util.createHash(hashFunction || 'md4');
   }
 }
 

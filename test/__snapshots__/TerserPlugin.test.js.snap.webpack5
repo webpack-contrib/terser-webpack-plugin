@@ -82,6 +82,16 @@ exports[`TerserPlugin should regenerate hash: errors 1`] = `Array []`;
 
 exports[`TerserPlugin should regenerate hash: warnings 1`] = `Array []`;
 
+exports[`TerserPlugin should respect the "hashFunction" option ("String"): assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`TerserPlugin should respect the "hashFunction" option ("String"): errors 1`] = `Array []`;
+
+exports[`TerserPlugin should respect the "hashFunction" option ("String"): warnings 1`] = `Array []`;
+
 exports[`TerserPlugin should work (without options): assets 1`] = `
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
