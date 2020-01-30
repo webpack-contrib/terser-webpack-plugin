@@ -389,48 +389,17 @@ describe('TerserPlugin', () => {
     ).toMatchSnapshot();
   });
 
-  const UNHASHED = 'this is some text';
-  const HASHED_MD4 = '565a21837631bdec2da173a5de2a2f87';
-  const HASHED_SHA256 =
-    '1669594220a92d73d62727293e988b4213b5b4829de36c3afe43c9b4f3ddf35e';
-
-  it('should return MD4 hasher with no compiler parameter', () => {
-    const hasher = TerserPlugin.getHasher();
-
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_MD4);
-  });
-
-  it('should return hasher with string as hashFunction', () => {
-    const compiler = { output: { hashFunction: 'sha256' } };
-    const hasher = TerserPlugin.getHasher(compiler);
-
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_SHA256);
-  });
-
-  it('should return hasher with function as hashFunction', () => {
-    function sha256() {
-      return crypto.createHash('sha256');
-    }
-
-    const compiler = {
-      output: { hashFunction: sha256 },
-    };
-    const hasher = TerserPlugin.getHasher(compiler);
-
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_SHA256);
-  });
-
-  it('should respect the "hashFunction" option ("String")', async () => {
+  it('should respect the hash options #1', async () => {
     const compiler = getCompiler({
       output: {
         pathinfo: false,
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
+        hashDigest: 'hex',
+        hashDigestLength: 20,
         hashFunction: 'sha256',
+        hashSalt: 'salt',
       },
     });
 
@@ -443,7 +412,7 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it.skip('should respect the "hashFunction" option ("Function")', async () => {
+  it('should respect hash options #2', async () => {
     function sha256() {
       return crypto.createHash('sha256');
     }
@@ -454,7 +423,10 @@ describe('TerserPlugin', () => {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
-        hashFunction: () => sha256,
+        hashDigest: 'hex',
+        hashDigestLength: 20,
+        hashFunction: sha256,
+        hashSalt: 'salt',
       },
     });
 

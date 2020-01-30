@@ -386,6 +386,24 @@ class TerserPlugin {
       };
 
       if (TerserPlugin.isWebpack4()) {
+        const {
+          outputOptions: {
+            hashSalt,
+            hashDigest,
+            hashDigestLength,
+            hashFunction,
+          },
+        } = compilation;
+        const hash = util.createHash(hashFunction);
+
+        if (hashSalt) {
+          hash.update(hashSalt);
+        }
+
+        hash.update(input);
+
+        const digest = hash.digest(hashDigest);
+
         if (this.options.cache) {
           const defaultCacheKeys = {
             terser: terserPackageJson.version,
@@ -394,9 +412,7 @@ class TerserPlugin {
             'terser-webpack-plugin-options': this.options,
             nodeVersion: process.version,
             filename: file,
-            contentHash: TerserPlugin.getHasher(compiler)
-              .update(input)
-              .digest('hex'),
+            contentHash: digest.substr(0, hashDigestLength),
           };
 
           task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
@@ -565,13 +581,6 @@ class TerserPlugin {
         optimizeFn.bind(this, compilation)
       );
     });
-  }
-
-  static getHasher(compiler = null) {
-    const hashFunction =
-      compiler && compiler.output && compiler.output.hashFunction;
-
-    return util.createHash(hashFunction || 'md4');
   }
 }
 
