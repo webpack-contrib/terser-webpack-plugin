@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.4](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.3...v2.3.4) (2020-01-30)
+
+
+### Bug Fixes
+
+* respect stdout and stderr of workers and do not create warnings ([#215](https://github.com/webpack-contrib/terser-webpack-plugin/issues/215)) ([5708574](https://github.com/webpack-contrib/terser-webpack-plugin/commit/5708574d3337158a02d60a81275467900da5f42d))
+* use webpack hash options rather than hard-code MD4 ([#213](https://github.com/webpack-contrib/terser-webpack-plugin/issues/213)) ([330c1f6](https://github.com/webpack-contrib/terser-webpack-plugin/commit/330c1f6cf3468fd6312e86960b272df1591f1a64))
+
 ### [2.3.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.2...v2.3.3) (2020-01-28)
 
 
