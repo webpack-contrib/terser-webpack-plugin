@@ -1,5 +1,7 @@
 import crypto from 'crypto';
 
+import path from 'path';
+
 import RequestShortener from 'webpack/lib/RequestShortener';
 import { javascript } from 'webpack';
 import MainTemplate from 'webpack/lib/MainTemplate';
@@ -386,47 +388,54 @@ describe('TerserPlugin', () => {
       )
     ).toMatchSnapshot();
   });
-});
 
-const UNHASHED = 'this is some text';
-const HASHED_MD4 = '565a21837631bdec2da173a5de2a2f87';
-const HASHED_SHA1 = '0393694d16b84deb612e47ce6252bd35f0d86c06';
+  it('should respect the hash options #1', async () => {
+    const compiler = getCompiler({
+      output: {
+        pathinfo: false,
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+        hashDigest: 'hex',
+        hashDigestLength: 20,
+        hashFunction: 'sha256',
+        hashSalt: 'salt',
+      },
+    });
 
-describe('getHasher', () => {
-  it('should return MD4 hasher with no compiler parameter', () => {
-    const hasher = TerserPlugin.getHasher();
+    new TerserPlugin().apply(compiler);
 
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_MD4);
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should return MD4 hasher with incomplete compiler parameter', () => {
-    const compiler = { incomplete: { bad: {} } };
-    const hasher = TerserPlugin.getHasher(compiler);
-
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_MD4);
-  });
-
-  it('should return hasher with string as hashFunction', () => {
-    const compiler = { output: { hashFunction: 'SHA1' } };
-    const hasher = TerserPlugin.getHasher(compiler);
-
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_SHA1);
-  });
-
-  it('should return hasher with function as hashFunction', () => {
-    function sha1() {
-      return crypto.createHash('SHA1');
+  it('should respect hash options #2', async () => {
+    function sha256() {
+      return crypto.createHash('sha256');
     }
 
-    const compiler = {
-      output: { hashFunction: sha1 },
-    };
-    const hasher = TerserPlugin.getHasher(compiler);
+    const compiler = getCompiler({
+      output: {
+        pathinfo: false,
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+        hashDigest: 'hex',
+        hashDigestLength: 20,
+        hashFunction: sha256,
+        hashSalt: 'salt',
+      },
+    });
 
-    expect(hasher).not.toBeNull();
-    expect(hasher.update(UNHASHED).digest('hex')).toEqual(HASHED_SHA1);
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });
