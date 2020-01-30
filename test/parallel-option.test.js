@@ -37,6 +37,7 @@ jest.mock('jest-worker', () => {
       )),
       end: (workerEnd = jest.fn()),
       getStderr: jest.fn(),
+      getStdout: jest.fn(),
     };
   });
 });

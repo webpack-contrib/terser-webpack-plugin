@@ -10,6 +10,7 @@ import ChunkTemplate from 'webpack/lib/ChunkTemplate';
 import TerserPlugin from '../src/index';
 
 import {
+  BrokenCodePlugin,
   compile,
   countPlugins,
   getCompiler,
@@ -437,5 +438,135 @@ describe('TerserPlugin', () => {
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should emit an error on a broken code in parallel mode', async () => {
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/entry.js`,
+        two: `${__dirname}/fixtures/entry.js`,
+      },
+    });
+
+    new BrokenCodePlugin().apply(compiler);
+
+    new TerserPlugin({ parallel: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should emit an error on a broken code in not parallel mode', async () => {
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/entry.js`,
+        two: `${__dirname}/fixtures/entry.js`,
+      },
+    });
+
+    new BrokenCodePlugin().apply(compiler);
+
+    new TerserPlugin({ parallel: false }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should write stdout and stderr of workers to stdout and stderr of main process in parallel mode', async () => {
+    const { write: stdoutWrite } = process.stdout;
+    const { write: stderrWrite } = process.stderr;
+
+    let stdoutOutput = '';
+    let stderrOutput = '';
+
+    process.stdout.write = (str) => {
+      stdoutOutput += str;
+    };
+
+    process.stderr.write = (str) => {
+      stderrOutput += str;
+    };
+
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/empty.js`,
+        two: `${__dirname}/fixtures/empty.js`,
+      },
+    });
+
+    new TerserPlugin({
+      parallel: true,
+      minify: () => {
+        // eslint-disable-next-line no-console
+        process.stdout.write('stdout\n');
+        // eslint-disable-next-line no-console
+        process.stderr.write('stderr\n');
+
+        return { code: '' };
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(stdoutOutput).toMatchSnapshot('process stdout output');
+    expect(stderrOutput).toMatchSnapshot('process stderr output');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+    process.stdout.write = stdoutWrite;
+    process.stderr.write = stderrWrite;
+  });
+
+  it('should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode', async () => {
+    const { write: stdoutWrite } = process.stdout;
+    const { write: stderrWrite } = process.stderr;
+
+    let stdoutOutput = '';
+    let stderrOutput = '';
+
+    process.stdout.write = (str) => {
+      stdoutOutput += str;
+    };
+
+    process.stderr.write = (str) => {
+      stderrOutput += str;
+    };
+
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/empty.js`,
+        two: `${__dirname}/fixtures/empty.js`,
+      },
+    });
+
+    new TerserPlugin({
+      parallel: false,
+      minify: () => {
+        // eslint-disable-next-line no-console
+        process.stdout.write('stdout\n');
+        // eslint-disable-next-line no-console
+        process.stderr.write('stderr\n');
+
+        return { code: '' };
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(stdoutOutput).toMatchSnapshot('process stdout output');
+    expect(stderrOutput).toMatchSnapshot('process stderr output');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+    process.stdout.write = stdoutWrite;
+    process.stderr.write = stderrWrite;
   });
 });

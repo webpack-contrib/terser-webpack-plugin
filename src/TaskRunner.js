@@ -49,12 +49,21 @@ export default class TaskRunner {
 
       this.worker = new Worker(workerPath, { numWorkers });
 
-      // Show syntax error from jest-worker
       // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
+      const workerStdout = this.worker.getStdout();
+
+      if (workerStdout) {
+        workerStdout.on('data', (chunk) => {
+          return process.stdout.write(chunk);
+        });
+      }
+
       const workerStderr = this.worker.getStderr();
 
       if (workerStderr) {
-        workerStderr.pipe(process.stderr);
+        workerStderr.on('data', (chunk) => {
+          return process.stderr.write(chunk);
+        });
       }
     }
 

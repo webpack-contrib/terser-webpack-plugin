@@ -68,6 +68,40 @@ exports[`TerserPlugin buildWarning method 5`] = `"Terser Plugin: Warning [http:/
 
 exports[`TerserPlugin buildWarning method 6`] = `null`;
 
+exports[`TerserPlugin should emit an error on a broken code in not parallel mode: assets 1`] = `
+Object {
+  "broken.js": "\`Broken===",
+  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`TerserPlugin should emit an error on a broken code in not parallel mode: errors 1`] = `
+Array [
+  "Error: broken.js from Terser
+Unterminated template [broken.js:1,0]",
+]
+`;
+
+exports[`TerserPlugin should emit an error on a broken code in not parallel mode: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should emit an error on a broken code in parallel mode: assets 1`] = `
+Object {
+  "broken.js": "\`Broken===",
+  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`TerserPlugin should emit an error on a broken code in parallel mode: errors 1`] = `
+Array [
+  "Error: broken.js from Terser
+Unterminated template [broken.js:1,0]",
+]
+`;
+
+exports[`TerserPlugin should emit an error on a broken code in parallel mode: warnings 1`] = `Array []`;
+
 exports[`TerserPlugin should regenerate hash: assets 1`] = `
 Object {
   "598.598.231e24cc7ba6b0dd72f5.js": "(window.webpackJsonp=window.webpackJsonp||[]).push([[598],{598:(s,n,p)=>{\\"use strict\\";p.r(n),p.d(n,{default:()=>w});const w=\\"async-dep\\"}}]);",
@@ -261,3 +295,49 @@ exports[`TerserPlugin should work in multi compiler mode: warnings 1`] = `Array 
 exports[`TerserPlugin should work in multi compiler mode: warnings 2`] = `Array []`;
 
 exports[`TerserPlugin should work in multi compiler mode: warnings 3`] = `Array []`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: assets 1`] = `
+Object {
+  "one.js": "",
+  "two.js": "",
+}
+`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: process stderr output 1`] = `
+"stderr
+stderr
+"
+`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: process stdout output 1`] = `
+"stdout
+stdout
+"
+`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: assets 1`] = `
+Object {
+  "one.js": "",
+  "two.js": "",
+}
+`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: process stderr output 1`] = `
+"stderr
+stderr
+"
+`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: process stdout output 1`] = `
+"stdout
+stdout
+"
+`;
+
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: warnings 1`] = `Array []`;
