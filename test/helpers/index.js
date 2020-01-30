@@ -1,3 +1,4 @@
+import BrokenCodePlugin from './BrokenCodePlugin';
 import compile from './compile';
 import countPlugins from './countPlugins';
 import execute from './execute';
@@ -11,6 +12,7 @@ import normalizeErrors from './normalizeErrors';
 import removeCache from './removeCache';
 
 export {
+  BrokenCodePlugin,
   compile,
   countPlugins,
   execute,

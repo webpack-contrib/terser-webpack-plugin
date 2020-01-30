@@ -14,6 +14,7 @@ export default function getCompiler(options = {}) {
           entry: path.resolve(__dirname, '../fixtures/entry.js'),
           optimization: {
             minimize: false,
+            noEmitOnErrors: false,
           },
           output: {
             pathinfo: false,
