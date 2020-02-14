@@ -1,3 +1,5 @@
+import webpack from 'webpack';
+
 import TerserPlugin from '../src/index';
 
 import {
@@ -635,6 +637,27 @@ describe('extractComments option', () => {
         },
       },
     }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should match snapshot and keep shebang', async () => {
+    compiler = getCompiler({
+      entry: {
+        shebang: `${__dirname}/fixtures/shebang.js`,
+        shebang1: `${__dirname}/fixtures/shebang-1.js`,
+      },
+      target: 'node',
+      plugins: [
+        new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true }),
+      ],
+    });
+
+    new TerserPlugin().apply(compiler);
 
     const stats = await compile(compiler);
 

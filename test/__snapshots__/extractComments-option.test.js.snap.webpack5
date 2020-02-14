@@ -634,6 +634,22 @@ exports[`extractComments option should match snapshot and extract "some" comment
 
 exports[`extractComments option should match snapshot and extract "some" comments: warnings 1`] = `Array []`;
 
+exports[`extractComments option should match snapshot and keep shebang: assets 1`] = `
+Object {
+  "shebang.js": "#!/usr/bin/env node
+/*! For license information please see shebang.js.LICENSE.txt */
+console.log(\\"HERE\\");",
+  "shebang.js.LICENSE.txt": "/*! Legal Comment */
+",
+  "shebang1.js": "#!/usr/bin/env node
+console.log(\\"HERE\\");",
+}
+`;
+
+exports[`extractComments option should match snapshot and keep shebang: errors 1`] = `Array []`;
+
+exports[`extractComments option should match snapshot and keep shebang: warnings 1`] = `Array []`;
+
 exports[`extractComments option should match snapshot and preserve "all" and do not extract comments: assets 1`] = `
 Object {
   "chunks/627.627.js": "(window.webpackJsonp=window.webpackJsonp||[]).push([[627],{

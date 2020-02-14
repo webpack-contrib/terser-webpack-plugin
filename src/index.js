@@ -275,7 +275,8 @@ class TerserPlugin {
       }
 
       const callback = (taskResult) => {
-        const { error, map, code, warnings } = taskResult;
+        let { code } = taskResult;
+        const { error, map, warnings } = taskResult;
         const { extractedComments } = taskResult;
 
         let sourceMap = null;
@@ -299,7 +300,24 @@ class TerserPlugin {
           return;
         }
 
+        const hasExtractedComments =
+          commentsFilename && extractedComments && extractedComments.length > 0;
+        const hasBannerForExtractedComments =
+          hasExtractedComments && this.options.extractComments.banner !== false;
+
         let outputSource;
+        let shebang;
+
+        if (
+          hasExtractedComments &&
+          hasBannerForExtractedComments &&
+          code.startsWith('#!')
+        ) {
+          const firstNewlinePosition = code.indexOf('\n');
+
+          shebang = code.substring(0, firstNewlinePosition);
+          code = code.substring(firstNewlinePosition + 1);
+        }
 
         if (map) {
           outputSource = new SourceMapSource(
@@ -315,11 +333,7 @@ class TerserPlugin {
         }
 
         // Write extracted comments to commentsFilename
-        if (
-          commentsFilename &&
-          extractedComments &&
-          extractedComments.length > 0
-        ) {
+        if (hasExtractedComments) {
           if (!allExtractedComments[commentsFilename]) {
             // eslint-disable-next-line no-param-reassign
             allExtractedComments[commentsFilename] = [];
@@ -331,7 +345,7 @@ class TerserPlugin {
           ].concat(extractedComments);
 
           // Add a banner to the original file
-          if (this.options.extractComments.banner !== false) {
+          if (hasBannerForExtractedComments) {
             let banner =
               this.options.extractComments.banner ||
               `For license information please see ${path
@@ -344,6 +358,7 @@ class TerserPlugin {
 
             if (banner) {
               outputSource = new ConcatSource(
+                shebang ? `${shebang}\n` : '',
                 `/*! ${banner} */\n`,
                 outputSource
               );
