@@ -20,7 +20,13 @@ const buildTerserOptions = ({
   ecma,
   warnings,
   parse: { ...parse },
-  compress: typeof compress === 'boolean' ? compress : { ...compress },
+  compress:
+    typeof compress === 'boolean'
+      ? compress
+      : {
+        passes: 2,
+        ...compress
+      },
   // eslint-disable-next-line no-nested-ternary
   mangle:
     mangle == null
