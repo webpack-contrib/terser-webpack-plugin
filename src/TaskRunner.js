@@ -4,7 +4,7 @@ import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 
-import minify from './minify';
+import { minify } from './worker';
 
 const workerPath = require.resolve('./worker');
 
