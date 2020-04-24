@@ -104,7 +104,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
         if (condition[key] === 'some') {
           condition[key] = (astNode, comment) => {
             return (
-              comment.type === 'comment2' &&
+              (comment.type === 'comment2' || comment.type === 'comment1') &&
               /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
             );
           };
