@@ -26,4 +26,6 @@ import('./nested/comments.js');
 * Foo
 */
 
+// @lic
+
 module.exports = Math.random();
