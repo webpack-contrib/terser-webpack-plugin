@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.6](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.5...v2.3.6) (2020-04-25)
+
+
+### Bug Fixes
+
+* preserve `@license` comments starting with `//` ([d3f0c81](https://github.com/webpack-contrib/terser-webpack-plugin/commit/d3f0c811672920b658edaa99815de9204716fa21))
+
 ### [2.3.5](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.4...v2.3.5) (2020-02-14)
 
 
