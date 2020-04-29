@@ -237,13 +237,6 @@ class TerserPlugin {
         commentsFilename =
           this.options.extractComments.filename || '[file].LICENSE.txt[query]';
 
-        if (TerserPlugin.isWebpack4()) {
-          // Todo remove this in next major release
-          if (typeof commentsFilename === 'function') {
-            commentsFilename = commentsFilename.bind(null, file);
-          }
-        }
-
         let query = '';
         let filename = file;
 
