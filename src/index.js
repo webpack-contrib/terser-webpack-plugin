@@ -201,6 +201,16 @@ class TerserPlugin {
     return webpackVersion[0] === '4';
   }
 
+  static getAvailableNumberOfCores(parallel) {
+    // In some cases cpus() returns undefined
+    // https://github.com/nodejs/node/issues/19022
+    const cpus = os.cpus() || { length: 1 };
+
+    return parallel === true
+      ? cpus.length - 1
+      : Math.min(Number(parallel) || 0, cpus.length - 1);
+  }
+
   *taskGenerator(compiler, compilation, allExtractedComments, file) {
     let inputSourceMap;
 
@@ -456,16 +466,6 @@ class TerserPlugin {
         )
       );
     }
-  }
-
-  static getAvailableNumberOfCores(parallel) {
-    // In some cases cpus() returns undefined
-    // https://github.com/nodejs/node/issues/19022
-    const cpus = os.cpus() || { length: 1 };
-
-    return parallel === true
-      ? cpus.length - 1
-      : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
   async runTask(task) {
