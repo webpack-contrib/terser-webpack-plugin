@@ -5,8 +5,7 @@ import findCacheDir from 'find-cache-dir';
 import serialize from 'serialize-javascript';
 
 export default class Webpack4Cache {
-  constructor(compiler, compilation, options) {
-    this.options = options;
+  constructor(compilation, options) {
     this.cacheDir =
       options.cache === true
         ? findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir()
@@ -14,7 +13,7 @@ export default class Webpack4Cache {
   }
 
   isEnabled() {
-    return !!this.cacheDir;
+    return Boolean(this.cacheDir);
   }
 
   get(task) {

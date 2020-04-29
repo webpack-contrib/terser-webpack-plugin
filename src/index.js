@@ -632,7 +632,9 @@ class TerserPlugin {
         : // eslint-disable-next-line global-require
           require('./Webpack5Cache').default;
 
-      this.cache = new CacheEngine(compiler, compilation, this.options);
+      this.cache = new CacheEngine(compilation, {
+        cache: this.options.cache,
+      });
 
       const allExtractedComments = {};
 

@@ -5,14 +5,13 @@ import serialize from 'serialize-javascript';
 import { util } from 'webpack';
 
 export default class Cache {
-  constructor(compiler, compilation, options) {
-    this.compiler = compiler;
+  // eslint-disable-next-line no-unused-vars
+  constructor(compilation, ignored) {
     this.compilation = compilation;
-    this.options = options;
   }
 
   isEnabled() {
-    return !!this.compilation.cache;
+    return Boolean(this.compilation.cache);
   }
 
   createCacheIdent(task) {
