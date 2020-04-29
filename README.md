@@ -141,7 +141,7 @@ module.exports = {
 
 ### `cache`
 
-> ⚠ Doesn't work with webpack 5!
+> ⚠ Ignored in webpack 5! Please use https://webpack.js.org/configuration/other-options/#cache.
 
 Type: `Boolean|String`
 Default: `true`
@@ -191,7 +191,7 @@ module.exports = {
 
 ### `cacheKeys`
 
-> ⚠ Doesn't work with webpack 5!
+> ⚠ Ignored in webpack 5! Please use https://webpack.js.org/configuration/other-options/#cache.
 
 Type: `Function<(defaultCacheKeys, file) -> Object>`
 Default: `defaultCacheKeys => defaultCacheKeys`

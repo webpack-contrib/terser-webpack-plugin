@@ -1,73 +1,72 @@
 {
-  "additionalProperties": false,
   "definitions": {
-    "file-conditions": {
+    "Rule": {
+      "description": "Filtering rule as regex or string.",
       "anyOf": [
         {
-          "instanceof": "RegExp"
+          "instanceof": "RegExp",
+          "tsType": "RegExp"
         },
         {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "Rules": {
+      "description": "Filtering rules.",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "description": "A rule condition.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Rule"
+              }
+            ]
+          }
+        },
+        {
+          "$ref": "#/definitions/Rule"
         }
       ]
     }
   },
+  "title": "TerserPluginOptions",
+  "type": "object",
+  "additionalProperties": false,
   "properties": {
     "test": {
-      "anyOf": [
+      "description": "Include all modules that pass test assertion.",
+      "oneOf": [
         {
-          "$ref": "#/definitions/file-conditions"
-        },
-        {
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/file-conditions"
-              }
-            ]
-          },
-          "type": "array"
+          "$ref": "#/definitions/Rules"
         }
       ]
     },
     "include": {
-      "anyOf": [
+      "description": "Include all modules matching any of these conditions.",
+      "oneOf": [
         {
-          "$ref": "#/definitions/file-conditions"
-        },
-        {
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/file-conditions"
-              }
-            ]
-          },
-          "type": "array"
+          "$ref": "#/definitions/Rules"
         }
       ]
     },
     "exclude": {
-      "anyOf": [
+      "description": "Exclude all modules matching any of these conditions.",
+      "oneOf": [
         {
-          "$ref": "#/definitions/file-conditions"
-        },
-        {
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/file-conditions"
-              }
-            ]
-          },
-          "type": "array"
+          "$ref": "#/definitions/Rules"
         }
       ]
     },
     "chunkFilter": {
+      "description": "Allowing to filter which chunks should be uglified (by default all chunks are uglified).",
       "instanceof": "Function"
     },
     "cache": {
+      "description": "Enable file caching. Ignored in webpack 5, for webpack 5 please use https://webpack.js.org/configuration/other-options/#cache.",
       "anyOf": [
         {
           "type": "boolean"
@@ -78,9 +77,11 @@
       ]
     },
     "cacheKeys": {
+      "description": "Allows you to override default cache keys. Ignored in webpack 5, for webpack 5 please use https://webpack.js.org/configuration/other-options/#cache.",
       "instanceof": "Function"
     },
     "parallel": {
+      "description": "Use multi-process parallel running to improve the build speed.",
       "anyOf": [
         {
           "type": "boolean"
@@ -91,16 +92,20 @@
       ]
     },
     "sourceMap": {
+      "description": "Enables/Disables generation of source maps.",
       "type": "boolean"
     },
     "minify": {
+      "description": "Allows you to override default minify function.",
       "instanceof": "Function"
     },
     "terserOptions": {
+      "description": "Options for `terser`.",
       "additionalProperties": true,
       "type": "object"
     },
     "extractComments": {
+      "description": "Whether comments shall be extracted to a separate file.",
       "anyOf": [
         {
           "type": "boolean"
@@ -162,8 +167,8 @@
       ]
     },
     "warningsFilter": {
+      "description": "Allow to filter `terser` warnings.",
       "instanceof": "Function"
     }
-  },
-  "type": "object"
+  }
 }
