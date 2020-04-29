@@ -99,10 +99,7 @@ class TerserPlugin {
             error.col
           }]${
             error.stack
-              ? `\n${error.stack
-                  .split('\n')
-                  .slice(1)
-                  .join('\n')}`
+              ? `\n${error.stack.split('\n').slice(1).join('\n')}`
               : ''
           }`
         );
@@ -112,12 +109,7 @@ class TerserPlugin {
         `${file} from Terser\n${error.message} [${file}:${error.line},${
           error.col
         }]${
-          error.stack
-            ? `\n${error.stack
-                .split('\n')
-                .slice(1)
-                .join('\n')}`
-            : ''
+          error.stack ? `\n${error.stack.split('\n').slice(1).join('\n')}` : ''
         }`
       );
     }
