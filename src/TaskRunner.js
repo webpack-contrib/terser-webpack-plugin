@@ -4,9 +4,9 @@ import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 import serialize from 'serialize-javascript';
 
-import minify from './minify';
+import { minify } from './minify';
 
-const workerPath = require.resolve('./worker');
+const workerPath = require.resolve('./minify');
 
 export default class TaskRunner {
   constructor(options = {}) {

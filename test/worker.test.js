@@ -1,6 +1,6 @@
 import serialize from 'serialize-javascript';
 
-import worker from '../src/worker';
+import { transform } from '../src/minify';
 
 import getCompiler from './helpers/getCompiler';
 
@@ -11,7 +11,7 @@ describe('worker', () => {
       input: 'var foo = 1;/* hello */',
       extractComments: /hello/,
     };
-    const workerResult = worker.transform(serialize(options));
+    const workerResult = transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
@@ -26,7 +26,7 @@ describe('worker', () => {
         },
       },
     };
-    const workerResult = worker.transform(serialize(options));
+    const workerResult = transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
@@ -41,7 +41,7 @@ describe('worker', () => {
         },
       },
     };
-    const workerResult = worker.transform(serialize(options));
+    const workerResult = transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
@@ -57,7 +57,7 @@ describe('worker', () => {
       },
       extractComments: 1,
     };
-    const workerResult = worker.transform(serialize(options));
+    const workerResult = transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
@@ -81,7 +81,7 @@ describe('worker', () => {
           `License information can be found in ${licenseFile}`,
       },
     };
-    const workerResult = worker.transform(serialize(options));
+    const workerResult = transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
@@ -97,7 +97,7 @@ describe('worker', () => {
         mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
       },
     };
-    const workerResult = worker.transform(serialize(options));
+    const workerResult = transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });

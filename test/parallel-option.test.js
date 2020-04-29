@@ -42,7 +42,7 @@ jest.mock('jest-worker', () => {
   });
 });
 
-const workerPath = require.resolve('../src/worker');
+const workerPath = require.resolve('../src/minify');
 
 describe('parallel option', () => {
   let compiler;
