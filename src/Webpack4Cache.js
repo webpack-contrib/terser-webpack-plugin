@@ -9,12 +9,8 @@ export default class Webpack4Cache {
     this.options = options;
     this.cacheDir =
       options.cache === true
-        ? Webpack4Cache.getCacheDirectory()
+        ? findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir()
         : options.cache;
-  }
-
-  static getCacheDirectory() {
-    return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
   isEnabled() {
