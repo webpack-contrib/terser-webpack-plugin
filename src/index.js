@@ -211,7 +211,7 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  *taskGenerator(compiler, compilation, allExtractedComments, file) {
+  *taskGenerator(compilation, context, allExtractedComments, file) {
     let inputSourceMap;
 
     const asset = compilation.assets[file];
@@ -307,7 +307,7 @@ class TerserPlugin {
               error,
               file,
               sourceMap,
-              new RequestShortener(compiler.context)
+              new RequestShortener(context)
             )
           );
 
@@ -391,7 +391,7 @@ class TerserPlugin {
               warning,
               file,
               sourceMap,
-              new RequestShortener(compiler.context),
+              new RequestShortener(context),
               this.options.warningsFilter
             );
 
@@ -462,7 +462,7 @@ class TerserPlugin {
           error,
           file,
           TerserPlugin.buildSourceMap(inputSourceMap),
-          new RequestShortener(compiler.context)
+          new RequestShortener(context)
         )
       );
     }
@@ -536,7 +536,7 @@ class TerserPlugin {
 
       scheduledTasks.push(
         limit(() => {
-          const task = this.getTask(file).next().value;
+          const task = this.getTaskForFile(file).next().value;
 
           if (!task) {
             // Something went wrong, for example the `cacheKeys` option throw an error
@@ -638,10 +638,10 @@ class TerserPlugin {
 
       const allExtractedComments = {};
 
-      this.getTask = this.taskGenerator.bind(
+      this.getTaskForFile = this.taskGenerator.bind(
         this,
-        compiler,
         compilation,
+        compiler.context,
         allExtractedComments
       );
 
