@@ -1,4 +1,5 @@
 import path from 'path';
+import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
@@ -13,9 +14,12 @@ import {
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
+import pLimit from 'p-limit';
+import Worker from 'jest-worker';
 
 import schema from './options.json';
-import TaskRunner from './TaskRunner';
+
+import { minify as minifyFn } from './minify';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
 
@@ -454,6 +458,114 @@ class TerserPlugin {
     }
   }
 
+  static getAvailableNumberOfCores(parallel) {
+    // In some cases cpus() returns undefined
+    // https://github.com/nodejs/node/issues/19022
+    const cpus = os.cpus() || { length: 1 };
+
+    return parallel === true
+      ? cpus.length - 1
+      : Math.min(Number(parallel) || 0, cpus.length - 1);
+  }
+
+  async runTask(task) {
+    if (this.worker) {
+      return this.worker.transform(serialize(task));
+    }
+
+    return minifyFn(task);
+  }
+
+  async runTasks() {
+    const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
+      this.options.parallel
+    );
+
+    let concurrency = Infinity;
+
+    if (availableNumberOfCores > 0) {
+      // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
+      const numWorkers = Math.min(this.files.length, availableNumberOfCores);
+
+      concurrency = numWorkers;
+
+      this.worker = new Worker(require.resolve('./minify'), { numWorkers });
+
+      // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
+      const workerStdout = this.worker.getStdout();
+
+      if (workerStdout) {
+        workerStdout.on('data', (chunk) => {
+          return process.stdout.write(chunk);
+        });
+      }
+
+      const workerStderr = this.worker.getStderr();
+
+      if (workerStderr) {
+        workerStderr.on('data', (chunk) => {
+          return process.stderr.write(chunk);
+        });
+      }
+    }
+
+    const limit = pLimit(concurrency);
+    const scheduledTasks = [];
+
+    for (const file of this.files) {
+      const enqueue = async (task) => {
+        let taskResult;
+
+        try {
+          taskResult = await this.runTask(task);
+        } catch (error) {
+          taskResult = { error };
+        }
+
+        if (this.cache.isEnabled() && !taskResult.error) {
+          taskResult = await this.cache.store(task, taskResult).then(
+            () => taskResult,
+            () => taskResult
+          );
+        }
+
+        task.callback(taskResult);
+
+        return taskResult;
+      };
+
+      scheduledTasks.push(
+        limit(() => {
+          const task = this.getTask(file).next().value;
+
+          if (!task) {
+            // Something went wrong, for example the `cacheKeys` option throw an error
+            return Promise.resolve();
+          }
+
+          if (this.cache.isEnabled()) {
+            return this.cache.get(task).then(
+              (taskResult) => task.callback(taskResult),
+              () => enqueue(task)
+            );
+          }
+
+          return enqueue(task);
+        })
+      );
+    }
+
+    return Promise.all(scheduledTasks);
+  }
+
+  async exitTasks() {
+    if (!this.worker) {
+      return Promise.resolve();
+    }
+
+    return this.worker.end();
+  }
+
   apply(compiler) {
     const { devtool, output, plugins } = compiler.options;
 
@@ -494,7 +606,8 @@ class TerserPlugin {
         undefined,
         this.options
       );
-      const files = []
+
+      this.files = []
         .concat(Array.from(compilation.additionalChunkAssets || []))
         .concat(
           Array.from(chunks)
@@ -509,7 +622,7 @@ class TerserPlugin {
         )
         .filter((file) => matchObject(file));
 
-      if (files.length === 0) {
+      if (this.files.length === 0) {
         return Promise.resolve();
       }
 
@@ -519,22 +632,19 @@ class TerserPlugin {
         : // eslint-disable-next-line global-require
           require('./Webpack5Cache').default;
 
+      this.cache = new CacheEngine(compiler, compilation, this.options);
+
       const allExtractedComments = {};
-      const taskGenerator = this.taskGenerator.bind(
+
+      this.getTask = this.taskGenerator.bind(
         this,
         compiler,
         compilation,
         allExtractedComments
       );
-      const taskRunner = new TaskRunner({
-        taskGenerator,
-        files,
-        cache: new CacheEngine(compiler, compilation, this.options),
-        parallel: this.options.parallel,
-      });
 
-      await taskRunner.run();
-      await taskRunner.exit();
+      await this.runTasks();
+      await this.exitTasks();
 
       Object.keys(allExtractedComments).forEach((commentsFilename) => {
         const extractedComments = new Set([
