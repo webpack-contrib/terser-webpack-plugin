@@ -211,7 +211,7 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  *taskGenerator(compilation, context, allExtractedComments, file) {
+  *taskGenerator(compiler, compilation, allExtractedComments, file) {
     let inputSourceMap;
 
     const asset = compilation.assets[file];
@@ -307,7 +307,7 @@ class TerserPlugin {
               error,
               file,
               sourceMap,
-              new RequestShortener(context)
+              new RequestShortener(compiler.context)
             )
           );
 
@@ -391,7 +391,7 @@ class TerserPlugin {
               warning,
               file,
               sourceMap,
-              new RequestShortener(context),
+              new RequestShortener(compiler.context),
               this.options.warningsFilter
             );
 
@@ -462,7 +462,7 @@ class TerserPlugin {
           error,
           file,
           TerserPlugin.buildSourceMap(inputSourceMap),
-          new RequestShortener(context)
+          new RequestShortener(compiler.context)
         )
       );
     }
@@ -640,8 +640,8 @@ class TerserPlugin {
 
       this.getTaskForFile = this.taskGenerator.bind(
         this,
+        compiler,
         compilation,
-        compiler.context,
         allExtractedComments
       );
 
