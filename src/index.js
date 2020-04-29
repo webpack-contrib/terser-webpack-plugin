@@ -575,7 +575,7 @@ class TerserPlugin {
             !devtool.includes('eval') &&
             !devtool.includes('cheap') &&
             (devtool.includes('source-map') ||
-              // Todo remove when `webpack@5` support will be dropped
+              // Todo remove when `webpack@4` support will be dropped
               devtool.includes('sourcemap'))) ||
           (plugins &&
             plugins.some(
