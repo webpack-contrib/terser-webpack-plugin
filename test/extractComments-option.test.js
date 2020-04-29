@@ -12,22 +12,13 @@ import {
 } from './helpers';
 
 function createFilenameFn() {
-  return getCompiler.isWebpack4()
-    ? (file, fileData) => {
-        expect(file).toBeDefined();
-        expect(fileData).toBeDefined();
+  return (fileData) => {
+    expect(fileData).toBeDefined();
 
-        // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-        // You must consider this
-        return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
-      }
-    : (fileData) => {
-        expect(fileData).toBeDefined();
-
-        // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-        // You must consider this
-        return `${fileData.filename}.LICENSE.txt${fileData.query}`;
-      };
+    // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
+    // You must consider this
+    return `${fileData.filename}.LICENSE.txt${fileData.query}`;
+  };
 }
 
 describe('extractComments option', () => {
@@ -147,7 +138,7 @@ describe('extractComments option', () => {
   });
 
   it('should match snapshot when extracts comments to multiple files', async () => {
-    expect.assertions(getCompiler.isWebpack4() ? 13 : 8);
+    expect.assertions(8);
 
     new TerserPlugin({
       extractComments: {
@@ -220,7 +211,7 @@ describe('extractComments option', () => {
   });
 
   it('should match snapshot when no condition, preserve only `/@license/i` comments and extract "some" comments', async () => {
-    expect.assertions(getCompiler.isWebpack4() ? 13 : 8);
+    expect.assertions(8);
 
     new TerserPlugin({
       terserOptions: {
@@ -328,7 +319,7 @@ describe('extractComments option', () => {
   });
 
   it('should match snapshot when extracts comments to files with query string and when filename is a function', async () => {
-    expect.assertions(getCompiler.isWebpack4() ? 13 : 8);
+    expect.assertions(8);
 
     compiler = getCompiler({
       entry: {
