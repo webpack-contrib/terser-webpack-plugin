@@ -71,7 +71,7 @@ describe('warningsFilter option', () => {
 
   it('should match snapshot for a "function" value and the "sourceMap" value is "true" (filter by source)', async () => {
     new TerserPlugin({
-      warningsFilter(warning, source) {
+      warningsFilter(warning, file, source) {
         if (/unreachable-code\.js/.test(source)) {
           return true;
         }
@@ -93,7 +93,7 @@ describe('warningsFilter option', () => {
 
   it('should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by file)', async () => {
     new TerserPlugin({
-      warningsFilter(warning, source, file) {
+      warningsFilter(warning, file) {
         if (/two\.js/.test(file)) {
           return true;
         }

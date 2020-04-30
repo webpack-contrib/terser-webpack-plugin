@@ -159,8 +159,7 @@ class TerserPlugin {
       }
     }
 
-    // Todo change order in next major release
-    if (warningsFilter && !warningsFilter(warning, source, file)) {
+    if (warningsFilter && !warningsFilter(warning, file, source)) {
       return null;
     }
 
