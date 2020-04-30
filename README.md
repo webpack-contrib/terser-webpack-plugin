@@ -523,12 +523,9 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: 'some',
-          filename: (file, fileData) => {
-            // ⚠ webpack 5: there is only fileData parameter
-
-            // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-            // You must consider this
-            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
+          filename: (fileData) => {
+            // The "fileData" argument contains object with "filename", "basename", "query" and "hash"
+            return `${fileData.filename}.LICENSE.txt${fileData.query}`;
           },
           banner: (licenseFile) => {
             return `License information can be found in ${licenseFile}`;
@@ -590,12 +587,9 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: true,
-          filename: (file, fileData) => {
-            // ⚠ webpack 5: there is only fileData parameter
-
-            // A file can contain a query string (for example when you have `output.filename: '[name].js?[chunkhash]'`)
-            // You must consider this
-            return file.replace(/\.(\w+)($|\?)/, '.$1.LICENSE.txt$2');
+          filename: (fileData) => {
+            // The "fileData" argument contains object with "filename", "basename", "query" and "hash"
+            return `${fileData.filename}.LICENSE.txt${fileData.query}`;
           },
           banner: (commentsFile) => {
             return `My custom banner about license information ${commentsFile}`;

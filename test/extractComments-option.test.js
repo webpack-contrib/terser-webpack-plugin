@@ -364,6 +364,7 @@ describe('extractComments option', () => {
 
     const stats = await compile(compiler);
 
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
@@ -387,6 +388,7 @@ describe('extractComments option', () => {
 
     const stats = await compile(compiler);
 
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
