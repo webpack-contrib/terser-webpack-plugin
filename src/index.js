@@ -256,20 +256,18 @@ class TerserPlugin {
         const data = { filename, basename, query };
 
         commentsFilename = compilation.getPath(commentsFilename, data);
-      }
 
-      if (
-        commentsFilename &&
-        TerserPlugin.hasAsset(commentsFilename, compilation.assets)
-      ) {
-        // Todo make error and stop uglifing in next major release
-        compilation.warnings.push(
-          new Error(
-            `The comment file "${TerserPlugin.removeQueryString(
-              commentsFilename
-            )}" conflicts with an existing asset, this may lead to code corruption, please use a different name`
-          )
-        );
+        if (TerserPlugin.hasAsset(commentsFilename, compilation.assets)) {
+          compilation.errors.push(
+            new Error(
+              `The comment file "${TerserPlugin.removeQueryString(
+                commentsFilename
+              )}" conflicts with an existing asset, this may lead to code corruption, please use a different name`
+            )
+          );
+
+          yield false;
+        }
       }
 
       const callback = (taskResult) => {
