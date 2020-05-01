@@ -416,6 +416,9 @@ class TerserPlugin {
         task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
       }
     } else {
+      // For webpack@5 cache
+      task.assetSource = assetSource;
+
       task.cacheKeys = {
         terser: terserPackageJson.version,
         // eslint-disable-next-line global-require
@@ -559,22 +562,30 @@ class TerserPlugin {
       this.options.terserOptions.ecma = output.ecmaVersion;
     }
 
-    const optimizeFn = async (compilation, chunks) => {
+    const optimizeFn = async (compilation, chunksOrAssets) => {
       const matchObject = ModuleFilenameHelpers.matchObject.bind(
         // eslint-disable-next-line no-undefined
         undefined,
         this.options
       );
 
-      this.files = []
-        .concat(Array.from(compilation.additionalChunkAssets || []))
-        .concat(
-          Array.from(chunks).reduce(
-            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-            []
+      if (!TerserPlugin.isWebpack4()) {
+        this.files = []
+          .concat(Object.keys(chunksOrAssets))
+          .filter((file) => matchObject(file));
+      } else {
+        this.files = []
+          .concat(Array.from(compilation.additionalChunkAssets || []))
+          .concat(
+            Array.from(chunksOrAssets)
+              .filter(
+                (chunk) =>
+                  this.options.chunkFilter && this.options.chunkFilter(chunk)
+              )
+
           )
-        )
-        .filter((file) => matchObject(file));
+          .filter((file) => matchObject(file));
+      }
 
       if (this.files.length === 0) {
         return Promise.resolve();
@@ -640,6 +651,11 @@ class TerserPlugin {
           hash.update('TerserPlugin');
           hash.update(data);
         });
+
+        compilation.hooks.optimizeAssets.tapPromise(
+          plugin,
+          optimizeFn.bind(this, compilation)
+        );
       } else {
         // Todo remove after drop `webpack@4` compatibility
         const { mainTemplate, chunkTemplate } = compilation;
@@ -655,12 +671,12 @@ class TerserPlugin {
             hash.update(data);
           });
         }
-      }
 
-      compilation.hooks.optimizeChunkAssets.tapPromise(
-        plugin,
-        optimizeFn.bind(this, compilation)
-      );
+        compilation.hooks.optimizeChunkAssets.tapPromise(
+          plugin,
+          optimizeFn.bind(this, compilation)
+        );
+      }
     });
   }
 }

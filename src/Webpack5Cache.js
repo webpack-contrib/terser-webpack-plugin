@@ -37,7 +37,7 @@ export default class Cache {
     // eslint-disable-next-line no-param-reassign
     task.cacheIdent = task.cacheIdent || this.createCacheIdent(task);
     // eslint-disable-next-line no-param-reassign
-    task.cacheETag = task.cacheETag || getLazyHashedEtag(task.asset);
+    task.cacheETag = task.cacheETag || getLazyHashedEtag(task.assetSource);
 
     return new Promise((resolve, reject) => {
       this.compilation.cache.get(
