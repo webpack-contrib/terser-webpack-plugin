@@ -177,10 +177,10 @@ class TerserPlugin {
     return targetFilename;
   }
 
-  static hasAsset(commentFilename, assets) {
-    const assetFilenames = Object.keys(assets).map((assetFilename) =>
-      TerserPlugin.removeQueryString(assetFilename)
-    );
+  static hasAsset(commentFilename, compilation) {
+    const assetFilenames = Object.keys(
+      compilation.assets
+    ).map((assetFilename) => TerserPlugin.removeQueryString(assetFilename));
 
     return assetFilenames.includes(
       TerserPlugin.removeQueryString(commentFilename)
@@ -202,13 +202,13 @@ class TerserPlugin {
   }
 
   *taskGenerator(compiler, compilation, allExtractedComments, file) {
-    const asset = compilation.assets[file];
+    const assetSource = compilation.assets[file];
 
     let input;
     let inputSourceMap;
 
-    if (this.options.sourceMap && asset.sourceAndMap) {
-      const { source, map } = asset.sourceAndMap();
+    if (this.options.sourceMap && assetSource.sourceAndMap) {
+      const { source, map } = assetSource.sourceAndMap();
 
       input = source;
 
@@ -222,7 +222,7 @@ class TerserPlugin {
         );
       }
     } else {
-      input = asset.source();
+      input = assetSource.source();
       inputSourceMap = null;
     }
 
@@ -250,7 +250,7 @@ class TerserPlugin {
 
       commentsFilename = compilation.getPath(commentsFilename, data);
 
-      if (TerserPlugin.hasAsset(commentsFilename, compilation.assets)) {
+      if (TerserPlugin.hasAsset(commentsFilename, compilation)) {
         compilation.errors.push(
           new Error(
             `The comment file "${TerserPlugin.removeQueryString(
@@ -378,7 +378,6 @@ class TerserPlugin {
     };
 
     const task = {
-      asset,
       file,
       input,
       inputSourceMap,
