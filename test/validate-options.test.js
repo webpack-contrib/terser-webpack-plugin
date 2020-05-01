@@ -99,14 +99,6 @@ it('validation', () => {
   }).toThrowErrorMatchingSnapshot();
 
   expect(() => {
-    new TerserPlugin({ chunkFilter: () => {} });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ chunkFilter: true });
-  }).toThrowErrorMatchingSnapshot();
-
-  expect(() => {
     new TerserPlugin({ cache: true });
   }).not.toThrow();
 
