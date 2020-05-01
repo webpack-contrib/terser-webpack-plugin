@@ -74,7 +74,7 @@
     "prettier": "^2.0.5",
     "standard-version": "^7.1.0",
     "uglify-js": "^3.9.1",
-    "webpack": "next"
+    "webpack": "^4.43.0"
   },
   "keywords": [
     "uglify",

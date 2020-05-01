@@ -40,7 +40,7 @@ describe('TerserPlugin', () => {
 
   afterEach(() => Promise.all([removeCache()]));
 
-  it.only('should work (without options)', async () => {
+  it('should work (without options)', async () => {
     const compiler = getCompiler();
 
     new TerserPlugin().apply(compiler);
