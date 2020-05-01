@@ -569,11 +569,7 @@ class TerserPlugin {
         this.options
       );
 
-      if (!TerserPlugin.isWebpack4()) {
-        this.files = []
-          .concat(Object.keys(chunksOrAssets))
-          .filter((file) => matchObject(file));
-      } else {
+      if (TerserPlugin.isWebpack4()) {
         this.files = []
           .concat(Array.from(compilation.additionalChunkAssets || []))
           .concat(
@@ -584,6 +580,10 @@ class TerserPlugin {
               )
 
           )
+          .filter((file) => matchObject(file));
+      } else {
+        this.files = []
+          .concat(Object.keys(chunksOrAssets))
           .filter((file) => matchObject(file));
       }
 
@@ -638,26 +638,7 @@ class TerserPlugin {
         });
       }
 
-      if (!TerserPlugin.isWebpack4()) {
-        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
-          compilation
-        );
-        const data = serialize({
-          terser: terserPackageJson.version,
-          terserOptions: this.options.terserOptions,
-        });
-
-        hooks.chunkHash.tap(plugin, (chunk, hash) => {
-          hash.update('TerserPlugin');
-          hash.update(data);
-        });
-
-        compilation.hooks.optimizeAssets.tapPromise(
-          plugin,
-          optimizeFn.bind(this, compilation)
-        );
-      } else {
-        // Todo remove after drop `webpack@4` compatibility
+      if (TerserPlugin.isWebpack4()) {
         const { mainTemplate, chunkTemplate } = compilation;
         const data = serialize({
           terser: terserPackageJson.version,
@@ -673,6 +654,24 @@ class TerserPlugin {
         }
 
         compilation.hooks.optimizeChunkAssets.tapPromise(
+          plugin,
+          optimizeFn.bind(this, compilation)
+        );
+      } else {
+        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
+          compilation
+        );
+        const data = serialize({
+          terser: terserPackageJson.version,
+          terserOptions: this.options.terserOptions,
+        });
+
+        hooks.chunkHash.tap(plugin, (chunk, hash) => {
+          hash.update('TerserPlugin');
+          hash.update(data);
+        });
+
+        compilation.hooks.optimizeAssets.tapPromise(
           plugin,
           optimizeFn.bind(this, compilation)
         );
