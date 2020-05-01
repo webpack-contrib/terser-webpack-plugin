@@ -447,7 +447,10 @@ class TerserPlugin {
 
     if (availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
-      const numWorkers = Math.min(this.files.length, availableNumberOfCores);
+      const numWorkers = Math.min(
+        this.assetNames.length,
+        availableNumberOfCores
+      );
 
       concurrency = numWorkers;
 
@@ -474,7 +477,7 @@ class TerserPlugin {
     const limit = pLimit(concurrency);
     const scheduledTasks = [];
 
-    for (const file of this.files) {
+    for (const assetName of this.assetNames) {
       const enqueue = async (task) => {
         let taskResult;
 
@@ -498,7 +501,7 @@ class TerserPlugin {
 
       scheduledTasks.push(
         limit(() => {
-          const task = this.getTaskForFile(file).next().value;
+          const task = this.getTaskForAsset(assetName).next().value;
 
           if (!task) {
             // Something went wrong, for example the `cacheKeys` option throw an error
@@ -570,7 +573,7 @@ class TerserPlugin {
       );
 
       if (TerserPlugin.isWebpack4()) {
-        this.files = []
+        this.assetNames = []
           .concat(Array.from(compilation.additionalChunkAssets || []))
           .concat(
             Array.from(chunksOrAssets)
@@ -582,12 +585,12 @@ class TerserPlugin {
           )
           .filter((file) => matchObject(file));
       } else {
-        this.files = []
+        this.assetNames = []
           .concat(Object.keys(chunksOrAssets))
           .filter((file) => matchObject(file));
       }
 
-      if (this.files.length === 0) {
+      if (this.assetNames.length === 0) {
         return Promise.resolve();
       }
 
@@ -603,7 +606,7 @@ class TerserPlugin {
 
       const allExtractedComments = {};
 
-      this.getTaskForFile = this.taskGenerator.bind(
+      this.getTaskForAsset = this.taskGenerator.bind(
         this,
         compiler,
         compilation,
