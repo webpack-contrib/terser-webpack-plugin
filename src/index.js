@@ -177,10 +177,10 @@ class TerserPlugin {
     return targetFilename;
   }
 
-  static hasAsset(commentFilename, assets) {
-    const assetFilenames = Object.keys(assets).map((assetFilename) =>
-      TerserPlugin.removeQueryString(assetFilename)
-    );
+  static hasAsset(commentFilename, compilation) {
+    const assetFilenames = Object.keys(
+      compilation.assets
+    ).map((assetFilename) => TerserPlugin.removeQueryString(assetFilename));
 
     return assetFilenames.includes(
       TerserPlugin.removeQueryString(commentFilename)
@@ -202,13 +202,13 @@ class TerserPlugin {
   }
 
   *taskGenerator(compiler, compilation, allExtractedComments, file) {
-    const asset = compilation.assets[file];
+    const assetSource = compilation.assets[file];
 
     let input;
     let inputSourceMap;
 
-    if (this.options.sourceMap && asset.sourceAndMap) {
-      const { source, map } = asset.sourceAndMap();
+    if (this.options.sourceMap && assetSource.sourceAndMap) {
+      const { source, map } = assetSource.sourceAndMap();
 
       input = source;
 
@@ -222,7 +222,7 @@ class TerserPlugin {
         );
       }
     } else {
-      input = asset.source();
+      input = assetSource.source();
       inputSourceMap = null;
     }
 
@@ -250,7 +250,7 @@ class TerserPlugin {
 
       commentsFilename = compilation.getPath(commentsFilename, data);
 
-      if (TerserPlugin.hasAsset(commentsFilename, compilation.assets)) {
+      if (TerserPlugin.hasAsset(commentsFilename, compilation)) {
         compilation.errors.push(
           new Error(
             `The comment file "${TerserPlugin.removeQueryString(
@@ -378,7 +378,6 @@ class TerserPlugin {
     };
 
     const task = {
-      asset,
       file,
       input,
       inputSourceMap,
@@ -417,6 +416,9 @@ class TerserPlugin {
         task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
       }
     } else {
+      // For webpack@5 cache
+      task.assetSource = assetSource;
+
       task.cacheKeys = {
         terser: terserPackageJson.version,
         // eslint-disable-next-line global-require
@@ -445,7 +447,10 @@ class TerserPlugin {
 
     if (availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
-      const numWorkers = Math.min(this.files.length, availableNumberOfCores);
+      const numWorkers = Math.min(
+        this.assetNames.length,
+        availableNumberOfCores
+      );
 
       concurrency = numWorkers;
 
@@ -472,7 +477,7 @@ class TerserPlugin {
     const limit = pLimit(concurrency);
     const scheduledTasks = [];
 
-    for (const file of this.files) {
+    for (const assetName of this.assetNames) {
       const enqueue = async (task) => {
         let taskResult;
 
@@ -496,7 +501,7 @@ class TerserPlugin {
 
       scheduledTasks.push(
         limit(() => {
-          const task = this.getTaskForFile(file).next().value;
+          const task = this.getTaskForAsset(assetName).next().value;
 
           if (!task) {
             // Something went wrong, for example the `cacheKeys` option throw an error
@@ -560,24 +565,30 @@ class TerserPlugin {
       this.options.terserOptions.ecma = output.ecmaVersion;
     }
 
-    const optimizeFn = async (compilation, chunks) => {
+    const optimizeFn = async (compilation, chunksOrAssets) => {
       const matchObject = ModuleFilenameHelpers.matchObject.bind(
         // eslint-disable-next-line no-undefined
         undefined,
         this.options
       );
 
-      this.files = []
-        .concat(Array.from(compilation.additionalChunkAssets || []))
-        .concat(
-          Array.from(chunks).reduce(
-            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-            []
+      if (TerserPlugin.isWebpack4()) {
+        this.assetNames = []
+          .concat(Array.from(compilation.additionalChunkAssets || []))
+          .concat(
+            Array.from(chunksOrAssets).reduce(
+              (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
+              []
+            )
           )
-        )
-        .filter((file) => matchObject(file));
+          .filter((file) => matchObject(file));
+      } else {
+        this.assetNames = []
+          .concat(Object.keys(chunksOrAssets))
+          .filter((file) => matchObject(file));
+      }
 
-      if (this.files.length === 0) {
+      if (this.assetNames.length === 0) {
         return Promise.resolve();
       }
 
@@ -593,7 +604,7 @@ class TerserPlugin {
 
       const allExtractedComments = {};
 
-      this.getTaskForFile = this.taskGenerator.bind(
+      this.getTaskForAsset = this.taskGenerator.bind(
         this,
         compiler,
         compilation,
@@ -628,21 +639,7 @@ class TerserPlugin {
         });
       }
 
-      if (!TerserPlugin.isWebpack4()) {
-        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
-          compilation
-        );
-        const data = serialize({
-          terser: terserPackageJson.version,
-          terserOptions: this.options.terserOptions,
-        });
-
-        hooks.chunkHash.tap(plugin, (chunk, hash) => {
-          hash.update('TerserPlugin');
-          hash.update(data);
-        });
-      } else {
-        // Todo remove after drop `webpack@4` compatibility
+      if (TerserPlugin.isWebpack4()) {
         const { mainTemplate, chunkTemplate } = compilation;
         const data = serialize({
           terser: terserPackageJson.version,
@@ -656,12 +653,30 @@ class TerserPlugin {
             hash.update(data);
           });
         }
-      }
 
-      compilation.hooks.optimizeChunkAssets.tapPromise(
-        plugin,
-        optimizeFn.bind(this, compilation)
-      );
+        compilation.hooks.optimizeChunkAssets.tapPromise(
+          plugin,
+          optimizeFn.bind(this, compilation)
+        );
+      } else {
+        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
+          compilation
+        );
+        const data = serialize({
+          terser: terserPackageJson.version,
+          terserOptions: this.options.terserOptions,
+        });
+
+        hooks.chunkHash.tap(plugin, (chunk, hash) => {
+          hash.update('TerserPlugin');
+          hash.update(data);
+        });
+
+        compilation.hooks.optimizeAssets.tapPromise(
+          plugin,
+          optimizeFn.bind(this, compilation)
+        );
+      }
     });
   }
 }
