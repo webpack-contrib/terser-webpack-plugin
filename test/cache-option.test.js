@@ -257,20 +257,6 @@ if (getCompiler.isWebpack4()) {
       cacachePutSpy.mockRestore();
     });
 
-    it('should match snapshot for errors into the "cacheKeys" option', async () => {
-      new TerserPlugin({
-        cache: true,
-        cacheKeys: () => {
-          throw new Error('message');
-        },
-      }).apply(compiler);
-
-      const stats = await compile(compiler);
-
-      expect(getErrors(stats)).toMatchSnapshot('errors');
-      expect(getWarnings(stats)).toMatchSnapshot('warnings');
-    });
-
     it('should match snapshot and invalid cache when entry point was renamed', async () => {
       const cacacheGetSpy = jest.spyOn(cacache, 'get');
       const cacachePutSpy = jest.spyOn(cacache, 'put');
