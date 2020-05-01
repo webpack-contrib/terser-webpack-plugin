@@ -576,12 +576,10 @@ class TerserPlugin {
         this.assetNames = []
           .concat(Array.from(compilation.additionalChunkAssets || []))
           .concat(
-            Array.from(chunksOrAssets)
-              .filter(
-                (chunk) =>
-                  this.options.chunkFilter && this.options.chunkFilter(chunk)
-              )
-
+            Array.from(chunksOrAssets).reduce(
+              (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
+              []
+            )
           )
           .filter((file) => matchObject(file));
       } else {
