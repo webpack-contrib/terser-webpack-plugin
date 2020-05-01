@@ -61,10 +61,6 @@
         }
       ]
     },
-    "chunkFilter": {
-      "description": "Allowing to filter which chunks should be uglified (by default all chunks are uglified).",
-      "instanceof": "Function"
-    },
     "cache": {
       "description": "Enable file caching. Ignored in webpack 5, for webpack 5 please use https://webpack.js.org/configuration/other-options/#cache.",
       "anyOf": [
