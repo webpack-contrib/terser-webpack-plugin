@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.6...v3.0.0) (2020-05-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported Node.js version is `10.13`
+* the `chunkFilter` was removed, please use `test`/`include`/`exclude` options
+* change arguments order for the `warningFilter` option from `Function<(warning, file, source) -> Boolean>` to `Function<(file, warning, source) -> Boolean>`
+* when the `extractComments.filename` option is a function it pass only one argument and it is object with `filename`, `basename`, `query` and `hash` properties
+* if the value from the `extractComments.filename` option conflicts with existing assets, an error will be thrown instead of a warning
+* use the `optimizeAssets` hook for webpack@5
+
 ### [2.3.6](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.5...v2.3.6) (2020-04-25)
 
 
