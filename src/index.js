@@ -34,7 +34,6 @@ class TerserPlugin {
       minify,
       terserOptions = {},
       test = /\.m?js(\?.*)?$/i,
-      chunkFilter = () => true,
       warningsFilter = () => true,
       extractComments = true,
       sourceMap,
@@ -47,7 +46,6 @@ class TerserPlugin {
 
     this.options = {
       test,
-      chunkFilter,
       warningsFilter,
       extractComments,
       sourceMap,
