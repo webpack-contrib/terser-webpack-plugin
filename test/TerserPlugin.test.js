@@ -124,6 +124,79 @@ describe('TerserPlugin', () => {
     });
   });
 
+  it('should work in multi compiler mode with the one plugin', async () => {
+    const plugins = [new TerserPlugin()];
+    const multiCompiler = getCompiler([
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist`,
+          filename: '[name]-1.js',
+          chunkFilename: '[id]-1.[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist`,
+          filename: '[name]-2.js',
+          chunkFilename: '[id]-2.[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/import-export/entry.js`,
+        output: {
+          path: `${__dirname}/dist-MultiCompiler`,
+          filename: '[name]-3.js',
+          chunkFilename: '[id]-3.[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+    ]);
+
+    const emptyPluginCount = countPlugins(multiCompiler.compilers[0]);
+    const expectedPluginCount = countPlugins(multiCompiler.compilers[1]);
+
+    expect(emptyPluginCount).not.toEqual(expectedPluginCount);
+
+    multiCompiler.compilers.slice(2).forEach((compiler) => {
+      const pluginCount = countPlugins(compiler);
+
+      expect(pluginCount).not.toEqual(emptyPluginCount);
+      expect(pluginCount).toEqual(expectedPluginCount);
+      expect(pluginCount).toMatchSnapshot('compiler plugin count');
+    });
+
+    const multiStats = await compile(multiCompiler);
+
+    multiStats.stats.forEach((stats, index) => {
+      expect(
+        readsAssets(multiCompiler.compilers[index], stats)
+      ).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    });
+  });
+
   it('should work as a plugin', async () => {
     const compiler = getCompiler({
       plugins: [new TerserPlugin()],
