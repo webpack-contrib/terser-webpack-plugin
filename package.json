@@ -43,7 +43,7 @@
   "dependencies": {
     "cacache": "^15.0.3",
     "find-cache-dir": "^3.3.1",
-    "jest-worker": "^25.5.0",
+    "jest-worker": "^26.0.0",
     "p-limit": "^2.3.0",
     "schema-utils": "^2.6.6",
     "serialize-javascript": "^3.0.0",
@@ -59,7 +59,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@webpack-contrib/defaults": "^6.3.0",
     "@webpack-contrib/eslint-config-webpack": "^3.0.0",
-    "babel-jest": "^25.5.1",
+    "babel-jest": "^26.0.1",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "del-cli": "^3.0.0",
@@ -67,13 +67,13 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
     "husky": "^4.2.5",
-    "jest": "^25.5.3",
+    "jest": "^26.0.1",
     "lint-staged": "^10.2.2",
     "memfs": "^3.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "standard-version": "^7.1.0",
-    "uglify-js": "^3.9.1",
+    "uglify-js": "^3.9.2",
     "webpack": "^4.43.0"
   },
   "keywords": [
