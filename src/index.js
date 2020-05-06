@@ -428,20 +428,13 @@ class TerserPlugin {
     yield task;
   }
 
-  async runTask(task) {
-    if (this.worker) {
-      return this.worker.transform(serialize(task));
-    }
-
-    return minifyFn(task);
-  }
-
   async runTasks() {
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel
     );
 
     let concurrency = Infinity;
+    let worker;
 
     if (availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
@@ -452,10 +445,10 @@ class TerserPlugin {
 
       concurrency = numWorkers;
 
-      this.worker = new Worker(require.resolve('./minify'), { numWorkers });
+      worker = new Worker(require.resolve('./minify'), { numWorkers });
 
       // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
-      const workerStdout = this.worker.getStdout();
+      const workerStdout = worker.getStdout();
 
       if (workerStdout) {
         workerStdout.on('data', (chunk) => {
@@ -463,7 +456,7 @@ class TerserPlugin {
         });
       }
 
-      const workerStderr = this.worker.getStderr();
+      const workerStderr = worker.getStderr();
 
       if (workerStderr) {
         workerStderr.on('data', (chunk) => {
@@ -480,7 +473,11 @@ class TerserPlugin {
         let taskResult;
 
         try {
-          taskResult = await this.runTask(task);
+          if (worker) {
+            taskResult = await worker.transform(serialize(task));
+          } else {
+            taskResult = minifyFn(task);
+          }
         } catch (error) {
           taskResult = { error };
         }
@@ -518,15 +515,13 @@ class TerserPlugin {
       );
     }
 
-    return Promise.all(scheduledTasks);
-  }
+    return Promise.all(scheduledTasks).then(() => {
+      if (worker) {
+        return worker.end();
+      }
 
-  async exitTasks() {
-    if (!this.worker) {
       return Promise.resolve();
-    }
-
-    return this.worker.end();
+    });
   }
 
   apply(compiler) {
@@ -610,7 +605,6 @@ class TerserPlugin {
       );
 
       await this.runTasks();
-      await this.exitTasks();
 
       Object.keys(allExtractedComments).forEach((commentsFilename) => {
         const extractedComments = new Set([
