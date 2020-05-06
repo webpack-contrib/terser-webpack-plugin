@@ -197,6 +197,52 @@ describe('TerserPlugin', () => {
     });
   });
 
+  it('should work in multi compiler mode with the one plugin and with the same file', async () => {
+    const plugins = [new TerserPlugin()];
+    const multiCompiler = getCompiler([
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-0`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-1`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+    ]);
+
+    const multiStats = await compile(multiCompiler);
+
+    multiStats.stats.forEach((stats, index) => {
+      expect(
+        readsAssets(multiCompiler.compilers[index], stats)
+      ).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    });
+  });
+
   it('should work as a plugin', async () => {
     const compiler = getCompiler({
       plugins: [new TerserPlugin()],
