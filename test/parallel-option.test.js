@@ -14,7 +14,7 @@ import {
 } from './helpers';
 
 jest.mock('os', () => {
-  const actualOs = require.requireActual('os');
+  const actualOs = jest.requireActual('os');
 
   actualOs.cpus = jest.fn(() => {
     return { length: 4 };
