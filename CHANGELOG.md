@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.0.0...v3.0.1) (2020-05-06)
+
+
+### Bug Fixes
+
+* parallelism in multi compilation mode ([0ee7ed2](https://github.com/webpack-contrib/terser-webpack-plugin/commit/0ee7ed270b8cbf6312cc1009c5aa5f909fc7fbb7))
+* remove redundant code for the `chunkFilter` option ([#243](https://github.com/webpack-contrib/terser-webpack-plugin/issues/243)) ([7220734](https://github.com/webpack-contrib/terser-webpack-plugin/commit/722073494ae708e7cd94cdb9df26fb483e93e8de))
+
 ## [3.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v2.3.6...v3.0.0) (2020-05-01)
 
 

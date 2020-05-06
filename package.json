@@ -1,6 +1,6 @@
 {
   "name": "terser-webpack-plugin",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Terser plugin for webpack",
   "license": "MIT",
   "repository": "webpack-contrib/terser-webpack-plugin",
@@ -74,7 +74,7 @@
     "prettier": "^2.0.5",
     "standard-version": "^7.1.0",
     "uglify-js": "^3.9.2",
-    "webpack": "^4.43.0"
+    "webpack": "next"
   },
   "keywords": [
     "uglify",
