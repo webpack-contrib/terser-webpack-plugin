@@ -17,8 +17,6 @@ const buildTerserOptions = ({
   /* eslint-enable camelcase */
   safari10,
 } = {}) => ({
-  ecma,
-  warnings,
   parse: { ...parse },
   compress: typeof compress === 'boolean' ? compress : { ...compress },
   // eslint-disable-next-line no-nested-ternary
@@ -32,15 +30,17 @@ const buildTerserOptions = ({
     beautify: false,
     ...output,
   },
-  module,
   // Ignoring sourceMap from options
   sourceMap: null,
-  toplevel,
-  nameCache,
-  ie8,
+  ecma,
   keep_classnames,
   keep_fnames,
+  ie8,
+  module,
+  nameCache,
   safari10,
+  toplevel,
+  warnings,
 });
 
 function isObject(value) {
