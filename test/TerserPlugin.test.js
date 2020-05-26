@@ -124,6 +124,28 @@ describe('TerserPlugin', () => {
     });
   });
 
+  it('should work when some of assets do not contain source maps', async () => {
+    const compiler = getCompiler({
+      devtool: 'source-map',
+      module: {
+        rules: [
+          {
+            test: /\.js$/i,
+            loader: require.resolve('./fixtures/emit-loader.js'),
+          },
+        ],
+      },
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work in multi compiler mode with the one plugin', async () => {
     const plugins = [new TerserPlugin()];
     const multiCompiler = getCompiler([

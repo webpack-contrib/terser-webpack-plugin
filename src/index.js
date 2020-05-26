@@ -205,19 +205,22 @@ class TerserPlugin {
     let input;
     let inputSourceMap;
 
+    // TODO refactor after drop webpack@4, webpack@5 always has `sourceAndMap` on sources
     if (this.options.sourceMap && assetSource.sourceAndMap) {
       const { source, map } = assetSource.sourceAndMap();
 
       input = source;
 
-      if (TerserPlugin.isSourceMap(map)) {
-        inputSourceMap = map;
-      } else {
-        inputSourceMap = map;
+      if (map) {
+        if (TerserPlugin.isSourceMap(map)) {
+          inputSourceMap = map;
+        } else {
+          inputSourceMap = map;
 
-        compilation.warnings.push(
-          new Error(`${file} contains invalid source map`)
-        );
+          compilation.warnings.push(
+            new Error(`${file} contains invalid source map`)
+          );
+        }
       }
     } else {
       input = assetSource.source();
