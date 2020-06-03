@@ -46,7 +46,7 @@
     "jest-worker": "^25.4.0",
     "p-limit": "^2.3.0",
     "schema-utils": "^2.6.6",
-    "serialize-javascript": "^3.0.0",
+    "serialize-javascript": "^3.1.0",
     "source-map": "^0.6.1",
     "terser": "^4.6.12",
     "webpack-sources": "^1.4.3"
