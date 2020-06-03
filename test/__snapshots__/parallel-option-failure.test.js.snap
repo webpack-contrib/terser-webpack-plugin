@@ -2,12 +2,12 @@
 
 exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\` and \`cache\` is \`true\`: errors 1`] = `
 Array [
-  "Error: one.eeb04a1d13c1369545d6.js from Terser
+  "Error: one.3cbc4215dd27419d067c.js from Terser
 Error: worker-farm failed",
 ]
 `;
 
-exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\` and \`cache\` is \`true\`: one.eeb04a1d13c1369545d6.js 1`] = `
+exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\` and \`cache\` is \`true\`: one.3cbc4215dd27419d067c.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -117,12 +117,12 @@ exports[`when applied with \`parallel\` option matches snapshot for errors into 
 
 exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\`: errors 1`] = `
 Array [
-  "Error: one.eeb04a1d13c1369545d6.js from Terser
+  "Error: one.3cbc4215dd27419d067c.js from Terser
 Error: worker-farm failed",
 ]
 `;
 
-exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\`: one.eeb04a1d13c1369545d6.js 1`] = `
+exports[`when applied with \`parallel\` option matches snapshot for errors into \`worker-farm\`: one.3cbc4215dd27419d067c.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
