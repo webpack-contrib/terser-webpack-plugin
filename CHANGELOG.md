@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.0.3...v3.0.4) (2020-06-13)
+
+
+### Chore
+
+* update `p-limit` and `serialize-javascript` packages
+
 ### [3.0.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.0.1...v3.0.3) (2020-06-03)
 
 
