@@ -20,6 +20,8 @@ import {
   removeCache,
 } from './helpers';
 
+jest.setTimeout(10000);
+
 describe('TerserPlugin', () => {
   const rawSourceMap = {
     version: 3,
@@ -244,6 +246,51 @@ describe('TerserPlugin', () => {
         entry: `${__dirname}/fixtures/entry.js`,
         output: {
           path: `${__dirname}/dist-1`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-2`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-3`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-4`,
           filename: '[name].js',
           chunkFilename: '[id].[name].js',
         },

@@ -431,7 +431,7 @@ class TerserPlugin {
     yield task;
   }
 
-  async runTasks(assetNames) {
+  async runTasks(assetNames, getTaskForAsset, cache) {
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel
     );
@@ -482,8 +482,8 @@ class TerserPlugin {
           taskResult = { error };
         }
 
-        if (this.cache.isEnabled() && !taskResult.error) {
-          taskResult = await this.cache.store(task, taskResult).then(
+        if (cache.isEnabled() && !taskResult.error) {
+          taskResult = await cache.store(task, taskResult).then(
             () => taskResult,
             () => taskResult
           );
@@ -496,15 +496,15 @@ class TerserPlugin {
 
       scheduledTasks.push(
         limit(() => {
-          const task = this.getTaskForAsset(assetName).next().value;
+          const task = getTaskForAsset(assetName).next().value;
 
           if (!task) {
             // Something went wrong, for example the `cacheKeys` option throw an error
             return Promise.resolve();
           }
 
-          if (this.cache.isEnabled()) {
-            return this.cache.get(task).then(
+          if (cache.isEnabled()) {
+            return cache.get(task).then(
               (taskResult) => task.callback(taskResult),
               () => enqueue(task)
             );
@@ -587,26 +587,21 @@ class TerserPlugin {
         return Promise.resolve();
       }
 
-      const CacheEngine = TerserPlugin.isWebpack4()
-        ? // eslint-disable-next-line global-require
-          require('./Webpack4Cache').default
-        : // eslint-disable-next-line global-require
-          require('./Webpack5Cache').default;
-
-      this.cache = new CacheEngine(compilation, {
-        cache: this.options.cache,
-      });
-
       const allExtractedComments = {};
-
-      this.getTaskForAsset = this.taskGenerator.bind(
+      const getTaskForAsset = this.taskGenerator.bind(
         this,
         compiler,
         compilation,
         allExtractedComments
       );
+      const CacheEngine = TerserPlugin.isWebpack4()
+        ? // eslint-disable-next-line global-require
+          require('./Webpack4Cache').default
+        : // eslint-disable-next-line global-require
+          require('./Webpack5Cache').default;
+      const cache = new CacheEngine(compilation, { cache: this.options.cache });
 
-      await this.runTasks(assetNames);
+      await this.runTasks(assetNames, getTaskForAsset, cache);
 
       Object.keys(allExtractedComments).forEach((commentsFilename) => {
         const extractedComments = new Set([

@@ -10,22 +10,18 @@ import {
 } from './helpers';
 
 describe('warningsFilter option', () => {
-  let compiler;
+  beforeEach(() => Promise.all([removeCache()]));
 
-  beforeEach(() => {
-    compiler = getCompiler({
+  afterEach(() => Promise.all([removeCache()]));
+
+  it('should match snapshot for a "function" value and the "sourceMap" option is "false" (filter by message)', async () => {
+    const compiler = getCompiler({
       entry: {
         one: `${__dirname}/fixtures/unreachable-code.js`,
         two: `${__dirname}/fixtures/unreachable-code-2.js`,
       },
     });
 
-    return Promise.all([removeCache()]);
-  });
-
-  afterEach(() => Promise.all([removeCache()]));
-
-  it('should match snapshot for a "function" value and the "sourceMap" option is "false" (filter by message)', async () => {
     new TerserPlugin({
       warningsFilter(warning) {
         if (/Dropping unreachable code/.test(warning)) {
@@ -48,6 +44,13 @@ describe('warningsFilter option', () => {
   });
 
   it('should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by message)', async () => {
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/unreachable-code.js`,
+        two: `${__dirname}/fixtures/unreachable-code-2.js`,
+      },
+    });
+
     new TerserPlugin({
       warningsFilter(warning) {
         if (/Dropping unreachable code/.test(warning)) {
@@ -70,6 +73,13 @@ describe('warningsFilter option', () => {
   });
 
   it('should match snapshot for a "function" value and the "sourceMap" value is "true" (filter by source)', async () => {
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/unreachable-code.js`,
+        two: `${__dirname}/fixtures/unreachable-code-2.js`,
+      },
+    });
+
     new TerserPlugin({
       warningsFilter(warning, file, source) {
         if (/unreachable-code\.js/.test(source)) {
@@ -92,6 +102,13 @@ describe('warningsFilter option', () => {
   });
 
   it('should match snapshot for a "function" value and the "sourceMap" option is "true" (filter by file)', async () => {
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/unreachable-code.js`,
+        two: `${__dirname}/fixtures/unreachable-code-2.js`,
+      },
+    });
+
     new TerserPlugin({
       warningsFilter(warning, file) {
         if (/two\.js/.test(file)) {
@@ -114,6 +131,13 @@ describe('warningsFilter option', () => {
   });
 
   it('should match snapshot for an empty "function" value', async () => {
+    const compiler = getCompiler({
+      entry: {
+        one: `${__dirname}/fixtures/unreachable-code.js`,
+        two: `${__dirname}/fixtures/unreachable-code-2.js`,
+      },
+    });
+
     new TerserPlugin({
       warningsFilter() {},
       terserOptions: {
