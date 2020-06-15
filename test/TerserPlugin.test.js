@@ -252,6 +252,51 @@ describe('TerserPlugin', () => {
         },
         plugins,
       },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-2`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-3`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
+      {
+        mode: 'production',
+        bail: true,
+        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        entry: `${__dirname}/fixtures/entry.js`,
+        output: {
+          path: `${__dirname}/dist-4`,
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        optimization: {
+          minimize: false,
+        },
+        plugins,
+      },
     ]);
 
     const multiStats = await compile(multiCompiler);
