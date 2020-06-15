@@ -20,6 +20,8 @@ import {
   removeCache,
 } from './helpers';
 
+jest.setTimeout(10000);
+
 describe('TerserPlugin', () => {
   const rawSourceMap = {
     version: 3,
