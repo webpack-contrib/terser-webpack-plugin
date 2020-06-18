@@ -227,6 +227,10 @@ class TerserPlugin {
       inputSourceMap = null;
     }
 
+    if (Buffer.isBuffer(input)) {
+      input = input.toString();
+    }
+
     // Handling comment extraction
     let commentsFilename = false;
 
