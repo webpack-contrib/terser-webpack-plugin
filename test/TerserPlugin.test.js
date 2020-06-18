@@ -339,6 +339,52 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work with "file-loader"', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, 'fixtures/file-loader.js'),
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with "asset" module type', async () => {
+    if (getCompiler.isWebpack4()) {
+      expect(true).toBe(true);
+    } else {
+      const compiler = getCompiler({
+        entry: path.resolve(__dirname, 'fixtures/asset-resource.js'),
+        experiments: {
+          asset: true,
+        },
+        module: {
+          rules: [
+            {
+              test: /emitted\.js$/i,
+              type: 'asset/resource',
+              generator: {
+                filename: '[name][ext]',
+              },
+            },
+          ],
+        },
+      });
+
+      new TerserPlugin().apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    }
+  });
+
   it('should work and respect "terser" errors (the "parallel" option is "true")', async () => {
     const compiler = getCompiler();
 
