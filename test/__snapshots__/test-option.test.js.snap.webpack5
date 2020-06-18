@@ -2,11 +2,11 @@
 
 exports[`test option should match snapshot and uglify "mjs": assets 1`] = `
 Object {
-  "598.598.mjs?ver=e765ebbc348d13a39f88": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
-  "AsyncImportExport.mjs?var=e765ebbc348d13a39f88": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var a=r[e]={exports:{}};return t[e](a,a.exports,o),a.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".mjs?ver=\\"+o.h(),o.h=()=>\\"e765ebbc348d13a39f88\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,a)=>{if(e[t])e[t].push(r);else{var n,i;if(void 0!==a)for(var s=document.getElementsByTagName(\\"script\\"),u=0;u<s.length;u++){var p=s[u];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==a){n=p;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",a),n.src=t),e[t]=[r];var c=r=>{c=()=>{},n.onerror=n.onload=null,clearTimeout(d);var o=e[t];delete e[t],n.parentNode.removeChild(n),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=c,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var a=o.o(e,t)?e[t]:void 0;if(0!==a)if(a)r.push(a[2]);else{var n=new Promise((r,o)=>{a=e[t]=[r,o]});r.push(a[2]=n);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(a=e[t])&&(e[t]=void 0),a)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=n,s.request=i,a[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,n,i=t[0],s=t[1],u=t[3],p=0,c=[];p<i.length;p++)n=i[p],o.o(e,n)&&e[n]&&c.push(e[n][0]),e[n]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(u&&u(o),a&&a(t);c.length;)c.shift()()};var a=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
-  "importExport.mjs?var=e765ebbc348d13a39f88": "(()=>{\\"use strict\\"})();",
-  "js.mjs?var=e765ebbc348d13a39f88": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.mjs?var=e765ebbc348d13a39f88": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+  "598.598.mjs?ver=a5a1e4470ae1f40cf1ee": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
+  "AsyncImportExport.mjs?var=a5a1e4470ae1f40cf1ee": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var a=r[e]={exports:{}};return t[e](a,a.exports,o),a.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".mjs?ver=\\"+o.h(),o.h=()=>\\"a5a1e4470ae1f40cf1ee\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,a)=>{if(e[t])e[t].push(r);else{var n,i;if(void 0!==a)for(var s=document.getElementsByTagName(\\"script\\"),u=0;u<s.length;u++){var p=s[u];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==a){n=p;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",a),n.src=t),e[t]=[r];var c=r=>{c=()=>{},n.onerror=n.onload=null,clearTimeout(l);var o=e[t];delete e[t],n.parentNode.removeChild(n),o&&o.forEach(e=>e(r))},l=setTimeout(()=>{c({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=c,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var a=o.o(e,t)?e[t]:void 0;if(0!==a)if(a)r.push(a[2]);else{var n=new Promise((r,o)=>{a=e[t]=[r,o]});r.push(a[2]=n);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(a=e[t])&&(e[t]=void 0),a)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=n,s.request=i,a[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,n,i=t[0],s=t[1],u=t[3],p=0,c=[];p<i.length;p++)n=i[p],o.o(e,n)&&e[n]&&c.push(e[n][0]),e[n]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(u&&u(o),a&&a(t);c.length;)c.shift()()};var a=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.mjs?var=a5a1e4470ae1f40cf1ee": "(()=>{\\"use strict\\"})();",
+  "js.mjs?var=a5a1e4470ae1f40cf1ee": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.mjs?var=a5a1e4470ae1f40cf1ee": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
 }
 `;
 
@@ -16,7 +16,7 @@ exports[`test option should match snapshot and uglify "mjs": warnings 1`] = `Arr
 
 exports[`test option should match snapshot for a single "test" value ({String}): assets 1`] = `
 Object {
-  "598.598.js?ver=81c1bbb90f4df33c80f2": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=98d3d0db16bb2536d3ad": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -32,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 /******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => \\"81c1bbb90f4df33c80f2\\"
+/******/ 		__webpack_require__.h = () => \\"98d3d0db16bb2536d3ad\\"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -276,7 +276,7 @@ __webpack_require__.e(/* import() */ 598).then(__webpack_require__.bind(__webpac
 
 /******/ })()
 ;",
-  "importExport.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "importExport.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 // UNUSED EXPORTS: default
@@ -304,8 +304,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "js.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 631:
@@ -365,7 +365,7 @@ exports[`test option should match snapshot for a single "test" value ({String}):
 
 exports[`test option should match snapshot for a single \`test\` value ({RegExp}): assets 1`] = `
 Object {
-  "598.598.js?ver=81c1bbb90f4df33c80f2": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=98d3d0db16bb2536d3ad": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -381,7 +381,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 /******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
@@ -448,7 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => \\"81c1bbb90f4df33c80f2\\"
+/******/ 		__webpack_require__.h = () => \\"98d3d0db16bb2536d3ad\\"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -625,7 +625,7 @@ __webpack_require__.e(/* import() */ 598).then(__webpack_require__.bind(__webpac
 
 /******/ })()
 ;",
-  "importExport.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "importExport.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 // UNUSED EXPORTS: default
@@ -653,8 +653,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+  "js.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
 }
 `;
 
@@ -664,7 +664,7 @@ exports[`test option should match snapshot for a single \`test\` value ({RegExp}
 
 exports[`test option should match snapshot for multiple "test" values ({RegExp}): assets 1`] = `
 Object {
-  "598.598.js?ver=81c1bbb90f4df33c80f2": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=98d3d0db16bb2536d3ad": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -680,8 +680,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=81c1bbb90f4df33c80f2": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".js?ver=\\"+o.h(),o.h=()=>\\"81c1bbb90f4df33c80f2\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var s=document.getElementsByTagName(\\"script\\"),u=0;u<s.length;u++){var p=s[u];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==n){a=p;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=a,s.request=i,n[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],s=t[1],u=t[3],p=0,c=[];p<i.length;p++)a=i[p],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(u&&u(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
-  "importExport.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=98d3d0db16bb2536d3ad": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var a=r[e]={exports:{}};return t[e](a,a.exports,o),a.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".js?ver=\\"+o.h(),o.h=()=>\\"98d3d0db16bb2536d3ad\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,a)=>{if(e[t])e[t].push(r);else{var n,i;if(void 0!==a)for(var s=document.getElementsByTagName(\\"script\\"),d=0;d<s.length;d++){var u=s[d];if(u.getAttribute(\\"src\\")==t||u.getAttribute(\\"data-webpack\\")==a){n=u;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",a),n.src=t),e[t]=[r];var p=r=>{p=()=>{},n.onerror=n.onload=null,clearTimeout(l);var o=e[t];delete e[t],n.parentNode.removeChild(n),o&&o.forEach(e=>e(r))},l=setTimeout(()=>{p({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=p,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var a=o.o(e,t)?e[t]:void 0;if(0!==a)if(a)r.push(a[2]);else{var n=new Promise((r,o)=>{a=e[t]=[r,o]});r.push(a[2]=n);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(a=e[t])&&(e[t]=void 0),a)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=n,s.request=i,a[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,n,i=t[0],s=t[1],d=t[3],u=0,p=[];u<i.length;u++)n=i[u],o.o(e,n)&&e[n]&&p.push(e[n][0]),e[n]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(d&&d(o),a&&a(t);p.length;)p.shift()()};var a=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 // UNUSED EXPORTS: default
@@ -709,8 +709,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+  "js.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
 }
 `;
 
@@ -720,7 +720,7 @@ exports[`test option should match snapshot for multiple "test" values ({RegExp})
 
 exports[`test option should match snapshot for multiple "test" values ({String}): assets 1`] = `
 Object {
-  "598.598.js?ver=81c1bbb90f4df33c80f2": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=98d3d0db16bb2536d3ad": "(window[\\"webpackJsonpterser_webpack_plugin\\"] = window[\\"webpackJsonpterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -736,8 +736,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=81c1bbb90f4df33c80f2": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".js?ver=\\"+o.h(),o.h=()=>\\"81c1bbb90f4df33c80f2\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var s=document.getElementsByTagName(\\"script\\"),u=0;u<s.length;u++){var p=s[u];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==n){a=p;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=a,s.request=i,n[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],s=t[1],u=t[3],p=0,c=[];p<i.length;p++)a=i[p],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(u&&u(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
-  "importExport.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=98d3d0db16bb2536d3ad": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var a=r[e]={exports:{}};return t[e](a,a.exports,o),a.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".js?ver=\\"+o.h(),o.h=()=>\\"98d3d0db16bb2536d3ad\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,a)=>{if(e[t])e[t].push(r);else{var n,i;if(void 0!==a)for(var s=document.getElementsByTagName(\\"script\\"),d=0;d<s.length;d++){var u=s[d];if(u.getAttribute(\\"src\\")==t||u.getAttribute(\\"data-webpack\\")==a){n=u;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",a),n.src=t),e[t]=[r];var p=r=>{p=()=>{},n.onerror=n.onload=null,clearTimeout(l);var o=e[t];delete e[t],n.parentNode.removeChild(n),o&&o.forEach(e=>e(r))},l=setTimeout(()=>{p({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=p,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var a=o.o(e,t)?e[t]:void 0;if(0!==a)if(a)r.push(a[2]);else{var n=new Promise((r,o)=>{a=e[t]=[r,o]});r.push(a[2]=n);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(a=e[t])&&(e[t]=void 0),a)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=n,s.request=i,a[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,n,i=t[0],s=t[1],d=t[3],u=0,p=[];u<i.length;u++)n=i[u],o.o(e,n)&&e[n]&&p.push(e[n][0]),e[n]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(d&&d(o),a&&a(t);p.length;)p.shift()()};var a=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 // UNUSED EXPORTS: default
@@ -765,8 +765,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=81c1bbb90f4df33c80f2": "/******/ (() => { // webpackBootstrap
+  "js.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=98d3d0db16bb2536d3ad": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 631:
@@ -826,11 +826,11 @@ exports[`test option should match snapshot for multiple "test" values ({String})
 
 exports[`test option should match snapshot with empty value: assets 1`] = `
 Object {
-  "598.598.js?ver=81c1bbb90f4df33c80f2": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
-  "AsyncImportExport.js?var=81c1bbb90f4df33c80f2": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".js?ver=\\"+o.h(),o.h=()=>\\"81c1bbb90f4df33c80f2\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var s=document.getElementsByTagName(\\"script\\"),u=0;u<s.length;u++){var p=s[u];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==n){a=p;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=a,s.request=i,n[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],s=t[1],u=t[3],p=0,c=[];p<i.length;p++)a=i[p],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(u&&u(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
-  "importExport.js?var=81c1bbb90f4df33c80f2": "(()=>{\\"use strict\\"})();",
-  "js.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=81c1bbb90f4df33c80f2": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+  "598.598.js?ver=98d3d0db16bb2536d3ad": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
+  "AsyncImportExport.js?var=98d3d0db16bb2536d3ad": "(()=>{\\"use strict\\";var e,t={},r={};function o(e){if(r[e])return r[e].exports;var a=r[e]={exports:{}};return t[e](a,a.exports,o),a.exports}o.m=t,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>e+\\".\\"+e+\\".js?ver=\\"+o.h(),o.h=()=>\\"98d3d0db16bb2536d3ad\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,a)=>{if(e[t])e[t].push(r);else{var n,i;if(void 0!==a)for(var s=document.getElementsByTagName(\\"script\\"),d=0;d<s.length;d++){var u=s[d];if(u.getAttribute(\\"src\\")==t||u.getAttribute(\\"data-webpack\\")==a){n=u;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",a),n.src=t),e[t]=[r];var p=r=>{p=()=>{},n.onerror=n.onload=null,clearTimeout(l);var o=e[t];delete e[t],n.parentNode.removeChild(n),o&&o.forEach(e=>e(r))},l=setTimeout(()=>{p({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=p,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(t,r)=>{var a=o.o(e,t)?e[t]:void 0;if(0!==a)if(a)r.push(a[2]);else{var n=new Promise((r,o)=>{a=e[t]=[r,o]});r.push(a[2]=n);var i=o.p+o.u(t),s=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(a=e[t])&&(e[t]=void 0),a)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;s.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",s.name=\\"ChunkLoadError\\",s.type=n,s.request=i,a[1](s)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,n,i=t[0],s=t[1],d=t[3],u=0,p=[];u<i.length;u++)n=i[u],o.o(e,n)&&e[n]&&p.push(e[n][0]),e[n]=0;for(r in s)o.o(s,r)&&(o.m[r]=s[r]);for(d&&d(o),a&&a(t);p.length;)p.shift()()};var a=r})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js?var=98d3d0db16bb2536d3ad": "(()=>{\\"use strict\\"})();",
+  "js.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=98d3d0db16bb2536d3ad": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
 }
 `;
 
