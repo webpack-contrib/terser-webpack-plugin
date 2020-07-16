@@ -562,13 +562,13 @@ class TerserPlugin {
       this.options.terserOptions.ecma = output.ecmaVersion;
     }
 
-    const optimizeFn = async (compilation, chunksOrAssets) => {
-      const matchObject = ModuleFilenameHelpers.matchObject.bind(
-        // eslint-disable-next-line no-undefined
-        undefined,
-        this.options
-      );
+    const matchObject = ModuleFilenameHelpers.matchObject.bind(
+      // eslint-disable-next-line no-undefined
+      undefined,
+      this.options
+    );
 
+    const optimizeFn = async (compilation, chunksOrAssets) => {
       let assetNames;
 
       if (TerserPlugin.isWebpack4()) {
@@ -580,6 +580,8 @@ class TerserPlugin {
               []
             )
           )
+          .concat(Object.keys(compilation.assets))
+          .filter((file, index, assets) => assets.indexOf(file) === index)
           .filter((file) => matchObject(file));
       } else {
         assetNames = []
