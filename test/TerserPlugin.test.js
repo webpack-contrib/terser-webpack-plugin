@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import path from 'path';
 
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import { javascript } from 'webpack';
 import MainTemplate from 'webpack/lib/MainTemplate';
@@ -802,5 +803,24 @@ describe('TerserPlugin', () => {
 
     process.stdout.write = stdoutWrite;
     process.stderr.write = stderrWrite;
+  });
+
+  it('should work with "copy-webpack-plugin"', async () => {
+    const compiler = getCompiler();
+
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, './fixtures/copy.js'),
+        },
+      ],
+    }).apply(compiler);
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });
