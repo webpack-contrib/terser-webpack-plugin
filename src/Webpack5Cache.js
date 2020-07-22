@@ -11,7 +11,7 @@ export default class Cache {
   }
 
   isEnabled() {
-    return Boolean(this.compilation.cache);
+    return Boolean(this.compilation.getCache());
   }
 
   createCacheIdent(task) {
