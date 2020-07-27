@@ -5136,57 +5136,6 @@ exports[`extractComments option should match snapshot and preserve "some" do not
 
 exports[`extractComments option should match snapshot and preserve "some" do not extract comments: warnings 1`] = `Array []`;
 
-exports[`extractComments option should match snapshot and throw error when comment file exists in assets: assets 1`] = `
-Object {
-  "1.js?2df5bec093e7a200d63a": "/*! For license information please see one.js?foo=bar */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1],[,function(n,o){n.exports=Math.random()}]]);",
-  "one.js?ca9cf17b5f754dbcc4ec": "/*! Legal Comment */
-
-/*! Legal Foo */
-
-/**
- * @preserve Copyright 2009 SomeThirdParty.
- * Here is the full license text and copyright
- * notice for this file. Note that the notice can span several
- * lines and is only terminated by the closing star and slash:
- */
-
-/**
- * Utility functions for the foo package.
- * @license Apache-2.0
- */
-
-/** @license Copyright 2112 Moon. **/
-
-// @lic
-",
-  "one.js?foo=bar": "/*! Legal Comment */
-
-/*! Legal Foo */
-
-/**
- * @preserve Copyright 2009 SomeThirdParty.
- * Here is the full license text and copyright
- * notice for this file. Note that the notice can span several
- * lines and is only terminated by the closing star and slash:
- */
-
-/**
- * Utility functions for the foo package.
- * @license Apache-2.0
- */
-
-/** @license Copyright 2112 Moon. **/
-
-// @lic
-",
-}
-`;
-
-exports[`extractComments option should match snapshot and throw error when comment file exists in assets: errors 1`] = `Array []`;
-
-exports[`extractComments option should match snapshot and throw error when comment file exists in assets: warnings 1`] = `Array []`;
-
 exports[`extractComments option should match snapshot for a "function" value: assets 1`] = `
 Object {
   "chunks/4.4.js": "/*! For license information please see 4.4.js.LICENSE.txt */
