@@ -348,30 +348,6 @@ describe('extractComments option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should match snapshot and throw error when comment file exists in assets', async () => {
-    compiler = getCompiler({
-      entry: {
-        one: `${__dirname}/fixtures/comments.js`,
-      },
-      output: {
-        filename: '[name].js?[chunkhash]',
-      },
-    });
-
-    new TerserPlugin({
-      extractComments: {
-        condition: true,
-        filename: 'one.js?foo=bar',
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
   it('should match snapshot for nested comment file', async () => {
     compiler = getCompiler({
       entry: {
