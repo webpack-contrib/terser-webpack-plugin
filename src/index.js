@@ -175,16 +175,6 @@ class TerserPlugin {
     return targetFilename;
   }
 
-  static hasAsset(commentFilename, compilation) {
-    const assetFilenames = Object.keys(
-      compilation.assets
-    ).map((assetFilename) => TerserPlugin.removeQueryString(assetFilename));
-
-    return assetFilenames.includes(
-      TerserPlugin.removeQueryString(commentFilename)
-    );
-  }
-
   static isWebpack4() {
     return webpackVersion[0] === '4';
   }
@@ -254,18 +244,6 @@ class TerserPlugin {
       const data = { filename, basename, query };
 
       commentsFilename = compilation.getPath(commentsFilename, data);
-
-      if (TerserPlugin.hasAsset(commentsFilename, compilation)) {
-        compilation.errors.push(
-          new Error(
-            `The comment file "${TerserPlugin.removeQueryString(
-              commentsFilename
-            )}" conflicts with an existing asset, this may lead to code corruption, please use a different name`
-          )
-        );
-
-        yield false;
-      }
     }
 
     const callback = (taskResult) => {
@@ -297,7 +275,7 @@ class TerserPlugin {
       const hasExtractedComments =
         commentsFilename && extractedComments && extractedComments.length > 0;
       const hasBannerForExtractedComments =
-        hasExtractedComments && this.options.extractComments.banner !== false;
+        this.options.extractComments.banner !== false;
 
       let outputSource;
       let shebang;
@@ -328,19 +306,11 @@ class TerserPlugin {
 
       // Write extracted comments to commentsFilename
       if (hasExtractedComments) {
-        if (!allExtractedComments[commentsFilename]) {
-          // eslint-disable-next-line no-param-reassign
-          allExtractedComments[commentsFilename] = [];
-        }
-
-        // eslint-disable-next-line no-param-reassign
-        allExtractedComments[commentsFilename] = allExtractedComments[
-          commentsFilename
-        ].concat(extractedComments);
+        let banner;
 
         // Add a banner to the original file
         if (hasBannerForExtractedComments) {
-          let banner =
+          banner =
             this.options.extractComments.banner ||
             `For license information please see ${path
               .relative(path.dirname(file), commentsFilename)
@@ -357,6 +327,36 @@ class TerserPlugin {
               outputSource
             );
           }
+        }
+
+        if (!allExtractedComments[commentsFilename]) {
+          // eslint-disable-next-line no-param-reassign
+          allExtractedComments[commentsFilename] = new Set();
+        }
+
+        extractedComments.forEach((comment) => {
+          // Avoid re-adding banner
+          // Developers can use different banner for different names, but this setting should be avoided, it is not safe
+          if (banner && comment === `/*! ${banner} */`) {
+            return;
+          }
+
+          allExtractedComments[commentsFilename].add(comment);
+        });
+
+        // Extracted comments from child compilation
+        const previousExtractedComments = compilation.assets[commentsFilename];
+
+        if (previousExtractedComments) {
+          const previousExtractedCommentsSource = previousExtractedComments.source();
+
+          // Restore original comments and re-add them
+          previousExtractedCommentsSource
+            .replace(/\n$/, '')
+            .split('\n\n')
+            .forEach((comment) => {
+              allExtractedComments[commentsFilename].add(comment);
+            });
         }
       }
 
@@ -610,13 +610,15 @@ class TerserPlugin {
       await this.runTasks(assetNames, getTaskForAsset, cache);
 
       Object.keys(allExtractedComments).forEach((commentsFilename) => {
-        const extractedComments = new Set([
-          ...allExtractedComments[commentsFilename].sort(),
-        ]);
+        const extractedComments = Array.from(
+          allExtractedComments[commentsFilename]
+        )
+          .sort()
+          .join('\n\n');
 
         // eslint-disable-next-line no-param-reassign
         compilation.assets[commentsFilename] = new RawSource(
-          `${Array.from(extractedComments).join('\n\n')}\n`
+          `${extractedComments}\n`
         );
       });
 
