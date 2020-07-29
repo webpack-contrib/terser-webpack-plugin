@@ -71,7 +71,7 @@ class TerserPlugin {
     );
   }
 
-  static buildSourceMap(inputSourceMap) {
+  static async buildSourceMap(inputSourceMap) {
     if (!inputSourceMap || !TerserPlugin.isSourceMap(inputSourceMap)) {
       return null;
     }
@@ -246,7 +246,7 @@ class TerserPlugin {
       commentsFilename = compilation.getPath(commentsFilename, data);
     }
 
-    const callback = (taskResult) => {
+    const callback = async (taskResult) => {
       let { code } = taskResult;
       const { error, map, warnings } = taskResult;
       const { extractedComments } = taskResult;
@@ -254,7 +254,7 @@ class TerserPlugin {
       let sourceMap = null;
 
       if (error || (warnings && warnings.length > 0)) {
-        sourceMap = TerserPlugin.buildSourceMap(inputSourceMap);
+        sourceMap = await TerserPlugin.buildSourceMap(inputSourceMap);
       }
 
       // Handling results
@@ -380,6 +380,10 @@ class TerserPlugin {
           }
         });
       }
+
+      if (sourceMap) {
+        sourceMap.destroy();
+      }
     };
 
     const task = {
@@ -487,31 +491,30 @@ class TerserPlugin {
         }
 
         if (cache.isEnabled() && !taskResult.error) {
-          taskResult = await cache.store(task, taskResult).then(
-            () => taskResult,
-            () => taskResult
-          );
+          try {
+            await cache.store(task, taskResult);
+          } catch (_) {} // eslint-disable-line no-empty
         }
 
-        task.callback(taskResult);
+        await task.callback(taskResult);
 
         return taskResult;
       };
 
       scheduledTasks.push(
-        limit(() => {
+        limit(async () => {
           const task = getTaskForAsset(assetName).next().value;
 
           if (!task) {
             // Something went wrong, for example the `cacheKeys` option throw an error
-            return Promise.resolve();
+            return null;
           }
 
           if (cache.isEnabled()) {
-            return cache.get(task).then(
-              (taskResult) => task.callback(taskResult),
-              () => enqueue(task)
-            );
+            try {
+              const taskResult = await cache.get(task);
+              return task.callback(taskResult);
+            } catch (_) {} // eslint-disable-line no-empty
           }
 
           return enqueue(task);
@@ -519,13 +522,10 @@ class TerserPlugin {
       );
     }
 
-    return Promise.all(scheduledTasks).then(() => {
-      if (worker) {
-        return worker.end();
-      }
-
-      return Promise.resolve();
-    });
+    await Promise.all(scheduledTasks);
+    if (worker) {
+      await worker.end();
+    }
   }
 
   apply(compiler) {

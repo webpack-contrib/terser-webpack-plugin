@@ -21,12 +21,14 @@ Stack]
 `;
 
 exports[`TerserPlugin buildSourceMap method 1`] = `
-SourceMapConsumer {
+BasicSourceMapConsumer {
   "_absoluteSources": Array [
     "http://example.com/www/js/one.js",
     "http://example.com/www/js/two.js",
   ],
+  "_computedColumnSpans": false,
   "_mappings": "CAAC,IAAI,IAAM,SAAUA,GAClB,OAAOC,IAAID;CCDb,IAAI,IAAM,SAAUE,GAClB,OAAOA",
+  "_mappingsPtr": 0,
   "_names": ArraySet {
     "_array": Array [
       "bar",
@@ -49,6 +51,36 @@ SourceMapConsumer {
       "one.js" => 0,
       "two.js" => 1,
     },
+  },
+  "_wasm": Object {
+    "exports": Object {
+      "__eqdf2": [Function],
+      "__eqsf2": [Function],
+      "__gedf2": [Function],
+      "__gesf2": [Function],
+      "__gtdf2": [Function],
+      "__gtsf2": [Function],
+      "__ledf2": [Function],
+      "__lesf2": [Function],
+      "__ltdf2": [Function],
+      "__ltsf2": [Function],
+      "__nedf2": [Function],
+      "__nesf2": [Function],
+      "__unorddf2": [Function],
+      "__unordsf2": [Function],
+      "all_generated_locations_for": [Function],
+      "allocate_mappings": [Function],
+      "by_generated_location": [Function],
+      "by_original_location": [Function],
+      "compute_column_spans": [Function],
+      "free_mappings": [Function],
+      "generated_location_for": [Function],
+      "get_last_error": [Function],
+      "memory": Memory {},
+      "original_location_for": [Function],
+      "parse_mappings": [Function],
+    },
+    "withMappingCallback": [Function],
   },
   "file": "test.js",
   "sourceRoot": "http://example.com/www/js/",

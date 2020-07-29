@@ -47,7 +47,7 @@
     "p-limit": "^3.0.2",
     "schema-utils": "^2.6.6",
     "serialize-javascript": "^4.0.0",
-    "source-map": "^0.6.1",
+    "source-map": "^0.7.3",
     "terser": "^4.8.0",
     "webpack-sources": "^1.4.3"
   },
@@ -62,7 +62,6 @@
     "babel-jest": "^26.1.0",
     "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^7.0.2",
-    "del": "^5.1.0",
     "del-cli": "^3.0.1",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
