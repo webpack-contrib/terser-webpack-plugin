@@ -71,14 +71,6 @@ class TerserPlugin {
     );
   }
 
-  static buildSourceMap(inputSourceMap) {
-    if (!inputSourceMap || !TerserPlugin.isSourceMap(inputSourceMap)) {
-      return null;
-    }
-
-    return new SourceMapConsumer(inputSourceMap);
-  }
-
   static buildError(error, file, sourceMap, requestShortener) {
     if (error.line) {
       const original =
@@ -253,8 +245,12 @@ class TerserPlugin {
 
       let sourceMap = null;
 
-      if (error || (warnings && warnings.length > 0)) {
-        sourceMap = TerserPlugin.buildSourceMap(inputSourceMap);
+      if (
+        (error || (warnings && warnings.length > 0)) &&
+        inputSourceMap &&
+        TerserPlugin.isSourceMap(inputSourceMap)
+      ) {
+        sourceMap = new SourceMapConsumer(inputSourceMap);
       }
 
       // Handling results
@@ -487,10 +483,7 @@ class TerserPlugin {
         }
 
         if (cache.isEnabled() && !taskResult.error) {
-          taskResult = await cache.store(task, taskResult).then(
-            () => taskResult,
-            () => taskResult
-          );
+          await cache.store(task, taskResult);
         }
 
         task.callback(taskResult);
@@ -499,7 +492,7 @@ class TerserPlugin {
       };
 
       scheduledTasks.push(
-        limit(() => {
+        limit(async () => {
           const task = getTaskForAsset(assetName).next().value;
 
           if (!task) {
@@ -508,10 +501,17 @@ class TerserPlugin {
           }
 
           if (cache.isEnabled()) {
-            return cache.get(task).then(
-              (taskResult) => task.callback(taskResult),
-              () => enqueue(task)
-            );
+            let taskResult;
+
+            try {
+              taskResult = await cache.get(task);
+            } catch (ignoreError) {
+              return enqueue(task);
+            }
+
+            task.callback(taskResult);
+
+            return Promise.resolve();
           }
 
           return enqueue(task);
@@ -519,13 +519,11 @@ class TerserPlugin {
       );
     }
 
-    return Promise.all(scheduledTasks).then(() => {
-      if (worker) {
-        return worker.end();
-      }
+    await Promise.all(scheduledTasks);
 
-      return Promise.resolve();
-    });
+    if (worker) {
+      await worker.end();
+    }
   }
 
   apply(compiler) {

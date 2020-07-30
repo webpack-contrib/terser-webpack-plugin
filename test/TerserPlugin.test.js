@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import path from 'path';
 
+import { SourceMapConsumer } from 'source-map';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import RequestShortener from 'webpack/lib/RequestShortener';
 import { javascript } from 'webpack';
@@ -531,13 +532,6 @@ describe('TerserPlugin', () => {
     expect(TerserPlugin.isSourceMap(emptyRawSourceMap)).toBe(true);
   });
 
-  it('buildSourceMap method', () => {
-    expect(TerserPlugin.buildSourceMap()).toBe(null);
-    expect(TerserPlugin.buildSourceMap('invalid')).toBe(null);
-    expect(TerserPlugin.buildSourceMap({})).toBe(null);
-    expect(TerserPlugin.buildSourceMap(rawSourceMap)).toMatchSnapshot();
-  });
-
   it('buildError method', () => {
     const error = new Error('Message');
 
@@ -555,7 +549,7 @@ describe('TerserPlugin', () => {
       TerserPlugin.buildError(
         errorWithLineAndCol,
         'test.js',
-        TerserPlugin.buildSourceMap(rawSourceMap)
+        new SourceMapConsumer(rawSourceMap)
       )
     ).toMatchSnapshot();
 
@@ -569,7 +563,7 @@ describe('TerserPlugin', () => {
       TerserPlugin.buildError(
         otherErrorWithLineAndCol,
         'test.js',
-        TerserPlugin.buildSourceMap(rawSourceMap),
+        new SourceMapConsumer(rawSourceMap),
         new RequestShortener('/example.com/www/js/')
       )
     ).toMatchSnapshot();
@@ -594,14 +588,14 @@ describe('TerserPlugin', () => {
       TerserPlugin.buildWarning(
         'Warning [test.js:1,1]',
         'test.js',
-        TerserPlugin.buildSourceMap(rawSourceMap)
+        new SourceMapConsumer(rawSourceMap)
       )
     ).toMatchSnapshot();
     expect(
       TerserPlugin.buildWarning(
         'Warning [test.js:1,1]',
         'test.js',
-        TerserPlugin.buildSourceMap(rawSourceMap),
+        new SourceMapConsumer(rawSourceMap),
         new RequestShortener('/example.com/www/js/')
       )
     ).toMatchSnapshot();
@@ -609,7 +603,7 @@ describe('TerserPlugin', () => {
       TerserPlugin.buildWarning(
         'Warning [test.js:1,1]',
         'test.js',
-        TerserPlugin.buildSourceMap(rawSourceMap),
+        new SourceMapConsumer(rawSourceMap),
         new RequestShortener('/example.com/www/js/'),
         () => true
       )
@@ -618,7 +612,7 @@ describe('TerserPlugin', () => {
       TerserPlugin.buildWarning(
         'Warning [test.js:1,1]',
         'test.js',
-        TerserPlugin.buildSourceMap(rawSourceMap),
+        new SourceMapConsumer(rawSourceMap),
         new RequestShortener('/example.com/www/js/'),
         () => false
       )

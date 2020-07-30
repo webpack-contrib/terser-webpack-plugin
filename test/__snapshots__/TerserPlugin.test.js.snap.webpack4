@@ -20,42 +20,6 @@ exports[`TerserPlugin buildError method 4`] = `
 Stack]
 `;
 
-exports[`TerserPlugin buildSourceMap method 1`] = `
-SourceMapConsumer {
-  "_absoluteSources": Array [
-    "http://example.com/www/js/one.js",
-    "http://example.com/www/js/two.js",
-  ],
-  "_mappings": "CAAC,IAAI,IAAM,SAAUA,GAClB,OAAOC,IAAID;CCDb,IAAI,IAAM,SAAUE,GAClB,OAAOA",
-  "_names": ArraySet {
-    "_array": Array [
-      "bar",
-      "baz",
-      "n",
-    ],
-    "_set": Map {
-      "bar" => 0,
-      "baz" => 1,
-      "n" => 2,
-    },
-  },
-  "_sourceMapURL": undefined,
-  "_sources": ArraySet {
-    "_array": Array [
-      "one.js",
-      "two.js",
-    ],
-    "_set": Map {
-      "one.js" => 0,
-      "two.js" => 1,
-    },
-  },
-  "file": "test.js",
-  "sourceRoot": "http://example.com/www/js/",
-  "sourcesContent": null,
-}
-`;
-
 exports[`TerserPlugin buildWarning method 1`] = `"Terser Plugin: Warning [test.js:1,1]"`;
 
 exports[`TerserPlugin buildWarning method 2`] = `"Terser Plugin: Warning [test.js:1,1]"`;
