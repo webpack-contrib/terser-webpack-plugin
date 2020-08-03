@@ -155,18 +155,6 @@ class TerserPlugin {
     return `Terser Plugin: ${warningMessage}${locationMessage}`;
   }
 
-  static removeQueryString(filename) {
-    let targetFilename = filename;
-
-    const queryStringIdx = targetFilename.indexOf('?');
-
-    if (queryStringIdx >= 0) {
-      targetFilename = targetFilename.substr(0, queryStringIdx);
-    }
-
-    return targetFilename;
-  }
-
   static isWebpack4() {
     return webpackVersion[0] === '4';
   }
@@ -454,7 +442,7 @@ class TerserPlugin {
           'terser-webpack-plugin': require('../package.json').version,
           'terser-webpack-plugin-options': this.options,
           nodeVersion: process.version,
-          filename: name,
+          name,
           contentHash: digest.substr(0, hashDigestLength),
         };
 
