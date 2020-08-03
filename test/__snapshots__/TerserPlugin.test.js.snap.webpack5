@@ -472,6 +472,27 @@ exports[`TerserPlugin should work with "file-loader": errors 1`] = `Array []`;
 
 exports[`TerserPlugin should work with "file-loader": warnings 1`] = `Array []`;
 
+exports[`TerserPlugin should work with child compilation: assets 1`] = `
+Object {
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+(()=>{\\"use strict\\";var e={};e.p=\\"\\";const n=new function(){return new Worker(e.p+\\"main.worker.js\\")};n.postMessage({a:1}),n.onmessage=function(e){},n.addEventListener(\\"message\\",(function(e){}))})();",
+  "main.js.LICENSE.txt": "/*! Legal Comment */
+",
+  "main.worker.js": "/*! For license information please see main.worker.js.LICENSE.txt */
+onmessage=function(n){};",
+  "main.worker.js.LICENSE.txt": "/*! Legal Comment 1 */
+
+/*! Legal Comment 2 */
+
+/*! Legal Comment 3 */
+",
+}
+`;
+
+exports[`TerserPlugin should work with child compilation: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with child compilation: warnings 1`] = `Array []`;
+
 exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: assets 1`] = `
 Object {
   "one.js": "",
