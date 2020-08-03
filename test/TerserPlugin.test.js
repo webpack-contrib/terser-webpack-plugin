@@ -826,18 +826,18 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  // TODO uncomment after the new major release
-  it.skip('should work with child compilation', async () => {
+  it('should work with child compilation', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, 'fixtures/worker-loader.js'),
-      devtool: 'source-map',
+      devtool: false,
       module: {
         rules: [
           {
             test: /\.worker\.js$/i,
             loader: 'worker-loader',
             options: {
-              name: '[name].js',
+              filename: '[name].worker.js',
+              chunkFilename: '[name].chunk.worker.js',
             },
           },
         ],
