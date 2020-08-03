@@ -34,9 +34,9 @@ exports[`TerserPlugin buildWarning method 6`] = `null`;
 
 exports[`TerserPlugin should emit an error on a broken code in not parallel mode: assets 1`] = `
 Object {
-  "broken.js": "\`Broken===",
-  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "broken.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/broken.js'",
+  "one.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/one.js'",
+  "two.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/two.js'",
 }
 `;
 
@@ -51,9 +51,9 @@ exports[`TerserPlugin should emit an error on a broken code in not parallel mode
 
 exports[`TerserPlugin should emit an error on a broken code in parallel mode: assets 1`] = `
 Object {
-  "broken.js": "\`Broken===",
-  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "broken.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/broken.js'",
+  "one.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/one.js'",
+  "two.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/two.js'",
 }
 `;
 
@@ -68,11 +68,11 @@ exports[`TerserPlugin should emit an error on a broken code in parallel mode: wa
 
 exports[`TerserPlugin should regenerate hash: assets 1`] = `
 Object {
-  "598.598.70ff6985755ae80c6ef7.js": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
-  "AsyncImportExport.853ebc7a6b79b4a9b16b.js": "(()=>{\\"use strict\\";var e,r={},t={};function o(e){if(t[e])return t[e].exports;var a=t[e]={exports:{}};return r[e](a,a.exports,o),a.exports}o.m=r,o.d=(e,r)=>{for(var t in r)o.o(r,t)&&!o.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((r,t)=>(o.f[t](e,r),r),[])),o.u=e=>e+\\".\\"+e+\\".70ff6985755ae80c6ef7.js\\",o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},o.l=(r,t,a)=>{if(e[r])e[r].push(t);else{var n,i;if(void 0!==a)for(var p=document.getElementsByTagName(\\"script\\"),s=0;s<p.length;s++){var u=p[s];if(u.getAttribute(\\"src\\")==r||u.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+a){n=u;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+a),n.src=r),e[r]=[t];var c=t=>{c=()=>{},n.onerror=n.onload=null,clearTimeout(l);var o=e[r];delete e[r],n.parentNode&&n.parentNode.removeChild(n),o&&o.forEach(e=>e(t))},l=setTimeout(()=>{c({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=c,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(r,t)=>{var a=o.o(e,r)?e[r]:void 0;if(0!==a)if(a)t.push(a[2]);else{var n=new Promise((t,o)=>{a=e[r]=[t,o]});t.push(a[2]=n);var i=o.p+o.u(r),p=new Error;o.l(i,t=>{if(o.o(e,r)&&(0!==(a=e[r])&&(e[r]=void 0),a)){var n=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;p.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",p.name=\\"ChunkLoadError\\",p.type=n,p.request=i,a[1](p)}},\\"chunk-\\"+r)}};var r=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],t=r.push.bind(r);r.push=function(r){for(var t,n,i=r[0],p=r[1],s=r[3],u=0,c=[];u<i.length;u++)n=i[u],o.o(e,n)&&e[n]&&c.push(e[n][0]),e[n]=0;for(t in p)o.o(p,t)&&(o.m[t]=p[t]);for(s&&s(o),a&&a(r);c.length;)c.shift()()};var a=t})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
-  "importExport.4dbd083d0540b53c8bf4.js": "(()=>{\\"use strict\\"})();",
-  "js.d1bc0c3718c3f8ac4e41.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.2b79abcd1a51a2d3d42f.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+  "598.598.5d72557de264fa10f306.js": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
+  "AsyncImportExport.4f0bde0b02c99cb3336a.js": "(()=>{\\"use strict\\";var e,r={},t={};function o(e){if(t[e])return t[e].exports;var a=t[e]={exports:{}};return r[e](a,a.exports,o),a.exports}o.m=r,o.d=(e,r)=>{for(var t in r)o.o(r,t)&&!o.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((r,t)=>(o.f[t](e,r),r),[])),o.u=e=>e+\\".\\"+e+\\".5d72557de264fa10f306.js\\",o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},o.l=(r,t,a)=>{if(e[r])e[r].push(t);else{var n,i;if(void 0!==a)for(var p=document.getElementsByTagName(\\"script\\"),s=0;s<p.length;s++){var u=p[s];if(u.getAttribute(\\"src\\")==r||u.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+a){n=u;break}}n||(i=!0,(n=document.createElement(\\"script\\")).charset=\\"utf-8\\",n.timeout=120,o.nc&&n.setAttribute(\\"nonce\\",o.nc),n.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+a),n.src=r),e[r]=[t];var d=t=>{d=()=>{},n.onerror=n.onload=null,clearTimeout(l);var o=e[r];delete e[r],n.parentNode&&n.parentNode.removeChild(n),o&&o.forEach(e=>e(t))},l=setTimeout(()=>{d({type:\\"timeout\\",target:n})},12e4);n.onerror=n.onload=d,i&&document.head.appendChild(n)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(r,t)=>{var a=o.o(e,r)?e[r]:void 0;if(0!==a)if(a)t.push(a[2]);else{var n=new Promise((t,o)=>{a=e[r]=[t,o]});t.push(a[2]=n);var i=o.p+o.u(r),p=new Error;o.l(i,t=>{if(o.o(e,r)&&(0!==(a=e[r])&&(e[r]=void 0),a)){var n=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;p.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",p.name=\\"ChunkLoadError\\",p.type=n,p.request=i,a[1](p)}},\\"chunk-\\"+r)}};var r=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],t=r.push.bind(r);r.push=function(r){for(var t,n,i=r[0],p=r[1],s=r[3],u=0,d=[];u<i.length;u++)n=i[u],o.o(e,n)&&e[n]&&d.push(e[n][0]),e[n]=0;for(t in p)o.o(p,t)&&(o.m[t]=p[t]);for(s&&s(o),a&&a(r);d.length;)d.shift()()};var a=t})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.c597e72d1fd1a5b91b6d.js": "(()=>{\\"use strict\\"})();",
+  "js.12e2a1e4f39d61d6de1b.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.ff069f70188e3ab5ecd4.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
 }
 `;
 

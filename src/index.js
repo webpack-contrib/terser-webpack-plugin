@@ -501,11 +501,9 @@ class TerserPlugin {
           }
 
           if (cache.isEnabled()) {
-            let taskResult;
+            const taskResult = await cache.get(task);
 
-            try {
-              taskResult = await cache.get(task);
-            } catch (ignoreError) {
+            if (!taskResult) {
               return enqueue(task);
             }
 
