@@ -181,8 +181,48 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  *taskGenerator(compiler, compilation, allExtractedComments, file) {
-    const assetSource = compilation.assets[file];
+  // eslint-disable-next-line consistent-return
+  static getAsset(compilation, name) {
+    // New API
+    if (compilation.getAsset) {
+      return compilation.getAsset(name);
+    }
+
+    if (compilation.assets[name]) {
+      return { name, source: compilation.assets[name], info: {} };
+    }
+  }
+
+  static emitAsset(compilation, name, source, assetInfo) {
+    // New API
+    if (compilation.emitAsset) {
+      compilation.emitAsset(name, source, assetInfo);
+    }
+
+    // eslint-disable-next-line no-param-reassign
+    compilation.assets[name] = source;
+  }
+
+  static updateAsset(compilation, name, newSource, assetInfo) {
+    // New API
+    if (compilation.updateAsset) {
+      compilation.updateAsset(name, newSource, assetInfo);
+    }
+
+    // eslint-disable-next-line no-param-reassign
+    compilation.assets[name] = newSource;
+  }
+
+  *taskGenerator(compiler, compilation, allExtractedComments, name) {
+    const { info, source: assetSource } = TerserPlugin.getAsset(
+      compilation,
+      name
+    );
+
+    // Skip double minimize assets from child compilation
+    if (info.minimized) {
+      yield false;
+    }
 
     let input;
     let inputSourceMap;
@@ -200,7 +240,7 @@ class TerserPlugin {
           inputSourceMap = map;
 
           compilation.warnings.push(
-            new Error(`${file} contains invalid source map`)
+            new Error(`${name} contains invalid source map`)
           );
         }
       }
@@ -221,7 +261,7 @@ class TerserPlugin {
         this.options.extractComments.filename || '[file].LICENSE.txt[query]';
 
       let query = '';
-      let filename = file;
+      let filename = name;
 
       const querySplit = filename.indexOf('?');
 
@@ -259,7 +299,7 @@ class TerserPlugin {
         compilation.errors.push(
           TerserPlugin.buildError(
             error,
-            file,
+            name,
             sourceMap,
             new RequestShortener(compiler.context)
           )
@@ -290,7 +330,7 @@ class TerserPlugin {
       if (map) {
         outputSource = new SourceMapSource(
           code,
-          file,
+          name,
           map,
           input,
           inputSourceMap,
@@ -309,7 +349,7 @@ class TerserPlugin {
           banner =
             this.options.extractComments.banner ||
             `For license information please see ${path
-              .relative(path.dirname(file), commentsFilename)
+              .relative(path.dirname(name), commentsFilename)
               .replace(/\\/g, '/')}`;
 
           if (typeof banner === 'function') {
@@ -341,10 +381,13 @@ class TerserPlugin {
         });
 
         // Extracted comments from child compilation
-        const previousExtractedComments = compilation.assets[commentsFilename];
+        const previousExtractedComments = TerserPlugin.getAsset(
+          compilation,
+          commentsFilename
+        );
 
         if (previousExtractedComments) {
-          const previousExtractedCommentsSource = previousExtractedComments.source();
+          const previousExtractedCommentsSource = previousExtractedComments.source.source();
 
           // Restore original comments and re-add them
           previousExtractedCommentsSource
@@ -356,16 +399,16 @@ class TerserPlugin {
         }
       }
 
-      // Updating assets
-      // eslint-disable-next-line no-param-reassign
-      compilation.assets[file] = outputSource;
+      TerserPlugin.updateAsset(compilation, name, outputSource, {
+        minimized: true,
+      });
 
       // Handling warnings
       if (warnings && warnings.length > 0) {
         warnings.forEach((warning) => {
           const builtWarning = TerserPlugin.buildWarning(
             warning,
-            file,
+            name,
             sourceMap,
             new RequestShortener(compiler.context),
             this.options.warningsFilter
@@ -379,7 +422,7 @@ class TerserPlugin {
     };
 
     const task = {
-      file,
+      name,
       input,
       inputSourceMap,
       commentsFilename,
@@ -410,11 +453,11 @@ class TerserPlugin {
           'terser-webpack-plugin': require('../package.json').version,
           'terser-webpack-plugin-options': this.options,
           nodeVersion: process.version,
-          filename: file,
+          filename: name,
           contentHash: digest.substr(0, hashDigestLength),
         };
 
-        task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, file);
+        task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, name);
       }
     } else {
       // For webpack@5 cache
@@ -619,9 +662,10 @@ class TerserPlugin {
           .sort()
           .join('\n\n');
 
-        // eslint-disable-next-line no-param-reassign
-        compilation.assets[commentsFilename] = new RawSource(
-          `${extractedComments}\n`
+        TerserPlugin.emitAsset(
+          compilation,
+          commentsFilename,
+          new RawSource(`${extractedComments}\n`)
         );
       });
 
