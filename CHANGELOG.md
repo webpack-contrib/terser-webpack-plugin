@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.0.8...v3.1.0) (2020-08-03)
+
+
+### Features
+
+* show minimized assets in stats for webpack@5 ([#289](https://github.com/webpack-contrib/terser-webpack-plugin/issues/289)) ([d59eae2](https://github.com/webpack-contrib/terser-webpack-plugin/commit/d59eae2108ba43f3f7ce6c83195a8438634a9b55))
+
+
+### Bug Fixes
+
+* compatibility cache feature with webpack@5 ([5d2bd29](https://github.com/webpack-contrib/terser-webpack-plugin/commit/5d2bd29403f614296795664a81e437712469bc05))
+* skip double compression for child compilation ([37cc813](https://github.com/webpack-contrib/terser-webpack-plugin/commit/37cc8132df50ad7b374ec2606df1d0e202a579d1))
+
 ### [3.0.8](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.0.7...v3.0.8) (2020-07-27)
 
 
