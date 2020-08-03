@@ -860,7 +860,9 @@ describe('TerserPlugin', () => {
 
     const stats = await compile(compiler);
 
-    expect(stats.toString().indexOf('[minimized]') !== -1).toBe(true);
+    expect(stats.toString().indexOf('[minimized]') !== -1).toBe(
+      !getCompiler.isWebpack4()
+    );
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
