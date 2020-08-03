@@ -146,10 +146,10 @@ const buildComments = (options, terserOptions, extractedComments) => {
 };
 
 const minify = (options) => {
-  const { file, input, inputSourceMap, minify: minifyFn } = options;
+  const { name, input, inputSourceMap, minify: minifyFn } = options;
 
   if (minifyFn) {
-    return minifyFn({ [file]: input }, inputSourceMap);
+    return minifyFn({ [name]: input }, inputSourceMap);
   }
 
   // Copy terser options
@@ -169,7 +169,7 @@ const minify = (options) => {
   );
 
   const { error, map, code, warnings } = terserMinify(
-    { [file]: input },
+    { [name]: input },
     terserOptions
   );
 

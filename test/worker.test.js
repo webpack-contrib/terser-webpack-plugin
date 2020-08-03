@@ -88,7 +88,7 @@ describe('worker', () => {
 
   it('should match snapshot with options.inputSourceMap', () => {
     const options = {
-      file: 'test6.js',
+      name: 'test6.js',
       input: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
       inputSourceMap: {
         version: 3,
@@ -99,6 +99,6 @@ describe('worker', () => {
     };
     const workerResult = transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.file);
+    expect(workerResult).toMatchSnapshot(options.name);
   });
 });
