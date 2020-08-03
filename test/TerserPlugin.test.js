@@ -577,48 +577,6 @@ describe('TerserPlugin', () => {
     ).toMatchSnapshot();
   });
 
-  it('buildWarning method', () => {
-    expect(
-      TerserPlugin.buildWarning('Warning [test.js:1,1]')
-    ).toMatchSnapshot();
-    expect(
-      TerserPlugin.buildWarning('Warning [test.js:1,1]', 'test.js')
-    ).toMatchSnapshot();
-    expect(
-      TerserPlugin.buildWarning(
-        'Warning [test.js:1,1]',
-        'test.js',
-        new SourceMapConsumer(rawSourceMap)
-      )
-    ).toMatchSnapshot();
-    expect(
-      TerserPlugin.buildWarning(
-        'Warning [test.js:1,1]',
-        'test.js',
-        new SourceMapConsumer(rawSourceMap),
-        new RequestShortener('/example.com/www/js/')
-      )
-    ).toMatchSnapshot();
-    expect(
-      TerserPlugin.buildWarning(
-        'Warning [test.js:1,1]',
-        'test.js',
-        new SourceMapConsumer(rawSourceMap),
-        new RequestShortener('/example.com/www/js/'),
-        () => true
-      )
-    ).toMatchSnapshot();
-    expect(
-      TerserPlugin.buildWarning(
-        'Warning [test.js:1,1]',
-        'test.js',
-        new SourceMapConsumer(rawSourceMap),
-        new RequestShortener('/example.com/www/js/'),
-        () => false
-      )
-    ).toMatchSnapshot();
-  });
-
   it('should respect the hash options #1', async () => {
     const compiler = getCompiler({
       output: {

@@ -161,10 +161,6 @@
           "type": "object"
         }
       ]
-    },
-    "warningsFilter": {
-      "description": "Allow to filter `terser` warnings.",
-      "instanceof": "Function"
     }
   }
 }

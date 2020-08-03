@@ -168,12 +168,9 @@ const minify = (options) => {
     extractedComments
   );
 
-  const { error, map, code, warnings } = terserMinify(
-    { [name]: input },
-    terserOptions
-  );
-
-  return { error, map, code, warnings, extractedComments };
+  return terserMinify({ [name]: input }, terserOptions)
+    .then(({ map, code }) => ({ map, code, extractedComments }))
+    .catch((error) => ({ error }));
 };
 
 function transform(options) {
@@ -189,13 +186,7 @@ function transform(options) {
     `'use strict'\nreturn ${options}`
   )(exports, require, module, __filename, __dirname);
 
-  const result = minify(options);
-
-  if (result.error) {
-    throw result.error;
-  } else {
-    return result;
-  }
+  return minify(options);
 }
 
 module.exports.minify = minify;

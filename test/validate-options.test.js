@@ -316,14 +316,6 @@ it('validation', () => {
   }).toThrowErrorMatchingSnapshot();
 
   expect(() => {
-    new TerserPlugin({ warningsFilter() {} });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ warningsFilter: true });
-  }).toThrowErrorMatchingSnapshot();
-
-  expect(() => {
     new TerserPlugin({ unknown: true });
   }).toThrowErrorMatchingSnapshot();
   /* eslint-enable no-new */

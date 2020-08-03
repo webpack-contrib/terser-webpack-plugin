@@ -5,18 +5,18 @@ import { transform } from '../src/minify';
 import getCompiler from './helpers/getCompiler';
 
 describe('worker', () => {
-  it('should match snapshot when options.extractComments is regex', () => {
+  it('should match snapshot when options.extractComments is regex', async () => {
     const options = {
       file: 'test1.js',
       input: 'var foo = 1;/* hello */',
       extractComments: /hello/,
     };
-    const workerResult = transform(serialize(options));
+    const workerResult = await transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('normalizes when terserOptions.output.comments is string: all', () => {
+  it('normalizes when terserOptions.output.comments is string: all', async () => {
     const options = {
       file: 'test2.js',
       input: 'var foo = 1;/* hello */',
@@ -26,12 +26,12 @@ describe('worker', () => {
         },
       },
     };
-    const workerResult = transform(serialize(options));
+    const workerResult = await transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('should match snapshot when terserOptions.output.comments is string: some', () => {
+  it('should match snapshot when terserOptions.output.comments is string: some', async () => {
     const options = {
       file: 'test3.js',
       input: 'var foo = 1;/* hello */',
@@ -41,12 +41,12 @@ describe('worker', () => {
         },
       },
     };
-    const workerResult = transform(serialize(options));
+    const workerResult = await transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('should match snapshot when terserOptions.extractComments is number', () => {
+  it('should match snapshot when terserOptions.extractComments is number', async () => {
     const options = {
       file: 'test4.js',
       input: 'var foo = 1;/* hello */',
@@ -57,12 +57,12 @@ describe('worker', () => {
       },
       extractComments: 1,
     };
-    const workerResult = transform(serialize(options));
+    const workerResult = await transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('should match snapshot with extract option set to a single file', () => {
+  it('should match snapshot with extract option set to a single file', async () => {
     const options = {
       file: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
@@ -81,12 +81,12 @@ describe('worker', () => {
           `License information can be found in ${licenseFile}`,
       },
     };
-    const workerResult = transform(serialize(options));
+    const workerResult = await transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.file);
   });
 
-  it('should match snapshot with options.inputSourceMap', () => {
+  it('should match snapshot with options.inputSourceMap', async () => {
     const options = {
       name: 'test6.js',
       input: 'function foo(x) { if (x) { return bar(); not_called1(); } }',
@@ -97,7 +97,7 @@ describe('worker', () => {
         mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
       },
     };
-    const workerResult = transform(serialize(options));
+    const workerResult = await transform(serialize(options));
 
     expect(workerResult).toMatchSnapshot(options.name);
   });

@@ -451,10 +451,4 @@ Object {
 
 exports[`terserOptions option should match snapshot for the "warnings" option with the "true" value: errors 1`] = `Array []`;
 
-exports[`terserOptions option should match snapshot for the "warnings" option with the "true" value: warnings 1`] = `
-Array [
-  "Terser Plugin: Dropping side-effect-free statement [main.js:1,9]",
-  "Terser Plugin: Dropping unreachable code [main.js:2,41]",
-  "Terser Plugin: Dropping unused function foo [main.js:2,9]",
-]
-`;
+exports[`terserOptions option should match snapshot for the "warnings" option with the "true" value: warnings 1`] = `Array []`;
