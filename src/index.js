@@ -184,9 +184,9 @@ class TerserPlugin {
   // eslint-disable-next-line consistent-return
   static getAsset(compilation, name) {
     // New API
-    // if (compilation.getAsset) {
-    //   return compilation.getAsset(name);
-    // }
+    if (compilation.getAsset) {
+      return compilation.getAsset(name);
+    }
 
     if (compilation.assets[name]) {
       return { name, source: compilation.assets[name], info: {} };
