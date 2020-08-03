@@ -509,6 +509,11 @@ class TerserPlugin {
               return enqueue(task);
             }
 
+            // Webpack@5 return `undefined` when cache is not found
+            if (!taskResult) {
+              return enqueue(task);
+            }
+
             task.callback(taskResult);
 
             return Promise.resolve();

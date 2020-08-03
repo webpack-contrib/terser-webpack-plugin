@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"cache" option should work with "false" value for the "cache" option: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};!function e(s){if(t[s])return t[s].exports;var o=t[s]={exports:{}};return r[s](o,o.exports,e),o.exports}(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(370)})();",
+}
+`;
+
+exports[`"cache" option should work with "false" value for the "cache" option: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};!function e(s){if(t[s])return t[s].exports;var o=t[s]={exports:{}};return r[s](o,o.exports,e),o.exports}(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(370)})();",
+}
+`;
+
+exports[`"cache" option should work with "false" value for the "cache" option: errors 1`] = `Array []`;
+
+exports[`"cache" option should work with "false" value for the "cache" option: errors 2`] = `Array []`;
+
+exports[`"cache" option should work with "false" value for the "cache" option: warnings 1`] = `Array []`;
+
+exports[`"cache" option should work with "false" value for the "cache" option: warnings 2`] = `Array []`;
+
+exports[`"cache" option should work with "filesystem" value for the "cache.type" option: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};!function e(s){if(t[s])return t[s].exports;var o=t[s]={exports:{}};return r[s](o,o.exports,e),o.exports}(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(370)})();",
+}
+`;
+
+exports[`"cache" option should work with "filesystem" value for the "cache.type" option: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};!function e(s){if(t[s])return t[s].exports;var o=t[s]={exports:{}};return r[s](o,o.exports,e),o.exports}(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(370)})();",
+}
+`;
+
+exports[`"cache" option should work with "filesystem" value for the "cache.type" option: errors 1`] = `Array []`;
+
+exports[`"cache" option should work with "filesystem" value for the "cache.type" option: errors 2`] = `Array []`;
+
+exports[`"cache" option should work with "filesystem" value for the "cache.type" option: warnings 1`] = `Array []`;
+
+exports[`"cache" option should work with "filesystem" value for the "cache.type" option: warnings 2`] = `Array []`;
+
+exports[`"cache" option should work with "memory" value for the "cache.type" option: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};!function e(s){if(t[s])return t[s].exports;var o=t[s]={exports:{}};return r[s](o,o.exports,e),o.exports}(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(370)})();",
+}
+`;
+
+exports[`"cache" option should work with "memory" value for the "cache.type" option: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};!function e(s){if(t[s])return t[s].exports;var o=t[s]={exports:{}};return r[s](o,o.exports,e),o.exports}(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};!function e(o){if(t[o])return t[o].exports;var s=t[o]={exports:{}};return r[o](s,s.exports,e),s.exports}(370)})();",
+}
+`;
+
+exports[`"cache" option should work with "memory" value for the "cache.type" option: errors 1`] = `Array []`;
+
+exports[`"cache" option should work with "memory" value for the "cache.type" option: errors 2`] = `Array []`;
+
+exports[`"cache" option should work with "memory" value for the "cache.type" option: warnings 1`] = `Array []`;
+
+exports[`"cache" option should work with "memory" value for the "cache.type" option: warnings 2`] = `Array []`;

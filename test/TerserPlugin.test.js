@@ -675,6 +675,10 @@ describe('TerserPlugin', () => {
         one: `${__dirname}/fixtures/entry.js`,
         two: `${__dirname}/fixtures/entry.js`,
       },
+      optimization: {
+        minimize: false,
+        noEmitOnErrors: false,
+      },
     });
 
     new BrokenCodePlugin().apply(compiler);
@@ -693,6 +697,10 @@ describe('TerserPlugin', () => {
       entry: {
         one: `${__dirname}/fixtures/entry.js`,
         two: `${__dirname}/fixtures/entry.js`,
+      },
+      optimization: {
+        minimize: false,
+        noEmitOnErrors: false,
       },
     });
 
