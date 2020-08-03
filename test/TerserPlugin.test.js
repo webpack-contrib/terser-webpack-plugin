@@ -852,4 +852,19 @@ describe('TerserPlugin', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should work and show minimized assets in stats', async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(stats.toString().indexOf('[minimized]') !== -1).toBe(
+      !getCompiler.isWebpack4()
+    );
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });

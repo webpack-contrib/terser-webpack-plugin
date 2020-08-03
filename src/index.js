@@ -709,6 +709,15 @@ class TerserPlugin {
           plugin,
           optimizeFn.bind(this, compilation)
         );
+
+        compilation.hooks.statsPrinter.tap(plugin, (stats) => {
+          stats.hooks.print
+            .for('asset.info.minimized')
+            .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
+              // eslint-disable-next-line no-undefined
+              minimized ? green(formatFlag('minimized')) : undefined
+            );
+        });
       }
     });
   }

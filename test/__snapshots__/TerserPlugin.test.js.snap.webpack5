@@ -128,6 +128,16 @@ Unexpected token name «Object», expected punc «,» [main.js:1,8]",
 
 exports[`TerserPlugin should work and respect "terser" errors (the "parallel" option is "true"): warnings 1`] = `Array []`;
 
+exports[`TerserPlugin should work and show minimized assets in stats: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`TerserPlugin should work and show minimized assets in stats: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work and show minimized assets in stats: warnings 1`] = `Array []`;
+
 exports[`TerserPlugin should work as a minimizer: assets 1`] = `
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
