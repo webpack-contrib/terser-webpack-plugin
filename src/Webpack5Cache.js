@@ -11,7 +11,7 @@ export default class Cache {
     return true;
   }
 
-  get(task) {
+  async get(task) {
     // eslint-disable-next-line no-param-reassign
     task.cacheIdent =
       task.cacheIdent || `${task.file}|${serialize(task.cacheKeys)}`;
@@ -22,7 +22,7 @@ export default class Cache {
     return this.cache.getPromise(task.cacheIdent, task.cacheETag);
   }
 
-  store(task, data) {
+  async store(task, data) {
     return this.cache.storePromise(task.cacheIdent, task.cacheETag, data);
   }
 }

@@ -20,16 +20,16 @@ export default class Webpack4Cache {
     return Boolean(this.cacheDir);
   }
 
-  get(task) {
+  async get(task) {
     // eslint-disable-next-line no-param-reassign
     task.cacheIdent = task.cacheIdent || serialize(task.cacheKeys);
 
-    return cacache
-      .get(this.cacheDir, task.cacheIdent)
-      .then(({ data }) => JSON.parse(data));
+    const { data } = await cacache.get(this.cacheDir, task.cacheIdent);
+
+    return JSON.parse(data);
   }
 
-  store(task, data) {
+  async store(task, data) {
     return cacache.put(this.cacheDir, task.cacheIdent, JSON.stringify(data));
   }
 }

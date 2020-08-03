@@ -34,9 +34,9 @@ exports[`TerserPlugin buildWarning method 6`] = `null`;
 
 exports[`TerserPlugin should emit an error on a broken code in not parallel mode: assets 1`] = `
 Object {
-  "broken.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/broken.js'",
-  "one.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/one.js'",
-  "two.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/two.js'",
+  "broken.js": "\`Broken===",
+  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
 }
 `;
 
@@ -51,9 +51,9 @@ exports[`TerserPlugin should emit an error on a broken code in not parallel mode
 
 exports[`TerserPlugin should emit an error on a broken code in parallel mode: assets 1`] = `
 Object {
-  "broken.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/broken.js'",
-  "one.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/one.js'",
-  "two.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/two.js'",
+  "broken.js": "\`Broken===",
+  "one.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "two.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
 }
 `;
 

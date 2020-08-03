@@ -501,8 +501,15 @@ class TerserPlugin {
           }
 
           if (cache.isEnabled()) {
-            const taskResult = await cache.get(task);
+            let taskResult;
 
+            try {
+              taskResult = await cache.get(task);
+            } catch (ignoreError) {
+              return enqueue(task);
+            }
+
+            // Webpack@5 return `undefined` when cache is not found
             if (!taskResult) {
               return enqueue(task);
             }
