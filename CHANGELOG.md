@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.1.0...v4.0.0) (2020-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* the `warningsFilter` option was remove without replacement, 
+* `terser` version is `5`, 
+* returned value of the `minify` option was changes, only `code`/`map`/`extractedComments` are valid
+
+
+### Features
+
+* improved compatibility with webpack@5
+
+
 ## [3.1.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.0.8...v3.1.0) (2020-08-03)
 
 
