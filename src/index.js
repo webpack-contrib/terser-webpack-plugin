@@ -381,13 +381,6 @@ class TerserPlugin {
     } else {
       // For webpack@5 cache
       task.assetSource = assetSource;
-
-      task.cacheKeys = {
-        terser: terserPackageJson.version,
-        // eslint-disable-next-line global-require
-        'terser-webpack-plugin': require('../package.json').version,
-        'terser-webpack-plugin-options': this.options,
-      };
     }
 
     yield task;

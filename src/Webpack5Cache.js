@@ -1,5 +1,3 @@
-import serialize from 'serialize-javascript';
-
 export default class Cache {
   // eslint-disable-next-line no-unused-vars
   constructor(compilation, ignored) {
@@ -13,8 +11,7 @@ export default class Cache {
 
   async get(task) {
     // eslint-disable-next-line no-param-reassign
-    task.cacheIdent =
-      task.cacheIdent || `${task.name}|${serialize(task.cacheKeys)}`;
+    task.cacheIdent = task.cacheIdent || `${task.name}`;
     // eslint-disable-next-line no-param-reassign
     task.cacheETag =
       task.cacheETag || this.cache.getLazyHashedEtag(task.assetSource);
