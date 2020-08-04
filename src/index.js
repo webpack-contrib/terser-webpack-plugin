@@ -21,8 +21,6 @@ import schema from './options.json';
 
 import { minify as minifyFn } from './minify';
 
-const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
-
 class TerserPlugin {
   constructor(options = {}) {
     validateOptions(schema, options, {
@@ -34,7 +32,6 @@ class TerserPlugin {
       minify,
       terserOptions = {},
       test = /\.m?js(\?.*)?$/i,
-      warningsFilter = () => true,
       extractComments = true,
       sourceMap,
       cache = true,
@@ -438,11 +435,9 @@ class TerserPlugin {
         let taskResult;
 
         try {
-          if (worker) {
-            taskResult = await worker.transform(serialize(task));
-          } else {
-            taskResult = await minifyFn(task);
-          }
+          taskResult = await (worker
+            ? worker.transform(serialize(task))
+            : minifyFn(task));
         } catch (error) {
           taskResult = { error };
         }

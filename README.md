@@ -303,17 +303,18 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
+        // Can be async
         minify: (file, sourceMap) => {
           const extractedComments = [];
 
           // Custom logic for extract comments
 
-          const { error, map, code, warnings } = require('uglify-module') // Or require('./path/to/uglify-module')
+          const { map, code } = require('uglify-module') // Or require('./path/to/uglify-module')
             .minify(file, {
               /* Your options for minification */
             });
 
-          return { error, map, code, warnings, extractedComments };
+          return { map, code, extractedComments };
         },
       }),
     ],
@@ -338,7 +339,6 @@ module.exports = {
       new TerserPlugin({
         terserOptions: {
           ecma: undefined,
-          warnings: false,
           parse: {},
           compress: {},
           mangle: true, // Note `mangle.properties` is `false` by default.
@@ -566,45 +566,6 @@ module.exports = {
           banner: (commentsFile) => {
             return `My custom banner about license information ${commentsFile}`;
           },
-        },
-      }),
-    ],
-  },
-};
-```
-
-### `warningsFilter`
-
-Type: `Function<(warning, file, source) -> Boolean>`
-Default: `() => true`
-
-Allow to filter [terser](https://github.com/terser-js/terser) warnings.
-Return `true` to keep the warning, a falsy value (`false`/`null`/`undefined`) otherwise.
-
-> ⚠️ The `source` argument will contain `undefined` if you don't use source maps.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        warningsFilter: (warning, file, source) => {
-          if (/Dropping unreachable code/i.test(warning)) {
-            return true;
-          }
-
-          if (/file\.js/i.test(file)) {
-            return true;
-          }
-
-          if (/source\.js/i.test(source)) {
-            return true;
-          }
-
-          return false;
         },
       }),
     ],

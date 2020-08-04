@@ -175,7 +175,6 @@ it('validation', () => {
       terserOptions: {
         // eslint-disable-next-line no-undefined
         ecma: undefined,
-        warnings: false,
         parse: {},
         compress: {},
         mangle: true,
