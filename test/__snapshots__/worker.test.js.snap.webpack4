@@ -4,7 +4,6 @@ exports[`worker normalizes when terserOptions.output.comments is string: all: te
 Object {
   "code": "var foo=1;/* hello */",
   "extractedComments": Array [],
-  "map": undefined,
 }
 `;
 
@@ -14,7 +13,6 @@ Object {
   "extractedComments": Array [
     "/* hello */",
   ],
-  "map": undefined,
 }
 `;
 
@@ -22,7 +20,6 @@ exports[`worker should match snapshot when terserOptions.extractComments is numb
 Object {
   "code": "var foo=1;",
   "extractedComments": Array [],
-  "map": undefined,
 }
 `;
 
@@ -30,7 +27,6 @@ exports[`worker should match snapshot when terserOptions.output.comments is stri
 Object {
   "code": "var foo=1;",
   "extractedComments": Array [],
-  "map": undefined,
 }
 `;
 
@@ -38,7 +34,6 @@ exports[`worker should match snapshot with extract option set to a single file: 
 Object {
   "code": "/******/function hello(o){console.log(o)}",
   "extractedComments": Array [],
-  "map": undefined,
 }
 `;
 

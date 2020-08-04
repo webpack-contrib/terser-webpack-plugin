@@ -23,7 +23,6 @@ describe('terserOptions option', () => {
       terserOptions: {
         ecma: 5,
         mangle: false,
-        warnings: true,
         output: {
           beautify: true,
         },
@@ -46,7 +45,6 @@ describe('terserOptions option', () => {
       terserOptions: {
         ecma: 6,
         mangle: false,
-        warnings: true,
         output: {
           beautify: true,
         },
@@ -69,7 +67,6 @@ describe('terserOptions option', () => {
       terserOptions: {
         ecma: 7,
         mangle: false,
-        warnings: true,
         output: {
           beautify: true,
         },
@@ -92,46 +89,9 @@ describe('terserOptions option', () => {
       terserOptions: {
         ecma: 8,
         mangle: false,
-        warnings: true,
         output: {
           beautify: true,
         },
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should match snapshot for the "warnings" option with the "false" value', async () => {
-    const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/unreachable-code.js`,
-    });
-
-    new TerserPlugin({
-      terserOptions: {
-        warnings: false,
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should match snapshot for the "warnings" option with the "true" value', async () => {
-    const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/unreachable-code.js`,
-    });
-
-    new TerserPlugin({
-      terserOptions: {
-        warnings: true,
       },
     }).apply(compiler);
 

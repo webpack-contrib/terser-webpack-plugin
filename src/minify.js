@@ -2,7 +2,6 @@ const { minify: terserMinify } = require('terser');
 
 const buildTerserOptions = ({
   ecma,
-  warnings,
   parse = {},
   compress = {},
   mangle,
@@ -40,7 +39,6 @@ const buildTerserOptions = ({
   nameCache,
   safari10,
   toplevel,
-  warnings,
 });
 
 function isObject(value) {
@@ -145,7 +143,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
   };
 };
 
-const minify = (options) => {
+async function minify(options) {
   const { name, input, inputSourceMap, minify: minifyFn } = options;
 
   if (minifyFn) {
@@ -168,10 +166,10 @@ const minify = (options) => {
     extractedComments
   );
 
-  return terserMinify({ [name]: input }, terserOptions)
-    .then(({ map, code }) => ({ map, code, extractedComments }))
-    .catch((error) => ({ error }));
-};
+  const result = await terserMinify({ [name]: input }, terserOptions);
+
+  return { ...result, extractedComments };
+}
 
 function transform(options) {
   // 'use strict' => this === undefined (Clean Scope)
