@@ -589,11 +589,11 @@ class TerserPlugin {
       return Promise.resolve();
     };
 
-    const plugin = { name: this.constructor.name };
+    const pluginName = this.constructor.name;
 
-    compiler.hooks.compilation.tap(plugin, (compilation) => {
+    compiler.hooks.compilation.tap(pluginName, (compilation) => {
       if (this.options.sourceMap) {
-        compilation.hooks.buildModule.tap(plugin, (moduleArg) => {
+        compilation.hooks.buildModule.tap(pluginName, (moduleArg) => {
           // to get detailed location info about errors
           // eslint-disable-next-line no-param-reassign
           moduleArg.useSourceMap = true;
@@ -609,17 +609,19 @@ class TerserPlugin {
 
         // Regenerate `contenthash` for minified assets
         for (const template of [mainTemplate, chunkTemplate]) {
-          template.hooks.hashForChunk.tap(plugin, (hash) => {
+          template.hooks.hashForChunk.tap(pluginName, (hash) => {
             hash.update('TerserPlugin');
             hash.update(data);
           });
         }
 
         compilation.hooks.optimizeChunkAssets.tapPromise(
-          plugin,
+          pluginName,
           optimizeFn.bind(this, compilation)
         );
       } else {
+        // eslint-disable-next-line global-require
+        const Compilation = require('webpack/lib/Compilation');
         const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
           compilation
         );
@@ -628,17 +630,20 @@ class TerserPlugin {
           terserOptions: this.options.terserOptions,
         });
 
-        hooks.chunkHash.tap(plugin, (chunk, hash) => {
+        hooks.chunkHash.tap(pluginName, (chunk, hash) => {
           hash.update('TerserPlugin');
           hash.update(data);
         });
 
-        compilation.hooks.optimizeAssets.tapPromise(
-          plugin,
+        compilation.hooks.processAssets.tapPromise(
+          {
+            name: pluginName,
+            stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+          },
           optimizeFn.bind(this, compilation)
         );
 
-        compilation.hooks.statsPrinter.tap(plugin, (stats) => {
+        compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
           stats.hooks.print
             .for('asset.info.minimized')
             .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
