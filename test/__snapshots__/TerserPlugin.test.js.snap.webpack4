@@ -20,18 +20,6 @@ exports[`TerserPlugin buildError method 4`] = `
 Stack]
 `;
 
-exports[`TerserPlugin buildWarning method 1`] = `"Terser Plugin: Warning [test.js:1,1]"`;
-
-exports[`TerserPlugin buildWarning method 2`] = `"Terser Plugin: Warning [test.js:1,1]"`;
-
-exports[`TerserPlugin buildWarning method 3`] = `"Terser Plugin: Warning [test.js:1,1]"`;
-
-exports[`TerserPlugin buildWarning method 4`] = `"Terser Plugin: Warning [http://example.com/www/js/one.js:1,1]"`;
-
-exports[`TerserPlugin buildWarning method 5`] = `"Terser Plugin: Warning [http://example.com/www/js/one.js:1,1]"`;
-
-exports[`TerserPlugin buildWarning method 6`] = `null`;
-
 exports[`TerserPlugin should emit an error on a broken code in not parallel mode: assets 1`] = `
 Object {
   "broken.js": "\`Broken===",

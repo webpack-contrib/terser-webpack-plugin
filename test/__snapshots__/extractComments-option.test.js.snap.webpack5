@@ -4245,10 +4245,10 @@ exports[`extractComments option should match snapshot for a "function" value: wa
 
 exports[`extractComments option should match snapshot for comment file when filename is nested: assets 1`] = `
 Object {
-  "nested/directory/627.js?5a790b686f5dc20d7f5e": "/*! For license information please see ../../one.js */
+  "nested/directory/627.js?d1b1382c0a67d11dfb80": "/*! For license information please see ../../one.js */
 (window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[627],{627:p=>{p.exports=Math.random()}}]);",
-  "nested/directory/one.js?8406f9d053f1b01de3bf": "/*! For license information please see ../../one.js */
-(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"nested/directory/\\"+e+\\".js?5a790b686f5dc20d7f5e\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
+  "nested/directory/one.js?d99a005d6063287a3a17": "/*! For license information please see ../../one.js */
+(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"nested/directory/\\"+e+\\".js?d1b1382c0a67d11dfb80\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var d=r=>{d=()=>{},a.onerror=a.onload=null,clearTimeout(c);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},c=setTimeout(()=>{d({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=d,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,d=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&d.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);d.length;)d.shift()()};var n=r})(),o(900)})();",
   "one.js": "/*! Legal Comment */
 
 /*! Legal Foo */
@@ -5180,20 +5180,20 @@ exports[`extractComments option should match snapshot when extracts comments to 
 
 exports[`extractComments option should match snapshot when extracts comments to files with query string and when filename is a function: assets 1`] = `
 Object {
-  "chunks/627.627.js.LICENSE.txt?5a790b686f5dc20d7f5e": "/*! Legal Comment */
+  "chunks/627.627.js.LICENSE.txt?d1b1382c0a67d11dfb80": "/*! Legal Comment */
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/627.627.js?5a790b686f5dc20d7f5e": "/*! For license information please see 627.627.js.LICENSE.txt?5a790b686f5dc20d7f5e */
+  "chunks/627.627.js?d1b1382c0a67d11dfb80": "/*! For license information please see 627.627.js.LICENSE.txt?d1b1382c0a67d11dfb80 */
 (window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[627],{627:p=>{p.exports=Math.random()}}]);",
-  "filename/four.js.LICENSE.txt?46259286735f01fdb71a": "/**
+  "filename/four.js.LICENSE.txt?d9368158a7164e884b9c": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?46259286735f01fdb71a": "/*! For license information please see four.js.LICENSE.txt?46259286735f01fdb71a */
+  "filename/four.js?d9368158a7164e884b9c": "/*! For license information please see four.js.LICENSE.txt?d9368158a7164e884b9c */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
-  "filename/one.js.LICENSE.txt?eb7c58a9e3fe33b77400": "/*! Legal Comment */
+  "filename/one.js.LICENSE.txt?c9ccc5033095cab52ffe": "/*! Legal Comment */
 
 /*! Legal Foo */
 
@@ -5211,9 +5211,9 @@ Object {
 
 // @lic
 ",
-  "filename/one.js?eb7c58a9e3fe33b77400": "/*! For license information please see one.js.LICENSE.txt?eb7c58a9e3fe33b77400 */
-(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?5a790b686f5dc20d7f5e\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
-  "filename/three.js.LICENSE.txt?9ffe923d04b3b4016a1c": "/**
+  "filename/one.js?c9ccc5033095cab52ffe": "/*! For license information please see one.js.LICENSE.txt?c9ccc5033095cab52ffe */
+(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?d1b1382c0a67d11dfb80\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
+  "filename/three.js.LICENSE.txt?0a2e01c5ebd774ca22e1": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
@@ -5223,14 +5223,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?9ffe923d04b3b4016a1c": "/*! For license information please see three.js.LICENSE.txt?9ffe923d04b3b4016a1c */
+  "filename/three.js?0a2e01c5ebd774ca22e1": "/*! For license information please see three.js.LICENSE.txt?0a2e01c5ebd774ca22e1 */
 (()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
-  "filename/two.js.LICENSE.txt?b9d697c2836f54244e58": "/**
+  "filename/two.js.LICENSE.txt?47fbafb6ec57711a4cc3": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?b9d697c2836f54244e58": "/*! For license information please see two.js.LICENSE.txt?b9d697c2836f54244e58 */
+  "filename/two.js?47fbafb6ec57711a4cc3": "/*! For license information please see two.js.LICENSE.txt?47fbafb6ec57711a4cc3 */
 (()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
 }
 `;
@@ -5245,14 +5245,14 @@ Object {
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/627.627.js?5a790b686f5dc20d7f5e": "/*! License information can be found in chunks/627.627.js.LICENSE.txt?query=&filebase=627.627.js */
+  "chunks/627.627.js?d1b1382c0a67d11dfb80": "/*! License information can be found in chunks/627.627.js.LICENSE.txt?query=&filebase=627.627.js */
 (window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[627],{627:p=>{p.exports=Math.random()}}]);",
   "filename/four.js.LICENSE.txt?query=&filebase=four.js": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?46259286735f01fdb71a": "/*! License information can be found in filename/four.js.LICENSE.txt?query=&filebase=four.js */
+  "filename/four.js?d9368158a7164e884b9c": "/*! License information can be found in filename/four.js.LICENSE.txt?query=&filebase=four.js */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
   "filename/one.js.LICENSE.txt?query=&filebase=one.js": "/*! Legal Comment */
 
@@ -5272,8 +5272,8 @@ Object {
 
 // @lic
 ",
-  "filename/one.js?eb7c58a9e3fe33b77400": "/*! License information can be found in filename/one.js.LICENSE.txt?query=&filebase=one.js */
-(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?5a790b686f5dc20d7f5e\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
+  "filename/one.js?c9ccc5033095cab52ffe": "/*! License information can be found in filename/one.js.LICENSE.txt?query=&filebase=one.js */
+(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?d1b1382c0a67d11dfb80\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
   "filename/three.js.LICENSE.txt?query=&filebase=three.js": "/**
  * Duplicate comment in difference files.
  * @license MIT
@@ -5284,14 +5284,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?9ffe923d04b3b4016a1c": "/*! License information can be found in filename/three.js.LICENSE.txt?query=&filebase=three.js */
+  "filename/three.js?0a2e01c5ebd774ca22e1": "/*! License information can be found in filename/three.js.LICENSE.txt?query=&filebase=three.js */
 (()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
   "filename/two.js.LICENSE.txt?query=&filebase=two.js": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?b9d697c2836f54244e58": "/*! License information can be found in filename/two.js.LICENSE.txt?query=&filebase=two.js */
+  "filename/two.js?47fbafb6ec57711a4cc3": "/*! License information can be found in filename/two.js.LICENSE.txt?query=&filebase=two.js */
 (()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
 }
 `;
@@ -5306,14 +5306,14 @@ Object {
 
 /** @license Copyright 2112 Moon. **/
 ",
-  "chunks/627.627.js?5a790b686f5dc20d7f5e": "/*! For license information please see 627.627.js.LICENSE.txt */
+  "chunks/627.627.js?d1b1382c0a67d11dfb80": "/*! For license information please see 627.627.js.LICENSE.txt */
 (window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[627],{627:p=>{p.exports=Math.random()}}]);",
   "filename/four.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
  */
 ",
-  "filename/four.js?46259286735f01fdb71a": "/*! For license information please see four.js.LICENSE.txt */
+  "filename/four.js?d9368158a7164e884b9c": "/*! For license information please see four.js.LICENSE.txt */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
   "filename/one.js.LICENSE.txt": "/*! Legal Comment */
 
@@ -5333,8 +5333,8 @@ Object {
 
 // @lic
 ",
-  "filename/one.js?eb7c58a9e3fe33b77400": "/*! For license information please see one.js.LICENSE.txt */
-(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?5a790b686f5dc20d7f5e\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
+  "filename/one.js?c9ccc5033095cab52ffe": "/*! For license information please see one.js.LICENSE.txt */
+(()=>{var e,t={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,7)),e.exports=Math.random()}},r={};function o(e){if(r[e])return r[e].exports;var n=r[e]={exports:{}};return t[e](n,n.exports,o),n.exports}o.m=t,o.t=function(e,t){if(1&t&&(e=this(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);o.r(r);var n={};if(2&t&&\\"object\\"==typeof e&&e)for(const t in e)n[t]=()=>e[t];return n.default=()=>e,o.d(r,n),r},o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((t,r)=>(o.f[r](e,t),t),[])),o.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js?d1b1382c0a67d11dfb80\\",o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},o.l=(t,r,n)=>{if(e[t])e[t].push(r);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),p=0;p<u.length;p++){var s=u[p];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=s;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=t),e[t]=[r];var c=r=>{c=()=>{},a.onerror=a.onload=null,clearTimeout(d);var o=e[t];delete e[t],a.parentNode&&a.parentNode.removeChild(a),o&&o.forEach(e=>e(r))},d=setTimeout(()=>{c({type:\\"timeout\\",target:a})},12e4);a.onerror=a.onload=c,i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={255:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,o)=>{n=e[t]=[r,o]});r.push(n[2]=a);var i=o.p+o.u(t),u=new Error;o.l(i,r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+t)}};var t=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],r=t.push.bind(t);t.push=function(t){for(var r,a,i=t[0],u=t[1],p=t[3],s=0,c=[];s<i.length;s++)a=i[s],o.o(e,a)&&e[a]&&c.push(e[a][0]),e[a]=0;for(r in u)o.o(u,r)&&(o.m[r]=u[r]);for(p&&p(o),n&&n(t);c.length;)c.shift()()};var n=r})(),o(900)})();",
   "filename/three.js.LICENSE.txt": "/**
  * Duplicate comment in difference files.
  * @license MIT
@@ -5345,14 +5345,14 @@ Object {
  * @license MIT
  */
 ",
-  "filename/three.js?9ffe923d04b3b4016a1c": "/*! For license information please see three.js.LICENSE.txt */
+  "filename/three.js?0a2e01c5ebd774ca22e1": "/*! For license information please see three.js.LICENSE.txt */
 (()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
   "filename/two.js.LICENSE.txt": "/**
  * Information.
  * @license MIT
  */
 ",
-  "filename/two.js?b9d697c2836f54244e58": "/*! For license information please see two.js.LICENSE.txt */
+  "filename/two.js?47fbafb6ec57711a4cc3": "/*! For license information please see two.js.LICENSE.txt */
 (()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
 }
 `;

@@ -46,7 +46,6 @@ class TerserPlugin {
 
     this.options = {
       test,
-      warningsFilter,
       extractComments,
       sourceMap,
       cache,
@@ -108,51 +107,6 @@ class TerserPlugin {
     }
 
     return new Error(`${file} from Terser\n${error.message}`);
-  }
-
-  static buildWarning(
-    warning,
-    file,
-    sourceMap,
-    requestShortener,
-    warningsFilter
-  ) {
-    let warningMessage = warning;
-    let locationMessage = '';
-    let source;
-
-    if (sourceMap) {
-      const match = warningRegex.exec(warning);
-
-      if (match) {
-        const line = +match[1];
-        const column = +match[2];
-        const original = sourceMap.originalPositionFor({
-          line,
-          column,
-        });
-
-        if (
-          original &&
-          original.source &&
-          original.source !== file &&
-          requestShortener
-        ) {
-          ({ source } = original);
-          warningMessage = `${warningMessage.replace(warningRegex, '')}`;
-
-          locationMessage = `[${requestShortener.shorten(original.source)}:${
-            original.line
-          },${original.column}]`;
-        }
-      }
-    }
-
-    if (warningsFilter && !warningsFilter(warning, file, source)) {
-      return null;
-    }
-
-    return `Terser Plugin: ${warningMessage}${locationMessage}`;
   }
 
   static isWebpack4() {
@@ -268,16 +222,12 @@ class TerserPlugin {
 
     const callback = (taskResult) => {
       let { code } = taskResult;
-      const { error, map, warnings } = taskResult;
+      const { error, map } = taskResult;
       const { extractedComments } = taskResult;
 
       let sourceMap = null;
 
-      if (
-        (error || (warnings && warnings.length > 0)) &&
-        inputSourceMap &&
-        TerserPlugin.isSourceMap(inputSourceMap)
-      ) {
+      if (error && inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)) {
         sourceMap = new SourceMapConsumer(inputSourceMap);
       }
 
@@ -391,23 +341,6 @@ class TerserPlugin {
         ...info,
         minimized: true,
       });
-
-      // Handling warnings
-      if (warnings && warnings.length > 0) {
-        warnings.forEach((warning) => {
-          const builtWarning = TerserPlugin.buildWarning(
-            warning,
-            name,
-            sourceMap,
-            new RequestShortener(compiler.context),
-            this.options.warningsFilter
-          );
-
-          if (builtWarning) {
-            compilation.warnings.push(builtWarning);
-          }
-        });
-      }
     };
 
     const task = {
@@ -508,7 +441,7 @@ class TerserPlugin {
           if (worker) {
             taskResult = await worker.transform(serialize(task));
           } else {
-            taskResult = minifyFn(task);
+            taskResult = await minifyFn(task);
           }
         } catch (error) {
           taskResult = { error };
