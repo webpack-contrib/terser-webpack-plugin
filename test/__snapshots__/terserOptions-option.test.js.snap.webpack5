@@ -432,23 +432,3 @@ DefaultsError: \`unknown\` is not a supported option",
 `;
 
 exports[`terserOptions option should match snapshot for the "unknown" option: warnings 1`] = `Array []`;
-
-exports[`terserOptions option should match snapshot for the "warnings" option with the "false" value: assets 1`] = `
-Object {
-  "main.js": "",
-}
-`;
-
-exports[`terserOptions option should match snapshot for the "warnings" option with the "false" value: errors 1`] = `Array []`;
-
-exports[`terserOptions option should match snapshot for the "warnings" option with the "false" value: warnings 1`] = `Array []`;
-
-exports[`terserOptions option should match snapshot for the "warnings" option with the "true" value: assets 1`] = `
-Object {
-  "main.js": "",
-}
-`;
-
-exports[`terserOptions option should match snapshot for the "warnings" option with the "true" value: errors 1`] = `Array []`;
-
-exports[`terserOptions option should match snapshot for the "warnings" option with the "true" value: warnings 1`] = `Array []`;
