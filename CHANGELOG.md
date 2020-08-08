@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* the `warningsFilter` option was remove without replacement, 
+* the `warningsFilter` option was removed without replacement, 
 * `terser` version is `5`, 
-* returned value of the `minify` option was changes, only `code`/`map`/`extractedComments` are valid
+* return value of the `minify` option was changed, only `code`/`map`/`extractedComments` are valid
 
 
 ### Features
