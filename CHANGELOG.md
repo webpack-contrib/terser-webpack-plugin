@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v4.0.0...v4.1.0) (2020-08-10)
+
+
+### Features
+
+* pass license files as related assets for webpack@5 ([7d3ae95](https://github.com/webpack-contrib/terser-webpack-plugin/commit/7d3ae95bc890a5211efe234301050815ef8e687e))
+
+### Bug Fixes
+
+* compatibility with `10.13` version of `Node.js`
+
 ## [4.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v3.1.0...v4.0.0) (2020-08-04)
 
 
