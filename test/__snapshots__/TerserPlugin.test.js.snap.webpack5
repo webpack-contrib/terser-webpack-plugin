@@ -126,6 +126,24 @@ exports[`TerserPlugin should work and show minimized assets in stats: errors 1`]
 
 exports[`TerserPlugin should work and show minimized assets in stats: warnings 1`] = `Array []`;
 
+exports[`TerserPlugin should work and show related assets in stats: assets 1`] = `
+Object {
+  "comments.js": "/*! For license information please see comments.js.LICENSE.txt */
+(()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();
+//# sourceMappingURL=comments.js.map",
+  "comments.js.LICENSE.txt": "/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+",
+  "comments.js.map": "{\\"version\\":3,\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/comments-4.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"Math\\",\\"random\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"__webpack_modules__\\"],\\"mappings\\":\\";qBAKAA,EAAOC,QAAUC,KAAKC,WCJlBC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,GAAGF,EAAyBE,GAC3B,OAAOF,EAAyBE,GAAUL,QAG3C,IAAID,EAASI,EAAyBE,GAAY,CAGjDL,QAAS,IAOV,OAHAM,EAAoBD,GAAUN,EAAQA,EAAOC,QAASI,GAG/CL,EAAOC,QCjBfI,CAAoB,M\\",\\"file\\":\\"comments.js\\",\\"sourcesContent\\":[\\"/**\\\\n * Duplicate comment in difference files.\\\\n * @license MIT\\\\n */\\\\n\\\\nmodule.exports = Math.random();\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tif(__webpack_module_cache__[moduleId]) {\\\\n\\\\t\\\\treturn __webpack_module_cache__[moduleId].exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\n__webpack_require__(712);\\\\n\\"],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`TerserPlugin should work and show related assets in stats: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work and show related assets in stats: warnings 1`] = `Array []`;
+
 exports[`TerserPlugin should work as a minimizer: assets 1`] = `
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",

@@ -825,4 +825,22 @@ describe('TerserPlugin', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should work and show related assets in stats', async () => {
+    const compiler = getCompiler({
+      entry: { comments: `${__dirname}/fixtures/comments-4.js` },
+      devtool: 'source-map',
+    });
+
+    new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(stats.toString().indexOf('2 related asset') !== -1).toBe(
+      !getCompiler.isWebpack4()
+    );
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });

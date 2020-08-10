@@ -275,9 +275,13 @@ class TerserPlugin {
         outputSource = new RawSource(code);
       }
 
+      const assetInfo = { ...info, minimized: true };
+
       // Write extracted comments to commentsFilename
       if (hasExtractedComments) {
         let banner;
+
+        assetInfo.related = { license: commentsFilename };
 
         // Add a banner to the original file
         if (hasBannerForExtractedComments) {
@@ -334,10 +338,7 @@ class TerserPlugin {
         }
       }
 
-      TerserPlugin.updateAsset(compilation, name, outputSource, {
-        ...info,
-        minimized: true,
-      });
+      TerserPlugin.updateAsset(compilation, name, outputSource, assetInfo);
     };
 
     const task = {
