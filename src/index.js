@@ -2,7 +2,6 @@ import path from 'path';
 import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
-import webpackSources from 'webpack-sources';
 import webpack, {
   util,
   ModuleFilenameHelpers,
@@ -23,7 +22,9 @@ import schema from './options.json';
 import { minify as minifyFn } from './minify';
 
 // webpack 5 exposes the sources property to ensure the right version of webpack-sources is used
-const sources = webpack.sources || webpackSources;
+const { SourceMapSource, RawSource, ConcatSource } =
+  // eslint-disable-next-line global-require
+  webpack.sources || require('webpack-sources');
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -267,7 +268,7 @@ class TerserPlugin {
       }
 
       if (map) {
-        outputSource = new sources.SourceMapSource(
+        outputSource = new SourceMapSource(
           code,
           name,
           map,
@@ -276,7 +277,7 @@ class TerserPlugin {
           true
         );
       } else {
-        outputSource = new sources.RawSource(code);
+        outputSource = new RawSource(code);
       }
 
       const assetInfo = { ...info, minimized: true };
@@ -300,7 +301,7 @@ class TerserPlugin {
           }
 
           if (banner) {
-            outputSource = new sources.ConcatSource(
+            outputSource = new ConcatSource(
               shebang ? `${shebang}\n` : '',
               `/*! ${banner} */\n`,
               outputSource
@@ -580,7 +581,7 @@ class TerserPlugin {
         TerserPlugin.emitAsset(
           compilation,
           commentsFilename,
-          new sources.RawSource(`${extractedComments}\n`)
+          new RawSource(`${extractedComments}\n`)
         );
       });
 
