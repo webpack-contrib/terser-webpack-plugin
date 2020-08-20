@@ -56,11 +56,11 @@ exports[`TerserPlugin should emit an error on a broken code in parallel mode: wa
 
 exports[`TerserPlugin should regenerate hash: assets 1`] = `
 Object {
-  "598.598.bf52131cff843502dc03.js": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
-  "AsyncImportExport.a399f51c7fa9e85726e2.js": "(()=>{\\"use strict\\";var e,r={},t={};function o(e){if(t[e])return t[e].exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports}o.m=r,o.d=(e,r)=>{for(var t in r)o.o(r,t)&&!o.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce((r,t)=>(o.f[t](e,r),r),[])),o.u=e=>e+\\".\\"+e+\\".bf52131cff843502dc03.js\\",o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},o.l=(r,t,n)=>{if(e[r])e[r].push(t);else{var a,i;if(void 0!==n)for(var u=document.getElementsByTagName(\\"script\\"),l=0;l<u.length;l++){var p=u[l];if(p.getAttribute(\\"src\\")==r||p.getAttribute(\\"data-webpack\\")==\\"terser-webpack-plugin:\\"+n){a=p;break}}a||(i=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,o.nc&&a.setAttribute(\\"nonce\\",o.nc),a.setAttribute(\\"data-webpack\\",\\"terser-webpack-plugin:\\"+n),a.src=r),e[r]=[t];var s=(t,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[r];if(delete e[r],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach(e=>e(o)),t)return t(o)},d=setTimeout(s.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=s.bind(null,a.onerror),a.onload=s.bind(null,a.onload),i&&document.head.appendChild(a)}},o.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.p=\\"\\",(()=>{var e={988:0};o.f.j=(r,t)=>{var n=o.o(e,r)?e[r]:void 0;if(0!==n)if(n)t.push(n[2]);else{var a=new Promise((t,o)=>{n=e[r]=[t,o]});t.push(n[2]=a);var i=o.p+o.u(r),u=new Error;o.l(i,t=>{if(o.o(e,r)&&(0!==(n=e[r])&&(e[r]=void 0),n)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;u.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,n[1](u)}},\\"chunk-\\"+r)}};var r=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],t=r.push.bind(r);r.push=function(r){for(var t,a,i=r[0],u=r[1],l=r[3],p=0,s=[];p<i.length;p++)a=i[p],o.o(e,a)&&e[a]&&s.push(e[a][0]),e[a]=0;for(t in u)o.o(u,t)&&(o.m[t]=u[t]);for(l&&l(o),n&&n(r);s.length;)s.shift()()};var n=t})(),o.e(598).then(o.bind(o,598)).then(()=>{console.log(\\"Good\\")})})();",
-  "importExport.ef3cbce40c35578b96ab.js": "(()=>{\\"use strict\\"})();",
-  "js.38170a7c37dc6835a538.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.03cc3c61ed86051ac7c9.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+  "598.598.ce0b7cde053504e39acf.js": "(window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{\\"use strict\\";s.r(p),s.d(p,{default:()=>n});const n=\\"async-dep\\"}}]);",
+  "AsyncImportExport.23fb6a5d7dae312e30dd.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>e+\\".\\"+e+\\".ce0b7cde053504e39acf.js\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,u;if(void 0!==a)for(var l=document.getElementsByTagName(\\"script\\"),s=0;s<l.length;s++){var p=l[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){i=p;break}}i||(u=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var d=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=d.bind(null,i.onerror),i.onload=d.bind(null,i.onload),u&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),u=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;u.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,o[1](u)}},\\"chunk-\\"+r)}};var r=window.webpackJsonpterser_webpack_plugin=window.webpackJsonpterser_webpack_plugin||[],t=r.push.bind(r);r.push=function(r){for(var t,a,i=r[0],u=r[1],l=r[3],s=0,p=[];s<i.length;s++)a=i[s],n.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(t in u)n.o(u,t)&&(n.m[t]=u[t]);for(l&&l(n),o&&o(r);p.length;)p.shift()()};var o=t})(),n.e(598).then(n.bind(n,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.33078016c5e1e9f07c35.js": "(()=>{\\"use strict\\"})();",
+  "js.d983a9ea9c25fcac073b.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.cb3e408f8ad1ab706dcd.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
 }
 `;
 
@@ -294,7 +294,7 @@ Object {
   "assetEmitted": 0,
   "beforeCompile": 0,
   "beforeRun": 1,
-  "compilation": 51,
+  "compilation": 52,
   "compile": 0,
   "contextModuleFactory": 0,
   "done": 1,
@@ -408,7 +408,7 @@ Object {
   "assetEmitted": 0,
   "beforeCompile": 0,
   "beforeRun": 1,
-  "compilation": 51,
+  "compilation": 52,
   "compile": 0,
   "contextModuleFactory": 0,
   "done": 1,
