@@ -2,15 +2,16 @@ import path from 'path';
 import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
-import { SourceMapSource, RawSource, ConcatSource } from 'webpack-sources';
-import RequestShortener from 'webpack/lib/RequestShortener';
-import {
+import webpackSources from 'webpack-sources';
+import webpack, {
   util,
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
   javascript,
   version as webpackVersion,
 } from 'webpack';
+import RequestShortener from 'webpack/lib/RequestShortener';
+
 import validateOptions from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -20,6 +21,9 @@ import Worker from 'jest-worker';
 import schema from './options.json';
 
 import { minify as minifyFn } from './minify';
+
+// webpack 5 exposes the sources property to ensure the right version of webpack-sources is used
+const sources = webpack.sources || webpackSources;
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -263,7 +267,7 @@ class TerserPlugin {
       }
 
       if (map) {
-        outputSource = new SourceMapSource(
+        outputSource = new sources.SourceMapSource(
           code,
           name,
           map,
@@ -272,7 +276,7 @@ class TerserPlugin {
           true
         );
       } else {
-        outputSource = new RawSource(code);
+        outputSource = new sources.RawSource(code);
       }
 
       const assetInfo = { ...info, minimized: true };
@@ -296,7 +300,7 @@ class TerserPlugin {
           }
 
           if (banner) {
-            outputSource = new ConcatSource(
+            outputSource = new sources.ConcatSource(
               shebang ? `${shebang}\n` : '',
               `/*! ${banner} */\n`,
               outputSource
@@ -576,7 +580,7 @@ class TerserPlugin {
         TerserPlugin.emitAsset(
           compilation,
           commentsFilename,
-          new RawSource(`${extractedComments}\n`)
+          new sources.RawSource(`${extractedComments}\n`)
         );
       });
 
