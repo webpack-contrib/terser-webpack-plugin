@@ -490,6 +490,73 @@ class TerserPlugin {
     }
   }
 
+  async optimize(compiler, compilation, assets, CacheEngine) {
+    let assetNames;
+
+    if (TerserPlugin.isWebpack4()) {
+      assetNames = []
+        .concat(Array.from(compilation.additionalChunkAssets || []))
+        .concat(
+          // In webpack@4 it is `chunks`
+          Array.from(assets).reduce(
+            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
+            []
+          )
+        )
+        .concat(Object.keys(compilation.assets))
+        .filter(
+          (assetName, index, existingAssets) =>
+            existingAssets.indexOf(assetName) === index
+        )
+        .filter((assetName) =>
+          ModuleFilenameHelpers.matchObject.bind(
+            // eslint-disable-next-line no-undefined
+            undefined,
+            this.options
+          )(assetName)
+        );
+    } else {
+      assetNames = Object.keys(assets).filter((assetName) =>
+        ModuleFilenameHelpers.matchObject.bind(
+          // eslint-disable-next-line no-undefined
+          undefined,
+          this.options
+        )(assetName)
+      );
+    }
+
+    if (assetNames.length === 0) {
+      return Promise.resolve();
+    }
+
+    const allExtractedComments = {};
+    const getTaskForAsset = this.taskGenerator.bind(
+      this,
+      compiler,
+      compilation,
+      allExtractedComments
+    );
+    const cache = new CacheEngine(compilation, { cache: this.options.cache });
+
+    await this.runTasks(assetNames, getTaskForAsset, cache);
+
+    Object.keys(allExtractedComments).forEach((commentsFilename) => {
+      const extractedComments = Array.from(
+        allExtractedComments[commentsFilename]
+      )
+        .sort()
+        .join('\n\n');
+
+      TerserPlugin.emitAsset(
+        compilation,
+        commentsFilename,
+        new RawSource(`${extractedComments}\n`)
+      );
+    });
+
+    return Promise.resolve();
+  }
+
   apply(compiler) {
     const { devtool, output, plugins } = compiler.options;
 
@@ -524,71 +591,9 @@ class TerserPlugin {
       this.options.terserOptions.ecma = output.ecmaVersion;
     }
 
-    const matchObject = ModuleFilenameHelpers.matchObject.bind(
-      // eslint-disable-next-line no-undefined
-      undefined,
-      this.options
-    );
-
-    const optimizeFn = async (compilation, chunksOrAssets) => {
-      let assetNames;
-
-      if (TerserPlugin.isWebpack4()) {
-        assetNames = []
-          .concat(Array.from(compilation.additionalChunkAssets || []))
-          .concat(
-            Array.from(chunksOrAssets).reduce(
-              (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-              []
-            )
-          )
-          .concat(Object.keys(compilation.assets))
-          .filter((file, index, assets) => assets.indexOf(file) === index)
-          .filter((file) => matchObject(file));
-      } else {
-        assetNames = []
-          .concat(Object.keys(chunksOrAssets))
-          .filter((file) => matchObject(file));
-      }
-
-      if (assetNames.length === 0) {
-        return Promise.resolve();
-      }
-
-      const allExtractedComments = {};
-      const getTaskForAsset = this.taskGenerator.bind(
-        this,
-        compiler,
-        compilation,
-        allExtractedComments
-      );
-      const CacheEngine = TerserPlugin.isWebpack4()
-        ? // eslint-disable-next-line global-require
-          require('./Webpack4Cache').default
-        : // eslint-disable-next-line global-require
-          require('./Webpack5Cache').default;
-      const cache = new CacheEngine(compilation, { cache: this.options.cache });
-
-      await this.runTasks(assetNames, getTaskForAsset, cache);
-
-      Object.keys(allExtractedComments).forEach((commentsFilename) => {
-        const extractedComments = Array.from(
-          allExtractedComments[commentsFilename]
-        )
-          .sort()
-          .join('\n\n');
-
-        TerserPlugin.emitAsset(
-          compilation,
-          commentsFilename,
-          new RawSource(`${extractedComments}\n`)
-        );
-      });
-
-      return Promise.resolve();
-    };
-
     const pluginName = this.constructor.name;
+    // eslint-disable-next-line no-undefined
+    const weakCache = TerserPlugin.isWebpack4() ? new WeakMap() : undefined;
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
       if (this.options.sourceMap) {
@@ -600,6 +605,8 @@ class TerserPlugin {
       }
 
       if (TerserPlugin.isWebpack4()) {
+        // eslint-disable-next-line global-require
+        const CacheEngine = require('./Webpack4Cache').default;
         const { mainTemplate, chunkTemplate } = compilation;
         const data = serialize({
           terser: terserPackageJson.version,
@@ -614,11 +621,12 @@ class TerserPlugin {
           });
         }
 
-        compilation.hooks.optimizeChunkAssets.tapPromise(
-          pluginName,
-          optimizeFn.bind(this, compilation)
+        compilation.hooks.optimizeChunkAssets.tapPromise(pluginName, (assets) =>
+          this.optimize(compiler, compilation, assets, CacheEngine, weakCache)
         );
       } else {
+        // eslint-disable-next-line global-require
+        const CacheEngine = require('./Webpack5Cache').default;
         // eslint-disable-next-line global-require
         const Compilation = require('webpack/lib/Compilation');
         const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
@@ -639,7 +647,7 @@ class TerserPlugin {
             name: pluginName,
             stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
           },
-          optimizeFn.bind(this, compilation)
+          (assets) => this.optimize(compiler, compilation, assets, CacheEngine)
         );
 
         compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
