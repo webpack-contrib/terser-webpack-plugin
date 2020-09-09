@@ -6,7 +6,7 @@ import serialize from 'serialize-javascript';
 
 export default class Webpack4Cache {
   constructor(compilation, options) {
-    this.cacheDir =
+    this.cache =
       options.cache === true
         ? Webpack4Cache.getCacheDirectory()
         : options.cache;
@@ -16,20 +16,33 @@ export default class Webpack4Cache {
     return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
-  isEnabled() {
-    return Boolean(this.cacheDir);
-  }
-
   async get(task) {
+    if (!this.cache) {
+      // eslint-disable-next-line no-undefined
+      return undefined;
+    }
+
     // eslint-disable-next-line no-param-reassign
     task.cacheIdent = task.cacheIdent || serialize(task.cacheKeys);
 
-    const { data } = await cacache.get(this.cacheDir, task.cacheIdent);
+    let cachedResult;
 
-    return JSON.parse(data);
+    try {
+      cachedResult = await cacache.get(this.cache, task.cacheIdent);
+    } catch (ignoreError) {
+      // eslint-disable-next-line no-undefined
+      return undefined;
+    }
+
+    return JSON.parse(cachedResult.data);
   }
 
   async store(task, data) {
-    return cacache.put(this.cacheDir, task.cacheIdent, JSON.stringify(data));
+    if (!this.cache) {
+      // eslint-disable-next-line no-undefined
+      return undefined;
+    }
+
+    return cacache.put(this.cache, task.cacheIdent, JSON.stringify(data));
   }
 }

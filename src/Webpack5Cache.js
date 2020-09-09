@@ -4,11 +4,6 @@ export default class Cache {
     this.cache = compilation.getCache('TerserWebpackPlugin');
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  isEnabled() {
-    return true;
-  }
-
   async get(task) {
     // eslint-disable-next-line no-param-reassign
     task.cacheIdent = task.cacheIdent || `${task.name}`;

@@ -454,38 +454,6 @@ class TerserPlugin {
     const scheduledTasks = [];
 
     for (const assetName of assetNames) {
-      const enqueue = async (task) => {
-        let taskResult;
-
-        try {
-          taskResult = await (worker
-            ? worker.transform(serialize(task))
-            : minifyFn(task));
-        } catch (error) {
-          compilation.errors.push(
-            TerserPlugin.buildError(
-              error,
-              assetName,
-              task.inputSourceMap &&
-                TerserPlugin.isSourceMap(task.inputSourceMap)
-                ? new SourceMapConsumer(task.inputSourceMap)
-                : null,
-              new RequestShortener(compiler.context)
-            )
-          );
-
-          return Promise.resolve();
-        }
-
-        if (cache.isEnabled()) {
-          await cache.store(task, taskResult);
-        }
-
-        task.callback(taskResult);
-
-        return taskResult;
-      };
-
       scheduledTasks.push(
         limit(async () => {
           const task = getTaskForAsset(assetName).next().value;
@@ -495,26 +463,35 @@ class TerserPlugin {
             return Promise.resolve();
           }
 
-          if (cache.isEnabled()) {
-            let taskResult;
+          let output = await cache.get(task);
 
+          if (!output) {
             try {
-              taskResult = await cache.get(task);
-            } catch (ignoreError) {
-              return enqueue(task);
+              output = await (worker
+                ? worker.transform(serialize(task))
+                : minifyFn(task));
+            } catch (error) {
+              compilation.errors.push(
+                TerserPlugin.buildError(
+                  error,
+                  assetName,
+                  task.inputSourceMap &&
+                    TerserPlugin.isSourceMap(task.inputSourceMap)
+                    ? new SourceMapConsumer(task.inputSourceMap)
+                    : null,
+                  new RequestShortener(compiler.context)
+                )
+              );
+
+              return Promise.resolve();
             }
 
-            // Webpack@5 return `undefined` when cache is not found
-            if (!taskResult) {
-              return enqueue(task);
-            }
-
-            task.callback(taskResult);
-
-            return Promise.resolve();
+            await cache.store(task, output);
           }
 
-          return enqueue(task);
+          task.callback(output);
+
+          return Promise.resolve();
         })
       );
     }
