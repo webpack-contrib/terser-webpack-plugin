@@ -7,18 +7,18 @@ import getCompiler from './helpers/getCompiler';
 describe('worker', () => {
   it('should match snapshot when options.extractComments is regex', async () => {
     const options = {
-      file: 'test1.js',
+      name: 'test1.js',
       input: 'var foo = 1;/* hello */',
       extractComments: /hello/,
     };
     const workerResult = await transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.file);
+    expect(workerResult).toMatchSnapshot();
   });
 
   it('normalizes when terserOptions.output.comments is string: all', async () => {
     const options = {
-      file: 'test2.js',
+      name: 'test2.js',
       input: 'var foo = 1;/* hello */',
       terserOptions: {
         output: {
@@ -28,12 +28,12 @@ describe('worker', () => {
     };
     const workerResult = await transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.file);
+    expect(workerResult).toMatchSnapshot();
   });
 
   it('should match snapshot when terserOptions.output.comments is string: some', async () => {
     const options = {
-      file: 'test3.js',
+      name: 'test3.js',
       input: 'var foo = 1;/* hello */',
       terserOptions: {
         output: {
@@ -43,12 +43,12 @@ describe('worker', () => {
     };
     const workerResult = await transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.file);
+    expect(workerResult).toMatchSnapshot();
   });
 
   it('should match snapshot when terserOptions.extractComments is number', async () => {
     const options = {
-      file: 'test4.js',
+      name: 'test4.js',
       input: 'var foo = 1;/* hello */',
       terserOptions: {
         output: {
@@ -59,12 +59,12 @@ describe('worker', () => {
     };
     const workerResult = await transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.file);
+    expect(workerResult).toMatchSnapshot();
   });
 
   it('should match snapshot with extract option set to a single file', async () => {
     const options = {
-      file: 'test5.js',
+      name: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
       terserOptions: {
         output: {
@@ -83,7 +83,7 @@ describe('worker', () => {
     };
     const workerResult = await transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.file);
+    expect(workerResult).toMatchSnapshot();
   });
 
   it('should match snapshot with options.inputSourceMap', async () => {
@@ -99,6 +99,6 @@ describe('worker', () => {
     };
     const workerResult = await transform(serialize(options));
 
-    expect(workerResult).toMatchSnapshot(options.name);
+    expect(workerResult).toMatchSnapshot();
   });
 });
