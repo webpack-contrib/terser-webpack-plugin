@@ -224,30 +224,8 @@ class TerserPlugin {
 
     const callback = (taskResult) => {
       let { code } = taskResult;
-      const { error, map } = taskResult;
+      const { map } = taskResult;
       const { extractedComments } = taskResult;
-
-      let sourceMap = null;
-
-      if (error && inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)) {
-        sourceMap = new SourceMapConsumer(inputSourceMap);
-      }
-
-      // Handling results
-      // Error case: add errors, and go to next file
-      if (error) {
-        compilation.errors.push(
-          TerserPlugin.buildError(
-            error,
-            name,
-            sourceMap,
-            new RequestShortener(compiler.context)
-          )
-        );
-
-        return;
-      }
-
       const hasExtractedComments =
         commentsFilename && extractedComments && extractedComments.length > 0;
       const hasBannerForExtractedComments =
@@ -484,10 +462,22 @@ class TerserPlugin {
             ? worker.transform(serialize(task))
             : minifyFn(task));
         } catch (error) {
-          taskResult = { error };
+          compilation.errors.push(
+            TerserPlugin.buildError(
+              error,
+              assetName,
+              task.inputSourceMap &&
+                TerserPlugin.isSourceMap(task.inputSourceMap)
+                ? new SourceMapConsumer(task.inputSourceMap)
+                : null,
+              new RequestShortener(compiler.context)
+            )
+          );
+
+          return Promise.resolve();
         }
 
-        if (cache.isEnabled() && !taskResult.error) {
+        if (cache.isEnabled()) {
           await cache.store(task, taskResult);
         }
 
