@@ -16,19 +16,20 @@ export default class Webpack4Cache {
     return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
-  async get(task) {
+  async get(cacheData) {
     if (!this.cache) {
       // eslint-disable-next-line no-undefined
       return undefined;
     }
 
     // eslint-disable-next-line no-param-reassign
-    task.cacheIdent = task.cacheIdent || serialize(task.cacheKeys);
+    cacheData.cacheIdent =
+      cacheData.cacheIdent || serialize(cacheData.cacheKeys);
 
     let cachedResult;
 
     try {
-      cachedResult = await cacache.get(this.cache, task.cacheIdent);
+      cachedResult = await cacache.get(this.cache, cacheData.cacheIdent);
     } catch (ignoreError) {
       // eslint-disable-next-line no-undefined
       return undefined;
@@ -37,12 +38,18 @@ export default class Webpack4Cache {
     return JSON.parse(cachedResult.data);
   }
 
-  async store(task, data) {
+  async store(cacheData) {
     if (!this.cache) {
       // eslint-disable-next-line no-undefined
       return undefined;
     }
 
-    return cacache.put(this.cache, task.cacheIdent, JSON.stringify(data));
+    const { code, map, extractedComments } = cacheData;
+
+    return cacache.put(
+      this.cache,
+      cacheData.cacheIdent,
+      JSON.stringify({ code, map, extractedComments })
+    );
   }
 }

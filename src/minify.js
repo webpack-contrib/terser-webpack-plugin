@@ -47,13 +47,11 @@ function isObject(value) {
   return value != null && (type === 'object' || type === 'function');
 }
 
-const buildComments = (options, terserOptions, extractedComments) => {
+const buildComments = (extractComments, terserOptions, extractedComments) => {
   const condition = {};
-  const commentsOpts = terserOptions.output.comments;
-  const { extractComments } = options;
+  const { comments } = terserOptions.output;
 
-  condition.preserve =
-    typeof commentsOpts !== 'undefined' ? commentsOpts : false;
+  condition.preserve = typeof comments !== 'undefined' ? comments : false;
 
   if (typeof extractComments === 'boolean' && extractComments) {
     condition.extract = 'some';
@@ -75,8 +73,7 @@ const buildComments = (options, terserOptions, extractedComments) => {
   } else {
     // No extract
     // Preserve using "commentsOpts" or "some"
-    condition.preserve =
-      typeof commentsOpts !== 'undefined' ? commentsOpts : 'some';
+    condition.preserve = typeof comments !== 'undefined' ? comments : 'some';
     condition.extract = false;
   }
 
@@ -151,7 +148,7 @@ async function minify(options) {
   }
 
   // Copy terser options
-  const terserOptions = buildTerserOptions(options.terserOptions);
+  const terserOptions = buildTerserOptions(options.minimizerOptions);
 
   // Let terser generate a SourceMap
   if (inputSourceMap) {
@@ -159,9 +156,10 @@ async function minify(options) {
   }
 
   const extractedComments = [];
+  const { extractComments } = options;
 
   terserOptions.output.comments = buildComments(
-    options,
+    extractComments,
     terserOptions,
     extractedComments
   );

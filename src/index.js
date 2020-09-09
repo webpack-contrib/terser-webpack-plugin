@@ -157,117 +157,6 @@ class TerserPlugin {
     compilation.assets[name] = newSource;
   }
 
-  *taskGenerator(compiler, compilation, allExtractedComments, name) {
-    const { info, source: assetSource } = TerserPlugin.getAsset(
-      compilation,
-      name
-    );
-
-    // Skip double minimize assets from child compilation
-    if (info.minimized) {
-      yield false;
-    }
-
-    let input;
-    let inputSourceMap;
-
-    // TODO refactor after drop webpack@4, webpack@5 always has `sourceAndMap` on sources
-    if (this.options.sourceMap && assetSource.sourceAndMap) {
-      const { source, map } = assetSource.sourceAndMap();
-
-      input = source;
-
-      if (map) {
-        if (TerserPlugin.isSourceMap(map)) {
-          inputSourceMap = map;
-        } else {
-          inputSourceMap = map;
-
-          compilation.warnings.push(
-            new Error(`${name} contains invalid source map`)
-          );
-        }
-      }
-    } else {
-      input = assetSource.source();
-      inputSourceMap = null;
-    }
-
-    if (Buffer.isBuffer(input)) {
-      input = input.toString();
-    }
-
-    // Handling comment extraction
-    let commentsFilename = false;
-
-    if (this.options.extractComments) {
-      commentsFilename =
-        this.options.extractComments.filename || '[file].LICENSE.txt[query]';
-
-      let query = '';
-      let filename = name;
-
-      const querySplit = filename.indexOf('?');
-
-      if (querySplit >= 0) {
-        query = filename.substr(querySplit);
-        filename = filename.substr(0, querySplit);
-      }
-
-      const lastSlashIndex = filename.lastIndexOf('/');
-      const basename =
-        lastSlashIndex === -1 ? filename : filename.substr(lastSlashIndex + 1);
-      const data = { filename, basename, query };
-
-      commentsFilename = compilation.getPath(commentsFilename, data);
-    }
-
-    const task = {
-      name,
-      input,
-      inputSourceMap,
-      commentsFilename,
-      extractComments: this.options.extractComments,
-      terserOptions: this.options.terserOptions,
-      minify: this.options.minify,
-      info,
-    };
-
-    if (TerserPlugin.isWebpack4()) {
-      const {
-        outputOptions: { hashSalt, hashDigest, hashDigestLength, hashFunction },
-      } = compilation;
-      const hash = util.createHash(hashFunction);
-
-      if (hashSalt) {
-        hash.update(hashSalt);
-      }
-
-      hash.update(input);
-
-      const digest = hash.digest(hashDigest);
-
-      if (this.options.cache) {
-        const defaultCacheKeys = {
-          terser: terserPackageJson.version,
-          // eslint-disable-next-line global-require
-          'terser-webpack-plugin': require('../package.json').version,
-          'terser-webpack-plugin-options': this.options,
-          nodeVersion: process.version,
-          name,
-          contentHash: digest.substr(0, hashDigestLength),
-        };
-
-        task.cacheKeys = this.options.cacheKeys(defaultCacheKeys, name);
-      }
-    } else {
-      // For webpack@5 cache
-      task.assetSource = assetSource;
-    }
-
-    yield task;
-  }
-
   async optimize(compiler, compilation, assets, CacheEngine) {
     let assetNames;
 
@@ -307,13 +196,6 @@ class TerserPlugin {
       return Promise.resolve();
     }
 
-    const allExtractedComments = {};
-    const getTaskForAsset = this.taskGenerator.bind(
-      this,
-      compiler,
-      compilation,
-      allExtractedComments
-    );
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel
     );
@@ -347,50 +229,159 @@ class TerserPlugin {
       }
     }
 
-    const cache = new CacheEngine(compilation, { cache: this.options.cache });
     const limit = pLimit(concurrency);
+    const cache = new CacheEngine(compilation, { cache: this.options.cache });
+    const allExtractedComments = {};
     const scheduledTasks = [];
 
     for (const assetName of assetNames) {
       scheduledTasks.push(
         limit(async () => {
-          const task = getTaskForAsset(assetName).next().value;
+          const { info, source: assetSource } = TerserPlugin.getAsset(
+            compilation,
+            assetName
+          );
 
-          if (!task) {
-            // Something went wrong, for example the `cacheKeys` option throw an error
-            return Promise.resolve();
+          // Skip double minimize assets from child compilation
+          if (info.minimized) {
+            return;
           }
 
-          let output = await cache.get(task);
+          let input;
+          let inputSourceMap;
+
+          // TODO refactor after drop webpack@4, webpack@5 always has `sourceAndMap` on sources
+          if (this.options.sourceMap && assetSource.sourceAndMap) {
+            const { source, map } = assetSource.sourceAndMap();
+
+            input = source;
+
+            if (map) {
+              if (TerserPlugin.isSourceMap(map)) {
+                inputSourceMap = map;
+              } else {
+                inputSourceMap = map;
+
+                compilation.warnings.push(
+                  new Error(`${assetName} contains invalid source map`)
+                );
+              }
+            }
+          } else {
+            input = assetSource.source();
+            inputSourceMap = null;
+          }
+
+          if (Buffer.isBuffer(input)) {
+            input = input.toString();
+          }
+
+          // Handling comment extraction
+          let commentsFilename = false;
+
+          if (this.options.extractComments) {
+            commentsFilename =
+              this.options.extractComments.filename ||
+              '[file].LICENSE.txt[query]';
+
+            let query = '';
+            let filename = assetName;
+
+            const querySplit = filename.indexOf('?');
+
+            if (querySplit >= 0) {
+              query = filename.substr(querySplit);
+              filename = filename.substr(0, querySplit);
+            }
+
+            const lastSlashIndex = filename.lastIndexOf('/');
+            const basename =
+              lastSlashIndex === -1
+                ? filename
+                : filename.substr(lastSlashIndex + 1);
+            const data = { filename, basename, query };
+
+            commentsFilename = compilation.getPath(commentsFilename, data);
+          }
+
+          const cacheData = { assetName, assetSource };
+
+          if (TerserPlugin.isWebpack4()) {
+            if (this.options.cache) {
+              const {
+                outputOptions: {
+                  hashSalt,
+                  hashDigest,
+                  hashDigestLength,
+                  hashFunction,
+                },
+              } = compilation;
+              const hash = util.createHash(hashFunction);
+
+              if (hashSalt) {
+                hash.update(hashSalt);
+              }
+
+              hash.update(input);
+
+              const digest = hash.digest(hashDigest);
+              const defaultCacheKeys = {
+                terser: terserPackageJson.version,
+                // eslint-disable-next-line global-require
+                'terser-webpack-plugin': require('../package.json').version,
+                'terser-webpack-plugin-options': this.options,
+                assetName,
+                contentHash: digest.substr(0, hashDigestLength),
+              };
+
+              cacheData.cacheKeys = this.options.cacheKeys(
+                defaultCacheKeys,
+                assetName
+              );
+            }
+          } else {
+            cacheData.assetSource = assetSource;
+          }
+
+          let output = await cache.get(cacheData);
 
           if (!output) {
+            const minimizerOptions = {
+              name: assetName,
+              input,
+              inputSourceMap,
+              minify: this.options.minify,
+              minimizerOptions: this.options.terserOptions,
+              extractComments: this.options.extractComments,
+            };
+
             try {
               output = await (worker
-                ? worker.transform(serialize(task))
-                : minifyFn(task));
+                ? worker.transform(serialize(minimizerOptions))
+                : minifyFn(minimizerOptions));
             } catch (error) {
               compilation.errors.push(
                 TerserPlugin.buildError(
                   error,
                   assetName,
-                  task.inputSourceMap &&
-                    TerserPlugin.isSourceMap(task.inputSourceMap)
-                    ? new SourceMapConsumer(task.inputSourceMap)
+                  inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)
+                    ? new SourceMapConsumer(inputSourceMap)
                     : null,
                   new RequestShortener(compiler.context)
                 )
               );
 
-              return Promise.resolve();
+              return;
             }
 
-            await cache.store(task, output);
+            await cache.store({ ...output, ...cacheData });
           }
 
           const hasExtractedComments =
-            task.commentsFilename &&
+            commentsFilename &&
             output.extractedComments &&
             output.extractedComments.length > 0;
+
           const hasBannerForExtractedComments =
             this.options.extractComments.banner !== false;
 
@@ -413,32 +404,32 @@ class TerserPlugin {
               output.code,
               assetName,
               output.map,
-              task.input,
-              task.inputSourceMap,
+              input,
+              inputSourceMap,
               true
             );
           } else {
             outputSource = new RawSource(output.code);
           }
 
-          const assetInfo = { ...task.info, minimized: true };
+          const assetInfo = { ...info, minimized: true };
 
           // Write extracted comments to commentsFilename
           if (hasExtractedComments) {
             let banner;
 
-            assetInfo.related = { license: task.commentsFilename };
+            assetInfo.related = { license: commentsFilename };
 
             // Add a banner to the original file
             if (hasBannerForExtractedComments) {
               banner =
                 this.options.extractComments.banner ||
                 `For license information please see ${path
-                  .relative(path.dirname(assetName), task.commentsFilename)
+                  .relative(path.dirname(assetName), commentsFilename)
                   .replace(/\\/g, '/')}`;
 
               if (typeof banner === 'function') {
-                banner = banner(task.commentsFilename);
+                banner = banner(commentsFilename);
               }
 
               if (banner) {
@@ -450,9 +441,9 @@ class TerserPlugin {
               }
             }
 
-            if (!allExtractedComments[task.commentsFilename]) {
+            if (!allExtractedComments[commentsFilename]) {
               // eslint-disable-next-line no-param-reassign
-              allExtractedComments[task.commentsFilename] = new Set();
+              allExtractedComments[commentsFilename] = new Set();
             }
 
             output.extractedComments.forEach((comment) => {
@@ -462,13 +453,13 @@ class TerserPlugin {
                 return;
               }
 
-              allExtractedComments[task.commentsFilename].add(comment);
+              allExtractedComments[commentsFilename].add(comment);
             });
 
             // Extracted comments from child compilation
             const previousExtractedComments = TerserPlugin.getAsset(
               compilation,
-              task.commentsFilename
+              commentsFilename
             );
 
             if (previousExtractedComments) {
@@ -479,7 +470,7 @@ class TerserPlugin {
                 .replace(/\n$/, '')
                 .split('\n\n')
                 .forEach((comment) => {
-                  allExtractedComments[task.commentsFilename].add(comment);
+                  allExtractedComments[commentsFilename].add(comment);
                 });
             }
           }
@@ -490,8 +481,6 @@ class TerserPlugin {
             outputSource,
             assetInfo
           );
-
-          return Promise.resolve();
         })
       );
     }

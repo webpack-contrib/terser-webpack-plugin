@@ -4,17 +4,21 @@ export default class Cache {
     this.cache = compilation.getCache('TerserWebpackPlugin');
   }
 
-  async get(task) {
+  async get(cacheData) {
     // eslint-disable-next-line no-param-reassign
-    task.cacheIdent = task.cacheIdent || `${task.name}`;
-    // eslint-disable-next-line no-param-reassign
-    task.cacheETag =
-      task.cacheETag || this.cache.getLazyHashedEtag(task.assetSource);
+    cacheData.eTag =
+      cacheData.eTag || this.cache.getLazyHashedEtag(cacheData.assetSource);
 
-    return this.cache.getPromise(task.cacheIdent, task.cacheETag);
+    return this.cache.getPromise(cacheData.assetName, cacheData.eTag);
   }
 
-  async store(task, data) {
-    return this.cache.storePromise(task.cacheIdent, task.cacheETag, data);
+  async store(cacheData) {
+    const { code, map, extractedComments } = cacheData;
+
+    return this.cache.storePromise(cacheData.assetName, cacheData.eTag, {
+      code,
+      map,
+      extractedComments,
+    });
   }
 }
