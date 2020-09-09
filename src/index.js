@@ -392,7 +392,52 @@ class TerserPlugin {
     yield task;
   }
 
-  async runTasks(assetNames, getTaskForAsset, cache) {
+  async optimize(compiler, compilation, assets, CacheEngine) {
+    let assetNames;
+
+    if (TerserPlugin.isWebpack4()) {
+      assetNames = []
+        .concat(Array.from(compilation.additionalChunkAssets || []))
+        .concat(
+          // In webpack@4 it is `chunks`
+          Array.from(assets).reduce(
+            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
+            []
+          )
+        )
+        .concat(Object.keys(compilation.assets))
+        .filter(
+          (assetName, index, existingAssets) =>
+            existingAssets.indexOf(assetName) === index
+        )
+        .filter((assetName) =>
+          ModuleFilenameHelpers.matchObject.bind(
+            // eslint-disable-next-line no-undefined
+            undefined,
+            this.options
+          )(assetName)
+        );
+    } else {
+      assetNames = Object.keys(assets).filter((assetName) =>
+        ModuleFilenameHelpers.matchObject.bind(
+          // eslint-disable-next-line no-undefined
+          undefined,
+          this.options
+        )(assetName)
+      );
+    }
+
+    if (assetNames.length === 0) {
+      return Promise.resolve();
+    }
+
+    const allExtractedComments = {};
+    const getTaskForAsset = this.taskGenerator.bind(
+      this,
+      compiler,
+      compilation,
+      allExtractedComments
+    );
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel
     );
@@ -426,6 +471,7 @@ class TerserPlugin {
       }
     }
 
+    const cache = new CacheEngine(compilation, { cache: this.options.cache });
     const limit = pLimit(concurrency);
     const scheduledTasks = [];
 
@@ -488,57 +534,6 @@ class TerserPlugin {
     if (worker) {
       await worker.end();
     }
-  }
-
-  async optimize(compiler, compilation, assets, CacheEngine) {
-    let assetNames;
-
-    if (TerserPlugin.isWebpack4()) {
-      assetNames = []
-        .concat(Array.from(compilation.additionalChunkAssets || []))
-        .concat(
-          // In webpack@4 it is `chunks`
-          Array.from(assets).reduce(
-            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-            []
-          )
-        )
-        .concat(Object.keys(compilation.assets))
-        .filter(
-          (assetName, index, existingAssets) =>
-            existingAssets.indexOf(assetName) === index
-        )
-        .filter((assetName) =>
-          ModuleFilenameHelpers.matchObject.bind(
-            // eslint-disable-next-line no-undefined
-            undefined,
-            this.options
-          )(assetName)
-        );
-    } else {
-      assetNames = Object.keys(assets).filter((assetName) =>
-        ModuleFilenameHelpers.matchObject.bind(
-          // eslint-disable-next-line no-undefined
-          undefined,
-          this.options
-        )(assetName)
-      );
-    }
-
-    if (assetNames.length === 0) {
-      return Promise.resolve();
-    }
-
-    const allExtractedComments = {};
-    const getTaskForAsset = this.taskGenerator.bind(
-      this,
-      compiler,
-      compilation,
-      allExtractedComments
-    );
-    const cache = new CacheEngine(compilation, { cache: this.options.cache });
-
-    await this.runTasks(assetNames, getTaskForAsset, cache);
 
     Object.keys(allExtractedComments).forEach((commentsFilename) => {
       const extractedComments = Array.from(
