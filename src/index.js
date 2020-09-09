@@ -234,12 +234,12 @@ class TerserPlugin {
     const allExtractedComments = {};
     const scheduledTasks = [];
 
-    for (const assetName of assetNames) {
+    for (const name of assetNames) {
       scheduledTasks.push(
         limit(async () => {
           const { info, source: assetSource } = TerserPlugin.getAsset(
             compilation,
-            assetName
+            name
           );
 
           // Skip double minimize assets from child compilation
@@ -263,7 +263,7 @@ class TerserPlugin {
                 inputSourceMap = map;
 
                 compilation.warnings.push(
-                  new Error(`${assetName} contains invalid source map`)
+                  new Error(`${name} contains invalid source map`)
                 );
               }
             }
@@ -285,7 +285,7 @@ class TerserPlugin {
               '[file].LICENSE.txt[query]';
 
             let query = '';
-            let filename = assetName;
+            let filename = name;
 
             const querySplit = filename.indexOf('?');
 
@@ -304,7 +304,7 @@ class TerserPlugin {
             commentsFilename = compilation.getPath(commentsFilename, data);
           }
 
-          const cacheData = { assetName, assetSource };
+          const cacheData = { name, assetSource };
 
           if (TerserPlugin.isWebpack4()) {
             if (this.options.cache) {
@@ -330,13 +330,13 @@ class TerserPlugin {
                 // eslint-disable-next-line global-require
                 'terser-webpack-plugin': require('../package.json').version,
                 'terser-webpack-plugin-options': this.options,
-                assetName,
+                name,
                 contentHash: digest.substr(0, hashDigestLength),
               };
 
               cacheData.cacheKeys = this.options.cacheKeys(
                 defaultCacheKeys,
-                assetName
+                name
               );
             }
           } else {
@@ -347,7 +347,7 @@ class TerserPlugin {
 
           if (!output) {
             const minimizerOptions = {
-              name: assetName,
+              name,
               input,
               inputSourceMap,
               minify: this.options.minify,
@@ -363,7 +363,7 @@ class TerserPlugin {
               compilation.errors.push(
                 TerserPlugin.buildError(
                   error,
-                  assetName,
+                  name,
                   inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)
                     ? new SourceMapConsumer(inputSourceMap)
                     : null,
@@ -402,7 +402,7 @@ class TerserPlugin {
           if (output.map) {
             outputSource = new SourceMapSource(
               output.code,
-              assetName,
+              name,
               output.map,
               input,
               inputSourceMap,
@@ -425,7 +425,7 @@ class TerserPlugin {
               banner =
                 this.options.extractComments.banner ||
                 `For license information please see ${path
-                  .relative(path.dirname(assetName), commentsFilename)
+                  .relative(path.dirname(name), commentsFilename)
                   .replace(/\\/g, '/')}`;
 
               if (typeof banner === 'function') {
@@ -475,12 +475,7 @@ class TerserPlugin {
             }
           }
 
-          TerserPlugin.updateAsset(
-            compilation,
-            assetName,
-            outputSource,
-            assetInfo
-          );
+          TerserPlugin.updateAsset(compilation, name, outputSource, assetInfo);
         })
       );
     }

@@ -9,13 +9,13 @@ export default class Cache {
     cacheData.eTag =
       cacheData.eTag || this.cache.getLazyHashedEtag(cacheData.assetSource);
 
-    return this.cache.getPromise(cacheData.assetName, cacheData.eTag);
+    return this.cache.getPromise(cacheData.name, cacheData.eTag);
   }
 
   async store(cacheData) {
     const { code, map, extractedComments } = cacheData;
 
-    return this.cache.storePromise(cacheData.assetName, cacheData.eTag, {
+    return this.cache.storePromise(cacheData.name, cacheData.eTag, {
       code,
       map,
       extractedComments,
