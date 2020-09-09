@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { SourceMapDevToolPlugin } from 'webpack';
 
 import TerserPlugin from '../src/index';
@@ -34,7 +36,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "false" value (the "devtool" option has the "source-map" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'source-map',
     });
 
@@ -49,7 +51,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "false" value (the "devtool" option has the "false" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: false,
     });
 
@@ -64,7 +66,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "source-map" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'source-map',
     });
 
@@ -79,7 +81,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "inline-source-map" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'inline-source-map',
     });
 
@@ -94,7 +96,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "hidden-source-map" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'hidden-source-map',
     });
 
@@ -109,7 +111,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "nosources-source-map" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'nosources-source-map',
     });
 
@@ -124,7 +126,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "false" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: false,
     });
 
@@ -175,7 +177,7 @@ describe('sourceMap', () => {
         }
       })();
       const compiler = getCompiler({
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         devtool: 'source-map',
         plugins: [emitBrokenSourceMapPlugin],
       });
@@ -192,7 +194,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'source-map',
     });
 
@@ -208,7 +210,7 @@ describe('sourceMap', () => {
   if (getCompiler.isWebpack4()) {
     it('should match snapshot when the "devtool" option has the "sourcemap" value', async () => {
       const compiler = getCompiler({
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         devtool: 'sourcemap',
       });
 
@@ -224,7 +226,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'inline-source-map',
     });
 
@@ -239,7 +241,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'hidden-source-map',
     });
 
@@ -254,7 +256,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot when the "devtool" option has the "source-map" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'nosources-source-map',
     });
 
@@ -269,7 +271,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "eval" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'eval',
     });
 
@@ -284,7 +286,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for a "true" value (the "devtool" option has the "cheap-source-map" value)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: 'cheap-source-map',
     });
 
@@ -299,7 +301,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for the `SourceMapDevToolPlugin` plugin (like `source-map`)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: false,
       plugins: [
         new SourceMapDevToolPlugin({
@@ -321,7 +323,7 @@ describe('sourceMap', () => {
 
   it('should match snapshot for the `SourceMapDevToolPlugin` plugin (like `cheap-source-map`)', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
       devtool: false,
       plugins: [
         new SourceMapDevToolPlugin({
@@ -348,9 +350,9 @@ describe('sourceMap', () => {
         devtool: 'eval',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-1.js',
           chunkFilename: '[id]-1.[name].js',
         },
@@ -364,9 +366,9 @@ describe('sourceMap', () => {
         devtool: 'source-map',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-2.js',
           chunkFilename: '[id]-2.[name].js',
         },
@@ -380,9 +382,9 @@ describe('sourceMap', () => {
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
         devtool: false,
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-3.js',
           chunkFilename: '[id]-3.[name].js',
         },
@@ -403,9 +405,9 @@ describe('sourceMap', () => {
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
         devtool: false,
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-4.js',
           chunkFilename: '[id]-4.[name].js',
         },

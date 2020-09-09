@@ -1,3 +1,5 @@
+import path from 'path';
+
 import TerserPlugin from '../src';
 
 import {
@@ -16,10 +18,10 @@ describe('minify option', () => {
 
   it('should snapshot for the "uglify-js" minifier', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/minify/es5.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
         ...(getCompiler.isWebpack4() ? {} : { ecmaVersion: 5 }),
-        path: `${__dirname}/dist-uglify-js`,
+        path: path.resolve(__dirname, './dist-uglify-js'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -45,10 +47,10 @@ describe('minify option', () => {
 
   it('should snapshot snapshot for the "uglify-js" minifier with extracting comments', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/minify/es5.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
         ...(getCompiler.isWebpack4() ? {} : { ecmaVersion: 5 }),
-        path: `${__dirname}/dist-uglify-js`,
+        path: path.resolve(__dirname, './dist-uglify-js'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -75,9 +77,9 @@ describe('minify option', () => {
 
   it('should snapshot for the "terser" minifier', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/minify/es6.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
-        path: `${__dirname}/dist-terser`,
+        path: path.resolve(__dirname, './dist-terser'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -104,9 +106,9 @@ describe('minify option', () => {
   it('should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true"', async () => {
     const compiler = getCompiler({
       devtool: 'source-map',
-      entry: `${__dirname}/fixtures/minify/es6.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
-        path: `${__dirname}/dist-terser`,
+        path: path.resolve(__dirname, './dist-terser'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -141,9 +143,9 @@ describe('minify option', () => {
 
   it('should snapshot for the "terser" minifier when the "parallel" option is "true"', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/minify/es6.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
-        path: `${__dirname}/dist-terser`,
+        path: path.resolve(__dirname, './dist-terser'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -170,9 +172,9 @@ describe('minify option', () => {
 
   it('should snapshot for errors into the "minify" option', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/minify/es6.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
-        path: `${__dirname}/dist-terser`,
+        path: path.resolve(__dirname, './dist-terser'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -192,9 +194,9 @@ describe('minify option', () => {
 
   it('should snapshot for errors into the "minify" option when the "parallel" option is "true"', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/minify/es6.js`,
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
-        path: `${__dirname}/dist-terser`,
+        path: path.resolve(__dirname, './dist-terser'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },

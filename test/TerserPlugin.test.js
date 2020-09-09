@@ -63,9 +63,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-1.js',
           chunkFilename: '[id]-1.[name].js',
         },
@@ -77,9 +77,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-2.js',
           chunkFilename: '[id]-2.[name].js',
         },
@@ -92,9 +92,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/import-export/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/import-export/entry.js'),
         output: {
-          path: `${__dirname}/dist-MultiCompiler`,
+          path: path.resolve(__dirname, './dist-MultiCompiler'),
           filename: '[name]-3.js',
           chunkFilename: '[id]-3.[name].js',
         },
@@ -158,9 +158,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-1.js',
           chunkFilename: '[id]-1.[name].js',
         },
@@ -172,9 +172,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name]-2.js',
           chunkFilename: '[id]-2.[name].js',
         },
@@ -187,9 +187,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/import-export/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/import-export/entry.js'),
         output: {
-          path: `${__dirname}/dist-MultiCompiler`,
+          path: path.resolve(__dirname, './dist-MultiCompiler'),
           filename: '[name]-3.js',
           chunkFilename: '[id]-3.[name].js',
         },
@@ -231,9 +231,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist-0`,
+          path: path.resolve(__dirname, './dist-0'),
           filename: '[name].js',
           chunkFilename: '[id].[name].js',
         },
@@ -246,9 +246,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist-1`,
+          path: path.resolve(__dirname, './dist-1'),
           filename: '[name].js',
           chunkFilename: '[id].[name].js',
         },
@@ -261,9 +261,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist-2`,
+          path: path.resolve(__dirname, './dist-2'),
           filename: '[name].js',
           chunkFilename: '[id].[name].js',
         },
@@ -276,9 +276,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist-3`,
+          path: path.resolve(__dirname, './dist-3'),
           filename: '[name].js',
           chunkFilename: '[id].[name].js',
         },
@@ -291,9 +291,9 @@ describe('TerserPlugin', () => {
         mode: 'production',
         bail: true,
         cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
-        entry: `${__dirname}/fixtures/entry.js`,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
-          path: `${__dirname}/dist-4`,
+          path: path.resolve(__dirname, './dist-4'),
           filename: '[name].js',
           chunkFilename: '[id].[name].js',
         },
@@ -442,13 +442,19 @@ describe('TerserPlugin', () => {
 
       const compiler = getCompiler({
         entry: {
-          js: `${__dirname}/fixtures/entry.js`,
-          mjs: `${__dirname}/fixtures/entry.mjs`,
-          importExport: `${__dirname}/fixtures/import-export/entry.js`,
-          AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+          js: path.resolve(__dirname, './fixtures/entry.js'),
+          mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+          importExport: path.resolve(
+            __dirname,
+            './fixtures/import-export/entry.js'
+          ),
+          AsyncImportExport: path.resolve(
+            __dirname,
+            './fixtures/async-import-export/entry.js'
+          ),
         },
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name].[contenthash].js',
           chunkFilename: '[id].[name].[contenthash].js',
         },
@@ -478,13 +484,19 @@ describe('TerserPlugin', () => {
       const mockUpdateHashForChunk = jest.fn();
       const compiler = getCompiler({
         entry: {
-          js: `${__dirname}/fixtures/entry.js`,
-          mjs: `${__dirname}/fixtures/entry.mjs`,
-          importExport: `${__dirname}/fixtures/import-export/entry.js`,
-          AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+          js: path.resolve(__dirname, './fixtures/entry.js'),
+          mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+          importExport: path.resolve(
+            __dirname,
+            './fixtures/import-export/entry.js'
+          ),
+          AsyncImportExport: path.resolve(
+            __dirname,
+            './fixtures/async-import-export/entry.js'
+          ),
         },
         output: {
-          path: `${__dirname}/dist`,
+          path: path.resolve(__dirname, './dist'),
           filename: '[name].[contenthash].js',
           chunkFilename: '[id].[name].[contenthash].js',
         },
@@ -631,8 +643,8 @@ describe('TerserPlugin', () => {
   it('should emit an error on a broken code in parallel mode', async () => {
     const compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/entry.js`,
-        two: `${__dirname}/fixtures/entry.js`,
+        one: path.resolve(__dirname, './fixtures/entry.js'),
+        two: path.resolve(__dirname, './fixtures/entry.js'),
       },
       optimization: {
         minimize: false,
@@ -654,8 +666,8 @@ describe('TerserPlugin', () => {
   it('should emit an error on a broken code in not parallel mode', async () => {
     const compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/entry.js`,
-        two: `${__dirname}/fixtures/entry.js`,
+        one: path.resolve(__dirname, './fixtures/entry.js'),
+        two: path.resolve(__dirname, './fixtures/entry.js'),
       },
       optimization: {
         minimize: false,
@@ -691,8 +703,8 @@ describe('TerserPlugin', () => {
 
     const compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/empty.js`,
-        two: `${__dirname}/fixtures/empty.js`,
+        one: path.resolve(__dirname, './fixtures/empty.js'),
+        two: path.resolve(__dirname, './fixtures/empty.js'),
       },
     });
 
@@ -737,8 +749,8 @@ describe('TerserPlugin', () => {
 
     const compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/empty.js`,
-        two: `${__dirname}/fixtures/empty.js`,
+        one: path.resolve(__dirname, './fixtures/empty.js'),
+        two: path.resolve(__dirname, './fixtures/empty.js'),
       },
     });
 
@@ -831,7 +843,7 @@ describe('TerserPlugin', () => {
 
   it('should work and show related assets in stats', async () => {
     const compiler = getCompiler({
-      entry: { comments: `${__dirname}/fixtures/comments-4.js` },
+      entry: { comments: path.resolve(__dirname, './fixtures/comments-4.js') },
       devtool: 'source-map',
     });
 
@@ -898,13 +910,19 @@ describe('TerserPlugin', () => {
   it('should work and use cache by default', async () => {
     const compiler = getCompiler({
       entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        js: path.resolve(__dirname, './fixtures/entry.js'),
+        mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+        importExport: path.resolve(
+          __dirname,
+          './fixtures/import-export/entry.js'
+        ),
+        AsyncImportExport: path.resolve(
+          __dirname,
+          './fixtures/async-import-export/entry.js'
+        ),
       },
       output: {
-        path: `${__dirname}/dist`,
+        path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -952,13 +970,19 @@ describe('TerserPlugin', () => {
   it('should work and use cache when the "cache" option is "false"', async () => {
     const compiler = getCompiler({
       entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        js: path.resolve(__dirname, './fixtures/entry.js'),
+        mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+        importExport: path.resolve(
+          __dirname,
+          './fixtures/import-export/entry.js'
+        ),
+        AsyncImportExport: path.resolve(
+          __dirname,
+          './fixtures/async-import-export/entry.js'
+        ),
       },
       output: {
-        path: `${__dirname}/dist`,
+        path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
@@ -1006,13 +1030,19 @@ describe('TerserPlugin', () => {
   it('should work and use cache when the "cache" option is "true"', async () => {
     const compiler = getCompiler({
       entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        js: path.resolve(__dirname, './fixtures/entry.js'),
+        mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+        importExport: path.resolve(
+          __dirname,
+          './fixtures/import-export/entry.js'
+        ),
+        AsyncImportExport: path.resolve(
+          __dirname,
+          './fixtures/async-import-export/entry.js'
+        ),
       },
       output: {
-        path: `${__dirname}/dist`,
+        path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },

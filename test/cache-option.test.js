@@ -37,11 +37,11 @@ if (getCompiler.isWebpack4()) {
     beforeEach(() => {
       compiler = getCompiler({
         entry: {
-          one: `${__dirname}/fixtures/cache.js`,
-          two: `${__dirname}/fixtures/cache-1.js`,
-          three: `${__dirname}/fixtures/cache-2.js`,
-          four: `${__dirname}/fixtures/cache-3.js`,
-          five: `${__dirname}/fixtures/cache-4.js`,
+          one: path.resolve(__dirname, './fixtures/cache.js'),
+          two: path.resolve(__dirname, './fixtures/cache-1.js'),
+          three: path.resolve(__dirname, './fixtures/cache-2.js'),
+          four: path.resolve(__dirname, './fixtures/cache-3.js'),
+          five: path.resolve(__dirname, './fixtures/cache-4.js'),
         },
       });
 
@@ -290,11 +290,11 @@ if (getCompiler.isWebpack4()) {
 
       compiler = getCompiler({
         entry: {
-          onne: `${__dirname}/fixtures/cache.js`,
-          two: `${__dirname}/fixtures/cache-1.js`,
-          three: `${__dirname}/fixtures/cache-2.js`,
-          four: `${__dirname}/fixtures/cache-3.js`,
-          five: `${__dirname}/fixtures/cache-4.js`,
+          one: path.resolve(__dirname, './fixtures/cache.js'),
+          two: path.resolve(__dirname, './fixtures/cache-1.js'),
+          three: path.resolve(__dirname, './fixtures/cache-2.js'),
+          four: path.resolve(__dirname, './fixtures/cache-3.js'),
+          five: path.resolve(__dirname, './fixtures/cache-4.js'),
         },
       });
 
@@ -331,11 +331,11 @@ if (getCompiler.isWebpack4()) {
     it('should work with "false" value for the "cache" option', async () => {
       const compiler = getCompiler({
         entry: {
-          one: `${__dirname}/fixtures/cache.js`,
-          two: `${__dirname}/fixtures/cache-1.js`,
-          three: `${__dirname}/fixtures/cache-2.js`,
-          four: `${__dirname}/fixtures/cache-3.js`,
-          five: `${__dirname}/fixtures/cache-4.js`,
+          one: path.resolve(__dirname, './fixtures/cache.js'),
+          two: path.resolve(__dirname, './fixtures/cache-1.js'),
+          three: path.resolve(__dirname, './fixtures/cache-2.js'),
+          four: path.resolve(__dirname, './fixtures/cache-3.js'),
+          five: path.resolve(__dirname, './fixtures/cache-4.js'),
         },
         cache: false,
       });
@@ -391,11 +391,11 @@ if (getCompiler.isWebpack4()) {
     it('should work with "memory" value for the "cache.type" option', async () => {
       const compiler = getCompiler({
         entry: {
-          one: `${__dirname}/fixtures/cache.js`,
-          two: `${__dirname}/fixtures/cache-1.js`,
-          three: `${__dirname}/fixtures/cache-2.js`,
-          four: `${__dirname}/fixtures/cache-3.js`,
-          five: `${__dirname}/fixtures/cache-4.js`,
+          one: path.resolve(__dirname, './fixtures/cache.js'),
+          two: path.resolve(__dirname, './fixtures/cache-1.js'),
+          three: path.resolve(__dirname, './fixtures/cache-2.js'),
+          four: path.resolve(__dirname, './fixtures/cache-3.js'),
+          five: path.resolve(__dirname, './fixtures/cache-4.js'),
         },
         cache: {
           type: 'memory',
@@ -454,11 +454,11 @@ if (getCompiler.isWebpack4()) {
     it('should work with "filesystem" value for the "cache.type" option', async () => {
       const compiler = getCompiler({
         entry: {
-          one: `${__dirname}/fixtures/cache.js`,
-          two: `${__dirname}/fixtures/cache-1.js`,
-          three: `${__dirname}/fixtures/cache-2.js`,
-          four: `${__dirname}/fixtures/cache-3.js`,
-          five: `${__dirname}/fixtures/cache-4.js`,
+          one: path.resolve(__dirname, './fixtures/cache.js'),
+          two: path.resolve(__dirname, './fixtures/cache-1.js'),
+          three: path.resolve(__dirname, './fixtures/cache-2.js'),
+          four: path.resolve(__dirname, './fixtures/cache-3.js'),
+          five: path.resolve(__dirname, './fixtures/cache-4.js'),
         },
         cache: {
           type: 'filesystem',
