@@ -222,108 +222,6 @@ class TerserPlugin {
       commentsFilename = compilation.getPath(commentsFilename, data);
     }
 
-    const callback = (taskResult) => {
-      let { code } = taskResult;
-      const { map } = taskResult;
-      const { extractedComments } = taskResult;
-      const hasExtractedComments =
-        commentsFilename && extractedComments && extractedComments.length > 0;
-      const hasBannerForExtractedComments =
-        this.options.extractComments.banner !== false;
-
-      let outputSource;
-      let shebang;
-
-      if (
-        hasExtractedComments &&
-        hasBannerForExtractedComments &&
-        code.startsWith('#!')
-      ) {
-        const firstNewlinePosition = code.indexOf('\n');
-
-        shebang = code.substring(0, firstNewlinePosition);
-        code = code.substring(firstNewlinePosition + 1);
-      }
-
-      if (map) {
-        outputSource = new SourceMapSource(
-          code,
-          name,
-          map,
-          input,
-          inputSourceMap,
-          true
-        );
-      } else {
-        outputSource = new RawSource(code);
-      }
-
-      const assetInfo = { ...info, minimized: true };
-
-      // Write extracted comments to commentsFilename
-      if (hasExtractedComments) {
-        let banner;
-
-        assetInfo.related = { license: commentsFilename };
-
-        // Add a banner to the original file
-        if (hasBannerForExtractedComments) {
-          banner =
-            this.options.extractComments.banner ||
-            `For license information please see ${path
-              .relative(path.dirname(name), commentsFilename)
-              .replace(/\\/g, '/')}`;
-
-          if (typeof banner === 'function') {
-            banner = banner(commentsFilename);
-          }
-
-          if (banner) {
-            outputSource = new ConcatSource(
-              shebang ? `${shebang}\n` : '',
-              `/*! ${banner} */\n`,
-              outputSource
-            );
-          }
-        }
-
-        if (!allExtractedComments[commentsFilename]) {
-          // eslint-disable-next-line no-param-reassign
-          allExtractedComments[commentsFilename] = new Set();
-        }
-
-        extractedComments.forEach((comment) => {
-          // Avoid re-adding banner
-          // Developers can use different banner for different names, but this setting should be avoided, it is not safe
-          if (banner && comment === `/*! ${banner} */`) {
-            return;
-          }
-
-          allExtractedComments[commentsFilename].add(comment);
-        });
-
-        // Extracted comments from child compilation
-        const previousExtractedComments = TerserPlugin.getAsset(
-          compilation,
-          commentsFilename
-        );
-
-        if (previousExtractedComments) {
-          const previousExtractedCommentsSource = previousExtractedComments.source.source();
-
-          // Restore original comments and re-add them
-          previousExtractedCommentsSource
-            .replace(/\n$/, '')
-            .split('\n\n')
-            .forEach((comment) => {
-              allExtractedComments[commentsFilename].add(comment);
-            });
-        }
-      }
-
-      TerserPlugin.updateAsset(compilation, name, outputSource, assetInfo);
-    };
-
     const task = {
       name,
       input,
@@ -332,7 +230,7 @@ class TerserPlugin {
       extractComments: this.options.extractComments,
       terserOptions: this.options.terserOptions,
       minify: this.options.minify,
-      callback,
+      info,
     };
 
     if (TerserPlugin.isWebpack4()) {
@@ -489,7 +387,109 @@ class TerserPlugin {
             await cache.store(task, output);
           }
 
-          task.callback(output);
+          const hasExtractedComments =
+            task.commentsFilename &&
+            output.extractedComments &&
+            output.extractedComments.length > 0;
+          const hasBannerForExtractedComments =
+            this.options.extractComments.banner !== false;
+
+          let outputSource;
+          let shebang;
+
+          if (
+            hasExtractedComments &&
+            hasBannerForExtractedComments &&
+            output.code.startsWith('#!')
+          ) {
+            const firstNewlinePosition = output.code.indexOf('\n');
+
+            shebang = output.code.substring(0, firstNewlinePosition);
+            output.code = output.code.substring(firstNewlinePosition + 1);
+          }
+
+          if (output.map) {
+            outputSource = new SourceMapSource(
+              output.code,
+              assetName,
+              output.map,
+              task.input,
+              task.inputSourceMap,
+              true
+            );
+          } else {
+            outputSource = new RawSource(output.code);
+          }
+
+          const assetInfo = { ...task.info, minimized: true };
+
+          // Write extracted comments to commentsFilename
+          if (hasExtractedComments) {
+            let banner;
+
+            assetInfo.related = { license: task.commentsFilename };
+
+            // Add a banner to the original file
+            if (hasBannerForExtractedComments) {
+              banner =
+                this.options.extractComments.banner ||
+                `For license information please see ${path
+                  .relative(path.dirname(assetName), task.commentsFilename)
+                  .replace(/\\/g, '/')}`;
+
+              if (typeof banner === 'function') {
+                banner = banner(task.commentsFilename);
+              }
+
+              if (banner) {
+                outputSource = new ConcatSource(
+                  shebang ? `${shebang}\n` : '',
+                  `/*! ${banner} */\n`,
+                  outputSource
+                );
+              }
+            }
+
+            if (!allExtractedComments[task.commentsFilename]) {
+              // eslint-disable-next-line no-param-reassign
+              allExtractedComments[task.commentsFilename] = new Set();
+            }
+
+            output.extractedComments.forEach((comment) => {
+              // Avoid re-adding banner
+              // Developers can use different banner for different names, but this setting should be avoided, it is not safe
+              if (banner && comment === `/*! ${banner} */`) {
+                return;
+              }
+
+              allExtractedComments[task.commentsFilename].add(comment);
+            });
+
+            // Extracted comments from child compilation
+            const previousExtractedComments = TerserPlugin.getAsset(
+              compilation,
+              task.commentsFilename
+            );
+
+            if (previousExtractedComments) {
+              const previousExtractedCommentsSource = previousExtractedComments.source.source();
+
+              // Restore original comments and re-add them
+              previousExtractedCommentsSource
+                .replace(/\n$/, '')
+                .split('\n\n')
+                .forEach((comment) => {
+                  allExtractedComments[task.commentsFilename].add(comment);
+                });
+            }
+          }
+
+          TerserPlugin.updateAsset(
+            compilation,
+            assetName,
+            outputSource,
+            assetInfo
+          );
 
           return Promise.resolve();
         })
