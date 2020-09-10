@@ -174,6 +174,58 @@ if (getCompiler.isWebpack4()) {
       getCacheDirectorySpy.mockRestore();
     });
 
+    it('should match snapshot for the "true" value and source maps', async () => {
+      compiler = getCompiler({
+        devtool: 'source-map',
+        entry: {
+          one: path.resolve(__dirname, './fixtures/cache.js'),
+          two: path.resolve(__dirname, './fixtures/cache-1.js'),
+          three: path.resolve(__dirname, './fixtures/cache-2.js'),
+          four: path.resolve(__dirname, './fixtures/cache-3.js'),
+          five: path.resolve(__dirname, './fixtures/cache-4.js'),
+        },
+      });
+
+      const cacacheGetSpy = jest.spyOn(cacache, 'get');
+      const cacachePutSpy = jest.spyOn(cacache, 'put');
+
+      const getCacheDirectorySpy = jest
+        .spyOn(Webpack4Cache, 'getCacheDirectory')
+        .mockImplementation(() => {
+          return uniqueOtherDirectory;
+        });
+
+      new TerserPlugin({ cache: true }).apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // Try to found cached files, but we don't have their in cache
+      expect(cacacheGetSpy).toHaveBeenCalledTimes(5);
+      // Put files in cache
+      expect(cacachePutSpy).toHaveBeenCalledTimes(5);
+
+      cacache.get.mockClear();
+      cacache.put.mockClear();
+
+      const newStats = await compile(compiler);
+
+      expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // Now we have cached files so we get them and don't put new
+      expect(cacacheGetSpy).toHaveBeenCalledTimes(5);
+      expect(cacachePutSpy).toHaveBeenCalledTimes(0);
+
+      cacacheGetSpy.mockRestore();
+      cacachePutSpy.mockRestore();
+      getCacheDirectorySpy.mockRestore();
+    });
+
     it('should match snapshot for the "other-cache-directory" value', async () => {
       const cacacheGetSpy = jest.spyOn(cacache, 'get');
       const cacachePutSpy = jest.spyOn(cacache, 'put');
