@@ -5,11 +5,44 @@ import { transform } from '../src/minify';
 import getCompiler from './helpers/getCompiler';
 
 describe('worker', () => {
-  it('should match snapshot when options.extractComments is regex', async () => {
+  it('should match snapshot when options.extractComments is RegExp', async () => {
     const options = {
       name: 'test1.js',
       input: 'var foo = 1;/* hello */',
       extractComments: /hello/,
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is Function', async () => {
+    const options = {
+      name: 'test1.js',
+      input: 'var foo = 1;/* hello */',
+      extractComments: () => true,
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is "all" value', async () => {
+    const options = {
+      name: 'test1.js',
+      input: 'var foo = 1;/* hello */',
+      extractComments: 'all',
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is "some" value', async () => {
+    const options = {
+      name: 'test1.js',
+      input: 'var foo = 1;/* hello */',
+      extractComments: 'some',
     };
     const workerResult = await transform(serialize(options));
 
