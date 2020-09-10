@@ -76,7 +76,7 @@
     "prettier": "^2.1.1",
     "standard-version": "^9.0.0",
     "uglify-js": "^3.10.4",
-    "webpack": "^4.44.1",
+    "webpack": "^5.0.0-beta.29",
     "worker-loader": "^3.0.2"
   },
   "keywords": [

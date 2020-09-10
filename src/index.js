@@ -237,7 +237,7 @@ class TerserPlugin {
     for (const name of assetNames) {
       scheduledTasks.push(
         limit(async () => {
-          const { info, source: assetSource } = TerserPlugin.getAsset(
+          const { info, source: inputSource } = TerserPlugin.getAsset(
             compilation,
             name
           );
@@ -251,8 +251,8 @@ class TerserPlugin {
           let inputSourceMap;
 
           // TODO refactor after drop webpack@4, webpack@5 always has `sourceAndMap` on sources
-          if (this.options.sourceMap && assetSource.sourceAndMap) {
-            const { source, map } = assetSource.sourceAndMap();
+          if (this.options.sourceMap && inputSource.sourceAndMap) {
+            const { source, map } = inputSource.sourceAndMap();
 
             input = source;
 
@@ -268,7 +268,7 @@ class TerserPlugin {
               }
             }
           } else {
-            input = assetSource.source();
+            input = inputSource.source();
             inputSourceMap = null;
           }
 
@@ -276,7 +276,7 @@ class TerserPlugin {
             input = input.toString();
           }
 
-          const cacheData = { name, assetSource };
+          const cacheData = { name, inputSource };
 
           if (TerserPlugin.isWebpack4()) {
             if (this.options.cache) {
@@ -312,7 +312,7 @@ class TerserPlugin {
               );
             }
           } else {
-            cacheData.assetSource = assetSource;
+            cacheData.inputSource = inputSource;
           }
 
           let output = await cache.get(cacheData);
