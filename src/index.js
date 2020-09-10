@@ -276,34 +276,6 @@ class TerserPlugin {
             input = input.toString();
           }
 
-          // Handling comment extraction
-          let commentsFilename = false;
-
-          if (this.options.extractComments) {
-            commentsFilename =
-              this.options.extractComments.filename ||
-              '[file].LICENSE.txt[query]';
-
-            let query = '';
-            let filename = name;
-
-            const querySplit = filename.indexOf('?');
-
-            if (querySplit >= 0) {
-              query = filename.substr(querySplit);
-              filename = filename.substr(0, querySplit);
-            }
-
-            const lastSlashIndex = filename.lastIndexOf('/');
-            const basename =
-              lastSlashIndex === -1
-                ? filename
-                : filename.substr(lastSlashIndex + 1);
-            const data = { filename, basename, query };
-
-            commentsFilename = compilation.getPath(commentsFilename, data);
-          }
-
           const cacheData = { name, assetSource };
 
           if (TerserPlugin.isWebpack4()) {
@@ -381,10 +353,8 @@ class TerserPlugin {
           let shebang;
 
           if (
-            commentsFilename &&
-            output.extractedComments &&
-            output.extractedComments.length > 0 &&
             this.options.extractComments.banner !== false &&
+            output.extractedComments.length > 0 &&
             output.code.startsWith('#!')
           ) {
             const firstNewlinePosition = output.code.indexOf('\n');
@@ -409,14 +379,34 @@ class TerserPlugin {
           const assetInfo = { ...info, minimized: true };
 
           // Write extracted comments to commentsFilename
-          if (
-            commentsFilename &&
-            output.extractedComments &&
-            output.extractedComments.length > 0
-          ) {
-            let banner;
+          if (output.extractedComments.length > 0) {
+            // Handling comment extraction
+            let commentsFilename =
+              this.options.extractComments.filename ||
+              '[file].LICENSE.txt[query]';
+
+            let query = '';
+            let filename = name;
+
+            const querySplit = filename.indexOf('?');
+
+            if (querySplit >= 0) {
+              query = filename.substr(querySplit);
+              filename = filename.substr(0, querySplit);
+            }
+
+            const lastSlashIndex = filename.lastIndexOf('/');
+            const basename =
+              lastSlashIndex === -1
+                ? filename
+                : filename.substr(lastSlashIndex + 1);
+            const data = { filename, basename, query };
+
+            commentsFilename = compilation.getPath(commentsFilename, data);
 
             assetInfo.related = { license: commentsFilename };
+
+            let banner;
 
             // Add a banner to the original file
             if (this.options.extractComments.banner !== false) {
