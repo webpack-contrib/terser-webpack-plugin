@@ -11,6 +11,7 @@ import {
   getWarnings,
   readsAssets,
   removeCache,
+  ExistingCommentsFile,
 } from './helpers';
 
 function createFilenameFn() {
@@ -608,6 +609,21 @@ describe('extractComments option', () => {
     });
 
     new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with the existing licenses file', async () => {
+    new ExistingCommentsFile().apply(compiler);
+    new TerserPlugin({
+      extractComments: {
+        filename: 'licenses.txt',
+      },
+    }).apply(compiler);
 
     const stats = await compile(compiler);
 

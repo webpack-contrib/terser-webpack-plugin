@@ -2,6 +2,7 @@ import BrokenCodePlugin from './BrokenCodePlugin';
 import compile from './compile';
 import countPlugins from './countPlugins';
 import execute from './execute';
+import ExistingCommentsFile from './ExistingCommentsFile';
 import getCacheDirectory from './getCacheDirectory';
 import getCompiler from './getCompiler';
 import getErrors from './getErrors';
@@ -15,6 +16,7 @@ export {
   BrokenCodePlugin,
   compile,
   countPlugins,
+  ExistingCommentsFile,
   execute,
   getCacheDirectory,
   getCompiler,

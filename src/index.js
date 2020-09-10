@@ -498,11 +498,25 @@ class TerserPlugin {
         .sort()
         .join('\n\n');
 
-      TerserPlugin.emitAsset(
+      const commentsAsset = TerserPlugin.getAsset(
         compilation,
-        commentsFilename,
-        new RawSource(`${extractedComments}\n`)
+        commentsFilename
       );
+
+      if (commentsAsset) {
+        TerserPlugin.updateAsset(
+          compilation,
+          commentsFilename,
+          new ConcatSource(commentsAsset.source, `\n${extractedComments}\n`)
+        );
+        // Comment
+      } else {
+        TerserPlugin.emitAsset(
+          compilation,
+          commentsFilename,
+          new RawSource(`${extractedComments}\n`)
+        );
+      }
     });
 
     return Promise.resolve();
