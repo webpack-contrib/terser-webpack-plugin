@@ -7,6 +7,7 @@ import getCacheDirectory from './getCacheDirectory';
 import getCompiler from './getCompiler';
 import getErrors from './getErrors';
 import getWarnings from './getWarnings';
+import ModifyExistingAsset from './ModifyExistingAsset';
 import readAsset from './readAsset';
 import readsAssets from './readAssets';
 import normalizeErrors from './normalizeErrors';
@@ -22,6 +23,7 @@ export {
   getCompiler,
   getErrors,
   getWarnings,
+  ModifyExistingAsset,
   normalizeErrors,
   readAsset,
   readsAssets,
