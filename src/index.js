@@ -301,17 +301,18 @@ class TerserPlugin {
               hash.update(input);
 
               const digest = hash.digest(hashDigest);
-              const defaultCacheKeys = {
-                terser: terserPackageJson.version,
-                // eslint-disable-next-line global-require
-                'terser-webpack-plugin': require('../package.json').version,
-                'terser-webpack-plugin-options': this.options,
-                name,
-                contentHash: digest.substr(0, hashDigestLength),
-              };
 
+              cacheData.input = input;
+              cacheData.inputSourceMap = inputSourceMap;
               cacheData.cacheKeys = this.options.cacheKeys(
-                defaultCacheKeys,
+                {
+                  terser: terserPackageJson.version,
+                  // eslint-disable-next-line global-require
+                  'terser-webpack-plugin': require('../package.json').version,
+                  'terser-webpack-plugin-options': this.options,
+                  name,
+                  contentHash: digest.substr(0, hashDigestLength),
+                },
                 name
               );
             }
