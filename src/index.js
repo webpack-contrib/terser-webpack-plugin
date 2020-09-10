@@ -349,7 +349,6 @@ class TerserPlugin {
             await cache.store({ ...output, ...cacheData });
           }
 
-          let outputSource;
           let shebang;
 
           if (
@@ -364,7 +363,7 @@ class TerserPlugin {
           }
 
           if (output.map) {
-            outputSource = new SourceMapSource(
+            output.source = new SourceMapSource(
               output.code,
               name,
               output.map,
@@ -373,10 +372,11 @@ class TerserPlugin {
               true
             );
           } else {
-            outputSource = new RawSource(output.code);
+            output.source = new RawSource(output.code);
           }
 
-          const assetInfo = { ...info, minimized: true };
+          // TODO `...` require only for webpack@4
+          const newInfo = { ...info, minimized: true };
 
           // Write extracted comments to commentsFilename
           if (output.extractedComments.length > 0) {
@@ -404,7 +404,7 @@ class TerserPlugin {
 
             commentsFilename = compilation.getPath(commentsFilename, data);
 
-            assetInfo.related = { license: commentsFilename };
+            newInfo.related = { license: commentsFilename };
 
             let banner;
 
@@ -421,10 +421,10 @@ class TerserPlugin {
               }
 
               if (banner) {
-                outputSource = new ConcatSource(
+                output.source = new ConcatSource(
                   shebang ? `${shebang}\n` : '',
                   `/*! ${banner} */\n`,
-                  outputSource
+                  output.source
                 );
               }
             }
@@ -463,7 +463,7 @@ class TerserPlugin {
             }
           }
 
-          TerserPlugin.updateAsset(compilation, name, outputSource, assetInfo);
+          TerserPlugin.updateAsset(compilation, name, output.source, newInfo);
         })
       );
     }
