@@ -377,20 +377,14 @@ class TerserPlugin {
             await cache.store({ ...output, ...cacheData });
           }
 
-          const hasExtractedComments =
-            commentsFilename &&
-            output.extractedComments &&
-            output.extractedComments.length > 0;
-
-          const hasBannerForExtractedComments =
-            this.options.extractComments.banner !== false;
-
           let outputSource;
           let shebang;
 
           if (
-            hasExtractedComments &&
-            hasBannerForExtractedComments &&
+            commentsFilename &&
+            output.extractedComments &&
+            output.extractedComments.length > 0 &&
+            this.options.extractComments.banner !== false &&
             output.code.startsWith('#!')
           ) {
             const firstNewlinePosition = output.code.indexOf('\n');
@@ -415,13 +409,17 @@ class TerserPlugin {
           const assetInfo = { ...info, minimized: true };
 
           // Write extracted comments to commentsFilename
-          if (hasExtractedComments) {
+          if (
+            commentsFilename &&
+            output.extractedComments &&
+            output.extractedComments.length > 0
+          ) {
             let banner;
 
             assetInfo.related = { license: commentsFilename };
 
             // Add a banner to the original file
-            if (hasBannerForExtractedComments) {
+            if (this.options.extractComments.banner !== false) {
               banner =
                 this.options.extractComments.banner ||
                 `For license information please see ${path
