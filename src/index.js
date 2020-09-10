@@ -452,32 +452,8 @@ class TerserPlugin {
             }
 
             output.extractedComments.forEach((comment) => {
-              // Avoid re-adding banner
-              // Developers can use different banner for different names, but this setting should be avoided, it is not safe
-              if (output.banner && comment === `/*! ${output.banner} */`) {
-                return;
-              }
-
               allExtractedComments[output.commentsFilename].add(comment);
             });
-
-            // Extracted comments from child compilation
-            const previousExtractedComments = TerserPlugin.getAsset(
-              compilation,
-              output.commentsFilename
-            );
-
-            if (previousExtractedComments) {
-              const previousExtractedCommentsSource = previousExtractedComments.source.source();
-
-              // Restore original comments and re-add them
-              previousExtractedCommentsSource
-                .replace(/\n$/, '')
-                .split('\n\n')
-                .forEach((comment) => {
-                  allExtractedComments[output.commentsFilename].add(comment);
-                });
-            }
           }
 
           TerserPlugin.updateAsset(compilation, name, output.source, newInfo);
