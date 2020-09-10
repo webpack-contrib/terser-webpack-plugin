@@ -5,10 +5,35 @@ import { transform } from '../src/minify';
 import getCompiler from './helpers/getCompiler';
 
 describe('worker', () => {
+  it('should match snapshot when options.extractComments is "false"', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      extractComments: false,
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is "true"', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      extractComments: true,
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
   it('should match snapshot when options.extractComments is RegExp', async () => {
     const options = {
       name: 'test1.js',
-      input: 'var foo = 1;/* hello */',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
       extractComments: /hello/,
     };
     const workerResult = await transform(serialize(options));
@@ -19,8 +44,63 @@ describe('worker', () => {
   it('should match snapshot when options.extractComments is Function', async () => {
     const options = {
       name: 'test1.js',
-      input: 'var foo = 1;/* hello */',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
       extractComments: () => true,
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is empty Object', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      extractComments: {},
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is Object with "true" value', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      extractComments: {
+        condition: true,
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is Object with "some" value', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      extractComments: {
+        condition: 'some',
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is Object with "all" value', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      extractComments: {
+        condition: 'all',
+      },
     };
     const workerResult = await transform(serialize(options));
 
@@ -30,7 +110,8 @@ describe('worker', () => {
   it('should match snapshot when options.extractComments is "all" value', async () => {
     const options = {
       name: 'test1.js',
-      input: 'var foo = 1;/* hello */',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
       extractComments: 'all',
     };
     const workerResult = await transform(serialize(options));
@@ -41,7 +122,8 @@ describe('worker', () => {
   it('should match snapshot when options.extractComments is "some" value', async () => {
     const options = {
       name: 'test1.js',
-      input: 'var foo = 1;/* hello */',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
       extractComments: 'some',
     };
     const workerResult = await transform(serialize(options));
@@ -49,11 +131,12 @@ describe('worker', () => {
     expect(workerResult).toMatchSnapshot();
   });
 
-  it('normalizes when terserOptions.output.comments is string: all', async () => {
+  it('normalizes when minimizerOptions.output.comments is string: all', async () => {
     const options = {
       name: 'test2.js',
-      input: 'var foo = 1;/* hello */',
-      terserOptions: {
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
         output: {
           comments: 'all',
         },
@@ -64,11 +147,42 @@ describe('worker', () => {
     expect(workerResult).toMatchSnapshot();
   });
 
-  it('should match snapshot when terserOptions.output.comments is string: some', async () => {
+  it('should match snapshot when minimizerOptions.compress.comments is boolean', async () => {
     const options = {
       name: 'test3.js',
-      input: 'var foo = 1;/* hello */',
-      terserOptions: {
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
+        compress: true,
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when minimizerOptions.compress.comments is object', async () => {
+    const options = {
+      name: 'test3.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
+        compress: {
+          passes: 2,
+        },
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when minimizerOptions.output.comments is string: some', async () => {
+    const options = {
+      name: 'test3.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
         output: {
           comments: 'some',
         },
@@ -79,11 +193,12 @@ describe('worker', () => {
     expect(workerResult).toMatchSnapshot();
   });
 
-  it('should match snapshot when terserOptions.extractComments is number', async () => {
+  it('should match snapshot when minimizerOptions.extractComments is number', async () => {
     const options = {
       name: 'test4.js',
-      input: 'var foo = 1;/* hello */',
-      terserOptions: {
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
         output: {
           comments: 'some',
         },
@@ -99,7 +214,7 @@ describe('worker', () => {
     const options = {
       name: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
-      terserOptions: {
+      minimizerOptions: {
         output: {
           comments: 'all',
         },
@@ -128,6 +243,62 @@ describe('worker', () => {
         sources: ['test1.js'],
         names: ['foo', 'x', 'bar', 'not_called1'],
         mappings: 'AAAA,QAASA,KAAIC,GACT,GAAIA,EAAG,CACH,MAAOC,MACPC',
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when options.extractComments is "true"', async () => {
+    const options = {
+      name: 'test1.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minify: (item) => {
+        return item['test1.js'];
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when minimizerOptions.mangle is "null"', async () => {
+    const options = {
+      name: 'test4.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
+        mangle: null,
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when minimizerOptions.mangle is boolean', async () => {
+    const options = {
+      name: 'test4.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
+        mangle: true,
+      },
+    };
+    const workerResult = await transform(serialize(options));
+
+    expect(workerResult).toMatchSnapshot();
+  });
+
+  it('should match snapshot when minimizerOptions.mangle is object', async () => {
+    const options = {
+      name: 'test4.js',
+      input:
+        'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
+      minimizerOptions: {
+        mangle: { toplevel: true },
       },
     };
     const workerResult = await transform(serialize(options));
