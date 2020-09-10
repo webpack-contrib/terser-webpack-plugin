@@ -80,6 +80,8 @@ export default class Webpack4Cache {
       input,
       inputSourceMap,
       extractedComments,
+      commentsFilename,
+      banner,
     } = cacheData;
 
     return cacache.put(
@@ -92,6 +94,8 @@ export default class Webpack4Cache {
         input,
         inputSourceMap,
         extractedComments,
+        commentsFilename,
+        banner,
       })
     );
   }

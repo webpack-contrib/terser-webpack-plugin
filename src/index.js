@@ -319,9 +319,6 @@ class TerserPlugin {
             cacheData.inputSource = inputSource;
           }
 
-          let commentsFilename;
-          let banner;
-
           let output = await cache.get(cacheData, {
             RawSource,
             SourceMapSource,
@@ -383,6 +380,8 @@ class TerserPlugin {
               output.source = new RawSource(output.code);
             }
 
+            let commentsFilename;
+
             if (
               output.extractedComments &&
               output.extractedComments.length > 0
@@ -409,6 +408,9 @@ class TerserPlugin {
               const data = { filename, basename, query };
 
               commentsFilename = compilation.getPath(commentsFilename, data);
+              output.commentsFilename = commentsFilename;
+
+              let banner;
 
               // Add a banner to the original file
               if (this.options.extractComments.banner !== false) {
@@ -423,6 +425,7 @@ class TerserPlugin {
                 }
 
                 if (banner) {
+                  output.banner = banner;
                   output.source = new ConcatSource(
                     shebang ? `${shebang}\n` : '',
                     `/*! ${banner} */\n`,
@@ -440,27 +443,27 @@ class TerserPlugin {
 
           // Write extracted comments to commentsFilename
           if (output.extractedComments && output.extractedComments.length > 0) {
-            newInfo.related = { license: commentsFilename };
+            newInfo.related = { license: output.commentsFilename };
 
-            if (!allExtractedComments[commentsFilename]) {
+            if (!allExtractedComments[output.commentsFilename]) {
               // eslint-disable-next-line no-param-reassign
-              allExtractedComments[commentsFilename] = new Set();
+              allExtractedComments[output.commentsFilename] = new Set();
             }
 
             output.extractedComments.forEach((comment) => {
               // Avoid re-adding banner
               // Developers can use different banner for different names, but this setting should be avoided, it is not safe
-              if (banner && comment === `/*! ${banner} */`) {
+              if (output.banner && comment === `/*! ${output.banner} */`) {
                 return;
               }
 
-              allExtractedComments[commentsFilename].add(comment);
+              allExtractedComments[output.commentsFilename].add(comment);
             });
 
             // Extracted comments from child compilation
             const previousExtractedComments = TerserPlugin.getAsset(
               compilation,
-              commentsFilename
+              output.commentsFilename
             );
 
             if (previousExtractedComments) {
@@ -471,7 +474,7 @@ class TerserPlugin {
                 .replace(/\n$/, '')
                 .split('\n\n')
                 .forEach((comment) => {
-                  allExtractedComments[commentsFilename].add(comment);
+                  allExtractedComments[output.commentsFilename].add(comment);
                 });
             }
           }

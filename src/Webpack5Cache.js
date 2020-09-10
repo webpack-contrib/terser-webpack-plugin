@@ -13,11 +13,13 @@ export default class Cache {
   }
 
   async store(cacheData) {
-    const { source, extractedComments } = cacheData;
+    const { source, extractedComments, commentsFilename, banner } = cacheData;
 
     return this.cache.storePromise(cacheData.name, cacheData.eTag, {
       source,
       extractedComments,
+      commentsFilename,
+      banner,
     });
   }
 }
