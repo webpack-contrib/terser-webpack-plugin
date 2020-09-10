@@ -132,6 +132,7 @@ class TerserPlugin {
       return compilation.getAsset(name);
     }
 
+    /* istanbul ignore next */
     if (compilation.assets[name]) {
       return { name, source: compilation.assets[name], info: {} };
     }

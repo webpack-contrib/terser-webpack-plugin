@@ -27,6 +27,9 @@ const otherOtherCacheDir = findCacheDir({
 const otherOtherOtherCacheDir = findCacheDir({
   name: 'other-other-other-cache-directory',
 });
+const otherOtherOtherOtherCacheDir = findCacheDir({
+  name: 'other-other-other-cache-directory',
+});
 
 jest.setTimeout(30000);
 
@@ -52,6 +55,7 @@ if (getCompiler.isWebpack4()) {
         removeCache(otherCacheDir),
         removeCache(otherOtherCacheDir),
         removeCache(otherOtherOtherCacheDir),
+        removeCache(otherOtherOtherOtherCacheDir),
       ]);
     });
 
@@ -63,6 +67,7 @@ if (getCompiler.isWebpack4()) {
         removeCache(otherCacheDir),
         removeCache(otherOtherCacheDir),
         removeCache(otherOtherOtherCacheDir),
+        removeCache(otherOtherOtherOtherCacheDir),
       ]);
     });
 
@@ -192,7 +197,7 @@ if (getCompiler.isWebpack4()) {
       const getCacheDirectorySpy = jest
         .spyOn(Webpack4Cache, 'getCacheDirectory')
         .mockImplementation(() => {
-          return uniqueOtherDirectory;
+          return otherOtherOtherOtherCacheDir;
         });
 
       new TerserPlugin({ cache: true }).apply(compiler);
