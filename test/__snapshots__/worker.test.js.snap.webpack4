@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`worker normalizes when terserOptions.output.comments is string: all: test2.js 1`] = `
+exports[`worker normalizes when terserOptions.output.comments is string: all 1`] = `
 Object {
-  "code": "var foo=1;/* hello */",
+  "code": "var foo=1;",
   "extractedComments": Array [],
 }
 `;
 
-exports[`worker should match snapshot when options.extractComments is regex: test1.js 1`] = `
+exports[`worker should match snapshot when options.extractComments is regex 1`] = `
 Object {
   "code": "var foo=1;",
   "extractedComments": Array [
@@ -16,28 +16,28 @@ Object {
 }
 `;
 
-exports[`worker should match snapshot when terserOptions.extractComments is number: test4.js 1`] = `
+exports[`worker should match snapshot when terserOptions.extractComments is number 1`] = `
 Object {
   "code": "var foo=1;",
   "extractedComments": Array [],
 }
 `;
 
-exports[`worker should match snapshot when terserOptions.output.comments is string: some: test3.js 1`] = `
+exports[`worker should match snapshot when terserOptions.output.comments is string: some 1`] = `
 Object {
   "code": "var foo=1;",
   "extractedComments": Array [],
 }
 `;
 
-exports[`worker should match snapshot with extract option set to a single file: test5.js 1`] = `
+exports[`worker should match snapshot with extract option set to a single file 1`] = `
 Object {
-  "code": "/******/function hello(o){console.log(o)}",
+  "code": "function hello(o){console.log(o)}",
   "extractedComments": Array [],
 }
 `;
 
-exports[`worker should match snapshot with options.inputSourceMap: test6.js 1`] = `
+exports[`worker should match snapshot with options.inputSourceMap 1`] = `
 Object {
   "code": "function foo(f){if(f)return bar()}",
   "extractedComments": Array [],

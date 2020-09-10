@@ -13,11 +13,10 @@ export default class Cache {
   }
 
   async store(cacheData) {
-    const { code, map, extractedComments } = cacheData;
+    const { source, extractedComments } = cacheData;
 
     return this.cache.storePromise(cacheData.name, cacheData.eTag, {
-      code,
-      map,
+      source,
       extractedComments,
     });
   }

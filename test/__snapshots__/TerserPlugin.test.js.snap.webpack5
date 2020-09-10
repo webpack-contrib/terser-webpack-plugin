@@ -98,6 +98,34 @@ exports[`TerserPlugin should work (without options): errors 1`] = `Array []`;
 
 exports[`TerserPlugin should work (without options): warnings 1`] = `Array []`;
 
+exports[`TerserPlugin should work and do not use weak memory cache when the "cache" option is "false": assets 1`] = `
+Object {
+  "598.598.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),s=0;s<u.length;s++){var p=u[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){i=p;break}}i||(l=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var d=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=d.bind(null,i.onerror),i.onload=d.bind(null,i.onload),l&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}},\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,l,u]=r,s=0,p=[];s<i.length;s++)a=i[s],n.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);p.length;)p.shift()()}})(),n.e(598).then(n.bind(n,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js": "(()=>{\\"use strict\\"})();",
+  "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+}
+`;
+
+exports[`TerserPlugin should work and do not use weak memory cache when the "cache" option is "false": assets 2`] = `
+Object {
+  "598.598.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),s=0;s<u.length;s++){var p=u[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){i=p;break}}i||(l=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var d=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=d.bind(null,i.onerror),i.onload=d.bind(null,i.onload),l&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}},\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,l,u]=r,s=0,p=[];s<i.length;s++)a=i[s],n.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);p.length;)p.shift()()}})(),n.e(598).then(n.bind(n,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js": "(()=>{\\"use strict\\"})();",
+  "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+}
+`;
+
+exports[`TerserPlugin should work and do not use weak memory cache when the "cache" option is "false": errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work and do not use weak memory cache when the "cache" option is "false": errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work and do not use weak memory cache when the "cache" option is "false": warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work and do not use weak memory cache when the "cache" option is "false": warnings 2`] = `Array []`;
+
 exports[`TerserPlugin should work and generate real content hash: assets 1`] = `
 Object {
   "598.d955a8689b2acafd4711.905223c9dd9e6923fb56.1b79a24794e8f6aece1a.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
@@ -154,6 +182,34 @@ Object {
 exports[`TerserPlugin should work and show related assets in stats: errors 1`] = `Array []`;
 
 exports[`TerserPlugin should work and show related assets in stats: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work and weak memory cache when the "cache" option is "true": assets 1`] = `
+Object {
+  "598.598.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),s=0;s<u.length;s++){var p=u[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){i=p;break}}i||(l=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var d=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=d.bind(null,i.onerror),i.onload=d.bind(null,i.onload),l&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}},\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,l,u]=r,s=0,p=[];s<i.length;s++)a=i[s],n.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);p.length;)p.shift()()}})(),n.e(598).then(n.bind(n,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js": "(()=>{\\"use strict\\"})();",
+  "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+}
+`;
+
+exports[`TerserPlugin should work and weak memory cache when the "cache" option is "true": assets 2`] = `
+Object {
+  "598.598.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),s=0;s<u.length;s++){var p=u[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){i=p;break}}i||(l=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var d=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=d.bind(null,i.onerror),i.onload=d.bind(null,i.onload),l&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}},\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,l,u]=r,s=0,p=[];s<i.length;s++)a=i[s],n.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);p.length;)p.shift()()}})(),n.e(598).then(n.bind(n,598)).then(()=>{console.log(\\"Good\\")})})();",
+  "importExport.js": "(()=>{\\"use strict\\"})();",
+  "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js": "(()=>{var r={631:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(631)})();",
+}
+`;
+
+exports[`TerserPlugin should work and weak memory cache when the "cache" option is "true": errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work and weak memory cache when the "cache" option is "true": errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work and weak memory cache when the "cache" option is "true": warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work and weak memory cache when the "cache" option is "true": warnings 2`] = `Array []`;
 
 exports[`TerserPlugin should work as a minimizer: assets 1`] = `
 Object {

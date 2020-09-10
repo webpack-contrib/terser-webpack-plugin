@@ -157,7 +157,7 @@ class TerserPlugin {
     compilation.assets[name] = newSource;
   }
 
-  async optimize(compiler, compilation, assets, CacheEngine) {
+  async optimize(compiler, compilation, assets, CacheEngine, weakCache) {
     let assetNames;
 
     if (TerserPlugin.isWebpack4()) {
@@ -230,7 +230,11 @@ class TerserPlugin {
     }
 
     const limit = pLimit(concurrency);
-    const cache = new CacheEngine(compilation, { cache: this.options.cache });
+    const cache = new CacheEngine(
+      compilation,
+      { cache: this.options.cache },
+      weakCache
+    );
     const allExtractedComments = {};
     const scheduledTasks = [];
 
@@ -315,7 +319,13 @@ class TerserPlugin {
             cacheData.inputSource = inputSource;
           }
 
-          let output = await cache.get(cacheData);
+          let commentsFilename;
+          let banner;
+
+          let output = await cache.get(cacheData, {
+            RawSource,
+            SourceMapSource,
+          });
 
           if (!output) {
             const minimizerOptions = {
@@ -346,88 +356,91 @@ class TerserPlugin {
               return;
             }
 
+            let shebang;
+
+            if (
+              this.options.extractComments.banner !== false &&
+              output.extractedComments &&
+              output.extractedComments.length > 0 &&
+              output.code.startsWith('#!')
+            ) {
+              const firstNewlinePosition = output.code.indexOf('\n');
+
+              shebang = output.code.substring(0, firstNewlinePosition);
+              output.code = output.code.substring(firstNewlinePosition + 1);
+            }
+
+            if (output.map) {
+              output.source = new SourceMapSource(
+                output.code,
+                name,
+                output.map,
+                input,
+                inputSourceMap,
+                true
+              );
+            } else {
+              output.source = new RawSource(output.code);
+            }
+
+            if (
+              output.extractedComments &&
+              output.extractedComments.length > 0
+            ) {
+              commentsFilename =
+                this.options.extractComments.filename ||
+                '[file].LICENSE.txt[query]';
+
+              let query = '';
+              let filename = name;
+
+              const querySplit = filename.indexOf('?');
+
+              if (querySplit >= 0) {
+                query = filename.substr(querySplit);
+                filename = filename.substr(0, querySplit);
+              }
+
+              const lastSlashIndex = filename.lastIndexOf('/');
+              const basename =
+                lastSlashIndex === -1
+                  ? filename
+                  : filename.substr(lastSlashIndex + 1);
+              const data = { filename, basename, query };
+
+              commentsFilename = compilation.getPath(commentsFilename, data);
+
+              // Add a banner to the original file
+              if (this.options.extractComments.banner !== false) {
+                banner =
+                  this.options.extractComments.banner ||
+                  `For license information please see ${path
+                    .relative(path.dirname(name), commentsFilename)
+                    .replace(/\\/g, '/')}`;
+
+                if (typeof banner === 'function') {
+                  banner = banner(commentsFilename);
+                }
+
+                if (banner) {
+                  output.source = new ConcatSource(
+                    shebang ? `${shebang}\n` : '',
+                    `/*! ${banner} */\n`,
+                    output.source
+                  );
+                }
+              }
+            }
+
             await cache.store({ ...output, ...cacheData });
-          }
-
-          let shebang;
-
-          if (
-            this.options.extractComments.banner !== false &&
-            output.extractedComments.length > 0 &&
-            output.code.startsWith('#!')
-          ) {
-            const firstNewlinePosition = output.code.indexOf('\n');
-
-            shebang = output.code.substring(0, firstNewlinePosition);
-            output.code = output.code.substring(firstNewlinePosition + 1);
-          }
-
-          if (output.map) {
-            output.source = new SourceMapSource(
-              output.code,
-              name,
-              output.map,
-              input,
-              inputSourceMap,
-              true
-            );
-          } else {
-            output.source = new RawSource(output.code);
           }
 
           // TODO `...` require only for webpack@4
           const newInfo = { ...info, minimized: true };
 
           // Write extracted comments to commentsFilename
-          if (output.extractedComments.length > 0) {
-            // Handling comment extraction
-            let commentsFilename =
-              this.options.extractComments.filename ||
-              '[file].LICENSE.txt[query]';
-
-            let query = '';
-            let filename = name;
-
-            const querySplit = filename.indexOf('?');
-
-            if (querySplit >= 0) {
-              query = filename.substr(querySplit);
-              filename = filename.substr(0, querySplit);
-            }
-
-            const lastSlashIndex = filename.lastIndexOf('/');
-            const basename =
-              lastSlashIndex === -1
-                ? filename
-                : filename.substr(lastSlashIndex + 1);
-            const data = { filename, basename, query };
-
-            commentsFilename = compilation.getPath(commentsFilename, data);
-
+          if (output.extractedComments && output.extractedComments.length > 0) {
             newInfo.related = { license: commentsFilename };
-
-            let banner;
-
-            // Add a banner to the original file
-            if (this.options.extractComments.banner !== false) {
-              banner =
-                this.options.extractComments.banner ||
-                `For license information please see ${path
-                  .relative(path.dirname(name), commentsFilename)
-                  .replace(/\\/g, '/')}`;
-
-              if (typeof banner === 'function') {
-                banner = banner(commentsFilename);
-              }
-
-              if (banner) {
-                output.source = new ConcatSource(
-                  shebang ? `${shebang}\n` : '',
-                  `/*! ${banner} */\n`,
-                  output.source
-                );
-              }
-            }
 
             if (!allExtractedComments[commentsFilename]) {
               // eslint-disable-next-line no-param-reassign
@@ -526,8 +539,12 @@ class TerserPlugin {
     }
 
     const pluginName = this.constructor.name;
-    // eslint-disable-next-line no-undefined
-    const weakCache = TerserPlugin.isWebpack4() ? new WeakMap() : undefined;
+    const weakCache =
+      TerserPlugin.isWebpack4() &&
+      (this.options.cache === true || typeof this.options.cache === 'string')
+        ? new WeakMap()
+        : // eslint-disable-next-line no-undefined
+          undefined;
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
       if (this.options.sourceMap) {

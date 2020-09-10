@@ -290,7 +290,7 @@ if (getCompiler.isWebpack4()) {
 
       compiler = getCompiler({
         entry: {
-          one: path.resolve(__dirname, './fixtures/cache.js'),
+          onne: path.resolve(__dirname, './fixtures/cache.js'),
           two: path.resolve(__dirname, './fixtures/cache-1.js'),
           three: path.resolve(__dirname, './fixtures/cache-2.js'),
           four: path.resolve(__dirname, './fixtures/cache-3.js'),

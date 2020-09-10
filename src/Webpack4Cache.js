@@ -5,21 +5,28 @@ import findCacheDir from 'find-cache-dir';
 import serialize from 'serialize-javascript';
 
 export default class Webpack4Cache {
-  constructor(compilation, options) {
+  constructor(compilation, options, weakCache) {
     this.cache =
       options.cache === true
         ? Webpack4Cache.getCacheDirectory()
         : options.cache;
+    this.weakCache = weakCache;
   }
 
   static getCacheDirectory() {
     return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
-  async get(cacheData) {
+  async get(cacheData, { RawSource, SourceMapSource }) {
     if (!this.cache) {
       // eslint-disable-next-line no-undefined
       return undefined;
+    }
+
+    const weakOutput = this.weakCache.get(cacheData.inputSource);
+
+    if (weakOutput) {
+      return weakOutput;
     }
 
     // eslint-disable-next-line no-param-reassign
@@ -35,7 +42,24 @@ export default class Webpack4Cache {
       return undefined;
     }
 
-    return JSON.parse(cachedResult.data);
+    cachedResult = JSON.parse(cachedResult.data);
+
+    const { code, name, map, input, inputSourceMap } = cachedResult;
+
+    if (map) {
+      cachedResult.source = new SourceMapSource(
+        code,
+        name,
+        map,
+        input,
+        inputSourceMap,
+        true
+      );
+    } else {
+      cachedResult.source = new RawSource(code);
+    }
+
+    return cachedResult;
   }
 
   async store(cacheData) {
@@ -44,12 +68,31 @@ export default class Webpack4Cache {
       return undefined;
     }
 
-    const { code, map, extractedComments } = cacheData;
+    if (!this.weakCache.has(cacheData.inputSource)) {
+      this.weakCache.set(cacheData.inputSource, cacheData);
+    }
+
+    const {
+      cacheIdent,
+      code,
+      name,
+      map,
+      input,
+      inputSourceMap,
+      extractedComments,
+    } = cacheData;
 
     return cacache.put(
       this.cache,
-      cacheData.cacheIdent,
-      JSON.stringify({ code, map, extractedComments })
+      cacheIdent,
+      JSON.stringify({
+        code,
+        name,
+        map,
+        input,
+        inputSourceMap,
+        extractedComments,
+      })
     );
   }
 }
