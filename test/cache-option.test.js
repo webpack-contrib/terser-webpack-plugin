@@ -28,7 +28,13 @@ const otherOtherOtherCacheDir = findCacheDir({
   name: 'other-other-other-cache-directory',
 });
 const otherOtherOtherOtherCacheDir = findCacheDir({
-  name: 'other-other-other-cache-directory',
+  name: 'other-other-other-other-cache-directory',
+});
+const otherOtherOtherOtherOtherCacheDir = findCacheDir({
+  name: 'other-other-other-other-other-cache-directory',
+});
+const otherOtherOtherOtherOtherOtherCacheDir = findCacheDir({
+  name: 'other-other-other-other-other-cache-directory',
 });
 
 jest.setTimeout(30000);
@@ -56,6 +62,8 @@ if (getCompiler.isWebpack4()) {
         removeCache(otherOtherCacheDir),
         removeCache(otherOtherOtherCacheDir),
         removeCache(otherOtherOtherOtherCacheDir),
+        removeCache(otherOtherOtherOtherOtherCacheDir),
+        removeCache(otherOtherOtherOtherOtherOtherCacheDir),
       ]);
     });
 
@@ -68,6 +76,8 @@ if (getCompiler.isWebpack4()) {
         removeCache(otherOtherCacheDir),
         removeCache(otherOtherOtherCacheDir),
         removeCache(otherOtherOtherOtherCacheDir),
+        removeCache(otherOtherOtherOtherOtherCacheDir),
+        removeCache(otherOtherOtherOtherOtherOtherCacheDir),
       ]);
     });
 
@@ -224,6 +234,111 @@ if (getCompiler.isWebpack4()) {
 
       // Now we have cached files so we get them and don't put new
       expect(cacacheGetSpy).toHaveBeenCalledTimes(5);
+      expect(cacachePutSpy).toHaveBeenCalledTimes(0);
+
+      cacacheGetSpy.mockRestore();
+      cacachePutSpy.mockRestore();
+      getCacheDirectorySpy.mockRestore();
+    });
+
+    it('should match snapshot for the "true" value and extract comments in different files', async () => {
+      compiler = getCompiler({
+        entry: {
+          one: path.resolve(__dirname, './fixtures/comments.js'),
+          two: path.resolve(__dirname, './fixtures/comments-2.js'),
+          three: path.resolve(__dirname, './fixtures/comments-3.js'),
+          four: path.resolve(__dirname, './fixtures/comments-4.js'),
+        },
+      });
+
+      const cacacheGetSpy = jest.spyOn(cacache, 'get');
+      const cacachePutSpy = jest.spyOn(cacache, 'put');
+
+      const getCacheDirectorySpy = jest
+        .spyOn(Webpack4Cache, 'getCacheDirectory')
+        .mockImplementation(() => {
+          return otherOtherOtherOtherOtherCacheDir;
+        });
+
+      new TerserPlugin({ cache: true }).apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // Try to found cached files, but we don't have their in cache
+      expect(cacacheGetSpy).toHaveBeenCalledTimes(5);
+      // Put files in cache
+      expect(cacachePutSpy).toHaveBeenCalledTimes(5);
+
+      cacache.get.mockClear();
+      cacache.put.mockClear();
+
+      const newStats = await compile(compiler);
+
+      expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // Now we have cached files so we get them and don't put new
+      expect(cacacheGetSpy).toHaveBeenCalledTimes(5);
+      expect(cacachePutSpy).toHaveBeenCalledTimes(0);
+
+      cacacheGetSpy.mockRestore();
+      cacachePutSpy.mockRestore();
+      getCacheDirectorySpy.mockRestore();
+    });
+
+    it('should match snapshot for the "true" value and extract comments in one files', async () => {
+      compiler = getCompiler({
+        entry: {
+          one: path.resolve(__dirname, './fixtures/comments.js'),
+          two: path.resolve(__dirname, './fixtures/comments-2.js'),
+          three: path.resolve(__dirname, './fixtures/comments-3.js'),
+          four: path.resolve(__dirname, './fixtures/comments-4.js'),
+        },
+      });
+
+      const cacacheGetSpy = jest.spyOn(cacache, 'get');
+      const cacachePutSpy = jest.spyOn(cacache, 'put');
+
+      const getCacheDirectorySpy = jest
+        .spyOn(Webpack4Cache, 'getCacheDirectory')
+        .mockImplementation(() => {
+          return otherOtherOtherOtherOtherOtherCacheDir;
+        });
+
+      new TerserPlugin({
+        cache: true,
+        extractComments: {
+          filename: 'licenses.txt',
+        },
+      }).apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // Try to found cached files, but we don't have their in cache
+      expect(cacacheGetSpy).toHaveBeenCalledTimes(9);
+      // Put files in cache
+      expect(cacachePutSpy).toHaveBeenCalledTimes(9);
+
+      cacache.get.mockClear();
+      cacache.put.mockClear();
+
+      const newStats = await compile(compiler);
+
+      expect(readsAssets(compiler, newStats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+
+      // Now we have cached files so we get them and don't put new
+      expect(cacacheGetSpy).toHaveBeenCalledTimes(9);
       expect(cacachePutSpy).toHaveBeenCalledTimes(0);
 
       cacacheGetSpy.mockRestore();

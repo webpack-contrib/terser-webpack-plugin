@@ -1200,9 +1200,9 @@ describe('TerserPlugin', () => {
           Object.keys(newStats.compilation.assets).filter(
             (assetName) => newStats.compilation.assets[assetName].emitted
           ).length
-        ).toBe(5);
+        ).toBe(0);
       } else {
-        expect(newStats.compilation.emittedAssets.size).toBe(5);
+        expect(newStats.compilation.emittedAssets.size).toBe(0);
       }
 
       expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
@@ -1247,7 +1247,7 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('errors');
     expect(getErrors(stats)).toMatchSnapshot('warnings');
 
-    new ModifyExistingAsset({ name: 'one.js', comment: true }).apply(compiler);
+    new ModifyExistingAsset({ name: 'two.js', comment: true }).apply(compiler);
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
@@ -1257,9 +1257,9 @@ describe('TerserPlugin', () => {
           Object.keys(newStats.compilation.assets).filter(
             (assetName) => newStats.compilation.assets[assetName].emitted
           ).length
-        ).toBe(6);
+        ).toBe(2);
       } else {
-        expect(newStats.compilation.emittedAssets.size).toBe(6);
+        expect(newStats.compilation.emittedAssets.size).toBe(2);
       }
 
       expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
@@ -1316,9 +1316,9 @@ describe('TerserPlugin', () => {
           Object.keys(newStats.compilation.assets).filter(
             (assetName) => newStats.compilation.assets[assetName].emitted
           ).length
-        ).toBe(1);
+        ).toBe(0);
       } else {
-        expect(newStats.compilation.emittedAssets.size).toBe(1);
+        expect(newStats.compilation.emittedAssets.size).toBe(0);
       }
 
       expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
@@ -1367,7 +1367,7 @@ describe('TerserPlugin', () => {
     expect(getWarnings(stats)).toMatchSnapshot('errors');
     expect(getErrors(stats)).toMatchSnapshot('warnings');
 
-    new ModifyExistingAsset({ name: 'one.js', comment: true }).apply(compiler);
+    new ModifyExistingAsset({ name: 'two.js', comment: true }).apply(compiler);
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);

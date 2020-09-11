@@ -17,7 +17,7 @@ export default class Webpack4Cache {
     return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
-  async get(cacheData, { RawSource, SourceMapSource }) {
+  async get(cacheData, { RawSource, ConcatSource, SourceMapSource }) {
     if (!this.cache) {
       // eslint-disable-next-line no-undefined
       return undefined;
@@ -44,7 +44,18 @@ export default class Webpack4Cache {
 
     cachedResult = JSON.parse(cachedResult.data);
 
-    const { code, name, map, input, inputSourceMap } = cachedResult;
+    if (cachedResult.target === 'comments') {
+      return new ConcatSource(cachedResult.value);
+    }
+
+    const {
+      code,
+      name,
+      map,
+      input,
+      inputSourceMap,
+      extractedComments,
+    } = cachedResult;
 
     if (map) {
       cachedResult.source = new SourceMapSource(
@@ -59,6 +70,10 @@ export default class Webpack4Cache {
       cachedResult.source = new RawSource(code);
     }
 
+    if (extractedComments) {
+      cachedResult.extractedCommentsSource = new RawSource(extractedComments);
+    }
+
     return cachedResult;
   }
 
@@ -69,34 +84,35 @@ export default class Webpack4Cache {
     }
 
     if (!this.weakCache.has(cacheData.inputSource)) {
-      this.weakCache.set(cacheData.inputSource, cacheData);
+      if (cacheData.target === 'comments') {
+        this.weakCache.set(cacheData.inputSource, cacheData.output);
+      } else {
+        this.weakCache.set(cacheData.inputSource, cacheData);
+      }
     }
 
-    const {
-      cacheIdent,
-      code,
-      name,
-      map,
-      input,
-      inputSourceMap,
-      extractedComments,
-      commentsFilename,
-      banner,
-    } = cacheData;
+    let data;
 
-    return cacache.put(
-      this.cache,
-      cacheIdent,
-      JSON.stringify({
-        code,
-        name,
-        map,
-        input,
-        inputSourceMap,
-        extractedComments,
-        commentsFilename,
-        banner,
-      })
-    );
+    if (cacheData.target === 'comments') {
+      data = {
+        target: cacheData.target,
+        value: cacheData.output.source(),
+      };
+    } else {
+      data = {
+        code: cacheData.code,
+        name: cacheData.name,
+        map: cacheData.map,
+        input: cacheData.input,
+        inputSourceMap: cacheData.inputSourceMap,
+      };
+
+      if (cacheData.extractedCommentsSource) {
+        data.extractedComments = cacheData.extractedCommentsSource.source();
+        data.commentsFilename = cacheData.commentsFilename;
+      }
+    }
+
+    return cacache.put(this.cache, cacheData.cacheIdent, JSON.stringify(data));
   }
 }

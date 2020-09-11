@@ -194,7 +194,7 @@ class TerserPlugin {
     }
 
     if (assetNames.length === 0) {
-      return Promise.resolve();
+      return;
     }
 
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
@@ -236,7 +236,7 @@ class TerserPlugin {
       { cache: this.options.cache },
       weakCache
     );
-    const allExtractedComments = {};
+    const allExtractedComments = new Map();
     const scheduledTasks = [];
 
     for (const name of assetNames) {
@@ -410,6 +410,7 @@ class TerserPlugin {
               const data = { filename, basename, query };
 
               commentsFilename = compilation.getPath(commentsFilename, data);
+
               output.commentsFilename = commentsFilename;
 
               let banner;
@@ -427,7 +428,6 @@ class TerserPlugin {
                 }
 
                 if (banner) {
-                  output.banner = banner;
                   output.source = new ConcatSource(
                     shebang ? `${shebang}\n` : '',
                     `/*! ${banner} */\n`,
@@ -435,29 +435,36 @@ class TerserPlugin {
                   );
                 }
               }
+
+              const extractedCommentsString = output.extractedComments
+                .sort()
+                .join('\n\n');
+
+              output.extractedCommentsSource = new RawSource(
+                `${extractedCommentsString}\n`
+              );
             }
 
             await cache.store({ ...output, ...cacheData });
           }
 
-          // TODO `...` require only for webpack@4
+          // TODO `...` required only for webpack@4
           const newInfo = { ...info, minimized: true };
+          const { source, extractedCommentsSource } = output;
 
           // Write extracted comments to commentsFilename
-          if (output.extractedComments && output.extractedComments.length > 0) {
-            newInfo.related = { license: output.commentsFilename };
+          if (extractedCommentsSource) {
+            const { commentsFilename } = output;
 
-            if (!allExtractedComments[output.commentsFilename]) {
-              // eslint-disable-next-line no-param-reassign
-              allExtractedComments[output.commentsFilename] = new Set();
-            }
+            newInfo.related = { license: commentsFilename };
 
-            output.extractedComments.forEach((comment) => {
-              allExtractedComments[output.commentsFilename].add(comment);
+            allExtractedComments.set(name, {
+              extractedCommentsSource,
+              commentsFilename,
             });
           }
 
-          TerserPlugin.updateAsset(compilation, name, output.source, newInfo);
+          TerserPlugin.updateAsset(compilation, name, source, newInfo);
         })
       );
     }
@@ -468,35 +475,97 @@ class TerserPlugin {
       await worker.end();
     }
 
-    Object.keys(allExtractedComments).forEach((commentsFilename) => {
-      const extractedComments = Array.from(
-        allExtractedComments[commentsFilename]
-      )
-        .sort()
-        .join('\n\n');
+    await Array.from(allExtractedComments)
+      .sort()
+      .reduce(async (previousPromise, [from, value]) => {
+        const previous = await previousPromise;
+        const { commentsFilename, extractedCommentsSource } = value;
 
-      const commentsAsset = TerserPlugin.getAsset(
-        compilation,
-        commentsFilename
-      );
+        if (previous && previous.commentsFilename === commentsFilename) {
+          const { from: previousFrom, source: prevSource } = previous;
+          const mergedName = `${previousFrom}|${from}`;
 
-      if (commentsAsset) {
-        TerserPlugin.updateAsset(
+          const cacheData = {
+            target: 'comments',
+          };
+
+          if (TerserPlugin.isWebpack4()) {
+            const {
+              outputOptions: {
+                hashSalt,
+                hashDigest,
+                hashDigestLength,
+                hashFunction,
+              },
+            } = compilation;
+            const previousHash = util.createHash(hashFunction);
+            const hash = util.createHash(hashFunction);
+
+            if (hashSalt) {
+              previousHash.update(hashSalt);
+              hash.update(hashSalt);
+            }
+
+            previousHash.update(prevSource.source());
+            hash.update(extractedCommentsSource.source());
+
+            const previousDigest = previousHash.digest(hashDigest);
+            const digest = hash.digest(hashDigest);
+
+            cacheData.cacheKeys = {
+              mergedName,
+              previousContentHash: previousDigest.substr(0, hashDigestLength),
+              contentHash: digest.substr(0, hashDigestLength),
+            };
+            cacheData.inputSource = extractedCommentsSource;
+          } else {
+            const mergedInputSource = [prevSource, extractedCommentsSource];
+
+            cacheData.name = `${commentsFilename}|${mergedName}`;
+            cacheData.inputSource = mergedInputSource;
+          }
+
+          let output = await cache.get(cacheData, { ConcatSource });
+
+          if (!output) {
+            output = new ConcatSource(
+              Array.from(
+                new Set([
+                  ...prevSource.source().split('\n\n'),
+                  ...extractedCommentsSource.source().split('\n\n'),
+                ])
+              ).join('\n\n')
+            );
+
+            await cache.store({ ...cacheData, output });
+          }
+
+          TerserPlugin.updateAsset(compilation, commentsFilename, output);
+
+          return { commentsFilename, from: mergedName, source: output };
+        }
+
+        const existingAsset = TerserPlugin.getAsset(
           compilation,
-          commentsFilename,
-          new ConcatSource(commentsAsset.source, `\n${extractedComments}\n`)
+          commentsFilename
         );
-        // Comment
-      } else {
+
+        if (existingAsset) {
+          return {
+            commentsFilename,
+            from: commentsFilename,
+            source: existingAsset.source,
+          };
+        }
+
         TerserPlugin.emitAsset(
           compilation,
           commentsFilename,
-          new RawSource(`${extractedComments}\n`)
+          extractedCommentsSource
         );
-      }
-    });
 
-    return Promise.resolve();
+        return { commentsFilename, from, source: extractedCommentsSource };
+      }, Promise.resolve());
   }
 
   apply(compiler) {
