@@ -1,54 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`minify option should snapshot for errors into the "minify" option when the "parallel" option is "true": errors 1`] = `
+exports[`minify option should snapshot with extracting comments: assets 1`] = `
+Object {
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}]);",
+  "main.js.LICENSE.txt": "/* Foo */
+",
+}
+`;
+
+exports[`minify option should snapshot with extracting comments: errors 1`] = `Array []`;
+
+exports[`minify option should snapshot with extracting comments: warnings 1`] = `Array []`;
+
+exports[`minify option should throw an error when an error when the "parallel" option is "false": errors 1`] = `
 Array [
   "Error: main.js from Terser
 Error: Error",
 ]
 `;
 
-exports[`minify option should snapshot for errors into the "minify" option when the "parallel" option is "true": warnings 1`] = `Array []`;
+exports[`minify option should throw an error when an error when the "parallel" option is "false": warnings 1`] = `Array []`;
 
-exports[`minify option should snapshot for errors into the "minify" option: errors 1`] = `
+exports[`minify option should throw an error when an error when the "parallel" option is "true": errors 1`] = `
 Array [
   "Error: main.js from Terser
 Error: Error",
 ]
 `;
 
-exports[`minify option should snapshot for errors into the "minify" option: warnings 1`] = `Array []`;
+exports[`minify option should throw an error when an error when the "parallel" option is "true": warnings 1`] = `Array []`;
 
-exports[`minify option should snapshot for the "terser" minifier when the "parallel" option is "true": assets 1`] = `
+exports[`minify option should throw an error when an error: errors 1`] = `
+Array [
+  "Error: main.js from Terser
+Error: Error",
+]
+`;
+
+exports[`minify option should throw an error when an error: warnings 1`] = `Array []`;
+
+exports[`minify option should work when the "parallel" option is "false": assets 1`] = `
 Object {
   "main.js": "!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);",
 }
 `;
 
-exports[`minify option should snapshot for the "terser" minifier when the "parallel" option is "true": errors 1`] = `Array []`;
+exports[`minify option should work when the "parallel" option is "false": errors 1`] = `Array []`;
 
-exports[`minify option should snapshot for the "terser" minifier when the "parallel" option is "true": warnings 1`] = `Array []`;
+exports[`minify option should work when the "parallel" option is "false": warnings 1`] = `Array []`;
 
-exports[`minify option should snapshot for the "terser" minifier: assets 1`] = `
+exports[`minify option should work when the "parallel" option is "true": assets 1`] = `
 Object {
   "main.js": "!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);",
 }
 `;
 
-exports[`minify option should snapshot for the "terser" minifier: errors 1`] = `Array []`;
+exports[`minify option should work when the "parallel" option is "true": errors 1`] = `Array []`;
 
-exports[`minify option should snapshot for the "terser" minifier: warnings 1`] = `Array []`;
+exports[`minify option should work when the "parallel" option is "true": warnings 1`] = `Array []`;
 
-exports[`minify option should snapshot for the "uglify-js" minifier: assets 1`] = `
+exports[`minify option should work with "terser" minimizer: assets 1`] = `
+Object {
+  "main.js": "!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);",
+}
+`;
+
+exports[`minify option should work with "terser" minimizer: errors 1`] = `Array []`;
+
+exports[`minify option should work with "terser" minimizer: warnings 1`] = `Array []`;
+
+exports[`minify option should work with "uglify-js" minimizer: assets 1`] = `
 Object {
   "main.js": "!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}]);",
 }
 `;
 
-exports[`minify option should snapshot for the "uglify-js" minifier: errors 1`] = `Array []`;
+exports[`minify option should work with "uglify-js" minimizer: errors 1`] = `Array []`;
 
-exports[`minify option should snapshot for the "uglify-js" minifier: warnings 1`] = `Array []`;
+exports[`minify option should work with "uglify-js" minimizer: warnings 1`] = `Array []`;
 
-exports[`minify option should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true": assets 1`] = `
+exports[`minify option should work with source maps: assets 1`] = `
 Object {
   "main.js": "!function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(t,\\"__esModule\\",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,\\"a\\",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p=\\"\\",r(r.s=0)}([function(t,e,r){\\"use strict\\";r.r(e);e.default=class{constructor(t,e){this.x=t,this.y=e}static distance(t,e){const r=t.x-e.x,n=t.y-e.y;return Math.hypot(r,n)}}}]);
 //# sourceMappingURL=main.js.map",
@@ -56,16 +88,16 @@ Object {
 }
 `;
 
-exports[`minify option should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true": errors 1`] = `Array []`;
+exports[`minify option should work with source maps: errors 1`] = `Array []`;
 
-exports[`minify option should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true": warnings 1`] = `Array []`;
+exports[`minify option should work with source maps: warnings 1`] = `Array []`;
 
-exports[`minify option should snapshot snapshot for the "uglify-js" minifier with extracting comments: assets 1`] = `
+exports[`minify option should work: assets 1`] = `
 Object {
-  "main.js": "!function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&\\"object\\"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:t}),2&e&&\\"string\\"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,\\"a\\",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p=\\"\\",o(o.s=0)}([function(e,t){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}]);",
+  "main.js": "!function(e){var r={};function __webpack_require__(_){if(r[_])return r[_].exports;var t=r[_]={i:_,l:!1,exports:{}};return e[_].call(t.exports,t,t.exports,__webpack_require__),t.l=!0,t.exports}__webpack_require__.m=e,__webpack_require__.c=r,__webpack_require__.d=function(e,r,_){__webpack_require__.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:_})},__webpack_require__.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},__webpack_require__.t=function(e,r){if(1&r&&(e=__webpack_require__(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var _=Object.create(null);if(__webpack_require__.r(_),Object.defineProperty(_,\\"default\\",{enumerable:!0,value:e}),2&r&&\\"string\\"!=typeof e)for(var t in e)__webpack_require__.d(_,t,function(r){return e[r]}.bind(null,t));return _},__webpack_require__.n=function(e){var r=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(r,\\"a\\",r),r},__webpack_require__.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},__webpack_require__.p=\\"\\",__webpack_require__(__webpack_require__.s=0)}([function(e,r,_){\\"use strict\\";_.r(r);r.default=class Point{constructor(e,r){this.x=e,this.y=r}static distance(e,r){const _=e.x-r.x,t=e.y-r.y;return Math.hypot(_,t)}}}]);",
 }
 `;
 
-exports[`minify option should snapshot snapshot for the "uglify-js" minifier with extracting comments: errors 1`] = `Array []`;
+exports[`minify option should work: errors 1`] = `Array []`;
 
-exports[`minify option should snapshot snapshot for the "uglify-js" minifier with extracting comments: warnings 1`] = `Array []`;
+exports[`minify option should work: warnings 1`] = `Array []`;

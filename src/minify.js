@@ -141,14 +141,20 @@ const buildComments = (extractComments, terserOptions, extractedComments) => {
 };
 
 async function minify(options) {
-  const { name, input, inputSourceMap, minify: minifyFn } = options;
+  const {
+    name,
+    input,
+    inputSourceMap,
+    minify: minifyFn,
+    minimizerOptions,
+  } = options;
 
   if (minifyFn) {
-    return minifyFn({ [name]: input }, inputSourceMap);
+    return minifyFn({ [name]: input }, inputSourceMap, minimizerOptions);
   }
 
   // Copy terser options
-  const terserOptions = buildTerserOptions(options.minimizerOptions);
+  const terserOptions = buildTerserOptions(minimizerOptions);
 
   // Let terser generate a SourceMap
   if (inputSourceMap) {

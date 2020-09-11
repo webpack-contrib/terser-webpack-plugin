@@ -16,25 +16,26 @@ describe('minify option', () => {
 
   afterEach(() => Promise.all([removeCache()]));
 
-  it('should snapshot for the "uglify-js" minifier', async () => {
+  it('should work', async () => {
     const compiler = getCompiler({
-      entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
-        ...(getCompiler.isWebpack4() ? {} : { ecmaVersion: 5 }),
-        path: path.resolve(__dirname, './dist-uglify-js'),
+        path: path.resolve(__dirname, './dist-terser'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
     });
 
     new TerserPlugin({
-      minify(file) {
+      terserOptions: {
+        keep_fnames: true,
+        mangle: {
+          reserved: ['baz'],
+        },
+      },
+      minify(file, inputSourceMap, minimizerOptions) {
         // eslint-disable-next-line global-require
-        return require('uglify-js').minify(file, {
-          mangle: {
-            reserved: ['baz'],
-          },
-        });
+        return require('terser').minify(file, minimizerOptions);
       },
     }).apply(compiler);
 
@@ -45,7 +46,125 @@ describe('minify option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should snapshot snapshot for the "uglify-js" minifier with extracting comments', async () => {
+  it('should work when the "parallel" option is "true"', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
+      output: {
+        path: path.resolve(__dirname, './dist-terser'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+      },
+    });
+
+    new TerserPlugin({
+      parallel: true,
+      minify(file, inputSourceMap, minimizerOptions) {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(file, minimizerOptions);
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work when the "parallel" option is "false"', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
+      output: {
+        path: path.resolve(__dirname, './dist-terser'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+      },
+    });
+
+    new TerserPlugin({
+      parallel: false,
+      minify(file, inputSourceMap, minimizerOptions) {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(file, minimizerOptions);
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error when an error', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
+      output: {
+        path: path.resolve(__dirname, './dist-terser'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+      },
+    });
+
+    new TerserPlugin({
+      minify() {
+        throw Error('Error');
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error when an error when the "parallel" option is "true"', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
+      output: {
+        path: path.resolve(__dirname, './dist-terser'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+      },
+    });
+
+    new TerserPlugin({
+      parallel: true,
+      minify: () => {
+        throw Error('Error');
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error when an error when the "parallel" option is "false"', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
+      output: {
+        path: path.resolve(__dirname, './dist-terser'),
+        filename: '[name].js',
+        chunkFilename: '[id].[name].js',
+      },
+    });
+
+    new TerserPlugin({
+      parallel: false,
+      minify: () => {
+        throw Error('Error');
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should snapshot with extracting comments', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
@@ -60,11 +179,13 @@ describe('minify option', () => {
       extractComments: true,
       minify(file) {
         // eslint-disable-next-line global-require
-        return require('uglify-js').minify(file, {
+        const result = require('uglify-js').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
         });
+
+        return { ...result, extractedComments: ['/* Foo */'] };
       },
     }).apply(compiler);
 
@@ -75,35 +196,7 @@ describe('minify option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should snapshot for the "terser" minifier', async () => {
-    const compiler = getCompiler({
-      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
-      output: {
-        path: path.resolve(__dirname, './dist-terser'),
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
-
-    new TerserPlugin({
-      minify(file) {
-        // eslint-disable-next-line global-require
-        return require('terser').minify(file, {
-          mangle: {
-            reserved: ['baz'],
-          },
-        });
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should snapshot snapshot for "terser" minifier when the "sourceMap" option is "true"', async () => {
+  it('should work with source maps', async () => {
     const compiler = getCompiler({
       devtool: 'source-map',
       entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
@@ -141,21 +234,21 @@ describe('minify option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should snapshot for the "terser" minifier when the "parallel" option is "true"', async () => {
+  it('should work with "uglify-js" minimizer', async () => {
     const compiler = getCompiler({
-      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
+      entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
-        path: path.resolve(__dirname, './dist-terser'),
+        ...(getCompiler.isWebpack4() ? {} : { ecmaVersion: 5 }),
+        path: path.resolve(__dirname, './dist-uglify-js'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
       },
     });
 
     new TerserPlugin({
-      parallel: true,
       minify(file) {
         // eslint-disable-next-line global-require
-        return require('terser').minify(file, {
+        return require('uglify-js').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
@@ -170,7 +263,7 @@ describe('minify option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should snapshot for errors into the "minify" option', async () => {
+  it('should work with "terser" minimizer', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
       output: {
@@ -181,36 +274,19 @@ describe('minify option', () => {
     });
 
     new TerserPlugin({
-      minify() {
-        throw Error('Error');
+      minify(file) {
+        // eslint-disable-next-line global-require
+        return require('terser').minify(file, {
+          mangle: {
+            reserved: ['baz'],
+          },
+        });
       },
     }).apply(compiler);
 
     const stats = await compile(compiler);
 
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should snapshot for errors into the "minify" option when the "parallel" option is "true"', async () => {
-    const compiler = getCompiler({
-      entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
-      output: {
-        path: path.resolve(__dirname, './dist-terser'),
-        filename: '[name].js',
-        chunkFilename: '[id].[name].js',
-      },
-    });
-
-    new TerserPlugin({
-      parallel: true,
-      minify: () => {
-        throw Error('Error');
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
