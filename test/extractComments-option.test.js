@@ -1,3 +1,5 @@
+import path from 'path';
+
 import webpack from 'webpack';
 
 import TerserPlugin from '../src/index';
@@ -9,6 +11,7 @@ import {
   getWarnings,
   readsAssets,
   removeCache,
+  ExistingCommentsFile,
 } from './helpers';
 
 function createFilenameFn() {
@@ -27,10 +30,10 @@ describe('extractComments option', () => {
   beforeEach(() => {
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/comments.js`,
-        two: `${__dirname}/fixtures/comments-2.js`,
-        three: `${__dirname}/fixtures/comments-3.js`,
-        four: `${__dirname}/fixtures/comments-4.js`,
+        one: path.resolve(__dirname, './fixtures/comments.js'),
+        two: path.resolve(__dirname, './fixtures/comments-2.js'),
+        three: path.resolve(__dirname, './fixtures/comments-3.js'),
+        four: path.resolve(__dirname, './fixtures/comments-4.js'),
       },
       output: {
         filename: 'filename/[name].js',
@@ -265,10 +268,10 @@ describe('extractComments option', () => {
   it('should match snapshot when extracts comments to files with query string', async () => {
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/comments.js`,
-        two: `${__dirname}/fixtures/comments-2.js`,
-        three: `${__dirname}/fixtures/comments-3.js`,
-        four: `${__dirname}/fixtures/comments-4.js`,
+        one: path.resolve(__dirname, './fixtures/comments.js'),
+        two: path.resolve(__dirname, './fixtures/comments-2.js'),
+        three: path.resolve(__dirname, './fixtures/comments-3.js'),
+        four: path.resolve(__dirname, './fixtures/comments-4.js'),
       },
       output: {
         filename: 'filename/[name].js?[chunkhash]',
@@ -288,10 +291,10 @@ describe('extractComments option', () => {
   it('should match snapshot when extracts comments to files with query string and with placeholders', async () => {
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/comments.js`,
-        two: `${__dirname}/fixtures/comments-2.js`,
-        three: `${__dirname}/fixtures/comments-3.js`,
-        four: `${__dirname}/fixtures/comments-4.js`,
+        one: path.resolve(__dirname, './fixtures/comments.js'),
+        two: path.resolve(__dirname, './fixtures/comments-2.js'),
+        three: path.resolve(__dirname, './fixtures/comments-3.js'),
+        four: path.resolve(__dirname, './fixtures/comments-4.js'),
       },
       output: {
         filename: 'filename/[name].js?[chunkhash]',
@@ -323,10 +326,10 @@ describe('extractComments option', () => {
 
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/comments.js`,
-        two: `${__dirname}/fixtures/comments-2.js`,
-        three: `${__dirname}/fixtures/comments-3.js`,
-        four: `${__dirname}/fixtures/comments-4.js`,
+        one: path.resolve(__dirname, './fixtures/comments.js'),
+        two: path.resolve(__dirname, './fixtures/comments-2.js'),
+        three: path.resolve(__dirname, './fixtures/comments-3.js'),
+        four: path.resolve(__dirname, './fixtures/comments-4.js'),
       },
       output: {
         filename: 'filename/[name].js?[chunkhash]',
@@ -351,7 +354,7 @@ describe('extractComments option', () => {
   it('should match snapshot for nested comment file', async () => {
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/comments.js`,
+        one: path.resolve(__dirname, './fixtures/comments.js'),
       },
     });
 
@@ -372,7 +375,7 @@ describe('extractComments option', () => {
   it('should match snapshot for comment file when filename is nested', async () => {
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/comments.js`,
+        one: path.resolve(__dirname, './fixtures/comments.js'),
       },
       output: {
         filename: 'nested/directory/[name].js?[chunkhash]',
@@ -596,8 +599,8 @@ describe('extractComments option', () => {
   it('should match snapshot and keep shebang', async () => {
     compiler = getCompiler({
       entry: {
-        shebang: `${__dirname}/fixtures/shebang.js`,
-        shebang1: `${__dirname}/fixtures/shebang-1.js`,
+        shebang: path.resolve(__dirname, './fixtures/shebang.js'),
+        shebang1: path.resolve(__dirname, './fixtures/shebang-1.js'),
       },
       target: 'node',
       plugins: [
@@ -606,6 +609,21 @@ describe('extractComments option', () => {
     });
 
     new TerserPlugin().apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with the existing licenses file', async () => {
+    new ExistingCommentsFile().apply(compiler);
+    new TerserPlugin({
+      extractComments: {
+        filename: 'licenses.txt',
+      },
+    }).apply(compiler);
 
     const stats = await compile(compiler);
 

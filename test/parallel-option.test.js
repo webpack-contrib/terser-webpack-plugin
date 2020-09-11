@@ -1,3 +1,4 @@
+import path from 'path';
 import os from 'os';
 
 import Worker from 'jest-worker';
@@ -52,10 +53,10 @@ describe('parallel option', () => {
 
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/entry.js`,
-        two: `${__dirname}/fixtures/entry.js`,
-        three: `${__dirname}/fixtures/entry.js`,
-        four: `${__dirname}/fixtures/entry.js`,
+        one: path.resolve(__dirname, './fixtures/entry.js'),
+        two: path.resolve(__dirname, './fixtures/entry.js'),
+        three: path.resolve(__dirname, './fixtures/entry.js'),
+        four: path.resolve(__dirname, './fixtures/entry.js'),
       },
     });
 
@@ -135,7 +136,7 @@ describe('parallel option', () => {
 
   it('should match snapshot for the "true" value when only one file passed', async () => {
     compiler = getCompiler({
-      entry: `${__dirname}/fixtures/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/entry.js'),
     });
 
     new TerserPlugin({ parallel: true }).apply(compiler);
@@ -160,7 +161,7 @@ describe('parallel option', () => {
     const entries = {};
 
     for (let i = 0; i < os.cpus().length / 2; i++) {
-      entries[`entry-${i}`] = `${__dirname}/fixtures/entry.js`;
+      entries[`entry-${i}`] = path.resolve(__dirname, './fixtures/entry.js');
     }
 
     compiler = getCompiler({ entry: entries });
@@ -187,7 +188,7 @@ describe('parallel option', () => {
     const entries = {};
 
     for (let i = 0; i < os.cpus().length; i++) {
-      entries[`entry-${i}`] = `${__dirname}/fixtures/entry.js`;
+      entries[`entry-${i}`] = path.resolve(__dirname, './fixtures/entry.js');
     }
 
     compiler = getCompiler({ entry: entries });
@@ -214,19 +215,19 @@ describe('parallel option', () => {
     const entries = {};
 
     for (let i = 0; i < os.cpus().length * 2; i++) {
-      entries[`entry-${i}`] = `${__dirname}/fixtures/entry.js`;
+      entries[`entry-${i}`] = path.resolve(__dirname, './fixtures/entry.js');
     }
 
     compiler = getCompiler({
       entry: {
-        one: `${__dirname}/fixtures/entry.js`,
-        two: `${__dirname}/fixtures/entry.js`,
-        three: `${__dirname}/fixtures/entry.js`,
-        four: `${__dirname}/fixtures/entry.js`,
-        five: `${__dirname}/fixtures/entry.js`,
-        six: `${__dirname}/fixtures/entry.js`,
-        seven: `${__dirname}/fixtures/entry.js`,
-        eight: `${__dirname}/fixtures/entry.js`,
+        one: path.resolve(__dirname, './fixtures/entry.js'),
+        two: path.resolve(__dirname, './fixtures/entry.js'),
+        three: path.resolve(__dirname, './fixtures/entry.js'),
+        four: path.resolve(__dirname, './fixtures/entry.js'),
+        five: path.resolve(__dirname, './fixtures/entry.js'),
+        six: path.resolve(__dirname, './fixtures/entry.js'),
+        seven: path.resolve(__dirname, './fixtures/entry.js'),
+        eight: path.resolve(__dirname, './fixtures/entry.js'),
       },
     });
 

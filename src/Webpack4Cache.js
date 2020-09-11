@@ -5,31 +5,114 @@ import findCacheDir from 'find-cache-dir';
 import serialize from 'serialize-javascript';
 
 export default class Webpack4Cache {
-  constructor(compilation, options) {
-    this.cacheDir =
+  constructor(compilation, options, weakCache) {
+    this.cache =
       options.cache === true
         ? Webpack4Cache.getCacheDirectory()
         : options.cache;
+    this.weakCache = weakCache;
   }
 
   static getCacheDirectory() {
     return findCacheDir({ name: 'terser-webpack-plugin' }) || os.tmpdir();
   }
 
-  isEnabled() {
-    return Boolean(this.cacheDir);
-  }
+  async get(cacheData, { RawSource, ConcatSource, SourceMapSource }) {
+    if (!this.cache) {
+      // eslint-disable-next-line no-undefined
+      return undefined;
+    }
 
-  async get(task) {
+    const weakOutput = this.weakCache.get(cacheData.inputSource);
+
+    if (weakOutput) {
+      return weakOutput;
+    }
+
     // eslint-disable-next-line no-param-reassign
-    task.cacheIdent = task.cacheIdent || serialize(task.cacheKeys);
+    cacheData.cacheIdent =
+      cacheData.cacheIdent || serialize(cacheData.cacheKeys);
 
-    const { data } = await cacache.get(this.cacheDir, task.cacheIdent);
+    let cachedResult;
 
-    return JSON.parse(data);
+    try {
+      cachedResult = await cacache.get(this.cache, cacheData.cacheIdent);
+    } catch (ignoreError) {
+      // eslint-disable-next-line no-undefined
+      return undefined;
+    }
+
+    cachedResult = JSON.parse(cachedResult.data);
+
+    if (cachedResult.target === 'comments') {
+      return new ConcatSource(cachedResult.value);
+    }
+
+    const {
+      code,
+      name,
+      map,
+      input,
+      inputSourceMap,
+      extractedComments,
+    } = cachedResult;
+
+    if (map) {
+      cachedResult.source = new SourceMapSource(
+        code,
+        name,
+        map,
+        input,
+        inputSourceMap,
+        true
+      );
+    } else {
+      cachedResult.source = new RawSource(code);
+    }
+
+    if (extractedComments) {
+      cachedResult.extractedCommentsSource = new RawSource(extractedComments);
+    }
+
+    return cachedResult;
   }
 
-  async store(task, data) {
-    return cacache.put(this.cacheDir, task.cacheIdent, JSON.stringify(data));
+  async store(cacheData) {
+    if (!this.cache) {
+      // eslint-disable-next-line no-undefined
+      return undefined;
+    }
+
+    if (!this.weakCache.has(cacheData.inputSource)) {
+      if (cacheData.target === 'comments') {
+        this.weakCache.set(cacheData.inputSource, cacheData.output);
+      } else {
+        this.weakCache.set(cacheData.inputSource, cacheData);
+      }
+    }
+
+    let data;
+
+    if (cacheData.target === 'comments') {
+      data = {
+        target: cacheData.target,
+        value: cacheData.output.source(),
+      };
+    } else {
+      data = {
+        code: cacheData.code,
+        name: cacheData.name,
+        map: cacheData.map,
+        input: cacheData.input,
+        inputSourceMap: cacheData.inputSourceMap,
+      };
+
+      if (cacheData.extractedCommentsSource) {
+        data.extractedComments = cacheData.extractedCommentsSource.source();
+        data.commentsFilename = cacheData.commentsFilename;
+      }
+    }
+
+    return cacache.put(this.cache, cacheData.cacheIdent, JSON.stringify(data));
   }
 }

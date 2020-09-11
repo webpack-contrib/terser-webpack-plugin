@@ -4264,6 +4264,9 @@ Object {
 (()=>{var e,r,t={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);n.r(t);var o={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)o[r]=()=>e[r];return o.default=()=>e,n.d(t,o),t},n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>\\"nested/directory/\\"+e+\\".js?9e5a02fb3f24a83d172c\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,u;if(void 0!==a)for(var l=document.getElementsByTagName(\\"script\\"),d=0;d<l.length;d++){var s=l[d];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+a){i=s;break}}i||(u=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var p=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=p.bind(null,i.onerror),i.onload=p.bind(null,i.onload),u&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={255:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),u=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;u.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,o[1](u)}},\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,u,l]=r,d=0,s=[];d<i.length;d++)a=i[d],n.o(e,a)&&e[a]&&s.push(e[a][0]),e[a]=0;for(o in u)n.o(u,o)&&(n.m[o]=u[o]);for(l&&l(n),t(r);s.length;)s.shift()()}})(),n(900)})();",
   "one.js": "/*! Legal Comment */
 
+/** @license Copyright 2112 Moon. **/
+
+
 /*! Legal Foo */
 
 /**
@@ -4277,8 +4280,6 @@ Object {
  * Utility functions for the foo package.
  * @license Apache-2.0
  */
-
-/** @license Copyright 2112 Moon. **/
 
 // @lic
 ",
@@ -4295,6 +4296,9 @@ Object {
 (self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
   "comments/directory/one.js": "/*! Legal Comment */
 
+/** @license Copyright 2112 Moon. **/
+
+
 /*! Legal Foo */
 
 /**
@@ -4308,8 +4312,6 @@ Object {
  * Utility functions for the foo package.
  * @license Apache-2.0
  */
-
-/** @license Copyright 2112 Moon. **/
 
 // @lic
 ",
@@ -5093,6 +5095,15 @@ Object {
 (self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
   "extracted-comments.js": "/*! Legal Comment */
 
+/** @license Copyright 2112 Moon. **/
+
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+
 /*! Legal Foo */
 
 /**
@@ -5103,28 +5114,22 @@ Object {
  */
 
 /**
- * Duplicate comment in difference files.
- * @license MIT
+ * Utility functions for the foo package.
+ * @license Apache-2.0
  */
+
+// @lic
 
 /**
  * Duplicate comment in same file.
  * @license MIT
  */
 
+
 /**
  * Information.
  * @license MIT
  */
-
-/**
- * Utility functions for the foo package.
- * @license Apache-2.0
- */
-
-/** @license Copyright 2112 Moon. **/
-
-// @lic
 ",
   "filename/four.js": "/*! License information can be found in extracted-comments.js */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
@@ -5147,6 +5152,15 @@ Object {
 (self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
   "extracted-comments.js": "/*! Legal Comment */
 
+/** @license Copyright 2112 Moon. **/
+
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+
 /*! Legal Foo */
 
 /**
@@ -5157,28 +5171,22 @@ Object {
  */
 
 /**
- * Duplicate comment in difference files.
- * @license MIT
+ * Utility functions for the foo package.
+ * @license Apache-2.0
  */
+
+// @lic
 
 /**
  * Duplicate comment in same file.
  * @license MIT
  */
 
+
 /**
  * Information.
  * @license MIT
  */
-
-/**
- * Utility functions for the foo package.
- * @license Apache-2.0
- */
-
-/** @license Copyright 2112 Moon. **/
-
-// @lic
 ",
   "filename/four.js": "/*! License information can be found in extracted-comments.js */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
@@ -5445,6 +5453,15 @@ Object {
 (self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
   "extracted-comments.js": "/*! Legal Comment */
 
+/** @license Copyright 2112 Moon. **/
+
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+
 /*! Legal Foo */
 
 /**
@@ -5455,28 +5472,22 @@ Object {
  */
 
 /**
- * Duplicate comment in difference files.
- * @license MIT
+ * Utility functions for the foo package.
+ * @license Apache-2.0
  */
+
+// @lic
 
 /**
  * Duplicate comment in same file.
  * @license MIT
  */
 
+
 /**
  * Information.
  * @license MIT
  */
-
-/**
- * Utility functions for the foo package.
- * @license Apache-2.0
- */
-
-/** @license Copyright 2112 Moon. **/
-
-// @lic
 ",
   "filename/four.js": "/*! License information can be found in extracted-comments.js */
 (()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
@@ -5583,3 +5594,60 @@ r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=
 exports[`extractComments option should match snapshot when no condition, preserve only \`/@license/i\` comments and extract "some" comments: errors 1`] = `Array []`;
 
 exports[`extractComments option should match snapshot when no condition, preserve only \`/@license/i\` comments and extract "some" comments: warnings 1`] = `Array []`;
+
+exports[`extractComments option should work with the existing licenses file: assets 1`] = `
+Object {
+  "chunks/627.627.js": "/*! For license information please see ../licenses.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
+  "filename/four.js": "/*! For license information please see ../licenses.txt */
+(()=>{var r={712:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(712)})();",
+  "filename/one.js": "/*! For license information please see ../licenses.txt */
+(()=>{var e,r,t={900:(e,r,t)=>{t.e(627).then(t.t.bind(t,627,7)),e.exports=Math.random()}},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.t=function(e,r){if(1&r&&(e=this(e)),8&r)return e;if(4&r&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);n.r(t);var o={};if(2&r&&\\"object\\"==typeof e&&e)for(const r in e)o[r]=()=>e[r];return o.default=()=>e,n.d(t,o),t},n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((r,t)=>(n.f[t](e,r),r),[])),n.u=e=>\\"chunks/\\"+e+\\".\\"+e+\\".js\\",n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,u;if(void 0!==a)for(var l=document.getElementsByTagName(\\"script\\"),s=0;s<l.length;s++){var p=l[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){i=p;break}}i||(u=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var d=(r,o)=>{i.onerror=i.onload=null,clearTimeout(c);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach(e=>e(o)),r)return r(o)},c=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=d.bind(null,i.onerror),i.onload=d.bind(null,i.onload),u&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.p=\\"\\",(()=>{var e={255:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise((t,n)=>{o=e[r]=[t,n]});t.push(o[2]=a);var i=n.p+n.u(r),u=new Error;n.l(i,t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;u.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=a,u.request=i,o[1](u)}},\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,u,l]=r,s=0,p=[];s<i.length;s++)a=i[s],n.o(e,a)&&e[a]&&p.push(e[a][0]),e[a]=0;for(o in u)n.o(u,o)&&(n.m[o]=u[o]);for(l&&l(n),t(r);p.length;)p.shift()()}})(),n(900)})();",
+  "filename/three.js": "/*! For license information please see ../licenses.txt */
+(()=>{var r={787:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(787)})();",
+  "filename/two.js": "/*! For license information please see ../licenses.txt */
+(()=>{var r={353:r=>{r.exports=Math.random()}},t={};!function e(o){if(t[o])return t[o].exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports}(353)})();",
+  "licenses.txt": "// Existing Comment
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+
+/*! Legal Comment */
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+
+/**
+ * Information.
+ * @license MIT
+ */
+",
+}
+`;
+
+exports[`extractComments option should work with the existing licenses file: errors 1`] = `Array []`;
+
+exports[`extractComments option should work with the existing licenses file: warnings 1`] = `Array []`;

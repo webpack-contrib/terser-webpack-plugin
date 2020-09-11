@@ -1,3 +1,5 @@
+import path from 'path';
+
 import TerserPlugin from '../src/index';
 
 import {
@@ -15,13 +17,19 @@ describe('test option', () => {
   beforeEach(() => {
     compiler = getCompiler({
       entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        js: path.resolve(__dirname, './fixtures/entry.js'),
+        mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+        importExport: path.resolve(
+          __dirname,
+          './fixtures/import-export/entry.js'
+        ),
+        AsyncImportExport: path.resolve(
+          __dirname,
+          './fixtures/async-import-export/entry.js'
+        ),
       },
       output: {
-        path: `${__dirname}/dist`,
+        path: path.resolve(__dirname, './dist'),
         filename: `[name].js?var=[${
           getCompiler.isWebpack4() ? 'hash' : 'fullhash'
         }]`,
@@ -97,13 +105,19 @@ describe('test option', () => {
   it('should match snapshot and uglify "mjs"', async () => {
     compiler = getCompiler({
       entry: {
-        js: `${__dirname}/fixtures/entry.js`,
-        mjs: `${__dirname}/fixtures/entry.mjs`,
-        importExport: `${__dirname}/fixtures/import-export/entry.js`,
-        AsyncImportExport: `${__dirname}/fixtures/async-import-export/entry.js`,
+        js: path.resolve(__dirname, './fixtures/entry.js'),
+        mjs: path.resolve(__dirname, './fixtures/entry.mjs'),
+        importExport: path.resolve(
+          __dirname,
+          './fixtures/import-export/entry.js'
+        ),
+        AsyncImportExport: path.resolve(
+          __dirname,
+          './fixtures/async-import-export/entry.js'
+        ),
       },
       output: {
-        path: `${__dirname}/dist`,
+        path: path.resolve(__dirname, './dist'),
         filename: `[name].mjs?var=[${
           getCompiler.isWebpack4() ? 'hash' : 'fullhash'
         }]`,

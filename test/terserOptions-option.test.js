@@ -1,3 +1,5 @@
+import path from 'path';
+
 import TerserPlugin from '../src/index';
 
 import {
@@ -16,7 +18,7 @@ describe('terserOptions option', () => {
 
   it('should match snapshot for the "ecma" option with the "5" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/ecma-5/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/ecma-5/entry.js'),
     });
 
     new TerserPlugin({
@@ -38,7 +40,7 @@ describe('terserOptions option', () => {
 
   it('should match snapshot for the "ecma" option with the "6" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/ecma-6/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/ecma-6/entry.js'),
     });
 
     new TerserPlugin({
@@ -60,7 +62,7 @@ describe('terserOptions option', () => {
 
   it('should match snapshot for the "ecma" option with the "7" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/ecma-7/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/ecma-7/entry.js'),
     });
 
     new TerserPlugin({
@@ -82,7 +84,7 @@ describe('terserOptions option', () => {
 
   it('should match snapshot for the "ecma" option with the "8" value', async () => {
     const compiler = getCompiler({
-      entry: `${__dirname}/fixtures/ecma-8/entry.js`,
+      entry: path.resolve(__dirname, './fixtures/ecma-8/entry.js'),
     });
 
     new TerserPlugin({

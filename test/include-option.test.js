@@ -1,3 +1,5 @@
+import path from 'path';
+
 import TerserPlugin from '../src/index';
 
 import {
@@ -15,9 +17,9 @@ describe('include option', () => {
   beforeEach(() => {
     compiler = getCompiler({
       entry: {
-        included1: `${__dirname}/fixtures/included1.js`,
-        included2: `${__dirname}/fixtures/included2.js`,
-        entry: `${__dirname}/fixtures/entry.js`,
+        included1: path.resolve(__dirname, './fixtures/included1.js'),
+        included2: path.resolve(__dirname, './fixtures/included2.js'),
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
       },
     });
 

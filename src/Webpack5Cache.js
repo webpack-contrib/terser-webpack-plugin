@@ -1,25 +1,35 @@
 export default class Cache {
-  // eslint-disable-next-line no-unused-vars
-  constructor(compilation, ignored) {
+  constructor(compilation) {
     this.cache = compilation.getCache('TerserWebpackPlugin');
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  isEnabled() {
-    return true;
+  async get(cacheData) {
+    // eslint-disable-next-line no-param-reassign
+    cacheData.eTag =
+      cacheData.eTag || Array.isArray(cacheData.inputSource)
+        ? cacheData.inputSource
+            .map((item) => this.cache.getLazyHashedEtag(item))
+            .reduce((previousValue, currentValue) =>
+              this.cache.mergeEtags(previousValue, currentValue)
+            )
+        : this.cache.getLazyHashedEtag(cacheData.inputSource);
+
+    return this.cache.getPromise(cacheData.name, cacheData.eTag);
   }
 
-  async get(task) {
-    // eslint-disable-next-line no-param-reassign
-    task.cacheIdent = task.cacheIdent || `${task.name}`;
-    // eslint-disable-next-line no-param-reassign
-    task.cacheETag =
-      task.cacheETag || this.cache.getLazyHashedEtag(task.assetSource);
+  async store(cacheData) {
+    let data;
 
-    return this.cache.getPromise(task.cacheIdent, task.cacheETag);
-  }
+    if (cacheData.target === 'comments') {
+      data = cacheData.output;
+    } else {
+      data = {
+        source: cacheData.source,
+        extractedCommentsSource: cacheData.extractedCommentsSource,
+        commentsFilename: cacheData.commentsFilename,
+      };
+    }
 
-  async store(task, data) {
-    return this.cache.storePromise(task.cacheIdent, task.cacheETag, data);
+    return this.cache.storePromise(cacheData.name, cacheData.eTag, data);
   }
 }
