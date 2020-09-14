@@ -168,7 +168,6 @@ describe('minify option', () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
-        ...(getCompiler.isWebpack4() ? {} : { ecmaVersion: 5 }),
         path: path.resolve(__dirname, './dist-uglify-js'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
@@ -177,9 +176,9 @@ describe('minify option', () => {
 
     new TerserPlugin({
       extractComments: true,
-      minify(file) {
+      async minify(file) {
         // eslint-disable-next-line global-require
-        const result = require('uglify-js').minify(file, {
+        const result = await require('terser').minify(file, {
           mangle: {
             reserved: ['baz'],
           },
@@ -236,9 +235,9 @@ describe('minify option', () => {
 
   it('should work with "uglify-js" minimizer', async () => {
     const compiler = getCompiler({
+      ...(getCompiler.isWebpack4() ? {} : { target: ['es5', 'web'] }),
       entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
-        ...(getCompiler.isWebpack4() ? {} : { ecmaVersion: 5 }),
         path: path.resolve(__dirname, './dist-uglify-js'),
         filename: '[name].js',
         chunkFilename: '[id].[name].js',
