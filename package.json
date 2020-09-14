@@ -46,9 +46,9 @@
     "jest-worker": "^26.3.0",
     "p-limit": "^3.0.2",
     "schema-utils": "^2.7.1",
-    "serialize-javascript": "^4.0.0",
+    "serialize-javascript": "^5.0.1",
     "source-map": "^0.6.1",
-    "terser": "^5.3.0",
+    "terser": "^5.3.1",
     "webpack-sources": "^1.4.3"
   },
   "devDependencies": {
@@ -64,7 +64,7 @@
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "del-cli": "^3.0.1",
-    "eslint": "^7.8.1",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.21.2",
     "file-loader": "^6.1.0",

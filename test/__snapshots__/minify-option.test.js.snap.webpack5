@@ -3,7 +3,7 @@
 exports[`minify option should snapshot with extracting comments: assets 1`] = `
 Object {
   "main.js": "/*! For license information please see main.js.LICENSE.txt */
-!function(){var r={293:function(e){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}},o={};!function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{}};return r[n](t,t.exports,e),t.exports}(293)}();",
+(()=>{var e={293:e=>{e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}},r={};!function t(n){if(r[n])return r[n].exports;var o=r[n]={exports:{}};return e[n](o,o.exports,t),o.exports}(293)})();",
   "main.js.LICENSE.txt": "/* Foo */
 ",
 }
