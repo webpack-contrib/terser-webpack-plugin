@@ -1,10 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option: assets 1`] = `
+exports[`terserOptions option should match snapshot for the "compress" option with an object value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}};var o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with an object value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with an object value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+(()=>{var o={791:o=>{const r=2+2;o.exports=function o(){const r=2+2;console.log(r+1+2)}}};var r={};function t(n){if(r[n]){return r[n].exports}var e=r[n]={exports:{}};o[n](e,e.exports,t);return e.exports}t(791)})();",
+  "main.js.LICENSE.txt": "/* @preserve*/
+",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "compress" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3"): assets 1`] = `
 Object {
   "main.js": "!function() {
     var __webpack_modules__ = {
         931: function(module) {
+            var Person = {
+                firstName: null,
+                lastName: null
+            }, Employee = Object.create(Person, {
+                id: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            }), Manager = Object.create(Employee, {
+                department: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            });
+            module.exports = {
+                Person: Person,
+                Employee: Employee,
+                Manager: Manager
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(931);
+}();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3"): errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3"): warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5"): assets 1`] = `
+Object {
+  "main.js": "!function() {
+    var __webpack_modules__ = {
+        931: function(module) {
+            var Person = {
+                firstName: null,
+                lastName: null
+            }, Employee = Object.create(Person, {
+                id: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            }), Manager = Object.create(Employee, {
+                department: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            });
+            module.exports = {
+                Person: Person,
+                Employee: Employee,
+                Manager: Manager
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(931);
+}();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5"): errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5"): warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020"): assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var __webpack_modules__ = {
+        931: module => {
             var Person = {
                 firstName: null,
                 lastName: null
@@ -38,10 +163,410 @@ Object {
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
     }(931);
-}();",
+})();",
 }
 `;
 
-exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option: errors 1`] = `Array []`;
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020"): errors 1`] = `Array []`;
 
-exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option: warnings 1`] = `Array []`;
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020"): warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "5" value: assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var __webpack_modules__ = {
+        931: module => {
+            var Person = {
+                firstName: null,
+                lastName: null
+            }, Employee = Object.create(Person, {
+                id: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            }), Manager = Object.create(Employee, {
+                department: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            });
+            module.exports = {
+                Person: Person,
+                Employee: Employee,
+                Manager: Manager
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(931);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "5" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "5" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "6" value: assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var __webpack_modules__ = {
+        513: module => {
+            module.exports = class {
+                constructor(principal, years, rate) {
+                    this.principal = principal, this.years = years, this.rate = rate;
+                }
+                get monthlyPayment() {
+                    let monthlyRate = this.rate / 100 / 12;
+                    return this.principal * monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), 12 * this.years));
+                }
+                get amortization() {
+                    let monthlyPayment = this.monthlyPayment, monthlyRate = this.rate / 100 / 12, balance = this.principal, amortization = [];
+                    for (let y = 0; y < this.years; y++) {
+                        let interestY = 0, principalY = 0;
+                        for (let m = 0; m < 12; m++) {
+                            let interestM = balance * monthlyRate, principalM = monthlyPayment - interestM;
+                            interestY += interestM, principalY += principalM, balance -= principalM;
+                        }
+                        amortization.push({
+                            principalY,
+                            interestY,
+                            balance
+                        });
+                    }
+                    return amortization;
+                }
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(513);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "6" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "6" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "7" value: assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var __webpack_modules__ = {
+        171: module => {
+            module.exports = function(base, exponent) {
+                return base ** exponent;
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(171);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "7" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "7" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "8" value: assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var __webpack_modules__ = {
+        78: module => {
+            module.exports = async function(url) {
+                try {
+                    let request = await fetch(url), text = await request.text();
+                    return JSON.parse(text);
+                } catch (error) {
+                    console.log(\\"ERROR: \\" + error.stack);
+                }
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(78);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "8" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" option with the "8" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ie8" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ie8" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ie8" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ie8" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ie8" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ie8" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function Foo(){console.log(7)}}},e={};!function __webpack_require__(o){if(e[o])return e[o].exports;var _=e[o]={exports:{}};return r[o](_,_.exports,__webpack_require__),_.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with object values: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with object values: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with object values: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};!function __webpack_require__(moduleId){if(__webpack_module_cache__[moduleId])return __webpack_module_cache__[moduleId].exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: assets 2`] = `
+Object {
+  "main.js": "var r,o;r={791:r=>{r.exports=function(){console.log(7)}}},o={},function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791);",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: errors 2`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: warnings 2`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "module" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "module" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "module" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "nameCache" option with a empty object value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "nameCache" option with a empty object value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "nameCache" option with a empty object value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "output.beautify" option with "true" value: assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var r = {
+        791: r => {
+            r.exports = function() {
+                console.log(7);
+            };
+        }
+    }, o = {};
+    !function t(e) {
+        if (o[e]) return o[e].exports;
+        var n = o[e] = {
+            exports: {}
+        };
+        return r[e](n, n.exports, t), n.exports;
+    }(791);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "output.beautify" option with "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "output.beautify" option with "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "output.comments" option with the "true": assets 1`] = `
+Object {
+  "main.js": "/******/(()=>{// webpackBootstrap
+/******/var r={
+/***/791:
+/***/r=>{r.exports=function(){console.log(7)}}
+/***/
+/******/},o={};
+/************************************************************************/
+/******/ // The module cache
+/******/
+/******/
+/************************************************************************/
+/******/ // startup
+/******/ // Load entry module
+/******/ // This entry module is referenced by other modules so it can't be inlined
+/******/!
+/******/
+/******/ // The require function
+/******/function t(e){
+/******/ // Check if module is in cache
+/******/if(o[e])
+/******/return o[e].exports;
+/******/
+/******/ // Create a new module (and put it into the cache)
+/******/var n=o[e]={
+/******/ // no module.id needed
+/******/ // no module.loaded needed
+/******/exports:{}
+/******/};
+/******/
+/******/ // Execute the module function
+/******/
+/******/
+/******/ // Return the exports of the module
+/******/return r[e](n,n.exports,t),n.exports;
+/******/}(791)})
+/******/();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "output.comments" option with the "true": errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "output.comments" option with the "true": warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "parse.ecma" option with the "8" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "parse.ecma" option with the "8" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "parse.ecma" option with the "8" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "safari10" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "safari10" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "safari10" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "safari10" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "safari10" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "safari10" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "toplevel" option with the "false" value: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "toplevel" option with the "false" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "toplevel" option with the "false" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "toplevel" option with the "true" value: assets 1`] = `
+Object {
+  "main.js": "var r,o;r={791:r=>{r.exports=function(){console.log(7)}}},o={},function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791);",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "toplevel" option with the "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "toplevel" option with the "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "unknown" option: errors 1`] = `
+Array [
+  "Error: main.js from Terser
+DefaultsError: \`unknown\` is not a supported option",
+]
+`;
+
+exports[`terserOptions option should match snapshot for the "unknown" option: warnings 1`] = `Array []`;

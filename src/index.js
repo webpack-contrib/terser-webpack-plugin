@@ -569,6 +569,26 @@ class TerserPlugin {
       }, Promise.resolve());
   }
 
+  static getEcmaVersion(environment) {
+    // ES 6th
+    if (
+      environment.arrowFunction ||
+      environment.const ||
+      environment.destructuring ||
+      environment.forOf ||
+      environment.module
+    ) {
+      return 2015;
+    }
+
+    // ES 11th
+    if (environment.bigIntLiteral || environment.dynamicImport) {
+      return 2020;
+    }
+
+    return 5;
+  }
+
   apply(compiler) {
     const { devtool, output, plugins } = compiler.options;
 
@@ -596,11 +616,10 @@ class TerserPlugin {
       this.options.terserOptions.module = output.module;
     }
 
-    if (
-      typeof this.options.terserOptions.ecma === 'undefined' &&
-      typeof output.ecmaVersion !== 'undefined'
-    ) {
-      this.options.terserOptions.ecma = output.ecmaVersion;
+    if (typeof this.options.terserOptions.ecma === 'undefined') {
+      this.options.terserOptions.ecma = TerserPlugin.getEcmaVersion(
+        output.environment
+      );
     }
 
     const pluginName = this.constructor.name;
