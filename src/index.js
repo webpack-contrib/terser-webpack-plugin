@@ -618,7 +618,7 @@ class TerserPlugin {
 
     if (typeof this.options.terserOptions.ecma === 'undefined') {
       this.options.terserOptions.ecma = TerserPlugin.getEcmaVersion(
-        output.environment
+        output.environment || {}
       );
     }
 
