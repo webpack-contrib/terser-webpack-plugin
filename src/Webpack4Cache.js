@@ -55,6 +55,8 @@ export default class Webpack4Cache {
       input,
       inputSourceMap,
       extractedComments,
+      banner,
+      shebang,
     } = cachedResult;
 
     if (map) {
@@ -68,6 +70,14 @@ export default class Webpack4Cache {
       );
     } else {
       cachedResult.source = new RawSource(code);
+    }
+
+    if (banner) {
+      cachedResult.source = new ConcatSource(
+        shebang ? `${shebang}\n` : '',
+        `/*! ${banner} */\n`,
+        cachedResult.source
+      );
     }
 
     if (extractedComments) {
@@ -105,6 +115,8 @@ export default class Webpack4Cache {
         map: cacheData.map,
         input: cacheData.input,
         inputSourceMap: cacheData.inputSourceMap,
+        banner: cacheData.banner,
+        shebang: cacheData.shebang,
       };
 
       if (cacheData.extractedCommentsSource) {

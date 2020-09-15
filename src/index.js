@@ -323,6 +323,7 @@ class TerserPlugin {
 
           let output = await cache.get(cacheData, {
             RawSource,
+            ConcatSource,
             SourceMapSource,
           });
 
@@ -433,6 +434,8 @@ class TerserPlugin {
                     `/*! ${banner} */\n`,
                     output.source
                   );
+                  output.banner = banner;
+                  output.shebang = shebang;
                 }
               }
 
