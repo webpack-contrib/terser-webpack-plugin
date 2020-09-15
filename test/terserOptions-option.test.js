@@ -16,6 +16,74 @@ describe('terserOptions option', () => {
 
   afterEach(() => Promise.all([removeCache()]));
 
+  if (!getCompiler.isWebpack4()) {
+    it('should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3")', async () => {
+      const compiler = getCompiler({
+        entry: path.resolve(__dirname, './fixtures/ecma-5/entry.js'),
+        target: ['web', 'es3'],
+      });
+
+      new TerserPlugin({
+        terserOptions: {
+          mangle: false,
+          output: {
+            beautify: true,
+          },
+        },
+      }).apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    });
+
+    it('should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5")', async () => {
+      const compiler = getCompiler({
+        entry: path.resolve(__dirname, './fixtures/ecma-5/entry.js'),
+        target: ['web', 'es5'],
+      });
+
+      new TerserPlugin({
+        terserOptions: {
+          mangle: false,
+          output: {
+            beautify: true,
+          },
+        },
+      }).apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    });
+
+    it('should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020")', async () => {
+      const compiler = getCompiler({
+        entry: path.resolve(__dirname, './fixtures/ecma-5/entry.js'),
+        target: ['web', 'es2020'],
+      });
+
+      new TerserPlugin({
+        terserOptions: {
+          mangle: false,
+          output: {
+            beautify: true,
+          },
+        },
+      }).apply(compiler);
+
+      const stats = await compile(compiler);
+
+      expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    });
+  }
+
   it('should match snapshot for the "ecma" option with the "5" value', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/ecma-5/entry.js'),

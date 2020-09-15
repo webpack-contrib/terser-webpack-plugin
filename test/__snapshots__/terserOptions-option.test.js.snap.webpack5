@@ -33,6 +33,144 @@ exports[`terserOptions option should match snapshot for the "compress" option wi
 
 exports[`terserOptions option should match snapshot for the "compress" option with the "true" value: warnings 1`] = `Array []`;
 
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3"): assets 1`] = `
+Object {
+  "main.js": "!function() {
+    var __webpack_modules__ = {
+        931: function(module) {
+            var Person = {
+                firstName: null,
+                lastName: null
+            }, Employee = Object.create(Person, {
+                id: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            }), Manager = Object.create(Employee, {
+                department: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            });
+            module.exports = {
+                Person: Person,
+                Employee: Employee,
+                Manager: Manager
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(931);
+}();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3"): errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3"): warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5"): assets 1`] = `
+Object {
+  "main.js": "!function() {
+    var __webpack_modules__ = {
+        931: function(module) {
+            var Person = {
+                firstName: null,
+                lastName: null
+            }, Employee = Object.create(Person, {
+                id: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            }), Manager = Object.create(Employee, {
+                department: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            });
+            module.exports = {
+                Person: Person,
+                Employee: Employee,
+                Manager: Manager
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(931);
+}();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5"): errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es5"): warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020"): assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var __webpack_modules__ = {
+        931: module => {
+            var Person = {
+                firstName: null,
+                lastName: null
+            }, Employee = Object.create(Person, {
+                id: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            }), Manager = Object.create(Employee, {
+                department: {
+                    value: null,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }
+            });
+            module.exports = {
+                Person,
+                Employee,
+                Manager
+            };
+        }
+    }, __webpack_module_cache__ = {};
+    !function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
+        module.exports;
+    }(931);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020"): errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es2020"): warnings 1`] = `Array []`;
+
 exports[`terserOptions option should match snapshot for the "ecma" option with the "5" value: assets 1`] = `
 Object {
   "main.js": "(() => {
