@@ -317,8 +317,6 @@ class TerserPlugin {
                 name
               );
             }
-          } else {
-            cacheData.inputSource = inputSource;
           }
 
           let output = await cache.get(cacheData, {
