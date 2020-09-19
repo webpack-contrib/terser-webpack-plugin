@@ -457,7 +457,8 @@ class TerserPlugin {
           if (extractedCommentsSource) {
             const { commentsFilename } = output;
 
-            newInfo.related = { license: commentsFilename };
+            // TODO `...` required only for webpack@4
+            newInfo.related = { license: commentsFilename, ...info.related };
 
             allExtractedComments.set(name, {
               extractedCommentsSource,
