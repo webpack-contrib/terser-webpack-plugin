@@ -946,8 +946,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
@@ -1007,8 +1007,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
@@ -1068,8 +1068,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     new ModifyExistingAsset({ name: 'js.js' }).apply(compiler);
 
@@ -1132,8 +1132,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
@@ -1194,8 +1194,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     new ModifyExistingAsset({ name: 'js.js' }).apply(compiler);
 
@@ -1251,8 +1251,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
@@ -1306,8 +1306,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     new ModifyExistingAsset({ name: 'two.js', comment: true }).apply(compiler);
 
@@ -1367,8 +1367,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
@@ -1426,8 +1426,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     new ModifyExistingAsset({ name: 'two.js', comment: true }).apply(compiler);
 
@@ -1489,8 +1489,8 @@ describe('TerserPlugin', () => {
     }
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getWarnings(stats)).toMatchSnapshot('errors');
-    expect(getErrors(stats)).toMatchSnapshot('warnings');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
 
     await new Promise(async (resolve) => {
       const newStats = await compile(compiler);
