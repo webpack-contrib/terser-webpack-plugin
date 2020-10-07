@@ -787,6 +787,12 @@ describe('TerserPlugin', () => {
         {
           from: path.resolve(__dirname, './fixtures/copy.js'),
         },
+        {
+          from: path.resolve(__dirname, './fixtures/copy.cjs'),
+        },
+        {
+          from: path.resolve(__dirname, './fixtures/copy.mjs'),
+        },
       ],
     }).apply(compiler);
     new TerserPlugin().apply(compiler);

@@ -11,7 +11,7 @@ import webpack, {
 } from 'webpack';
 import RequestShortener from 'webpack/lib/RequestShortener';
 
-import validateOptions from 'schema-utils';
+import { validate } from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
 import pLimit from 'p-limit';
@@ -28,7 +28,7 @@ const { SourceMapSource, RawSource, ConcatSource } =
 
 class TerserPlugin {
   constructor(options = {}) {
-    validateOptions(schema, options, {
+    validate(schema, options, {
       name: 'Terser Plugin',
       baseDataPath: 'options',
     });
@@ -36,7 +36,7 @@ class TerserPlugin {
     const {
       minify,
       terserOptions = {},
-      test = /\.m?js(\?.*)?$/i,
+      test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
       sourceMap,
       cache = true,
