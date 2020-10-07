@@ -45,7 +45,7 @@ exports[`sourceMap should match snapshot for a "true" value (the "devtool" optio
 
 exports[`sourceMap should match snapshot for a "true" value (the "devtool" option has the "eval" value): assets 1`] = `
 Object {
-  "main.js": "(()=>{var __webpack_modules__={791:module=>{eval(\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n//# sourceURL=webpack://terser-webpack-plugin/./test/fixtures/entry.js?\\")}},__webpack_module_cache__={};function __webpack_require__(_){if(__webpack_module_cache__[_])return __webpack_module_cache__[_].exports;var e=__webpack_module_cache__[_]={exports:{}};return __webpack_modules__[_](e,e.exports,__webpack_require__),e.exports}__webpack_require__(791)})();",
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{eval(\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = (/* unused pure expression or super */ null && (2 + 2));\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n//# sourceURL=webpack://terser-webpack-plugin/./test/fixtures/entry.js?\\")}},__webpack_module_cache__={};function __webpack_require__(e){if(__webpack_module_cache__[e])return __webpack_module_cache__[e].exports;var _=__webpack_module_cache__[e]={exports:{}};return __webpack_modules__[e](_,_.exports,__webpack_require__),_.exports}__webpack_require__(791)})();",
 }
 `;
 
@@ -184,7 +184,7 @@ exports[`sourceMap should match snapshot for a "true" value (the "devtool" optio
 
 exports[`sourceMap should match snapshot for multi compiler mode with source maps: assets 1`] = `
 Object {
-  "main-1.js": "(()=>{var __webpack_modules__={791:module=>{eval(\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n//# sourceURL=webpack://terser-webpack-plugin/./test/fixtures/entry.js?\\")}},__webpack_module_cache__={};function __webpack_require__(_){if(__webpack_module_cache__[_])return __webpack_module_cache__[_].exports;var e=__webpack_module_cache__[_]={exports:{}};return __webpack_modules__[_](e,e.exports,__webpack_require__),e.exports}__webpack_require__(791)})();",
+  "main-1.js": "(()=>{var __webpack_modules__={791:module=>{eval(\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = (/* unused pure expression or super */ null && (2 + 2));\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n//# sourceURL=webpack://terser-webpack-plugin/./test/fixtures/entry.js?\\")}},__webpack_module_cache__={};function __webpack_require__(e){if(__webpack_module_cache__[e])return __webpack_module_cache__[e].exports;var _=__webpack_module_cache__[e]={exports:{}};return __webpack_modules__[e](_,_.exports,__webpack_require__),_.exports}__webpack_require__(791)})();",
 }
 `;
 
