@@ -335,6 +335,10 @@ class TerserPlugin {
               extractComments: this.options.extractComments,
             };
 
+            if (/\.mjs(\?.*)?$/i.test(name)) {
+              this.options.terserOptions.module = true;
+            }
+
             try {
               output = await (worker
                 ? worker.transform(serialize(minimizerOptions))
