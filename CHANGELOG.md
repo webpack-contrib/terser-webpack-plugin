@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v4.2.2...v4.2.3) (2020-10-07)
+
+
+### Bug Fixes
+
+* better minimizing `mjs` assets ([#329](https://github.com/webpack-contrib/terser-webpack-plugin/issues/329)) ([041b392](https://github.com/webpack-contrib/terser-webpack-plugin/commit/041b39208d364c8af9cd2b3f8e503b05a77ae067))
+* minify `cjs` assets ([#328](https://github.com/webpack-contrib/terser-webpack-plugin/issues/328)) ([b9c694d](https://github.com/webpack-contrib/terser-webpack-plugin/commit/b9c694d2c1193438d3ef72fed8d1789d9a48a367))
+
 ### [4.2.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v4.2.1...v4.2.2) (2020-09-19)
 
 
