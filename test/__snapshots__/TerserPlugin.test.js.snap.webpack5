@@ -593,7 +593,7 @@ exports[`TerserPlugin should work with "copy-webpack-plugin": assets 1`] = `
 Object {
   "copy.cjs": "var foo=12;console.log(foo);",
   "copy.js": "var foo=12;console.log(foo);",
-  "copy.mjs": "var foo=12;console.log(foo);",
+  "copy.mjs": "console.log(12);",
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
 }
 `;
