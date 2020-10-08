@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "cacache": "^11.0.2",
+    "core-js": "^2.6.11",
     "find-cache-dir": "^2.0.0",
     "schema-utils": "^1.0.0",
     "serialize-javascript": "^4.0.0",
