@@ -43,7 +43,7 @@
     "cacache": "^11.0.2",
     "find-cache-dir": "^2.0.0",
     "schema-utils": "^1.0.0",
-    "serialize-javascript": "^1.4.0",
+    "serialize-javascript": "^4.0.0",
     "source-map": "^0.6.1",
     "terser": "^3.16.1",
     "webpack-sources": "^1.1.0",
