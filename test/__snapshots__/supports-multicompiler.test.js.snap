@@ -8,9 +8,10 @@ Object {
   "afterEnvironment": 0,
   "afterPlugins": 0,
   "afterResolvers": 2,
+  "assetEmitted": 0,
   "beforeCompile": 0,
   "beforeRun": 1,
-  "compilation": 41,
+  "compilation": 42,
   "compile": 0,
   "contextModuleFactory": 0,
   "done": 1,
@@ -18,6 +19,8 @@ Object {
   "entryOption": 1,
   "environment": 0,
   "failed": 0,
+  "infrastructureLog": 0,
+  "infrastructurelog": 0,
   "invalid": 1,
   "make": 1,
   "normalModuleFactory": 1,
@@ -35,7 +38,7 @@ exports[`when using MultiCompiler matches snapshot with empty options: errors 2`
 
 exports[`when using MultiCompiler matches snapshot with empty options: errors 3`] = `Array []`;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.4907107deb839b908006.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=0)}([function(e,t,r){\\"use strict\\";r.r(t);const n=\\"bar\\";var o=\\"foo\\";t.default=function(){const e=o,t=\`baz\${Math.random()}\`;return()=>({a:e+n+t,b:e,baz:t})}}]);"`;
+exports[`when using MultiCompiler matches snapshot with empty options: main.14ef798dcc35bf825bd7.js 1`] = `"!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,\\"a\\",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p=\\"\\",r(r.s=0)}([function(e,t,r){\\"use strict\\";r.r(t);const n=\\"bar\\";var o=\\"foo\\";t.default=function(){const e=o,t=\`baz\${Math.random()}\`;return()=>({a:e+n+t,b:e,baz:t})}}]);"`;
 
 exports[`when using MultiCompiler matches snapshot with empty options: main.ab6fa01c953dcb220e5f.js 1`] = `
 "/******/ (function(modules) { // webpackBootstrap
@@ -143,7 +146,7 @@ module.exports = function Foo() {
 /******/ ]);"
 `;
 
-exports[`when using MultiCompiler matches snapshot with empty options: main.e1395cf22c691fc0e343.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
+exports[`when using MultiCompiler matches snapshot with empty options: main.d0c5dc1abd2613f146b2.js 1`] = `"!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&\\"object\\"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,\\"default\\",{enumerable:!0,value:e}),2&t&&\\"string\\"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,\\"a\\",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=\\"\\",n(n.s=0)}([function(e,t){e.exports=function(){console.log(7)}}]);"`;
 
 exports[`when using MultiCompiler matches snapshot with empty options: warnings 1`] = `Array []`;
 
