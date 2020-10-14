@@ -1,23 +1,21 @@
 export default class Cache {
-  constructor(compilation) {
-    this.cache = compilation.getCache('TerserWebpackPlugin');
-  }
-
-  async get(cacheData) {
+  // eslint-disable-next-line class-methods-use-this
+  async get(cache, cacheData) {
     // eslint-disable-next-line no-param-reassign
     cacheData.eTag =
       cacheData.eTag || Array.isArray(cacheData.inputSource)
         ? cacheData.inputSource
-            .map((item) => this.cache.getLazyHashedEtag(item))
+            .map((item) => cache.getLazyHashedEtag(item))
             .reduce((previousValue, currentValue) =>
-              this.cache.mergeEtags(previousValue, currentValue)
+              cache.mergeEtags(previousValue, currentValue)
             )
-        : this.cache.getLazyHashedEtag(cacheData.inputSource);
+        : cache.getLazyHashedEtag(cacheData.inputSource);
 
-    return this.cache.getPromise(cacheData.name, cacheData.eTag);
+    return cache.getPromise(cacheData.name, cacheData.eTag);
   }
 
-  async store(cacheData) {
+  // eslint-disable-next-line class-methods-use-this
+  async store(cache, cacheData) {
     let data;
 
     if (cacheData.target === 'comments') {
@@ -30,6 +28,6 @@ export default class Cache {
       };
     }
 
-    return this.cache.storePromise(cacheData.name, cacheData.eTag, data);
+    return cache.storePromise(cacheData.name, cacheData.eTag, data);
   }
 }
