@@ -3,7 +3,6 @@ import compile from './compile';
 import countPlugins from './countPlugins';
 import execute from './execute';
 import ExistingCommentsFile from './ExistingCommentsFile';
-import getCacheDirectory from './getCacheDirectory';
 import getCompiler from './getCompiler';
 import getErrors from './getErrors';
 import getWarnings from './getWarnings';
@@ -18,7 +17,6 @@ export {
   countPlugins,
   ExistingCommentsFile,
   execute,
-  getCacheDirectory,
   getCompiler,
   getErrors,
   getWarnings,
