@@ -8,14 +8,9 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 describe('minify option', () => {
-  beforeEach(() => Promise.all([removeCache()]));
-
-  afterEach(() => Promise.all([removeCache()]));
-
   it('should work', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/minify/es6.js'),

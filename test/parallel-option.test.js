@@ -11,7 +11,6 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 jest.mock('os', () => {
@@ -59,11 +58,7 @@ describe('parallel option', () => {
         four: path.resolve(__dirname, './fixtures/entry.js'),
       },
     });
-
-    return Promise.all([removeCache()]);
   });
-
-  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot when a value is not specify', async () => {
     new TerserPlugin().apply(compiler);

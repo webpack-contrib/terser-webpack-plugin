@@ -10,7 +10,6 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 expect.addSnapshotSerializer({
@@ -30,10 +29,6 @@ expect.addSnapshotSerializer({
 });
 
 describe('sourceMap', () => {
-  beforeEach(() => Promise.all([removeCache()]));
-
-  afterEach(() => Promise.all([removeCache()]));
-
   it('should match snapshot for a "false" value (the "devtool" option has the "source-map" value)', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/entry.js'),

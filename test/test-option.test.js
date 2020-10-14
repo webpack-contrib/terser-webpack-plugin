@@ -8,7 +8,6 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 describe('test option', () => {
@@ -38,11 +37,7 @@ describe('test option', () => {
         }]`,
       },
     });
-
-    return Promise.all([removeCache()]);
   });
-
-  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot with empty value', async () => {
     new TerserPlugin().apply(compiler);

@@ -21,7 +21,6 @@ import {
   getWarnings,
   readAsset,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 jest.setTimeout(10000);
@@ -41,10 +40,6 @@ describe('TerserPlugin', () => {
     sources: [],
     mappings: '',
   };
-
-  beforeEach(() => Promise.all([removeCache()]));
-
-  afterEach(() => Promise.all([removeCache()]));
 
   it('should work (without options)', async () => {
     const compiler = getCompiler();

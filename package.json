@@ -38,18 +38,15 @@
     "dist"
   ],
   "peerDependencies": {
-    "webpack": "^4.0.0 || ^5.0.0"
+    "webpack": "^5.0.0"
   },
   "dependencies": {
-    "cacache": "^15.0.5",
-    "find-cache-dir": "^3.3.1",
     "jest-worker": "^26.5.0",
     "p-limit": "^3.0.2",
     "schema-utils": "^3.0.0",
     "serialize-javascript": "^5.0.1",
     "source-map": "^0.6.1",
-    "terser": "^5.3.5",
-    "webpack-sources": "^1.4.3"
+    "terser": "^5.3.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",

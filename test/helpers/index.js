@@ -11,7 +11,6 @@ import ModifyExistingAsset from './ModifyExistingAsset';
 import readAsset from './readAsset';
 import readsAssets from './readAssets';
 import normalizeErrors from './normalizeErrors';
-import removeCache from './removeCache';
 
 export {
   BrokenCodePlugin,
@@ -27,5 +26,4 @@ export {
   normalizeErrors,
   readAsset,
   readsAssets,
-  removeCache,
 };

@@ -3,11 +3,9 @@ import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
 import webpack, {
-  util,
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
   javascript,
-  version as webpackVersion,
 } from 'webpack';
 import RequestShortener from 'webpack/lib/RequestShortener';
 
@@ -21,10 +19,7 @@ import schema from './options.json';
 
 import { minify as minifyFn } from './minify';
 
-// webpack 5 exposes the sources property to ensure the right version of webpack-sources is used
-const { SourceMapSource, RawSource, ConcatSource } =
-  // eslint-disable-next-line global-require
-  webpack.sources || require('webpack-sources');
+const { SourceMapSource, RawSource, ConcatSource } = webpack.sources;
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -111,10 +106,6 @@ class TerserPlugin {
     return new Error(`${file} from Terser\n${error.message}`);
   }
 
-  static isWebpack4() {
-    return webpackVersion[0] === '4';
-  }
-
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
@@ -158,40 +149,14 @@ class TerserPlugin {
     compilation.assets[name] = newSource;
   }
 
-  async optimize(compiler, compilation, assets, CacheEngine, weakCache) {
-    let assetNames;
-
-    if (TerserPlugin.isWebpack4()) {
-      assetNames = []
-        .concat(Array.from(compilation.additionalChunkAssets || []))
-        .concat(
-          // In webpack@4 it is `chunks`
-          Array.from(assets).reduce(
-            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-            []
-          )
-        )
-        .concat(Object.keys(compilation.assets))
-        .filter(
-          (assetName, index, existingAssets) =>
-            existingAssets.indexOf(assetName) === index
-        )
-        .filter((assetName) =>
-          ModuleFilenameHelpers.matchObject.bind(
-            // eslint-disable-next-line no-undefined
-            undefined,
-            this.options
-          )(assetName)
-        );
-    } else {
-      assetNames = Object.keys(assets).filter((assetName) =>
-        ModuleFilenameHelpers.matchObject.bind(
-          // eslint-disable-next-line no-undefined
-          undefined,
-          this.options
-        )(assetName)
-      );
-    }
+  async optimize(compiler, compilation, assets, CacheEngine) {
+    const assetNames = Object.keys(assets).filter((assetName) =>
+      ModuleFilenameHelpers.matchObject.bind(
+        // eslint-disable-next-line no-undefined
+        undefined,
+        this.options
+      )(assetName)
+    );
 
     if (assetNames.length === 0) {
       return;
@@ -231,11 +196,7 @@ class TerserPlugin {
     }
 
     const limit = pLimit(concurrency);
-    const cache = new CacheEngine(
-      compilation,
-      { cache: this.options.cache },
-      weakCache
-    );
+    const cache = new CacheEngine(compilation, { cache: this.options.cache });
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
@@ -282,42 +243,6 @@ class TerserPlugin {
           }
 
           const cacheData = { name, inputSource };
-
-          if (TerserPlugin.isWebpack4()) {
-            if (this.options.cache) {
-              const {
-                outputOptions: {
-                  hashSalt,
-                  hashDigest,
-                  hashDigestLength,
-                  hashFunction,
-                },
-              } = compilation;
-              const hash = util.createHash(hashFunction);
-
-              if (hashSalt) {
-                hash.update(hashSalt);
-              }
-
-              hash.update(input);
-
-              const digest = hash.digest(hashDigest);
-
-              cacheData.input = input;
-              cacheData.inputSourceMap = inputSourceMap;
-              cacheData.cacheKeys = this.options.cacheKeys(
-                {
-                  terser: terserPackageJson.version,
-                  // eslint-disable-next-line global-require
-                  'terser-webpack-plugin': require('../package.json').version,
-                  'terser-webpack-plugin-options': this.options,
-                  name,
-                  contentHash: digest.substr(0, hashDigestLength),
-                },
-                name
-              );
-            }
-          }
 
           let output = await cache.get(cacheData, {
             RawSource,
@@ -495,41 +420,10 @@ class TerserPlugin {
             target: 'comments',
           };
 
-          if (TerserPlugin.isWebpack4()) {
-            const {
-              outputOptions: {
-                hashSalt,
-                hashDigest,
-                hashDigestLength,
-                hashFunction,
-              },
-            } = compilation;
-            const previousHash = util.createHash(hashFunction);
-            const hash = util.createHash(hashFunction);
+          const mergedInputSource = [prevSource, extractedCommentsSource];
 
-            if (hashSalt) {
-              previousHash.update(hashSalt);
-              hash.update(hashSalt);
-            }
-
-            previousHash.update(prevSource.source());
-            hash.update(extractedCommentsSource.source());
-
-            const previousDigest = previousHash.digest(hashDigest);
-            const digest = hash.digest(hashDigest);
-
-            cacheData.cacheKeys = {
-              mergedName,
-              previousContentHash: previousDigest.substr(0, hashDigestLength),
-              contentHash: digest.substr(0, hashDigestLength),
-            };
-            cacheData.inputSource = extractedCommentsSource;
-          } else {
-            const mergedInputSource = [prevSource, extractedCommentsSource];
-
-            cacheData.name = `${commentsFilename}|${mergedName}`;
-            cacheData.inputSource = mergedInputSource;
-          }
+          cacheData.name = `${commentsFilename}|${mergedName}`;
+          cacheData.inputSource = mergedInputSource;
 
           let output = await cache.get(cacheData, { ConcatSource });
 
@@ -628,12 +522,6 @@ class TerserPlugin {
     }
 
     const pluginName = this.constructor.name;
-    const weakCache =
-      TerserPlugin.isWebpack4() &&
-      (this.options.cache === true || typeof this.options.cache === 'string')
-        ? new WeakMap()
-        : // eslint-disable-next-line no-undefined
-          undefined;
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
       if (this.options.sourceMap) {
@@ -644,61 +532,39 @@ class TerserPlugin {
         });
       }
 
-      if (TerserPlugin.isWebpack4()) {
-        // eslint-disable-next-line global-require
-        const CacheEngine = require('./Webpack4Cache').default;
-        const { mainTemplate, chunkTemplate } = compilation;
-        const data = serialize({
-          terser: terserPackageJson.version,
-          terserOptions: this.options.terserOptions,
-        });
+      // eslint-disable-next-line global-require
+      const CacheEngine = require('./Webpack5Cache').default;
+      // eslint-disable-next-line global-require
+      const Compilation = require('webpack/lib/Compilation');
+      const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
+        compilation
+      );
+      const data = serialize({
+        terser: terserPackageJson.version,
+        terserOptions: this.options.terserOptions,
+      });
 
-        // Regenerate `contenthash` for minified assets
-        for (const template of [mainTemplate, chunkTemplate]) {
-          template.hooks.hashForChunk.tap(pluginName, (hash) => {
-            hash.update('TerserPlugin');
-            hash.update(data);
-          });
-        }
+      hooks.chunkHash.tap(pluginName, (chunk, hash) => {
+        hash.update('TerserPlugin');
+        hash.update(data);
+      });
 
-        compilation.hooks.optimizeChunkAssets.tapPromise(pluginName, (assets) =>
-          this.optimize(compiler, compilation, assets, CacheEngine, weakCache)
-        );
-      } else {
-        // eslint-disable-next-line global-require
-        const CacheEngine = require('./Webpack5Cache').default;
-        // eslint-disable-next-line global-require
-        const Compilation = require('webpack/lib/Compilation');
-        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
-          compilation
-        );
-        const data = serialize({
-          terser: terserPackageJson.version,
-          terserOptions: this.options.terserOptions,
-        });
+      compilation.hooks.processAssets.tapPromise(
+        {
+          name: pluginName,
+          stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+        },
+        (assets) => this.optimize(compiler, compilation, assets, CacheEngine)
+      );
 
-        hooks.chunkHash.tap(pluginName, (chunk, hash) => {
-          hash.update('TerserPlugin');
-          hash.update(data);
-        });
-
-        compilation.hooks.processAssets.tapPromise(
-          {
-            name: pluginName,
-            stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
-          },
-          (assets) => this.optimize(compiler, compilation, assets, CacheEngine)
-        );
-
-        compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
-          stats.hooks.print
-            .for('asset.info.minimized')
-            .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
-              // eslint-disable-next-line no-undefined
-              minimized ? green(formatFlag('minimized')) : undefined
-            );
-        });
-      }
+      compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
+        stats.hooks.print
+          .for('asset.info.minimized')
+          .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
+            // eslint-disable-next-line no-undefined
+            minimized ? green(formatFlag('minimized')) : undefined
+          );
+      });
     });
   }
 }

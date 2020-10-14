@@ -8,14 +8,9 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 describe('terserOptions option', () => {
-  beforeEach(() => Promise.all([removeCache()]));
-
-  afterEach(() => Promise.all([removeCache()]));
-
   if (!getCompiler.isWebpack4()) {
     it('should match snapshot for the "ecma" and set the option depending on the "output.environment" option ("es3")', async () => {
       const compiler = getCompiler({
