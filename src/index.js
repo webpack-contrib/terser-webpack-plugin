@@ -11,7 +11,6 @@ import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 
 import schema from './options.json';
-import CacheEngine from './Webpack5Cache';
 import { minify as minifyFn } from './minify';
 
 class TerserPlugin {
@@ -162,7 +161,6 @@ class TerserPlugin {
       RawSource,
     } = compiler.webpack.sources;
     const cache = compilation.getCache('TerserWebpackPlugin');
-    const cacheEngine = new CacheEngine();
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
@@ -205,9 +203,9 @@ class TerserPlugin {
             input = input.toString();
           }
 
-          const cacheData = { name, inputSource };
+          const eTag = cache.getLazyHashedEtag(inputSource);
 
-          let output = await cacheEngine.get(cache, cacheData);
+          let output = await cache.getPromise(name, eTag);
 
           if (!output) {
             const minimizerOptions = {
@@ -269,13 +267,11 @@ class TerserPlugin {
               output.source = new RawSource(output.code);
             }
 
-            let commentsFilename;
-
             if (
               output.extractedComments &&
               output.extractedComments.length > 0
             ) {
-              commentsFilename =
+              const commentsFilename =
                 this.options.extractComments.filename ||
                 '[file].LICENSE.txt[query]';
 
@@ -296,9 +292,10 @@ class TerserPlugin {
                   : filename.substr(lastSlashIndex + 1);
               const data = { filename, basename, query };
 
-              commentsFilename = compilation.getPath(commentsFilename, data);
-
-              output.commentsFilename = commentsFilename;
+              output.commentsFilename = compilation.getPath(
+                commentsFilename,
+                data
+              );
 
               let banner;
 
@@ -307,11 +304,11 @@ class TerserPlugin {
                 banner =
                   this.options.extractComments.banner ||
                   `For license information please see ${path
-                    .relative(path.dirname(name), commentsFilename)
+                    .relative(path.dirname(name), output.commentsFilename)
                     .replace(/\\/g, '/')}`;
 
                 if (typeof banner === 'function') {
-                  banner = banner(commentsFilename);
+                  banner = banner(output.commentsFilename);
                 }
 
                 if (banner) {
@@ -320,8 +317,6 @@ class TerserPlugin {
                     `/*! ${banner} */\n`,
                     output.source
                   );
-                  output.banner = banner;
-                  output.shebang = shebang;
                 }
               }
 
@@ -334,7 +329,11 @@ class TerserPlugin {
               );
             }
 
-            await cacheEngine.store(cache, { ...output, ...cacheData });
+            await cache.storePromise(name, eTag, {
+              source: output.source,
+              commentsFilename: output.commentsFilename,
+              extractedCommentsSource: output.extractedCommentsSource,
+            });
           }
 
           // TODO `...` required only for webpack@4
@@ -374,20 +373,17 @@ class TerserPlugin {
         if (previous && previous.commentsFilename === commentsFilename) {
           const { from: previousFrom, source: prevSource } = previous;
           const mergedName = `${previousFrom}|${from}`;
+          const name = `${commentsFilename}|${mergedName}`;
+          const eTag = [prevSource, extractedCommentsSource]
+            .map((item) => cache.getLazyHashedEtag(item))
+            .reduce((previousValue, currentValue) =>
+              cache.mergeEtags(previousValue, currentValue)
+            );
 
-          const cacheData = {
-            target: 'comments',
-          };
+          let source = await cache.getPromise(name, eTag);
 
-          const mergedInputSource = [prevSource, extractedCommentsSource];
-
-          cacheData.name = `${commentsFilename}|${mergedName}`;
-          cacheData.inputSource = mergedInputSource;
-
-          let output = await cacheEngine.get(cache, cacheData);
-
-          if (!output) {
-            output = new ConcatSource(
+          if (!source) {
+            source = new ConcatSource(
               Array.from(
                 new Set([
                   ...prevSource.source().split('\n\n'),
@@ -396,12 +392,12 @@ class TerserPlugin {
               ).join('\n\n')
             );
 
-            await cacheEngine.store(cache, { ...cacheData, output });
+            await cache.storePromise(name, eTag, source);
           }
 
-          compilation.updateAsset(commentsFilename, output);
+          compilation.updateAsset(commentsFilename, source);
 
-          return { commentsFilename, from: mergedName, source: output };
+          return { commentsFilename, from: mergedName, source };
         }
 
         const existingAsset = compilation.getAsset(commentsFilename);
