@@ -202,7 +202,6 @@ describe('minify option', () => {
     });
 
     new TerserPlugin({
-      sourceMap: true,
       minify(file, sourceMap) {
         const terserOption = {
           mangle: {

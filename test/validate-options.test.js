@@ -99,30 +99,6 @@ it('validation', () => {
   }).toThrowErrorMatchingSnapshot();
 
   expect(() => {
-    new TerserPlugin({ cache: true });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ cache: false });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ cache: 'path/to/cache/directory' });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ cache: {} });
-  }).toThrowErrorMatchingSnapshot();
-
-  expect(() => {
-    new TerserPlugin({ cacheKeys() {} });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ cacheKeys: 'test' });
-  }).toThrowErrorMatchingSnapshot();
-
-  expect(() => {
     new TerserPlugin({ parallel: true });
   }).not.toThrow();
 
@@ -140,18 +116,6 @@ it('validation', () => {
 
   expect(() => {
     new TerserPlugin({ parallel: {} });
-  }).toThrowErrorMatchingSnapshot();
-
-  expect(() => {
-    new TerserPlugin({ sourceMap: true });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ sourceMap: false });
-  }).not.toThrow();
-
-  expect(() => {
-    new TerserPlugin({ sourceMap: 'true' });
   }).toThrowErrorMatchingSnapshot();
 
   expect(() => {

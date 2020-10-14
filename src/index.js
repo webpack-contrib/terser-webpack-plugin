@@ -2,8 +2,6 @@ import path from 'path';
 import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
-import { SourceMapDevToolPlugin } from 'webpack';
-
 import { validate } from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -25,7 +23,6 @@ class TerserPlugin {
       terserOptions = {},
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
-      sourceMap,
       cache = true,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = true,
@@ -36,7 +33,6 @@ class TerserPlugin {
     this.options = {
       test,
       extractComments,
-      sourceMap,
       cache,
       cacheKeys,
       parallel,
@@ -177,26 +173,23 @@ class TerserPlugin {
           let input;
           let inputSourceMap;
 
-          // TODO refactor after drop webpack@4, webpack@5 always has `sourceAndMap` on sources
-          if (this.options.sourceMap && inputSource.sourceAndMap) {
-            const { source, map } = inputSource.sourceAndMap();
+          const {
+            source: sourceFromInputSource,
+            map,
+          } = inputSource.sourceAndMap();
 
-            input = source;
+          input = sourceFromInputSource;
 
-            if (map) {
-              if (TerserPlugin.isSourceMap(map)) {
-                inputSourceMap = map;
-              } else {
-                inputSourceMap = map;
+          if (map) {
+            if (TerserPlugin.isSourceMap(map)) {
+              inputSourceMap = map;
+            } else {
+              inputSourceMap = map;
 
-                compilation.warnings.push(
-                  new Error(`${name} contains invalid source map`)
-                );
-              }
+              compilation.warnings.push(
+                new Error(`${name} contains invalid source map`)
+              );
             }
-          } else {
-            input = inputSource.source();
-            inputSourceMap = null;
           }
 
           if (Buffer.isBuffer(input)) {
@@ -336,16 +329,14 @@ class TerserPlugin {
             });
           }
 
-          // TODO `...` required only for webpack@4
-          const newInfo = { ...info, minimized: true };
+          const newInfo = { minimized: true };
           const { source, extractedCommentsSource } = output;
 
           // Write extracted comments to commentsFilename
           if (extractedCommentsSource) {
             const { commentsFilename } = output;
 
-            // TODO `...` required only for webpack@4
-            newInfo.related = { license: commentsFilename, ...info.related };
+            newInfo.related = { license: commentsFilename };
 
             allExtractedComments.set(name, {
               extractedCommentsSource,
@@ -437,24 +428,7 @@ class TerserPlugin {
   }
 
   apply(compiler) {
-    const { devtool, output, plugins } = compiler.options;
-
-    this.options.sourceMap =
-      typeof this.options.sourceMap === 'undefined'
-        ? (devtool &&
-            !devtool.includes('eval') &&
-            !devtool.includes('cheap') &&
-            (devtool.includes('source-map') ||
-              // Todo remove when `webpack@4` support will be dropped
-              devtool.includes('sourcemap'))) ||
-          (plugins &&
-            plugins.some(
-              (plugin) =>
-                plugin instanceof SourceMapDevToolPlugin &&
-                plugin.options &&
-                plugin.options.columns
-            ))
-        : Boolean(this.options.sourceMap);
+    const { output } = compiler.options;
 
     if (
       typeof this.options.terserOptions.module === 'undefined' &&
@@ -472,14 +446,6 @@ class TerserPlugin {
     const pluginName = this.constructor.name;
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
-      if (this.options.sourceMap) {
-        compilation.hooks.buildModule.tap(pluginName, (moduleArg) => {
-          // to get detailed location info about errors
-          // eslint-disable-next-line no-param-reassign
-          moduleArg.useSourceMap = true;
-        });
-      }
-
       const hooks = compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
         compilation
       );

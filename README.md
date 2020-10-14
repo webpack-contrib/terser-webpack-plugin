@@ -41,6 +41,17 @@ module.exports = {
 
 And run `webpack` via your preferred method.
 
+## Note about source maps
+
+**Works only with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
+
+Why?
+
+- `eval` wraps modules in `eval("string")` and the minimizer does not handle strings.
+- `cheap` has not column information and minimizer generate only a single line, which leave only a single mapping.
+
+Using supported `devtool` values enable source map generation.
+
 ## Options
 
 ### `test`
@@ -153,40 +164,6 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         parallel: 4,
-      }),
-    ],
-  },
-};
-```
-
-### `sourceMap`
-
-Type: `Boolean`
-Default: `false` (see below for details around `devtool` value and `SourceMapDevToolPlugin` plugin)
-
-**Works only with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
-
-Why?
-
-- `eval` wraps modules in `eval("string")` and the minimizer does not handle strings.
-- `cheap` has not column information and minimizer generate only a single line, which leave only a single mapping.
-
-The plugin respect the [`devtool`](https://webpack.js.org/configuration/devtool/) and using the `SourceMapDevToolPlugin` plugin.
-Using supported `devtool` values enable source map generation.
-Using `SourceMapDevToolPlugin` with enabled the `columns` option enables source map generation.
-
-Use source maps to map error message locations to modules (this slows down the compilation).
-If you use your own `minify` function please read the `minify` section for handling source maps correctly.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        sourceMap: true,
       }),
     ],
   },
