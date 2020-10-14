@@ -526,17 +526,6 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        // Uncomment lines below for cache invalidation correctly
-        // cache: true,
-        // cacheKeys: (defaultCacheKeys) => {
-        //   delete defaultCacheKeys.terser;
-        //
-        //   return Object.assign(
-        //     {},
-        //     defaultCacheKeys,
-        //     { 'uglify-js': require('uglify-js/package.json').version },
-        //   );
-        // },
         minify: (file, sourceMap) => {
           // https://github.com/mishoo/UglifyJS2#minify-options
           const uglifyJsOptions = {
