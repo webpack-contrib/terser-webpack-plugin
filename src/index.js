@@ -2,7 +2,7 @@ import path from 'path';
 import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
-import webpack, {
+import {
   ModuleFilenameHelpers,
   SourceMapDevToolPlugin,
   javascript,
@@ -16,10 +16,8 @@ import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 
 import schema from './options.json';
-
+import CacheEngine from './Webpack5Cache';
 import { minify as minifyFn } from './minify';
-
-const { SourceMapSource, RawSource, ConcatSource } = webpack.sources;
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -116,7 +114,7 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  async optimize(compiler, compilation, assets, CacheEngine) {
+  async optimize(compiler, compilation, assets) {
     const assetNames = Object.keys(assets).filter((assetName) =>
       // eslint-disable-next-line no-undefined
       ModuleFilenameHelpers.matchObject.bind(undefined, this.options)(assetName)
@@ -160,6 +158,11 @@ class TerserPlugin {
     }
 
     const limit = pLimit(concurrency);
+    const {
+      SourceMapSource,
+      ConcatSource,
+      RawSource,
+    } = compiler.webpack.sources;
     const cache = new CacheEngine(compilation, { cache: this.options.cache });
     const allExtractedComments = new Map();
     const scheduledTasks = [];
@@ -205,11 +208,7 @@ class TerserPlugin {
 
           const cacheData = { name, inputSource };
 
-          let output = await cache.get(cacheData, {
-            RawSource,
-            ConcatSource,
-            SourceMapSource,
-          });
+          let output = await cache.get(cacheData);
 
           if (!output) {
             const minimizerOptions = {
@@ -486,10 +485,6 @@ class TerserPlugin {
         });
       }
 
-      // eslint-disable-next-line global-require
-      const CacheEngine = require('./Webpack5Cache').default;
-      // eslint-disable-next-line global-require
-      const Compilation = require('webpack/lib/Compilation');
       const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
         compilation
       );
@@ -506,9 +501,10 @@ class TerserPlugin {
       compilation.hooks.processAssets.tapPromise(
         {
           name: pluginName,
-          stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+          stage:
+            compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
         },
-        (assets) => this.optimize(compiler, compilation, assets, CacheEngine)
+        (assets) => this.optimize(compiler, compilation, assets)
       );
 
       compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
