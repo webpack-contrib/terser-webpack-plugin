@@ -161,7 +161,9 @@ class TerserPlugin {
       ConcatSource,
       RawSource,
     } = compiler.webpack.sources;
-    const cache = new CacheEngine(compilation, { cache: this.options.cache });
+    const cacheEngine = new CacheEngine(compilation, {
+      cache: this.options.cache,
+    });
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
@@ -206,7 +208,7 @@ class TerserPlugin {
 
           const cacheData = { name, inputSource };
 
-          let output = await cache.get(cacheData);
+          let output = await cacheEngine.get(cacheData);
 
           if (!output) {
             const minimizerOptions = {
@@ -333,7 +335,7 @@ class TerserPlugin {
               );
             }
 
-            await cache.store({ ...output, ...cacheData });
+            await cacheEngine.store({ ...output, ...cacheData });
           }
 
           // TODO `...` required only for webpack@4
@@ -383,7 +385,7 @@ class TerserPlugin {
           cacheData.name = `${commentsFilename}|${mergedName}`;
           cacheData.inputSource = mergedInputSource;
 
-          let output = await cache.get(cacheData, { ConcatSource });
+          let output = await cacheEngine.get(cacheData, { ConcatSource });
 
           if (!output) {
             output = new ConcatSource(
@@ -395,7 +397,7 @@ class TerserPlugin {
               ).join('\n\n')
             );
 
-            await cache.store({ ...cacheData, output });
+            await cacheEngine.store({ ...cacheData, output });
           }
 
           compilation.updateAsset(commentsFilename, output);
