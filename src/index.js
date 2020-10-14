@@ -3,7 +3,6 @@ import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
 import { SourceMapDevToolPlugin } from 'webpack';
-import RequestShortener from 'webpack/lib/RequestShortener';
 
 import { validate } from 'schema-utils';
 import serialize from 'serialize-javascript';
@@ -235,7 +234,7 @@ class TerserPlugin {
                   inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)
                     ? new SourceMapConsumer(inputSourceMap)
                     : null,
-                  new RequestShortener(compiler.context)
+                  compilation.requestShortener
                 )
               );
 
