@@ -300,9 +300,7 @@ describe('extractComments option', () => {
     new TerserPlugin({
       extractComments: {
         condition: true,
-        filename: `[file].LICENSE.txt?query=[query]&filebase=[${
-          getCompiler.isWebpack4() ? 'filebase' : 'base'
-        }]`,
+        filename: `[file].LICENSE.txt?query=[query]&filebase=[base]`,
         banner(licenseFile) {
           return `License information can be found in ${licenseFile}`;
         },

@@ -184,7 +184,7 @@ describe('sourceMap', () => {
         mode: 'production',
         devtool: 'eval',
         bail: true,
-        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        cache: { type: 'memory' },
         entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
           path: path.resolve(__dirname, './dist'),
@@ -200,7 +200,7 @@ describe('sourceMap', () => {
         mode: 'production',
         devtool: 'source-map',
         bail: true,
-        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        cache: { type: 'memory' },
         entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
           path: path.resolve(__dirname, './dist'),
@@ -215,7 +215,7 @@ describe('sourceMap', () => {
       {
         mode: 'production',
         bail: true,
-        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        cache: { type: 'memory' },
         devtool: false,
         entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {
@@ -238,7 +238,7 @@ describe('sourceMap', () => {
       {
         mode: 'production',
         bail: true,
-        cache: getCompiler.isWebpack4() ? false : { type: 'memory' },
+        cache: { type: 'memory' },
         devtool: false,
         entry: path.resolve(__dirname, './fixtures/entry.js'),
         output: {

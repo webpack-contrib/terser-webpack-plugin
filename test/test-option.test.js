@@ -29,12 +29,8 @@ describe('test option', () => {
       },
       output: {
         path: path.resolve(__dirname, './dist'),
-        filename: `[name].js?var=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
-        chunkFilename: `[id].[name].js?ver=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
+        filename: `[name].js?var=[fullhash]`,
+        chunkFilename: `[id].[name].js?ver=[fullhash]`,
       },
     });
   });
@@ -113,12 +109,8 @@ describe('test option', () => {
       },
       output: {
         path: path.resolve(__dirname, './dist'),
-        filename: `[name].mjs?var=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
-        chunkFilename: `[id].[name].mjs?ver=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
+        filename: `[name].mjs?var=[fullhash]`,
+        chunkFilename: `[id].[name].mjs?ver=[fullhash]`,
       },
     });
 

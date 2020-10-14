@@ -2,8 +2,6 @@ import serialize from 'serialize-javascript';
 
 import { transform } from '../src/minify';
 
-import getCompiler from './helpers/getCompiler';
-
 describe('worker', () => {
   it('should match snapshot when options.extractComments is "false"', async () => {
     const options = {
@@ -221,10 +219,7 @@ describe('worker', () => {
       },
       extractComments: {
         condition: 'should be extracted',
-        filename: (file) =>
-          getCompiler.isWebpack4()
-            ? file.replace(/(\.\w+)$/, '.license$1')
-            : file.filename.replace(/(\.\w+)$/, '.license$1'),
+        filename: (file) => file.filename.replace(/(\.\w+)$/, '.license$1'),
         banner: (licenseFile) =>
           `License information can be found in ${licenseFile}`,
       },

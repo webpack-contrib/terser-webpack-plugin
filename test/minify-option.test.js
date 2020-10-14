@@ -229,7 +229,7 @@ describe('minify option', () => {
 
   it('should work with "uglify-js" minimizer', async () => {
     const compiler = getCompiler({
-      ...(getCompiler.isWebpack4() ? {} : { target: ['es5', 'web'] }),
+      target: ['es5', 'web'],
       entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
         path: path.resolve(__dirname, './dist-uglify-js'),
