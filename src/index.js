@@ -2,11 +2,7 @@ import path from 'path';
 import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
-import {
-  ModuleFilenameHelpers,
-  SourceMapDevToolPlugin,
-  javascript,
-} from 'webpack';
+import { SourceMapDevToolPlugin } from 'webpack';
 import RequestShortener from 'webpack/lib/RequestShortener';
 
 import { validate } from 'schema-utils';
@@ -116,8 +112,11 @@ class TerserPlugin {
 
   async optimize(compiler, compilation, assets) {
     const assetNames = Object.keys(assets).filter((assetName) =>
-      // eslint-disable-next-line no-undefined
-      ModuleFilenameHelpers.matchObject.bind(undefined, this.options)(assetName)
+      compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
+        // eslint-disable-next-line no-undefined
+        undefined,
+        this.options
+      )(assetName)
     );
 
     if (assetNames.length === 0) {
@@ -485,7 +484,7 @@ class TerserPlugin {
         });
       }
 
-      const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
+      const hooks = compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
         compilation
       );
       const data = serialize({
