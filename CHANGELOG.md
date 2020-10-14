@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v4.2.3...v5.0.0) (2020-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* webpack@4 no longer supported
+* removed the `cache` option
+* removed the `cacheKeys` option
+* removed the `sourceMap` option (respect the `devtool` option by default)
+
+### Bug Fixes
+
+* reduce deps
+* performance improvement
+
 ### [4.2.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v4.2.2...v4.2.3) (2020-10-07)
 
 
