@@ -116,46 +116,10 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  // eslint-disable-next-line consistent-return
-  static getAsset(compilation, name) {
-    // New API
-    if (compilation.getAsset) {
-      return compilation.getAsset(name);
-    }
-
-    /* istanbul ignore next */
-    if (compilation.assets[name]) {
-      return { name, source: compilation.assets[name], info: {} };
-    }
-  }
-
-  static emitAsset(compilation, name, source, assetInfo) {
-    // New API
-    if (compilation.emitAsset) {
-      compilation.emitAsset(name, source, assetInfo);
-    }
-
-    // eslint-disable-next-line no-param-reassign
-    compilation.assets[name] = source;
-  }
-
-  static updateAsset(compilation, name, newSource, assetInfo) {
-    // New API
-    if (compilation.updateAsset) {
-      compilation.updateAsset(name, newSource, assetInfo);
-    }
-
-    // eslint-disable-next-line no-param-reassign
-    compilation.assets[name] = newSource;
-  }
-
   async optimize(compiler, compilation, assets, CacheEngine) {
     const assetNames = Object.keys(assets).filter((assetName) =>
-      ModuleFilenameHelpers.matchObject.bind(
-        // eslint-disable-next-line no-undefined
-        undefined,
-        this.options
-      )(assetName)
+      // eslint-disable-next-line no-undefined
+      ModuleFilenameHelpers.matchObject.bind(undefined, this.options)(assetName)
     );
 
     if (assetNames.length === 0) {
@@ -203,10 +167,7 @@ class TerserPlugin {
     for (const name of assetNames) {
       scheduledTasks.push(
         limit(async () => {
-          const { info, source: inputSource } = TerserPlugin.getAsset(
-            compilation,
-            name
-          );
+          const { info, source: inputSource } = compilation.getAsset(name);
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
@@ -395,7 +356,7 @@ class TerserPlugin {
             });
           }
 
-          TerserPlugin.updateAsset(compilation, name, source, newInfo);
+          compilation.updateAsset(name, source, newInfo);
         })
       );
     }
@@ -440,15 +401,12 @@ class TerserPlugin {
             await cache.store({ ...cacheData, output });
           }
 
-          TerserPlugin.updateAsset(compilation, commentsFilename, output);
+          compilation.updateAsset(commentsFilename, output);
 
           return { commentsFilename, from: mergedName, source: output };
         }
 
-        const existingAsset = TerserPlugin.getAsset(
-          compilation,
-          commentsFilename
-        );
+        const existingAsset = compilation.getAsset(commentsFilename);
 
         if (existingAsset) {
           return {
@@ -458,11 +416,7 @@ class TerserPlugin {
           };
         }
 
-        TerserPlugin.emitAsset(
-          compilation,
-          commentsFilename,
-          extractedCommentsSource
-        );
+        compilation.emitAsset(commentsFilename, extractedCommentsSource);
 
         return { commentsFilename, from, source: extractedCommentsSource };
       }, Promise.resolve());
