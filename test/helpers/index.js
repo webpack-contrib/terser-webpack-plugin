@@ -3,7 +3,6 @@ import compile from './compile';
 import countPlugins from './countPlugins';
 import execute from './execute';
 import ExistingCommentsFile from './ExistingCommentsFile';
-import getCacheDirectory from './getCacheDirectory';
 import getCompiler from './getCompiler';
 import getErrors from './getErrors';
 import getWarnings from './getWarnings';
@@ -11,7 +10,6 @@ import ModifyExistingAsset from './ModifyExistingAsset';
 import readAsset from './readAsset';
 import readsAssets from './readAssets';
 import normalizeErrors from './normalizeErrors';
-import removeCache from './removeCache';
 
 export {
   BrokenCodePlugin,
@@ -19,7 +17,6 @@ export {
   countPlugins,
   ExistingCommentsFile,
   execute,
-  getCacheDirectory,
   getCompiler,
   getErrors,
   getWarnings,
@@ -27,5 +24,4 @@ export {
   normalizeErrors,
   readAsset,
   readsAssets,
-  removeCache,
 };

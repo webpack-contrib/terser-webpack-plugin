@@ -8,7 +8,6 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 describe('include option', () => {
@@ -22,11 +21,7 @@ describe('include option', () => {
         entry: path.resolve(__dirname, './fixtures/entry.js'),
       },
     });
-
-    return Promise.all([removeCache()]);
   });
-
-  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot for a single RegExp value', async () => {
     new TerserPlugin({

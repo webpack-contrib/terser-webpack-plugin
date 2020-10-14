@@ -2,15 +2,6 @@ import path from 'path';
 import os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
-import webpack, {
-  util,
-  ModuleFilenameHelpers,
-  SourceMapDevToolPlugin,
-  javascript,
-  version as webpackVersion,
-} from 'webpack';
-import RequestShortener from 'webpack/lib/RequestShortener';
-
 import { validate } from 'schema-utils';
 import serialize from 'serialize-javascript';
 import terserPackageJson from 'terser/package.json';
@@ -18,13 +9,7 @@ import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 
 import schema from './options.json';
-
 import { minify as minifyFn } from './minify';
-
-// webpack 5 exposes the sources property to ensure the right version of webpack-sources is used
-const { SourceMapSource, RawSource, ConcatSource } =
-  // eslint-disable-next-line global-require
-  webpack.sources || require('webpack-sources');
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -38,7 +23,6 @@ class TerserPlugin {
       terserOptions = {},
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
-      sourceMap,
       cache = true,
       cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = true,
@@ -49,7 +33,6 @@ class TerserPlugin {
     this.options = {
       test,
       extractComments,
-      sourceMap,
       cache,
       cacheKeys,
       parallel,
@@ -111,10 +94,6 @@ class TerserPlugin {
     return new Error(`${file} from Terser\n${error.message}`);
   }
 
-  static isWebpack4() {
-    return webpackVersion[0] === '4';
-  }
-
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
@@ -125,73 +104,14 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  // eslint-disable-next-line consistent-return
-  static getAsset(compilation, name) {
-    // New API
-    if (compilation.getAsset) {
-      return compilation.getAsset(name);
-    }
-
-    /* istanbul ignore next */
-    if (compilation.assets[name]) {
-      return { name, source: compilation.assets[name], info: {} };
-    }
-  }
-
-  static emitAsset(compilation, name, source, assetInfo) {
-    // New API
-    if (compilation.emitAsset) {
-      compilation.emitAsset(name, source, assetInfo);
-    }
-
-    // eslint-disable-next-line no-param-reassign
-    compilation.assets[name] = source;
-  }
-
-  static updateAsset(compilation, name, newSource, assetInfo) {
-    // New API
-    if (compilation.updateAsset) {
-      compilation.updateAsset(name, newSource, assetInfo);
-    }
-
-    // eslint-disable-next-line no-param-reassign
-    compilation.assets[name] = newSource;
-  }
-
-  async optimize(compiler, compilation, assets, CacheEngine, weakCache) {
-    let assetNames;
-
-    if (TerserPlugin.isWebpack4()) {
-      assetNames = []
-        .concat(Array.from(compilation.additionalChunkAssets || []))
-        .concat(
-          // In webpack@4 it is `chunks`
-          Array.from(assets).reduce(
-            (acc, chunk) => acc.concat(Array.from(chunk.files || [])),
-            []
-          )
-        )
-        .concat(Object.keys(compilation.assets))
-        .filter(
-          (assetName, index, existingAssets) =>
-            existingAssets.indexOf(assetName) === index
-        )
-        .filter((assetName) =>
-          ModuleFilenameHelpers.matchObject.bind(
-            // eslint-disable-next-line no-undefined
-            undefined,
-            this.options
-          )(assetName)
-        );
-    } else {
-      assetNames = Object.keys(assets).filter((assetName) =>
-        ModuleFilenameHelpers.matchObject.bind(
-          // eslint-disable-next-line no-undefined
-          undefined,
-          this.options
-        )(assetName)
-      );
-    }
+  async optimize(compiler, compilation, assets) {
+    const assetNames = Object.keys(assets).filter((assetName) =>
+      compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
+        // eslint-disable-next-line no-undefined
+        undefined,
+        this.options
+      )(assetName)
+    );
 
     if (assetNames.length === 0) {
       return;
@@ -231,21 +151,19 @@ class TerserPlugin {
     }
 
     const limit = pLimit(concurrency);
-    const cache = new CacheEngine(
-      compilation,
-      { cache: this.options.cache },
-      weakCache
-    );
+    const {
+      SourceMapSource,
+      ConcatSource,
+      RawSource,
+    } = compiler.webpack.sources;
+    const cache = compilation.getCache('TerserWebpackPlugin');
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
     for (const name of assetNames) {
       scheduledTasks.push(
         limit(async () => {
-          const { info, source: inputSource } = TerserPlugin.getAsset(
-            compilation,
-            name
-          );
+          const { info, source: inputSource } = compilation.getAsset(name);
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
@@ -255,75 +173,32 @@ class TerserPlugin {
           let input;
           let inputSourceMap;
 
-          // TODO refactor after drop webpack@4, webpack@5 always has `sourceAndMap` on sources
-          if (this.options.sourceMap && inputSource.sourceAndMap) {
-            const { source, map } = inputSource.sourceAndMap();
+          const {
+            source: sourceFromInputSource,
+            map,
+          } = inputSource.sourceAndMap();
 
-            input = source;
+          input = sourceFromInputSource;
 
-            if (map) {
-              if (TerserPlugin.isSourceMap(map)) {
-                inputSourceMap = map;
-              } else {
-                inputSourceMap = map;
+          if (map) {
+            if (TerserPlugin.isSourceMap(map)) {
+              inputSourceMap = map;
+            } else {
+              inputSourceMap = map;
 
-                compilation.warnings.push(
-                  new Error(`${name} contains invalid source map`)
-                );
-              }
+              compilation.warnings.push(
+                new Error(`${name} contains invalid source map`)
+              );
             }
-          } else {
-            input = inputSource.source();
-            inputSourceMap = null;
           }
 
           if (Buffer.isBuffer(input)) {
             input = input.toString();
           }
 
-          const cacheData = { name, inputSource };
+          const eTag = cache.getLazyHashedEtag(inputSource);
 
-          if (TerserPlugin.isWebpack4()) {
-            if (this.options.cache) {
-              const {
-                outputOptions: {
-                  hashSalt,
-                  hashDigest,
-                  hashDigestLength,
-                  hashFunction,
-                },
-              } = compilation;
-              const hash = util.createHash(hashFunction);
-
-              if (hashSalt) {
-                hash.update(hashSalt);
-              }
-
-              hash.update(input);
-
-              const digest = hash.digest(hashDigest);
-
-              cacheData.input = input;
-              cacheData.inputSourceMap = inputSourceMap;
-              cacheData.cacheKeys = this.options.cacheKeys(
-                {
-                  terser: terserPackageJson.version,
-                  // eslint-disable-next-line global-require
-                  'terser-webpack-plugin': require('../package.json').version,
-                  'terser-webpack-plugin-options': this.options,
-                  name,
-                  contentHash: digest.substr(0, hashDigestLength),
-                },
-                name
-              );
-            }
-          }
-
-          let output = await cache.get(cacheData, {
-            RawSource,
-            ConcatSource,
-            SourceMapSource,
-          });
+          let output = await cache.getPromise(name, eTag);
 
           if (!output) {
             const minimizerOptions = {
@@ -351,7 +226,7 @@ class TerserPlugin {
                   inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)
                     ? new SourceMapConsumer(inputSourceMap)
                     : null,
-                  new RequestShortener(compiler.context)
+                  compilation.requestShortener
                 )
               );
 
@@ -385,13 +260,11 @@ class TerserPlugin {
               output.source = new RawSource(output.code);
             }
 
-            let commentsFilename;
-
             if (
               output.extractedComments &&
               output.extractedComments.length > 0
             ) {
-              commentsFilename =
+              const commentsFilename =
                 this.options.extractComments.filename ||
                 '[file].LICENSE.txt[query]';
 
@@ -412,9 +285,10 @@ class TerserPlugin {
                   : filename.substr(lastSlashIndex + 1);
               const data = { filename, basename, query };
 
-              commentsFilename = compilation.getPath(commentsFilename, data);
-
-              output.commentsFilename = commentsFilename;
+              output.commentsFilename = compilation.getPath(
+                commentsFilename,
+                data
+              );
 
               let banner;
 
@@ -423,11 +297,11 @@ class TerserPlugin {
                 banner =
                   this.options.extractComments.banner ||
                   `For license information please see ${path
-                    .relative(path.dirname(name), commentsFilename)
+                    .relative(path.dirname(name), output.commentsFilename)
                     .replace(/\\/g, '/')}`;
 
                 if (typeof banner === 'function') {
-                  banner = banner(commentsFilename);
+                  banner = banner(output.commentsFilename);
                 }
 
                 if (banner) {
@@ -436,8 +310,6 @@ class TerserPlugin {
                     `/*! ${banner} */\n`,
                     output.source
                   );
-                  output.banner = banner;
-                  output.shebang = shebang;
                 }
               }
 
@@ -450,19 +322,21 @@ class TerserPlugin {
               );
             }
 
-            await cache.store({ ...output, ...cacheData });
+            await cache.storePromise(name, eTag, {
+              source: output.source,
+              commentsFilename: output.commentsFilename,
+              extractedCommentsSource: output.extractedCommentsSource,
+            });
           }
 
-          // TODO `...` required only for webpack@4
-          const newInfo = { ...info, minimized: true };
+          const newInfo = { minimized: true };
           const { source, extractedCommentsSource } = output;
 
           // Write extracted comments to commentsFilename
           if (extractedCommentsSource) {
             const { commentsFilename } = output;
 
-            // TODO `...` required only for webpack@4
-            newInfo.related = { license: commentsFilename, ...info.related };
+            newInfo.related = { license: commentsFilename };
 
             allExtractedComments.set(name, {
               extractedCommentsSource,
@@ -470,7 +344,7 @@ class TerserPlugin {
             });
           }
 
-          TerserPlugin.updateAsset(compilation, name, source, newInfo);
+          compilation.updateAsset(name, source, newInfo);
         })
       );
     }
@@ -490,51 +364,17 @@ class TerserPlugin {
         if (previous && previous.commentsFilename === commentsFilename) {
           const { from: previousFrom, source: prevSource } = previous;
           const mergedName = `${previousFrom}|${from}`;
+          const name = `${commentsFilename}|${mergedName}`;
+          const eTag = [prevSource, extractedCommentsSource]
+            .map((item) => cache.getLazyHashedEtag(item))
+            .reduce((previousValue, currentValue) =>
+              cache.mergeEtags(previousValue, currentValue)
+            );
 
-          const cacheData = {
-            target: 'comments',
-          };
+          let source = await cache.getPromise(name, eTag);
 
-          if (TerserPlugin.isWebpack4()) {
-            const {
-              outputOptions: {
-                hashSalt,
-                hashDigest,
-                hashDigestLength,
-                hashFunction,
-              },
-            } = compilation;
-            const previousHash = util.createHash(hashFunction);
-            const hash = util.createHash(hashFunction);
-
-            if (hashSalt) {
-              previousHash.update(hashSalt);
-              hash.update(hashSalt);
-            }
-
-            previousHash.update(prevSource.source());
-            hash.update(extractedCommentsSource.source());
-
-            const previousDigest = previousHash.digest(hashDigest);
-            const digest = hash.digest(hashDigest);
-
-            cacheData.cacheKeys = {
-              mergedName,
-              previousContentHash: previousDigest.substr(0, hashDigestLength),
-              contentHash: digest.substr(0, hashDigestLength),
-            };
-            cacheData.inputSource = extractedCommentsSource;
-          } else {
-            const mergedInputSource = [prevSource, extractedCommentsSource];
-
-            cacheData.name = `${commentsFilename}|${mergedName}`;
-            cacheData.inputSource = mergedInputSource;
-          }
-
-          let output = await cache.get(cacheData, { ConcatSource });
-
-          if (!output) {
-            output = new ConcatSource(
+          if (!source) {
+            source = new ConcatSource(
               Array.from(
                 new Set([
                   ...prevSource.source().split('\n\n'),
@@ -543,18 +383,15 @@ class TerserPlugin {
               ).join('\n\n')
             );
 
-            await cache.store({ ...cacheData, output });
+            await cache.storePromise(name, eTag, source);
           }
 
-          TerserPlugin.updateAsset(compilation, commentsFilename, output);
+          compilation.updateAsset(commentsFilename, source);
 
-          return { commentsFilename, from: mergedName, source: output };
+          return { commentsFilename, from: mergedName, source };
         }
 
-        const existingAsset = TerserPlugin.getAsset(
-          compilation,
-          commentsFilename
-        );
+        const existingAsset = compilation.getAsset(commentsFilename);
 
         if (existingAsset) {
           return {
@@ -564,11 +401,7 @@ class TerserPlugin {
           };
         }
 
-        TerserPlugin.emitAsset(
-          compilation,
-          commentsFilename,
-          extractedCommentsSource
-        );
+        compilation.emitAsset(commentsFilename, extractedCommentsSource);
 
         return { commentsFilename, from, source: extractedCommentsSource };
       }, Promise.resolve());
@@ -595,24 +428,7 @@ class TerserPlugin {
   }
 
   apply(compiler) {
-    const { devtool, output, plugins } = compiler.options;
-
-    this.options.sourceMap =
-      typeof this.options.sourceMap === 'undefined'
-        ? (devtool &&
-            !devtool.includes('eval') &&
-            !devtool.includes('cheap') &&
-            (devtool.includes('source-map') ||
-              // Todo remove when `webpack@4` support will be dropped
-              devtool.includes('sourcemap'))) ||
-          (plugins &&
-            plugins.some(
-              (plugin) =>
-                plugin instanceof SourceMapDevToolPlugin &&
-                plugin.options &&
-                plugin.options.columns
-            ))
-        : Boolean(this.options.sourceMap);
+    const { output } = compiler.options;
 
     if (
       typeof this.options.terserOptions.module === 'undefined' &&
@@ -628,77 +444,38 @@ class TerserPlugin {
     }
 
     const pluginName = this.constructor.name;
-    const weakCache =
-      TerserPlugin.isWebpack4() &&
-      (this.options.cache === true || typeof this.options.cache === 'string')
-        ? new WeakMap()
-        : // eslint-disable-next-line no-undefined
-          undefined;
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
-      if (this.options.sourceMap) {
-        compilation.hooks.buildModule.tap(pluginName, (moduleArg) => {
-          // to get detailed location info about errors
-          // eslint-disable-next-line no-param-reassign
-          moduleArg.useSourceMap = true;
-        });
-      }
+      const hooks = compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
+        compilation
+      );
+      const data = serialize({
+        terser: terserPackageJson.version,
+        terserOptions: this.options.terserOptions,
+      });
 
-      if (TerserPlugin.isWebpack4()) {
-        // eslint-disable-next-line global-require
-        const CacheEngine = require('./Webpack4Cache').default;
-        const { mainTemplate, chunkTemplate } = compilation;
-        const data = serialize({
-          terser: terserPackageJson.version,
-          terserOptions: this.options.terserOptions,
-        });
+      hooks.chunkHash.tap(pluginName, (chunk, hash) => {
+        hash.update('TerserPlugin');
+        hash.update(data);
+      });
 
-        // Regenerate `contenthash` for minified assets
-        for (const template of [mainTemplate, chunkTemplate]) {
-          template.hooks.hashForChunk.tap(pluginName, (hash) => {
-            hash.update('TerserPlugin');
-            hash.update(data);
-          });
-        }
+      compilation.hooks.processAssets.tapPromise(
+        {
+          name: pluginName,
+          stage:
+            compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+        },
+        (assets) => this.optimize(compiler, compilation, assets)
+      );
 
-        compilation.hooks.optimizeChunkAssets.tapPromise(pluginName, (assets) =>
-          this.optimize(compiler, compilation, assets, CacheEngine, weakCache)
-        );
-      } else {
-        // eslint-disable-next-line global-require
-        const CacheEngine = require('./Webpack5Cache').default;
-        // eslint-disable-next-line global-require
-        const Compilation = require('webpack/lib/Compilation');
-        const hooks = javascript.JavascriptModulesPlugin.getCompilationHooks(
-          compilation
-        );
-        const data = serialize({
-          terser: terserPackageJson.version,
-          terserOptions: this.options.terserOptions,
-        });
-
-        hooks.chunkHash.tap(pluginName, (chunk, hash) => {
-          hash.update('TerserPlugin');
-          hash.update(data);
-        });
-
-        compilation.hooks.processAssets.tapPromise(
-          {
-            name: pluginName,
-            stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
-          },
-          (assets) => this.optimize(compiler, compilation, assets, CacheEngine)
-        );
-
-        compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
-          stats.hooks.print
-            .for('asset.info.minimized')
-            .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
-              // eslint-disable-next-line no-undefined
-              minimized ? green(formatFlag('minimized')) : undefined
-            );
-        });
-      }
+      compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
+        stats.hooks.print
+          .for('asset.info.minimized')
+          .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
+            // eslint-disable-next-line no-undefined
+            minimized ? green(formatFlag('minimized')) : undefined
+          );
+      });
     });
   }
 }

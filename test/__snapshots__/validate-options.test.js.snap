@@ -92,60 +92,38 @@ exports[`validation 6`] = `
 
 exports[`validation 7`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.cache should be one of these:
-   boolean | string
-   -> Enable file caching. Ignored in webpack 5, for webpack 5 please use https://webpack.js.org/configuration/other-options/#cache.
+ - options.parallel should be one of these:
+   boolean | integer
+   -> Use multi-process parallel running to improve the build speed.
    Details:
-    * options.cache should be a boolean.
-    * options.cache should be a string."
+    * options.parallel should be a boolean.
+    * options.parallel should be a integer."
 `;
 
 exports[`validation 8`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.cacheKeys should be an instance of function.
-   -> Allows you to override default cache keys. Ignored in webpack 5, for webpack 5 please use https://webpack.js.org/configuration/other-options/#cache."
+ - options.parallel should be one of these:
+   boolean | integer
+   -> Use multi-process parallel running to improve the build speed.
+   Details:
+    * options.parallel should be a boolean.
+    * options.parallel should be a integer."
 `;
 
 exports[`validation 9`] = `
-"Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.parallel should be one of these:
-   boolean | integer
-   -> Use multi-process parallel running to improve the build speed.
-   Details:
-    * options.parallel should be a boolean.
-    * options.parallel should be a integer."
-`;
-
-exports[`validation 10`] = `
-"Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.parallel should be one of these:
-   boolean | integer
-   -> Use multi-process parallel running to improve the build speed.
-   Details:
-    * options.parallel should be a boolean.
-    * options.parallel should be a integer."
-`;
-
-exports[`validation 11`] = `
-"Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.sourceMap should be a boolean.
-   -> Enables/Disables generation of source maps."
-`;
-
-exports[`validation 12`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.minify should be an instance of function.
    -> Allows you to override default minify function."
 `;
 
-exports[`validation 13`] = `
+exports[`validation 10`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.terserOptions should be an object:
    object { … }
    -> Options for \`terser\`."
 `;
 
-exports[`validation 14`] = `
+exports[`validation 11`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments should be one of these:
    boolean | string | RegExp | function | object { condition?, filename?, banner? }
@@ -160,7 +138,7 @@ exports[`validation 14`] = `
        * options.extractComments.condition should be an instance of function."
 `;
 
-exports[`validation 15`] = `
+exports[`validation 12`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments should be one of these:
    boolean | string | RegExp | function | object { condition?, filename?, banner? }
@@ -173,7 +151,7 @@ exports[`validation 15`] = `
        * options.extractComments.filename should be an instance of function."
 `;
 
-exports[`validation 16`] = `
+exports[`validation 13`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments should be one of these:
    boolean | string | RegExp | function | object { condition?, filename?, banner? }
@@ -187,14 +165,14 @@ exports[`validation 16`] = `
        * options.extractComments.banner should be an instance of function."
 `;
 
-exports[`validation 17`] = `
+exports[`validation 14`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments has an unknown property 'unknown'. These properties are valid:
    object { condition?, filename?, banner? }"
 `;
 
-exports[`validation 18`] = `
+exports[`validation 15`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { test?, include?, exclude?, cache?, cacheKeys?, parallel?, sourceMap?, minify?, terserOptions?, extractComments? }"
+   object { test?, include?, exclude?, parallel?, minify?, terserOptions?, extractComments? }"
 `;

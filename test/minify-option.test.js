@@ -8,14 +8,9 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 describe('minify option', () => {
-  beforeEach(() => Promise.all([removeCache()]));
-
-  afterEach(() => Promise.all([removeCache()]));
-
   it('should work', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, './fixtures/minify/es6.js'),
@@ -207,7 +202,6 @@ describe('minify option', () => {
     });
 
     new TerserPlugin({
-      sourceMap: true,
       minify(file, sourceMap) {
         const terserOption = {
           mangle: {
@@ -235,7 +229,7 @@ describe('minify option', () => {
 
   it('should work with "uglify-js" minimizer', async () => {
     const compiler = getCompiler({
-      ...(getCompiler.isWebpack4() ? {} : { target: ['es5', 'web'] }),
+      target: ['es5', 'web'],
       entry: path.resolve(__dirname, './fixtures/minify/es5.js'),
       output: {
         path: path.resolve(__dirname, './dist-uglify-js'),

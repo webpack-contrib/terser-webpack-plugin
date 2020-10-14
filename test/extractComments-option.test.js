@@ -10,7 +10,6 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
   ExistingCommentsFile,
 } from './helpers';
 
@@ -40,11 +39,7 @@ describe('extractComments option', () => {
         chunkFilename: 'chunks/[id].[name].js',
       },
     });
-
-    return Promise.all([removeCache()]);
   });
-
-  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot when a value is not specify', async () => {
     new TerserPlugin().apply(compiler);
@@ -305,9 +300,7 @@ describe('extractComments option', () => {
     new TerserPlugin({
       extractComments: {
         condition: true,
-        filename: `[file].LICENSE.txt?query=[query]&filebase=[${
-          getCompiler.isWebpack4() ? 'filebase' : 'base'
-        }]`,
+        filename: `[file].LICENSE.txt?query=[query]&filebase=[base]`,
         banner(licenseFile) {
           return `License information can be found in ${licenseFile}`;
         },

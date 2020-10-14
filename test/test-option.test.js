@@ -8,7 +8,6 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-  removeCache,
 } from './helpers';
 
 describe('test option', () => {
@@ -30,19 +29,11 @@ describe('test option', () => {
       },
       output: {
         path: path.resolve(__dirname, './dist'),
-        filename: `[name].js?var=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
-        chunkFilename: `[id].[name].js?ver=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
+        filename: `[name].js?var=[fullhash]`,
+        chunkFilename: `[id].[name].js?ver=[fullhash]`,
       },
     });
-
-    return Promise.all([removeCache()]);
   });
-
-  afterEach(() => Promise.all([removeCache()]));
 
   it('should match snapshot with empty value', async () => {
     new TerserPlugin().apply(compiler);
@@ -118,12 +109,8 @@ describe('test option', () => {
       },
       output: {
         path: path.resolve(__dirname, './dist'),
-        filename: `[name].mjs?var=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
-        chunkFilename: `[id].[name].mjs?ver=[${
-          getCompiler.isWebpack4() ? 'hash' : 'fullhash'
-        }]`,
+        filename: `[name].mjs?var=[fullhash]`,
+        chunkFilename: `[id].[name].mjs?ver=[fullhash]`,
       },
     });
 

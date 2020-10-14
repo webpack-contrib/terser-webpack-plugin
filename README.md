@@ -41,6 +41,17 @@ module.exports = {
 
 And run `webpack` via your preferred method.
 
+## Note about source maps
+
+**Works only with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
+
+Why?
+
+- `eval` wraps modules in `eval("string")` and the minimizer does not handle strings.
+- `cheap` has not column information and minimizer generate only a single line, which leave only a single mapping.
+
+Using supported `devtool` values enable source map generation.
+
 ## Options
 
 ### `test`
@@ -109,98 +120,6 @@ module.exports = {
 };
 ```
 
-### `cache`
-
-> ⚠ Ignored in webpack 5! Please use https://webpack.js.org/configuration/other-options/#cache.
-
-Type: `Boolean|String`
-Default: `true`
-
-Enable file caching.
-Default path to cache directory: `node_modules/.cache/terser-webpack-plugin`.
-
-> ℹ️ If you use your own `minify` function please read the `minify` section for cache invalidation correctly.
-
-#### `Boolean`
-
-Enable/disable file caching.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-      }),
-    ],
-  },
-};
-```
-
-#### `String`
-
-Enable file caching and set path to cache directory.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        cache: 'path/to/cache',
-      }),
-    ],
-  },
-};
-```
-
-### `cacheKeys`
-
-> ⚠ Ignored in webpack 5! Please use https://webpack.js.org/configuration/other-options/#cache.
-
-Type: `Function<(defaultCacheKeys, file) -> Object>`
-Default: `defaultCacheKeys => defaultCacheKeys`
-
-Allows you to override default cache keys.
-
-Default cache keys:
-
-```js
-({
-  terser: require('terser/package.json').version, // terser version
-  'terser-webpack-plugin': require('../package.json').version, // plugin version
-  'terser-webpack-plugin-options': this.options, // plugin options
-  nodeVersion: process.version, // Node.js version
-  name: file, // asset path
-  contentHash: crypto.createHash('md4').update(input).digest('hex'), // source file hash
-});
-```
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        cacheKeys: (defaultCacheKeys, file) => {
-          defaultCacheKeys.myCacheKey = 'myCacheKeyValue';
-
-          return defaultCacheKeys;
-        },
-      }),
-    ],
-  },
-};
-```
-
 ### `parallel`
 
 Type: `Boolean|Number`
@@ -245,40 +164,6 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         parallel: 4,
-      }),
-    ],
-  },
-};
-```
-
-### `sourceMap`
-
-Type: `Boolean`
-Default: `false` (see below for details around `devtool` value and `SourceMapDevToolPlugin` plugin)
-
-**Works only with `source-map`, `inline-source-map`, `hidden-source-map` and `nosources-source-map` values for the [`devtool`](https://webpack.js.org/configuration/devtool/) option.**
-
-Why?
-
-- `eval` wraps modules in `eval("string")` and the minimizer does not handle strings.
-- `cheap` has not column information and minimizer generate only a single line, which leave only a single mapping.
-
-The plugin respect the [`devtool`](https://webpack.js.org/configuration/devtool/) and using the `SourceMapDevToolPlugin` plugin.
-Using supported `devtool` values enable source map generation.
-Using `SourceMapDevToolPlugin` with enabled the `columns` option enables source map generation.
-
-Use source maps to map error message locations to modules (this slows down the compilation).
-If you use your own `minify` function please read the `minify` section for handling source maps correctly.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        sourceMap: true,
       }),
     ],
   },
