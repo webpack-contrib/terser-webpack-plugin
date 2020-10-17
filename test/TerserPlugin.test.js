@@ -585,7 +585,7 @@ describe('TerserPlugin', () => {
       },
       optimization: {
         minimize: false,
-        noEmitOnErrors: false,
+        emitOnErrors: true,
       },
     });
 
@@ -608,7 +608,7 @@ describe('TerserPlugin', () => {
       },
       optimization: {
         minimize: false,
-        noEmitOnErrors: false,
+        emitOnErrors: true,
       },
     });
 
