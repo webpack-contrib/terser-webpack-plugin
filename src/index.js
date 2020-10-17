@@ -23,8 +23,6 @@ class TerserPlugin {
       terserOptions = {},
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
-      cache = true,
-      cacheKeys = (defaultCacheKeys) => defaultCacheKeys,
       parallel = true,
       include,
       exclude,
@@ -33,8 +31,6 @@ class TerserPlugin {
     this.options = {
       test,
       extractComments,
-      cache,
-      cacheKeys,
       parallel,
       include,
       exclude,
