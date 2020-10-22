@@ -28,7 +28,6 @@ $ npm install terser-webpack-plugin --save-dev
 
 Then add the plugin to your `webpack` config. For example:
 
-
 **webpack.config.js**
 
 ```js
