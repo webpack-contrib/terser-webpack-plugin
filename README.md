@@ -24,7 +24,10 @@ To begin, you'll need to install `terser-webpack-plugin`:
 $ npm install terser-webpack-plugin --save-dev
 ```
 
+> ⚠️  terser-webpack-plugin versions 5 and higher also require Webpack 5 or higher
+
 Then add the plugin to your `webpack` config. For example:
+
 
 **webpack.config.js**
 
