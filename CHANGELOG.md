@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.0.0...v5.0.1) (2020-10-23)
+
+
+### Bug Fixes
+
+* improved performance (we strongly recommend using latest LTS releases) ([#345](https://github.com/webpack-contrib/terser-webpack-plugin/issues/345)) ([95f3418](https://github.com/webpack-contrib/terser-webpack-plugin/commit/95f3418201f8c8e3d31ac03ac71ddc58f46e006b))
+* used `worker_thread` where is it possible ([#344](https://github.com/webpack-contrib/terser-webpack-plugin/issues/344)) ([3c50404](https://github.com/webpack-contrib/terser-webpack-plugin/commit/3c50404b46795348dc44b5c8a6291f8d9ba5983a))
+* fixed terser options for es module ([a12730f](https://github.com/webpack-contrib/terser-webpack-plugin/commit/a12730f6c251d4a17afd51e6f700530c62d091ca))
+
 ## [5.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v4.2.3...v5.0.0) (2020-10-14)
 
 
