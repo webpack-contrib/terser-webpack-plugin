@@ -2,11 +2,11 @@
 
 exports[`test option should match snapshot and uglify "mjs": assets 1`] = `
 Object {
-  "598.598.mjs?ver=ae44b33df0379ec9a64b": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,p,s)=>{s.r(p),s.d(p,{default:()=>a});const a=\\"async-dep\\"}}]);",
-  "AsyncImportExport.mjs?var=ae44b33df0379ec9a64b": "(()=>{var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".mjs?ver=\\"+n.h(),n.h=()=>\\"ae44b33df0379ec9a64b\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var s=u[c];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+a){i=s;break}}i||(l=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var p=(r,o)=>{i.onerror=i.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=p.bind(null,i.onerror),i.onload=p.bind(null,i.onload),l&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,l,u]=r,c=0,s=[];c<i.length;c++)a=i[c],n.o(e,a)&&e[a]&&s.push(e[a][0]),e[a]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
-  "importExport.mjs?var=ae44b33df0379ec9a64b": "",
-  "js.mjs?var=ae44b33df0379ec9a64b": "var r,o;r={791:r=>{r.exports=function(){console.log(7)}}},o={},function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791);",
-  "mjs.mjs?var=ae44b33df0379ec9a64b": "(()=>{function o(){console.log(11)}o(),module.exports=o})();",
+  "598.598.mjs?ver=c72c07f40465ad0521e7": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "AsyncImportExport.mjs?var=c72c07f40465ad0521e7": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".mjs?ver=\\"+n.h(),n.h=()=>\\"c72c07f40465ad0521e7\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,c;if(void 0!==a)for(var l=document.getElementsByTagName(\\"script\\"),u=0;u<l.length;u++){var s=l[u];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+a){i=s;break}}i||(c=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var p=(r,o)=>{i.onerror=i.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=p.bind(null,i.onerror),i.onload=p.bind(null,i.onload),c&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=a);var i=n.p+n.u(r),c=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",c.name=\\"ChunkLoadError\\",c.type=a,c.request=i,o[1](c)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,c,l]=r,u=0,s=[];u<i.length;u++)a=i[u],n.o(e,a)&&e[a]&&s.push(e[a][0]),e[a]=0;for(o in c)n.o(c,o)&&(n.m[o]=c[o]);for(l&&l(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "importExport.mjs?var=c72c07f40465ad0521e7": "(()=>{\\"use strict\\"})();",
+  "js.mjs?var=c72c07f40465ad0521e7": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.mjs?var=c72c07f40465ad0521e7": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
 }
 `;
 
@@ -16,7 +16,7 @@ exports[`test option should match snapshot and uglify "mjs": warnings 1`] = `Arr
 
 exports[`test option should match snapshot for a single "test" value ({String}): assets 1`] = `
 Object {
-  "598.598.js?ver=91cf9b337cd2e27184d2": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=9985f89599187ed01c05": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -32,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 /******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => \\"91cf9b337cd2e27184d2\\"
+/******/ 		__webpack_require__.h = () => \\"9985f89599187ed01c05\\"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -299,7 +299,7 @@ __webpack_require__.e(/* import() */ 598).then(__webpack_require__.bind(__webpac
 
 /******/ })()
 ;",
-  "importExport.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "importExport.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 
@@ -319,8 +319,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=91cf9b337cd2e27184d2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "js.js?var=9985f89599187ed01c05": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 // foo
 // bar
@@ -346,7 +346,7 @@ exports[`test option should match snapshot for a single "test" value ({String}):
 
 exports[`test option should match snapshot for a single \`test\` value ({RegExp}): assets 1`] = `
 Object {
-  "598.598.js?ver=91cf9b337cd2e27184d2": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=9985f89599187ed01c05": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -362,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 /******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
@@ -429,7 +429,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => \\"91cf9b337cd2e27184d2\\"
+/******/ 		__webpack_require__.h = () => \\"9985f89599187ed01c05\\"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -629,7 +629,7 @@ __webpack_require__.e(/* import() */ 598).then(__webpack_require__.bind(__webpac
 
 /******/ })()
 ;",
-  "importExport.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "importExport.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 
@@ -649,8 +649,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=91cf9b337cd2e27184d2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "js.js?var=9985f89599187ed01c05": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
 }
 `;
 
@@ -660,7 +660,7 @@ exports[`test option should match snapshot for a single \`test\` value ({RegExp}
 
 exports[`test option should match snapshot for multiple "test" values ({RegExp}): assets 1`] = `
 Object {
-  "598.598.js?ver=91cf9b337cd2e27184d2": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=9985f89599187ed01c05": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -676,8 +676,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js?ver=\\"+n.h(),n.h=()=>\\"91cf9b337cd2e27184d2\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i)=>{if(e[t])e[t].push(o);else{var a,c;if(void 0!==i)for(var l=document.getElementsByTagName(\\"script\\"),u=0;u<l.length;u++){var s=l[u];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+i){a=s;break}}a||(c=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,n.nc&&a.setAttribute(\\"nonce\\",n.nc),a.setAttribute(\\"data-webpack\\",r+i),a.src=t),e[t]=[o];var p=(r,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=p.bind(null,a.onerror),a.onload=p.bind(null,a.onload),c&&document.head.appendChild(a)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=i);var a=n.p+n.u(r),c=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",c.name=\\"ChunkLoadError\\",c.type=i,c.request=a,o[1](c)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,i,[a,c,l]=r,u=0,s=[];u<a.length;u++)i=a[u],n.o(e,i)&&e[i]&&s.push(e[i][0]),e[i]=0;for(o in c)n.o(c,o)&&(n.m[o]=c[o]);for(l&&l(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
-  "importExport.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js?ver=\\"+n.h(),n.h=()=>\\"9985f89599187ed01c05\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i)=>{if(e[t])e[t].push(o);else{var a,l;if(void 0!==i)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var s=u[c];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+i){a=s;break}}a||(l=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,n.nc&&a.setAttribute(\\"nonce\\",n.nc),a.setAttribute(\\"data-webpack\\",r+i),a.src=t),e[t]=[o];var p=(r,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=p.bind(null,a.onerror),a.onload=p.bind(null,a.onload),l&&document.head.appendChild(a)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,i,[a,l,u]=r,c=0,s=[];c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&s.push(e[i][0]),e[i]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "importExport.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 
@@ -697,8 +697,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=91cf9b337cd2e27184d2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "js.js?var=9985f89599187ed01c05": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
 }
 `;
 
@@ -708,7 +708,7 @@ exports[`test option should match snapshot for multiple "test" values ({RegExp})
 
 exports[`test option should match snapshot for multiple "test" values ({String}): assets 1`] = `
 Object {
-  "598.598.js?ver=91cf9b337cd2e27184d2": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
+  "598.598.js?ver=9985f89599187ed01c05": "(self[\\"webpackChunkterser_webpack_plugin\\"] = self[\\"webpackChunkterser_webpack_plugin\\"] || []).push([[598],{
 
 /***/ 598:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -724,8 +724,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);",
-  "AsyncImportExport.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js?ver=\\"+n.h(),n.h=()=>\\"91cf9b337cd2e27184d2\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i)=>{if(e[t])e[t].push(o);else{var a,c;if(void 0!==i)for(var l=document.getElementsByTagName(\\"script\\"),u=0;u<l.length;u++){var s=l[u];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+i){a=s;break}}a||(c=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,n.nc&&a.setAttribute(\\"nonce\\",n.nc),a.setAttribute(\\"data-webpack\\",r+i),a.src=t),e[t]=[o];var p=(r,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=p.bind(null,a.onerror),a.onload=p.bind(null,a.onload),c&&document.head.appendChild(a)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=i);var a=n.p+n.u(r),c=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",c.name=\\"ChunkLoadError\\",c.type=i,c.request=a,o[1](c)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,i,[a,c,l]=r,u=0,s=[];u<a.length;u++)i=a[u],n.o(e,i)&&e[i]&&s.push(e[i][0]),e[i]=0;for(o in c)n.o(c,o)&&(n.m[o]=c[o]);for(l&&l(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
-  "importExport.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "AsyncImportExport.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js?ver=\\"+n.h(),n.h=()=>\\"9985f89599187ed01c05\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i)=>{if(e[t])e[t].push(o);else{var a,l;if(void 0!==i)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var s=u[c];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+i){a=s;break}}a||(l=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,n.nc&&a.setAttribute(\\"nonce\\",n.nc),a.setAttribute(\\"data-webpack\\",r+i),a.src=t),e[t]=[o];var p=(r,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=p.bind(null,a.onerror),a.onload=p.bind(null,a.onload),l&&document.head.appendChild(a)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,i,[a,l,u]=r,c=0,s=[];c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&s.push(e[i][0]),e[i]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "importExport.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 
 
@@ -745,8 +745,8 @@ function Foo() {
 
 /******/ })()
 ;",
-  "js.js?var=91cf9b337cd2e27184d2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=91cf9b337cd2e27184d2": "/******/ (() => { // webpackBootstrap
+  "js.js?var=9985f89599187ed01c05": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=9985f89599187ed01c05": "/******/ (() => { // webpackBootstrap
 /******/ 	\\"use strict\\";
 // foo
 // bar
@@ -772,11 +772,11 @@ exports[`test option should match snapshot for multiple "test" values ({String})
 
 exports[`test option should match snapshot with empty value: assets 1`] = `
 Object {
-  "598.598.js?ver=91cf9b337cd2e27184d2": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
-  "AsyncImportExport.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js?ver=\\"+n.h(),n.h=()=>\\"91cf9b337cd2e27184d2\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i)=>{if(e[t])e[t].push(o);else{var a,c;if(void 0!==i)for(var l=document.getElementsByTagName(\\"script\\"),u=0;u<l.length;u++){var s=l[u];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+i){a=s;break}}a||(c=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,n.nc&&a.setAttribute(\\"nonce\\",n.nc),a.setAttribute(\\"data-webpack\\",r+i),a.src=t),e[t]=[o];var p=(r,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=p.bind(null,a.onerror),a.onload=p.bind(null,a.onload),c&&document.head.appendChild(a)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=i);var a=n.p+n.u(r),c=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",c.name=\\"ChunkLoadError\\",c.type=i,c.request=a,o[1](c)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,i,[a,c,l]=r,u=0,s=[];u<a.length;u++)i=a[u],n.o(e,i)&&e[i]&&s.push(e[i][0]),e[i]=0;for(o in c)n.o(c,o)&&(n.m[o]=c[o]);for(l&&l(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
-  "importExport.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\"})();",
-  "js.js?var=91cf9b337cd2e27184d2": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-  "mjs.js?var=91cf9b337cd2e27184d2": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "598.598.js?ver=9985f89599187ed01c05": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "AsyncImportExport.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js?ver=\\"+n.h(),n.h=()=>\\"9985f89599187ed01c05\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i)=>{if(e[t])e[t].push(o);else{var a,l;if(void 0!==i)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var s=u[c];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+i){a=s;break}}a||(l=!0,(a=document.createElement(\\"script\\")).charset=\\"utf-8\\",a.timeout=120,n.nc&&a.setAttribute(\\"nonce\\",n.nc),a.setAttribute(\\"data-webpack\\",r+i),a.src=t),e[t]=[o];var p=(r,o)=>{a.onerror=a.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],a.parentNode&&a.parentNode.removeChild(a),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:a}),12e4);a.onerror=p.bind(null,a.onerror),a.onload=p.bind(null,a.onload),l&&document.head.appendChild(a)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,i,[a,l,u]=r,c=0,s=[];c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&s.push(e[i][0]),e[i]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "importExport.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\"})();",
+  "js.js?var=9985f89599187ed01c05": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "mjs.js?var=9985f89599187ed01c05": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
 }
 `;
 
