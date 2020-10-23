@@ -102,7 +102,7 @@ class TerserPlugin {
 
   async optimize(compiler, compilation, assets) {
     const cache = compilation.getCache('TerserWebpackPlugin');
-    let countAssetsForMinify = 0;
+    let numberOfAssetsForMinify = 0;
     const assetsForMinify = (
       await Promise.all(
         Object.keys(assets).map(async (name) => {
@@ -151,7 +151,7 @@ class TerserPlugin {
           const output = await cacheItem.getPromise();
 
           if (!output) {
-            countAssetsForMinify += 1;
+            numberOfAssetsForMinify += 1;
           }
 
           return { name, info, input, inputSourceMap, output, cacheItem };
@@ -168,7 +168,10 @@ class TerserPlugin {
 
     if (availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
-      numberOfWorkers = Math.min(countAssetsForMinify, availableNumberOfCores);
+      numberOfWorkers = Math.min(
+        numberOfAssetsForMinify,
+        availableNumberOfCores
+      );
       // eslint-disable-next-line consistent-return
       getWorker = () => {
         if (initializedWorker) {
@@ -202,7 +205,7 @@ class TerserPlugin {
     }
 
     const limit = pLimit(
-      getWorker && countAssetsForMinify > 0 ? numberOfWorkers : Infinity
+      getWorker && numberOfAssetsForMinify > 0 ? numberOfWorkers : Infinity
     );
     const {
       SourceMapSource,
