@@ -101,81 +101,32 @@ class TerserPlugin {
   }
 
   async optimize(compiler, compilation, assets) {
-    const assetNames = Object.keys(assets).filter((assetName) =>
-      compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
-        // eslint-disable-next-line no-undefined
-        undefined,
-        this.options
-      )(assetName)
-    );
-
-    if (assetNames.length === 0) {
-      return;
-    }
-
-    const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
-      this.options.parallel
-    );
-
-    let concurrency = Infinity;
-    let worker;
-
-    if (availableNumberOfCores > 0) {
-      // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
-      const numWorkers = Math.min(assetNames.length, availableNumberOfCores);
-
-      concurrency = numWorkers;
-
-      worker = new Worker(require.resolve('./minify'), {
-        numWorkers,
-        enableWorkerThreads: true,
-      });
-
-      // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
-      const workerStdout = worker.getStdout();
-
-      if (workerStdout) {
-        workerStdout.on('data', (chunk) => {
-          return process.stdout.write(chunk);
-        });
-      }
-
-      const workerStderr = worker.getStderr();
-
-      if (workerStderr) {
-        workerStderr.on('data', (chunk) => {
-          return process.stderr.write(chunk);
-        });
-      }
-    }
-
-    const limit = pLimit(concurrency);
-    const {
-      SourceMapSource,
-      ConcatSource,
-      RawSource,
-    } = compiler.webpack.sources;
     const cache = compilation.getCache('TerserWebpackPlugin');
-    const allExtractedComments = new Map();
-    const scheduledTasks = [];
-
-    for (const name of assetNames) {
-      scheduledTasks.push(
-        limit(async () => {
-          const { info, source: inputSource } = compilation.getAsset(name);
+    let numberOfAssetsForMinify = 0;
+    const assetsForMinify = (
+      await Promise.all(
+        Object.keys(assets).map(async (name) => {
+          const { info, source } = compilation.getAsset(name);
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
-            return;
+            return false;
+          }
+
+          if (
+            !compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
+              // eslint-disable-next-line no-undefined
+              undefined,
+              this.options
+            )(name)
+          ) {
+            return false;
           }
 
           let input;
           let inputSourceMap;
 
-          const {
-            source: sourceFromInputSource,
-            map,
-          } = inputSource.sourceAndMap();
+          const { source: sourceFromInputSource, map } = source.sourceAndMap();
 
           input = sourceFromInputSource;
 
@@ -195,9 +146,80 @@ class TerserPlugin {
             input = input.toString();
           }
 
-          const eTag = cache.getLazyHashedEtag(inputSource);
+          const eTag = cache.getLazyHashedEtag(source);
+          const cacheItem = cache.getItemCache(name, eTag);
+          const output = await cacheItem.getPromise();
 
-          let output = await cache.getPromise(name, eTag);
+          if (!output) {
+            numberOfAssetsForMinify += 1;
+          }
+
+          return { name, info, input, inputSourceMap, output, cacheItem };
+        })
+      )
+    ).filter((item) => Boolean(item));
+
+    let getWorker;
+    let initializedWorker;
+    let numberOfWorkers;
+    const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
+      this.options.parallel
+    );
+
+    if (availableNumberOfCores > 0) {
+      // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
+      numberOfWorkers = Math.min(
+        numberOfAssetsForMinify,
+        availableNumberOfCores
+      );
+      // eslint-disable-next-line consistent-return
+      getWorker = () => {
+        if (initializedWorker) {
+          return initializedWorker;
+        }
+
+        initializedWorker = new Worker(require.resolve('./minify'), {
+          numWorkers: numberOfWorkers,
+          enableWorkerThreads: true,
+        });
+
+        // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
+        const workerStdout = initializedWorker.getStdout();
+
+        if (workerStdout) {
+          workerStdout.on('data', (chunk) => {
+            return process.stdout.write(chunk);
+          });
+        }
+
+        const workerStderr = initializedWorker.getStderr();
+
+        if (workerStderr) {
+          workerStderr.on('data', (chunk) => {
+            return process.stderr.write(chunk);
+          });
+        }
+
+        return initializedWorker;
+      };
+    }
+
+    const limit = pLimit(
+      getWorker && numberOfAssetsForMinify > 0 ? numberOfWorkers : Infinity
+    );
+    const {
+      SourceMapSource,
+      ConcatSource,
+      RawSource,
+    } = compiler.webpack.sources;
+    const allExtractedComments = new Map();
+    const scheduledTasks = [];
+
+    for (const asset of assetsForMinify) {
+      scheduledTasks.push(
+        limit(async () => {
+          const { name, input, inputSourceMap, info, cacheItem } = asset;
+          let { output } = asset;
 
           if (!output) {
             const options = {
@@ -220,8 +242,8 @@ class TerserPlugin {
             }
 
             try {
-              output = await (worker
-                ? worker.transform(serialize(options))
+              output = await (getWorker
+                ? getWorker().transform(serialize(options))
                 : minifyFn(options));
             } catch (error) {
               compilation.errors.push(
@@ -327,7 +349,7 @@ class TerserPlugin {
               );
             }
 
-            await cache.storePromise(name, eTag, {
+            await cacheItem.storePromise({
               source: output.source,
               commentsFilename: output.commentsFilename,
               extractedCommentsSource: output.extractedCommentsSource,
@@ -356,8 +378,8 @@ class TerserPlugin {
 
     await Promise.all(scheduledTasks);
 
-    if (worker) {
-      await worker.end();
+    if (initializedWorker) {
+      await initializedWorker.end();
     }
 
     await Array.from(allExtractedComments)
