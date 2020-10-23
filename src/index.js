@@ -197,23 +197,29 @@ class TerserPlugin {
           let output = await cache.getPromise(name, eTag);
 
           if (!output) {
-            const minimizerOptions = {
+            const options = {
               name,
               input,
               inputSourceMap,
               minify: this.options.minify,
-              minimizerOptions: this.options.terserOptions,
+              minimizerOptions: { ...this.options.terserOptions },
               extractComments: this.options.extractComments,
             };
 
-            if (/\.mjs(\?.*)?$/i.test(name)) {
-              this.options.terserOptions.module = true;
+            if (typeof options.minimizerOptions.module === 'undefined') {
+              if (typeof info.javascriptModule !== 'undefined') {
+                options.minimizerOptions.module = info.javascriptModule;
+              } else if (/\.mjs(\?.*)?$/i.test(name)) {
+                options.minimizerOptions.module = true;
+              } else if (/\.cjs(\?.*)?$/i.test(name)) {
+                options.minimizerOptions.module = false;
+              }
             }
 
             try {
               output = await (worker
-                ? worker.transform(serialize(minimizerOptions))
-                : minifyFn(minimizerOptions));
+                ? worker.transform(serialize(options))
+                : minifyFn(options));
             } catch (error) {
               compilation.errors.push(
                 TerserPlugin.buildError(
@@ -425,13 +431,6 @@ class TerserPlugin {
 
   apply(compiler) {
     const { output } = compiler.options;
-
-    if (
-      typeof this.options.terserOptions.module === 'undefined' &&
-      typeof output.module !== 'undefined'
-    ) {
-      this.options.terserOptions.module = output.module;
-    }
 
     if (typeof this.options.terserOptions.ecma === 'undefined') {
       this.options.terserOptions.ecma = TerserPlugin.getEcmaVersion(

@@ -128,8 +128,8 @@ exports[`TerserPlugin should work and do not use memory cache when the "cache" o
 
 exports[`TerserPlugin should work and generate real content hash: assets 1`] = `
 Object {
-  "598.d955a8689b2acafd4711.4e73bd5971933bc3926e.c69b8ee272ff8c78063e.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
-  "app.89d50daa9391a6f7b515.6155aef4b60989a7b3d8.c69b8ee272ff8c78063e.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".d955a8689b2acafd4711.4e73bd5971933bc3926e.\\"+n.h()+\\".js\\",n.h=()=>\\"c69b8ee272ff8c78063e\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,c;if(void 0!==a)for(var l=document.getElementsByTagName(\\"script\\"),u=0;u<l.length;u++){var s=l[u];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+a){i=s;break}}i||(c=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var p=(r,o)=>{i.onerror=i.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=p.bind(null,i.onerror),i.onload=p.bind(null,i.onload),c&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={143:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=a);var i=n.p+n.u(r),c=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",c.name=\\"ChunkLoadError\\",c.type=a,c.request=i,o[1](c)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,c,l]=r,u=0,s=[];u<i.length;u++)a=i[u],n.o(e,a)&&e[a]&&s.push(e[a][0]),e[a]=0;for(o in c)n.o(c,o)&&(n.m[o]=c[o]);for(l&&l(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "598.d955a8689b2acafd4711.f8f55f964433398d4340.f7adfd362df949719a5d.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{\\"use strict\\";p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "app.14fa452e8ecddbca4e68.099e2102f06bcca79513.f7adfd362df949719a5d.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){if(o[e])return o[e].exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".d955a8689b2acafd4711.f8f55f964433398d4340.\\"+n.h()+\\".js\\",n.h=()=>\\"f7adfd362df949719a5d\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a)=>{if(e[t])e[t].push(o);else{var i,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var s=u[c];if(s.getAttribute(\\"src\\")==t||s.getAttribute(\\"data-webpack\\")==r+a){i=s;break}}i||(l=!0,(i=document.createElement(\\"script\\")).charset=\\"utf-8\\",i.timeout=120,n.nc&&i.setAttribute(\\"nonce\\",n.nc),i.setAttribute(\\"data-webpack\\",r+a),i.src=t),e[t]=[o];var p=(r,o)=>{i.onerror=i.onload=null,clearTimeout(d);var n=e[t];if(delete e[t],i.parentNode&&i.parentNode.removeChild(i),n&&n.forEach((e=>e(o))),r)return r(o)},d=setTimeout(p.bind(null,void 0,{type:\\"timeout\\",target:i}),12e4);i.onerror=p.bind(null,i.onerror),i.onload=p.bind(null,i.onload),l&&document.head.appendChild(i)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={143:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>{o=e[r]=[t,n]}));t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}}),\\"chunk-\\"+r)}};var r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[],t=r.push.bind(r);r.push=r=>{for(var o,a,[i,l,u]=r,c=0,s=[];c<i.length;c++)a=i[c],n.o(e,a)&&e[a]&&s.push(e[a][0]),e[a]=0;for(o in l)n.o(l,o)&&(n.m[o]=l[o]);for(u&&u(n),t(r);s.length;)s.shift()()}})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
 }
 `;
 
@@ -589,19 +589,6 @@ exports[`TerserPlugin should work with "asset" module type: errors 1`] = `Array 
 
 exports[`TerserPlugin should work with "asset" module type: warnings 1`] = `Array []`;
 
-exports[`TerserPlugin should work with "copy-webpack-plugin": assets 1`] = `
-Object {
-  "copy.cjs": "var foo=12;console.log(foo);",
-  "copy.js": "var foo=12;console.log(foo);",
-  "copy.mjs": "console.log(12);",
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
-}
-`;
-
-exports[`TerserPlugin should work with "copy-webpack-plugin": errors 1`] = `Array []`;
-
-exports[`TerserPlugin should work with "copy-webpack-plugin": warnings 1`] = `Array []`;
-
 exports[`TerserPlugin should work with "file-loader": assets 1`] = `
 Object {
   "main.js": "(()=>{\\"use strict\\";var t={};t.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(t){if(\\"object\\"==typeof window)return window}}(),(()=>{var r;t.g.importScripts&&(r=t.g.location+\\"\\");var e=t.g.document;if(!r&&e&&(e.currentScript&&(r=e.currentScript.src),!r)){var i=e.getElementsByTagName(\\"script\\");i.length&&(r=i[i.length-1].src)}if(!r)throw new Error(\\"Automatic publicPath is not supported in this browser\\");r=r.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),t.p=r})();const r=t.p+\\"test/fixtures/emitted.js\\";console.log(12,r)})();",
@@ -612,6 +599,32 @@ Object {
 exports[`TerserPlugin should work with "file-loader": errors 1`] = `Array []`;
 
 exports[`TerserPlugin should work with "file-loader": warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with ES modules: assets 1`] = `
+Object {
+  "copy.cjs": "var foo=12;console.log(foo);",
+  "copy.js": "var foo=12;console.log(foo);",
+  "copy.mjs": "console.log(12);",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+}
+`;
+
+exports[`TerserPlugin should work with ES modules: assets 2`] = `
+Object {
+  "copy.cjs": "var foo=12;console.log(foo);",
+  "copy.js": "var foo=12;console.log(foo);",
+  "copy.mjs": "console.log(12);",
+  "main.js": "var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791);",
+}
+`;
+
+exports[`TerserPlugin should work with ES modules: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with ES modules: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with ES modules: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with ES modules: warnings 2`] = `Array []`;
 
 exports[`TerserPlugin should work with child compilation: assets 1`] = `
 Object {

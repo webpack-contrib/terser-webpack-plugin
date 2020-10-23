@@ -299,7 +299,7 @@ describe('terserOptions option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should match snapshot for the "mangle" option with the "true" value', async () => {
+  it('should match snapshot for the "module" option with the "true" value', async () => {
     const compiler = getCompiler();
 
     new TerserPlugin({

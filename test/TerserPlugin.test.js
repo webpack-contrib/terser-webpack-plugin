@@ -715,29 +715,82 @@ describe('TerserPlugin', () => {
     process.stderr.write = stderrWrite;
   });
 
-  it('should work with "copy-webpack-plugin"', async () => {
-    const compiler = getCompiler();
-
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, './fixtures/copy.js'),
+  it('should work with ES modules', async () => {
+    const multiCompiler = getCompiler([
+      {
+        mode: 'production',
+        bail: true,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
+        optimization: {
+          minimize: false,
         },
-        {
-          from: path.resolve(__dirname, './fixtures/copy.cjs'),
+        output: {
+          pathinfo: false,
+          path: path.resolve(__dirname, 'dist/a'),
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
         },
-        {
-          from: path.resolve(__dirname, './fixtures/copy.mjs'),
+        plugins: [
+          new CopyWebpackPlugin({
+            patterns: [
+              {
+                from: path.resolve(__dirname, './fixtures/copy.js'),
+              },
+              {
+                from: path.resolve(__dirname, './fixtures/copy.cjs'),
+              },
+              {
+                from: path.resolve(__dirname, './fixtures/copy.mjs'),
+              },
+            ],
+          }),
+          new TerserPlugin(),
+        ],
+      },
+      {
+        mode: 'production',
+        bail: true,
+        entry: path.resolve(__dirname, './fixtures/entry.js'),
+        optimization: {
+          minimize: false,
         },
-      ],
-    }).apply(compiler);
-    new TerserPlugin().apply(compiler);
+        output: {
+          pathinfo: false,
+          path: path.resolve(__dirname, 'dist/b'),
+          filename: '[name].js',
+          chunkFilename: '[id].[name].js',
+        },
+        experiments: {
+          outputModule: true,
+        },
+        plugins: [
+          new CopyWebpackPlugin({
+            patterns: [
+              {
+                from: path.resolve(__dirname, './fixtures/copy.js'),
+              },
+              {
+                from: path.resolve(__dirname, './fixtures/copy.cjs'),
+              },
+              {
+                from: path.resolve(__dirname, './fixtures/copy.mjs'),
+              },
+            ],
+          }),
+          new TerserPlugin(),
+        ],
+      },
+    ]);
 
-    const stats = await compile(compiler);
+    const multiStats = await compile(multiCompiler);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    multiStats.stats.forEach((stats, index) => {
+      expect(
+        readsAssets(multiCompiler.compilers[index], stats)
+      ).toMatchSnapshot('assets');
+      expect(getErrors(stats)).toMatchSnapshot('errors');
+      expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    });
   });
 
   it('should work with child compilation', async () => {
