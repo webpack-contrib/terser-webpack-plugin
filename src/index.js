@@ -126,7 +126,10 @@ class TerserPlugin {
 
       concurrency = numWorkers;
 
-      worker = new Worker(require.resolve('./minify'), { numWorkers });
+      worker = new Worker(require.resolve('./minify'), {
+        numWorkers,
+        enableWorkerThreads: true,
+      });
 
       // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
       const workerStdout = worker.getStdout();
