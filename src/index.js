@@ -113,43 +113,49 @@ class TerserPlugin {
       return;
     }
 
+    let getWorker;
+    let initializedWorker;
+    let numberOfWorkers;
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel
     );
 
-    let concurrency = Infinity;
-    let worker;
-
     if (availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
-      const numWorkers = Math.min(assetNames.length, availableNumberOfCores);
+      numberOfWorkers = Math.min(assetNames.length, availableNumberOfCores);
+      // eslint-disable-next-line consistent-return
+      getWorker = () => {
+        if (initializedWorker) {
+          return initializedWorker;
+        }
 
-      concurrency = numWorkers;
-
-      worker = new Worker(require.resolve('./minify'), {
-        numWorkers,
-        enableWorkerThreads: true,
-      });
-
-      // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
-      const workerStdout = worker.getStdout();
-
-      if (workerStdout) {
-        workerStdout.on('data', (chunk) => {
-          return process.stdout.write(chunk);
+        initializedWorker = new Worker(require.resolve('./minify'), {
+          numWorkers: numberOfWorkers,
+          enableWorkerThreads: true,
         });
-      }
 
-      const workerStderr = worker.getStderr();
+        // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
+        const workerStdout = initializedWorker.getStdout();
 
-      if (workerStderr) {
-        workerStderr.on('data', (chunk) => {
-          return process.stderr.write(chunk);
-        });
-      }
+        if (workerStdout) {
+          workerStdout.on('data', (chunk) => {
+            return process.stdout.write(chunk);
+          });
+        }
+
+        const workerStderr = initializedWorker.getStderr();
+
+        if (workerStderr) {
+          workerStderr.on('data', (chunk) => {
+            return process.stderr.write(chunk);
+          });
+        }
+
+        return initializedWorker;
+      };
     }
 
-    const limit = pLimit(concurrency);
+    const limit = pLimit(getWorker ? numberOfWorkers : Infinity);
     const {
       SourceMapSource,
       ConcatSource,
@@ -220,8 +226,8 @@ class TerserPlugin {
             }
 
             try {
-              output = await (worker
-                ? worker.transform(serialize(options))
+              output = await (getWorker
+                ? getWorker().transform(serialize(options))
                 : minifyFn(options));
             } catch (error) {
               compilation.errors.push(
@@ -356,8 +362,8 @@ class TerserPlugin {
 
     await Promise.all(scheduledTasks);
 
-    if (worker) {
-      await worker.end();
+    if (initializedWorker) {
+      await initializedWorker.end();
     }
 
     await Array.from(allExtractedComments)

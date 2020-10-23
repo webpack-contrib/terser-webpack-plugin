@@ -118,7 +118,6 @@ describe('"cache" option', () => {
       },
       cache: {
         type: 'memory',
-        // cacheDirectory: fileSystemCacheDirectory,
       },
     });
 
