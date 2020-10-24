@@ -142,15 +142,15 @@ async function minify(options) {
     input,
     inputSourceMap,
     minify: minifyFn,
-    minimizerOptions,
+    minifyOptions,
   } = options;
 
   if (minifyFn) {
-    return minifyFn({ [name]: input }, inputSourceMap, minimizerOptions);
+    return minifyFn({ [name]: input }, inputSourceMap, minifyOptions);
   }
 
   // Copy terser options
-  const terserOptions = buildTerserOptions(minimizerOptions);
+  const terserOptions = buildTerserOptions(minifyOptions);
 
   // Let terser generate a SourceMap
   if (inputSourceMap) {

@@ -20,9 +20,7 @@ import { minify as minifyFn } from './minify';
 
 /** @typedef {JestWorker} MinifyWorker */
 
-/**
- * @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions
- */
+/** @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions */
 
 /**
  * @callback ExtractCommentsFunction
@@ -40,6 +38,9 @@ import { minify as minifyFn } from './minify';
 
 /**
  * @callback CustomMinifyFunction
+ * @params {any} file
+ * @params {any} sourceMap
+ * @params {MinifyOptions} minifyOptions
  */
 
 /**
@@ -298,17 +299,17 @@ class TerserPlugin {
               input,
               inputSourceMap,
               minify: this.options.minify,
-              minimizerOptions: { ...this.options.terserOptions },
+              minifyOptions: { ...this.options.terserOptions },
               extractComments: this.options.extractComments,
             };
 
-            if (typeof options.minimizerOptions.module === 'undefined') {
+            if (typeof options.minifyOptions.module === 'undefined') {
               if (typeof info.javascriptModule !== 'undefined') {
-                options.minimizerOptions.module = info.javascriptModule;
+                options.minifyOptions.module = info.javascriptModule;
               } else if (/\.mjs(\?.*)?$/i.test(name)) {
-                options.minimizerOptions.module = true;
+                options.minifyOptions.module = true;
               } else if (/\.cjs(\?.*)?$/i.test(name)) {
-                options.minimizerOptions.module = false;
+                options.minifyOptions.module = false;
               }
             }
 

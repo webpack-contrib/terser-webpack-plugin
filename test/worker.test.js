@@ -134,7 +134,7 @@ describe('worker', () => {
       name: 'test2.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         output: {
           comments: 'all',
         },
@@ -150,7 +150,7 @@ describe('worker', () => {
       name: 'test3.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         compress: true,
       },
     };
@@ -164,7 +164,7 @@ describe('worker', () => {
       name: 'test3.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         compress: {
           passes: 2,
         },
@@ -180,7 +180,7 @@ describe('worker', () => {
       name: 'test3.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         output: {
           comments: 'some',
         },
@@ -196,7 +196,7 @@ describe('worker', () => {
       name: 'test4.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         output: {
           comments: 'some',
         },
@@ -212,7 +212,7 @@ describe('worker', () => {
     const options = {
       name: 'test5.js',
       input: '/******/ function hello(a) {console.log(a)}',
-      minimizerOptions: {
+      minifyOptions: {
         output: {
           comments: 'all',
         },
@@ -264,7 +264,7 @@ describe('worker', () => {
       name: 'test4.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         mangle: null,
       },
     };
@@ -278,7 +278,7 @@ describe('worker', () => {
       name: 'test4.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         mangle: true,
       },
     };
@@ -292,7 +292,7 @@ describe('worker', () => {
       name: 'test4.js',
       input:
         'var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */',
-      minimizerOptions: {
+      minifyOptions: {
         mangle: { toplevel: true },
       },
     };
