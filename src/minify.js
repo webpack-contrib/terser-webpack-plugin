@@ -2,6 +2,8 @@ const { minify: terserMinify } = require('terser');
 
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("terser").MinifyOutput} MinifyOutput */
+/** @typedef {import("terser").FormatOptions} FormatOptions */
+/** @typedef {import("terser").MangleOptions} MangleOptions */
 /** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 
@@ -23,7 +25,7 @@ const { minify: terserMinify } = require('terser');
 
 /**
  * @param {TerserMinifyOptions} [terserOptions={}]
- * @returns {TerserMinifyOptions & { sourceMap: undefined } }
+ * @returns {TerserMinifyOptions & { mangle: MangleOptions, output: FormatOptions & { beautify: boolean }, sourceMap: undefined }}
  */
 function buildTerserOptions(terserOptions = {}) {
   return {
@@ -34,6 +36,7 @@ function buildTerserOptions(terserOptions = {}) {
         : typeof terserOptions.mangle === 'boolean'
         ? terserOptions.mangle
         : { ...terserOptions.mangle },
+    // Deprecated
     output: {
       beautify: false,
       ...terserOptions.output,
