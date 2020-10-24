@@ -73,7 +73,8 @@
           "type": "boolean"
         },
         {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         {
           "instanceof": "RegExp"
@@ -90,7 +91,8 @@
                   "type": "boolean"
                 },
                 {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 {
                   "instanceof": "RegExp"
@@ -103,7 +105,8 @@
             "filename": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 {
                   "instanceof": "Function"
@@ -116,7 +119,8 @@
                   "type": "boolean"
                 },
                 {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 {
                   "instanceof": "Function"

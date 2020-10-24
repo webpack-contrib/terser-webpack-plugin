@@ -494,54 +494,66 @@ class TerserPlugin {
 
     await Array.from(allExtractedComments)
       .sort()
-      .reduce(async (previousPromise, [from, value]) => {
-        const previous = await previousPromise;
-        const { commentsFilename, extractedCommentsSource } = value;
+      .reduce(
+        /**
+         * @param {any} previousPromise
+         * @param {any} extractedComments
+         * @returns {Promise<any>}
+         */
+        async (previousPromise, [from, value]) => {
+          const previous = await previousPromise;
+          const { commentsFilename, extractedCommentsSource } = value;
 
-        if (previous && previous.commentsFilename === commentsFilename) {
-          const { from: previousFrom, source: prevSource } = previous;
-          const mergedName = `${previousFrom}|${from}`;
-          const name = `${commentsFilename}|${mergedName}`;
-          const eTag = [prevSource, extractedCommentsSource]
-            .map((item) => cache.getLazyHashedEtag(item))
-            .reduce((previousValue, currentValue) =>
-              cache.mergeEtags(previousValue, currentValue)
-            );
+          if (previous && previous.commentsFilename === commentsFilename) {
+            const { from: previousFrom, source: prevSource } = previous;
+            const mergedName = `${previousFrom}|${from}`;
+            const name = `${commentsFilename}|${mergedName}`;
+            const eTag = [prevSource, extractedCommentsSource]
+              .map((item) => cache.getLazyHashedEtag(item))
+              .reduce((previousValue, currentValue) =>
+                cache.mergeEtags(previousValue, currentValue)
+              );
 
-          let source = await cache.getPromise(name, eTag);
+            let source = await cache.getPromise(name, eTag);
 
-          if (!source) {
-            source = new ConcatSource(
-              Array.from(
-                new Set([
-                  ...prevSource.source().split('\n\n'),
-                  ...extractedCommentsSource.source().split('\n\n'),
-                ])
-              ).join('\n\n')
-            );
+            if (!source) {
+              source = new ConcatSource(
+                Array.from(
+                  new Set([
+                    ...prevSource.source().split('\n\n'),
+                    ...extractedCommentsSource.source().split('\n\n'),
+                  ])
+                ).join('\n\n')
+              );
 
-            await cache.storePromise(name, eTag, source);
+              await cache.storePromise(name, eTag, source);
+            }
+
+            compilation.updateAsset(commentsFilename, source);
+
+            return { commentsFilename, from: mergedName, source };
           }
 
-          compilation.updateAsset(commentsFilename, source);
+          const existingAsset = compilation.getAsset(commentsFilename);
 
-          return { commentsFilename, from: mergedName, source };
-        }
+          if (existingAsset) {
+            return {
+              commentsFilename,
+              from: commentsFilename,
+              source: existingAsset.source,
+            };
+          }
 
-        const existingAsset = compilation.getAsset(commentsFilename);
+          compilation.emitAsset(commentsFilename, extractedCommentsSource);
 
-        if (existingAsset) {
           return {
             commentsFilename,
-            from: commentsFilename,
-            source: existingAsset.source,
+            from,
+            source: extractedCommentsSource,
           };
-        }
-
-        compilation.emitAsset(commentsFilename, extractedCommentsSource);
-
-        return { commentsFilename, from, source: extractedCommentsSource };
-      }, Promise.resolve());
+        },
+        Promise.resolve()
+      );
   }
 
   /**
