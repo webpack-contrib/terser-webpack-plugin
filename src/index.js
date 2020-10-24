@@ -18,8 +18,10 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
+/** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
+/** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
 
-/** @typedef {JestWorker} MinifyWorker */
+/** @typedef {JestWorker & { transform: (options: InternalMinifyOptions) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
 
 /** @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions */
 
