@@ -14,6 +14,7 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").Rules} Rules */
+/** @typedef {import("webpack").Source} Source */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("webpack").AssetInfo} AssetInfo */
@@ -185,7 +186,7 @@ class TerserPlugin {
   /**
    * @param {Compiler} compiler
    * @param {Compilation} compilation
-   * @param {Asset[]} assets
+   * @param {Record<string, Source>} assets
    * @param {{availableNumberOfCores: number}} optimizeOptions
    * @returns {Promise<void>}
    */
