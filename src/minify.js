@@ -121,27 +121,36 @@ function buildComments(extractComments, terserOptions, extractedComments) {
         }
 
         if (condition[key] === 'some') {
-          condition[key] = (astNode, comment) => {
+          condition[key] = /** @type {ExtractCommentsFunction} */ ((
+            astNode,
+            comment
+          ) => {
             return (
               (comment.type === 'comment2' || comment.type === 'comment1') &&
               /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
             );
-          };
+          });
 
           break;
         }
 
         regexStr = condition[key];
 
-        condition[key] = (astNode, comment) => {
+        condition[key] = /** @type {ExtractCommentsFunction} */ ((
+          astNode,
+          comment
+        ) => {
           return new RegExp(regexStr).test(comment.value);
-        };
+        });
 
         break;
       default:
         regex = condition[key];
 
-        condition[key] = (astNode, comment) => regex.test(comment.value);
+        condition[key] = /** @type {ExtractCommentsFunction} */ ((
+          astNode,
+          comment
+        ) => regex.test(comment.value));
     }
   });
 
