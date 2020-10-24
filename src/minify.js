@@ -142,7 +142,9 @@ function buildComments(extractComments, terserOptions, extractedComments) {
           astNode,
           comment
         ) => {
-          return new RegExp(regexStr).test(comment.value);
+          return new RegExp(/** @type {string} */ (regexStr)).test(
+            comment.value
+          );
         });
 
         break;
@@ -152,7 +154,7 @@ function buildComments(extractComments, terserOptions, extractedComments) {
         condition[key] = /** @type {ExtractCommentsFunction} */ ((
           astNode,
           comment
-        ) => regex.test(comment.value));
+        ) => /** @type {RegExp} */ (regex).test(comment.value));
     }
   });
 
