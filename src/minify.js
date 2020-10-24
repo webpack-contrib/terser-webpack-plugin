@@ -136,7 +136,7 @@ function buildComments(extractComments, terserOptions, extractedComments) {
           break;
         }
 
-        regexStr = condition[key];
+        regexStr = /** @type {string} */ (condition[key]);
 
         condition[key] = /** @type {ExtractCommentsFunction} */ ((
           astNode,
@@ -147,7 +147,7 @@ function buildComments(extractComments, terserOptions, extractedComments) {
 
         break;
       default:
-        regex = condition[key];
+        regex = /** @type {RegExp} */ (condition[key]);
 
         condition[key] = /** @type {ExtractCommentsFunction} */ ((
           astNode,
