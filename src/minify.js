@@ -1,6 +1,7 @@
 const { minify: terserMinify } = require('terser');
 
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
+/** @typedef {import("terser").MinifyOutput} MinifyOutput */
 /** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 
@@ -14,11 +15,11 @@ const { minify: terserMinify } = require('terser');
  * @property {any} minifyOptions
  */
 
-/**
- * @typedef {Promise<any>} InternalMinifyResult
- */
-
 /** @typedef {Array<string>} ExtractedComments */
+
+/**
+ * @typedef {Promise<MinifyOutput & { extractedComments?: ExtractedComments}>} InternalMinifyResult
+ */
 
 /**
  * @param {TerserMinifyOptions} [terserOptions={}]
