@@ -2,6 +2,7 @@ const { minify: terserMinify } = require('terser');
 
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
+/** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 
 /**
  * @typedef {Object} InternalMinifyOptions
@@ -56,7 +57,7 @@ function isObject(value) {
  * @param {any} extractComments
  * @param {TerserMinifyOptions} terserOptions
  * @param {ExtractedComments} extractedComments
- * @returns {(astNode: any, comment: any) => boolean}
+ * @returns {ExtractCommentsFunction}
  */
 function buildComments(extractComments, terserOptions, extractedComments) {
   const condition = {};
