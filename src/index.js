@@ -26,7 +26,7 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
 
-/** @typedef {JestWorker & { transform: (options: InternalMinifyOptions) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
+/** @typedef {JestWorker & { transform: (options: string) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
 
 /** @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions */
 
