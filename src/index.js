@@ -100,7 +100,7 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
-  async optimize(compiler, compilation, assets) {
+  async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache('TerserWebpackPlugin');
     let numberOfAssetsForMinify = 0;
     const assetsForMinify = (
@@ -162,15 +162,12 @@ class TerserPlugin {
     let getWorker;
     let initializedWorker;
     let numberOfWorkers;
-    const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
-      this.options.parallel
-    );
 
-    if (availableNumberOfCores > 0) {
+    if (optimizeOptions.availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
       numberOfWorkers = Math.min(
         numberOfAssetsForMinify,
-        availableNumberOfCores
+        optimizeOptions.availableNumberOfCores
       );
       // eslint-disable-next-line consistent-return
       getWorker = () => {
@@ -464,6 +461,9 @@ class TerserPlugin {
     }
 
     const pluginName = this.constructor.name;
+    const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
+      this.options.parallel
+    );
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
       const hooks = compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
@@ -485,7 +485,10 @@ class TerserPlugin {
           stage:
             compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
         },
-        (assets) => this.optimize(compiler, compilation, assets)
+        (assets) =>
+          this.optimize(compiler, compilation, assets, {
+            availableNumberOfCores,
+          })
       );
 
       compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
