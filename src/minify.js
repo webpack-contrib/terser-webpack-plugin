@@ -6,6 +6,7 @@ const { minify: terserMinify } = require('terser');
 /** @typedef {import("terser").MangleOptions} MangleOptions */
 /** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
+/** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 
 /**
  * @typedef {Object} InternalMinifyOptions
@@ -70,6 +71,7 @@ function isObject(value) {
  * @returns {ExtractCommentsFunction}
  */
 function buildComments(extractComments, terserOptions, extractedComments) {
+  /** @type {{ [index: string]: ExtractCommentsCondition }} */
   const condition = {};
   const { comments } = terserOptions.output;
 
