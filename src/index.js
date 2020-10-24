@@ -14,6 +14,7 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").Rules} Rules */
+/** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
@@ -123,7 +124,7 @@ class TerserPlugin {
    * @param {string} file
    * @param {any} requestShortener
    * @param {SourceMapConsumer} [sourceMap]
-   * @returns {Error}
+   * @returns {WebpackError}
    */
   static buildError(error, file, requestShortener, sourceMap) {
     if (error.line) {
@@ -224,7 +225,8 @@ class TerserPlugin {
               inputSourceMap = map;
 
               compilation.warnings.push(
-                new Error(`${name} contains invalid source map`)
+                /** @type {WebpackError} */
+                (new Error(`${name} contains invalid source map`))
               );
             }
           }
