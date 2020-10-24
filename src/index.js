@@ -11,6 +11,7 @@ import Worker from 'jest-worker';
 import * as schema from './options.json';
 import { minify as minifyFn } from './minify';
 
+/** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").Rules} Rules */
@@ -78,7 +79,7 @@ class TerserPlugin {
    * @param {TerserPluginOptions} options
    */
   constructor(options = {}) {
-    validate(schema, options, {
+    validate(/** @type {Schema} */ (schema), options, {
       name: 'Terser Plugin',
       baseDataPath: 'options',
     });
