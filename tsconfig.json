@@ -6,7 +6,8 @@
     "checkJs": true,
     "strict": true,
     "types": ["node"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["./src/**/*"]
 }

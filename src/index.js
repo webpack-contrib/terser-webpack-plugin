@@ -303,7 +303,9 @@ class TerserPlugin {
     }
 
     const limit = pLimit(
-      getWorker && numberOfAssetsForMinify > 0 ? numberOfWorkers : Infinity
+      getWorker && numberOfAssetsForMinify > 0
+        ? /** @type {number} */ (numberOfWorkers)
+        : Infinity
     );
     const {
       SourceMapSource,
