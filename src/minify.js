@@ -1,6 +1,21 @@
 const { minify: terserMinify } = require('terser');
 
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
+/** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
+
+/**
+ * @typedef {Object} InternalMinifyOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {SourceMapRawSourceMap} inputSourceMap
+ * @property {any} extractComments
+ * @property {any} minify
+ * @property {any} minifyOptions
+ */
+
+/**
+ * @typedef {Promise<any>} InternalMinifyResult
+ */
 
 /** @typedef {Array<string>} ExtractedComments */
 
@@ -136,6 +151,10 @@ function buildComments(extractComments, terserOptions, extractedComments) {
   };
 }
 
+/**
+ * @param {InternalMinifyOptions} options
+ * @returns {InternalMinifyResult}
+ */
 async function minify(options) {
   const {
     name,
@@ -173,6 +192,10 @@ async function minify(options) {
   return { ...result, extractedComments };
 }
 
+/**
+ * @param {InternalMinifyOptions} options
+ * @returns {InternalMinifyResult}
+ */
 function transform(options) {
   // 'use strict' => this === undefined (Clean Scope)
   // Safer for possible security issues, albeit not critical at all here
