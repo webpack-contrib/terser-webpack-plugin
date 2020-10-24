@@ -13,12 +13,50 @@ import { minify as minifyFn } from './minify';
 
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
+/** @typedef {import("webpack").Rules} Rules */
 /** @typedef {import("terser").ECMA} TerserECMA */
+/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
 
 /** @typedef {JestWorker} MinifyWorker */
 
+/**
+ * @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions
+ */
+
+/**
+ * @callback ExtractCommentsFunction
+ * @param {any} astNode
+ * @param {any} comment
+ * @returns {boolean}
+ */
+
+/**
+ * @typedef {Object} ExtractCommentsObject
+ * @property {any} condition
+ * @property {string | ((fileData: any) => string)} filename
+ * @property {any} banner
+ */
+
+/**
+ * @callback CustomMinifyFunction
+ */
+
+/**
+ * @typedef {Object} TerserPluginOptions
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {MinifyOptions} [terserOptions]
+ * @property {boolean | string | RegExp | ExtractCommentsFunction | ExtractCommentsObject} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {CustomMinifyFunction} [minify]
+ */
+
 class TerserPlugin {
+  /**
+   * @param {TerserPluginOptions} options
+   */
   constructor(options = {}) {
     validate(schema, options, {
       name: 'Terser Plugin',
