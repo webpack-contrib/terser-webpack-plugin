@@ -4,14 +4,16 @@ import * as os from 'os';
 import { SourceMapConsumer } from 'source-map';
 import { validate } from 'schema-utils';
 import serialize from 'serialize-javascript';
-import terserPackageJson from 'terser/package.json';
+import * as terserPackageJson from 'terser/package.json';
 import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 
-import schema from './options.json';
+import * as schema from './options.json';
 import { minify as minifyFn } from './minify';
 
 /** @typedef {import("webpack").Compiler} Compiler */
+/** @typedef {import("webpack").Compilation} Compilation */
+/** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("jest-worker").default} JestWorker */
 
 class TerserPlugin {
@@ -42,6 +44,11 @@ class TerserPlugin {
     };
   }
 
+  /**
+   * @private
+   * @param {any} input
+   * @returns {boolean}
+   */
   static isSourceMap(input) {
     // All required options for `new SourceMapConsumer(...options)`
     // https://github.com/mozilla/source-map#new-sourcemapconsumerrawsourcemap
@@ -54,7 +61,15 @@ class TerserPlugin {
     );
   }
 
-  static buildError(error, file, sourceMap, requestShortener) {
+  /**
+   * @private
+   * @param {Error & { line: number, col: number}} error
+   * @param {string} file
+   * @param {any} requestShortener
+   * @param {SourceMapConsumer} [sourceMap]
+   * @returns {Error}
+   */
+  static buildError(error, file, requestShortener, sourceMap) {
     if (error.line) {
       const original =
         sourceMap &&
@@ -93,6 +108,11 @@ class TerserPlugin {
     return new Error(`${file} from Terser\n${error.message}`);
   }
 
+  /**
+   * @private
+   * @param {boolean} parallel
+   * @returns {number}
+   */
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
@@ -103,6 +123,14 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
+  /**
+   * @private
+   * @param {Compiler} compiler
+   * @param {Compilation} compilation
+   * @param {any} assets
+   * @param {{availableNumberOfCores: number}} optimizeOptions
+   * @returns {Promise<void>}
+   */
   async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache('TerserWebpackPlugin');
     let numberOfAssetsForMinify = 0;
@@ -248,14 +276,19 @@ class TerserPlugin {
                 ? getWorker().transform(serialize(options))
                 : minifyFn(options));
             } catch (error) {
+              const hasSourceMap =
+                inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
+
               compilation.errors.push(
                 TerserPlugin.buildError(
                   error,
                   name,
-                  inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)
+                  // eslint-disable-next-line no-undefined
+                  hasSourceMap ? compilation.requestShortener : undefined,
+                  hasSourceMap
                     ? new SourceMapConsumer(inputSourceMap)
-                    : null,
-                  compilation.requestShortener
+                    : // eslint-disable-next-line no-undefined
+                      undefined
                 )
               );
 
@@ -436,6 +469,11 @@ class TerserPlugin {
       }, Promise.resolve());
   }
 
+  /**
+   * @private
+   * @param {any} environment
+   * @returns {TerserECMA}
+   */
   static getEcmaVersion(environment) {
     // ES 6th
     if (
