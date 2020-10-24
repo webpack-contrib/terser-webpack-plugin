@@ -17,15 +17,21 @@ const { minify: terserMinify } = require('terser');
  * @property {any} minifyOptions
  */
 
-/** @typedef {Array<string>} ExtractedComments */
+/**
+ * @typedef {Array<string>} ExtractedComments
+ */
 
 /**
  * @typedef {Promise<MinifyOutput & { extractedComments?: ExtractedComments}>} InternalMinifyResult
  */
 
 /**
+ * @typedef {TerserMinifyOptions & { mangle: MangleOptions, output: FormatOptions & { beautify: boolean }, sourceMap: undefined }} NormalizedTerserMinifyOptions
+ */
+
+/**
  * @param {TerserMinifyOptions} [terserOptions={}]
- * @returns {TerserMinifyOptions & { mangle: MangleOptions, output: FormatOptions & { beautify: boolean }, sourceMap: undefined }}
+ * @returns {NormalizedTerserMinifyOptions}
  */
 function buildTerserOptions(terserOptions = {}) {
   return {
@@ -59,7 +65,7 @@ function isObject(value) {
 
 /**
  * @param {any} extractComments
- * @param {TerserMinifyOptions} terserOptions
+ * @param {NormalizedTerserMinifyOptions} terserOptions
  * @param {ExtractedComments} extractedComments
  * @returns {ExtractCommentsFunction}
  */
