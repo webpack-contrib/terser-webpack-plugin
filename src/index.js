@@ -12,6 +12,7 @@ import schema from './options.json';
 import { minify as minifyFn } from './minify';
 
 /** @typedef {import("webpack").Compiler} Compiler */
+/** @typedef {import("jest-worker").default} JestWorker */
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -162,7 +163,9 @@ class TerserPlugin {
     ).filter((item) => Boolean(item));
 
     let getWorker;
+    /** @type {undefined | JestWorker} */
     let initializedWorker;
+    /** @type {undefined | number} */
     let numberOfWorkers;
 
     if (optimizeOptions.availableNumberOfCores > 0) {

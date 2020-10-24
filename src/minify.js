@@ -1,53 +1,48 @@
 const { minify: terserMinify } = require('terser');
 
-const buildTerserOptions = ({
-  ecma,
-  parse = {},
-  compress = {},
-  mangle,
-  module,
-  output,
-  toplevel,
-  nameCache,
-  ie8,
-  /* eslint-disable camelcase */
-  keep_classnames,
-  keep_fnames,
-  /* eslint-enable camelcase */
-  safari10,
-} = {}) => ({
-  parse: { ...parse },
-  compress: typeof compress === 'boolean' ? compress : { ...compress },
-  // eslint-disable-next-line no-nested-ternary
-  mangle:
-    mangle == null
-      ? true
-      : typeof mangle === 'boolean'
-      ? mangle
-      : { ...mangle },
-  output: {
-    beautify: false,
-    ...output,
-  },
-  // Ignoring sourceMap from options
-  sourceMap: null,
-  ecma,
-  keep_classnames,
-  keep_fnames,
-  ie8,
-  module,
-  nameCache,
-  safari10,
-  toplevel,
-});
+/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 
+/** @typedef {Array<string>} ExtractedComments
+
+/**
+ * @param {TerserMinifyOptions} [terserOptions={}]
+ * @returns {TerserMinifyOptions}
+ */
+function buildTerserOptions(terserOptions = {}) {
+  return {
+    ...terserOptions,
+    mangle:
+      terserOptions.mangle == null
+        ? true
+        : typeof terserOptions.mangle === 'boolean'
+        ? terserOptions.mangle
+        : { ...terserOptions.mangle },
+    output: {
+      beautify: false,
+      ...terserOptions.output,
+    },
+    // Ignoring sourceMap from options
+    // eslint-disable-next-line no-undefined
+    sourceMap: undefined,
+  };
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
 function isObject(value) {
   const type = typeof value;
 
   return value != null && (type === 'object' || type === 'function');
 }
 
-const buildComments = (extractComments, terserOptions, extractedComments) => {
+/**
+ * @params {any} extractComments
+ * @params {terserOptions} TerserMinifyOptions
+ * @params {ExtractedComments} TerserMinifyOptions
+ */
+function buildComments(extractComments, terserOptions, extractedComments) {
   const condition = {};
   const { comments } = terserOptions.output;
 
@@ -138,7 +133,7 @@ const buildComments = (extractComments, terserOptions, extractedComments) => {
 
     return condition.preserve(astNode, comment);
   };
-};
+}
 
 async function minify(options) {
   const {
@@ -158,9 +153,11 @@ async function minify(options) {
 
   // Let terser generate a SourceMap
   if (inputSourceMap) {
+    // @ts-ignore
     terserOptions.sourceMap = { asObject: true };
   }
 
+  /** @type {ExtractedComments} */
   const extractedComments = [];
   const { extractComments } = options;
 
