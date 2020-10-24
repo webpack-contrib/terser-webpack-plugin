@@ -265,10 +265,12 @@ class TerserPlugin {
           return initializedWorker;
         }
 
-        initializedWorker = new Worker(require.resolve('./minify'), {
-          numWorkers: numberOfWorkers,
-          enableWorkerThreads: true,
-        });
+        initializedWorker =
+          /** @type {MinifyWorker} */
+          (new Worker(require.resolve('./minify'), {
+            numWorkers: numberOfWorkers,
+            enableWorkerThreads: true,
+          }));
 
         // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
         const workerStdout = initializedWorker.getStdout();
