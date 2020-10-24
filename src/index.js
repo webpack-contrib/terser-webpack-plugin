@@ -16,6 +16,8 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("jest-worker").default} JestWorker */
 
+/** @typedef {JestWorker} MinifyWorker */
+
 class TerserPlugin {
   constructor(options = {}) {
     validate(schema, options, {
@@ -190,8 +192,9 @@ class TerserPlugin {
       )
     ).filter((item) => Boolean(item));
 
+    /** @type {undefined | (() => MinifyWorker)} */
     let getWorker;
-    /** @type {undefined | JestWorker} */
+    /** @type {undefined | MinifyWorker} */
     let initializedWorker;
     /** @type {undefined | number} */
     let numberOfWorkers;

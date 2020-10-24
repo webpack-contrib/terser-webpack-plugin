@@ -2,11 +2,11 @@ const { minify: terserMinify } = require('terser');
 
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 
-/** @typedef {Array<string>} ExtractedComments
+/** @typedef {Array<string>} ExtractedComments */
 
 /**
  * @param {TerserMinifyOptions} [terserOptions={}]
- * @returns {TerserMinifyOptions}
+ * @returns {TerserMinifyOptions & { sourceMap: undefined } }
  */
 function buildTerserOptions(terserOptions = {}) {
   return {
@@ -38,9 +38,10 @@ function isObject(value) {
 }
 
 /**
- * @params {any} extractComments
- * @params {terserOptions} TerserMinifyOptions
- * @params {ExtractedComments} TerserMinifyOptions
+ * @param {any} extractComments
+ * @param {TerserMinifyOptions} terserOptions
+ * @param {ExtractedComments} extractedComments
+ * @returns {(astNode: any, comment: any) => boolean}
  */
 function buildComments(extractComments, terserOptions, extractedComments) {
   const condition = {};
