@@ -610,7 +610,7 @@ describe('extractComments option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work with the existing licenses file', async () => {
+  it.only('should work with the existing licenses file', async () => {
     new ExistingCommentsFile().apply(compiler);
     new TerserPlugin({
       extractComments: {

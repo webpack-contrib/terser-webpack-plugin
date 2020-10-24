@@ -126,14 +126,14 @@ exports[`validation 10`] = `
 exports[`validation 11`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments should be one of these:
-   boolean | string | RegExp | function | object { condition?, filename?, banner? }
+   boolean | non-empty string | RegExp | function | object { condition?, filename?, banner? }
    -> Whether comments shall be extracted to a separate file.
    Details:
     * options.extractComments.condition should be one of these:
-      boolean | string | RegExp | function
+      boolean | non-empty string | RegExp | function
       Details:
        * options.extractComments.condition should be a boolean.
-       * options.extractComments.condition should be a string.
+       * options.extractComments.condition should be a non-empty string.
        * options.extractComments.condition should be an instance of RegExp.
        * options.extractComments.condition should be an instance of function."
 `;
@@ -141,27 +141,27 @@ exports[`validation 11`] = `
 exports[`validation 12`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments should be one of these:
-   boolean | string | RegExp | function | object { condition?, filename?, banner? }
+   boolean | non-empty string | RegExp | function | object { condition?, filename?, banner? }
    -> Whether comments shall be extracted to a separate file.
    Details:
     * options.extractComments.filename should be one of these:
-      string | function
+      non-empty string | function
       Details:
-       * options.extractComments.filename should be a string.
+       * options.extractComments.filename should be a non-empty string.
        * options.extractComments.filename should be an instance of function."
 `;
 
 exports[`validation 13`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.extractComments should be one of these:
-   boolean | string | RegExp | function | object { condition?, filename?, banner? }
+   boolean | non-empty string | RegExp | function | object { condition?, filename?, banner? }
    -> Whether comments shall be extracted to a separate file.
    Details:
     * options.extractComments.banner should be one of these:
-      boolean | string | function
+      boolean | non-empty string | function
       Details:
        * options.extractComments.banner should be a boolean.
-       * options.extractComments.banner should be a string.
+       * options.extractComments.banner should be a non-empty string.
        * options.extractComments.banner should be an instance of function."
 `;
 

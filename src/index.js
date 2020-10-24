@@ -354,7 +354,9 @@ class TerserPlugin {
                   // eslint-disable-next-line no-undefined
                   hasSourceMap ? compilation.requestShortener : undefined,
                   hasSourceMap
-                    ? new SourceMapConsumer(inputSourceMap)
+                    ? new SourceMapConsumer(
+                        /** @type {SourceMapRawSourceMap} */ (inputSourceMap)
+                      )
                     : // eslint-disable-next-line no-undefined
                       undefined
                 )
@@ -384,7 +386,7 @@ class TerserPlugin {
                 name,
                 output.map,
                 input,
-                inputSourceMap,
+                /** @type {SourceMapRawSourceMap} */ (inputSourceMap),
                 true
               );
             } else {
