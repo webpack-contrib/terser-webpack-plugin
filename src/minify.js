@@ -101,7 +101,9 @@ function buildComments(extractComments, terserOptions, extractedComments) {
 
   // Ensure that both conditions are functions
   ['preserve', 'extract'].forEach((key) => {
+    /** @type {undefined | string} */
     let regexStr;
+    /** @type {undefined | RegExp} */
     let regex;
 
     switch (typeof condition[key]) {
