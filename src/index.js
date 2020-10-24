@@ -17,6 +17,7 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
+/** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
 
 /** @typedef {JestWorker} MinifyWorker */
 
@@ -25,7 +26,7 @@ import { minify as minifyFn } from './minify';
 /**
  * @callback ExtractCommentsFunction
  * @param {any} astNode
- * @param {any} comment
+ * @param {{ value: string, type: 'comment1' | 'comment2' | 'comment3' | 'comment4', pos: number, line: number, col: number }} comment
  * @returns {boolean}
  */
 
@@ -38,9 +39,9 @@ import { minify as minifyFn } from './minify';
 
 /**
  * @callback CustomMinifyFunction
- * @params {any} file
- * @params {any} sourceMap
- * @params {MinifyOptions} minifyOptions
+ * @param {Object.<string, string>} file
+ * @param {SourceMapRawSourceMap} sourceMap
+ * @param {MinifyOptions} minifyOptions
  */
 
 /**
@@ -340,7 +341,8 @@ class TerserPlugin {
             let shebang;
 
             if (
-              this.options.extractComments.banner !== false &&
+              /** @type {ExtractCommentsObject} */
+              (this.options.extractComments).banner !== false &&
               output.extractedComments &&
               output.extractedComments.length > 0 &&
               output.code.startsWith('#!')
@@ -369,7 +371,8 @@ class TerserPlugin {
               output.extractedComments.length > 0
             ) {
               const commentsFilename =
-                this.options.extractComments.filename ||
+                /** @type {ExtractCommentsObject} */
+                (this.options.extractComments).filename ||
                 '[file].LICENSE.txt[query]';
 
               let query = '';
@@ -397,9 +400,13 @@ class TerserPlugin {
               let banner;
 
               // Add a banner to the original file
-              if (this.options.extractComments.banner !== false) {
+              if (
+                /** @type {ExtractCommentsObject} */
+                (this.options.extractComments).banner !== false
+              ) {
                 banner =
-                  this.options.extractComments.banner ||
+                  /** @type {ExtractCommentsObject} */
+                  (this.options.extractComments).banner ||
                   `For license information please see ${path
                     .relative(path.dirname(name), output.commentsFilename)
                     .replace(/\\/g, '/')}`;
