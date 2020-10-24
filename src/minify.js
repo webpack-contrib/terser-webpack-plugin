@@ -159,7 +159,10 @@ function buildComments(extractComments, terserOptions, extractedComments) {
   // Redefine the comments function to extract and preserve
   // comments according to the two conditions
   return (astNode, comment) => {
-    if (condition.extract(astNode, comment)) {
+    if (
+      /** @type {{ extract: ExtractCommentsFunction }} */
+      (condition).extract(astNode, comment)
+    ) {
       const commentText =
         comment.type === 'comment2'
           ? `/*${comment.value}*/`
@@ -171,7 +174,10 @@ function buildComments(extractComments, terserOptions, extractedComments) {
       }
     }
 
-    return condition.preserve(astNode, comment);
+    return /** @type {{ preserve: ExtractCommentsFunction }} */ (condition).preserve(
+      astNode,
+      comment
+    );
   };
 }
 
