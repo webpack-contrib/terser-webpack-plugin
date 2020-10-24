@@ -31,10 +31,22 @@ import { minify as minifyFn } from './minify';
  */
 
 /**
+ * @typedef {boolean | string | RegExp | ExtractCommentsFunction} ExtractCommentsCondition
+ */
+
+/**
+ * @typedef {string | ((fileData: any) => string)} ExtractCommentsFilename
+ */
+
+/**
+ * @typedef {boolean | string | ((commentsFile: string) => string)} ExtractCommentsBanner
+ */
+
+/**
  * @typedef {Object} ExtractCommentsObject
- * @property {any} condition
- * @property {string | ((fileData: any) => string)} filename
- * @property {any} banner
+ * @property {ExtractCommentsCondition} condition
+ * @property {ExtractCommentsFilename} filename
+ * @property {ExtractCommentsBanner} banner
  */
 
 /**
@@ -50,7 +62,7 @@ import { minify as minifyFn } from './minify';
  * @property {Rules} [include]
  * @property {Rules} [exclude]
  * @property {MinifyOptions} [terserOptions]
- * @property {boolean | string | RegExp | ExtractCommentsFunction | ExtractCommentsObject} [extractComments]
+ * @property {ExtractCommentsCondition | ExtractCommentsObject} [extractComments]
  * @property {boolean} [parallel]
  * @property {CustomMinifyFunction} [minify]
  */
