@@ -61,21 +61,6 @@
         }
       ]
     },
-    "parallel": {
-      "description": "Use multi-process parallel running to improve the build speed.",
-      "anyOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "integer"
-        }
-      ]
-    },
-    "minify": {
-      "description": "Allows you to override default minify function.",
-      "instanceof": "Function"
-    },
     "terserOptions": {
       "description": "Options for `terser`.",
       "additionalProperties": true,
@@ -142,6 +127,21 @@
           "type": "object"
         }
       ]
+    },
+    "parallel": {
+      "description": "Use multi-process parallel running to improve the build speed.",
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "minify": {
+      "description": "Allows you to override default minify function.",
+      "instanceof": "Function"
     }
   }
 }

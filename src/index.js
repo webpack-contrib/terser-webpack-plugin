@@ -1,5 +1,5 @@
-import path from 'path';
-import os from 'os';
+import * as path from 'path';
+import * as os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
 import { validate } from 'schema-utils';
@@ -10,6 +10,8 @@ import Worker from 'jest-worker';
 
 import schema from './options.json';
 import { minify as minifyFn } from './minify';
+
+/** @typedef {import("webpack").Compiler} Compiler */
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -451,6 +453,10 @@ class TerserPlugin {
     return 5;
   }
 
+  /**
+   * @param {Compiler} compiler
+   * @returns {void}
+   */
   apply(compiler) {
     const { output } = compiler.options;
 
