@@ -15,6 +15,8 @@ import { minify as minifyFn } from './minify';
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").Rules} Rules */
 /** @typedef {import("webpack").WebpackError} WebpackError */
+/** @typedef {import("webpack").Asset} Asset */
+/** @typedef {import("webpack").AssetInfo} AssetInfo */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
@@ -181,10 +183,9 @@ class TerserPlugin {
   }
 
   /**
-   * @private
    * @param {Compiler} compiler
    * @param {Compilation} compilation
-   * @param {any} assets
+   * @param {Asset[]} assets
    * @param {{availableNumberOfCores: number}} optimizeOptions
    * @returns {Promise<void>}
    */
@@ -458,6 +459,7 @@ class TerserPlugin {
             });
           }
 
+          /** @type {AssetInfo} */
           const newInfo = { minimized: true };
           const { source, extractedCommentsSource } = output;
 
