@@ -12,7 +12,7 @@ const { minify: terserMinify } = require('terser');
  * @typedef {Object} InternalMinifyOptions
  * @property {string} name
  * @property {string} input
- * @property {SourceMapRawSourceMap} inputSourceMap
+ * @property {any} inputSourceMap
  * @property {any} extractComments
  * @property {any} minify
  * @property {any} minifyOptions
