@@ -193,10 +193,10 @@ class TerserPlugin {
   async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache('TerserWebpackPlugin');
     let numberOfAssetsForMinify = 0;
-    const assetsForMinify = (
-      await Promise.all(
-        Object.keys(assets).map(async (name) => {
-          const { info, source } = compilation.getAsset(name);
+    const assetsForMinify = await Promise.all(
+      Object.keys(assets)
+        .filter((name) => {
+          const { info } = compilation.getAsset(name);
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
@@ -212,6 +212,11 @@ class TerserPlugin {
           ) {
             return false;
           }
+
+          return true;
+        })
+        .map(async (name) => {
+          const { info, source } = compilation.getAsset(name);
 
           let input;
           let inputSourceMap;
@@ -247,8 +252,7 @@ class TerserPlugin {
 
           return { name, info, input, inputSourceMap, output, cacheItem };
         })
-      )
-    ).filter((item) => Boolean(item));
+    );
 
     /** @type {undefined | (() => MinifyWorker)} */
     let getWorker;
