@@ -12,4 +12,6 @@ function Foo() {
   };
 }
 
+console.log(Foo());
+
 export default Foo;

@@ -126,7 +126,7 @@ class TerserPlugin {
    * @private
    * @param {Error & { line: number, col: number}} error
    * @param {string} file
-   * @param {any} requestShortener
+   * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
    * @returns {WebpackError}
    */
@@ -500,7 +500,7 @@ class TerserPlugin {
       .sort()
       .reduce(
         /**
-         * @param {any} previousPromise
+         * @param {Promise<any>} previousPromise
          * @param {any} extractedComments
          * @returns {Promise<any>}
          */

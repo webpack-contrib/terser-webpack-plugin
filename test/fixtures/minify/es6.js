@@ -12,4 +12,6 @@ class Point {
   }
 }
 
+console.log('HERE');
+
 export default Point;
