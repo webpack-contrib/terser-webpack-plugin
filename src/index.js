@@ -1,19 +1,85 @@
-import path from 'path';
-import os from 'os';
+import * as path from 'path';
+import * as os from 'os';
 
 import { SourceMapConsumer } from 'source-map';
 import { validate } from 'schema-utils';
 import serialize from 'serialize-javascript';
-import terserPackageJson from 'terser/package.json';
+import * as terserPackageJson from 'terser/package.json';
 import pLimit from 'p-limit';
 import Worker from 'jest-worker';
 
-import schema from './options.json';
+import * as schema from './options.json';
 import { minify as minifyFn } from './minify';
 
+/** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
+/** @typedef {import("webpack").Compiler} Compiler */
+/** @typedef {import("webpack").Compilation} Compilation */
+/** @typedef {import("webpack").Rules} Rules */
+/** @typedef {import("webpack").Source} Source */
+/** @typedef {import("webpack").WebpackError} WebpackError */
+/** @typedef {import("webpack").Asset} Asset */
+/** @typedef {import("webpack").AssetInfo} AssetInfo */
+/** @typedef {import("terser").ECMA} TerserECMA */
+/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
+/** @typedef {import("jest-worker").default} JestWorker */
+/** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
+/** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
+/** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
+
+/** @typedef {JestWorker & { transform: (options: string) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
+
+/** @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions */
+
+/**
+ * @callback ExtractCommentsFunction
+ * @param {any} astNode
+ * @param {{ value: string, type: 'comment1' | 'comment2' | 'comment3' | 'comment4', pos: number, line: number, col: number }} comment
+ * @returns {boolean}
+ */
+
+/**
+ * @typedef {boolean | string | RegExp | ExtractCommentsFunction} ExtractCommentsCondition
+ */
+
+/**
+ * @typedef {string | ((fileData: any) => string)} ExtractCommentsFilename
+ */
+
+/**
+ * @typedef {boolean | string | ((commentsFile: string) => string)} ExtractCommentsBanner
+ */
+
+/**
+ * @typedef {Object} ExtractCommentsObject
+ * @property {ExtractCommentsCondition} condition
+ * @property {ExtractCommentsFilename} filename
+ * @property {ExtractCommentsBanner} banner
+ */
+
+/**
+ * @callback CustomMinifyFunction
+ * @param {Object.<string, string>} file
+ * @param {SourceMapRawSourceMap} sourceMap
+ * @param {MinifyOptions} minifyOptions
+ */
+
+/**
+ * @typedef {Object} TerserPluginOptions
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {MinifyOptions} [terserOptions]
+ * @property {ExtractCommentsCondition | ExtractCommentsObject} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {CustomMinifyFunction} [minify]
+ */
+
 class TerserPlugin {
+  /**
+   * @param {TerserPluginOptions} options
+   */
   constructor(options = {}) {
-    validate(schema, options, {
+    validate(/** @type {Schema} */ (schema), options, {
       name: 'Terser Plugin',
       baseDataPath: 'options',
     });
@@ -39,6 +105,11 @@ class TerserPlugin {
     };
   }
 
+  /**
+   * @private
+   * @param {any} input
+   * @returns {boolean}
+   */
   static isSourceMap(input) {
     // All required options for `new SourceMapConsumer(...options)`
     // https://github.com/mozilla/source-map#new-sourcemapconsumerrawsourcemap
@@ -51,7 +122,15 @@ class TerserPlugin {
     );
   }
 
-  static buildError(error, file, sourceMap, requestShortener) {
+  /**
+   * @private
+   * @param {Error & { line: number, col: number}} error
+   * @param {string} file
+   * @param {any} requestShortener
+   * @param {SourceMapConsumer} [sourceMap]
+   * @returns {WebpackError}
+   */
+  static buildError(error, file, requestShortener, sourceMap) {
     if (error.line) {
       const original =
         sourceMap &&
@@ -90,6 +169,11 @@ class TerserPlugin {
     return new Error(`${file} from Terser\n${error.message}`);
   }
 
+  /**
+   * @private
+   * @param {boolean} parallel
+   * @returns {number}
+   */
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
@@ -100,13 +184,20 @@ class TerserPlugin {
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
+  /**
+   * @param {Compiler} compiler
+   * @param {Compilation} compilation
+   * @param {Record<string, Source>} assets
+   * @param {{availableNumberOfCores: number}} optimizeOptions
+   * @returns {Promise<void>}
+   */
   async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache('TerserWebpackPlugin');
     let numberOfAssetsForMinify = 0;
-    const assetsForMinify = (
-      await Promise.all(
-        Object.keys(assets).map(async (name) => {
-          const { info, source } = compilation.getAsset(name);
+    const assetsForMinify = await Promise.all(
+      Object.keys(assets)
+        .filter((name) => {
+          const { info } = compilation.getAsset(name);
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
@@ -123,6 +214,11 @@ class TerserPlugin {
             return false;
           }
 
+          return true;
+        })
+        .map(async (name) => {
+          const { info, source } = compilation.getAsset(name);
+
           let input;
           let inputSourceMap;
 
@@ -137,7 +233,8 @@ class TerserPlugin {
               inputSourceMap = map;
 
               compilation.warnings.push(
-                new Error(`${name} contains invalid source map`)
+                /** @type {WebpackError} */
+                (new Error(`${name} contains invalid source map`))
               );
             }
           }
@@ -156,11 +253,13 @@ class TerserPlugin {
 
           return { name, info, input, inputSourceMap, output, cacheItem };
         })
-      )
-    ).filter((item) => Boolean(item));
+    );
 
+    /** @type {undefined | (() => MinifyWorker)} */
     let getWorker;
+    /** @type {undefined | MinifyWorker} */
     let initializedWorker;
+    /** @type {undefined | number} */
     let numberOfWorkers;
 
     if (optimizeOptions.availableNumberOfCores > 0) {
@@ -175,10 +274,12 @@ class TerserPlugin {
           return initializedWorker;
         }
 
-        initializedWorker = new Worker(require.resolve('./minify'), {
-          numWorkers: numberOfWorkers,
-          enableWorkerThreads: true,
-        });
+        initializedWorker =
+          /** @type {MinifyWorker} */
+          (new Worker(require.resolve('./minify'), {
+            numWorkers: numberOfWorkers,
+            enableWorkerThreads: true,
+          }));
 
         // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
         const workerStdout = initializedWorker.getStdout();
@@ -202,7 +303,9 @@ class TerserPlugin {
     }
 
     const limit = pLimit(
-      getWorker && numberOfAssetsForMinify > 0 ? numberOfWorkers : Infinity
+      getWorker && numberOfAssetsForMinify > 0
+        ? /** @type {number} */ (numberOfWorkers)
+        : Infinity
     );
     const {
       SourceMapSource,
@@ -224,17 +327,17 @@ class TerserPlugin {
               input,
               inputSourceMap,
               minify: this.options.minify,
-              minimizerOptions: { ...this.options.terserOptions },
+              minifyOptions: { ...this.options.terserOptions },
               extractComments: this.options.extractComments,
             };
 
-            if (typeof options.minimizerOptions.module === 'undefined') {
+            if (typeof options.minifyOptions.module === 'undefined') {
               if (typeof info.javascriptModule !== 'undefined') {
-                options.minimizerOptions.module = info.javascriptModule;
+                options.minifyOptions.module = info.javascriptModule;
               } else if (/\.mjs(\?.*)?$/i.test(name)) {
-                options.minimizerOptions.module = true;
+                options.minifyOptions.module = true;
               } else if (/\.cjs(\?.*)?$/i.test(name)) {
-                options.minimizerOptions.module = false;
+                options.minifyOptions.module = false;
               }
             }
 
@@ -243,14 +346,21 @@ class TerserPlugin {
                 ? getWorker().transform(serialize(options))
                 : minifyFn(options));
             } catch (error) {
+              const hasSourceMap =
+                inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
+
               compilation.errors.push(
                 TerserPlugin.buildError(
                   error,
                   name,
-                  inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap)
-                    ? new SourceMapConsumer(inputSourceMap)
-                    : null,
-                  compilation.requestShortener
+                  // eslint-disable-next-line no-undefined
+                  hasSourceMap ? compilation.requestShortener : undefined,
+                  hasSourceMap
+                    ? new SourceMapConsumer(
+                        /** @type {SourceMapRawSourceMap} */ (inputSourceMap)
+                      )
+                    : // eslint-disable-next-line no-undefined
+                      undefined
                 )
               );
 
@@ -260,7 +370,8 @@ class TerserPlugin {
             let shebang;
 
             if (
-              this.options.extractComments.banner !== false &&
+              /** @type {ExtractCommentsObject} */
+              (this.options.extractComments).banner !== false &&
               output.extractedComments &&
               output.extractedComments.length > 0 &&
               output.code.startsWith('#!')
@@ -277,7 +388,7 @@ class TerserPlugin {
                 name,
                 output.map,
                 input,
-                inputSourceMap,
+                /** @type {SourceMapRawSourceMap} */ (inputSourceMap),
                 true
               );
             } else {
@@ -289,7 +400,8 @@ class TerserPlugin {
               output.extractedComments.length > 0
             ) {
               const commentsFilename =
-                this.options.extractComments.filename ||
+                /** @type {ExtractCommentsObject} */
+                (this.options.extractComments).filename ||
                 '[file].LICENSE.txt[query]';
 
               let query = '';
@@ -317,9 +429,13 @@ class TerserPlugin {
               let banner;
 
               // Add a banner to the original file
-              if (this.options.extractComments.banner !== false) {
+              if (
+                /** @type {ExtractCommentsObject} */
+                (this.options.extractComments).banner !== false
+              ) {
                 banner =
-                  this.options.extractComments.banner ||
+                  /** @type {ExtractCommentsObject} */
+                  (this.options.extractComments).banner ||
                   `For license information please see ${path
                     .relative(path.dirname(name), output.commentsFilename)
                     .replace(/\\/g, '/')}`;
@@ -353,6 +469,7 @@ class TerserPlugin {
             });
           }
 
+          /** @type {AssetInfo} */
           const newInfo = { minimized: true };
           const { source, extractedCommentsSource } = output;
 
@@ -381,56 +498,73 @@ class TerserPlugin {
 
     await Array.from(allExtractedComments)
       .sort()
-      .reduce(async (previousPromise, [from, value]) => {
-        const previous = await previousPromise;
-        const { commentsFilename, extractedCommentsSource } = value;
+      .reduce(
+        /**
+         * @param {any} previousPromise
+         * @param {any} extractedComments
+         * @returns {Promise<any>}
+         */
+        async (previousPromise, [from, value]) => {
+          const previous = await previousPromise;
+          const { commentsFilename, extractedCommentsSource } = value;
 
-        if (previous && previous.commentsFilename === commentsFilename) {
-          const { from: previousFrom, source: prevSource } = previous;
-          const mergedName = `${previousFrom}|${from}`;
-          const name = `${commentsFilename}|${mergedName}`;
-          const eTag = [prevSource, extractedCommentsSource]
-            .map((item) => cache.getLazyHashedEtag(item))
-            .reduce((previousValue, currentValue) =>
-              cache.mergeEtags(previousValue, currentValue)
-            );
+          if (previous && previous.commentsFilename === commentsFilename) {
+            const { from: previousFrom, source: prevSource } = previous;
+            const mergedName = `${previousFrom}|${from}`;
+            const name = `${commentsFilename}|${mergedName}`;
+            const eTag = [prevSource, extractedCommentsSource]
+              .map((item) => cache.getLazyHashedEtag(item))
+              .reduce((previousValue, currentValue) =>
+                cache.mergeEtags(previousValue, currentValue)
+              );
 
-          let source = await cache.getPromise(name, eTag);
+            let source = await cache.getPromise(name, eTag);
 
-          if (!source) {
-            source = new ConcatSource(
-              Array.from(
-                new Set([
-                  ...prevSource.source().split('\n\n'),
-                  ...extractedCommentsSource.source().split('\n\n'),
-                ])
-              ).join('\n\n')
-            );
+            if (!source) {
+              source = new ConcatSource(
+                Array.from(
+                  new Set([
+                    ...prevSource.source().split('\n\n'),
+                    ...extractedCommentsSource.source().split('\n\n'),
+                  ])
+                ).join('\n\n')
+              );
 
-            await cache.storePromise(name, eTag, source);
+              await cache.storePromise(name, eTag, source);
+            }
+
+            compilation.updateAsset(commentsFilename, source);
+
+            return { commentsFilename, from: mergedName, source };
           }
 
-          compilation.updateAsset(commentsFilename, source);
+          const existingAsset = compilation.getAsset(commentsFilename);
 
-          return { commentsFilename, from: mergedName, source };
-        }
+          if (existingAsset) {
+            return {
+              commentsFilename,
+              from: commentsFilename,
+              source: existingAsset.source,
+            };
+          }
 
-        const existingAsset = compilation.getAsset(commentsFilename);
+          compilation.emitAsset(commentsFilename, extractedCommentsSource);
 
-        if (existingAsset) {
           return {
             commentsFilename,
-            from: commentsFilename,
-            source: existingAsset.source,
+            from,
+            source: extractedCommentsSource,
           };
-        }
-
-        compilation.emitAsset(commentsFilename, extractedCommentsSource);
-
-        return { commentsFilename, from, source: extractedCommentsSource };
-      }, Promise.resolve());
+        },
+        Promise.resolve()
+      );
   }
 
+  /**
+   * @private
+   * @param {any} environment
+   * @returns {TerserECMA}
+   */
   static getEcmaVersion(environment) {
     // ES 6th
     if (
@@ -451,6 +585,10 @@ class TerserPlugin {
     return 5;
   }
 
+  /**
+   * @param {Compiler} compiler
+   * @returns {void}
+   */
   apply(compiler) {
     const { output } = compiler.options;
 

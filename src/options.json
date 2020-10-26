@@ -61,21 +61,6 @@
         }
       ]
     },
-    "parallel": {
-      "description": "Use multi-process parallel running to improve the build speed.",
-      "anyOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "integer"
-        }
-      ]
-    },
-    "minify": {
-      "description": "Allows you to override default minify function.",
-      "instanceof": "Function"
-    },
     "terserOptions": {
       "description": "Options for `terser`.",
       "additionalProperties": true,
@@ -88,7 +73,8 @@
           "type": "boolean"
         },
         {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         {
           "instanceof": "RegExp"
@@ -105,7 +91,8 @@
                   "type": "boolean"
                 },
                 {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 {
                   "instanceof": "RegExp"
@@ -118,7 +105,8 @@
             "filename": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 {
                   "instanceof": "Function"
@@ -131,7 +119,8 @@
                   "type": "boolean"
                 },
                 {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
                 {
                   "instanceof": "Function"
@@ -142,6 +131,21 @@
           "type": "object"
         }
       ]
+    },
+    "parallel": {
+      "description": "Use multi-process parallel running to improve the build speed.",
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "minify": {
+      "description": "Allows you to override default minify function.",
+      "instanceof": "Function"
     }
   }
 }

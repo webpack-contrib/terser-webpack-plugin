@@ -1,53 +1,77 @@
 const { minify: terserMinify } = require('terser');
 
-const buildTerserOptions = ({
-  ecma,
-  parse = {},
-  compress = {},
-  mangle,
-  module,
-  output,
-  toplevel,
-  nameCache,
-  ie8,
-  /* eslint-disable camelcase */
-  keep_classnames,
-  keep_fnames,
-  /* eslint-enable camelcase */
-  safari10,
-} = {}) => ({
-  parse: { ...parse },
-  compress: typeof compress === 'boolean' ? compress : { ...compress },
-  // eslint-disable-next-line no-nested-ternary
-  mangle:
-    mangle == null
-      ? true
-      : typeof mangle === 'boolean'
-      ? mangle
-      : { ...mangle },
-  output: {
-    beautify: false,
-    ...output,
-  },
-  // Ignoring sourceMap from options
-  sourceMap: null,
-  ecma,
-  keep_classnames,
-  keep_fnames,
-  ie8,
-  module,
-  nameCache,
-  safari10,
-  toplevel,
-});
+/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
+/** @typedef {import("terser").MinifyOutput} MinifyOutput */
+/** @typedef {import("terser").FormatOptions} FormatOptions */
+/** @typedef {import("terser").MangleOptions} MangleOptions */
+/** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
+/** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
+/** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 
+/**
+ * @typedef {Object} InternalMinifyOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {any} inputSourceMap
+ * @property {any} extractComments
+ * @property {any} minify
+ * @property {any} minifyOptions
+ */
+
+/**
+ * @typedef {Array<string>} ExtractedComments
+ */
+
+/**
+ * @typedef {Promise<MinifyOutput & { extractedComments?: ExtractedComments}>} InternalMinifyResult
+ */
+
+/**
+ * @typedef {TerserMinifyOptions & { mangle: MangleOptions, output: FormatOptions & { beautify: boolean }, sourceMap: undefined }} NormalizedTerserMinifyOptions
+ */
+
+/**
+ * @param {TerserMinifyOptions} [terserOptions={}]
+ * @returns {NormalizedTerserMinifyOptions}
+ */
+function buildTerserOptions(terserOptions = {}) {
+  return {
+    ...terserOptions,
+    mangle:
+      terserOptions.mangle == null
+        ? true
+        : typeof terserOptions.mangle === 'boolean'
+        ? terserOptions.mangle
+        : { ...terserOptions.mangle },
+    // Deprecated
+    output: {
+      beautify: false,
+      ...terserOptions.output,
+    },
+    // Ignoring sourceMap from options
+    // eslint-disable-next-line no-undefined
+    sourceMap: undefined,
+  };
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
 function isObject(value) {
   const type = typeof value;
 
   return value != null && (type === 'object' || type === 'function');
 }
 
-const buildComments = (extractComments, terserOptions, extractedComments) => {
+/**
+ * @param {any} extractComments
+ * @param {NormalizedTerserMinifyOptions} terserOptions
+ * @param {ExtractedComments} extractedComments
+ * @returns {ExtractCommentsFunction}
+ */
+function buildComments(extractComments, terserOptions, extractedComments) {
+  /** @type {{ [index: string]: ExtractCommentsCondition }} */
   const condition = {};
   const { comments } = terserOptions.output;
 
@@ -79,7 +103,9 @@ const buildComments = (extractComments, terserOptions, extractedComments) => {
 
   // Ensure that both conditions are functions
   ['preserve', 'extract'].forEach((key) => {
+    /** @type {undefined | string} */
     let regexStr;
+    /** @type {undefined | RegExp} */
     let regex;
 
     switch (typeof condition[key]) {
@@ -97,34 +123,48 @@ const buildComments = (extractComments, terserOptions, extractedComments) => {
         }
 
         if (condition[key] === 'some') {
-          condition[key] = (astNode, comment) => {
+          condition[key] = /** @type {ExtractCommentsFunction} */ ((
+            astNode,
+            comment
+          ) => {
             return (
               (comment.type === 'comment2' || comment.type === 'comment1') &&
               /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
             );
-          };
+          });
 
           break;
         }
 
-        regexStr = condition[key];
+        regexStr = /** @type {string} */ (condition[key]);
 
-        condition[key] = (astNode, comment) => {
-          return new RegExp(regexStr).test(comment.value);
-        };
+        condition[key] = /** @type {ExtractCommentsFunction} */ ((
+          astNode,
+          comment
+        ) => {
+          return new RegExp(/** @type {string} */ (regexStr)).test(
+            comment.value
+          );
+        });
 
         break;
       default:
-        regex = condition[key];
+        regex = /** @type {RegExp} */ (condition[key]);
 
-        condition[key] = (astNode, comment) => regex.test(comment.value);
+        condition[key] = /** @type {ExtractCommentsFunction} */ ((
+          astNode,
+          comment
+        ) => /** @type {RegExp} */ (regex).test(comment.value));
     }
   });
 
   // Redefine the comments function to extract and preserve
   // comments according to the two conditions
   return (astNode, comment) => {
-    if (condition.extract(astNode, comment)) {
+    if (
+      /** @type {{ extract: ExtractCommentsFunction }} */
+      (condition).extract(astNode, comment)
+    ) {
       const commentText =
         comment.type === 'comment2'
           ? `/*${comment.value}*/`
@@ -136,31 +176,40 @@ const buildComments = (extractComments, terserOptions, extractedComments) => {
       }
     }
 
-    return condition.preserve(astNode, comment);
+    return /** @type {{ preserve: ExtractCommentsFunction }} */ (condition).preserve(
+      astNode,
+      comment
+    );
   };
-};
+}
 
+/**
+ * @param {InternalMinifyOptions} options
+ * @returns {InternalMinifyResult}
+ */
 async function minify(options) {
   const {
     name,
     input,
     inputSourceMap,
     minify: minifyFn,
-    minimizerOptions,
+    minifyOptions,
   } = options;
 
   if (minifyFn) {
-    return minifyFn({ [name]: input }, inputSourceMap, minimizerOptions);
+    return minifyFn({ [name]: input }, inputSourceMap, minifyOptions);
   }
 
   // Copy terser options
-  const terserOptions = buildTerserOptions(minimizerOptions);
+  const terserOptions = buildTerserOptions(minifyOptions);
 
   // Let terser generate a SourceMap
   if (inputSourceMap) {
+    // @ts-ignore
     terserOptions.sourceMap = { asObject: true };
   }
 
+  /** @type {ExtractedComments} */
   const extractedComments = [];
   const { extractComments } = options;
 
@@ -175,20 +224,27 @@ async function minify(options) {
   return { ...result, extractedComments };
 }
 
+/**
+ * @param {string} options
+ * @returns {InternalMinifyResult}
+ */
 function transform(options) {
   // 'use strict' => this === undefined (Clean Scope)
   // Safer for possible security issues, albeit not critical at all here
-  // eslint-disable-next-line no-new-func, no-param-reassign
-  options = new Function(
-    'exports',
-    'require',
-    'module',
-    '__filename',
-    '__dirname',
-    `'use strict'\nreturn ${options}`
-  )(exports, require, module, __filename, __dirname);
+  // eslint-disable-next-line no-param-reassign
+  const evaluatedOptions =
+    /** @type {InternalMinifyOptions} */
+    // eslint-disable-next-line no-new-func
+    (new Function(
+      'exports',
+      'require',
+      'module',
+      '__filename',
+      '__dirname',
+      `'use strict'\nreturn ${options}`
+    )(exports, require, module, __filename, __dirname));
 
-  return minify(options);
+  return minify(evaluatedOptions);
 }
 
 module.exports.minify = minify;
