@@ -351,6 +351,42 @@ describe('terserOptions option', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should match snapshot for the "format.beautify" option with "true" value', async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      terserOptions: {
+        format: {
+          beautify: true,
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should match snapshot for the "format.comments" option with the "true"', async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      terserOptions: {
+        format: {
+          comments: true,
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should match snapshot for the "toplevel" option with the "false" value', async () => {
     const compiler = getCompiler();
 
