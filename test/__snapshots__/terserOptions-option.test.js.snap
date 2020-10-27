@@ -322,6 +322,76 @@ exports[`terserOptions option should match snapshot for the "ecma" option with t
 
 exports[`terserOptions option should match snapshot for the "ecma" option with the "8" value: warnings 1`] = `Array []`;
 
+exports[`terserOptions option should match snapshot for the "format.beautify" option with "true" value: assets 1`] = `
+Object {
+  "main.js": "(() => {
+    var r = {
+        791: r => {
+            r.exports = function() {
+                console.log(7);
+            };
+        }
+    }, o = {};
+    !function t(e) {
+        if (o[e]) return o[e].exports;
+        var n = o[e] = {
+            exports: {}
+        };
+        return r[e](n, n.exports, t), n.exports;
+    }(791);
+})();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "format.beautify" option with "true" value: errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "format.beautify" option with "true" value: warnings 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "format.comments" option with the "true": assets 1`] = `
+Object {
+  "main.js": "/******/(()=>{// webpackBootstrap
+/******/var r={
+/***/791:
+/***/r=>{r.exports=function(){console.log(7)}}
+/***/
+/******/},o={};
+/************************************************************************/
+/******/ // The module cache
+/******/
+/******/
+/************************************************************************/
+/******/ // startup
+/******/ // Load entry module
+/******/ // This entry module is referenced by other modules so it can't be inlined
+/******/!
+/******/
+/******/ // The require function
+/******/function t(e){
+/******/ // Check if module is in cache
+/******/if(o[e])
+/******/return o[e].exports;
+/******/
+/******/ // Create a new module (and put it into the cache)
+/******/var n=o[e]={
+/******/ // no module.id needed
+/******/ // no module.loaded needed
+/******/exports:{}
+/******/};
+/******/
+/******/ // Execute the module function
+/******/
+/******/
+/******/ // Return the exports of the module
+/******/return r[e](n,n.exports,t),n.exports;
+/******/}(791)})
+/******/();",
+}
+`;
+
+exports[`terserOptions option should match snapshot for the "format.comments" option with the "true": errors 1`] = `Array []`;
+
+exports[`terserOptions option should match snapshot for the "format.comments" option with the "true": warnings 1`] = `Array []`;
+
 exports[`terserOptions option should match snapshot for the "ie8" option with the "false" value: assets 1`] = `
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",

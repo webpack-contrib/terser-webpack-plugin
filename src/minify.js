@@ -27,7 +27,7 @@ const { minify: terserMinify } = require('terser');
  */
 
 /**
- * @typedef {TerserMinifyOptions & { mangle: MangleOptions, output: FormatOptions & { beautify: boolean }, sourceMap: undefined }} NormalizedTerserMinifyOptions
+ * @typedef {TerserMinifyOptions & { sourceMap: undefined } & ({ output: FormatOptions & { beautify: boolean } } | { format: FormatOptions & { beautify: boolean } })} NormalizedTerserMinifyOptions
  */
 
 /**
@@ -43,14 +43,13 @@ function buildTerserOptions(terserOptions = {}) {
         : typeof terserOptions.mangle === 'boolean'
         ? terserOptions.mangle
         : { ...terserOptions.mangle },
-    // Deprecated
-    output: {
-      beautify: false,
-      ...terserOptions.output,
-    },
     // Ignoring sourceMap from options
     // eslint-disable-next-line no-undefined
     sourceMap: undefined,
+    // the `output` option is deprecated
+    ...(terserOptions.format
+      ? { format: { beautify: false, ...terserOptions.format } }
+      : { output: { beautify: false, ...terserOptions.output } }),
   };
 }
 
@@ -73,7 +72,14 @@ function isObject(value) {
 function buildComments(extractComments, terserOptions, extractedComments) {
   /** @type {{ [index: string]: ExtractCommentsCondition }} */
   const condition = {};
-  const { comments } = terserOptions.output;
+
+  let comments;
+
+  if (terserOptions.format) {
+    ({ comments } = terserOptions.format);
+  } else if (terserOptions.output) {
+    ({ comments } = terserOptions.output);
+  }
 
   condition.preserve = typeof comments !== 'undefined' ? comments : false;
 
@@ -213,11 +219,19 @@ async function minify(options) {
   const extractedComments = [];
   const { extractComments } = options;
 
-  terserOptions.output.comments = buildComments(
-    extractComments,
-    terserOptions,
-    extractedComments
-  );
+  if (terserOptions.output) {
+    terserOptions.output.comments = buildComments(
+      extractComments,
+      terserOptions,
+      extractedComments
+    );
+  } else if (terserOptions.format) {
+    terserOptions.format.comments = buildComments(
+      extractComments,
+      terserOptions,
+      extractedComments
+    );
+  }
 
   const result = await terserMinify({ [name]: input }, terserOptions);
 
