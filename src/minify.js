@@ -1,10 +1,13 @@
 const { minify: terserMinify } = require('terser');
 
+/** @typedef {import("source-map").RawSourceMap} RawSourceMap */
+/** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
+/** @typedef {import("./index.js").CustomMinifyFunction} CustomMinifyFunction */
+/** @typedef {import("./index.js").MinifyOptions} MinifyOptions */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("terser").MinifyOutput} MinifyOutput */
 /** @typedef {import("terser").FormatOptions} FormatOptions */
 /** @typedef {import("terser").MangleOptions} MangleOptions */
-/** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 
@@ -12,10 +15,10 @@ const { minify: terserMinify } = require('terser');
  * @typedef {Object} InternalMinifyOptions
  * @property {string} name
  * @property {string} input
- * @property {any} inputSourceMap
- * @property {any} extractComments
- * @property {any} minify
- * @property {any} minifyOptions
+ * @property {RawSourceMap} inputSourceMap
+ * @property {ExtractCommentsOptions} extractComments
+ * @property {CustomMinifyFunction} minify
+ * @property {MinifyOptions} minifyOptions
  */
 
 /**
@@ -64,7 +67,7 @@ function isObject(value) {
 }
 
 /**
- * @param {any} extractComments
+ * @param {ExtractCommentsOptions} extractComments
  * @param {NormalizedTerserMinifyOptions} terserOptions
  * @param {ExtractedComments} extractedComments
  * @returns {ExtractCommentsFunction}
@@ -92,7 +95,7 @@ function buildComments(extractComments, terserOptions, extractedComments) {
     condition.extract = extractComments;
   } else if (typeof extractComments === 'function') {
     condition.extract = extractComments;
-  } else if (isObject(extractComments)) {
+  } else if (extractComments && isObject(extractComments)) {
     condition.extract =
       typeof extractComments.condition === 'boolean' &&
       extractComments.condition

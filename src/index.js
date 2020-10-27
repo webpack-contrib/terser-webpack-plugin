@@ -64,12 +64,16 @@ import { minify as minifyFn } from './minify';
  */
 
 /**
+ * @typedef {ExtractCommentsCondition | ExtractCommentsObject} ExtractCommentsOptions
+ */
+
+/**
  * @typedef {Object} TerserPluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
  * @property {MinifyOptions} [terserOptions]
- * @property {ExtractCommentsCondition | ExtractCommentsObject} [extractComments]
+ * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
  * @property {CustomMinifyFunction} [minify]
  */
