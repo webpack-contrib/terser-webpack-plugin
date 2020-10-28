@@ -223,30 +223,6 @@ class TerserPlugin {
         .map(async (name) => {
           const { info, source } = compilation.getAsset(name);
 
-          let input;
-          let inputSourceMap;
-
-          const { source: sourceFromInputSource, map } = source.sourceAndMap();
-
-          input = sourceFromInputSource;
-
-          if (map) {
-            if (TerserPlugin.isSourceMap(map)) {
-              inputSourceMap = map;
-            } else {
-              inputSourceMap = map;
-
-              compilation.warnings.push(
-                /** @type {WebpackError} */
-                (new Error(`${name} contains invalid source map`))
-              );
-            }
-          }
-
-          if (Buffer.isBuffer(input)) {
-            input = input.toString();
-          }
-
           const eTag = cache.getLazyHashedEtag(source);
           const cacheItem = cache.getItemCache(name, eTag);
           const output = await cacheItem.getPromise();
@@ -255,7 +231,7 @@ class TerserPlugin {
             numberOfAssetsForMinify += 1;
           }
 
-          return { name, info, input, inputSourceMap, output, cacheItem };
+          return { name, info, inputSource: source, output, cacheItem };
         })
     );
 
@@ -322,10 +298,37 @@ class TerserPlugin {
     for (const asset of assetsForMinify) {
       scheduledTasks.push(
         limit(async () => {
-          const { name, input, inputSourceMap, info, cacheItem } = asset;
+          const { name, inputSource, info, cacheItem } = asset;
           let { output } = asset;
 
           if (!output) {
+            let input;
+            let inputSourceMap;
+
+            const {
+              source: sourceFromInputSource,
+              map,
+            } = inputSource.sourceAndMap();
+
+            input = sourceFromInputSource;
+
+            if (map) {
+              if (TerserPlugin.isSourceMap(map)) {
+                inputSourceMap = map;
+              } else {
+                inputSourceMap = map;
+
+                compilation.warnings.push(
+                  /** @type {WebpackError} */
+                  (new Error(`${name} contains invalid source map`))
+                );
+              }
+            }
+
+            if (Buffer.isBuffer(input)) {
+              input = input.toString();
+            }
+
             const options = {
               name,
               input,
