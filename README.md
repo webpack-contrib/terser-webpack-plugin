@@ -18,6 +18,8 @@ This plugin uses [terser](https://github.com/terser-js/terser) to minify your Ja
 
 ## Getting Started
 
+If you are using webpack v5 or above you do not need to install this plugin. Webpack v5 comes with the latest `terser-webpack-plugin` out of the box.
+
 To begin, you'll need to install `terser-webpack-plugin`:
 
 ```console
