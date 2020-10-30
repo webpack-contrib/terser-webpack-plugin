@@ -16,11 +16,13 @@ import {
 jest.mock('os', () => {
   const actualOs = jest.requireActual('os');
 
-  actualOs.cpus = jest.fn(() => {
-    return { length: 4 };
-  });
+  const mocked = {
+    cpus: jest.fn(() => {
+      return { length: 4 };
+    }),
+  };
 
-  return actualOs;
+  return { ...actualOs, ...mocked };
 });
 
 // Based on https://github.com/facebook/jest/blob/edde20f75665c2b1e3c8937f758902b5cf28a7b4/packages/jest-runner/src/__tests__/test_runner.test.js
