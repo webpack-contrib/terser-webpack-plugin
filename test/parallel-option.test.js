@@ -1,9 +1,9 @@
-import path from 'path';
-import os from 'os';
+import path from "path";
+import os from "os";
 
-import Worker from 'jest-worker';
+import Worker from "jest-worker";
 
-import TerserPlugin from '../src/index';
+import TerserPlugin from "../src/index";
 
 import {
   compile,
@@ -11,10 +11,10 @@ import {
   getErrors,
   getWarnings,
   readsAssets,
-} from './helpers';
+} from "./helpers";
 
-jest.mock('os', () => {
-  const actualOs = jest.requireActual('os');
+jest.mock("os", () => {
+  const actualOs = jest.requireActual("os");
 
   const mocked = {
     cpus: jest.fn(() => {
@@ -30,11 +30,11 @@ let workerTransform;
 let workerEnd;
 
 const ENABLE_WORKER_THREADS =
-  typeof process.env.ENABLE_WORKER_THREADS !== 'undefined'
-    ? process.env.ENABLE_WORKER_THREADS === 'true'
+  typeof process.env.ENABLE_WORKER_THREADS !== "undefined"
+    ? process.env.ENABLE_WORKER_THREADS === "true"
     : true;
 
-jest.mock('jest-worker', () => {
+jest.mock("jest-worker", () => {
   return jest.fn().mockImplementation((workerPath) => {
     return {
       // eslint-disable-next-line global-require, import/no-dynamic-require
@@ -49,9 +49,9 @@ jest.mock('jest-worker', () => {
   });
 });
 
-const workerPath = require.resolve('../src/minify');
+const workerPath = require.resolve("../src/minify");
 
-describe('parallel option', () => {
+describe("parallel option", () => {
   let compiler;
 
   beforeEach(() => {
@@ -59,15 +59,15 @@ describe('parallel option', () => {
 
     compiler = getCompiler({
       entry: {
-        one: path.resolve(__dirname, './fixtures/entry.js'),
-        two: path.resolve(__dirname, './fixtures/entry.js'),
-        three: path.resolve(__dirname, './fixtures/entry.js'),
-        four: path.resolve(__dirname, './fixtures/entry.js'),
+        one: path.resolve(__dirname, "./fixtures/entry.js"),
+        two: path.resolve(__dirname, "./fixtures/entry.js"),
+        three: path.resolve(__dirname, "./fixtures/entry.js"),
+        four: path.resolve(__dirname, "./fixtures/entry.js"),
       },
     });
   });
 
-  it('should match snapshot when a value is not specify', async () => {
+  it("should match snapshot when a value is not specify", async () => {
     new TerserPlugin().apply(compiler);
 
     const stats = await compile(compiler);
@@ -82,9 +82,9 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "false" value', async () => {
@@ -94,9 +94,9 @@ describe('parallel option', () => {
 
     expect(Worker).toHaveBeenCalledTimes(0);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "true" value', async () => {
@@ -114,9 +114,9 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "2" value', async () => {
@@ -134,14 +134,14 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "true" value when only one file passed', async () => {
     compiler = getCompiler({
-      entry: path.resolve(__dirname, './fixtures/entry.js'),
+      entry: path.resolve(__dirname, "./fixtures/entry.js"),
     });
 
     new TerserPlugin({ parallel: true }).apply(compiler);
@@ -158,16 +158,16 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "true" value and the number of files is less than the number of cores', async () => {
     const entries = {};
 
     for (let i = 0; i < os.cpus().length / 2; i++) {
-      entries[`entry-${i}`] = path.resolve(__dirname, './fixtures/entry.js');
+      entries[`entry-${i}`] = path.resolve(__dirname, "./fixtures/entry.js");
     }
 
     compiler = getCompiler({ entry: entries });
@@ -186,16 +186,16 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "true" value and the number of files is same than the number of cores', async () => {
     const entries = {};
 
     for (let i = 0; i < os.cpus().length; i++) {
-      entries[`entry-${i}`] = path.resolve(__dirname, './fixtures/entry.js');
+      entries[`entry-${i}`] = path.resolve(__dirname, "./fixtures/entry.js");
     }
 
     compiler = getCompiler({ entry: entries });
@@ -214,28 +214,28 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   it('should match snapshot for the "true" value and the number of files is more than the number of cores', async () => {
     const entries = {};
 
     for (let i = 0; i < os.cpus().length * 2; i++) {
-      entries[`entry-${i}`] = path.resolve(__dirname, './fixtures/entry.js');
+      entries[`entry-${i}`] = path.resolve(__dirname, "./fixtures/entry.js");
     }
 
     compiler = getCompiler({
       entry: {
-        one: path.resolve(__dirname, './fixtures/entry.js'),
-        two: path.resolve(__dirname, './fixtures/entry.js'),
-        three: path.resolve(__dirname, './fixtures/entry.js'),
-        four: path.resolve(__dirname, './fixtures/entry.js'),
-        five: path.resolve(__dirname, './fixtures/entry.js'),
-        six: path.resolve(__dirname, './fixtures/entry.js'),
-        seven: path.resolve(__dirname, './fixtures/entry.js'),
-        eight: path.resolve(__dirname, './fixtures/entry.js'),
+        one: path.resolve(__dirname, "./fixtures/entry.js"),
+        two: path.resolve(__dirname, "./fixtures/entry.js"),
+        three: path.resolve(__dirname, "./fixtures/entry.js"),
+        four: path.resolve(__dirname, "./fixtures/entry.js"),
+        five: path.resolve(__dirname, "./fixtures/entry.js"),
+        six: path.resolve(__dirname, "./fixtures/entry.js"),
+        seven: path.resolve(__dirname, "./fixtures/entry.js"),
+        eight: path.resolve(__dirname, "./fixtures/entry.js"),
       },
     });
 
@@ -253,8 +253,8 @@ describe('parallel option', () => {
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
-    expect(readsAssets(compiler, stats)).toMatchSnapshot('assets');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 });

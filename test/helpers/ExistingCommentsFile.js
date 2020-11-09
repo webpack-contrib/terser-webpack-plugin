@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import webpack from "webpack";
 
 export default class ExistingCommentsFile {
   apply(compiler) {
@@ -7,8 +7,8 @@ export default class ExistingCommentsFile {
     compiler.hooks.thisCompilation.tap(plugin, (compilation) => {
       compilation.hooks.additionalAssets.tap(plugin, () => {
         // eslint-disable-next-line no-param-reassign
-        compilation.assets['licenses.txt'] = new webpack.sources.RawSource(
-          '// Existing Comment'
+        compilation.assets["licenses.txt"] = new webpack.sources.RawSource(
+          "// Existing Comment"
         );
       });
     });

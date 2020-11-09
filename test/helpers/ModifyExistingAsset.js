@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import webpack from "webpack";
 
 export default class ExistingCommentsFile {
   constructor(options = {}) {
@@ -15,7 +15,7 @@ export default class ExistingCommentsFile {
           this.options.name
         ] = new webpack.sources.ConcatSource(
           `function changed() {} ${
-            this.options.comment ? '/*! CHANGED */' : ''
+            this.options.comment ? "/*! CHANGED */" : ""
           }`,
           compilation.assets[this.options.name]
         );

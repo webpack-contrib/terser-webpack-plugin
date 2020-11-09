@@ -1,13 +1,13 @@
-import TerserPlugin from '../src';
+import TerserPlugin from "../src";
 
-it('validation', () => {
+it("validation", () => {
   /* eslint-disable no-new */
   expect(() => {
     new TerserPlugin({ test: /foo/ });
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ test: 'foo' });
+    new TerserPlugin({ test: "foo" });
   }).not.toThrow();
 
   expect(() => {
@@ -19,11 +19,11 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ test: ['foo', 'bar'] });
+    new TerserPlugin({ test: ["foo", "bar"] });
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ test: [/foo/, 'bar'] });
+    new TerserPlugin({ test: [/foo/, "bar"] });
   }).not.toThrow();
 
   expect(() => {
@@ -39,7 +39,7 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ include: 'foo' });
+    new TerserPlugin({ include: "foo" });
   }).not.toThrow();
 
   expect(() => {
@@ -51,11 +51,11 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ include: ['foo', 'bar'] });
+    new TerserPlugin({ include: ["foo", "bar"] });
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ include: [/foo/, 'bar'] });
+    new TerserPlugin({ include: [/foo/, "bar"] });
   }).not.toThrow();
 
   expect(() => {
@@ -71,7 +71,7 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ exclude: 'foo' });
+    new TerserPlugin({ exclude: "foo" });
   }).not.toThrow();
 
   expect(() => {
@@ -83,11 +83,11 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ exclude: ['foo', 'bar'] });
+    new TerserPlugin({ exclude: ["foo", "bar"] });
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ exclude: [/foo/, 'bar'] });
+    new TerserPlugin({ exclude: [/foo/, "bar"] });
   }).not.toThrow();
 
   expect(() => {
@@ -111,7 +111,7 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ parallel: '2' });
+    new TerserPlugin({ parallel: "2" });
   }).toThrowErrorMatchingSnapshot();
 
   expect(() => {
@@ -167,7 +167,7 @@ it('validation', () => {
   }).not.toThrow();
 
   expect(() => {
-    new TerserPlugin({ extractComments: 'comment' });
+    new TerserPlugin({ extractComments: "comment" });
   }).not.toThrow();
 
   expect(() => {
@@ -189,7 +189,7 @@ it('validation', () => {
   expect(() => {
     new TerserPlugin({
       extractComments: {
-        condition: 'comment',
+        condition: "comment",
       },
     });
   }).not.toThrow();
@@ -221,7 +221,7 @@ it('validation', () => {
   expect(() => {
     new TerserPlugin({
       extractComments: {
-        filename: 'test.js',
+        filename: "test.js",
       },
     });
   }).not.toThrow();
@@ -253,7 +253,7 @@ it('validation', () => {
   expect(() => {
     new TerserPlugin({
       extractComments: {
-        banner: 'banner',
+        banner: "banner",
       },
     });
   }).not.toThrow();

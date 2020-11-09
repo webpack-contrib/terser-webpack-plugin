@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import webpack from "webpack";
 
 export default class BrokenCodePlugin {
   apply(compiler) {
@@ -7,8 +7,8 @@ export default class BrokenCodePlugin {
     compiler.hooks.thisCompilation.tap(plugin, (compilation) => {
       compilation.hooks.additionalAssets.tap(plugin, () => {
         // eslint-disable-next-line no-param-reassign
-        compilation.assets['broken.js'] = new webpack.sources.RawSource(
-          '`Broken==='
+        compilation.assets["broken.js"] = new webpack.sources.RawSource(
+          "`Broken==="
         );
       });
     });

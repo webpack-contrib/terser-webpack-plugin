@@ -1,15 +1,15 @@
-import * as path from 'path';
-import * as os from 'os';
+import * as path from "path";
+import * as os from "os";
 
-import { SourceMapConsumer } from 'source-map';
-import { validate } from 'schema-utils';
-import serialize from 'serialize-javascript';
-import * as terserPackageJson from 'terser/package.json';
-import pLimit from 'p-limit';
-import Worker from 'jest-worker';
+import { SourceMapConsumer } from "source-map";
+import { validate } from "schema-utils";
+import serialize from "serialize-javascript";
+import * as terserPackageJson from "terser/package.json";
+import pLimit from "p-limit";
+import Worker from "jest-worker";
 
-import * as schema from './options.json';
-import { minify as minifyFn } from './minify';
+import * as schema from "./options.json";
+import { minify as minifyFn } from "./minify";
 
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
@@ -84,8 +84,8 @@ class TerserPlugin {
    */
   constructor(options = {}) {
     validate(/** @type {Schema} */ (schema), options, {
-      name: 'Terser Plugin',
-      baseDataPath: 'options',
+      name: "Terser Plugin",
+      baseDataPath: "options",
     });
 
     const {
@@ -122,7 +122,7 @@ class TerserPlugin {
         input.version &&
         input.sources &&
         Array.isArray(input.sources) &&
-        typeof input.mappings === 'string'
+        typeof input.mappings === "string"
     );
   }
 
@@ -151,8 +151,8 @@ class TerserPlugin {
             error.col
           }]${
             error.stack
-              ? `\n${error.stack.split('\n').slice(1).join('\n')}`
-              : ''
+              ? `\n${error.stack.split("\n").slice(1).join("\n")}`
+              : ""
           }`
         );
       }
@@ -161,7 +161,7 @@ class TerserPlugin {
         `${file} from Terser\n${error.message} [${file}:${error.line},${
           error.col
         }]${
-          error.stack ? `\n${error.stack.split('\n').slice(1).join('\n')}` : ''
+          error.stack ? `\n${error.stack.split("\n").slice(1).join("\n")}` : ""
         }`
       );
     }
@@ -196,7 +196,7 @@ class TerserPlugin {
    * @returns {Promise<void>}
    */
   async optimize(compiler, compilation, assets, optimizeOptions) {
-    const cache = compilation.getCache('TerserWebpackPlugin');
+    const cache = compilation.getCache("TerserWebpackPlugin");
     let numberOfAssetsForMinify = 0;
     const assetsForMinify = await Promise.all(
       Object.keys(assets)
@@ -256,7 +256,7 @@ class TerserPlugin {
 
         initializedWorker =
           /** @type {MinifyWorker} */
-          (new Worker(require.resolve('./minify'), {
+          (new Worker(require.resolve("./minify"), {
             numWorkers: numberOfWorkers,
             enableWorkerThreads: true,
           }));
@@ -265,7 +265,7 @@ class TerserPlugin {
         const workerStdout = initializedWorker.getStdout();
 
         if (workerStdout) {
-          workerStdout.on('data', (chunk) => {
+          workerStdout.on("data", (chunk) => {
             return process.stdout.write(chunk);
           });
         }
@@ -273,7 +273,7 @@ class TerserPlugin {
         const workerStderr = initializedWorker.getStderr();
 
         if (workerStderr) {
-          workerStderr.on('data', (chunk) => {
+          workerStderr.on("data", (chunk) => {
             return process.stderr.write(chunk);
           });
         }
@@ -338,8 +338,8 @@ class TerserPlugin {
               extractComments: this.options.extractComments,
             };
 
-            if (typeof options.minifyOptions.module === 'undefined') {
-              if (typeof info.javascriptModule !== 'undefined') {
+            if (typeof options.minifyOptions.module === "undefined") {
+              if (typeof info.javascriptModule !== "undefined") {
                 options.minifyOptions.module = info.javascriptModule;
               } else if (/\.mjs(\?.*)?$/i.test(name)) {
                 options.minifyOptions.module = true;
@@ -381,9 +381,9 @@ class TerserPlugin {
               (this.options.extractComments).banner !== false &&
               output.extractedComments &&
               output.extractedComments.length > 0 &&
-              output.code.startsWith('#!')
+              output.code.startsWith("#!")
             ) {
-              const firstNewlinePosition = output.code.indexOf('\n');
+              const firstNewlinePosition = output.code.indexOf("\n");
 
               shebang = output.code.substring(0, firstNewlinePosition);
               output.code = output.code.substring(firstNewlinePosition + 1);
@@ -409,19 +409,19 @@ class TerserPlugin {
               const commentsFilename =
                 /** @type {ExtractCommentsObject} */
                 (this.options.extractComments).filename ||
-                '[file].LICENSE.txt[query]';
+                "[file].LICENSE.txt[query]";
 
-              let query = '';
+              let query = "";
               let filename = name;
 
-              const querySplit = filename.indexOf('?');
+              const querySplit = filename.indexOf("?");
 
               if (querySplit >= 0) {
                 query = filename.substr(querySplit);
                 filename = filename.substr(0, querySplit);
               }
 
-              const lastSlashIndex = filename.lastIndexOf('/');
+              const lastSlashIndex = filename.lastIndexOf("/");
               const basename =
                 lastSlashIndex === -1
                   ? filename
@@ -445,15 +445,15 @@ class TerserPlugin {
                   (this.options.extractComments).banner ||
                   `For license information please see ${path
                     .relative(path.dirname(name), output.commentsFilename)
-                    .replace(/\\/g, '/')}`;
+                    .replace(/\\/g, "/")}`;
 
-                if (typeof banner === 'function') {
+                if (typeof banner === "function") {
                   banner = banner(output.commentsFilename);
                 }
 
                 if (banner) {
                   output.source = new ConcatSource(
-                    shebang ? `${shebang}\n` : '',
+                    shebang ? `${shebang}\n` : "",
                     `/*! ${banner} */\n`,
                     output.source
                   );
@@ -462,7 +462,7 @@ class TerserPlugin {
 
               const extractedCommentsString = output.extractedComments
                 .sort()
-                .join('\n\n');
+                .join("\n\n");
 
               output.extractedCommentsSource = new RawSource(
                 `${extractedCommentsString}\n`
@@ -531,10 +531,10 @@ class TerserPlugin {
               source = new ConcatSource(
                 Array.from(
                   new Set([
-                    ...prevSource.source().split('\n\n'),
-                    ...extractedCommentsSource.source().split('\n\n'),
+                    ...prevSource.source().split("\n\n"),
+                    ...extractedCommentsSource.source().split("\n\n"),
                   ])
-                ).join('\n\n')
+                ).join("\n\n")
               );
 
               await cache.storePromise(name, eTag, source);
@@ -599,7 +599,7 @@ class TerserPlugin {
   apply(compiler) {
     const { output } = compiler.options;
 
-    if (typeof this.options.terserOptions.ecma === 'undefined') {
+    if (typeof this.options.terserOptions.ecma === "undefined") {
       this.options.terserOptions.ecma = TerserPlugin.getEcmaVersion(
         output.environment || {}
       );
@@ -620,7 +620,7 @@ class TerserPlugin {
       });
 
       hooks.chunkHash.tap(pluginName, (chunk, hash) => {
-        hash.update('TerserPlugin');
+        hash.update("TerserPlugin");
         hash.update(data);
       });
 
@@ -638,10 +638,10 @@ class TerserPlugin {
 
       compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
         stats.hooks.print
-          .for('asset.info.minimized')
-          .tap('terser-webpack-plugin', (minimized, { green, formatFlag }) =>
+          .for("asset.info.minimized")
+          .tap("terser-webpack-plugin", (minimized, { green, formatFlag }) =>
             // eslint-disable-next-line no-undefined
-            minimized ? green(formatFlag('minimized')) : undefined
+            minimized ? green(formatFlag("minimized")) : undefined
           );
       });
     });

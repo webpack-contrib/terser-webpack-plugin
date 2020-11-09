@@ -1,4 +1,4 @@
-const { minify: terserMinify } = require('terser');
+const { minify: terserMinify } = require("terser");
 
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
@@ -43,7 +43,7 @@ function buildTerserOptions(terserOptions = {}) {
     mangle:
       terserOptions.mangle == null
         ? true
-        : typeof terserOptions.mangle === 'boolean'
+        : typeof terserOptions.mangle === "boolean"
         ? terserOptions.mangle
         : { ...terserOptions.mangle },
     // Ignoring sourceMap from options
@@ -63,7 +63,7 @@ function buildTerserOptions(terserOptions = {}) {
 function isObject(value) {
   const type = typeof value;
 
-  return value != null && (type === 'object' || type === 'function');
+  return value != null && (type === "object" || type === "function");
 }
 
 /**
@@ -84,60 +84,60 @@ function buildComments(extractComments, terserOptions, extractedComments) {
     ({ comments } = terserOptions.output);
   }
 
-  condition.preserve = typeof comments !== 'undefined' ? comments : false;
+  condition.preserve = typeof comments !== "undefined" ? comments : false;
 
-  if (typeof extractComments === 'boolean' && extractComments) {
-    condition.extract = 'some';
+  if (typeof extractComments === "boolean" && extractComments) {
+    condition.extract = "some";
   } else if (
-    typeof extractComments === 'string' ||
+    typeof extractComments === "string" ||
     extractComments instanceof RegExp
   ) {
     condition.extract = extractComments;
-  } else if (typeof extractComments === 'function') {
+  } else if (typeof extractComments === "function") {
     condition.extract = extractComments;
   } else if (extractComments && isObject(extractComments)) {
     condition.extract =
-      typeof extractComments.condition === 'boolean' &&
+      typeof extractComments.condition === "boolean" &&
       extractComments.condition
-        ? 'some'
-        : typeof extractComments.condition !== 'undefined'
+        ? "some"
+        : typeof extractComments.condition !== "undefined"
         ? extractComments.condition
-        : 'some';
+        : "some";
   } else {
     // No extract
     // Preserve using "commentsOpts" or "some"
-    condition.preserve = typeof comments !== 'undefined' ? comments : 'some';
+    condition.preserve = typeof comments !== "undefined" ? comments : "some";
     condition.extract = false;
   }
 
   // Ensure that both conditions are functions
-  ['preserve', 'extract'].forEach((key) => {
+  ["preserve", "extract"].forEach((key) => {
     /** @type {undefined | string} */
     let regexStr;
     /** @type {undefined | RegExp} */
     let regex;
 
     switch (typeof condition[key]) {
-      case 'boolean':
+      case "boolean":
         condition[key] = condition[key] ? () => true : () => false;
 
         break;
-      case 'function':
+      case "function":
         break;
-      case 'string':
-        if (condition[key] === 'all') {
+      case "string":
+        if (condition[key] === "all") {
           condition[key] = () => true;
 
           break;
         }
 
-        if (condition[key] === 'some') {
+        if (condition[key] === "some") {
           condition[key] = /** @type {ExtractCommentsFunction} */ ((
             astNode,
             comment
           ) => {
             return (
-              (comment.type === 'comment2' || comment.type === 'comment1') &&
+              (comment.type === "comment2" || comment.type === "comment1") &&
               /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
             );
           });
@@ -175,7 +175,7 @@ function buildComments(extractComments, terserOptions, extractedComments) {
       (condition).extract(astNode, comment)
     ) {
       const commentText =
-        comment.type === 'comment2'
+        comment.type === "comment2"
           ? `/*${comment.value}*/`
           : `//${comment.value}`;
 
@@ -253,11 +253,11 @@ function transform(options) {
     /** @type {InternalMinifyOptions} */
     // eslint-disable-next-line no-new-func
     (new Function(
-      'exports',
-      'require',
-      'module',
-      '__filename',
-      '__dirname',
+      "exports",
+      "require",
+      "module",
+      "__filename",
+      "__dirname",
       `'use strict'\nreturn ${options}`
     )(exports, require, module, __filename, __dirname));
 
