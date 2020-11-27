@@ -64,6 +64,17 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
+ * @typedef {{ name: string }} Chunk
+ */
+
+/**
+ * @callback ChunkFilter
+ * @param {Chunk | undefined} chunk
+ * @param {string} fileName
+ * @return boolean
+ */
+
+/**
  * @typedef {ExtractCommentsCondition | ExtractCommentsObject} ExtractCommentsOptions
  */
 
@@ -72,6 +83,7 @@ import { minify as minifyFn } from "./minify";
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
+ * @property {ChunkFilter | undefined} [chunkFilter]
  * @property {MinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
@@ -96,6 +108,7 @@ class TerserPlugin {
       parallel = true,
       include,
       exclude,
+      chunkFilter,
     } = options;
 
     this.options = {
@@ -104,6 +117,7 @@ class TerserPlugin {
       parallel,
       include,
       exclude,
+      chunkFilter,
       minify,
       terserOptions,
     };
@@ -198,6 +212,21 @@ class TerserPlugin {
   async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache("TerserWebpackPlugin");
     let numberOfAssetsForMinify = 0;
+
+    // Create an index of asset name to its associated chunk.
+    let assetToChunk;
+    if (this.options.chunkFilter) {
+      assetToChunk = new Map();
+      for (const chunk of compilation.chunks) {
+        for (const file of chunk.files) {
+          assetToChunk.set(file, chunk);
+        }
+        for (const file of chunk.auxiliaryFiles) {
+          assetToChunk.set(file, chunk);
+        }
+      }
+    }
+
     const assetsForMinify = await Promise.all(
       Object.keys(assets)
         .filter((name) => {
@@ -205,6 +234,15 @@ class TerserPlugin {
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
+            return false;
+          }
+
+          // If there is a chunk filter, assert that it returns for the assets chunk.
+          if (
+            this.options.chunkFilter &&
+            assetToChunk &&
+            !this.options.chunkFilter(assetToChunk.get(name), name)
+          ) {
             return false;
           }
 

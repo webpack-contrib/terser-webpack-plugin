@@ -61,6 +61,15 @@
         }
       ]
     },
+    "chunkFilter": {
+      "description": "A function of type (chunk: Chunk | undefined, fileName: string) => boolean.",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "instanceof": "Function"
+        }
+      ]
+    },
     "terserOptions": {
       "description": "Options for `terser`.",
       "additionalProperties": true,
