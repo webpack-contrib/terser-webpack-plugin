@@ -142,9 +142,8 @@ describe("extractComments option", () => {
       extractComments: {
         condition: true,
         filename: createFilenameFn(),
-        banner: (licenseFile) => {
-          return `License information can be found in ${licenseFile}`;
-        },
+        banner: (licenseFile) =>
+          `License information can be found in ${licenseFile}`,
       },
     }).apply(compiler);
 
@@ -219,9 +218,8 @@ describe("extractComments option", () => {
       },
       extractComments: {
         filename: createFilenameFn(),
-        banner: (licenseFile) => {
-          return `License information can be found in ${licenseFile}`;
-        },
+        banner: (licenseFile) =>
+          `License information can be found in ${licenseFile}`,
       },
     }).apply(compiler);
 

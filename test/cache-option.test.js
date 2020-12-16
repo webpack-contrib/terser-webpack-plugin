@@ -32,14 +32,14 @@ describe('"cache" option', () => {
     "./outputs/type-filesystem-3"
   );
 
-  beforeAll(() => {
-    return Promise.all([
+  beforeAll(() =>
+    Promise.all([
       del(fileSystemCacheDirectory),
       del(fileSystemCacheDirectory1),
       del(fileSystemCacheDirectory2),
       del(fileSystemCacheDirectory3),
-    ]);
-  });
+    ])
+  );
 
   it('should work with "false" value for the "cache" option', async () => {
     const compiler = getCompiler({

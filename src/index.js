@@ -15,14 +15,13 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").Rules} Rules */
-/** @typedef {import("webpack").Source} Source */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("webpack").AssetInfo} AssetInfo */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
-/** @typedef {import("source-map").RawSourceMap} SourceMapRawSourceMap */
+/** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
 
@@ -59,7 +58,7 @@ import { minify as minifyFn } from "./minify";
 /**
  * @callback CustomMinifyFunction
  * @param {Object.<string, string>} file
- * @param {SourceMapRawSourceMap} sourceMap
+ * @param {RawSourceMap | undefined} sourceMap
  * @param {MinifyOptions} minifyOptions
  */
 
@@ -191,7 +190,7 @@ class TerserPlugin {
   /**
    * @param {Compiler} compiler
    * @param {Compilation} compilation
-   * @param {Record<string, Source>} assets
+   * @param {Record<string, import("webpack").sources.Source>} assets
    * @param {{availableNumberOfCores: number}} optimizeOptions
    * @returns {Promise<void>}
    */
@@ -265,17 +264,13 @@ class TerserPlugin {
         const workerStdout = initializedWorker.getStdout();
 
         if (workerStdout) {
-          workerStdout.on("data", (chunk) => {
-            return process.stdout.write(chunk);
-          });
+          workerStdout.on("data", (chunk) => process.stdout.write(chunk));
         }
 
         const workerStderr = initializedWorker.getStderr();
 
         if (workerStderr) {
-          workerStderr.on("data", (chunk) => {
-            return process.stderr.write(chunk);
-          });
+          workerStderr.on("data", (chunk) => process.stderr.write(chunk));
         }
 
         return initializedWorker;
@@ -303,6 +298,7 @@ class TerserPlugin {
 
           if (!output) {
             let input;
+            /** @type {RawSourceMap | undefined} */
             let inputSourceMap;
 
             const {
@@ -314,9 +310,9 @@ class TerserPlugin {
 
             if (map) {
               if (TerserPlugin.isSourceMap(map)) {
-                inputSourceMap = map;
+                inputSourceMap = /** @type {RawSourceMap} */ (map);
               } else {
-                inputSourceMap = map;
+                inputSourceMap = /** @type {RawSourceMap} */ (map);
 
                 compilation.warnings.push(
                   /** @type {WebpackError} */
@@ -329,6 +325,7 @@ class TerserPlugin {
               input = input.toString();
             }
 
+            /** @type {InternalMinifyOptions} */
             const options = {
               name,
               input,
@@ -364,7 +361,7 @@ class TerserPlugin {
                   hasSourceMap ? compilation.requestShortener : undefined,
                   hasSourceMap
                     ? new SourceMapConsumer(
-                        /** @type {SourceMapRawSourceMap} */ (inputSourceMap)
+                        /** @type {RawSourceMap} */ (inputSourceMap)
                       )
                     : // eslint-disable-next-line no-undefined
                       undefined
@@ -395,7 +392,7 @@ class TerserPlugin {
                 name,
                 output.map,
                 input,
-                /** @type {SourceMapRawSourceMap} */ (inputSourceMap),
+                /** @type {RawSourceMap} */ (inputSourceMap),
                 true
               );
             } else {
