@@ -15,9 +15,9 @@ const { minify: terserMinify } = require("terser");
  * @typedef {Object} InternalMinifyOptions
  * @property {string} name
  * @property {string} input
- * @property {RawSourceMap} inputSourceMap
+ * @property {RawSourceMap | undefined} inputSourceMap
  * @property {ExtractCommentsOptions} extractComments
- * @property {CustomMinifyFunction} minify
+ * @property {CustomMinifyFunction | undefined} minify
  * @property {MinifyOptions} minifyOptions
  */
 
@@ -135,12 +135,9 @@ function buildComments(extractComments, terserOptions, extractedComments) {
           condition[key] = /** @type {ExtractCommentsFunction} */ ((
             astNode,
             comment
-          ) => {
-            return (
-              (comment.type === "comment2" || comment.type === "comment1") &&
-              /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
-            );
-          });
+          ) =>
+            (comment.type === "comment2" || comment.type === "comment1") &&
+            /@preserve|@lic|@cc_on|^\**!/i.test(comment.value));
 
           break;
         }
@@ -150,11 +147,7 @@ function buildComments(extractComments, terserOptions, extractedComments) {
         condition[key] = /** @type {ExtractCommentsFunction} */ ((
           astNode,
           comment
-        ) => {
-          return new RegExp(/** @type {string} */ (regexStr)).test(
-            comment.value
-          );
-        });
+        ) => new RegExp(/** @type {string} */ (regexStr)).test(comment.value));
 
         break;
       default:

@@ -250,9 +250,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: (item) => {
-        return item["test1.js"];
-      },
+      minify: (item) => item["test1.js"],
     };
     const workerResult = await transform(serialize(options));
 
