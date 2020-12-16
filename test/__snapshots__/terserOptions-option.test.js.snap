@@ -301,7 +301,7 @@ Object {
                     let request = await fetch(url), text = await request.text();
                     return JSON.parse(text);
                 } catch (error) {
-                    console.log(\\"ERROR: \\" + error.stack);
+                    console.log(\`ERROR: \${error.stack}\`);
                 }
             };
         }
