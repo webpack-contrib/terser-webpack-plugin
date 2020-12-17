@@ -292,6 +292,9 @@ class TerserPlugin {
       ConcatSource,
       RawSource,
     } = compiler.webpack.sources;
+
+    /** @typedef {{ extractedCommentsSource : import("webpack").sources.RawSource, commentsFilename: string }} ExtractedCommentsInfo */
+    /** @type {Map<string, ExtractedCommentsInfo>} */
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
@@ -506,17 +509,17 @@ class TerserPlugin {
       await initializedWorker.end();
     }
 
+    /** @typedef {{ source: import("webpack").sources.Source, commentsFilename: string, from: string }} ExtractedCommentsInfoWIthFrom */
     await Array.from(allExtractedComments)
       .sort()
       .reduce(
-        // TODO need fix
         /**
-         * @param {Promise<any>} previousPromise
-         * @param {any} extractedComments
-         * @returns {Promise<any>}
+         * @param {Promise<unknown>} previousPromise
+         * @param {[string, ExtractedCommentsInfo]} extractedComments
+         * @returns {Promise<ExtractedCommentsInfoWIthFrom>}
          */
         async (previousPromise, [from, value]) => {
-          const previous = await previousPromise;
+          const previous = /** @type {ExtractedCommentsInfoWIthFrom | undefined} **/ (await previousPromise);
           const { commentsFilename, extractedCommentsSource } = value;
 
           if (previous && previous.commentsFilename === commentsFilename) {
@@ -535,8 +538,9 @@ class TerserPlugin {
               source = new ConcatSource(
                 Array.from(
                   new Set([
-                    ...prevSource.source().split("\n\n"),
-                    ...extractedCommentsSource.source().split("\n\n"),
+                    .../** @type {string}*/ (prevSource.source()).split("\n\n"),
+                    .../** @type {string}*/
+                    (extractedCommentsSource.source()).split("\n\n"),
                   ])
                 ).join("\n\n")
               );
@@ -546,28 +550,24 @@ class TerserPlugin {
 
             compilation.updateAsset(commentsFilename, source);
 
-            return { commentsFilename, from: mergedName, source };
+            return { source, commentsFilename, from: mergedName };
           }
 
           const existingAsset = compilation.getAsset(commentsFilename);
 
           if (existingAsset) {
             return {
+              source: existingAsset.source,
               commentsFilename,
               from: commentsFilename,
-              source: existingAsset.source,
             };
           }
 
           compilation.emitAsset(commentsFilename, extractedCommentsSource);
 
-          return {
-            commentsFilename,
-            from,
-            source: extractedCommentsSource,
-          };
+          return { source: extractedCommentsSource, commentsFilename, from };
         },
-        Promise.resolve()
+        /** @type {Promise<unknown>} */ (Promise.resolve())
       );
   }
 
