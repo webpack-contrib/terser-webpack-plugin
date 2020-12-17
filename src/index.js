@@ -14,16 +14,18 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
-/** @typedef {import("webpack").Rules} Rules */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
-/** @typedef {import("webpack").AssetInfo} AssetInfo */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").default} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
+
+/** @typedef {RegExp | string} Rule */
+
+/** @typedef {Rule[] | Rule} Rules */
 
 /** @typedef {JestWorker & { transform: (options: string) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
 
@@ -131,7 +133,7 @@ class TerserPlugin {
    * @param {string} file
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
-   * @returns {WebpackError}
+   * @returns {Error}
    */
   static buildError(error, file, requestShortener, sourceMap) {
     if (error.line) {
@@ -188,6 +190,7 @@ class TerserPlugin {
   }
 
   /**
+   * @private
    * @param {Compiler} compiler
    * @param {Compilation} compilation
    * @param {Record<string, import("webpack").sources.Source>} assets
@@ -200,7 +203,7 @@ class TerserPlugin {
     const assetsForMinify = await Promise.all(
       Object.keys(assets)
         .filter((name) => {
-          const { info } = compilation.getAsset(name);
+          const { info } = /** @type {Asset} */ (compilation.getAsset(name));
 
           // Skip double minimize assets from child compilation
           if (info.minimized) {
@@ -220,7 +223,9 @@ class TerserPlugin {
           return true;
         })
         .map(async (name) => {
-          const { info, source } = compilation.getAsset(name);
+          const { info, source } = /** @type {Asset} */ (compilation.getAsset(
+            name
+          ));
 
           const eTag = cache.getLazyHashedEtag(source);
           const cacheItem = cache.getItemCache(name, eTag);
@@ -352,9 +357,9 @@ class TerserPlugin {
             } catch (error) {
               const hasSourceMap =
                 inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
-
-              compilation.errors.push(
-                TerserPlugin.buildError(
+              const terserError =
+                /** @type {WebpackError} */
+                (TerserPlugin.buildError(
                   error,
                   name,
                   // eslint-disable-next-line no-undefined
@@ -365,8 +370,9 @@ class TerserPlugin {
                       )
                     : // eslint-disable-next-line no-undefined
                       undefined
-                )
-              );
+                ));
+
+              compilation.errors.push(terserError);
 
               return;
             }
@@ -473,7 +479,7 @@ class TerserPlugin {
             });
           }
 
-          /** @type {AssetInfo} */
+          /** @type {import('webpack').AssetInfo} */
           const newInfo = { minimized: true };
           const { source, extractedCommentsSource } = output;
 
@@ -503,6 +509,7 @@ class TerserPlugin {
     await Array.from(allExtractedComments)
       .sort()
       .reduce(
+        // TODO need fix
         /**
          * @param {Promise<any>} previousPromise
          * @param {any} extractedComments
@@ -636,7 +643,11 @@ class TerserPlugin {
       compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
         stats.hooks.print
           .for("asset.info.minimized")
-          .tap("terser-webpack-plugin", (minimized, { green, formatFlag }) =>
+          .tap("terser-webpack-plugin", (
+            minimized,
+            // TODO need fix in webpack
+            /** @type {Record<any, any>} */ { green, formatFlag }
+          ) =>
             // eslint-disable-next-line no-undefined
             minimized ? green(formatFlag("minimized")) : undefined
           );
