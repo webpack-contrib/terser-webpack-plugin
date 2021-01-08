@@ -202,10 +202,16 @@ class TerserPlugin {
         .filter((name) => {
           const { info } = compilation.getAsset(name);
 
-          // Skip double minimize assets from child compilation
-          if (info.minimized) {
+          if (
+            // Skip double minimize assets from child compilation
+            info.minimized ||
+            // Skip minimizing for extracted comments assets
+            info.extractedComments
+          ) {
             return false;
           }
+
+          console.log(info);
 
           if (
             !compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
@@ -552,7 +558,9 @@ class TerserPlugin {
             };
           }
 
-          compilation.emitAsset(commentsFilename, extractedCommentsSource);
+          compilation.emitAsset(commentsFilename, extractedCommentsSource, {
+            extractedComments: true,
+          });
 
           return {
             commentsFilename,
@@ -626,6 +634,7 @@ class TerserPlugin {
           name: pluginName,
           stage:
             compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_SIZE,
+          additionalAssets: true,
         },
         (assets) =>
           this.optimize(compiler, compilation, assets, {

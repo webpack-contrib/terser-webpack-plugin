@@ -14,6 +14,7 @@ import {
   ModifyExistingAsset,
   compile,
   countPlugins,
+  EmitNewAsset,
   getCompiler,
   getErrors,
   getWarnings,
@@ -1601,6 +1602,21 @@ describe("TerserPlugin", () => {
     });
 
     new TerserPlugin({ parallel: true }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should run plugin against assets added later by plugins", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/entry.js"),
+    });
+
+    new TerserPlugin().apply(compiler);
+    new EmitNewAsset({ name: "newFile.js" }).apply(compiler);
 
     const stats = await compile(compiler);
 
