@@ -211,8 +211,6 @@ class TerserPlugin {
             return false;
           }
 
-          console.log(info);
-
           if (
             !compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
               // eslint-disable-next-line no-undefined
