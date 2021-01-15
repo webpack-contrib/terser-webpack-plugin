@@ -20,10 +20,10 @@ This plugin uses [terser](https://github.com/terser-js/terser) to minify your Ja
 
 If you are using webpack v5 or above you do not need to install this plugin. Webpack v5 comes with the latest `terser-webpack-plugin` out of the box.
 
-To begin, you'll need to install `terser-webpack-plugin`:
+To begin when using webpack v4, you'll need to install `terser-webpack-plugin`:
 
 ```console
-$ npm install terser-webpack-plugin --save-dev
+$ npm install terser-webpack-plugin@4 --save-dev
 ```
 
 Then add the plugin to your `webpack` config. For example:
