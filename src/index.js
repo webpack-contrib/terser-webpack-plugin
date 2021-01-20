@@ -14,7 +14,6 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
-/** @typedef {import("webpack").Rules} Rules */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("webpack").AssetInfo} AssetInfo */
@@ -24,6 +23,10 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
+
+/** @typedef {RegExp | string} Rule */
+
+/** @typedef {Rule[] | Rule} Rules */
 
 /** @typedef {JestWorker & { transform: (options: string) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
 
@@ -131,7 +134,7 @@ class TerserPlugin {
    * @param {string} file
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
-   * @returns {WebpackError}
+   * @returns {Error}
    */
   static buildError(error, file, requestShortener, sourceMap) {
     if (error.line) {
@@ -200,7 +203,7 @@ class TerserPlugin {
     const assetsForMinify = await Promise.all(
       Object.keys(assets)
         .filter((name) => {
-          const { info } = compilation.getAsset(name);
+          const { info } = /** @type {Asset} */ (compilation.getAsset(name));
 
           if (
             // Skip double minimize assets from child compilation
@@ -224,7 +227,9 @@ class TerserPlugin {
           return true;
         })
         .map(async (name) => {
-          const { info, source } = compilation.getAsset(name);
+          const { info, source } = /** @type {Asset} */ (compilation.getAsset(
+            name
+          ));
 
           const eTag = cache.getLazyHashedEtag(source);
           const cacheItem = cache.getItemCache(name, eTag);
@@ -291,6 +296,9 @@ class TerserPlugin {
       ConcatSource,
       RawSource,
     } = compiler.webpack.sources;
+
+    /** @typedef {{ extractedCommentsSource : import("webpack").sources.RawSource, commentsFilename: string }} ExtractedCommentsInfo */
+    /** @type {Map<string, ExtractedCommentsInfo>} */
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
@@ -358,7 +366,8 @@ class TerserPlugin {
                 inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
 
               compilation.errors.push(
-                TerserPlugin.buildError(
+                /** @type {WebpackError} */
+                (TerserPlugin.buildError(
                   error,
                   name,
                   // eslint-disable-next-line no-undefined
@@ -369,7 +378,7 @@ class TerserPlugin {
                       )
                     : // eslint-disable-next-line no-undefined
                       undefined
-                )
+                ))
               );
 
               return;
@@ -504,16 +513,17 @@ class TerserPlugin {
       await initializedWorker.end();
     }
 
+    /** @typedef {{ source: import("webpack").sources.Source, commentsFilename: string, from: string }} ExtractedCommentsInfoWIthFrom */
     await Array.from(allExtractedComments)
       .sort()
       .reduce(
         /**
-         * @param {Promise<any>} previousPromise
-         * @param {any} extractedComments
-         * @returns {Promise<any>}
+         * @param {Promise<unknown>} previousPromise
+         * @param {[string, ExtractedCommentsInfo]} extractedComments
+         * @returns {Promise<ExtractedCommentsInfoWIthFrom>}
          */
         async (previousPromise, [from, value]) => {
-          const previous = await previousPromise;
+          const previous = /** @type {ExtractedCommentsInfoWIthFrom | undefined} **/ (await previousPromise);
           const { commentsFilename, extractedCommentsSource } = value;
 
           if (previous && previous.commentsFilename === commentsFilename) {
@@ -532,8 +542,10 @@ class TerserPlugin {
               source = new ConcatSource(
                 Array.from(
                   new Set([
-                    ...prevSource.source().split("\n\n"),
-                    ...extractedCommentsSource.source().split("\n\n"),
+                    .../** @type {string}*/ (prevSource.source()).split("\n\n"),
+                    .../** @type {string}*/ (extractedCommentsSource.source()).split(
+                      "\n\n"
+                    ),
                   ])
                 ).join("\n\n")
               );
@@ -543,16 +555,16 @@ class TerserPlugin {
 
             compilation.updateAsset(commentsFilename, source);
 
-            return { commentsFilename, from: mergedName, source };
+            return { source, commentsFilename, from: mergedName };
           }
 
           const existingAsset = compilation.getAsset(commentsFilename);
 
           if (existingAsset) {
             return {
+              source: existingAsset.source,
               commentsFilename,
               from: commentsFilename,
-              source: existingAsset.source,
             };
           }
 
@@ -560,13 +572,9 @@ class TerserPlugin {
             extractedComments: true,
           });
 
-          return {
-            commentsFilename,
-            from,
-            source: extractedCommentsSource,
-          };
+          return { source: extractedCommentsSource, commentsFilename, from };
         },
-        Promise.resolve()
+        /** @type {Promise<unknown>} */ (Promise.resolve())
       );
   }
 
@@ -644,8 +652,11 @@ class TerserPlugin {
         stats.hooks.print
           .for("asset.info.minimized")
           .tap("terser-webpack-plugin", (minimized, { green, formatFlag }) =>
-            // eslint-disable-next-line no-undefined
-            minimized ? green(formatFlag("minimized")) : undefined
+            minimized
+              ? /** @type {function} */ (green)(
+                  /** @type {function} */ (formatFlag)("minimized")
+                )
+              : ""
           );
       });
     });
