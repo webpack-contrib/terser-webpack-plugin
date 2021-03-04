@@ -3,7 +3,6 @@ const { minify: terserMinify } = require("terser");
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").CustomMinifyFunction} CustomMinifyFunction */
-/** @typedef {import("./index.js").MinifyOptions} MinifyOptions */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("terser").MinifyOutput} MinifyOutput */
 /** @typedef {import("terser").FormatOptions} FormatOptions */
@@ -12,13 +11,17 @@ const { minify: terserMinify } = require("terser");
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 
 /**
+ * @typedef {Object.<any, any>} CustomMinifyOptions
+ */
+
+/**
  * @typedef {Object} InternalMinifyOptions
  * @property {string} name
  * @property {string} input
- * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {RawSourceMap} [inputSourceMap]
  * @property {ExtractCommentsOptions} extractComments
- * @property {CustomMinifyFunction | undefined} minify
- * @property {MinifyOptions} minifyOptions
+ * @property {CustomMinifyFunction} [minify]
+ * @property {TerserMinifyOptions | CustomMinifyOptions} minifyOptions
  */
 
 /**

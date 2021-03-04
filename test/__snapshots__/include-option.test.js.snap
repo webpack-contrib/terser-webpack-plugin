@@ -47,13 +47,15 @@ module.exports = function Foo() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(791);
+/******/ 	var __webpack_exports__ = __webpack_require__(791);
+/******/ 	
 /******/ })()
 ;",
-  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(850)})();",
+  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(850)})();",
   "included2.js": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -94,10 +96,12 @@ module.exports = function Bar2() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(837);
+/******/ 	var __webpack_exports__ = __webpack_require__(837);
+/******/ 	
 /******/ })()
 ;",
 }
@@ -154,13 +158,15 @@ module.exports = function Foo() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(791);
+/******/ 	var __webpack_exports__ = __webpack_require__(791);
+/******/ 	
 /******/ })()
 ;",
-  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(850)})();",
+  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(850)})();",
   "included2.js": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -201,10 +207,12 @@ module.exports = function Bar2() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(837);
+/******/ 	var __webpack_exports__ = __webpack_require__(837);
+/******/ 	
 /******/ })()
 ;",
 }
@@ -261,14 +269,16 @@ module.exports = function Foo() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(791);
+/******/ 	var __webpack_exports__ = __webpack_require__(791);
+/******/ 	
 /******/ })()
 ;",
-  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(850)})();",
-  "included2.js": "(()=>{var r={837:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(837)})();",
+  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(850)})();",
+  "included2.js": "(()=>{var r={837:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(837)})();",
 }
 `;
 
@@ -323,14 +333,16 @@ module.exports = function Foo() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(791);
+/******/ 	var __webpack_exports__ = __webpack_require__(791);
+/******/ 	
 /******/ })()
 ;",
-  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(850)})();",
-  "included2.js": "(()=>{var r={837:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(837)})();",
+  "included1.js": "(()=>{var r={850:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(850)})();",
+  "included2.js": "(()=>{var r={837:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(837)})();",
 }
 `;
 
