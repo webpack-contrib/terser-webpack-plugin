@@ -2,7 +2,7 @@
 
 exports[`terserOptions option should match snapshot for the "compress" option with an object value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}};var o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}};var o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -13,7 +13,7 @@ exports[`terserOptions option should match snapshot for the "compress" option wi
 exports[`terserOptions option should match snapshot for the "compress" option with the "false" value: assets 1`] = `
 Object {
   "main.js": "/*! For license information please see main.js.LICENSE.txt */
-(()=>{var o={791:o=>{const r=null&&2+2;o.exports=function o(){const r=2+2;console.log(r+1+2)}}};var r={};function t(n){if(r[n]){return r[n].exports}var e=r[n]={exports:{}};o[n](e,e.exports,t);return e.exports}t(791)})();",
+(()=>{var r={791:r=>{const o=null&&2+2;r.exports=function r(){const o=2+2;console.log(o+1+2)}}};var o={};function t(n){if(o[n]){return o[n].exports}var e=o[n]={exports:{}};r[n](e,e.exports,t);return e.exports}var n=t(791)})();",
   "main.js.LICENSE.txt": "/* @preserve*/
 ",
 }
@@ -25,7 +25,7 @@ exports[`terserOptions option should match snapshot for the "compress" option wi
 
 exports[`terserOptions option should match snapshot for the "compress" option with the "true" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -63,14 +63,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(931);
+    })(931);
 }();",
 }
 `;
@@ -109,14 +109,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(931);
+    })(931);
 }();",
 }
 `;
@@ -155,14 +155,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(931);
+    })(931);
 })();",
 }
 `;
@@ -201,14 +201,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(931);
+    })(931);
 })();",
 }
 `;
@@ -249,14 +249,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(513);
+    })(513);
 })();",
 }
 `;
@@ -275,14 +275,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(171);
+    })(171);
 })();",
 }
 `;
@@ -306,14 +306,14 @@ Object {
             };
         }
     }, __webpack_module_cache__ = {};
-    !function __webpack_require__(moduleId) {
+    (function __webpack_require__(moduleId) {
         if (__webpack_module_cache__[moduleId]) return __webpack_module_cache__[moduleId].exports;
         var module = __webpack_module_cache__[moduleId] = {
             exports: {}
         };
         return __webpack_modules__[moduleId](module, module.exports, __webpack_require__), 
         module.exports;
-    }(78);
+    })(78);
 })();",
 }
 `;
@@ -332,13 +332,13 @@ Object {
             };
         }
     }, o = {};
-    !function t(e) {
+    (function t(e) {
         if (o[e]) return o[e].exports;
         var n = o[e] = {
             exports: {}
         };
         return r[e](n, n.exports, t), n.exports;
-    }(791);
+    })(791);
 })();",
 }
 `;
@@ -360,10 +360,11 @@ Object {
 /******/
 /******/
 /************************************************************************/
+/******/
 /******/ // startup
-/******/ // Load entry module
+/******/ // Load entry module and return exports
 /******/ // This entry module is referenced by other modules so it can't be inlined
-/******/!
+/******/(
 /******/
 /******/ // The require function
 /******/function t(e){
@@ -383,8 +384,9 @@ Object {
 /******/
 /******/ // Return the exports of the module
 /******/return r[e](n,n.exports,t),n.exports;
-/******/}(791)})
-/******/();",
+/******/})(791);
+/******/
+/******/})();",
 }
 `;
 
@@ -394,7 +396,7 @@ exports[`terserOptions option should match snapshot for the "format.comments" op
 
 exports[`terserOptions option should match snapshot for the "ie8" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -404,7 +406,7 @@ exports[`terserOptions option should match snapshot for the "ie8" option with th
 
 exports[`terserOptions option should match snapshot for the "ie8" option with the "true" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -414,7 +416,7 @@ exports[`terserOptions option should match snapshot for the "ie8" option with th
 
 exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -424,7 +426,7 @@ exports[`terserOptions option should match snapshot for the "keep_classnames" op
 
 exports[`terserOptions option should match snapshot for the "keep_classnames" option with the "true" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -434,7 +436,7 @@ exports[`terserOptions option should match snapshot for the "keep_classnames" op
 
 exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -444,7 +446,7 @@ exports[`terserOptions option should match snapshot for the "keep_fnames" option
 
 exports[`terserOptions option should match snapshot for the "keep_fnames" option with the "true" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function Foo(){console.log(7)}}},e={};!function __webpack_require__(o){if(e[o])return e[o].exports;var _=e[o]={exports:{}};return r[o](_,_.exports,__webpack_require__),_.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function Foo(){console.log(7)}}},e={};(function __webpack_require__(o){if(e[o])return e[o].exports;var _=e[o]={exports:{}};return r[o](_,_.exports,__webpack_require__),_.exports})(791)})();",
 }
 `;
 
@@ -454,7 +456,7 @@ exports[`terserOptions option should match snapshot for the "keep_fnames" option
 
 exports[`terserOptions option should match snapshot for the "mangle" option with object values: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -464,7 +466,7 @@ exports[`terserOptions option should match snapshot for the "mangle" option with
 
 exports[`terserOptions option should match snapshot for the "mangle" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};!function __webpack_require__(moduleId){if(__webpack_module_cache__[moduleId])return __webpack_module_cache__[moduleId].exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}(791)})();",
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};(function __webpack_require__(moduleId){if(__webpack_module_cache__[moduleId])return __webpack_module_cache__[moduleId].exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports})(791)})();",
 }
 `;
 
@@ -474,7 +476,7 @@ exports[`terserOptions option should match snapshot for the "mangle" option with
 
 exports[`terserOptions option should match snapshot for the "mangle" option with the "true" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -484,7 +486,7 @@ exports[`terserOptions option should match snapshot for the "mangle" option with
 
 exports[`terserOptions option should match snapshot for the "module" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -504,7 +506,7 @@ exports[`terserOptions option should match snapshot for the "module" option with
 
 exports[`terserOptions option should match snapshot for the "nameCache" option with a empty object value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -522,13 +524,13 @@ Object {
             };
         }
     }, o = {};
-    !function t(e) {
+    (function t(e) {
         if (o[e]) return o[e].exports;
         var n = o[e] = {
             exports: {}
         };
         return r[e](n, n.exports, t), n.exports;
-    }(791);
+    })(791);
 })();",
 }
 `;
@@ -550,10 +552,11 @@ Object {
 /******/
 /******/
 /************************************************************************/
+/******/
 /******/ // startup
-/******/ // Load entry module
+/******/ // Load entry module and return exports
 /******/ // This entry module is referenced by other modules so it can't be inlined
-/******/!
+/******/(
 /******/
 /******/ // The require function
 /******/function t(e){
@@ -573,8 +576,9 @@ Object {
 /******/
 /******/ // Return the exports of the module
 /******/return r[e](n,n.exports,t),n.exports;
-/******/}(791)})
-/******/();",
+/******/})(791);
+/******/
+/******/})();",
 }
 `;
 
@@ -584,7 +588,7 @@ exports[`terserOptions option should match snapshot for the "output.comments" op
 
 exports[`terserOptions option should match snapshot for the "parse.ecma" option with the "8" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -594,7 +598,7 @@ exports[`terserOptions option should match snapshot for the "parse.ecma" option 
 
 exports[`terserOptions option should match snapshot for the "safari10" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -604,7 +608,7 @@ exports[`terserOptions option should match snapshot for the "safari10" option wi
 
 exports[`terserOptions option should match snapshot for the "safari10" option with the "true" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 
@@ -614,7 +618,7 @@ exports[`terserOptions option should match snapshot for the "safari10" option wi
 
 exports[`terserOptions option should match snapshot for the "toplevel" option with the "false" value: assets 1`] = `
 Object {
-  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
 }
 `;
 

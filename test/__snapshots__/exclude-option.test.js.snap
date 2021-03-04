@@ -2,7 +2,7 @@
 
 exports[`exclude option should match snapshot for a single RegExp value: assets 1`] = `
 Object {
-  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
   "excluded1.js": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -42,13 +42,15 @@ module.exports = function Bar1() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(119);
+/******/ 	var __webpack_exports__ = __webpack_require__(119);
+/******/ 	
 /******/ })()
 ;",
-  "excluded2.js": "(()=>{var r={43:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(43)})();",
+  "excluded2.js": "(()=>{var r={43:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(43)})();",
 }
 `;
 
@@ -58,7 +60,7 @@ exports[`exclude option should match snapshot for a single RegExp value: warning
 
 exports[`exclude option should match snapshot for a single String value: assets 1`] = `
 Object {
-  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
   "excluded1.js": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -98,13 +100,15 @@ module.exports = function Bar1() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(119);
+/******/ 	var __webpack_exports__ = __webpack_require__(119);
+/******/ 	
 /******/ })()
 ;",
-  "excluded2.js": "(()=>{var r={43:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(43)})();",
+  "excluded2.js": "(()=>{var r={43:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(43)})();",
 }
 `;
 
@@ -114,7 +118,7 @@ exports[`exclude option should match snapshot for a single String value: warning
 
 exports[`exclude option should match snapshot for multiple RegExp values: assets 1`] = `
 Object {
-  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
   "excluded1.js": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -154,10 +158,12 @@ module.exports = function Bar1() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(119);
+/******/ 	var __webpack_exports__ = __webpack_require__(119);
+/******/ 	
 /******/ })()
 ;",
   "excluded2.js": "/******/ (() => { // webpackBootstrap
@@ -199,10 +205,12 @@ module.exports = function Bar2() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(43);
+/******/ 	var __webpack_exports__ = __webpack_require__(43);
+/******/ 	
 /******/ })()
 ;",
 }
@@ -214,7 +222,7 @@ exports[`exclude option should match snapshot for multiple RegExp values: warnin
 
 exports[`exclude option should match snapshot for multiple String values: assets 1`] = `
 Object {
-  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};!function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(791)})();",
+  "entry.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){if(o[e])return o[e].exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports})(791)})();",
   "excluded1.js": "/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -254,10 +262,12 @@ module.exports = function Bar1() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(119);
+/******/ 	var __webpack_exports__ = __webpack_require__(119);
+/******/ 	
 /******/ })()
 ;",
   "excluded2.js": "/******/ (() => { // webpackBootstrap
@@ -299,10 +309,12 @@ module.exports = function Bar2() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
+/******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(43);
+/******/ 	var __webpack_exports__ = __webpack_require__(43);
+/******/ 	
 /******/ })()
 ;",
 }

@@ -22,14 +22,13 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
+/** @typedef {import("./minify.js").CustomMinifyOptions} CustomMinifyOptions */
 
 /** @typedef {RegExp | string} Rule */
 
 /** @typedef {Rule[] | Rule} Rules */
 
 /** @typedef {JestWorker & { transform: (options: string) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
-
-/** @typedef {Object.<any, any> | TerserMinifyOptions} MinifyOptions */
 
 /**
  * @callback ExtractCommentsFunction
@@ -59,9 +58,9 @@ import { minify as minifyFn } from "./minify";
 
 /**
  * @callback CustomMinifyFunction
- * @param {Object.<string, string>} file
- * @param {RawSourceMap | undefined} sourceMap
- * @param {MinifyOptions} minifyOptions
+ * @param {{ [file: string]: string }} fileAndCode
+ * @param {RawSourceMap} [sourceMap]
+ * @param {Object.<any, any>} minifyOptions
  */
 
 /**
@@ -69,14 +68,29 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} TerserPluginOptions
+ * @typedef {Object} PluginWithTerserOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
- * @property {MinifyOptions} [terserOptions]
+ * @property {TerserMinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
  * @property {CustomMinifyFunction} [minify]
+ */
+
+/**
+ * @typedef {Object} PluginWithCustomMinifyOptions
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {Object.<any, any>} [terserOptions]
+ * @property {ExtractCommentsOptions} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {CustomMinifyFunction} [minify]
+ */
+
+/**
+ * @typedef {PluginWithTerserOptions | PluginWithCustomMinifyOptions} TerserPluginOptions
  */
 
 class TerserPlugin {
