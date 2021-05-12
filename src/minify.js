@@ -259,8 +259,8 @@ function transform(options) {
   // eslint-disable-next-line no-param-reassign
   const evaluatedOptions =
     /** @type {InternalMinifyOptions} */
-    // eslint-disable-next-line no-new-func
     (
+      // eslint-disable-next-line no-new-func
       new Function(
         "exports",
         "require",
