@@ -33,7 +33,7 @@
     "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
     "pretest": "npm run lint",
     "test": "npm run test:coverage",
-    "prepare": "npm run build && husky install",
+    "prepare": "husky install && npm run build",
     "release": "standard-version"
   },
   "files": [
