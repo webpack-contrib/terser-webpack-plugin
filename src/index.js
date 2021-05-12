@@ -240,9 +240,9 @@ class TerserPlugin {
           return true;
         })
         .map(async (name) => {
-          const { info, source } = /** @type {Asset} */ (compilation.getAsset(
-            name
-          ));
+          const { info, source } = /** @type {Asset} */ (
+            compilation.getAsset(name)
+          );
 
           const eTag = cache.getLazyHashedEtag(source);
           const cacheItem = cache.getItemCache(name, eTag);
@@ -277,10 +277,12 @@ class TerserPlugin {
 
         initializedWorker =
           /** @type {MinifyWorker} */
-          (new Worker(require.resolve("./minify"), {
-            numWorkers: numberOfWorkers,
-            enableWorkerThreads: true,
-          }));
+          (
+            new Worker(require.resolve("./minify"), {
+              numWorkers: numberOfWorkers,
+              enableWorkerThreads: true,
+            })
+          );
 
         // https://github.com/facebook/jest/issues/8872#issuecomment-524822081
         const workerStdout = initializedWorker.getStdout();
@@ -304,11 +306,8 @@ class TerserPlugin {
         ? /** @type {number} */ (numberOfWorkers)
         : Infinity
     );
-    const {
-      SourceMapSource,
-      ConcatSource,
-      RawSource,
-    } = compiler.webpack.sources;
+    const { SourceMapSource, ConcatSource, RawSource } =
+      compiler.webpack.sources;
 
     /** @typedef {{ extractedCommentsSource : import("webpack").sources.RawSource, commentsFilename: string }} ExtractedCommentsInfo */
     /** @type {Map<string, ExtractedCommentsInfo>} */
@@ -326,10 +325,8 @@ class TerserPlugin {
             /** @type {RawSourceMap | undefined} */
             let inputSourceMap;
 
-            const {
-              source: sourceFromInputSource,
-              map,
-            } = inputSource.sourceAndMap();
+            const { source: sourceFromInputSource, map } =
+              inputSource.sourceAndMap();
 
             input = sourceFromInputSource;
 
@@ -380,18 +377,20 @@ class TerserPlugin {
 
               compilation.errors.push(
                 /** @type {WebpackError} */
-                (TerserPlugin.buildError(
-                  error,
-                  name,
-                  // eslint-disable-next-line no-undefined
-                  hasSourceMap ? compilation.requestShortener : undefined,
-                  hasSourceMap
-                    ? new SourceMapConsumer(
-                        /** @type {RawSourceMap} */ (inputSourceMap)
-                      )
-                    : // eslint-disable-next-line no-undefined
-                      undefined
-                ))
+                (
+                  TerserPlugin.buildError(
+                    error,
+                    name,
+                    // eslint-disable-next-line no-undefined
+                    hasSourceMap ? compilation.requestShortener : undefined,
+                    hasSourceMap
+                      ? new SourceMapConsumer(
+                          /** @type {RawSourceMap} */ (inputSourceMap)
+                        )
+                      : // eslint-disable-next-line no-undefined
+                        undefined
+                  )
+                )
               );
 
               return;
@@ -536,7 +535,10 @@ class TerserPlugin {
          * @returns {Promise<ExtractedCommentsInfoWIthFrom>}
          */
         async (previousPromise, [from, value]) => {
-          const previous = /** @type {ExtractedCommentsInfoWIthFrom | undefined} **/ (await previousPromise);
+          const previous =
+            /** @type {ExtractedCommentsInfoWIthFrom | undefined} **/ (
+              await previousPromise
+            );
           const { commentsFilename, extractedCommentsSource } = value;
 
           if (previous && previous.commentsFilename === commentsFilename) {
@@ -556,9 +558,9 @@ class TerserPlugin {
                 Array.from(
                   new Set([
                     .../** @type {string}*/ (prevSource.source()).split("\n\n"),
-                    .../** @type {string}*/ (extractedCommentsSource.source()).split(
-                      "\n\n"
-                    ),
+                    .../** @type {string}*/ (
+                      extractedCommentsSource.source()
+                    ).split("\n\n"),
                   ])
                 ).join("\n\n")
               );
@@ -635,9 +637,10 @@ class TerserPlugin {
     );
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
-      const hooks = compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
-        compilation
-      );
+      const hooks =
+        compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
+          compilation
+        );
       const data = serialize({
         terser: terserPackageJson.version,
         terserOptions: this.options.terserOptions,
