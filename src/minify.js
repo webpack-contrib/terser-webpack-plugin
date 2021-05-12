@@ -41,21 +41,35 @@ const { minify: terserMinify } = require("terser");
  * @returns {NormalizedTerserMinifyOptions}
  */
 function buildTerserOptions(terserOptions = {}) {
+  // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
   return {
     ...terserOptions,
+    compress:
+      typeof terserOptions.compress === "boolean"
+        ? terserOptions.compress
+        : { ...terserOptions.compress },
+    // ecma: terserOptions.ecma,
+    // ie8: terserOptions.ie8,
+    // keep_classnames: terserOptions.keep_classnames,
+    // keep_fnames: terserOptions.keep_fnames,
     mangle:
       terserOptions.mangle == null
         ? true
         : typeof terserOptions.mangle === "boolean"
         ? terserOptions.mangle
         : { ...terserOptions.mangle },
-    // Ignoring sourceMap from options
-    // eslint-disable-next-line no-undefined
-    sourceMap: undefined,
+    // module: terserOptions.module,
+    // nameCache: { ...terserOptions.toplevel },
     // the `output` option is deprecated
     ...(terserOptions.format
       ? { format: { beautify: false, ...terserOptions.format } }
       : { output: { beautify: false, ...terserOptions.output } }),
+    parse: { ...terserOptions.parse },
+    // safari10: terserOptions.safari10,
+    // Ignoring sourceMap from options
+    // eslint-disable-next-line no-undefined
+    sourceMap: undefined,
+    // toplevel: terserOptions.toplevel
   };
 }
 
@@ -135,31 +149,30 @@ function buildComments(extractComments, terserOptions, extractedComments) {
         }
 
         if (condition[key] === "some") {
-          condition[key] = /** @type {ExtractCommentsFunction} */ ((
-            astNode,
-            comment
-          ) =>
-            (comment.type === "comment2" || comment.type === "comment1") &&
-            /@preserve|@lic|@cc_on|^\**!/i.test(comment.value));
+          condition[key] = /** @type {ExtractCommentsFunction} */ (
+            (astNode, comment) =>
+              (comment.type === "comment2" || comment.type === "comment1") &&
+              /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
+          );
 
           break;
         }
 
         regexStr = /** @type {string} */ (condition[key]);
 
-        condition[key] = /** @type {ExtractCommentsFunction} */ ((
-          astNode,
-          comment
-        ) => new RegExp(/** @type {string} */ (regexStr)).test(comment.value));
+        condition[key] = /** @type {ExtractCommentsFunction} */ (
+          (astNode, comment) =>
+            new RegExp(/** @type {string} */ (regexStr)).test(comment.value)
+        );
 
         break;
       default:
         regex = /** @type {RegExp} */ (condition[key]);
 
-        condition[key] = /** @type {ExtractCommentsFunction} */ ((
-          astNode,
-          comment
-        ) => /** @type {RegExp} */ (regex).test(comment.value));
+        condition[key] = /** @type {ExtractCommentsFunction} */ (
+          (astNode, comment) =>
+            /** @type {RegExp} */ (regex).test(comment.value)
+        );
     }
   });
 
@@ -181,10 +194,9 @@ function buildComments(extractComments, terserOptions, extractedComments) {
       }
     }
 
-    return /** @type {{ preserve: ExtractCommentsFunction }} */ (condition).preserve(
-      astNode,
-      comment
-    );
+    return /** @type {{ preserve: ExtractCommentsFunction }} */ (
+      condition
+    ).preserve(astNode, comment);
   };
 }
 
@@ -248,14 +260,16 @@ function transform(options) {
   const evaluatedOptions =
     /** @type {InternalMinifyOptions} */
     // eslint-disable-next-line no-new-func
-    (new Function(
-      "exports",
-      "require",
-      "module",
-      "__filename",
-      "__dirname",
-      `'use strict'\nreturn ${options}`
-    )(exports, require, module, __filename, __dirname));
+    (
+      new Function(
+        "exports",
+        "require",
+        "module",
+        "__filename",
+        "__dirname",
+        `'use strict'\nreturn ${options}`
+      )(exports, require, module, __filename, __dirname)
+    );
 
   return minify(evaluatedOptions);
 }
