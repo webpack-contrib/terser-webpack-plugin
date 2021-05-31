@@ -669,8 +669,8 @@ class TerserPlugin {
           .for("asset.info.minimized")
           .tap("terser-webpack-plugin", (minimized, { green, formatFlag }) =>
             minimized
-              ? /** @type {function} */ (green)(
-                  /** @type {function} */ (formatFlag)("minimized")
+              ? /** @type {Function} */ (green)(
+                  /** @type {Function} */ (formatFlag)("minimized")
                 )
               : ""
           );
