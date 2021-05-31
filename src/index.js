@@ -6,7 +6,7 @@ import { validate } from "schema-utils";
 import serialize from "serialize-javascript";
 import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
-import Worker from "jest-worker";
+import { Worker } from "jest-worker";
 
 import * as schema from "./options.json";
 import { minify as minifyFn } from "./minify";
@@ -18,7 +18,7 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
-/** @typedef {import("jest-worker").default} JestWorker */
+/** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
