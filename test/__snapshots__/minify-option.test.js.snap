@@ -84,7 +84,7 @@ exports[`minify option should work with source maps: assets 1`] = `
 Object {
   "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();
 //# sourceMappingURL=main.js.map",
-  "main.js.map": "{\\"version\\":3,\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/minify/es6.js\\"],\\"names\\":[\\"console\\",\\"log\\"],\\"mappings\\":\\"mBAcAA,QAAAC,IAAA\\",\\"file\\":\\"main.js\\",\\"sourcesContent\\":[\\"class Point {\\\\n  constructor(x, y) {\\\\n    this.x = x;\\\\n    this.y = y;\\\\n  }\\\\n\\\\n  static distance(a, b) {\\\\n    const dx = a.x - b.x;\\\\n    const dy = a.y - b.y;\\\\n\\\\n    return Math.hypot(dx, dy);\\\\n  }\\\\n}\\\\n\\\\nconsole.log('HERE');\\\\n\\\\nexport default Point;\\\\n\\"],\\"sourceRoot\\":\\"\\"}",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mBAcAA,QAAAC,IAAA\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/minify/es6.js\\"],\\"sourcesContent\\":[\\"class Point {\\\\n  constructor(x, y) {\\\\n    this.x = x;\\\\n    this.y = y;\\\\n  }\\\\n\\\\n  static distance(a, b) {\\\\n    const dx = a.x - b.x;\\\\n    const dy = a.y - b.y;\\\\n\\\\n    return Math.hypot(dx, dy);\\\\n  }\\\\n}\\\\n\\\\nconsole.log('HERE');\\\\n\\\\nexport default Point;\\\\n\\"],\\"names\\":[\\"console\\",\\"log\\"],\\"sourceRoot\\":\\"\\"}",
 }
 `;
 
