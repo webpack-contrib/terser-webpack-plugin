@@ -70,6 +70,7 @@ import { minify as minifyFn } from "./minify";
  * @param {RawSourceMap | undefined} sourceMap
  * @param {CustomMinifyOptions} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
+ * @returns {Promise<InternalMinifyResult>}
  */
 
 /**
