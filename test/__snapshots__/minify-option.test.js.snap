@@ -40,6 +40,90 @@ Error: Error",
 
 exports[`minify option should throw an error when an error: warnings 1`] = `Array []`;
 
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: assets 1`] = `
+Object {
+  "main.js": "var __webpack_modules__={791:a=>{a.exports=function(){console.log(7)}}},__webpack_module_cache__={};function __webpack_require__(b){var c=__webpack_module_cache__[b];if(void 0!==c)return c.exports;var d=__webpack_module_cache__[b]={exports:{}};return __webpack_modules__[b](d,d.exports,__webpack_require__),d.exports}var __webpack_exports__=__webpack_require__(791)",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: assets 1`] = `
+Object {
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(void 0!==cachedModule)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}var __webpack_exports__=__webpack_require__(791)})()",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: assets 1`] = `
+Object {
+  "main.js": "(()=>{var a={791:b=>{b.exports=function(){console.log(7)}}},c={};function d(e){var f=c[e];if(void 0!==f)return f.exports;var g=c[e]={exports:{}};return a[e](g,g.exports,d),g.exports}var h=d(791)})()
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"KAAgB,CAAC,GACJ,CAAC,CAAmB,EAE3B,GAAG,CACD,CAAM,EAAK,CAAC,CAOd,CAAC,OAAO,WAAkB,CAAC,OAExB,CAAC,GAAG,CAAC,CAAS,CACvB,CAAC,CAGM,EAKO,CAAwB,aAGnB,CAAmB,CAAC,CAAQ,CAAE,CAAC,GAEpC,CAAC,CAAY,CAAG,CAAwB,CAAC,CAAQ,EACpD,EAAE,MAAmB,CAAS,GAA1B,CAAY,QACR,CAAY,CAAC,OAAO,CAG5B,GAAG,CAAC,CAAM,CAAG,CAAwB,CAAC,CAAQ,GAG7C,OAAO,YAIR,CAAmB,CAAC,CAAQ,EAAE,CAAM,CAAE,CAAM,CAAC,OAAO,CAAE,CAAmB,EAGlE,CAAM,CAAC,OAAO,CACrB,GAOE,CAAC,CAAmB,CAAG,CAAmB,CAAC,GAAG,CAElD,CAAC\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/<anon>\\"],\\"sourcesContent\\":[\\"/******/ (() => { // webpackBootstrap\\\\n/******/ \\\\tvar __webpack_modules__ = ({\\\\n\\\\n/***/ 791:\\\\n/***/ ((module) => {\\\\n\\\\n// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = (/* unused pure expression or super */ null && (2 + 2));\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\\\n\\\\n/***/ })\\\\n\\\\n/******/ \\\\t});\\\\n/************************************************************************/\\\\n/******/ \\\\t// The module cache\\\\n/******/ \\\\tvar __webpack_module_cache__ = {};\\\\n/******/ \\\\t\\\\n/******/ \\\\t// The require function\\\\n/******/ \\\\tfunction __webpack_require__(moduleId) {\\\\n/******/ \\\\t\\\\t// Check if module is in cache\\\\n/******/ \\\\t\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n/******/ \\\\t\\\\tif (cachedModule !== undefined) {\\\\n/******/ \\\\t\\\\t\\\\treturn cachedModule.exports;\\\\n/******/ \\\\t\\\\t}\\\\n/******/ \\\\t\\\\t// Create a new module (and put it into the cache)\\\\n/******/ \\\\t\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n/******/ \\\\t\\\\t\\\\t// no module.id needed\\\\n/******/ \\\\t\\\\t\\\\t// no module.loaded needed\\\\n/******/ \\\\t\\\\t\\\\texports: {}\\\\n/******/ \\\\t\\\\t};\\\\n/******/ \\\\t\\\\n/******/ \\\\t\\\\t// Execute the module function\\\\n/******/ \\\\t\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n/******/ \\\\t\\\\n/******/ \\\\t\\\\t// Return the exports of the module\\\\n/******/ \\\\t\\\\treturn module.exports;\\\\n/******/ \\\\t}\\\\n/******/ \\\\t\\\\n/************************************************************************/\\\\n/******/ \\\\t\\\\n/******/ \\\\t// startup\\\\n/******/ \\\\t// Load entry module and return exports\\\\n/******/ \\\\t// This entry module is referenced by other modules so it can't be inlined\\\\n/******/ \\\\tvar __webpack_exports__ = __webpack_require__(791);\\\\n/******/ \\\\t\\\\n/******/ })()\\\\n;\\"],\\"names\\":[],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: assets 1`] = `
+Object {
+  "main.js": "(()=>{var a={791:b=>{b.exports=function(){console.log(7)}}},c={};function d(e){var f=c[e];if(void 0!==f)return f.exports;var g=c[e]={exports:{}};return a[e](g,g.exports,d),g.exports}var h=d(791)})()",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: assets 1`] = `
+Object {
+  "main.js": "var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791);",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: assets 1`] = `
+Object {
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};(function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(void 0!==cachedModule)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports})(791)})();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and generate source maps: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and generate source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and generate source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\`: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\`: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\`: warnings 1`] = `Array []`;
+
 exports[`minify option should work when the "parallel" option is "false": assets 1`] = `
 Object {
   "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",

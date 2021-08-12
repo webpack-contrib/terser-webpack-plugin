@@ -8,7 +8,7 @@ import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
 import { Worker } from "jest-worker";
 
-import { terserMinify } from "./utils";
+import { terserMinify, swcMinify } from "./utils";
 
 import * as schema from "./options.json";
 import { minify as minifyFn } from "./minify";
@@ -20,6 +20,7 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
+/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
@@ -68,7 +69,7 @@ import { minify as minifyFn } from "./minify";
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
  * @param {CustomMinifyOptions} minifyOptions
- * @param {ExtractCommentsOptions} extractComments
+ * @param {ExtractCommentsOptions | undefined} extractComments
  */
 
 /**
@@ -80,7 +81,7 @@ import { minify as minifyFn } from "./minify";
  * @property {string} name
  * @property {string} input
  * @property {RawSourceMap | undefined} inputSourceMap
- * @property {ExtractCommentsOptions} extractComments
+ * @property {ExtractCommentsOptions | undefined} extractComments
  * @property {MinifyFunction} minify
  * @property {TerserMinifyOptions | CustomMinifyOptions} minifyOptions
  */
@@ -88,23 +89,34 @@ import { minify as minifyFn } from "./minify";
 /**
  * @typedef {Object} InternalMinifyResult
  * @property {string} code
- * @property {RawSourceMap | undefined} map
+ * @property {RawSourceMap} [map]
  * @property {Array<string>} [extractedComments]
  */
 
 /**
- * @typedef {Object} PluginWithTerserOptions
+ * @typedef {Object} PluginOptionsForTerser
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
  * @property {TerserMinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
- * @property {terserMinify} [minify]
+ * @property {terserMinify} minify
  */
 
 /**
- * @typedef {Object} PluginWithCustomMinifyOptions
+ * @typedef {Object} PluginOptionsForSwc
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {SwcMinifyOptions} [terserOptions]
+ * @property {ExtractCommentsOptions} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {swcMinify} minify
+ */
+
+/**
+ * @typedef {Object} PluginOptionsForCustomMinifyFunction
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
@@ -115,12 +127,23 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {PluginWithTerserOptions | PluginWithCustomMinifyOptions} PluginOptions
+ * @typedef {Object} DefaultPluginOptions
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {TerserMinifyOptions} [terserOptions]
+ * @property {ExtractCommentsOptions} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {terserMinify} [minify]
+ */
+
+/**
+ * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction} PluginOptions
  */
 
 class TerserPlugin {
   /**
-   * @param {PluginOptions} options
+   * @param {PluginOptions} [options={}]
    */
   constructor(options = {}) {
     validate(/** @type {Schema} */ (schema), options, {
@@ -215,7 +238,7 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {boolean} parallel
+   * @param {boolean | undefined} parallel
    * @returns {number}
    */
   static getAvailableNumberOfCores(parallel) {
@@ -378,7 +401,7 @@ class TerserPlugin {
               input,
               inputSourceMap,
               minify: this.options.minify,
-              minifyOptions: { ...this.options.terserOptions },
+              minifyOptions: this.options.terserOptions,
               extractComments: this.options.extractComments,
             };
 
@@ -703,5 +726,8 @@ class TerserPlugin {
     });
   }
 }
+
+TerserPlugin.terserMinify = terserMinify;
+TerserPlugin.swcMinify = swcMinify;
 
 export default TerserPlugin;
