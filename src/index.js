@@ -8,6 +8,8 @@ import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
 import { Worker } from "jest-worker";
 
+import { terserMinify } from "./utils";
+
 import * as schema from "./options.json";
 import { minify as minifyFn } from "./minify";
 
@@ -20,9 +22,6 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
-/** @typedef {import("./minify.js").InternalMinifyOptions} InternalMinifyOptions */
-/** @typedef {import("./minify.js").InternalMinifyResult} InternalMinifyResult */
-/** @typedef {import("./minify.js").CustomMinifyOptions} CustomMinifyOptions */
 
 /** @typedef {RegExp | string} Rule */
 
@@ -57,14 +56,40 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @callback CustomMinifyFunction
- * @param {{ [file: string]: string }} fileAndCode
- * @param {RawSourceMap} [sourceMap]
- * @param {Object.<any, any>} minifyOptions
+ * @typedef {{ [file: string]: string }} Input
+ */
+
+/**
+ * @typedef {Object.<any, any>} CustomMinifyOptions
+ */
+
+/**
+ * @callback MinifyFunction
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
+ * @param {CustomMinifyOptions} minifyOptions
+ * @param {ExtractCommentsOptions} extractComments
  */
 
 /**
  * @typedef {ExtractCommentsCondition | ExtractCommentsObject} ExtractCommentsOptions
+ */
+
+/**
+ * @typedef {Object} InternalMinifyOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {ExtractCommentsOptions} extractComments
+ * @property {MinifyFunction} minify
+ * @property {TerserMinifyOptions | CustomMinifyOptions} minifyOptions
+ */
+
+/**
+ * @typedef {Object} InternalMinifyResult
+ * @property {string} code
+ * @property {RawSourceMap | undefined} map
+ * @property {Array<string>} [extractedComments]
  */
 
 /**
@@ -75,7 +100,7 @@ import { minify as minifyFn } from "./minify";
  * @property {TerserMinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
- * @property {CustomMinifyFunction} [minify]
+ * @property {terserMinify} [minify]
  */
 
 /**
@@ -83,19 +108,19 @@ import { minify as minifyFn } from "./minify";
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
- * @property {Object.<any, any>} [terserOptions]
+ * @property {CustomMinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
- * @property {CustomMinifyFunction} [minify]
+ * @property {MinifyFunction} minify
  */
 
 /**
- * @typedef {PluginWithTerserOptions | PluginWithCustomMinifyOptions} TerserPluginOptions
+ * @typedef {PluginWithTerserOptions | PluginWithCustomMinifyOptions} PluginOptions
  */
 
 class TerserPlugin {
   /**
-   * @param {TerserPluginOptions} options
+   * @param {PluginOptions} options
    */
   constructor(options = {}) {
     validate(/** @type {Schema} */ (schema), options, {
@@ -104,7 +129,7 @@ class TerserPlugin {
     });
 
     const {
-      minify,
+      minify = terserMinify,
       terserOptions = {},
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
