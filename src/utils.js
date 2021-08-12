@@ -16,6 +16,7 @@
  * @typedef {Array<string>} ExtractedComments
  */
 
+/* istanbul ignore next */
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
