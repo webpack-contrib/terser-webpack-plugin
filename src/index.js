@@ -162,6 +162,9 @@ class TerserPlugin {
       exclude,
     } = options;
 
+    /**
+     * @type {PluginOptionsForTerser | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction}
+     */
     this.options = {
       test,
       extractComments,
