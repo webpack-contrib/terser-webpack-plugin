@@ -40,12 +40,11 @@ async function terserMinify(
   };
 
   /**
-   * @param {ExtractCommentsOptions} extractComments
    * @param {NormalizedTerserMinifyOptions} terserOptions
    * @param {ExtractedComments} extractedComments
    * @returns {ExtractCommentsFunction}
    */
-  const buildComments = (extractComments, terserOptions, extractedComments) => {
+  const buildComments = (terserOptions, extractedComments) => {
     /** @type {{ [index: string]: ExtractCommentsCondition }} */
     const condition = {};
 
@@ -209,13 +208,11 @@ async function terserMinify(
 
   if (terserOptions.output) {
     terserOptions.output.comments = buildComments(
-      extractComments,
       terserOptions,
       extractedComments
     );
   } else if (terserOptions.format) {
     terserOptions.format.comments = buildComments(
-      extractComments,
       terserOptions,
       extractedComments
     );
