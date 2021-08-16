@@ -405,7 +405,7 @@ class TerserPlugin {
               input,
               inputSourceMap,
               minify: this.options.minify,
-              minifyOptions: this.options.terserOptions,
+              minifyOptions: { ...this.options.terserOptions },
               extractComments: this.options.extractComments,
             };
 
