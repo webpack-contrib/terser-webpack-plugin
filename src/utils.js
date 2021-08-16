@@ -1,16 +1,21 @@
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
-/** @typedef {import("terser").FormatOptions} FormatOptions */
-/** @typedef {import("terser").MangleOptions} MangleOptions */
+/** @typedef {import("terser").FormatOptions} TerserFormatOptions */
+/** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
+/** @typedef {import("uglify-js").OutputOptions} UglifyJSOutputOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 /** @typedef {import("./index.js").Input} Input */
-/** @typedef {import("./index.js").InternalMinifyResult} InternalMinifyResult */
+/** @typedef {import("./index.js").MinifyResult} MinifyResult */
 
 /**
- * @typedef {TerserMinifyOptions & { sourceMap: undefined } & ({ output: FormatOptions & { beautify: boolean } } | { format: FormatOptions & { beautify: boolean } })} NormalizedTerserMinifyOptions
+ * @typedef {TerserMinifyOptions & { sourceMap: undefined } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })} NormalizedTerserMinifyOptions
+ */
+
+/**
+ * @typedef {UglifyJSMinifyOptions & { sourceMap: undefined } & { output: UglifyJSOutputOptions & { beautify: boolean } }} NormalizedUglifyJSMinifyOptions
  */
 
 /**
@@ -27,7 +32,7 @@
  * @param {RawSourceMap | undefined} sourceMap
  * @param {TerserMinifyOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @return {Promise<InternalMinifyResult>}
+ * @return {Promise<MinifyResult>}
  */
 async function terserMinify(
   input,
@@ -200,7 +205,7 @@ async function terserMinify(
 
   // eslint-disable-next-line global-require
   const { minify } = require("terser");
-  // Copy terser options
+  // Copy `terser` options
   const terserOptions = buildTerserOptions(minimizerOptions);
 
   // Let terser generate a SourceMap
@@ -240,8 +245,210 @@ async function terserMinify(
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
+ * @param {UglifyJSMinifyOptions} minimizerOptions
+ * @param {ExtractCommentsOptions | undefined} extractComments
+ * @return {Promise<MinifyResult>}
+ */
+async function uglifyJsMinify(
+  input,
+  sourceMap,
+  minimizerOptions,
+  extractComments
+) {
+  /**
+   * @param {any} value
+   * @returns {boolean}
+   */
+  const isObject = (value) => {
+    const type = typeof value;
+
+    return value != null && (type === "object" || type === "function");
+  };
+
+  /**
+   * @param {NormalizedUglifyJSMinifyOptions} uglifyJsOptions
+   * @param {ExtractedComments} extractedComments
+   * @returns {ExtractCommentsFunction}
+   */
+  const buildComments = (uglifyJsOptions, extractedComments) => {
+    /** @type {{ [index: string]: ExtractCommentsCondition }} */
+    const condition = {};
+    const { comments } = uglifyJsOptions.output;
+
+    condition.preserve = typeof comments !== "undefined" ? comments : false;
+
+    if (typeof extractComments === "boolean" && extractComments) {
+      condition.extract = "some";
+    } else if (
+      typeof extractComments === "string" ||
+      extractComments instanceof RegExp
+    ) {
+      condition.extract = extractComments;
+    } else if (typeof extractComments === "function") {
+      condition.extract = extractComments;
+    } else if (extractComments && isObject(extractComments)) {
+      condition.extract =
+        typeof extractComments.condition === "boolean" &&
+        extractComments.condition
+          ? "some"
+          : typeof extractComments.condition !== "undefined"
+          ? extractComments.condition
+          : "some";
+    } else {
+      // No extract
+      // Preserve using "commentsOpts" or "some"
+      condition.preserve = typeof comments !== "undefined" ? comments : "some";
+      condition.extract = false;
+    }
+
+    // Ensure that both conditions are functions
+    ["preserve", "extract"].forEach((key) => {
+      /** @type {undefined | string} */
+      let regexStr;
+      /** @type {undefined | RegExp} */
+      let regex;
+
+      switch (typeof condition[key]) {
+        case "boolean":
+          condition[key] = condition[key] ? () => true : () => false;
+
+          break;
+        case "function":
+          break;
+        case "string":
+          if (condition[key] === "all") {
+            condition[key] = () => true;
+
+            break;
+          }
+
+          if (condition[key] === "some") {
+            condition[key] = /** @type {ExtractCommentsFunction} */ (
+              (astNode, comment) =>
+                (comment.type === "comment2" || comment.type === "comment1") &&
+                /@preserve|@lic|@cc_on|^\**!/i.test(comment.value)
+            );
+
+            break;
+          }
+
+          regexStr = /** @type {string} */ (condition[key]);
+          condition[key] = /** @type {ExtractCommentsFunction} */ (
+            (astNode, comment) =>
+              new RegExp(/** @type {string} */ (regexStr)).test(comment.value)
+          );
+
+          break;
+        default:
+          regex = /** @type {RegExp} */ (condition[key]);
+
+          condition[key] = /** @type {ExtractCommentsFunction} */ (
+            (astNode, comment) =>
+              /** @type {RegExp} */ (regex).test(comment.value)
+          );
+      }
+    });
+
+    // Redefine the comments function to extract and preserve
+    // comments according to the two conditions
+    return (astNode, comment) => {
+      if (
+        /** @type {{ extract: ExtractCommentsFunction }} */
+        (condition).extract(astNode, comment)
+      ) {
+        const commentText =
+          comment.type === "comment2"
+            ? `/*${comment.value}*/`
+            : `//${comment.value}`;
+
+        // Don't include duplicate comments
+        if (!extractedComments.includes(commentText)) {
+          extractedComments.push(commentText);
+        }
+      }
+
+      return /** @type {{ preserve: ExtractCommentsFunction }} */ (
+        condition
+      ).preserve(astNode, comment);
+    };
+  };
+
+  /**
+   * @param {UglifyJSMinifyOptions} [uglifyJsOptions={}]
+   * @returns {NormalizedUglifyJSMinifyOptions}
+   */
+  const buildUglifyJsOptions = (uglifyJsOptions = {}) => {
+    // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
+    return {
+      ...uglifyJsOptions,
+      // warnings: uglifyJsOptions.warnings,
+      parse: { ...uglifyJsOptions.parse },
+      compress:
+        typeof uglifyJsOptions.compress === "boolean"
+          ? uglifyJsOptions.compress
+          : { ...uglifyJsOptions.compress },
+      mangle:
+        uglifyJsOptions.mangle == null
+          ? true
+          : typeof uglifyJsOptions.mangle === "boolean"
+          ? uglifyJsOptions.mangle
+          : { ...uglifyJsOptions.mangle },
+      output: { beautify: false, ...uglifyJsOptions.output },
+      // Ignoring sourceMap from options
+      // eslint-disable-next-line no-undefined
+      sourceMap: undefined,
+      // toplevel: uglifyJsOptions.toplevel
+      // nameCache: { ...uglifyJsOptions.toplevel },
+      // ie8: uglifyJsOptions.ie8,
+      // keep_fnames: uglifyJsOptions.keep_fnames,
+    };
+  };
+
+  // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+  const { minify } = require("uglify-js");
+  // TODO maybe revisit it in future
+  // Copy `uglify-js` options
+  // @ts-ignore
+  delete minimizerOptions.ecma;
+  // @ts-ignore
+  delete minimizerOptions.module;
+
+  const uglifyJsOptions = buildUglifyJsOptions(minimizerOptions);
+
+  // Let terser generate a SourceMap
+  if (sourceMap) {
+    // @ts-ignore
+    uglifyJsOptions.sourceMap = true;
+  }
+
+  /** @type {ExtractedComments} */
+  const extractedComments = [];
+
+  // @ts-ignore
+  uglifyJsOptions.output.comments = buildComments(
+    uglifyJsOptions,
+    extractedComments
+  );
+
+  const [[filename, code]] = Object.entries(input);
+  const minified = await minify({ [filename]: code }, uglifyJsOptions);
+
+  return {
+    code: /** @type {string} **/ (minified.code || code),
+    // eslint-disable-next-line no-undefined
+    map: minified.map ? JSON.parse(minified.map) : undefined,
+    errors: minified.error ? [minified.error] : [],
+    warnings: minified.warnings || [],
+    extractedComments,
+  };
+}
+
+/* istanbul ignore next */
+/**
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
  * @param {SwcMinifyOptions} minimizerOptions
- * @return {Promise<InternalMinifyResult>}
+ * @return {Promise<MinifyResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
@@ -275,7 +482,7 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
 
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   const swc = require("@swc/core");
-  // Copy terser options
+  // Copy `swc` options
   const swcOptions = buildSwcOptions(minimizerOptions);
 
   // Let terser generate a SourceMap
@@ -294,4 +501,4 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   };
 }
 
-export { terserMinify, swcMinify };
+export { terserMinify, uglifyJsMinify, swcMinify };

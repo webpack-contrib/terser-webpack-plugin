@@ -8,7 +8,7 @@ import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
 import { Worker } from "jest-worker";
 
-import { terserMinify, swcMinify } from "./utils";
+import { terserMinify, uglifyJsMinify, swcMinify } from "./utils";
 
 import * as schema from "./options.json";
 import { minify as minifyFn } from "./minify";
@@ -20,6 +20,7 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
+/** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
@@ -28,7 +29,7 @@ import { minify as minifyFn } from "./minify";
 
 /** @typedef {Rule[] | Rule} Rules */
 
-/** @typedef {JestWorker & { transform: (options: string) => InternalMinifyResult, minify: (options: InternalMinifyOptions) => InternalMinifyResult }} MinifyWorker */
+/** @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions) => MinifyResult }} MinifyWorker */
 
 /**
  * @callback ExtractCommentsFunction
@@ -38,7 +39,7 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {boolean | string | RegExp | ExtractCommentsFunction} ExtractCommentsCondition
+ * @typedef {boolean | 'all' | 'some' | RegExp | ExtractCommentsFunction} ExtractCommentsCondition
  */
 
 /**
@@ -70,7 +71,7 @@ import { minify as minifyFn } from "./minify";
  * @param {RawSourceMap | undefined} sourceMap
  * @param {CustomMinifyOptions} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<InternalMinifyResult>}
+ * @returns {Promise<MinifyResult>}
  */
 
 /**
@@ -88,9 +89,12 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} InternalMinifyResult
+ * @typedef {Object} MinifyResult
  * @property {string} code
  * @property {RawSourceMap} [map]
+ * @property {Array<Error>} [errors]
+ * @property {string[]} [warnings]
+ * @property {Array<string>} [extractedComments]
  * @property {Array<string>} [extractedComments]
  */
 
@@ -103,6 +107,17 @@ import { minify as minifyFn } from "./minify";
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
  * @property {terserMinify} minify
+ */
+
+/**
+ * @typedef {Object} PluginOptionsForUglifyJS
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {UglifyJSMinifyOptions} [terserOptions]
+ * @property {ExtractCommentsOptions} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {uglifyJsMinify} minify
  */
 
 /**
@@ -139,7 +154,7 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction} PluginOptions
+ * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction} PluginOptions
  */
 
 class TerserPlugin {
@@ -545,9 +560,66 @@ class TerserPlugin {
 
             await cacheItem.storePromise({
               source: output.source,
+              errors: output.errors,
+              warnings: output.warnings,
               commentsFilename: output.commentsFilename,
               extractedCommentsSource: output.extractedCommentsSource,
             });
+          }
+
+          if (output.errors && output.errors.length > 0) {
+            output.errors.forEach(
+              /**
+               * @param {Error | { message: string, filename?: string, line: number, col: number } | string} error
+               */
+              (error) => {
+                let errored;
+
+                if (error instanceof Error) {
+                  errored = error;
+                } else if (typeof error === "string") {
+                  errored = new Error(error);
+                } else {
+                  const filename = error.filename || name;
+                  const line =
+                    typeof error.line !== "undefined" ? error.line : "";
+                  const col = typeof error.col !== "undefined" ? error.col : "";
+
+                  errored = new Error(
+                    `${error.message} [${filename}:${line},${col}]`
+                  );
+                }
+
+                compilation.errors.push(/** @type {WebpackError} */ (errored));
+              }
+            );
+          }
+
+          if (output.warnings && output.warnings.length > 0) {
+            output.warnings.forEach(
+              /**
+               * @param {string} warning
+               */
+              (warning) => {
+                const Warning = class Warning extends Error {
+                  /**
+                   * @param {string} message
+                   */
+                  constructor(message) {
+                    super(message);
+
+                    this.name = "Warning";
+                    this.hideStack = true;
+                    this.file = name;
+                  }
+                };
+
+                compilation.warnings.push(
+                  /** @type {WebpackError} */
+                  (new Warning(warning))
+                );
+              }
+            );
           }
 
           /** @type {Record<string, any>} */
@@ -732,6 +804,7 @@ class TerserPlugin {
 }
 
 TerserPlugin.terserMinify = terserMinify;
+TerserPlugin.uglifyJsMinify = uglifyJsMinify;
 TerserPlugin.swcMinify = swcMinify;
 
 export default TerserPlugin;

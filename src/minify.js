@@ -1,9 +1,9 @@
 /** @typedef {import("./index.js").InternalMinifyOptions} InternalMinifyOptions */
-/** @typedef {import("./index.js").InternalMinifyResult} InternalMinifyResult */
+/** @typedef {import("./index.js").MinifyResult} MinifyResult */
 
 /**
  * @param {InternalMinifyOptions} options
- * @returns {Promise<InternalMinifyResult>}
+ * @returns {Promise<MinifyResult>}
  */
 async function minify(options) {
   const {
@@ -25,7 +25,7 @@ async function minify(options) {
 
 /**
  * @param {string} options
- * @returns {Promise<InternalMinifyResult>}
+ * @returns {Promise<MinifyResult>}
  */
 async function transform(options) {
   // 'use strict' => this === undefined (Clean Scope)
