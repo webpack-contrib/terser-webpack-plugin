@@ -2,6 +2,7 @@
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("terser").FormatOptions} FormatOptions */
 /** @typedef {import("terser").MangleOptions} MangleOptions */
+/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
@@ -13,6 +14,10 @@
  */
 
 /**
+ * @typedef {SwcMinifyOptions & { sourceMap: undefined }} NormalizedSwcMinifyOptions
+ */
+
+/**
  * @typedef {Array<string>} ExtractedComments
  */
 
@@ -21,7 +26,7 @@
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
  * @param {TerserMinifyOptions} minimizerOptions
- * @param {ExtractCommentsOptions} extractComments
+ * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<InternalMinifyResult>}
  */
 async function terserMinify(
@@ -220,11 +225,73 @@ async function terserMinify(
   }
 
   const [[filename, code]] = Object.entries(input);
-  const result = await minify({ [filename]: code }, terserOptions);
+  const minified = await minify({ [filename]: code }, terserOptions);
 
-  // @ts-ignore
-  return { ...result, extractedComments };
+  return {
+    code: /** @type {string} **/ (minified.code),
+    // @ts-ignore
+    // eslint-disable-next-line no-undefined
+    map: minified.map ? /** @type {RawSourceMap} **/ (minified.map) : undefined,
+    extractedComments,
+  };
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export { terserMinify };
+/* istanbul ignore next */
+/**
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
+ * @param {SwcMinifyOptions} minimizerOptions
+ * @return {Promise<InternalMinifyResult>}
+ */
+async function swcMinify(input, sourceMap, minimizerOptions) {
+  /**
+   * @param {SwcMinifyOptions} [swcOptions={}]
+   * @returns {NormalizedSwcMinifyOptions}
+   */
+  const buildSwcOptions = (swcOptions = {}) => {
+    // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
+    return {
+      ...swcOptions,
+      compress:
+        typeof swcOptions.compress === "boolean"
+          ? swcOptions.compress
+          : { ...swcOptions.compress },
+      mangle:
+        swcOptions.mangle == null
+          ? true
+          : typeof swcOptions.mangle === "boolean"
+          ? swcOptions.mangle
+          : { ...swcOptions.mangle },
+      // ecma: swcOptions.ecma,
+      // keep_classnames: swcOptions.keep_classnames,
+      // keep_fnames: swcOptions.keep_fnames,
+      // module: swcOptions.module,
+      // safari10: swcOptions.safari10,
+      // toplevel: swcOptions.toplevel
+      // eslint-disable-next-line no-undefined
+      sourceMap: undefined,
+    };
+  };
+
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
+  const swc = require("@swc/core");
+  // Copy terser options
+  const swcOptions = buildSwcOptions(minimizerOptions);
+
+  // Let terser generate a SourceMap
+  if (sourceMap) {
+    // @ts-ignore
+    swcOptions.sourceMap = true;
+  }
+
+  const [[, code]] = Object.entries(input);
+  const minified = await swc.minify(code, swcOptions);
+
+  return {
+    code: minified.code,
+    // eslint-disable-next-line no-undefined
+    map: minified.map ? JSON.parse(minified.map) : undefined,
+  };
+}
+
+export { terserMinify, swcMinify };

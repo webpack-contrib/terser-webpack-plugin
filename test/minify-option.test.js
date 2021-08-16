@@ -283,4 +283,130 @@ describe("minify option", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
+
+  it("should work using when the `minify` option is `terserMinify`", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `terserMinify` and generate source maps", async () => {
+    const compiler = getCompiler({ devtool: "source-map" });
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `terserMinify` and allows to set `terser` options", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+      terserOptions: {
+        mangle: false,
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `terserMinify` and ECMA modules output", async () => {
+    const compiler = getCompiler({
+      experiments: {
+        outputModule: true,
+      },
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `swcMinify`", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `swcMinify` and generate source maps", async () => {
+    const compiler = getCompiler({ devtool: "source-map" });
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `swcMinify` and allows to set `swc` options", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+      terserOptions: {
+        mangle: false,
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `swcMinify` and ECMA modules output", async () => {
+    const compiler = getCompiler({
+      experiments: {
+        outputModule: true,
+      },
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
 });

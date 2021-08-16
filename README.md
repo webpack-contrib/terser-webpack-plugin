@@ -205,7 +205,7 @@ module.exports = {
           myCustomOption: true,
         },
         // Can be async
-        minify: (file, sourceMap, minimizerOptions) => {
+        minify: (input, sourceMap, minimizerOptions, extractsComments) => {
           // The `minimizerOptions` option contains option from the `terserOptions` option
           // You can use `minimizerOptions.myCustomOption`
           const extractedComments = [];
@@ -213,7 +213,7 @@ module.exports = {
           // Custom logic for extract comments
 
           const { map, code } = require("uglify-module") // Or require('./path/to/uglify-module')
-            .minify(file, {
+            .minify(input, {
               /* Your options for minification */
             });
 
@@ -522,6 +522,30 @@ module.exports = {
           },
         },
         extractComments: false,
+      }),
+    ],
+  },
+};
+```
+
+### swc
+
+[swc is a super-fast compiler written in rust; producing widely-supported javascript from modern standards and typescript.](https://github.com/swc-project/swc)
+
+> ⚠ the `extractComments` option is not supported
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        minify: TerserPlugin.swcMinify,
+        // `terserOptions` options will be passed to `swc` (`@swc/core`)
+        // Link to options - https://swc.rs/docs/config-js-minify
+        terserOptions: {},
       }),
     ],
   },
