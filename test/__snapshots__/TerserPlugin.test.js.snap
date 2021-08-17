@@ -888,6 +888,34 @@ exports[`TerserPlugin should work with "devtool" option and the "source-map" val
 
 exports[`TerserPlugin should work with "devtool" option and the "source-map" value: warnings 1`] = `Array []`;
 
+exports[`TerserPlugin should work with "false" value for the "cache" option: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "false" value for the "cache" option: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "false" value for the "cache" option: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "false" value for the "cache" option: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "false" value for the "cache" option: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "false" value for the "cache" option: warnings 2`] = `Array []`;
+
 exports[`TerserPlugin should work with "file-loader": assets 1`] = `
 Object {
   "main.js": "(()=>{\\"use strict\\";var t={};t.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(t){if(\\"object\\"==typeof window)return window}}(),(()=>{var r;t.g.importScripts&&(r=t.g.location+\\"\\");var e=t.g.document;if(!r&&e&&(e.currentScript&&(r=e.currentScript.src),!r)){var i=e.getElementsByTagName(\\"script\\");i.length&&(r=i[i.length-1].src)}if(!r)throw new Error(\\"Automatic publicPath is not supported in this browser\\");r=r.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),t.p=r})();const r=t.p+\\"test/fixtures/emitted.js\\";console.log(12,r)})();",
@@ -898,6 +926,608 @@ Object {
 exports[`TerserPlugin should work with "file-loader": errors 1`] = `Array []`;
 
 exports[`TerserPlugin should work with "file-loader": warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in different files: assets 1`] = `
+Object {
+  "627.627.js": "/*! For license information please see 627.627.js.LICENSE.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
+  "627.627.js.LICENSE.txt": "/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+",
+  "four.js": "/*! For license information please see four.js.LICENSE.txt */
+(()=>{var r={712:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(712)})();",
+  "four.js.LICENSE.txt": "/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+",
+  "one.js": "/*! For license information please see one.js.LICENSE.txt */
+(()=>{var e,t,r,o,n={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,23)),e.exports=Math.random()}},a={};function i(e){var t=a[e];if(void 0!==t)return t.exports;var r=a[e]={exports:{}};return n[e](r,r.exports,i),r.exports}i.m=n,t=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,i.t=function(r,o){if(1&o&&(r=this(r)),8&o)return r;if(\\"object\\"==typeof r&&r){if(4&o&&r.__esModule)return r;if(16&o&&\\"function\\"==typeof r.then)return r}var n=Object.create(null);i.r(n);var a={};e=e||[null,t({}),t([]),t(t)];for(var u=2&o&&r;\\"object\\"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((e=>a[e]=()=>r[e]));return a.default=()=>r,i.d(n,a),n},i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>e+\\".\\"+e+\\".js\\",i.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r={},o=\\"terser-webpack-plugin:\\",i.l=(e,t,n,a)=>{if(r[e])r[e].push(t);else{var u,c;if(void 0!==n)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var s=l[p];if(s.getAttribute(\\"src\\")==e||s.getAttribute(\\"data-webpack\\")==o+n){u=s;break}}u||(c=!0,(u=document.createElement(\\"script\\")).charset=\\"utf-8\\",u.timeout=120,i.nc&&u.setAttribute(\\"nonce\\",i.nc),u.setAttribute(\\"data-webpack\\",o+n),u.src=e),r[e]=[t];var f=(t,o)=>{u.onerror=u.onload=null,clearTimeout(d);var n=r[e];if(delete r[e],u.parentNode&&u.parentNode.removeChild(u),n&&n.forEach((e=>e(o))),t)return t(o)},d=setTimeout(f.bind(null,void 0,{type:\\"timeout\\",target:u}),12e4);u.onerror=f.bind(null,u.onerror),u.onload=f.bind(null,u.onload),c&&document.head.appendChild(u)}},i.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;i.g.importScripts&&(e=i.g.location+\\"\\");var t=i.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var r=t.getElementsByTagName(\\"script\\");r.length&&(e=r[r.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),i.p=e})(),(()=>{var e={255:0};i.f.j=(t,r)=>{var o=i.o(e,t)?e[t]:void 0;if(0!==o)if(o)r.push(o[2]);else{var n=new Promise(((r,n)=>o=e[t]=[r,n]));r.push(o[2]=n);var a=i.p+i.u(t),u=new Error;i.l(a,(r=>{if(i.o(e,t)&&(0!==(o=e[t])&&(e[t]=void 0),o)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),a=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+a+\\")\\",u.name=\\"ChunkLoadError\\",u.type=n,u.request=a,o[1](u)}}),\\"chunk-\\"+t,t)}};var t=(t,r)=>{var o,n,[a,u,c]=r,l=0;for(o in u)i.o(u,o)&&(i.m[o]=u[o]);if(c)c(i);for(t&&t(r);l<a.length;l++)n=a[l],i.o(e,n)&&e[n]&&e[n][0](),e[a[l]]=0},r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})();i(900)})();",
+  "one.js.LICENSE.txt": "/*! Legal Comment */
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+",
+  "three.js": "/*! For license information please see three.js.LICENSE.txt */
+(()=>{var r={787:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(787)})();",
+  "three.js.LICENSE.txt": "/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+",
+  "two.js": "/*! For license information please see two.js.LICENSE.txt */
+(()=>{var r={353:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(353)})();",
+  "two.js.LICENSE.txt": "/**
+ * Information.
+ * @license MIT
+ */
+",
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in different files: assets 2`] = `
+Object {
+  "627.627.js": "/*! For license information please see 627.627.js.LICENSE.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
+  "627.627.js.LICENSE.txt": "/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+",
+  "four.js": "/*! For license information please see four.js.LICENSE.txt */
+(()=>{var r={712:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(712)})();",
+  "four.js.LICENSE.txt": "/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+",
+  "one.js": "/*! For license information please see one.js.LICENSE.txt */
+(()=>{var e,t,r,o,n={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,23)),e.exports=Math.random()}},a={};function i(e){var t=a[e];if(void 0!==t)return t.exports;var r=a[e]={exports:{}};return n[e](r,r.exports,i),r.exports}i.m=n,t=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,i.t=function(r,o){if(1&o&&(r=this(r)),8&o)return r;if(\\"object\\"==typeof r&&r){if(4&o&&r.__esModule)return r;if(16&o&&\\"function\\"==typeof r.then)return r}var n=Object.create(null);i.r(n);var a={};e=e||[null,t({}),t([]),t(t)];for(var u=2&o&&r;\\"object\\"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((e=>a[e]=()=>r[e]));return a.default=()=>r,i.d(n,a),n},i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>e+\\".\\"+e+\\".js\\",i.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r={},o=\\"terser-webpack-plugin:\\",i.l=(e,t,n,a)=>{if(r[e])r[e].push(t);else{var u,c;if(void 0!==n)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var s=l[p];if(s.getAttribute(\\"src\\")==e||s.getAttribute(\\"data-webpack\\")==o+n){u=s;break}}u||(c=!0,(u=document.createElement(\\"script\\")).charset=\\"utf-8\\",u.timeout=120,i.nc&&u.setAttribute(\\"nonce\\",i.nc),u.setAttribute(\\"data-webpack\\",o+n),u.src=e),r[e]=[t];var f=(t,o)=>{u.onerror=u.onload=null,clearTimeout(d);var n=r[e];if(delete r[e],u.parentNode&&u.parentNode.removeChild(u),n&&n.forEach((e=>e(o))),t)return t(o)},d=setTimeout(f.bind(null,void 0,{type:\\"timeout\\",target:u}),12e4);u.onerror=f.bind(null,u.onerror),u.onload=f.bind(null,u.onload),c&&document.head.appendChild(u)}},i.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;i.g.importScripts&&(e=i.g.location+\\"\\");var t=i.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var r=t.getElementsByTagName(\\"script\\");r.length&&(e=r[r.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),i.p=e})(),(()=>{var e={255:0};i.f.j=(t,r)=>{var o=i.o(e,t)?e[t]:void 0;if(0!==o)if(o)r.push(o[2]);else{var n=new Promise(((r,n)=>o=e[t]=[r,n]));r.push(o[2]=n);var a=i.p+i.u(t),u=new Error;i.l(a,(r=>{if(i.o(e,t)&&(0!==(o=e[t])&&(e[t]=void 0),o)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),a=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+a+\\")\\",u.name=\\"ChunkLoadError\\",u.type=n,u.request=a,o[1](u)}}),\\"chunk-\\"+t,t)}};var t=(t,r)=>{var o,n,[a,u,c]=r,l=0;for(o in u)i.o(u,o)&&(i.m[o]=u[o]);if(c)c(i);for(t&&t(r);l<a.length;l++)n=a[l],i.o(e,n)&&e[n]&&e[n][0](),e[a[l]]=0},r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})();i(900)})();",
+  "one.js.LICENSE.txt": "/*! Legal Comment */
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+",
+  "three.js": "/*! For license information please see three.js.LICENSE.txt */
+(()=>{var r={787:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(787)})();",
+  "three.js.LICENSE.txt": "/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+",
+  "two.js": "/*! For license information please see two.js.LICENSE.txt */
+(()=>{var r={353:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(353)})();",
+  "two.js.LICENSE.txt": "/**
+ * Information.
+ * @license MIT
+ */
+",
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in different files: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in different files: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in different files: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in different files: warnings 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in the one file: assets 1`] = `
+Object {
+  "627.627.js": "/*! For license information please see licenses.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
+  "four.js": "/*! For license information please see licenses.txt */
+(()=>{var r={712:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(712)})();",
+  "licenses.txt": "/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+
+/**
+ * Information.
+ * @license MIT
+ */
+",
+  "one.js": "/*! For license information please see licenses.txt */
+(()=>{var e,t,r,o,n={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,23)),e.exports=Math.random()}},a={};function i(e){var t=a[e];if(void 0!==t)return t.exports;var r=a[e]={exports:{}};return n[e](r,r.exports,i),r.exports}i.m=n,t=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,i.t=function(r,o){if(1&o&&(r=this(r)),8&o)return r;if(\\"object\\"==typeof r&&r){if(4&o&&r.__esModule)return r;if(16&o&&\\"function\\"==typeof r.then)return r}var n=Object.create(null);i.r(n);var a={};e=e||[null,t({}),t([]),t(t)];for(var u=2&o&&r;\\"object\\"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((e=>a[e]=()=>r[e]));return a.default=()=>r,i.d(n,a),n},i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>e+\\".\\"+e+\\".js\\",i.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r={},o=\\"terser-webpack-plugin:\\",i.l=(e,t,n,a)=>{if(r[e])r[e].push(t);else{var u,c;if(void 0!==n)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var s=l[p];if(s.getAttribute(\\"src\\")==e||s.getAttribute(\\"data-webpack\\")==o+n){u=s;break}}u||(c=!0,(u=document.createElement(\\"script\\")).charset=\\"utf-8\\",u.timeout=120,i.nc&&u.setAttribute(\\"nonce\\",i.nc),u.setAttribute(\\"data-webpack\\",o+n),u.src=e),r[e]=[t];var f=(t,o)=>{u.onerror=u.onload=null,clearTimeout(d);var n=r[e];if(delete r[e],u.parentNode&&u.parentNode.removeChild(u),n&&n.forEach((e=>e(o))),t)return t(o)},d=setTimeout(f.bind(null,void 0,{type:\\"timeout\\",target:u}),12e4);u.onerror=f.bind(null,u.onerror),u.onload=f.bind(null,u.onload),c&&document.head.appendChild(u)}},i.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;i.g.importScripts&&(e=i.g.location+\\"\\");var t=i.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var r=t.getElementsByTagName(\\"script\\");r.length&&(e=r[r.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),i.p=e})(),(()=>{var e={255:0};i.f.j=(t,r)=>{var o=i.o(e,t)?e[t]:void 0;if(0!==o)if(o)r.push(o[2]);else{var n=new Promise(((r,n)=>o=e[t]=[r,n]));r.push(o[2]=n);var a=i.p+i.u(t),u=new Error;i.l(a,(r=>{if(i.o(e,t)&&(0!==(o=e[t])&&(e[t]=void 0),o)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),a=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+a+\\")\\",u.name=\\"ChunkLoadError\\",u.type=n,u.request=a,o[1](u)}}),\\"chunk-\\"+t,t)}};var t=(t,r)=>{var o,n,[a,u,c]=r,l=0;for(o in u)i.o(u,o)&&(i.m[o]=u[o]);if(c)c(i);for(t&&t(r);l<a.length;l++)n=a[l],i.o(e,n)&&e[n]&&e[n][0](),e[a[l]]=0},r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})();i(900)})();",
+  "three.js": "/*! For license information please see licenses.txt */
+(()=>{var r={787:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(787)})();",
+  "two.js": "/*! For license information please see licenses.txt */
+(()=>{var r={353:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(353)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in the one file: assets 2`] = `
+Object {
+  "627.627.js": "/*! For license information please see licenses.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
+  "four.js": "/*! For license information please see licenses.txt */
+(()=>{var r={712:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(712)})();",
+  "licenses.txt": "/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+
+
+/**
+ * Duplicate comment in difference files.
+ * @license MIT
+ */
+
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+
+/**
+ * Duplicate comment in same file.
+ * @license MIT
+ */
+
+
+/**
+ * Information.
+ * @license MIT
+ */
+",
+  "one.js": "/*! For license information please see licenses.txt */
+(()=>{var e,t,r,o,n={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,23)),e.exports=Math.random()}},a={};function i(e){var t=a[e];if(void 0!==t)return t.exports;var r=a[e]={exports:{}};return n[e](r,r.exports,i),r.exports}i.m=n,t=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,i.t=function(r,o){if(1&o&&(r=this(r)),8&o)return r;if(\\"object\\"==typeof r&&r){if(4&o&&r.__esModule)return r;if(16&o&&\\"function\\"==typeof r.then)return r}var n=Object.create(null);i.r(n);var a={};e=e||[null,t({}),t([]),t(t)];for(var u=2&o&&r;\\"object\\"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((e=>a[e]=()=>r[e]));return a.default=()=>r,i.d(n,a),n},i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>e+\\".\\"+e+\\".js\\",i.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r={},o=\\"terser-webpack-plugin:\\",i.l=(e,t,n,a)=>{if(r[e])r[e].push(t);else{var u,c;if(void 0!==n)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var s=l[p];if(s.getAttribute(\\"src\\")==e||s.getAttribute(\\"data-webpack\\")==o+n){u=s;break}}u||(c=!0,(u=document.createElement(\\"script\\")).charset=\\"utf-8\\",u.timeout=120,i.nc&&u.setAttribute(\\"nonce\\",i.nc),u.setAttribute(\\"data-webpack\\",o+n),u.src=e),r[e]=[t];var f=(t,o)=>{u.onerror=u.onload=null,clearTimeout(d);var n=r[e];if(delete r[e],u.parentNode&&u.parentNode.removeChild(u),n&&n.forEach((e=>e(o))),t)return t(o)},d=setTimeout(f.bind(null,void 0,{type:\\"timeout\\",target:u}),12e4);u.onerror=f.bind(null,u.onerror),u.onload=f.bind(null,u.onload),c&&document.head.appendChild(u)}},i.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;i.g.importScripts&&(e=i.g.location+\\"\\");var t=i.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var r=t.getElementsByTagName(\\"script\\");r.length&&(e=r[r.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),i.p=e})(),(()=>{var e={255:0};i.f.j=(t,r)=>{var o=i.o(e,t)?e[t]:void 0;if(0!==o)if(o)r.push(o[2]);else{var n=new Promise(((r,n)=>o=e[t]=[r,n]));r.push(o[2]=n);var a=i.p+i.u(t),u=new Error;i.l(a,(r=>{if(i.o(e,t)&&(0!==(o=e[t])&&(e[t]=void 0),o)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),a=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+a+\\")\\",u.name=\\"ChunkLoadError\\",u.type=n,u.request=a,o[1](u)}}),\\"chunk-\\"+t,t)}};var t=(t,r)=>{var o,n,[a,u,c]=r,l=0;for(o in u)i.o(u,o)&&(i.m[o]=u[o]);if(c)c(i);for(t&&t(r);l<a.length;l++)n=a[l],i.o(e,n)&&e[n]&&e[n][0](),e[a[l]]=0},r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})();i(900)})();",
+  "three.js": "/*! For license information please see licenses.txt */
+(()=>{var r={787:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(787)})();",
+  "two.js": "/*! For license information please see licenses.txt */
+(()=>{var r={353:r=>{r.exports=Math.random()}},t={};(function o(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return r[e](n,n.exports,o),n.exports})(353)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in the one file: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in the one file: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in the one file: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and extract comments in the one file: warnings 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();
+//# sourceMappingURL=five.js.map",
+  "five.js.map": {
+  "version": 3,
+  "file": "five.js",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-4.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "// foo\\n/* @preserve*/\\n// bar\\nconst a = 2 + 2;\\n\\nmodule.exports = function Foo() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2);\\n};\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(798);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "console",
+    "log",
+    "b",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();
+//# sourceMappingURL=four.js.map",
+  "four.js.map": {
+  "version": 3,
+  "file": "four.js",
+  "mappings": "oBAAAA,EAAOC,QAAU,UCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,K",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-3.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "module.exports = class A {};\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(26);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();
+//# sourceMappingURL=one.js.map",
+  "one.js.map": {
+  "version": 3,
+  "file": "one.js",
+  "mappings": "oBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,K",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "// foo\\n/* @preserve*/\\n// bar\\nconst a = 2 + 2;\\n\\nmodule.exports = function Foo() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2);\\n};\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(73);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "console",
+    "log",
+    "b",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();
+//# sourceMappingURL=three.js.map",
+  "three.js.map": {
+  "version": 3,
+  "file": "three.js",
+  "mappings": "qBAAAA,EAAOC,QAAU,IAAe,SCC5BC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-2.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "module.exports = () => { return /test/ };\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(800);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();
+//# sourceMappingURL=two.js.map",
+  "two.js.map": {
+  "version": 3,
+  "file": "two.js",
+  "mappings": "qBAAAA,EAAOC,QAAU,WCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-1.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "module.exports = 'string';\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(370);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();
+//# sourceMappingURL=five.js.map",
+  "five.js.map": {
+  "version": 3,
+  "file": "five.js",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-4.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "// foo\\n/* @preserve*/\\n// bar\\nconst a = 2 + 2;\\n\\nmodule.exports = function Foo() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2);\\n};\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(798);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "console",
+    "log",
+    "b",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();
+//# sourceMappingURL=four.js.map",
+  "four.js.map": {
+  "version": 3,
+  "file": "four.js",
+  "mappings": "oBAAAA,EAAOC,QAAU,UCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,K",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-3.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "module.exports = class A {};\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(26);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();
+//# sourceMappingURL=one.js.map",
+  "one.js.map": {
+  "version": 3,
+  "file": "one.js",
+  "mappings": "oBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,K",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "// foo\\n/* @preserve*/\\n// bar\\nconst a = 2 + 2;\\n\\nmodule.exports = function Foo() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2);\\n};\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(73);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "console",
+    "log",
+    "b",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();
+//# sourceMappingURL=three.js.map",
+  "three.js.map": {
+  "version": 3,
+  "file": "three.js",
+  "mappings": "qBAAAA,EAAOC,QAAU,IAAe,SCC5BC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-2.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "module.exports = () => { return /test/ };\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(800);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();
+//# sourceMappingURL=two.js.map",
+  "two.js.map": {
+  "version": 3,
+  "file": "two.js",
+  "mappings": "qBAAAA,EAAOC,QAAU,WCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "sources": [
+    "webpack://terser-webpack-plugin/./test/fixtures/cache-1.js",
+    "webpack://terser-webpack-plugin/webpack/bootstrap",
+    "webpack://terser-webpack-plugin/webpack/startup"
+  ],
+  "sourcesContent": [
+    "module.exports = 'string';\\n",
+    "// The module cache\\nvar __webpack_module_cache__ = {};\\n\\n// The require function\\nfunction __webpack_require__(moduleId) {\\n\\t// Check if module is in cache\\n\\tvar cachedModule = __webpack_module_cache__[moduleId];\\n\\tif (cachedModule !== undefined) {\\n\\t\\treturn cachedModule.exports;\\n\\t}\\n\\t// Create a new module (and put it into the cache)\\n\\tvar module = __webpack_module_cache__[moduleId] = {\\n\\t\\t// no module.id needed\\n\\t\\t// no module.loaded needed\\n\\t\\texports: {}\\n\\t};\\n\\n\\t// Execute the module function\\n\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\n\\n\\t// Return the exports of the module\\n\\treturn module.exports;\\n}\\n\\n",
+    "// startup\\n// Load entry module and return exports\\n// This entry module is referenced by other modules so it can't be inlined\\nvar __webpack_exports__ = __webpack_require__(370);\\n"
+  ],
+  "names": [
+    "module",
+    "exports",
+    "__webpack_module_cache__",
+    "__webpack_require__",
+    "moduleId",
+    "cachedModule",
+    "undefined",
+    "__webpack_modules__"
+  ],
+  "sourceRoot": ""
+},
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: warnings 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option: warnings 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "memory" value for the "cache.type" option: assets 1`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "memory" value for the "cache.type" option: assets 2`] = `
+Object {
+  "five.js": "(()=>{var r={798:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(798)})();",
+  "four.js": "(()=>{var r={26:r=>{r.exports=class{}}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(26)})();",
+  "one.js": "(()=>{var r={73:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(73)})();",
+  "three.js": "(()=>{var r={800:r=>{r.exports=()=>/test/}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var p=t[o]={exports:{}};return r[o](p,p.exports,e),p.exports})(800)})();",
+  "two.js": "(()=>{var r={370:r=>{r.exports=\\"string\\"}},t={};(function e(o){var s=t[o];if(void 0!==s)return s.exports;var n=t[o]={exports:{}};return r[o](n,n.exports,e),n.exports})(370)})();",
+}
+`;
+
+exports[`TerserPlugin should work with "memory" value for the "cache.type" option: errors 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "memory" value for the "cache.type" option: errors 2`] = `Array []`;
+
+exports[`TerserPlugin should work with "memory" value for the "cache.type" option: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "memory" value for the "cache.type" option: warnings 2`] = `Array []`;
 
 exports[`TerserPlugin should work with ES modules: assets 1`] = `
 Object {
