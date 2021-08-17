@@ -573,6 +573,7 @@ class TerserPlugin {
                * @param {Error | { message: string, filename?: string, line: number, col: number } | string} error
                */
               (error) => {
+                /** @type {Error & { file?: string }} */
                 let errored;
 
                 if (error instanceof Error) {
@@ -586,9 +587,13 @@ class TerserPlugin {
                   const col = typeof error.col !== "undefined" ? error.col : "";
 
                   errored = new Error(
-                    `${error.message} [${filename}:${line},${col}]`
+                    `${error.message} [${filename}${line ? `:${line}` : ""}${
+                      col ? `,${col}` : ""
+                    }]`
                   );
                 }
+
+                errored.file = name;
 
                 compilation.errors.push(/** @type {WebpackError} */ (errored));
               }

@@ -219,7 +219,7 @@ exports[`minify option should work using when the \`minify\` option is \`uglifyJ
 
 exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output errors: errors 1`] = `
 Array [
-  "Error: Unterminated template literal [broken.js:1,0]",
+  "Error: Unterminated template literal [broken.js:1]",
 ]
 `;
 
@@ -291,6 +291,24 @@ Object {
 exports[`minify option should work with "uglify-js" minimizer: errors 1`] = `Array []`;
 
 exports[`minify option should work with "uglify-js" minimizer: warnings 1`] = `Array []`;
+
+exports[`minify option should work with custom minimize function and support warnings and errors: errors 1`] = `
+Array [
+  "Error: Error 1 [main.js]",
+  "Error: Error 2",
+  "Error: Error 3 [main.js]",
+  "Error: Error 4 [foo.js]",
+  "Error: Error 5 [foo.js]",
+  "Error: Error 6 [foo.js:1,1]",
+]
+`;
+
+exports[`minify option should work with custom minimize function and support warnings and errors: warnings 1`] = `
+Array [
+  "Warning: Error: Warning 1",
+  "Warning: Warnings 2",
+]
+`;
 
 exports[`minify option should work with source maps: assets 1`] = `
 Object {
