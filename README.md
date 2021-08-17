@@ -528,9 +528,9 @@ module.exports = {
 };
 ```
 
-### swc
+### [`swc`](https://github.com/swc-project/swc)
 
-[swc is a super-fast compiler written in rust; producing widely-supported javascript from modern standards and typescript.](https://github.com/swc-project/swc)
+[`swc`](https://github.com/swc-project/swc) is a super-fast compiler written in rust; producing widely-supported javascript from modern standards and typescript.
 
 > ⚠ the `extractComments` option is not supported
 
@@ -545,6 +545,28 @@ module.exports = {
         minify: TerserPlugin.swcMinify,
         // `terserOptions` options will be passed to `swc` (`@swc/core`)
         // Link to options - https://swc.rs/docs/config-js-minify
+        terserOptions: {},
+      }),
+    ],
+  },
+};
+```
+
+### [`uglify-js`](https://github.com/mishoo/UglifyJS)
+
+UglifyJS is a JavaScript parser, minifier, compressor and beautifier toolkit.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        minify: TerserPlugin.uglifyJsMinify,
+        // `terserOptions` options will be passed to `uglify-js`
+        // Link to options - https://github.com/mishoo/UglifyJS#minify-options
         terserOptions: {},
       }),
     ],
