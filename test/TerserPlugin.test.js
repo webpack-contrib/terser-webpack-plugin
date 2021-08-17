@@ -2110,11 +2110,16 @@ describe("TerserPlugin", () => {
     });
 
     new TerserPlugin({
-      minify(file) {
-        const [[, code]] = Object.entries(file);
+      minify(input) {
+        const [[, code]] = Object.entries(input);
+        const isOldNodeJs = process.version.match(/^v(\d+)/)[1] === "10";
+
         return {
           code,
-          warnings: [new Error("Warning 1"), "Warnings 2"],
+          warnings: [
+            isOldNodeJs ? "Error: Warning 1" : new Error("Warning 1"),
+            "Warnings 2",
+          ],
         };
       },
     }).apply(compiler);

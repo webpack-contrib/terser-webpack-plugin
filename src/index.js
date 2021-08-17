@@ -92,8 +92,8 @@ import { minify as minifyFn } from "./minify";
  * @typedef {Object} MinifyResult
  * @property {string} code
  * @property {RawSourceMap} [map]
- * @property {Array<Error>} [errors]
- * @property {string[]} [warnings]
+ * @property {Array<Error | string>} [errors]
+ * @property {Array<Error | string>} [warnings]
  * @property {Array<string>} [extractedComments]
  * @property {Array<string>} [extractedComments]
  */
