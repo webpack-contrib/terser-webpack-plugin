@@ -389,6 +389,55 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
+  it("should work using when the `minify` option is `terserMinify` and output errors", async () => {
+    const compiler = getCompiler();
+
+    new BrokenCodePlugin().apply(compiler);
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `terserMinify` and extract comments by default", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/comments.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+      extractComments: true,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `terserMinify` and keep legal comments when extract comments is disabled", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/comments.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+      extractComments: false,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
   it("should work using when the `minify` option is `uglifyJsMinify`", async () => {
     const compiler = getCompiler({
       target: ["web", "es5"],
@@ -441,24 +490,7 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it("should work using when the `minify` option is `uglifyJsMinify` and output warnings", async () => {
-    const compiler = getCompiler({
-      target: ["web", "es6"],
-    });
-
-    new TerserPlugin({
-      minify: TerserPlugin.uglifyJsMinify,
-      terserOptions: {
-        warnings: true,
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
-    expect(getErrors(stats)).toMatchSnapshot("errors");
-    expect(getWarnings(stats)).toMatchSnapshot("warnings");
-  });
+  // `uglify-js` doesn't support ECMA modules
 
   it("should work using when the `minify` option is `uglifyJsMinify` and output errors", async () => {
     const compiler = getCompiler({
@@ -478,10 +510,28 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it("should work using when the `minify` option is `uglifyJsMinify` and extract comments", async () => {
+  it("should work using when the `minify` option is `uglifyJsMinify` and output warnings", async () => {
+    const compiler = getCompiler({
+      target: ["web", "es6"],
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.uglifyJsMinify,
+      terserOptions: {
+        warnings: true,
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `uglifyJsMinify` and extract comments by default", async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "./fixtures/comments.js"),
-      devtool: "source-map",
       target: ["web", "es5"],
     });
 
@@ -497,10 +547,9 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it("should work using when the `minify` option is `uglifyJsMinify` and do not extract comments", async () => {
+  it("should work using when the `minify` option is `uglifyJsMinify` and keep legal comments when extract comments is disabled", async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "./fixtures/comments.js"),
-      devtool: "source-map",
       target: ["web", "es5"],
     });
 
@@ -576,6 +625,161 @@ describe("minify option", () => {
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
     expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `swcMinify` and output errors", async () => {
+    const compiler = getCompiler({
+      target: ["web", "es5"],
+      bail: false,
+    });
+
+    new BrokenCodePlugin().apply(compiler);
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  // TODO fix it after `swc` do the new release with support extract comments
+  it.skip("should work using when the `minify` option is `swcMinify` and extract comments by default", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/comments.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(stats.compilation.errors).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  // TODO fix it after `swc` do the new release with support extract comments
+  it.skip("should work using when the `minify` option is `swcMinify` and keep legal comments when extract comments is disabled", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/comments.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+      extractComments: false,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `esbuildMinify`", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `esbuildMinify` and generate source maps", async () => {
+    const compiler = getCompiler({ devtool: "source-map" });
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(stats.compilation.errors).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `esbuildMinify` and allows to set `esbuild` options", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+      terserOptions: {
+        minify: false,
+        minifyWhitespace: true,
+        minifyIdentifiers: false,
+        minifySyntax: true,
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  // TODO check it better let's add `export`
+  it("should work using when the `minify` option is `esbuildMinify` and ECMA modules output", async () => {
+    const compiler = getCompiler({
+      experiments: {
+        outputModule: true,
+      },
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `esbuildMinify` and output errors", async () => {
+    const compiler = getCompiler();
+
+    new BrokenCodePlugin().apply(compiler);
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  // Due `esbuild` doesn't support extract comments we keep legal comments by default
+  it("should work using when the `minify` option is `esbuildMinify` and keep legal comments when extract comments is disabled", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/comments.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+      terserOptions: {
+        legalComments: "inline",
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(stats.compilation.errors).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 });

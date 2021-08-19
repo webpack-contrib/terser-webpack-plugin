@@ -4,6 +4,7 @@
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
 /** @typedef {import("uglify-js").OutputOptions} UglifyJSOutputOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
+/** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
@@ -409,8 +410,10 @@ async function uglifyJsMinify(
   // TODO maybe revisit it in future
   // Copy `uglify-js` options
   // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
   delete minimizerOptions.ecma;
   // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
   delete minimizerOptions.module;
 
   const uglifyJsOptions = buildUglifyJsOptions(minimizerOptions);
@@ -485,7 +488,7 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   // Copy `swc` options
   const swcOptions = buildSwcOptions(minimizerOptions);
 
-  // Let terser generate a SourceMap
+  // Let `swc` generate a SourceMap
   if (sourceMap) {
     // @ts-ignore
     swcOptions.sourceMap = true;
@@ -501,4 +504,63 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   };
 }
 
-export { terserMinify, uglifyJsMinify, swcMinify };
+/* istanbul ignore next */
+/**
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
+ * @param {EsbuildMinifyOptions} minimizerOptions
+ * @return {Promise<MinifyResult>}
+ */
+async function esbuildMinify(input, sourceMap, minimizerOptions) {
+  /**
+   * @param {EsbuildMinifyOptions} [esbuildOptions={}]
+   * @returns {EsbuildMinifyOptions}
+   */
+  const buildEsbuildOptions = (esbuildOptions = {}) => {
+    // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
+    return {
+      minify: true,
+      legalComments: "inline",
+      ...esbuildOptions,
+      sourcemap: false,
+    };
+  };
+
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
+  const esbuild = require("esbuild");
+
+  // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
+  delete minimizerOptions.ecma;
+
+  // @ts-ignore
+  if (minimizerOptions.module) {
+    // eslint-disable-next-line no-param-reassign
+    minimizerOptions.format = "esm";
+  }
+
+  // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
+  delete minimizerOptions.module;
+  // Copy `swc` options
+  const esbuildOptions = buildEsbuildOptions(minimizerOptions);
+
+  // Let `swc` generate a SourceMap
+  if (sourceMap) {
+    esbuildOptions.sourcemap = true;
+  }
+
+  const [[, code]] = Object.entries(input);
+  const minified = await esbuild.transform(code, esbuildOptions);
+
+  return {
+    code: minified.code,
+    // eslint-disable-next-line no-undefined
+    map: minified.map ? JSON.parse(minified.map) : undefined,
+    warnings: minified.warnings
+      ? minified.warnings.map((item) => item.toString())
+      : [],
+  };
+}
+
+export { terserMinify, uglifyJsMinify, swcMinify, esbuildMinify };
