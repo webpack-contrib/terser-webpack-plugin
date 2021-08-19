@@ -85,7 +85,7 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {TerserMinifyOptions | UglifyJSMinifyOptions | SwcMinifyOptions | EsbuildMinifyOptions | CustomMinifyOptions} minimizerOptions
+ * @typedef {TerserMinifyOptions | UglifyJSMinifyOptions | SwcMinifyOptions | EsbuildMinifyOptions | CustomMinifyOptions} MinimizerOptions
  */
 
 /**
@@ -95,7 +95,7 @@ import { minify as minifyFn } from "./minify";
  * @property {RawSourceMap | undefined} inputSourceMap
  * @property {ExtractCommentsOptions | undefined} extractComments
  * @property {MinifyFunction | Array<MinifyFunction>} minimizer
- * @property {minimizerOptions | Array<minimizerOptions>} minimizerOptions
+ * @property {MinimizerOptions | Array<MinimizerOptions>} minimizerOptions
  */
 
 /**
