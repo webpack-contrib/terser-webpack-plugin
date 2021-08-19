@@ -642,7 +642,9 @@ describe("minify option", () => {
 
     const stats = await compile(compiler);
 
-    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(
+      getErrors(stats).map((item) => item.replace(" [GenericFailure]", ""))
+    ).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
