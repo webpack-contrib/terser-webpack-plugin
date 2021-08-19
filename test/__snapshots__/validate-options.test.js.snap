@@ -120,17 +120,27 @@ exports[`validation 8`] = `
 
 exports[`validation 9`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.minify should be an instance of function.
+ - options.minify should be one of these:
+   function | [function, ...] (should not have fewer than 1 item)
    -> Allows you to override default minify function.
-   -> Read more at https://github.com/webpack-contrib/terser-webpack-plugin#number"
+   -> Read more at https://github.com/webpack-contrib/terser-webpack-plugin#number
+   Details:
+    * options.minify should be an instance of function.
+    * options.minify should be an array:
+      [function, ...] (should not have fewer than 1 item)"
 `;
 
 exports[`validation 10`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
- - options.terserOptions should be an object:
-   object { … }
-   -> Options for \`terser\`.
-   -> Read more at https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions"
+ - options.terserOptions should be one of these:
+   object { … } | [object { … }, ...] (should not have fewer than 1 item)
+   -> Options for \`terser\` (by default) or custom \`minify\` function.
+   -> Read more at https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+   Details:
+    * options.terserOptions should be an object:
+      object { … }
+    * options.terserOptions should be an array:
+      [object { … }, ...] (should not have fewer than 1 item)"
 `;
 
 exports[`validation 11`] = `

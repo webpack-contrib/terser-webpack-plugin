@@ -101,7 +101,6 @@ import { minify as minifyFn } from "./minify";
  * @property {Array<Error | string>} [errors]
  * @property {Array<Error | string>} [warnings]
  * @property {Array<string>} [extractedComments]
- * @property {Array<string>} [extractedComments]
  */
 
 /**
