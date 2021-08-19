@@ -7,7 +7,9 @@
  */
 async function minify(options) {
   const minifyFns =
-    typeof options.minify === "function" ? [options.minify] : options.minify;
+    typeof options.minimizer === "function"
+      ? [options.minimizer]
+      : options.minimizer;
 
   /**
    * @type {MinifyResult}
@@ -16,9 +18,9 @@ async function minify(options) {
 
   for (let i = 0; i <= minifyFns.length - 1; i++) {
     const minifyFn = minifyFns[i];
-    const minifyOptions = Array.isArray(options.minifyOptions)
-      ? options.minifyOptions[i]
-      : options.minifyOptions;
+    const minifyOptions = Array.isArray(options.minimizerOptions)
+      ? options.minimizerOptions[i]
+      : options.minimizerOptions;
     // eslint-disable-next-line no-await-in-loop
     const minifyResult = await minifyFn(
       { [options.name]: result.code },

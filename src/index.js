@@ -85,13 +85,17 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
+ * @typedef {TerserMinifyOptions | UglifyJSMinifyOptions | SwcMinifyOptions | EsbuildMinifyOptions | CustomMinifyOptions} minimizerOptions
+ */
+
+/**
  * @typedef {Object} InternalMinifyOptions
  * @property {string} name
  * @property {string} input
  * @property {RawSourceMap | undefined} inputSourceMap
  * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {MinifyFunction} minify
- * @property {TerserMinifyOptions | CustomMinifyOptions} minifyOptions
+ * @property {MinifyFunction | Array<MinifyFunction>} minimizer
+ * @property {minimizerOptions | Array<minimizerOptions>} minimizerOptions
  */
 
 /**
@@ -435,18 +439,19 @@ class TerserPlugin {
               name,
               input,
               inputSourceMap,
-              minify: this.options.minify,
-              minifyOptions: { ...this.options.terserOptions },
+              // TODO rename to `minimizer` in the next major release
+              minimizer: this.options.minify,
+              minimizerOptions: { ...this.options.terserOptions },
               extractComments: this.options.extractComments,
             };
 
-            if (typeof options.minifyOptions.module === "undefined") {
+            if (typeof options.minimizerOptions.module === "undefined") {
               if (typeof info.javascriptModule !== "undefined") {
-                options.minifyOptions.module = info.javascriptModule;
+                options.minimizerOptions.module = info.javascriptModule;
               } else if (/\.mjs(\?.*)?$/i.test(name)) {
-                options.minifyOptions.module = true;
+                options.minimizerOptions.module = true;
               } else if (/\.cjs(\?.*)?$/i.test(name)) {
-                options.minifyOptions.module = false;
+                options.minimizerOptions.module = false;
               }
             }
 

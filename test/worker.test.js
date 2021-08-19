@@ -9,7 +9,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: false,
     };
     const workerResult = await transform(serialize(options));
@@ -22,7 +22,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: true,
     };
     const workerResult = await transform(serialize(options));
@@ -35,7 +35,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: /hello/,
     };
     const workerResult = await transform(serialize(options));
@@ -48,7 +48,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: () => true,
     };
     const workerResult = await transform(serialize(options));
@@ -61,7 +61,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: {},
     };
     const workerResult = await transform(serialize(options));
@@ -74,7 +74,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: {
         condition: true,
       },
@@ -89,7 +89,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: {
         condition: "some",
       },
@@ -104,7 +104,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: {
         condition: "all",
       },
@@ -119,7 +119,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: "all",
     };
     const workerResult = await transform(serialize(options));
@@ -132,7 +132,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
+      minimizer: terserMinify,
       extractComments: "some",
     };
     const workerResult = await transform(serialize(options));
@@ -145,8 +145,8 @@ describe("worker", () => {
       name: "test2.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         output: {
           comments: "all",
         },
@@ -162,8 +162,8 @@ describe("worker", () => {
       name: "test3.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         compress: true,
       },
     };
@@ -177,8 +177,8 @@ describe("worker", () => {
       name: "test3.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         compress: {
           passes: 2,
         },
@@ -194,8 +194,8 @@ describe("worker", () => {
       name: "test3.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         output: {
           comments: "some",
         },
@@ -211,8 +211,8 @@ describe("worker", () => {
       name: "test4.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         output: {
           comments: "some",
         },
@@ -228,8 +228,8 @@ describe("worker", () => {
     const options = {
       name: "test5.js",
       input: "/******/ function hello(a) {console.log(a)}",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         output: {
           comments: "all",
         },
@@ -248,7 +248,7 @@ describe("worker", () => {
 
   it("should match snapshot with options.inputSourceMap", async () => {
     const options = {
-      minify: terserMinify,
+      minimizer: terserMinify,
       name: "test6.js",
       input: "function foo(x) { if (x) { return bar(); not_called1(); } }",
       inputSourceMap: {
@@ -268,7 +268,7 @@ describe("worker", () => {
       name: "test1.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: (item) => {
+      minimizer: (item) => {
         return {
           code: item["test1.js"],
         };
@@ -284,8 +284,8 @@ describe("worker", () => {
       name: "test4.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         mangle: null,
       },
     };
@@ -299,8 +299,8 @@ describe("worker", () => {
       name: "test4.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         mangle: true,
       },
     };
@@ -314,8 +314,8 @@ describe("worker", () => {
       name: "test4.js",
       input:
         "var foo = 1;/* hello */\n// Comment\n/* duplicate */\n/* duplicate */",
-      minify: terserMinify,
-      minifyOptions: {
+      minimizer: terserMinify,
+      minimizerOptions: {
         mangle: { toplevel: true },
       },
     };
