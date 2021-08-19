@@ -8,7 +8,12 @@ import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
 import { Worker } from "jest-worker";
 
-import { terserMinify, uglifyJsMinify, swcMinify } from "./utils";
+import {
+  terserMinify,
+  uglifyJsMinify,
+  swcMinify,
+  esbuildMinify,
+} from "./utils";
 
 import * as schema from "./options.json";
 import { minify as minifyFn } from "./minify";
@@ -22,6 +27,7 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
+/** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
@@ -126,6 +132,17 @@ import { minify as minifyFn } from "./minify";
  * @property {Rules} [include]
  * @property {Rules} [exclude]
  * @property {SwcMinifyOptions} [terserOptions]
+ * @property {ExtractCommentsOptions} [extractComments]
+ * @property {boolean} [parallel]
+ * @property {swcMinify} minify
+ */
+
+/**
+ * @typedef {Object} PluginOptionsForEsbuild
+ * @property {Rules} [test]
+ * @property {Rules} [include]
+ * @property {Rules} [exclude]
+ * @property {EsbuildMinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
  * @property {swcMinify} minify
@@ -811,5 +828,6 @@ class TerserPlugin {
 TerserPlugin.terserMinify = terserMinify;
 TerserPlugin.uglifyJsMinify = uglifyJsMinify;
 TerserPlugin.swcMinify = swcMinify;
+TerserPlugin.esbuildMinify = esbuildMinify;
 
 export default TerserPlugin;

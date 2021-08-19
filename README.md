@@ -528,11 +528,33 @@ module.exports = {
 };
 ```
 
+### [`uglify-js`](https://github.com/mishoo/UglifyJS)
+
+[`UglifyJS`](https://github.com/mishoo/UglifyJS) is a JavaScript parser, minifier, compressor and beautifier toolkit.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        minify: TerserPlugin.uglifyJsMinify,
+        // `terserOptions` options will be passed to `uglify-js`
+        // Link to options - https://github.com/mishoo/UglifyJS#minify-options
+        terserOptions: {},
+      }),
+    ],
+  },
+};
+```
+
 ### [`swc`](https://github.com/swc-project/swc)
 
 [`swc`](https://github.com/swc-project/swc) is a super-fast compiler written in rust; producing widely-supported javascript from modern standards and typescript.
 
-> ⚠ the `extractComments` option is not supported
+> ⚠ the `extractComments` option is not supported and all comments will be removed by default, it will be fixed in future
 
 **webpack.config.js**
 
@@ -552,9 +574,11 @@ module.exports = {
 };
 ```
 
-### [`uglify-js`](https://github.com/mishoo/UglifyJS)
+### [`esbuild`](https://github.com/evanw/esbuild)
 
-UglifyJS is a JavaScript parser, minifier, compressor and beautifier toolkit.
+[`esbuild`](https://github.com/evanw/esbuild) is an extremely fast JavaScript bundler and minifier.
+
+> ⚠ the `extractComments` option is not supported and all legal comments (i.e. copyright, licenses and etc) will be preserved
 
 **webpack.config.js**
 
@@ -564,9 +588,16 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        minify: TerserPlugin.uglifyJsMinify,
-        // `terserOptions` options will be passed to `uglify-js`
-        // Link to options - https://github.com/mishoo/UglifyJS#minify-options
+        minify: TerserPlugin.esbuildMinify,
+        // `terserOptions` options will be passed to `esbuild`
+        // Link to options - https://esbuild.github.io/api/#minify
+        // Note: the `minify` options is true by default (and override other `minify*` options), so if you want to disable the `minifyIdentifiers` option (or other `minify*` options) please use:
+        // terserOptions: {
+        //   minify: false,
+        //   minifyWhitespace: true,
+        //   minifyIdentifiers: false,
+        //   minifySyntax: true,
+        // },
         terserOptions: {},
       }),
     ],
