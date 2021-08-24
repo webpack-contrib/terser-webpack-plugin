@@ -60,9 +60,9 @@ Using supported `devtool` values enable source map generation.
 | :---------------------------------------: | :-----------------------------------------------------------------------------: | :-------------------------------------------------------------: | :--------------------------------------------------------------------------- |
 |            **[`test`](#test)**            |                     `String\|RegExp\|Array<String\|RegExp>`                     |                       `/\.m?js(\?.*)?$/i`                       | Test to match files against.                                                 |
 |         **[`include`](#include)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to include.                                                            |
-|            **[`exclude`](#)**             |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to exclude.                                                            |
+|         **[`exclude`](#exclude)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to exclude.                                                            |
 |        **[`parallel`](#parallel)**        |                                `Boolean\|Number`                                |                             `true`                              | Use multi-process parallel running to improve the build speed.               |
-|          **[`minify`](#minify)**          |                                   `Function`                                    |                           `undefined`                           | Allows you to override default minify function.                              |
+|          **[`minify`](#minify)**          |                                   `Function`                                    |                   `TerserPlugin.terserMinify`                   | Allows you to override default minify function.                              |
 |   **[`terserOptions`](#terseroptions)**   |                                    `Object`                                     | [`default`](https://github.com/terser-js/terser#minify-options) | Terser [minify options](https://github.com/terser-js/terser#minify-options). |
 | **[`extractComments`](#extractcomments)** | `Boolean\|String\|RegExp\|Function<(node, comment) -> Boolean\|Object>\|Object` |                             `true`                              | Whether comments shall be extracted to a separate file.                      |
 
@@ -185,7 +185,7 @@ module.exports = {
 ### `minify`
 
 Type: `Function`
-Default: `undefined`
+Default: `TerserPlugin.terserMinify`
 
 Allows you to override default minify function.
 By default plugin uses [terser](https://github.com/terser-js/terser) package.
