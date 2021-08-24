@@ -75,7 +75,7 @@ import { minify as minifyFn } from "./minify";
  * @callback MinifyFunction
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {CustomMinifyOptions} minifyOptions
+ * @param {InternalPredefinedMinimizerOptions & CustomMinifyOptions} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinifyResult>}
  */
@@ -89,13 +89,19 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
+ * @typedef {Object} InternalPredefinedMinimizerOptions
+ * @property {boolean} [module]
+ * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
+ */
+
+/**
  * @typedef {Object} InternalMinifyOptions
  * @property {string} name
  * @property {string} input
  * @property {RawSourceMap | undefined} inputSourceMap
  * @property {ExtractCommentsOptions | undefined} extractComments
  * @property {MinifyFunction} minify
- * @property {MinimizerOptions} minifyOptions
+ * @property {MinimizerOptions & InternalPredefinedMinimizerOptions} minifyOptions
  */
 
 /**
@@ -454,6 +460,12 @@ class TerserPlugin {
               }
             }
 
+            if (typeof options.minifyOptions.ecma === "undefined") {
+              options.minifyOptions.ecma = TerserPlugin.getEcmaVersion(
+                compiler.options.output.environment || {}
+              );
+            }
+
             try {
               output = await (getWorker
                 ? getWorker().transform(serialize(options))
@@ -772,14 +784,6 @@ class TerserPlugin {
    * @returns {void}
    */
   apply(compiler) {
-    const { output } = compiler.options;
-
-    if (typeof this.options.terserOptions.ecma === "undefined") {
-      this.options.terserOptions.ecma = TerserPlugin.getEcmaVersion(
-        output.environment || {}
-      );
-    }
-
     const pluginName = this.constructor.name;
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel

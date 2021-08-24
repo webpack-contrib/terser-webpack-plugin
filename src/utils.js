@@ -10,6 +10,7 @@
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 /** @typedef {import("./index.js").Input} Input */
 /** @typedef {import("./index.js").MinifyResult} MinifyResult */
+/** @typedef {import("./index.js").InternalPredefinedMinimizerOptions} InternalPredefinedMinimizerOptions */
 
 /**
  * @typedef {TerserMinifyOptions & { sourceMap: undefined } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })} NormalizedTerserMinifyOptions
@@ -31,7 +32,7 @@
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {TerserMinifyOptions} minimizerOptions
+ * @param {InternalPredefinedMinimizerOptions & TerserMinifyOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinifyResult>}
  */
@@ -246,7 +247,7 @@ async function terserMinify(
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {UglifyJSMinifyOptions} minimizerOptions
+ * @param {InternalPredefinedMinimizerOptions & UglifyJSMinifyOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinifyResult>}
  */
@@ -407,15 +408,13 @@ async function uglifyJsMinify(
 
   // eslint-disable-next-line global-require, import/no-extraneous-dependencies
   const { minify } = require("uglify-js");
-  // TODO maybe revisit it in future
-  // Copy `uglify-js` options
-  // @ts-ignore
+
   // eslint-disable-next-line no-param-reassign
   delete minimizerOptions.ecma;
-  // @ts-ignore
   // eslint-disable-next-line no-param-reassign
   delete minimizerOptions.module;
 
+  // Copy `uglify-js` options
   const uglifyJsOptions = buildUglifyJsOptions(minimizerOptions);
 
   // Let terser generate a SourceMap
@@ -450,7 +449,7 @@ async function uglifyJsMinify(
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {SwcMinifyOptions} minimizerOptions
+ * @param {InternalPredefinedMinimizerOptions & SwcMinifyOptions} minimizerOptions
  * @return {Promise<MinifyResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
@@ -508,7 +507,7 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {EsbuildMinifyOptions} minimizerOptions
+ * @param {InternalPredefinedMinimizerOptions & EsbuildMinifyOptions} minimizerOptions
  * @return {Promise<MinifyResult>}
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {
@@ -529,19 +528,17 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   const esbuild = require("esbuild");
 
-  // @ts-ignore
   // eslint-disable-next-line no-param-reassign
   delete minimizerOptions.ecma;
 
-  // @ts-ignore
   if (minimizerOptions.module) {
     // eslint-disable-next-line no-param-reassign
     minimizerOptions.format = "esm";
   }
 
-  // @ts-ignore
   // eslint-disable-next-line no-param-reassign
   delete minimizerOptions.module;
+
   // Copy `swc` options
   const esbuildOptions = buildEsbuildOptions(minimizerOptions);
 
