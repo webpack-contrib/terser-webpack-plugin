@@ -25,7 +25,7 @@ export default function getCompiler(options = {}) {
         }
   );
 
-  compiler.outputFileSystem = createFsFromVolume(new Volume());
+  // compiler.outputFileSystem = createFsFromVolume(new Volume());
 
   return compiler;
 }

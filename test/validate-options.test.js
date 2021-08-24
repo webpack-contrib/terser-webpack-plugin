@@ -123,11 +123,27 @@ it("validation", () => {
   }).not.toThrow();
 
   expect(() => {
+    new TerserPlugin({ minify: [() => {}] });
+  }).not.toThrow();
+
+  expect(() => {
+    new TerserPlugin({ minify: [() => {}, () => {}] });
+  }).not.toThrow();
+
+  expect(() => {
     new TerserPlugin({ minify: true });
   }).toThrowErrorMatchingSnapshot();
 
   expect(() => {
     new TerserPlugin({ terserOptions: {} });
+  }).not.toThrow();
+
+  expect(() => {
+    new TerserPlugin({ terserOptions: [{}] });
+  }).not.toThrow();
+
+  expect(() => {
+    new TerserPlugin({ terserOptions: [{}, {}] });
   }).not.toThrow();
 
   expect(() => {

@@ -60,9 +60,9 @@ Using supported `devtool` values enable source map generation.
 | :---------------------------------------: | :-----------------------------------------------------------------------------: | :-------------------------------------------------------------: | :--------------------------------------------------------------------------- |
 |            **[`test`](#test)**            |                     `String\|RegExp\|Array<String\|RegExp>`                     |                       `/\.m?js(\?.*)?$/i`                       | Test to match files against.                                                 |
 |         **[`include`](#include)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to include.                                                            |
-|            **[`exclude`](#)**             |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to exclude.                                                            |
+|         **[`exclude`](#exclude)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to exclude.                                                            |
 |        **[`parallel`](#parallel)**        |                                `Boolean\|Number`                                |                             `true`                              | Use multi-process parallel running to improve the build speed.               |
-|          **[`minify`](#minify)**          |                                   `Function`                                    |                           `undefined`                           | Allows you to override default minify function.                              |
+|          **[`minify`](#minify)**          |                                   `Function`                                    |                   `TerserPlugin.terserMinify`                   | Allows you to override default minify function.                              |
 |   **[`terserOptions`](#terseroptions)**   |                                    `Object`                                     | [`default`](https://github.com/terser-js/terser#minify-options) | Terser [minify options](https://github.com/terser-js/terser#minify-options). |
 | **[`extractComments`](#extractcomments)** | `Boolean\|String\|RegExp\|Function<(node, comment) -> Boolean\|Object>\|Object` |                             `true`                              | Whether comments shall be extracted to a separate file.                      |
 
@@ -184,14 +184,16 @@ module.exports = {
 
 ### `minify`
 
-Type: `Function`
-Default: `undefined`
+Type: `Function|Array<Function>`
+Default: `TerserPlugin.terserMinify`
 
 Allows you to override default minify function.
 By default plugin uses [terser](https://github.com/terser-js/terser) package.
 Useful for using and testing unpublished versions or forks.
 
 > ⚠️ **Always use `require` inside `minify` function when `parallel` option enabled**.
+
+#### `Function`
 
 **webpack.config.js**
 
@@ -225,12 +227,50 @@ module.exports = {
 };
 ```
 
+#### `Array`
+
+If an array of functions is passed to the `minify` option, the `terserOptions` must also be an array.
+The function index in the `minify` array corresponds to the options object with the same index in the `terserOptions` array.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: [
+          {}, // Options for the first function (CssMinimizerPlugin.swcMinify)
+          {}, // Options for the second function
+        ],
+        minify: [
+          CssMinimizerPlugin.swcMinify,
+          async (input, inputSourceMap, minimizerOptions, extractComments) => {
+            // To do something
+            return {
+              code: `const foo = "bar"`,
+              map: `{"version": "3", ...}`,
+              warnings: [],
+              errors: [],
+              extractComments: [],
+            };
+          },
+        ],
+      }),
+    ],
+  },
+};
+```
+
 ### `terserOptions`
 
-Type: `Object`
+Type: `Object|Array<Object>`
 Default: [default](https://github.com/terser-js/terser#minify-options)
 
 Terser minify [options](https://github.com/terser-js/terser#minify-options).
+
+#### `Object`
 
 **webpack.config.js**
 
@@ -256,6 +296,42 @@ module.exports = {
           keep_fnames: false,
           safari10: false,
         },
+      }),
+    ],
+  },
+};
+```
+
+### `Array`
+
+If an array of functions is passed to the `minify` option, the `terserOptions` must also be an array.
+The function index in the `minify` array corresponds to the options object with the same index in the `terserOptions` array.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: [
+          {}, // Options for the first function (CssMinimizerPlugin.swcMinify)
+          {}, // Options for the second function
+        ],
+        minify: [
+          CssMinimizerPlugin.swcMinify,
+          async (input, inputSourceMap, minimizerOptions, extractComments) => {
+            // To do something
+            return {
+              code: `const foo = "bar"`,
+              map: `{"version": "3", ...}`,
+              warnings: [],
+              errors: [],
+              extractComments: [],
+            };
+          },
+        ],
       }),
     ],
   },
