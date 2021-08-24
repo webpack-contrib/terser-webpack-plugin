@@ -441,7 +441,11 @@ class TerserPlugin {
               inputSourceMap,
               // TODO rename to `minimizer` in the next major release
               minimizer: this.options.minify,
-              minimizerOptions: { ...this.options.terserOptions },
+              minimizerOptions: Array.isArray(this.options.terserOptions)
+                ? this.options.terserOptions.map((item) => {
+                    return { ...item };
+                  })
+                : { ...this.options.terserOptions },
               extractComments: this.options.extractComments,
             };
 

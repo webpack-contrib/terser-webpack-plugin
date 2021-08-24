@@ -228,63 +228,6 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it('should work with "uglify-js" minimizer', async () => {
-    const compiler = getCompiler({
-      target: ["es5", "web"],
-      entry: path.resolve(__dirname, "./fixtures/minify/es5.js"),
-      output: {
-        path: path.resolve(__dirname, "./dist-uglify-js"),
-        filename: "[name].js",
-        chunkFilename: "[id].[name].js",
-      },
-    });
-
-    new TerserPlugin({
-      minify(file) {
-        // eslint-disable-next-line global-require
-        return require("uglify-js").minify(file, {
-          mangle: {
-            reserved: ["baz"],
-          },
-        });
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
-    expect(getErrors(stats)).toMatchSnapshot("errors");
-    expect(getWarnings(stats)).toMatchSnapshot("warnings");
-  });
-
-  it('should work with "terser" minimizer', async () => {
-    const compiler = getCompiler({
-      entry: path.resolve(__dirname, "./fixtures/minify/es6.js"),
-      output: {
-        path: path.resolve(__dirname, "./dist-terser"),
-        filename: "[name].js",
-        chunkFilename: "[id].[name].js",
-      },
-    });
-
-    new TerserPlugin({
-      minify(file) {
-        // eslint-disable-next-line global-require
-        return require("terser").minify(file, {
-          mangle: {
-            reserved: ["baz"],
-          },
-        });
-      },
-    }).apply(compiler);
-
-    const stats = await compile(compiler);
-
-    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
-    expect(getErrors(stats)).toMatchSnapshot("errors");
-    expect(getWarnings(stats)).toMatchSnapshot("warnings");
-  });
-
   it("should work with custom minimize function and support warnings and errors", async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "./fixtures/minify/es6.js"),
@@ -322,6 +265,87 @@ describe("minify option", () => {
 
     const stats = await compile(compiler);
 
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work with multiple custom minimize functions", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: [
+        TerserPlugin.terserMinify,
+        TerserPlugin.swcMinify,
+      ]
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it.only("should work with multiple custom minimize functions and source map", async () => {
+    const compiler = getCompiler({
+      devtool: "source-map"
+    });
+
+    new TerserPlugin({
+      minify: [
+        TerserPlugin.terserMinify,
+        TerserPlugin.uglifyJsMinify,
+      ]
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work with multiple custom minimize functions and single options", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: [
+        TerserPlugin.terserMinify,
+        TerserPlugin.swcMinify,
+      ],
+      terserOptions: {
+        mangle: false,
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work with multiple custom minimize functions and multiple options", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: [
+        TerserPlugin.terserMinify,
+        TerserPlugin.swcMinify,
+      ],
+      terserOptions: [
+        {
+          mangle: false,
+        },
+        {
+          mangle: false,
+        }
+      ],
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
