@@ -114,81 +114,92 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} PluginOptionsForTerser
+ * @typedef {Object} BasePluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
+ * @property {ExtractCommentsOptions} [extractComments]
+ * @property {boolean} [parallel]
+ */
+
+/**
+ * @typedef {Object} DefaultTerserMinimizeFunctionAndOptions
  * @property {TerserMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {terserMinify} minify
- */
-
-/**
- * @typedef {Object} PluginOptionsForUglifyJS
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {UglifyJSMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {uglifyJsMinify} minify
- */
-
-/**
- * @typedef {Object} PluginOptionsForSwc
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {SwcMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {swcMinify} minify
- */
-
-/**
- * @typedef {Object} PluginOptionsForEsbuild
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {EsbuildMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {swcMinify} minify
- */
-
-/**
- * @typedef {Object} PluginOptionsForCustomMinifyFunction
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {CustomMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {MinifyFunction} minify
- */
-
-/**
- * @typedef {Object} DefaultPluginOptions
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {TerserMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
  * @property {terserMinify} [minify]
  */
 
 /**
- * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction} PluginOptions
+ * @typedef {BasePluginOptions & DefaultTerserMinimizeFunctionAndOptions} DefaultPluginOptions
  */
 
+/**
+ * @typedef {Object} TerserMinimizeFunctionAndOptions
+ * @property {TerserMinifyOptions} [terserOptions]
+ * @property {terserMinify} minify
+ */
+
+/**
+ * @typedef {BasePluginOptions & TerserMinimizeFunctionAndOptions} PluginOptionsForTerser
+ */
+
+/**
+ * @typedef {Object} UglifyJSFunctionAndOptions
+ * @property {UglifyJSMinifyOptions} [terserOptions]
+ * @property {uglifyJsMinify} minify
+ */
+
+/**
+ * @typedef {BasePluginOptions & UglifyJSFunctionAndOptions} PluginOptionsForUglifyJS
+ */
+
+/**
+ * @typedef {Object} SwcFunctionAndOptions
+ * @property {SwcMinifyOptions} [terserOptions]
+ * @property {swcMinify} minify
+ */
+
+/**
+ * @typedef {BasePluginOptions & SwcFunctionAndOptions} PluginOptionsForSwc
+ */
+
+/**
+ * @typedef {Object} EsbuildFunctionAndOptions
+ * @property {EsbuildMinifyOptions} [terserOptions]
+ * @property {esbuildMinify} minify
+ */
+
+/**
+ * @typedef {BasePluginOptions & EsbuildFunctionAndOptions} PluginOptionsForEsbuild
+ */
+
+/**
+ * @typedef {Object} CustomMinifyFunctionAndOptions
+ * @property {CustomMinifyOptions} [terserOptions]
+ * @property {MinifyFunction} minify
+ */
+
+/**
+ * @typedef {BasePluginOptions & CustomMinifyFunctionAndOptions} PluginOptionsForCustomMinifyFunction
+ */
+
+/**
+ * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForEsbuild | PluginOptionsForCustomMinifyFunction} PluginOptions
+ */
+
+/**
+ * @typedef {PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForEsbuild | PluginOptionsForCustomMinifyFunction} NormalizedPluginOptions
+ */
+
+/**
+ * @template {PluginOptions} T
+ */
 class TerserPlugin {
   /**
-   * @param {PluginOptions} [options={}]
+   * @param {T} [options]
    */
-  constructor(options = {}) {
-    validate(/** @type {Schema} */ (schema), options, {
+  // TODO default value - T extends PluginOptions = DefaultPluginOptions
+  constructor(options) {
+    validate(/** @type {Schema} */ (schema), options || {}, {
       name: "Terser Plugin",
       baseDataPath: "options",
     });
@@ -201,11 +212,9 @@ class TerserPlugin {
       parallel = true,
       include,
       exclude,
-    } = options;
+    } = options || {};
 
-    /**
-     * @type {PluginOptionsForTerser | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction}
-     */
+    /** @type {NormalizedPluginOptions} */
     this.options = {
       test,
       extractComments,
