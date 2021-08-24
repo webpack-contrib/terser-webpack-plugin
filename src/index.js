@@ -125,7 +125,7 @@ import { minify as minifyFn } from "./minify";
 /**
  * @typedef {Object} DefaultTerserMinimizeFunctionAndOptions
  * @property {TerserMinifyOptions} [terserOptions]
- * @property {terserMinify} [minify]
+ * @property {undefined} [minify]
  */
 
 /**

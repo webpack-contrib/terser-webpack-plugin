@@ -90,7 +90,7 @@ export type BasePluginOptions = {
 };
 export type DefaultTerserMinimizeFunctionAndOptions = {
   terserOptions?: import("terser").MinifyOptions | undefined;
-  minify?: typeof terserMinify | undefined;
+  minify?: undefined;
 };
 export type DefaultPluginOptions = BasePluginOptions &
   DefaultTerserMinimizeFunctionAndOptions;
@@ -225,7 +225,7 @@ export type NormalizedPluginOptions =
 /**
  * @typedef {Object} DefaultTerserMinimizeFunctionAndOptions
  * @property {TerserMinifyOptions} [terserOptions]
- * @property {terserMinify} [minify]
+ * @property {undefined} [minify]
  */
 /**
  * @typedef {BasePluginOptions & DefaultTerserMinimizeFunctionAndOptions} DefaultPluginOptions
