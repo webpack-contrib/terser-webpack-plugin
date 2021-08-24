@@ -190,6 +190,7 @@ import { minify as minifyFn } from "./minify";
  * @typedef {PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForEsbuild | PluginOptionsForCustomMinifyFunction} NormalizedPluginOptions
  */
 
+// TODO default value for template is not supported by typescript yet, please add minify them manually - `T extends PluginOptions = DefaultPluginOptions`
 /**
  * @template {PluginOptions} T
  */
@@ -197,7 +198,6 @@ class TerserPlugin {
   /**
    * @param {T} [options]
    */
-  // TODO default value - T extends PluginOptions = DefaultPluginOptions
   constructor(options) {
     validate(/** @type {Schema} */ (schema), options || {}, {
       name: "Terser Plugin",

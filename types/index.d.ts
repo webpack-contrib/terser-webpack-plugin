@@ -279,7 +279,7 @@ export type NormalizedPluginOptions =
 /**
  * @template {PluginOptions} T
  */
-declare class TerserPlugin<T extends PluginOptions> {
+declare class TerserPlugin<T extends PluginOptions = DefaultPluginOptions> {
   /**
    * @private
    * @param {any} input
