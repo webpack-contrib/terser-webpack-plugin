@@ -493,13 +493,22 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
     swcOptions.sourceMap = true;
   }
 
-  const [[, code]] = Object.entries(input);
+  const [[filename, code]] = Object.entries(input);
   const minified = await swc.minify(code, swcOptions);
+
+  let map;
+
+  if (minified.map) {
+    map = JSON.parse(minified.map);
+
+    // TODO workaround for swc because `filename` is not preset as in `swc` signature as for `terser`
+    map.sources = [filename];
+    delete map.sourcesContent;
+  }
 
   return {
     code: minified.code,
-    // eslint-disable-next-line no-undefined
-    map: minified.map ? JSON.parse(minified.map) : undefined,
+    map,
   };
 }
 
@@ -545,9 +554,13 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
   // Let `swc` generate a SourceMap
   if (sourceMap) {
     esbuildOptions.sourcemap = true;
+    esbuildOptions.sourcesContent = false;
   }
 
-  const [[, code]] = Object.entries(input);
+  const [[filename, code]] = Object.entries(input);
+
+  esbuildOptions.sourcefile = filename;
+
   const minified = await esbuild.transform(code, esbuildOptions);
 
   return {
