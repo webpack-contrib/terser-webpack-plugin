@@ -55,7 +55,7 @@ export type MinifyResult = {
 };
 export type InternalPredefinedMinimizerOptions = {
   module?: boolean | undefined;
-  ecma?: 5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | undefined;
+  ecma?: 5 | 2020 | 2015 | 2016 | 2017 | 2018 | 2019 | undefined;
 };
 export type InternalMinifyOptions<T> = {
   name: string;
