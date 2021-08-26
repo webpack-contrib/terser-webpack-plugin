@@ -28,14 +28,13 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
 /** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
+/** @typedef {Object.<any, any>} CustomMinifyOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
 /** @typedef {RegExp | string} Rule */
 
 /** @typedef {Rule[] | Rule} Rules */
-
-/** @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions) => MinifyResult }} MinifyWorker */
 
 /**
  * @callback ExtractCommentsFunction
@@ -64,34 +63,11 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {{ [file: string]: string }} Input
- */
-
-/**
- * @typedef {Object.<any, any>} CustomMinifyOptions
- */
-
-/**
- * @callback MinifyFunction
- * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
- * @param {CustomMinifyOptions} minifyOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<MinifyResult>}
- */
-
-/**
  * @typedef {ExtractCommentsCondition | ExtractCommentsObject} ExtractCommentsOptions
  */
 
 /**
- * @typedef {Object} InternalMinifyOptions
- * @property {string} name
- * @property {string} input
- * @property {RawSourceMap | undefined} inputSourceMap
- * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {MinifyFunction} minify
- * @property {TerserMinifyOptions | CustomMinifyOptions} minifyOptions
+ * @typedef {{ [file: string]: string }} Input
  */
 
 /**
@@ -101,85 +77,95 @@ import { minify as minifyFn } from "./minify";
  * @property {Array<Error | string>} [errors]
  * @property {Array<Error | string>} [warnings]
  * @property {Array<string>} [extractedComments]
- * @property {Array<string>} [extractedComments]
  */
 
 /**
- * @typedef {Object} PluginOptionsForTerser
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {TerserMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {terserMinify} minify
+ * @typedef {Object} InternalPredefinedMinimizerOptions
+ * @property {boolean} [module]
+ * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
  */
 
 /**
- * @typedef {Object} PluginOptionsForUglifyJS
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {UglifyJSMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {uglifyJsMinify} minify
+ * @template T
+ * @typedef {Object} InternalMinifyOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {ExtractCommentsOptions | undefined} extractComments
+ * @property {MinifyFunction<T>} minify
+ * @property {InternalPredefinedMinimizerOptions & T} minifyOptions
  */
 
 /**
- * @typedef {Object} PluginOptionsForSwc
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {SwcMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {swcMinify} minify
+ * @template T
+ * @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions<T>) => MinifyResult }} MinifyWorker
  */
 
 /**
- * @typedef {Object} PluginOptionsForEsbuild
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {EsbuildMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {swcMinify} minify
+ * @template T
+ * @callback MinifyFunction
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
+ * @param {InternalPredefinedMinimizerOptions & T} minifyOptions
+ * @param {ExtractCommentsOptions | undefined} extractComments
+ * @returns {Promise<MinifyResult>}
  */
 
 /**
- * @typedef {Object} PluginOptionsForCustomMinifyFunction
+ * @typedef {MinifyFunction<TerserMinifyOptions>} TerserMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<UglifyJSMinifyOptions>} UglifyJSMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<SwcMinifyOptions>} SwcMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<EsbuildMinifyOptions>} EsbuildMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<CustomMinifyOptions>} CustomMinifyFunction
+ */
+
+/**
+ * @typedef {Object} BasePluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
- * @property {CustomMinifyOptions} [terserOptions]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {boolean} [parallel]
- * @property {MinifyFunction} minify
+ */
+
+/**
+ * @template T
+ * @typedef {T extends (arg1: any, arg2: any, arg3: infer U, ...args: any[]) => any ? U: never} ThirdArgument
  */
 
 /**
  * @typedef {Object} DefaultPluginOptions
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
  * @property {TerserMinifyOptions} [terserOptions]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
- * @property {terserMinify} [minify]
+ * @property {undefined} [minify]
  */
 
 /**
- * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction} PluginOptions
+ * @template T
+ * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultPluginOptions} PickMinifyOptions
  */
 
+// TODO please add manually `T extends ... = TerserMinifyFunction`, because typescript is not supported default value for templates yet
+/**
+ * @template {TerserMinifyFunction | UglifyJSMinifyFunction | SwcMinifyFunction | EsbuildMinifyFunction | CustomMinifyFunction} T =TerserMinifyFunction
+ */
 class TerserPlugin {
   /**
-   * @param {PluginOptions} [options={}]
+   * @param {BasePluginOptions & PickMinifyOptions<T>} [options]
    */
-  constructor(options = {}) {
-    validate(/** @type {Schema} */ (schema), options, {
+  constructor(options) {
+    validate(/** @type {Schema} */ (schema), options || {}, {
       name: "Terser Plugin",
       baseDataPath: "options",
     });
@@ -192,11 +178,8 @@ class TerserPlugin {
       parallel = true,
       include,
       exclude,
-    } = options;
+    } = options || {};
 
-    /**
-     * @type {PluginOptionsForTerser | PluginOptionsForSwc | PluginOptionsForCustomMinifyFunction}
-     */
     this.options = {
       test,
       extractComments,
@@ -288,6 +271,7 @@ class TerserPlugin {
   }
 
   /**
+   * @private
    * @param {Compiler} compiler
    * @param {Compilation} compilation
    * @param {Record<string, import("webpack").sources.Source>} assets
@@ -340,9 +324,9 @@ class TerserPlugin {
         })
     );
 
-    /** @type {undefined | (() => MinifyWorker)} */
+    /** @type {undefined | (() => MinifyWorker<T>)} */
     let getWorker;
-    /** @type {undefined | MinifyWorker} */
+    /** @type {undefined | MinifyWorker<T>} */
     let initializedWorker;
     /** @type {undefined | number} */
     let numberOfWorkers;
@@ -360,7 +344,7 @@ class TerserPlugin {
         }
 
         initializedWorker =
-          /** @type {MinifyWorker} */
+          /** @type {MinifyWorker<T>} */
           (
             new Worker(require.resolve("./minify"), {
               numWorkers: numberOfWorkers,
@@ -431,7 +415,7 @@ class TerserPlugin {
               input = input.toString();
             }
 
-            /** @type {InternalMinifyOptions} */
+            /** @type {InternalMinifyOptions<T>} */
             const options = {
               name,
               input,
@@ -449,6 +433,12 @@ class TerserPlugin {
               } else if (/\.cjs(\?.*)?$/i.test(name)) {
                 options.minifyOptions.module = false;
               }
+            }
+
+            if (typeof options.minifyOptions.ecma === "undefined") {
+              options.minifyOptions.ecma = TerserPlugin.getEcmaVersion(
+                compiler.options.output.environment || {}
+              );
             }
 
             try {
@@ -769,14 +759,6 @@ class TerserPlugin {
    * @returns {void}
    */
   apply(compiler) {
-    const { output } = compiler.options;
-
-    if (typeof this.options.terserOptions.ecma === "undefined") {
-      this.options.terserOptions.ecma = TerserPlugin.getEcmaVersion(
-        output.environment || {}
-      );
-    }
-
     const pluginName = this.constructor.name;
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
       this.options.parallel

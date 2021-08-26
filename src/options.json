@@ -65,7 +65,7 @@
       ]
     },
     "terserOptions": {
-      "description": "Options for `terser`.",
+      "description": "Options for `terser` (by default) or custom `minify` function.",
       "link": "https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions",
       "additionalProperties": true,
       "type": "object"

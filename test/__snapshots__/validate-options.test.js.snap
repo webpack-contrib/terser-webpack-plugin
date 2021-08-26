@@ -129,7 +129,7 @@ exports[`validation 10`] = `
 "Invalid options object. Terser Plugin has been initialized using an options object that does not match the API schema.
  - options.terserOptions should be an object:
    object { … }
-   -> Options for \`terser\`.
+   -> Options for \`terser\` (by default) or custom \`minify\` function.
    -> Read more at https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions"
 `;
 
