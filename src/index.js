@@ -28,14 +28,13 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
 /** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
+/** @typedef {Object.<any, any>} CustomMinifyOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
 /** @typedef {RegExp | string} Rule */
 
 /** @typedef {Rule[] | Rule} Rules */
-
-/** @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions) => MinifyResult }} MinifyWorker */
 
 /**
  * @callback ExtractCommentsFunction
@@ -64,44 +63,11 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {{ [file: string]: string }} Input
- */
-
-/**
- * @typedef {Object.<any, any>} CustomMinifyOptions
- */
-
-/**
- * @callback MinifyFunction
- * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & CustomMinifyOptions} minifyOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<MinifyResult>}
- */
-
-/**
  * @typedef {ExtractCommentsCondition | ExtractCommentsObject} ExtractCommentsOptions
  */
 
 /**
- * @typedef {TerserMinifyOptions | UglifyJSMinifyOptions | SwcMinifyOptions | EsbuildMinifyOptions | CustomMinifyOptions} MinimizerOptions
- */
-
-/**
- * @typedef {Object} InternalPredefinedMinimizerOptions
- * @property {boolean} [module]
- * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
- */
-
-/**
- * @typedef {Object} InternalMinifyOptions
- * @property {string} name
- * @property {string} input
- * @property {RawSourceMap | undefined} inputSourceMap
- * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {MinifyFunction} minify
- * @property {MinimizerOptions & InternalPredefinedMinimizerOptions} minifyOptions
+ * @typedef {{ [file: string]: string }} Input
  */
 
 /**
@@ -114,6 +80,58 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
+ * @typedef {Object} InternalPredefinedMinimizerOptions
+ * @property {boolean} [module]
+ * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
+ */
+
+/**
+ * @template T
+ * @typedef {Object} InternalMinifyOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {ExtractCommentsOptions | undefined} extractComments
+ * @property {MinifyFunction<T>} minify
+ * @property {InternalPredefinedMinimizerOptions & T} minifyOptions
+ */
+
+/**
+ * @template T
+ * @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions<T>) => MinifyResult }} MinifyWorker
+ */
+
+/**
+ * @template T
+ * @callback MinifyFunction
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
+ * @param {InternalPredefinedMinimizerOptions & T} minifyOptions
+ * @param {ExtractCommentsOptions | undefined} extractComments
+ * @returns {Promise<MinifyResult>}
+ */
+
+/**
+ * @typedef {MinifyFunction<TerserMinifyOptions>} TerserMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<UglifyJSMinifyOptions>} UglifyJSMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<SwcMinifyOptions>} SwcMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<EsbuildMinifyOptions>} EsbuildMinifyFunction
+ */
+
+/**
+ * @typedef {MinifyFunction<CustomMinifyOptions>} CustomMinifyFunction
+ */
+
+/**
  * @typedef {Object} BasePluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
@@ -123,80 +141,28 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} DefaultTerserMinimizeFunctionAndOptions
+ * @template T
+ * @typedef {T extends (arg1: any, arg2: any, arg3: infer U, ...args: any[]) => any ? U: never} ThirdArgument
+ */
+
+/**
+ * @typedef {Object} DefaultPluginOptions
  * @property {TerserMinifyOptions} [terserOptions]
  * @property {undefined} [minify]
  */
 
 /**
- * @typedef {BasePluginOptions & DefaultTerserMinimizeFunctionAndOptions} DefaultPluginOptions
+ * @template T
+ * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultPluginOptions} PickMinifyOptions
  */
 
+// TODO please add manually `T extends ... = TerserMinifyFunction`, because typescript is not supported default value for templates yet
 /**
- * @typedef {Object} TerserMinimizeFunctionAndOptions
- * @property {TerserMinifyOptions} [terserOptions]
- * @property {terserMinify} minify
- */
-
-/**
- * @typedef {BasePluginOptions & TerserMinimizeFunctionAndOptions} PluginOptionsForTerser
- */
-
-/**
- * @typedef {Object} UglifyJSFunctionAndOptions
- * @property {UglifyJSMinifyOptions} [terserOptions]
- * @property {uglifyJsMinify} minify
- */
-
-/**
- * @typedef {BasePluginOptions & UglifyJSFunctionAndOptions} PluginOptionsForUglifyJS
- */
-
-/**
- * @typedef {Object} SwcFunctionAndOptions
- * @property {SwcMinifyOptions} [terserOptions]
- * @property {swcMinify} minify
- */
-
-/**
- * @typedef {BasePluginOptions & SwcFunctionAndOptions} PluginOptionsForSwc
- */
-
-/**
- * @typedef {Object} EsbuildFunctionAndOptions
- * @property {EsbuildMinifyOptions} [terserOptions]
- * @property {esbuildMinify} minify
- */
-
-/**
- * @typedef {BasePluginOptions & EsbuildFunctionAndOptions} PluginOptionsForEsbuild
- */
-
-/**
- * @typedef {Object} CustomMinifyFunctionAndOptions
- * @property {CustomMinifyOptions} [terserOptions]
- * @property {MinifyFunction} minify
- */
-
-/**
- * @typedef {BasePluginOptions & CustomMinifyFunctionAndOptions} PluginOptionsForCustomMinifyFunction
- */
-
-/**
- * @typedef {DefaultPluginOptions | PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForEsbuild | PluginOptionsForCustomMinifyFunction} PluginOptions
- */
-
-/**
- * @typedef {PluginOptionsForTerser | PluginOptionsForUglifyJS | PluginOptionsForSwc | PluginOptionsForEsbuild | PluginOptionsForCustomMinifyFunction} NormalizedPluginOptions
- */
-
-// TODO default value for template is not supported by typescript yet, please add minify them manually - `T extends PluginOptions = DefaultPluginOptions`
-/**
- * @template {PluginOptions} T
+ * @template {TerserMinifyFunction | UglifyJSMinifyFunction | SwcMinifyFunction | EsbuildMinifyFunction | CustomMinifyFunction} T =TerserMinifyFunction
  */
 class TerserPlugin {
   /**
-   * @param {T} [options]
+   * @param {BasePluginOptions & PickMinifyOptions<T>} [options]
    */
   constructor(options) {
     validate(/** @type {Schema} */ (schema), options || {}, {
@@ -214,7 +180,6 @@ class TerserPlugin {
       exclude,
     } = options || {};
 
-    /** @type {NormalizedPluginOptions} */
     this.options = {
       test,
       extractComments,
@@ -306,6 +271,7 @@ class TerserPlugin {
   }
 
   /**
+   * @private
    * @param {Compiler} compiler
    * @param {Compilation} compilation
    * @param {Record<string, import("webpack").sources.Source>} assets
@@ -358,9 +324,9 @@ class TerserPlugin {
         })
     );
 
-    /** @type {undefined | (() => MinifyWorker)} */
+    /** @type {undefined | (() => MinifyWorker<T>)} */
     let getWorker;
-    /** @type {undefined | MinifyWorker} */
+    /** @type {undefined | MinifyWorker<T>} */
     let initializedWorker;
     /** @type {undefined | number} */
     let numberOfWorkers;
@@ -378,7 +344,7 @@ class TerserPlugin {
         }
 
         initializedWorker =
-          /** @type {MinifyWorker} */
+          /** @type {MinifyWorker<T>} */
           (
             new Worker(require.resolve("./minify"), {
               numWorkers: numberOfWorkers,
@@ -449,7 +415,7 @@ class TerserPlugin {
               input = input.toString();
             }
 
-            /** @type {InternalMinifyOptions} */
+            /** @type {InternalMinifyOptions<T>} */
             const options = {
               name,
               input,

@@ -1,8 +1,8 @@
-/** @typedef {import("./index.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./index.js").MinifyResult} MinifyResult */
 
 /**
- * @param {InternalMinifyOptions} options
+ * @template T
+ * @param {import("./index.js").InternalMinifyOptions<T>} options
  * @returns {Promise<MinifyResult>}
  */
 async function minify(options) {
@@ -32,7 +32,10 @@ async function transform(options) {
   // Safer for possible security issues, albeit not critical at all here
   // eslint-disable-next-line no-param-reassign
   const evaluatedOptions =
-    /** @type {InternalMinifyOptions} */
+    /**
+     * @template T
+     * @type {import("./index.js").InternalMinifyOptions<T>}
+     * */
     (
       // eslint-disable-next-line no-new-func
       new Function(

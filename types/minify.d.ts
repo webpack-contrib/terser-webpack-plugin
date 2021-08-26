@@ -1,12 +1,13 @@
-export type InternalMinifyOptions = import("./index.js").InternalMinifyOptions;
 export type MinifyResult = import("./index.js").MinifyResult;
-/** @typedef {import("./index.js").InternalMinifyOptions} InternalMinifyOptions */
 /** @typedef {import("./index.js").MinifyResult} MinifyResult */
 /**
- * @param {InternalMinifyOptions} options
+ * @template T
+ * @param {import("./index.js").InternalMinifyOptions<T>} options
  * @returns {Promise<MinifyResult>}
  */
-export function minify(options: InternalMinifyOptions): Promise<MinifyResult>;
+export function minify<T>(
+  options: import("./index.js").InternalMinifyOptions<T>
+): Promise<MinifyResult>;
 /**
  * @param {string} options
  * @returns {Promise<MinifyResult>}

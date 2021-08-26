@@ -637,6 +637,53 @@ module.exports = {
 };
 ```
 
+### Typescript
+
+With default terser minify function:
+
+```ts
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: true,
+        },
+      }),
+    ],
+  },
+};
+```
+
+With built-in minify functions:
+
+```ts
+import type { SwcMinifyFunction } from "terser-webpack-plugin";
+
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin<SwcMinifyFunction>({
+        minify: TerserPlugin.swcMinify,
+        terserOptions: {
+          compress: true,
+        },
+      }),
+
+      // Alternative:
+      new TerserPlugin<typeof TerserPlugin.swcMinify>({
+        minify: TerserPlugin.swcMinify,
+        terserOptions: {
+          compress: true,
+        },
+      }),
+    ],
+  },
+};
+```
+
 ## Contributing
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
