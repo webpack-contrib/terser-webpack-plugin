@@ -100,7 +100,7 @@ export type ThirdArgument<T> = T extends (
   : never;
 export type DefaultMinimizerImplementationAndOptions = {
   terserOptions?: import("terser").MinifyOptions | undefined;
-  minify?: undefined;
+  minify?: undefined | Implementation<TerserOptions>;
 };
 export type PickMinimizerImplementationAndOptions<T> = T extends infer Z
   ? ThirdArgument<Z> extends never
@@ -223,7 +223,7 @@ export type PickMinimizerImplementationAndOptions<T> = T extends infer Z
 /**
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
  * @property {TerserOptions} [terserOptions]
- * @property {undefined} [minify]
+ * @property {undefined | Implementation<TerserOptions>} [minify]
  */
 /**
  * @template T

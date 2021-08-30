@@ -154,7 +154,7 @@ import { minify as minimize } from "./minify";
 /**
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
  * @property {TerserOptions} [terserOptions]
- * @property {undefined} [minify]
+ * @property {undefined | Implementation<TerserOptions>} [minify]
  */
 
 /**
