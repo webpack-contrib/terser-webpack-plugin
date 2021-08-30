@@ -4,7 +4,6 @@ import * as os from "os";
 import { SourceMapConsumer } from "source-map";
 import { validate } from "schema-utils";
 import serialize from "serialize-javascript";
-import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
 import { Worker } from "jest-worker";
 
@@ -16,7 +15,7 @@ import {
 } from "./utils";
 
 import * as schema from "./options.json";
-import { minify as minifyFn } from "./minify";
+import { minify as minimize } from "./minify";
 
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
@@ -24,11 +23,11 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("terser").ECMA} TerserECMA */
-/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
-/** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
-/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
-/** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
-/** @typedef {Object.<any, any>} CustomMinifyOptions */
+/** @typedef {import("terser").MinifyOptions} TerserOptions */
+/** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
+/** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */
+/** @typedef {import("esbuild").TransformOptions} EsbuildOptions */
+/** @typedef {Object.<any, any>} CustomOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
@@ -71,7 +70,7 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} MinifyResult
+ * @typedef {Object} MinimizedResult
  * @property {string} code
  * @property {RawSourceMap} [map]
  * @property {Array<Error | string>} [errors]
@@ -80,55 +79,61 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} InternalPredefinedMinimizerOptions
+ * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
  * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
  */
 
 /**
  * @template T
- * @typedef {Object} InternalMinifyOptions
+ * @typedef {Object} MinimizerImplementationAndOptions
+ * @property {Implementation<T>} implementation
+ * @property {PredefinedOptions & T} options
+ */
+
+/**
+ * @template T
+ * @typedef {Object} InternalOptions
  * @property {string} name
  * @property {string} input
  * @property {RawSourceMap | undefined} inputSourceMap
  * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {MinifyFunction<T>} minify
- * @property {InternalPredefinedMinimizerOptions & T} minifyOptions
+ * @property {MinimizerImplementationAndOptions<T>} minimizer
  */
 
 /**
  * @template T
- * @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions<T>) => MinifyResult }} MinifyWorker
+ * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinimizerWorker
  */
 
 /**
  * @template T
- * @callback MinifyFunction
+ * @callback Implementation
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & T} minifyOptions
+ * @param {PredefinedOptions & T} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<MinifyResult>}
+ * @returns {Promise<MinimizedResult>}
  */
 
 /**
- * @typedef {MinifyFunction<TerserMinifyOptions>} TerserMinifyFunction
+ * @typedef {Implementation<TerserOptions>} TerserMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<UglifyJSMinifyOptions>} UglifyJSMinifyFunction
+ * @typedef {Implementation<UglifyJSOptions>} UglifyJSMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<SwcMinifyOptions>} SwcMinifyFunction
+ * @typedef {Implementation<SwcOptions>} SwcMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<EsbuildMinifyOptions>} EsbuildMinifyFunction
+ * @typedef {Implementation<EsbuildOptions>} EsbuildMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<CustomMinifyOptions>} CustomMinifyFunction
+ * @typedef {Implementation<CustomOptions>} CustomMinimizer
  */
 
 /**
@@ -146,23 +151,23 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} DefaultPluginOptions
- * @property {TerserMinifyOptions} [terserOptions]
- * @property {undefined} [minify]
+ * @typedef {Object} DefaultMinimizerImplementationAndOptions
+ * @property {TerserOptions} [terserOptions]
+ * @property {undefined | Implementation<TerserOptions>} [minify]
  */
 
 /**
  * @template T
- * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultPluginOptions} PickMinifyOptions
+ * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultMinimizerImplementationAndOptions} PickMinimizerImplementationAndOptions
  */
 
-// TODO please add manually `T extends ... = TerserMinifyFunction`, because typescript is not supported default value for templates yet
+// TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
 /**
- * @template {TerserMinifyFunction | UglifyJSMinifyFunction | SwcMinifyFunction | EsbuildMinifyFunction | CustomMinifyFunction} T =TerserMinifyFunction
+ * @template {TerserMinimizer | UglifyJSMinimizer | SwcMinimizer | EsbuildMinimizer | CustomMinimizer} T=TerserMinimizer
  */
 class TerserPlugin {
   /**
-   * @param {BasePluginOptions & PickMinifyOptions<T>} [options]
+   * @param {BasePluginOptions & PickMinimizerImplementationAndOptions<T>} [options]
    */
   constructor(options) {
     validate(/** @type {Schema} */ (schema), options || {}, {
@@ -180,6 +185,9 @@ class TerserPlugin {
       exclude,
     } = options || {};
 
+    /**
+     * @type {BasePluginOptions & PickMinimizerImplementationAndOptions<T>}
+     */
     this.options = {
       test,
       extractComments,
@@ -340,8 +348,8 @@ class TerserPlugin {
    */
   async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache("TerserWebpackPlugin");
-    let numberOfAssetsForMinify = 0;
-    const assetsForMinify = await Promise.all(
+    let numberOfAssets = 0;
+    const assetsForJob = await Promise.all(
       Object.keys(assets)
         .filter((name) => {
           const { info } = /** @type {Asset} */ (compilation.getAsset(name));
@@ -377,16 +385,16 @@ class TerserPlugin {
           const output = await cacheItem.getPromise();
 
           if (!output) {
-            numberOfAssetsForMinify += 1;
+            numberOfAssets += 1;
           }
 
           return { name, info, inputSource: source, output, cacheItem };
         })
     );
 
-    /** @type {undefined | (() => MinifyWorker<T>)} */
+    /** @type {undefined | (() => MinimizerWorker<T>)} */
     let getWorker;
-    /** @type {undefined | MinifyWorker<T>} */
+    /** @type {undefined | MinimizerWorker<T>} */
     let initializedWorker;
     /** @type {undefined | number} */
     let numberOfWorkers;
@@ -394,7 +402,7 @@ class TerserPlugin {
     if (optimizeOptions.availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
       numberOfWorkers = Math.min(
-        numberOfAssetsForMinify,
+        numberOfAssets,
         optimizeOptions.availableNumberOfCores
       );
       // eslint-disable-next-line consistent-return
@@ -404,7 +412,7 @@ class TerserPlugin {
         }
 
         initializedWorker =
-          /** @type {MinifyWorker<T>} */
+          /** @type {MinimizerWorker<T>} */
           (
             new Worker(require.resolve("./minify"), {
               numWorkers: numberOfWorkers,
@@ -430,7 +438,7 @@ class TerserPlugin {
     }
 
     const limit = pLimit(
-      getWorker && numberOfAssetsForMinify > 0
+      getWorker && numberOfAssets > 0
         ? /** @type {number} */ (numberOfWorkers)
         : Infinity
     );
@@ -442,7 +450,7 @@ class TerserPlugin {
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
-    for (const asset of assetsForMinify) {
+    for (const asset of assetsForJob) {
       scheduledTasks.push(
         limit(async () => {
           const { name, inputSource, info, cacheItem } = asset;
@@ -475,28 +483,31 @@ class TerserPlugin {
               input = input.toString();
             }
 
-            /** @type {InternalMinifyOptions<T>} */
+            /** @type {InternalOptions<T>} */
             const options = {
               name,
               input,
               inputSourceMap,
-              minify: this.options.minify,
-              minifyOptions: { ...this.options.terserOptions },
+              // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
+              minimizer: {
+                implementation: this.options.minify,
+                options: { ...this.options.terserOptions },
+              },
               extractComments: this.options.extractComments,
             };
 
-            if (typeof options.minifyOptions.module === "undefined") {
+            if (typeof options.minimizer.options.module === "undefined") {
               if (typeof info.javascriptModule !== "undefined") {
-                options.minifyOptions.module = info.javascriptModule;
+                options.minimizer.options.module = info.javascriptModule;
               } else if (/\.mjs(\?.*)?$/i.test(name)) {
-                options.minifyOptions.module = true;
+                options.minimizer.options.module = true;
               } else if (/\.cjs(\?.*)?$/i.test(name)) {
-                options.minifyOptions.module = false;
+                options.minimizer.options.module = false;
               }
             }
 
-            if (typeof options.minifyOptions.ecma === "undefined") {
-              options.minifyOptions.ecma = TerserPlugin.getEcmaVersion(
+            if (typeof options.minimizer.options.ecma === "undefined") {
+              options.minimizer.options.ecma = TerserPlugin.getEcmaVersion(
                 compiler.options.output.environment || {}
               );
             }
@@ -504,7 +515,7 @@ class TerserPlugin {
             try {
               output = await (getWorker
                 ? getWorker().transform(serialize(options))
-                : minifyFn(options));
+                : minimize(options));
             } catch (error) {
               const hasSourceMap =
                 inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
@@ -840,8 +851,11 @@ class TerserPlugin {
           compilation
         );
       const data = serialize({
-        terser: terserPackageJson.version,
-        terserOptions: this.options.terserOptions,
+        minimizer:
+          typeof this.options.minify.getMinimizerVersion !== "undefined"
+            ? this.options.minify.getMinimizerVersion()
+            : "0.0.0",
+        options: this.options.terserOptions,
       });
 
       hooks.chunkHash.tap(pluginName, (chunk, hash) => {

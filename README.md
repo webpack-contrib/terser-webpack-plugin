@@ -14,7 +14,7 @@
 
 # terser-webpack-plugin
 
-This plugin uses [terser](https://github.com/terser-js/terser) to minify your JavaScript.
+This plugin uses [terser](https://github.com/terser-js/terser) to minify/minimize your JavaScript.
 
 ## Getting Started
 
@@ -196,6 +196,37 @@ Useful for using and testing unpublished versions or forks.
 **webpack.config.js**
 
 ```js
+// Can be async
+const minify = (input, sourceMap, minimizerOptions, extractsComments) => {
+  // The `minimizerOptions` option contains option from the `terserOptions` option
+  // You can use `minimizerOptions.myCustomOption`
+
+  // Custom logic for extract comments
+  const { map, code } = require("uglify-module") // Or require('./path/to/uglify-module')
+    .minify(input, {
+      /* Your options for minification */
+    });
+
+  return { map, code, warnings: [], errors: [], extractedComments: [] };
+};
+
+// Used to regenerate `fullhash`/`chunkhash` between different implementation
+// Example: you fix a bug in custom minimizer/custom function, but unfortunately webpack doesn't know about it, so you will get the same fullhash/chunkhash
+// to avoid this you can provide version of your custom minimizer
+// You don't need if you use only `contenthash`
+minify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("uglify-module/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
+
 module.exports = {
   optimization: {
     minimize: true,
@@ -204,21 +235,7 @@ module.exports = {
         terserOptions: {
           myCustomOption: true,
         },
-        // Can be async
-        minify: (input, sourceMap, minimizerOptions, extractsComments) => {
-          // The `minimizerOptions` option contains option from the `terserOptions` option
-          // You can use `minimizerOptions.myCustomOption`
-          const extractedComments = [];
-
-          // Custom logic for extract comments
-
-          const { map, code } = require("uglify-module") // Or require('./path/to/uglify-module')
-            .minify(input, {
-              /* Your options for minification */
-            });
-
-          return { map, code, extractedComments };
-        },
+        minify,
       }),
     ],
   },
@@ -230,7 +247,7 @@ module.exports = {
 Type: `Object`
 Default: [default](https://github.com/terser-js/terser#minify-options)
 
-Terser minify [options](https://github.com/terser-js/terser#minify-options).
+Terser [options](https://github.com/terser-js/terser#minify-options).
 
 **webpack.config.js**
 
@@ -665,7 +682,7 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin<SwcMinifyFunction>({
+      new TerserPlugin<SwcMinimizer>({
         minify: TerserPlugin.swcMinify,
         terserOptions: {
           compress: true,

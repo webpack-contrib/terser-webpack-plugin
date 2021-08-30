@@ -1,31 +1,24 @@
-/** @typedef {import("./index.js").MinifyResult} MinifyResult */
+/** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
 
 /**
  * @template T
- * @param {import("./index.js").InternalMinifyOptions<T>} options
- * @returns {Promise<MinifyResult>}
+ * @param {import("./index.js").InternalOptions<T>} options
+ * @returns {Promise<MinimizedResult>}
  */
 async function minify(options) {
-  const {
-    name,
-    input,
-    inputSourceMap,
-    minify: minifyFn,
-    minifyOptions,
-    extractComments,
-  } = options;
+  const { name, input, inputSourceMap, minimizer, extractComments } = options;
 
-  return minifyFn(
+  return minimizer.implementation(
     { [name]: input },
     inputSourceMap,
-    minifyOptions,
+    minimizer.options,
     extractComments
   );
 }
 
 /**
  * @param {string} options
- * @returns {Promise<MinifyResult>}
+ * @returns {Promise<MinimizedResult>}
  */
 async function transform(options) {
   // 'use strict' => this === undefined (Clean Scope)
@@ -34,7 +27,7 @@ async function transform(options) {
   const evaluatedOptions =
     /**
      * @template T
-     * @type {import("./index.js").InternalMinifyOptions<T>}
+     * @type {import("./index.js").InternalOptions<T>}
      * */
     (
       // eslint-disable-next-line no-new-func

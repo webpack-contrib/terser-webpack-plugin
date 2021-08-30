@@ -1,27 +1,27 @@
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
-/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
 /** @typedef {import("terser").FormatOptions} TerserFormatOptions */
-/** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
+/** @typedef {import("terser").MinifyOptions} TerserOptions */
 /** @typedef {import("uglify-js").OutputOptions} UglifyJSOutputOptions */
-/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
-/** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
+/** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
+/** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */
+/** @typedef {import("esbuild").TransformOptions} EsbuildOptions */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 /** @typedef {import("./index.js").Input} Input */
-/** @typedef {import("./index.js").MinifyResult} MinifyResult */
-/** @typedef {import("./index.js").InternalPredefinedMinimizerOptions} InternalPredefinedMinimizerOptions */
+/** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
+/** @typedef {import("./index.js").PredefinedOptions} PredefinedOptions */
 
 /**
- * @typedef {TerserMinifyOptions & { sourceMap: undefined } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })} NormalizedTerserMinifyOptions
+ * @typedef {TerserOptions & { sourceMap: undefined } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })} NormalizedTerserOptions
  */
 
 /**
- * @typedef {UglifyJSMinifyOptions & { sourceMap: undefined } & { output: UglifyJSOutputOptions & { beautify: boolean } }} NormalizedUglifyJSMinifyOptions
+ * @typedef {UglifyJSOptions & { sourceMap: undefined } & { output: UglifyJSOutputOptions & { beautify: boolean } }} NormalizedUglifyJSOptions
  */
 
 /**
- * @typedef {SwcMinifyOptions & { sourceMap: undefined }} NormalizedSwcMinifyOptions
+ * @typedef {SwcOptions & { sourceMap: undefined }} NormalizedSwcOptions
  */
 
 /**
@@ -32,9 +32,9 @@
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & TerserMinifyOptions} minimizerOptions
+ * @param {PredefinedOptions & TerserOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @return {Promise<MinifyResult>}
+ * @return {Promise<MinimizedResult>}
  */
 async function terserMinify(
   input,
@@ -53,7 +53,7 @@ async function terserMinify(
   };
 
   /**
-   * @param {NormalizedTerserMinifyOptions} terserOptions
+   * @param {NormalizedTerserOptions} terserOptions
    * @param {ExtractedComments} extractedComments
    * @returns {ExtractCommentsFunction}
    */
@@ -169,8 +169,8 @@ async function terserMinify(
   };
 
   /**
-   * @param {TerserMinifyOptions} [terserOptions={}]
-   * @returns {NormalizedTerserMinifyOptions}
+   * @param {TerserOptions} [terserOptions={}]
+   * @returns {NormalizedTerserOptions}
    */
   const buildTerserOptions = (terserOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -232,24 +232,40 @@ async function terserMinify(
   }
 
   const [[filename, code]] = Object.entries(input);
-  const minified = await minify({ [filename]: code }, terserOptions);
+  const result = await minify({ [filename]: code }, terserOptions);
 
   return {
-    code: /** @type {string} **/ (minified.code),
+    code: /** @type {string} **/ (result.code),
     // @ts-ignore
     // eslint-disable-next-line no-undefined
-    map: minified.map ? /** @type {RawSourceMap} **/ (minified.map) : undefined,
+    map: result.map ? /** @type {RawSourceMap} **/ (result.map) : undefined,
     extractedComments,
   };
 }
+
+/**
+ * @returns {string | undefined}
+ */
+terserMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require
+    packageJson = require("terser/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
 
 /* istanbul ignore next */
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & UglifyJSMinifyOptions} minimizerOptions
+ * @param {PredefinedOptions & UglifyJSOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @return {Promise<MinifyResult>}
+ * @return {Promise<MinimizedResult>}
  */
 async function uglifyJsMinify(
   input,
@@ -268,7 +284,7 @@ async function uglifyJsMinify(
   };
 
   /**
-   * @param {NormalizedUglifyJSMinifyOptions} uglifyJsOptions
+   * @param {NormalizedUglifyJSOptions} uglifyJsOptions
    * @param {ExtractedComments} extractedComments
    * @returns {ExtractCommentsFunction}
    */
@@ -376,8 +392,8 @@ async function uglifyJsMinify(
   };
 
   /**
-   * @param {UglifyJSMinifyOptions} [uglifyJsOptions={}]
-   * @returns {NormalizedUglifyJSMinifyOptions}
+   * @param {UglifyJSOptions} [uglifyJsOptions={}]
+   * @returns {NormalizedUglifyJSOptions}
    */
   const buildUglifyJsOptions = (uglifyJsOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -433,29 +449,45 @@ async function uglifyJsMinify(
   );
 
   const [[filename, code]] = Object.entries(input);
-  const minified = await minify({ [filename]: code }, uglifyJsOptions);
+  const result = await minify({ [filename]: code }, uglifyJsOptions);
 
   return {
-    code: minified.code,
+    code: result.code,
     // eslint-disable-next-line no-undefined
-    map: minified.map ? JSON.parse(minified.map) : undefined,
-    errors: minified.error ? [minified.error] : [],
-    warnings: minified.warnings || [],
+    map: result.map ? JSON.parse(result.map) : undefined,
+    errors: result.error ? [result.error] : [],
+    warnings: result.warnings || [],
     extractedComments,
   };
 }
+
+/**
+ * @returns {string | undefined}
+ */
+uglifyJsMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("uglify-js/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
 
 /* istanbul ignore next */
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & SwcMinifyOptions} minimizerOptions
- * @return {Promise<MinifyResult>}
+ * @param {PredefinedOptions & SwcOptions} minimizerOptions
+ * @return {Promise<MinimizedResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
-   * @param {SwcMinifyOptions} [swcOptions={}]
-   * @returns {NormalizedSwcMinifyOptions}
+   * @param {SwcOptions} [swcOptions={}]
+   * @returns {NormalizedSwcOptions}
    */
   const buildSwcOptions = (swcOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -494,35 +526,52 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   }
 
   const [[filename, code]] = Object.entries(input);
-  const minified = await swc.minify(code, swcOptions);
+  const result = await swc.minify(code, swcOptions);
 
   let map;
 
-  if (minified.map) {
-    map = JSON.parse(minified.map);
+  if (result.map) {
+    map = JSON.parse(result.map);
 
     // TODO workaround for swc because `filename` is not preset as in `swc` signature as for `terser`
     map.sources = [filename];
+
     delete map.sourcesContent;
   }
 
   return {
-    code: minified.code,
+    code: result.code,
     map,
   };
 }
+
+/**
+ * @returns {string | undefined}
+ */
+swcMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("@swc/core/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
 
 /* istanbul ignore next */
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & EsbuildMinifyOptions} minimizerOptions
- * @return {Promise<MinifyResult>}
+ * @param {PredefinedOptions & EsbuildOptions} minimizerOptions
+ * @return {Promise<MinimizedResult>}
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {
   /**
-   * @param {EsbuildMinifyOptions} [esbuildOptions={}]
-   * @returns {EsbuildMinifyOptions}
+   * @param {EsbuildOptions} [esbuildOptions={}]
+   * @returns {EsbuildOptions}
    */
   const buildEsbuildOptions = (esbuildOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -561,16 +610,32 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
 
   esbuildOptions.sourcefile = filename;
 
-  const minified = await esbuild.transform(code, esbuildOptions);
+  const result = await esbuild.transform(code, esbuildOptions);
 
   return {
-    code: minified.code,
+    code: result.code,
     // eslint-disable-next-line no-undefined
-    map: minified.map ? JSON.parse(minified.map) : undefined,
-    warnings: minified.warnings
-      ? minified.warnings.map((item) => item.toString())
+    map: result.map ? JSON.parse(result.map) : undefined,
+    warnings: result.warnings
+      ? result.warnings.map((item) => item.toString())
       : [],
   };
 }
+
+/**
+ * @returns {string | undefined}
+ */
+esbuildMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("esbuild/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
 
 export { terserMinify, uglifyJsMinify, swcMinify, esbuildMinify };
