@@ -16,7 +16,7 @@ import {
 } from "./utils";
 
 import * as schema from "./options.json";
-import { minify as minifyFn } from "./minify";
+import { minify as minimize } from "./minify";
 
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
@@ -24,11 +24,11 @@ import { minify as minifyFn } from "./minify";
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("terser").ECMA} TerserECMA */
-/** @typedef {import("terser").MinifyOptions} TerserMinifyOptions */
-/** @typedef {import("uglify-js").MinifyOptions} UglifyJSMinifyOptions */
-/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
-/** @typedef {import("esbuild").TransformOptions} EsbuildMinifyOptions */
-/** @typedef {Object.<any, any>} CustomMinifyOptions */
+/** @typedef {import("terser").MinifyOptions} TerserOptions */
+/** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
+/** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */
+/** @typedef {import("esbuild").TransformOptions} EsbuildOptions */
+/** @typedef {Object.<any, any>} CustomOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
@@ -88,7 +88,7 @@ import { minify as minifyFn } from "./minify";
 /**
  * @template T
  * @typedef {Object} MinimizerImplementationAndOptions
- * @property {MinifyFunction<T>} implementation
+ * @property {Implementation<T>} implementation
  * @property {PredefinedOptions & T} options
  */
 
@@ -104,12 +104,12 @@ import { minify as minifyFn } from "./minify";
 
 /**
  * @template T
- * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinifyWorker
+ * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinimizerWorker
  */
 
 /**
  * @template T
- * @callback MinifyFunction
+ * @callback Implementation
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
  * @param {PredefinedOptions & T} minifyOptions
@@ -118,23 +118,23 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {MinifyFunction<TerserMinifyOptions>} TerserMinifyFunction
+ * @typedef {Implementation<TerserOptions>} TerserMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<UglifyJSMinifyOptions>} UglifyJSMinifyFunction
+ * @typedef {Implementation<UglifyJSOptions>} UglifyJSMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<SwcMinifyOptions>} SwcMinifyFunction
+ * @typedef {Implementation<SwcOptions>} SwcMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<EsbuildMinifyOptions>} EsbuildMinifyFunction
+ * @typedef {Implementation<EsbuildOptions>} EsbuildMinimizer
  */
 
 /**
- * @typedef {MinifyFunction<CustomMinifyOptions>} CustomMinifyFunction
+ * @typedef {Implementation<CustomOptions>} CustomMinimizer
  */
 
 /**
@@ -153,22 +153,22 @@ import { minify as minifyFn } from "./minify";
 
 /**
  * @typedef {Object} DefaultPluginOptions
- * @property {TerserMinifyOptions} [terserOptions]
+ * @property {TerserOptions} [terserOptions]
  * @property {undefined} [minify]
  */
 
 /**
  * @template T
- * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultPluginOptions} PickMinifyOptions
+ * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultPluginOptions} PickMinimizerImplementationAndOptions
  */
 
-// TODO please add manually `T extends ... = TerserMinifyFunction`, because typescript is not supported default value for templates yet
+// TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
 /**
- * @template {TerserMinifyFunction | UglifyJSMinifyFunction | SwcMinifyFunction | EsbuildMinifyFunction | CustomMinifyFunction} T =TerserMinifyFunction
+ * @template {TerserMinimizer | UglifyJSMinimizer | SwcMinimizer | EsbuildMinimizer | CustomMinimizer} T=TerserMinimizer
  */
 class TerserPlugin {
   /**
-   * @param {BasePluginOptions & PickMinifyOptions<T>} [options]
+   * @param {BasePluginOptions & PickMinimizerImplementationAndOptions<T>} [options]
    */
   constructor(options) {
     validate(/** @type {Schema} */ (schema), options || {}, {
@@ -346,8 +346,8 @@ class TerserPlugin {
    */
   async optimize(compiler, compilation, assets, optimizeOptions) {
     const cache = compilation.getCache("TerserWebpackPlugin");
-    let numberOfAssetsForMinify = 0;
-    const assetsForMinify = await Promise.all(
+    let numberOfAssets = 0;
+    const assetsForJob = await Promise.all(
       Object.keys(assets)
         .filter((name) => {
           const { info } = /** @type {Asset} */ (compilation.getAsset(name));
@@ -383,16 +383,16 @@ class TerserPlugin {
           const output = await cacheItem.getPromise();
 
           if (!output) {
-            numberOfAssetsForMinify += 1;
+            numberOfAssets += 1;
           }
 
           return { name, info, inputSource: source, output, cacheItem };
         })
     );
 
-    /** @type {undefined | (() => MinifyWorker<T>)} */
+    /** @type {undefined | (() => MinimizerWorker<T>)} */
     let getWorker;
-    /** @type {undefined | MinifyWorker<T>} */
+    /** @type {undefined | MinimizerWorker<T>} */
     let initializedWorker;
     /** @type {undefined | number} */
     let numberOfWorkers;
@@ -400,7 +400,7 @@ class TerserPlugin {
     if (optimizeOptions.availableNumberOfCores > 0) {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
       numberOfWorkers = Math.min(
-        numberOfAssetsForMinify,
+        numberOfAssets,
         optimizeOptions.availableNumberOfCores
       );
       // eslint-disable-next-line consistent-return
@@ -410,7 +410,7 @@ class TerserPlugin {
         }
 
         initializedWorker =
-          /** @type {MinifyWorker<T>} */
+          /** @type {MinimizerWorker<T>} */
           (
             new Worker(require.resolve("./minify"), {
               numWorkers: numberOfWorkers,
@@ -436,7 +436,7 @@ class TerserPlugin {
     }
 
     const limit = pLimit(
-      getWorker && numberOfAssetsForMinify > 0
+      getWorker && numberOfAssets > 0
         ? /** @type {number} */ (numberOfWorkers)
         : Infinity
     );
@@ -448,7 +448,7 @@ class TerserPlugin {
     const allExtractedComments = new Map();
     const scheduledTasks = [];
 
-    for (const asset of assetsForMinify) {
+    for (const asset of assetsForJob) {
       scheduledTasks.push(
         limit(async () => {
           const { name, inputSource, info, cacheItem } = asset;
@@ -513,7 +513,7 @@ class TerserPlugin {
             try {
               output = await (getWorker
                 ? getWorker().transform(serialize(options))
-                : minifyFn(options));
+                : minimize(options));
             } catch (error) {
               const hasSourceMap =
                 inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
