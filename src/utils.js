@@ -232,13 +232,13 @@ async function terserMinify(
   }
 
   const [[filename, code]] = Object.entries(input);
-  const minified = await minify({ [filename]: code }, terserOptions);
+  const result = await minify({ [filename]: code }, terserOptions);
 
   return {
-    code: /** @type {string} **/ (minified.code),
+    code: /** @type {string} **/ (result.code),
     // @ts-ignore
     // eslint-disable-next-line no-undefined
-    map: minified.map ? /** @type {RawSourceMap} **/ (minified.map) : undefined,
+    map: result.map ? /** @type {RawSourceMap} **/ (result.map) : undefined,
     extractedComments,
   };
 }
@@ -433,14 +433,14 @@ async function uglifyJsMinify(
   );
 
   const [[filename, code]] = Object.entries(input);
-  const minified = await minify({ [filename]: code }, uglifyJsOptions);
+  const result = await minify({ [filename]: code }, uglifyJsOptions);
 
   return {
-    code: minified.code,
+    code: result.code,
     // eslint-disable-next-line no-undefined
-    map: minified.map ? JSON.parse(minified.map) : undefined,
-    errors: minified.error ? [minified.error] : [],
-    warnings: minified.warnings || [],
+    map: result.map ? JSON.parse(result.map) : undefined,
+    errors: result.error ? [result.error] : [],
+    warnings: result.warnings || [],
     extractedComments,
   };
 }
@@ -494,20 +494,21 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   }
 
   const [[filename, code]] = Object.entries(input);
-  const minified = await swc.minify(code, swcOptions);
+  const result = await swc.minify(code, swcOptions);
 
   let map;
 
-  if (minified.map) {
-    map = JSON.parse(minified.map);
+  if (result.map) {
+    map = JSON.parse(result.map);
 
     // TODO workaround for swc because `filename` is not preset as in `swc` signature as for `terser`
     map.sources = [filename];
+
     delete map.sourcesContent;
   }
 
   return {
-    code: minified.code,
+    code: result.code,
     map,
   };
 }
@@ -561,14 +562,14 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
 
   esbuildOptions.sourcefile = filename;
 
-  const minified = await esbuild.transform(code, esbuildOptions);
+  const result = await esbuild.transform(code, esbuildOptions);
 
   return {
-    code: minified.code,
+    code: result.code,
     // eslint-disable-next-line no-undefined
-    map: minified.map ? JSON.parse(minified.map) : undefined,
-    warnings: minified.warnings
-      ? minified.warnings.map((item) => item.toString())
+    map: result.map ? JSON.parse(result.map) : undefined,
+    warnings: result.warnings
+      ? result.warnings.map((item) => item.toString())
       : [],
   };
 }
