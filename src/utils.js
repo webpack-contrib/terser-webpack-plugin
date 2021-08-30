@@ -9,7 +9,7 @@
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 /** @typedef {import("./index.js").Input} Input */
-/** @typedef {import("./index.js").MinifyResult} MinifyResult */
+/** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
 /** @typedef {import("./index.js").PredefinedOptions} PredefinedOptions */
 
 /**
@@ -34,7 +34,7 @@
  * @param {RawSourceMap | undefined} sourceMap
  * @param {PredefinedOptions & TerserOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @return {Promise<MinifyResult>}
+ * @return {Promise<MinimizedResult>}
  */
 async function terserMinify(
   input,
@@ -249,7 +249,7 @@ async function terserMinify(
  * @param {RawSourceMap | undefined} sourceMap
  * @param {PredefinedOptions & UglifyJSOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @return {Promise<MinifyResult>}
+ * @return {Promise<MinimizedResult>}
  */
 async function uglifyJsMinify(
   input,
@@ -450,7 +450,7 @@ async function uglifyJsMinify(
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
  * @param {PredefinedOptions & SwcOptions} minimizerOptions
- * @return {Promise<MinifyResult>}
+ * @return {Promise<MinimizedResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
@@ -517,7 +517,7 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
  * @param {PredefinedOptions & EsbuildOptions} minimizerOptions
- * @return {Promise<MinifyResult>}
+ * @return {Promise<MinimizedResult>}
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {
   /**

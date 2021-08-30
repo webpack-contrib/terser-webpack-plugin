@@ -1,9 +1,9 @@
-/** @typedef {import("./index.js").MinifyResult} MinifyResult */
+/** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
 
 /**
  * @template T
  * @param {import("./index.js").InternalOptions<T>} options
- * @returns {Promise<MinifyResult>}
+ * @returns {Promise<MinimizedResult>}
  */
 async function minify(options) {
   const { name, input, inputSourceMap, minimizer, extractComments } = options;
@@ -18,7 +18,7 @@ async function minify(options) {
 
 /**
  * @param {string} options
- * @returns {Promise<MinifyResult>}
+ * @returns {Promise<MinimizedResult>}
  */
 async function transform(options) {
   // 'use strict' => this === undefined (Clean Scope)

@@ -71,7 +71,7 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} MinifyResult
+ * @typedef {Object} MinimizedResult
  * @property {string} code
  * @property {RawSourceMap} [map]
  * @property {Array<Error | string>} [errors]
@@ -104,7 +104,7 @@ import { minify as minifyFn } from "./minify";
 
 /**
  * @template T
- * @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalOptions<T>) => MinifyResult }} MinifyWorker
+ * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinifyWorker
  */
 
 /**
@@ -114,7 +114,7 @@ import { minify as minifyFn } from "./minify";
  * @param {RawSourceMap | undefined} sourceMap
  * @param {PredefinedOptions & T} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<MinifyResult>}
+ * @returns {Promise<MinimizedResult>}
  */
 
 /**
