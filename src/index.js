@@ -80,7 +80,7 @@ import { minify as minifyFn } from "./minify";
  */
 
 /**
- * @typedef {Object} InternalPredefinedMinimizerOptions
+ * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
  * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
  */
@@ -89,7 +89,7 @@ import { minify as minifyFn } from "./minify";
  * @template T
  * @typedef {Object} MinimizerImplementationAndOptions
  * @property {MinifyFunction<T>} implementation
- * @property {InternalPredefinedMinimizerOptions & T} options
+ * @property {PredefinedOptions & T} options
  */
 
 /**
@@ -112,7 +112,7 @@ import { minify as minifyFn } from "./minify";
  * @callback MinifyFunction
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {InternalPredefinedMinimizerOptions & T} minifyOptions
+ * @param {PredefinedOptions & T} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinifyResult>}
  */
