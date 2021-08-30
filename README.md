@@ -665,7 +665,7 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin<SwcMinifyFunction>({
+      new TerserPlugin<SwcMinimizer>({
         minify: TerserPlugin.swcMinify,
         terserOptions: {
           compress: true,

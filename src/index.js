@@ -152,14 +152,14 @@ import { minify as minimize } from "./minify";
  */
 
 /**
- * @typedef {Object} DefaultPluginOptions
+ * @typedef {Object} DefaultMinimizerImplementationAndOptions
  * @property {TerserOptions} [terserOptions]
  * @property {undefined} [minify]
  */
 
 /**
  * @template T
- * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultPluginOptions} PickMinimizerImplementationAndOptions
+ * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultMinimizerImplementationAndOptions} PickMinimizerImplementationAndOptions
  */
 
 // TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
@@ -186,6 +186,9 @@ class TerserPlugin {
       exclude,
     } = options || {};
 
+    /**
+     * @type {BasePluginOptions & PickMinimizerImplementationAndOptions<T>}
+     */
     this.options = {
       test,
       extractComments,
