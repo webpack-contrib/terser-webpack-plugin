@@ -373,6 +373,15 @@ describe("minify option", () => {
 
   it("should work using when the `minify` option is `terserMinify` and ECMA modules output", async () => {
     const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/entry.mjs"),
+      output: {
+        library: {
+          type: "module",
+        },
+        pathinfo: false,
+        filename: "[name].js",
+        chunkFilename: "[id].[name].js",
+      },
       experiments: {
         outputModule: true,
       },
@@ -612,6 +621,15 @@ describe("minify option", () => {
 
   it("should work using when the `minify` option is `swcMinify` and ECMA modules output", async () => {
     const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/entry.mjs"),
+      output: {
+        library: {
+          type: "module",
+        },
+        pathinfo: false,
+        filename: "[name].js",
+        chunkFilename: "[id].[name].js",
+      },
       experiments: {
         outputModule: true,
       },
@@ -731,9 +749,17 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  // TODO check it better let's add `export`
   it("should work using when the `minify` option is `esbuildMinify` and ECMA modules output", async () => {
     const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/entry.mjs"),
+      output: {
+        library: {
+          type: "module",
+        },
+        pathinfo: false,
+        filename: "[name].js",
+        chunkFilename: "[id].[name].js",
+      },
       experiments: {
         outputModule: true,
       },

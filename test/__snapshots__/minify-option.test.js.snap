@@ -42,7 +42,7 @@ exports[`minify option should throw an error when an error: warnings 1`] = `Arra
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: assets 1`] = `
 Object {
-  "main.js": "var n={791:e=>{/* @preserve*/const o=null;e.exports=function(){const a=2+2;console.log(a+1+2)}}},r={};function c(e){var o=r[e];if(o!==void 0)return o.exports;var _=r[e]={exports:{}};return n[e](_,_.exports,c),_.exports}var t=c(791);
+  "main.js": "var r={};(()=>{r.d=(_,e)=>{for(var t in e)r.o(e,t)&&!r.o(_,t)&&Object.defineProperty(_,t,{enumerable:!0,get:e[t]})}})(),(()=>{r.o=(_,e)=>Object.prototype.hasOwnProperty.call(_,e)})();var o={};r.d(o,{Z:()=>p});const c=2+2;function a(){const _=2+2;console.log(_+1+2+c)}a();const p=a;var s=o.Z;export{s as default};
 ",
 }
 `;
@@ -119,7 +119,7 @@ exports[`minify option should work using when the \`minify\` option is \`esbuild
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: assets 1`] = `
 Object {
-  "main.js": "var __webpack_modules__={791:a=>{a.exports=function(){console.log(7)}}},__webpack_module_cache__={};function __webpack_require__(b){var c=__webpack_module_cache__[b];if(void 0!==c)return c.exports;var d=__webpack_module_cache__[b]={exports:{}};return __webpack_modules__[b](d,d.exports,__webpack_require__),d.exports}var __webpack_exports__=__webpack_require__(791)",
+  "main.js": "var __webpack_require__={};__webpack_require__.d=(b,c)=>{for(var d in c)__webpack_require__.o(c,d)&&!__webpack_require__.o(b,d)&&Object.defineProperty(b,d,{enumerable:!0,get:c[d]})},__webpack_require__.o=(e,f)=>Object.prototype.hasOwnProperty.call(e,f);var __webpack_exports__={};__webpack_require__.d(__webpack_exports__,{Z:()=>__WEBPACK_DEFAULT_EXPORT__});const a=4;function test(){console.log(11)}test();const __WEBPACK_DEFAULT_EXPORT__=test;var __webpack_exports__default=__webpack_exports__.Z;export{__webpack_exports__default as default}",
 }
 `;
 
@@ -170,7 +170,7 @@ exports[`minify option should work using when the \`minify\` option is \`swcMini
 
 exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: assets 1`] = `
 Object {
-  "main.js": "var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791);",
+  "main.js": "var e={d:(o,r)=>{for(var t in r)e.o(r,t)&&!e.o(o,t)&&Object.defineProperty(o,t,{enumerable:!0,get:r[t]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o)},o={};e.d(o,{Z:()=>t});function r(){console.log(11)}r();const t=r;var a=o.Z;export{a as default};",
 }
 `;
 

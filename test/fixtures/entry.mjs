@@ -9,4 +9,4 @@ function test() {
 
 test();
 
-module.exports = test;
+export default test;

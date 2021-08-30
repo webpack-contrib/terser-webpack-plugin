@@ -210,7 +210,7 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {Error & { line: number, col: number}} error
+   * @param {any} error
    * @param {string} file
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
@@ -252,7 +252,11 @@ class TerserPlugin {
       return new Error(`${file} from Terser\n${error.stack}`);
     }
 
-    return new Error(`${file} from Terser\n${error.message}`);
+    return new Error(
+      `${file} from Terser\n${
+        typeof error.message !== "undefined" ? error.message : error
+      }`
+    );
   }
 
   /**
