@@ -436,7 +436,7 @@ async function uglifyJsMinify(
   const minified = await minify({ [filename]: code }, uglifyJsOptions);
 
   return {
-    code: /** @type {string} **/ (minified.code || code),
+    code: minified.code,
     // eslint-disable-next-line no-undefined
     map: minified.map ? JSON.parse(minified.map) : undefined,
     errors: minified.error ? [minified.error] : [],

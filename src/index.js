@@ -210,13 +210,49 @@ class TerserPlugin {
 
   /**
    * @private
+   * @param {Error | string} warning
+   * @param {string} file
+   * @returns {WebpackError}
+   */
+  static buildWarning(warning, file) {
+    /**
+     * @type {Error & { hideStack: true, file: string }}
+     */
+    // @ts-ignore
+    const builtWarning = new Error(warning.toString());
+
+    builtWarning.name = "Warning";
+    builtWarning.hideStack = true;
+    builtWarning.file = file;
+
+    // @ts-ignore
+    return builtWarning;
+  }
+
+  /**
+   * @private
    * @param {any} error
    * @param {string} file
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
-   * @returns {Error}
+   * @returns {WebpackError}
    */
   static buildError(error, file, requestShortener, sourceMap) {
+    /**
+     * @type {Error & { file: string }}
+     */
+    // @ts-ignore
+    let builtError;
+
+    if (typeof error === "string") {
+      // @ts-ignore
+      builtError = new Error(`${file} from Terser plugin\n${error}`);
+      builtError.file = file;
+
+      // @ts-ignore
+      return builtError;
+    }
+
     if (error.line) {
       const original =
         sourceMap &&
@@ -226,37 +262,57 @@ class TerserPlugin {
         });
 
       if (original && original.source && requestShortener) {
-        return new Error(
-          `${file} from Terser\n${error.message} [${requestShortener.shorten(
-            original.source
-          )}:${original.line},${original.column}][${file}:${error.line},${
-            error.col
-          }]${
+        // @ts-ignore
+        builtError = new Error(
+          `${file} from Terser plugin\n${
+            error.message
+          } [${requestShortener.shorten(original.source)}:${original.line},${
+            original.column
+          }][${file}:${error.line},${error.col}]${
             error.stack
               ? `\n${error.stack.split("\n").slice(1).join("\n")}`
               : ""
           }`
         );
+        builtError.file = file;
+
+        // @ts-ignore
+        return builtError;
       }
 
-      return new Error(
-        `${file} from Terser\n${error.message} [${file}:${error.line},${
+      // @ts-ignore
+      builtError = new Error(
+        `${file} from Terser plugin\n${error.message} [${file}:${error.line},${
           error.col
         }]${
           error.stack ? `\n${error.stack.split("\n").slice(1).join("\n")}` : ""
         }`
       );
+      builtError.file = file;
+
+      // @ts-ignore
+      return builtError;
     }
 
     if (error.stack) {
-      return new Error(`${file} from Terser\n${error.stack}`);
+      // @ts-ignore
+      builtError = new Error(
+        `${file} from Terser plugin\n${
+          typeof error.message !== "undefined" ? error.message : ""
+        }\n${error.stack}`
+      );
+      builtError.file = file;
+
+      // @ts-ignore
+      return builtError;
     }
 
-    return new Error(
-      `${file} from Terser\n${
-        typeof error.message !== "undefined" ? error.message : error
-      }`
-    );
+    // @ts-ignore
+    builtError = new Error(`${file} from Terser plugin\n${error.message}`);
+    builtError.file = file;
+
+    // @ts-ignore
+    return builtError;
   }
 
   /**
@@ -474,6 +530,52 @@ class TerserPlugin {
               return;
             }
 
+            if (typeof output.code === "undefined") {
+              compilation.errors.push(
+                /** @type {WebpackError} */
+                (
+                  new Error(
+                    `${name} from Terser plugin\nMinimizer doesn't return result`
+                  )
+                )
+              );
+
+              return;
+            }
+
+            if (output.warnings && output.warnings.length > 0) {
+              output.warnings = output.warnings.map(
+                /**
+                 * @param {Error | string} item
+                 */
+                (item) => TerserPlugin.buildWarning(item, name)
+              );
+            }
+
+            if (output.errors && output.errors.length > 0) {
+              const hasSourceMap =
+                inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
+
+              output.errors = output.errors.map(
+                /**
+                 * @param {Error | string} item
+                 */
+                (item) =>
+                  TerserPlugin.buildError(
+                    item,
+                    name,
+                    // eslint-disable-next-line no-undefined
+                    hasSourceMap ? compilation.requestShortener : undefined,
+                    hasSourceMap
+                      ? new SourceMapConsumer(
+                          /** @type {RawSourceMap} */ (inputSourceMap)
+                        )
+                      : // eslint-disable-next-line no-undefined
+                        undefined
+                  )
+              );
+            }
+
             let shebang;
 
             if (
@@ -578,62 +680,26 @@ class TerserPlugin {
             });
           }
 
-          if (output.errors && output.errors.length > 0) {
-            output.errors.forEach(
+          if (output.warnings && output.warnings.length > 0) {
+            output.warnings.forEach(
               /**
-               * @param {Error | { message: string, filename?: string, line: number, col: number } | string} error
+               * @param {Error} warning
                */
-              (error) => {
-                /** @type {Error & { file?: string }} */
-                let errored;
-
-                if (error instanceof Error) {
-                  errored = error;
-                } else if (typeof error === "string") {
-                  errored = new Error(error);
-                } else {
-                  const filename = error.filename || name;
-                  const line =
-                    typeof error.line !== "undefined" ? error.line : "";
-                  const col = typeof error.col !== "undefined" ? error.col : "";
-
-                  errored = new Error(
-                    `${error.message} [${filename}${line ? `:${line}` : ""}${
-                      col ? `,${col}` : ""
-                    }]`
-                  );
-                }
-
-                errored.file = name;
-
-                compilation.errors.push(/** @type {WebpackError} */ (errored));
+              (warning) => {
+                compilation.warnings.push(
+                  /** @type {WebpackError} */ (warning)
+                );
               }
             );
           }
 
-          if (output.warnings && output.warnings.length > 0) {
-            output.warnings.forEach(
+          if (output.errors && output.errors.length > 0) {
+            output.errors.forEach(
               /**
-               * @param {string} warning
+               * @param {Error & { filename?: string }} error
                */
-              (warning) => {
-                const Warning = class Warning extends Error {
-                  /**
-                   * @param {string} message
-                   */
-                  constructor(message) {
-                    super(message);
-
-                    this.name = "Warning";
-                    this.hideStack = true;
-                    this.file = name;
-                  }
-                };
-
-                compilation.warnings.push(
-                  /** @type {WebpackError} */
-                  (new Warning(warning))
-                );
+              (error) => {
+                compilation.errors.push(/** @type {WebpackError} */ (error));
               }
             );
           }

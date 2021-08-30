@@ -309,7 +309,7 @@ describe("minify option", () => {
             "Warnings 2",
           ],
           errors: [
-            isOldNodeJs ? "Error 1 [main.js]" : new Error("Error 1"),
+            isOldNodeJs ? "Error 1" : new Error("Error 1"),
             "Error 2",
             { message: "Error 3" },
             { message: "Error 4", filename: "foo.js" },
