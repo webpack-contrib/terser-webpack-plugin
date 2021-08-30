@@ -60,7 +60,7 @@ Object {
   "AsyncImportExport.8b9fb68a711f0a35fe41.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".fcfa82506be0724e60bc.js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.99516598f0f48417cbb9.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.c9ed6ac3ba483bb3026c.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.0129b52afdbf3c4da0cc.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.46bcd65d7e1972401425.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -115,7 +115,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -125,7 +125,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -227,7 +227,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -237,7 +237,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -255,7 +255,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -265,7 +265,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "function changed(){}(()=>{var o={791:o=>{o.exports=function(){console.log(7)}}},r={};(function n(t){var e=r[t];if(void 0!==e)return e.exports;var s=r[t]={exports:{}};return o[t](s,s.exports,n),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -283,7 +283,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -293,7 +293,7 @@ Object {
   "AsyncImportExport.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[a[c]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();",
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
 }
 `;
 
@@ -2032,25 +2032,23 @@ Object {
   ],
   "sourceRoot": ""
 },
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();
 //# sourceMappingURL=mjs.js.map",
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,IAEAI,OAAOC,QAAUL,G",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
   "sourcesContent": [
-    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nmodule.exports = test;\\n"
+    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nexport default test;\\n"
   ],
   "names": [
     "test",
     "console",
     "log",
-    "b",
-    "module",
-    "exports"
+    "b"
   ],
   "sourceRoot": ""
 },
@@ -2277,25 +2275,23 @@ Object {
   ],
   "sourceRoot": ""
 },
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();
 //# sourceMappingURL=mjs.js.map",
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,IAEAI,OAAOC,QAAUL,G",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
   "sourcesContent": [
-    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nmodule.exports = test;\\n"
+    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nexport default test;\\n"
   ],
   "names": [
     "test",
     "console",
     "log",
-    "b",
-    "module",
-    "exports"
+    "b"
   ],
   "sourceRoot": ""
 },
@@ -2530,25 +2526,23 @@ Object {
   ],
   "sourceRoot": ""
 },
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();
 //# sourceMappingURL=mjs.js.map",
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,IAEAI,OAAOC,QAAUL,G",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
   "sourcesContent": [
-    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nmodule.exports = test;\\n"
+    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nexport default test;\\n"
   ],
   "names": [
     "test",
     "console",
     "log",
-    "b",
-    "module",
-    "exports"
+    "b"
   ],
   "sourceRoot": ""
 },
@@ -2775,25 +2769,23 @@ Object {
   ],
   "sourceRoot": ""
 },
-  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o(),module.exports=o})();
+  "mjs.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();
 //# sourceMappingURL=mjs.js.map",
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,IAEAI,OAAOC,QAAUL,G",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
   "sourcesContent": [
-    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nmodule.exports = test;\\n"
+    "// foo\\n// bar\\nconst a = 2 + 2;\\n\\nfunction test() {\\n  const b = 2 + 2;\\n  console.log(b + 1 + 2 + a);\\n}\\n\\ntest();\\n\\nexport default test;\\n"
   ],
   "names": [
     "test",
     "console",
     "log",
-    "b",
-    "module",
-    "exports"
+    "b"
   ],
   "sourceRoot": ""
 },

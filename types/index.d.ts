@@ -240,7 +240,7 @@ declare class TerserPlugin<
   private static isSourceMap;
   /**
    * @private
-   * @param {Error & { line: number, col: number}} error
+   * @param {any} error
    * @param {string} file
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
