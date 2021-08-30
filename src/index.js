@@ -4,7 +4,6 @@ import * as os from "os";
 import { SourceMapConsumer } from "source-map";
 import { validate } from "schema-utils";
 import serialize from "serialize-javascript";
-import * as terserPackageJson from "terser/package.json";
 import pLimit from "p-limit";
 import { Worker } from "jest-worker";
 
@@ -852,8 +851,11 @@ class TerserPlugin {
           compilation
         );
       const data = serialize({
-        terser: terserPackageJson.version,
-        terserOptions: this.options.terserOptions,
+        minimizer:
+          typeof this.options.minify.getMinimizerVersion !== "undefined"
+            ? this.options.minify.getMinimizerVersion()
+            : "0.0.0",
+        options: this.options.terserOptions,
       });
 
       hooks.chunkHash.tap(pluginName, (chunk, hash) => {

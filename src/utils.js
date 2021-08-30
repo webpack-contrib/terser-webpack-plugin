@@ -243,6 +243,22 @@ async function terserMinify(
   };
 }
 
+/**
+ * @returns {string | undefined}
+ */
+terserMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require
+    packageJson = require("terser/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
+
 /* istanbul ignore next */
 /**
  * @param {Input} input
@@ -445,6 +461,22 @@ async function uglifyJsMinify(
   };
 }
 
+/**
+ * @returns {string | undefined}
+ */
+uglifyJsMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("uglify-js/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
+
 /* istanbul ignore next */
 /**
  * @param {Input} input
@@ -513,6 +545,22 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   };
 }
 
+/**
+ * @returns {string | undefined}
+ */
+swcMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("@swc/core/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
+
 /* istanbul ignore next */
 /**
  * @param {Input} input
@@ -573,5 +621,21 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
       : [],
   };
 }
+
+/**
+ * @returns {string | undefined}
+ */
+esbuildMinify.getMinimizerVersion = () => {
+  let packageJson;
+
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    packageJson = require("esbuild/package.json");
+  } catch (error) {
+    // Ignore
+  }
+
+  return packageJson && packageJson.version;
+};
 
 export { terserMinify, uglifyJsMinify, swcMinify, esbuildMinify };
