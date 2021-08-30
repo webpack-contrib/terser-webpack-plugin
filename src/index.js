@@ -530,7 +530,7 @@ class TerserPlugin {
               return;
             }
 
-            if (!output.code) {
+            if (typeof output.code === "undefined") {
               compilation.errors.push(
                 /** @type {WebpackError} */
                 (
