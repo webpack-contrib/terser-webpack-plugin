@@ -87,18 +87,24 @@ import { minify as minifyFn } from "./minify";
 
 /**
  * @template T
- * @typedef {Object} InternalMinifyOptions
- * @property {string} name
- * @property {string} input
- * @property {RawSourceMap | undefined} inputSourceMap
- * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {MinifyFunction<T>} minify
- * @property {InternalPredefinedMinimizerOptions & T} minifyOptions
+ * @typedef {Object} MinimizerImplementationAndOptions
+ * @property {MinifyFunction<T>} implementation
+ * @property {InternalPredefinedMinimizerOptions & T} options
  */
 
 /**
  * @template T
- * @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalMinifyOptions<T>) => MinifyResult }} MinifyWorker
+ * @typedef {Object} InternalOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {ExtractCommentsOptions | undefined} extractComments
+ * @property {MinimizerImplementationAndOptions<T>} minimizer
+ */
+
+/**
+ * @template T
+ * @typedef {JestWorker & { transform: (options: string) => MinifyResult, minify: (options: InternalOptions<T>) => MinifyResult }} MinifyWorker
  */
 
 /**
@@ -475,28 +481,31 @@ class TerserPlugin {
               input = input.toString();
             }
 
-            /** @type {InternalMinifyOptions<T>} */
+            /** @type {InternalOptions<T>} */
             const options = {
               name,
               input,
               inputSourceMap,
-              minify: this.options.minify,
-              minifyOptions: { ...this.options.terserOptions },
+              // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release
+              minimizer: {
+                implementation: this.options.minify,
+                options: { ...this.options.terserOptions },
+              },
               extractComments: this.options.extractComments,
             };
 
-            if (typeof options.minifyOptions.module === "undefined") {
+            if (typeof options.minimizer.options.module === "undefined") {
               if (typeof info.javascriptModule !== "undefined") {
-                options.minifyOptions.module = info.javascriptModule;
+                options.minimizer.options.module = info.javascriptModule;
               } else if (/\.mjs(\?.*)?$/i.test(name)) {
-                options.minifyOptions.module = true;
+                options.minimizer.options.module = true;
               } else if (/\.cjs(\?.*)?$/i.test(name)) {
-                options.minifyOptions.module = false;
+                options.minimizer.options.module = false;
               }
             }
 
-            if (typeof options.minifyOptions.ecma === "undefined") {
-              options.minifyOptions.ecma = TerserPlugin.getEcmaVersion(
+            if (typeof options.minimizer.options.ecma === "undefined") {
+              options.minimizer.options.ecma = TerserPlugin.getEcmaVersion(
                 compiler.options.output.environment || {}
               );
             }

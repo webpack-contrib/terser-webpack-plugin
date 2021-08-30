@@ -2,23 +2,16 @@
 
 /**
  * @template T
- * @param {import("./index.js").InternalMinifyOptions<T>} options
+ * @param {import("./index.js").InternalOptions<T>} options
  * @returns {Promise<MinifyResult>}
  */
 async function minify(options) {
-  const {
-    name,
-    input,
-    inputSourceMap,
-    minify: minifyFn,
-    minifyOptions,
-    extractComments,
-  } = options;
+  const { name, input, inputSourceMap, minimizer, extractComments } = options;
 
-  return minifyFn(
+  return minimizer.implementation(
     { [name]: input },
     inputSourceMap,
-    minifyOptions,
+    minimizer.options,
     extractComments
   );
 }
@@ -34,7 +27,7 @@ async function transform(options) {
   const evaluatedOptions =
     /**
      * @template T
-     * @type {import("./index.js").InternalMinifyOptions<T>}
+     * @type {import("./index.js").InternalOptions<T>}
      * */
     (
       // eslint-disable-next-line no-new-func
