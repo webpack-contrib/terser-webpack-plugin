@@ -2202,10 +2202,7 @@ describe("TerserPlugin", () => {
 
         return {
           code,
-          errors: [
-            isOldNodeJs ? "Error: Error 1" : new Error("Error 1"),
-            "Error 2",
-          ],
+          errors: [isOldNodeJs ? "Error 1" : new Error("Error 1"), "Error 2"],
         };
       },
     }).apply(compiler);
