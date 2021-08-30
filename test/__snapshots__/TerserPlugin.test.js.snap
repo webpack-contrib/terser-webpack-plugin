@@ -1,22 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TerserPlugin buildError method 1`] = `
-[Error: test.js from Terser
+[Error: test.js from Terser plugin
 Message]
 `;
 
 exports[`TerserPlugin buildError method 2`] = `
-[Error: test.js from Terser
+[Error: test.js from Terser plugin
 Message [test.js:1,1]]
 `;
 
 exports[`TerserPlugin buildError method 3`] = `
-[Error: test.js from Terser
+[Error: test.js from Terser plugin
 Message [http://example.com/www/js/one.js:1,1][test.js:1,1]]
 `;
 
 exports[`TerserPlugin buildError method 4`] = `
-[Error: test.js from Terser
+[Error: test.js from Terser plugin
+Message
 Stack]
 `;
 
@@ -30,7 +31,7 @@ Object {
 
 exports[`TerserPlugin should emit an error on a broken code in not parallel mode: errors 1`] = `
 Array [
-  "Error: broken.js from Terser
+  "Error: broken.js from Terser plugin
 Unterminated template [broken.js:1,0]",
 ]
 `;
@@ -47,7 +48,7 @@ Object {
 
 exports[`TerserPlugin should emit an error on a broken code in parallel mode: errors 1`] = `
 Array [
-  "Error: broken.js from Terser
+  "Error: broken.js from Terser plugin
 Unterminated template [broken.js:1,0]",
 ]
 `;
@@ -150,7 +151,7 @@ exports[`TerserPlugin should work and generate real content hash: warnings 1`] =
 
 exports[`TerserPlugin should work and respect "terser" errors (the "parallel" option is "false"): errors 1`] = `
 Array [
-  "Error: main.js from Terser
+  "Error: main.js from Terser plugin
 Unexpected token name «Object», expected punc «,» [main.js:1,8]",
 ]
 `;
@@ -159,7 +160,7 @@ exports[`TerserPlugin should work and respect "terser" errors (the "parallel" op
 
 exports[`TerserPlugin should work and respect "terser" errors (the "parallel" option is "true"): errors 1`] = `
 Array [
-  "Error: main.js from Terser
+  "Error: main.js from Terser plugin
 Unexpected token name «Object», expected punc «,» [main.js:1,8]",
 ]
 `;
@@ -1473,6 +1474,28 @@ exports[`TerserPlugin should work with "filesystem" value for the "cache.type" o
 
 exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option and source maps: warnings 2`] = `Array []`;
 
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option when the \`minify\` options is custom option and keep errors: errors 1`] = `
+Array [
+  "Error: main.js from Terser plugin
+Error 1",
+  "Error: main.js from Terser plugin
+Error 2",
+]
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option when the \`minify\` options is custom option and keep errors: errors 2`] = `
+Array [
+  "Error: main.js from Terser plugin
+Error 1",
+  "Error: main.js from Terser plugin
+Error 2",
+]
+`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option when the \`minify\` options is custom option and keep errors: warnings 1`] = `Array []`;
+
+exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option when the \`minify\` options is custom option and keep errors: warnings 2`] = `Array []`;
+
 exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option when the \`minify\` options is custom option and keep warnings: assets 1`] = `
 Object {
   "main.js": "/******/ (() => { // webpackBootstrap
@@ -1604,8 +1627,8 @@ Array [
 
 exports[`TerserPlugin should work with "filesystem" value for the "cache.type" option when the \`minify\` options is custom option and keep warnings: warnings 2`] = `
 Array [
-  "Warning: Error: Warning 1",
-  "Warning: Warnings 2",
+  "Error: Error: Warning 1",
+  "Error: Warnings 2",
 ]
 `;
 

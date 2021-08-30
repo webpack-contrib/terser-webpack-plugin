@@ -78,6 +78,10 @@ describe("TerserPlugin", () => {
     __dirname,
     "./outputs/type-filesystem-4"
   );
+  const fileSystemCacheDirectory5 = path.resolve(
+    __dirname,
+    "./outputs/type-filesystem-5"
+  );
 
   beforeAll(() =>
     Promise.all([
@@ -86,6 +90,7 @@ describe("TerserPlugin", () => {
       del(fileSystemCacheDirectory2),
       del(fileSystemCacheDirectory3),
       del(fileSystemCacheDirectory4),
+      del(fileSystemCacheDirectory5),
     ])
   );
 
@@ -2172,6 +2177,87 @@ describe("TerserPlugin", () => {
     // No need to store, we got cached assets
     expect(storeCounter).toBe(0);
     expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getErrors(newStats)).toMatchSnapshot("errors");
+    expect(getWarnings(newStats)).toMatchSnapshot("warnings");
+
+    await new Promise((resolve) => {
+      compiler.close(() => {
+        resolve();
+      });
+    });
+  });
+
+  it('should work with "filesystem" value for the "cache.type" option when the `minify` options is custom option and keep errors', async () => {
+    const compiler = getCompiler({
+      cache: {
+        type: "filesystem",
+        cacheDirectory: fileSystemCacheDirectory5,
+      },
+    });
+
+    new TerserPlugin({
+      minify(input) {
+        const [[, code]] = Object.entries(input);
+        const isOldNodeJs = process.version.match(/^v(\d+)/)[1] === "10";
+
+        return {
+          code,
+          errors: [
+            isOldNodeJs ? "Error: Error 1" : new Error("Error 1"),
+            "Error 2",
+          ],
+        };
+      },
+    }).apply(compiler);
+
+    let getCounter = 0;
+
+    compiler.cache.hooks.get.tap(
+      { name: "TestCache", stage: -100 },
+      (identifier) => {
+        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+          getCounter += 1;
+        }
+      }
+    );
+
+    let storeCounter = 0;
+
+    compiler.cache.hooks.store.tap(
+      { name: "TestCache", stage: -100 },
+      (identifier) => {
+        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+          storeCounter += 1;
+        }
+      }
+    );
+
+    const stats = await compile(compiler);
+
+    // Get cache for assets
+    expect(getCounter).toBe(1);
+    // Store cached assets
+    expect(storeCounter).toBe(1);
+    // expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+
+    getCounter = 0;
+    storeCounter = 0;
+
+    await new Promise((resolve) => {
+      compiler.close(() => {
+        resolve();
+      });
+    });
+
+    const newStats = await compile(compiler);
+
+    // Get cache for assets
+    expect(getCounter).toBe(1);
+    // No need to store, we got cached assets
+    expect(storeCounter).toBe(0);
+    // expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
     expect(getErrors(newStats)).toMatchSnapshot("errors");
     expect(getWarnings(newStats)).toMatchSnapshot("warnings");
 

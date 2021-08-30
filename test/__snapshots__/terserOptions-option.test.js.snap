@@ -649,8 +649,8 @@ exports[`terserOptions option should match snapshot for the "toplevel" option wi
 
 exports[`terserOptions option should match snapshot for the "unknown" option: errors 1`] = `
 Array [
-  "Error: main.js from Terser
-DefaultsError: \`unknown\` is not a supported option",
+  "Error: main.js from Terser plugin
+\`unknown\` is not a supported option",
 ]
 `;
 

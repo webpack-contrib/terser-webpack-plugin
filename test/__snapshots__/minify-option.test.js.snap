@@ -15,8 +15,8 @@ exports[`minify option should snapshot with extracting comments: warnings 1`] = 
 
 exports[`minify option should throw an error when an error when the "parallel" option is "false": errors 1`] = `
 Array [
-  "Error: main.js from Terser
-Error: Error",
+  "Error: main.js from Terser plugin
+Error",
 ]
 `;
 
@@ -24,8 +24,8 @@ exports[`minify option should throw an error when an error when the "parallel" o
 
 exports[`minify option should throw an error when an error when the "parallel" option is "true": errors 1`] = `
 Array [
-  "Error: main.js from Terser
-Error: Error",
+  "Error: main.js from Terser plugin
+Error",
 ]
 `;
 
@@ -33,8 +33,8 @@ exports[`minify option should throw an error when an error when the "parallel" o
 
 exports[`minify option should throw an error when an error: errors 1`] = `
 Array [
-  "Error: main.js from Terser
-Error: Error",
+  "Error: main.js from Terser plugin
+Error",
 ]
 `;
 
@@ -99,8 +99,8 @@ exports[`minify option should work using when the \`minify\` option is \`esbuild
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output errors: errors 1`] = `
 Array [
-  "Error: broken.js from Terser
-Error: Transform failed with 1 error:",
+  "Error: broken.js from Terser plugin
+Transform failed with 1 error:",
 ]
 `;
 
@@ -151,8 +151,8 @@ exports[`minify option should work using when the \`minify\` option is \`swcMini
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and output errors: errors 1`] = `
 Array [
-  "Error: broken.js from Terser
-Error: error: Unexpected eof",
+  "Error: broken.js from Terser plugin
+error: Unexpected eof",
 ]
 `;
 
@@ -265,7 +265,7 @@ exports[`minify option should work using when the \`minify\` option is \`terserM
 
 exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and output errors: errors 1`] = `
 Array [
-  "Error: broken.js from Terser
+  "Error: broken.js from Terser plugin
 Unterminated template [broken.js:1,0]",
 ]
 `;
@@ -369,7 +369,8 @@ exports[`minify option should work using when the \`minify\` option is \`uglifyJ
 
 exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output errors: errors 1`] = `
 Array [
-  "Error: Unterminated template literal [broken.js:1]",
+  "Error: broken.js from Terser plugin
+Unterminated template literal [broken.js:1,0]",
 ]
 `;
 
@@ -444,12 +445,18 @@ exports[`minify option should work with "uglify-js" minimizer: warnings 1`] = `A
 
 exports[`minify option should work with custom minimize function and support warnings and errors: errors 1`] = `
 Array [
-  "Error: Error 1 [main.js]",
-  "Error: Error 2",
-  "Error: Error 3 [main.js]",
-  "Error: Error 4 [foo.js]",
-  "Error: Error 5 [foo.js]",
-  "Error: Error 6 [foo.js:1,1]",
+  "Error: main.js from Terser plugin
+Error 1",
+  "Error: main.js from Terser plugin
+Error 2",
+  "Error: main.js from Terser plugin
+Error 3",
+  "Error: main.js from Terser plugin
+Error 4",
+  "Error: main.js from Terser plugin
+Error 5",
+  "Error: main.js from Terser plugin
+Error 6 [main.js:1,1]",
 ]
 `;
 
