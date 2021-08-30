@@ -489,7 +489,7 @@ class TerserPlugin {
               name,
               input,
               inputSourceMap,
-              // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release
+              // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
               minimizer: {
                 implementation: this.options.minify,
                 options: { ...this.options.terserOptions },

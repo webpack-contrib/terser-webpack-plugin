@@ -14,7 +14,7 @@
 
 # terser-webpack-plugin
 
-This plugin uses [terser](https://github.com/terser-js/terser) to minify your JavaScript.
+This plugin uses [terser](https://github.com/terser-js/terser) to minify/minimize your JavaScript.
 
 ## Getting Started
 
@@ -208,16 +208,14 @@ module.exports = {
         minify: (input, sourceMap, minimizerOptions, extractsComments) => {
           // The `minimizerOptions` option contains option from the `terserOptions` option
           // You can use `minimizerOptions.myCustomOption`
-          const extractedComments = [];
 
           // Custom logic for extract comments
-
           const { map, code } = require("uglify-module") // Or require('./path/to/uglify-module')
             .minify(input, {
               /* Your options for minification */
             });
 
-          return { map, code, extractedComments };
+          return { map, code, warnings: [], errors: [], extractedComments: [] };
         },
       }),
     ],
@@ -230,7 +228,7 @@ module.exports = {
 Type: `Object`
 Default: [default](https://github.com/terser-js/terser#minify-options)
 
-Terser minify [options](https://github.com/terser-js/terser#minify-options).
+Terser [options](https://github.com/terser-js/terser#minify-options).
 
 **webpack.config.js**
 
