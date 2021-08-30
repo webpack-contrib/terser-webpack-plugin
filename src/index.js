@@ -530,6 +530,19 @@ class TerserPlugin {
               return;
             }
 
+            if (!output.code) {
+              compilation.errors.push(
+                /** @type {WebpackError} */
+                (
+                  new Error(
+                    `${name} from Terser plugin\nMinimizer doesn't return result`
+                  )
+                )
+              );
+
+              return;
+            }
+
             if (output.warnings && output.warnings.length > 0) {
               output.warnings = output.warnings.map(
                 /**

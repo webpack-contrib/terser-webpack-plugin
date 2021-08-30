@@ -3361,12 +3361,19 @@ exports[`TerserPlugin should work, extract comments in one file and use memory c
 
 exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: assets 1`] = `
 Object {
-  "one.js": "",
-  "two.js": "",
+  "one.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/one.js'",
+  "two.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/two.js'",
 }
 `;
 
-exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: errors 1`] = `Array []`;
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: errors 1`] = `
+Array [
+  "Error: one.js from Terser plugin
+Minimizer doesn't return result",
+  "Error: two.js from Terser plugin
+Minimizer doesn't return result",
+]
+`;
 
 exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in not parallel mode: process stderr output 1`] = `
 "stderr
@@ -3384,12 +3391,19 @@ exports[`TerserPlugin should write stdout and stderr of workers to stdout and st
 
 exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: assets 1`] = `
 Object {
-  "one.js": "",
-  "two.js": "",
+  "one.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/one.js'",
+  "two.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/two.js'",
 }
 `;
 
-exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: errors 1`] = `Array []`;
+exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: errors 1`] = `
+Array [
+  "Error: one.js from Terser plugin
+Minimizer doesn't return result",
+  "Error: two.js from Terser plugin
+Minimizer doesn't return result",
+]
+`;
 
 exports[`TerserPlugin should write stdout and stderr of workers to stdout and stderr of main process in parallel mode: process stderr output 1`] = `
 "stderr

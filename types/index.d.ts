@@ -240,11 +240,18 @@ declare class TerserPlugin<
   private static isSourceMap;
   /**
    * @private
+   * @param {Error | string} warning
+   * @param {string} file
+   * @returns {WebpackError}
+   */
+  private static buildWarning;
+  /**
+   * @private
    * @param {any} error
    * @param {string} file
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
-   * @returns {Error}
+   * @returns {WebpackError}
    */
   private static buildError;
   /**
