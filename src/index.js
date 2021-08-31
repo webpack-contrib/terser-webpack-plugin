@@ -81,14 +81,14 @@ import { minify as minimize } from "./minify";
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
- * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
+ * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | number | string} [ecma]
  */
 
 /**
  * @template T
  * @typedef {Object} MinimizerImplementationAndOptions
- * @property {Implementation<T>} implementation
- * @property {PredefinedOptions & T} options
+ * @property {MinimizerImplementation<ThirdArgument<T>>} implementation
+ * @property {PredefinedOptions & ThirdArgument<T>} options
  */
 
 /**
@@ -108,32 +108,42 @@ import { minify as minimize } from "./minify";
 
 /**
  * @template T
- * @callback Implementation
+ * @callback BasicMinimizerImplementation
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {PredefinedOptions & T} minifyOptions
+ * @param {T} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinimizedResult>}
  */
 
 /**
- * @typedef {Implementation<TerserOptions>} TerserMinimizer
+ * @typedef {object} MinimizeFunctionHelpers
+ * @property {() => string | undefined} [getMinimizerVersion]
  */
 
 /**
- * @typedef {Implementation<UglifyJSOptions>} UglifyJSMinimizer
+ * @template T
+ * @typedef {BasicMinimizerImplementation<T> & MinimizeFunctionHelpers } MinimizerImplementation
  */
 
 /**
- * @typedef {Implementation<SwcOptions>} SwcMinimizer
+ * @typedef {MinimizerImplementation<TerserOptions>} TerserMinimizer
  */
 
 /**
- * @typedef {Implementation<EsbuildOptions>} EsbuildMinimizer
+ * @typedef {MinimizerImplementation<UglifyJSOptions>} UglifyJSMinimizer
  */
 
 /**
- * @typedef {Implementation<CustomOptions>} CustomMinimizer
+ * @typedef {MinimizerImplementation<SwcOptions>} SwcMinimizer
+ */
+
+/**
+ * @typedef {MinimizerImplementation<EsbuildOptions>} EsbuildMinimizer
+ */
+
+/**
+ * @typedef {MinimizerImplementation<CustomOptions>} CustomMinimizer
  */
 
 /**
@@ -151,14 +161,15 @@ import { minify as minimize } from "./minify";
  */
 
 /**
+ * @template T
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
- * @property {TerserOptions} [terserOptions]
- * @property {undefined | Implementation<TerserOptions>} [minify]
+ * @property {undefined | MinimizerImplementation<ThirdArgument<T>>} [minify]
+ * @property {ThirdArgument<T> | undefined} [terserOptions]
  */
 
 /**
  * @template T
- * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultMinimizerImplementationAndOptions} PickMinimizerImplementationAndOptions
+ * @typedef {T extends MinimizerImplementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: MinimizerImplementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
  */
 
 // TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
@@ -186,7 +197,7 @@ class TerserPlugin {
     } = options || {};
 
     /**
-     * @type {BasePluginOptions & PickMinimizerImplementationAndOptions<T>}
+     * @type {BasePluginOptions & { minify: MinimizerImplementation<ThirdArgument<T>>, terserOptions: ThirdArgument<T>}}
      */
     this.options = {
       test,
@@ -491,7 +502,9 @@ class TerserPlugin {
               // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
               minimizer: {
                 implementation: this.options.minify,
-                options: { ...this.options.terserOptions },
+                options: {
+                  ...this.options.terserOptions,
+                },
               },
               extractComments: this.options.extractComments,
             };
@@ -853,7 +866,7 @@ class TerserPlugin {
       const data = serialize({
         minimizer:
           typeof this.options.minify.getMinimizerVersion !== "undefined"
-            ? this.options.minify.getMinimizerVersion()
+            ? this.options.minify.getMinimizerVersion() || "0.0.0"
             : "0.0.0",
         options: this.options.terserOptions,
       });
