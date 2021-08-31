@@ -6,12 +6,13 @@
  * @returns {Promise<MinimizedResult>}
  */
 async function minify(options) {
-  const { name, input, inputSourceMap, minimizer, extractComments } = options;
+  const { name, input, inputSourceMap, extractComments } = options;
+  const { implementation, options: minimizerOptions } = options.minimizer;
 
-  return minimizer.implementation(
+  return implementation(
     { [name]: input },
     inputSourceMap,
-    minimizer.options,
+    minimizerOptions,
     extractComments
   );
 }

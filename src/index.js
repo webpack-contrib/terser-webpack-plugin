@@ -87,8 +87,8 @@ import { minify as minimize } from "./minify";
 /**
  * @template T
  * @typedef {Object} MinimizerImplementationAndOptions
- * @property {Implementation<T>} implementation
- * @property {PredefinedOptions & T} options
+ * @property {Implementation<ThirdArgument<T>>} implementation
+ * @property {PredefinedOptions & ThirdArgument<T>} options
  */
 
 /**
@@ -162,11 +162,6 @@ import { minify as minimize } from "./minify";
  * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
  */
 
-/**
- * @template T
- * @typedef {T extends Implementation<TerserOptions> ? { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> } : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} NormalizeImplementationAndOptions
- */
-
 // TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
 /**
  * @template {TerserMinimizer | UglifyJSMinimizer | SwcMinimizer | EsbuildMinimizer | CustomMinimizer} T=TerserMinimizer
@@ -192,7 +187,7 @@ class TerserPlugin {
     } = options || {};
 
     /**
-     * @type {BasePluginOptions & NormalizeImplementationAndOptions<T>}
+     * @type {BasePluginOptions & { minify: Implementation<ThirdArgument<T>>, terserOptions: ThirdArgument<T>}}
      */
     this.options = {
       test,
@@ -497,7 +492,9 @@ class TerserPlugin {
               // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
               minimizer: {
                 implementation: this.options.minify,
-                options: { ...this.options.terserOptions },
+                options: {
+                  ...this.options.terserOptions,
+                },
               },
               extractComments: this.options.extractComments,
             };
