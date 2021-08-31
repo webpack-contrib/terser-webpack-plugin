@@ -99,8 +99,10 @@ export type ThirdArgument<T> = T extends (
   ? U
   : never;
 export type DefaultMinimizerImplementationAndOptions = {
-  terserOptions?: import("terser").MinifyOptions | undefined;
   minify?: undefined | Implementation<TerserOptions>;
+  terserOptions?:
+    | (PredefinedOptions & import("terser").MinifyOptions)
+    | undefined;
 };
 export type PickMinimizerImplementationAndOptions<T> =
   T extends Implementation<TerserOptions>
@@ -109,7 +111,6 @@ export type PickMinimizerImplementationAndOptions<T> =
         minify: Implementation<ThirdArgument<T>>;
         terserOptions?: ThirdArgument<T> | undefined;
       };
-
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
@@ -222,12 +223,12 @@ export type PickMinimizerImplementationAndOptions<T> =
  */
 /**
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
- * @property {TerserOptions} [terserOptions]
  * @property {undefined | Implementation<TerserOptions>} [minify]
+ * @property {ThirdArgument<Implementation<TerserOptions>>} [terserOptions]
  */
 /**
  * @template T
- * @typedef {T extends infer Z ? ThirdArgument<Z> extends never ? any : { minify?: Z; terserOptions?: ThirdArgument<Z> } : DefaultMinimizerImplementationAndOptions} PickMinimizerImplementationAndOptions
+ * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
  */
 /**
  * @template {TerserMinimizer | UglifyJSMinimizer | SwcMinimizer | EsbuildMinimizer | CustomMinimizer} T=TerserMinimizer
@@ -283,9 +284,12 @@ declare class TerserPlugin<
       | undefined
   );
   /**
-   * @type {BasePluginOptions & PickMinimizerImplementationAndOptions<T>}
+   * @type {BasePluginOptions & { minify: any, terserOptions: any}}
    */
-  options: BasePluginOptions & PickMinimizerImplementationAndOptions<T>;
+  options: BasePluginOptions & {
+    minify: any;
+    terserOptions: any;
+  };
   /**
    * @private
    * @param {Compiler} compiler
