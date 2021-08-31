@@ -77,6 +77,12 @@ export function terserMinify(
   minimizerOptions: PredefinedOptions & TerserOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
+export namespace terserMinify {
+  /**
+   * @returns {string | undefined}
+   */
+  function getMinimizerVersion(): string | undefined;
+}
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
@@ -90,6 +96,12 @@ export function uglifyJsMinify(
   minimizerOptions: PredefinedOptions & UglifyJSOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
+export namespace uglifyJsMinify {
+  /**
+   * @returns {string | undefined}
+   */
+  function getMinimizerVersion(): string | undefined;
+}
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
@@ -101,6 +113,12 @@ export function swcMinify(
   sourceMap: RawSourceMap | undefined,
   minimizerOptions: PredefinedOptions & SwcOptions
 ): Promise<MinimizedResult>;
+export namespace swcMinify {
+  /**
+   * @returns {string | undefined}
+   */
+  function getMinimizerVersion(): string | undefined;
+}
 /**
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
@@ -112,3 +130,9 @@ export function esbuildMinify(
   sourceMap: RawSourceMap | undefined,
   minimizerOptions: PredefinedOptions & EsbuildOptions
 ): Promise<MinimizedResult>;
+export namespace esbuildMinify {
+  /**
+   * @returns {string | undefined}
+   */
+  function getMinimizerVersion(): string | undefined;
+}

@@ -55,7 +55,7 @@ export type MinimizedResult = {
 };
 export type PredefinedOptions = {
   module?: boolean | undefined;
-  ecma?: 5 | 2020 | 2015 | 2016 | 2017 | 2018 | 2019 | undefined;
+  ecma?: 5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | undefined;
 };
 export type MinimizerImplementationAndOptions<T> = {
   implementation: Implementation<T>;
@@ -102,14 +102,14 @@ export type DefaultMinimizerImplementationAndOptions = {
   terserOptions?: import("terser").MinifyOptions | undefined;
   minify?: undefined | Implementation<TerserOptions>;
 };
-export type PickMinimizerImplementationAndOptions<T> = T extends infer Z
-  ? ThirdArgument<Z> extends never
-    ? any
+export type PickMinimizerImplementationAndOptions<T> =
+  T extends Implementation<TerserOptions>
+    ? DefaultMinimizerImplementationAndOptions
     : {
-        minify?: Z | undefined;
-        terserOptions?: ThirdArgument<Z> | undefined;
-      }
-  : DefaultMinimizerImplementationAndOptions;
+        minify: Implementation<ThirdArgument<T>>;
+        terserOptions?: ThirdArgument<T> | undefined;
+      };
+
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
