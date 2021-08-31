@@ -81,7 +81,7 @@ import { minify as minimize } from "./minify";
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
- * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
+ * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | number | string} [ecma]
  */
 
 /**
@@ -111,7 +111,7 @@ import { minify as minimize } from "./minify";
  * @callback Implementation
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {PredefinedOptions & T} minifyOptions
+ * @param {T} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinimizedResult>}
  */
@@ -151,14 +151,20 @@ import { minify as minimize } from "./minify";
  */
 
 /**
+ * @template T
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
- * @property {undefined | Implementation<TerserOptions>} [minify]
- * @property {ThirdArgument<Implementation<TerserOptions>>} [terserOptions]
+ * @property {undefined | Implementation<ThirdArgument<T>>} [minify]
+ * @property {ThirdArgument<T> | undefined} [terserOptions]
  */
 
 /**
  * @template T
- * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
+ * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
+ */
+
+/**
+ * @template T
+ * @typedef {T extends Implementation<TerserOptions> ? { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> } : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} NormalizeImplementationAndOptions
  */
 
 // TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
@@ -186,7 +192,7 @@ class TerserPlugin {
     } = options || {};
 
     /**
-     * @type {BasePluginOptions & { minify: any, terserOptions: any}}
+     * @type {BasePluginOptions & NormalizeImplementationAndOptions<T>}
      */
     this.options = {
       test,
@@ -852,8 +858,11 @@ class TerserPlugin {
         );
       const data = serialize({
         minimizer:
+          // @ts-ignore
           typeof this.options.minify.getMinimizerVersion !== "undefined"
-            ? this.options.minify.getMinimizerVersion()
+            ? // eslint-disable-next-line line-comment-position
+              // @ts-ignore
+              this.options.minify.getMinimizerVersion()
             : "0.0.0",
         options: this.options.terserOptions,
       });

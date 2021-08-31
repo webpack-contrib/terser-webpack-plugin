@@ -55,7 +55,7 @@ export type MinimizedResult = {
 };
 export type PredefinedOptions = {
   module?: boolean | undefined;
-  ecma?: 5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | undefined;
+  ecma?: string | number | undefined;
 };
 export type MinimizerImplementationAndOptions<T> = {
   implementation: Implementation<T>;
@@ -75,7 +75,7 @@ export type MinimizerWorker<T> = Worker & {
 export type Implementation<T> = (
   input: Input,
   sourceMap: RawSourceMap | undefined,
-  minifyOptions: PredefinedOptions & T,
+  minifyOptions: T,
   extractComments: ExtractCommentsOptions | undefined
 ) => Promise<MinimizedResult>;
 export type TerserMinimizer = Implementation<TerserOptions>;
@@ -98,15 +98,23 @@ export type ThirdArgument<T> = T extends (
 ) => any
   ? U
   : never;
-export type DefaultMinimizerImplementationAndOptions = {
-  minify?: undefined | Implementation<TerserOptions>;
-  terserOptions?:
-    | (PredefinedOptions & import("terser").MinifyOptions)
-    | undefined;
+export type DefaultMinimizerImplementationAndOptions<T> = {
+  minify?: undefined | Implementation<ThirdArgument<T>>;
+  terserOptions?: ThirdArgument<T> | undefined;
 };
 export type PickMinimizerImplementationAndOptions<T> =
   T extends Implementation<TerserOptions>
-    ? DefaultMinimizerImplementationAndOptions
+    ? DefaultMinimizerImplementationAndOptions<T>
+    : {
+        minify: Implementation<ThirdArgument<T>>;
+        terserOptions?: ThirdArgument<T> | undefined;
+      };
+export type NormalizeImplementationAndOptions<T> =
+  T extends Implementation<TerserOptions>
+    ? {
+        minify: Implementation<ThirdArgument<T>>;
+        terserOptions?: ThirdArgument<T>;
+      }
     : {
         minify: Implementation<ThirdArgument<T>>;
         terserOptions?: ThirdArgument<T> | undefined;
@@ -164,7 +172,7 @@ export type PickMinimizerImplementationAndOptions<T> =
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
- * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020} [ecma]
+ * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | number | string} [ecma]
  */
 /**
  * @template T
@@ -190,7 +198,7 @@ export type PickMinimizerImplementationAndOptions<T> =
  * @callback Implementation
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
- * @param {PredefinedOptions & T} minifyOptions
+ * @param {T} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinimizedResult>}
  */
@@ -222,13 +230,18 @@ export type PickMinimizerImplementationAndOptions<T> =
  * @typedef {T extends (arg1: any, arg2: any, arg3: infer U, ...args: any[]) => any ? U: never} ThirdArgument
  */
 /**
+ * @template T
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
- * @property {undefined | Implementation<TerserOptions>} [minify]
- * @property {ThirdArgument<Implementation<TerserOptions>>} [terserOptions]
+ * @property {undefined | Implementation<ThirdArgument<T>>} [minify]
+ * @property {ThirdArgument<T> | undefined} [terserOptions]
  */
 /**
  * @template T
- * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
+ * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
+ */
+/**
+ * @template T
+ * @typedef {T extends Implementation<TerserOptions> ? { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> } : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} NormalizeImplementationAndOptions
  */
 /**
  * @template {TerserMinimizer | UglifyJSMinimizer | SwcMinimizer | EsbuildMinimizer | CustomMinimizer} T=TerserMinimizer
@@ -284,12 +297,9 @@ declare class TerserPlugin<
       | undefined
   );
   /**
-   * @type {BasePluginOptions & { minify: any, terserOptions: any}}
+   * @type {BasePluginOptions & NormalizeImplementationAndOptions<T>}
    */
-  options: BasePluginOptions & {
-    minify: any;
-    terserOptions: any;
-  };
+  options: BasePluginOptions & NormalizeImplementationAndOptions<T>;
   /**
    * @private
    * @param {Compiler} compiler
