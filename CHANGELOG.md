@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.1.4...v5.2.0) (2021-08-31)
+
+### Notes
+
+* due `terser-webpack-plugin` has its own types now, `@types/terser-webpack-plugin` should be not used anymore, also `@types/terser-webpack-plugin` is not compatible and has wrong types
+
+### Features
+
+* added `esbuild` minimizer ([#426](https://github.com/webpack-contrib/terser-webpack-plugin/issues/426)) ([40f4f55](https://github.com/webpack-contrib/terser-webpack-plugin/commit/40f4f55a59d8d383db452fc5b93f8c3b7a7073d2))
+* added `swc` minimizer ([0551a9b](https://github.com/webpack-contrib/terser-webpack-plugin/commit/0551a9b535c6e9ec55315c4b653a7c0ef7a45645))
+* added `uglify-js` minimizer ([#425](https://github.com/webpack-contrib/terser-webpack-plugin/issues/425)) ([69e9592](https://github.com/webpack-contrib/terser-webpack-plugin/commit/69e9592246e6e9512744e47ff777a1839af05a37))
+* added built-in typescript types ([0a7cc94](https://github.com/webpack-contrib/terser-webpack-plugin/commit/0a7cc949391d164db215efadd1b654fcabb6d9ff))
+* output links and descriptions on error ([#413](https://github.com/webpack-contrib/terser-webpack-plugin/issues/413)) ([bc95af5](https://github.com/webpack-contrib/terser-webpack-plugin/commit/bc95af5b0ea1eee72ed298ae9325f8efcb27b3ce))
+
 ### [5.1.4](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.1.3...v5.1.4) (2021-06-25)
 
 * update `serialize-javascript`
