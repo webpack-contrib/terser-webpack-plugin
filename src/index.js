@@ -87,7 +87,7 @@ import { minify as minimize } from "./minify";
 /**
  * @template T
  * @typedef {Object} MinimizerImplementationAndOptions
- * @property {Implementation<ThirdArgument<T>>} implementation
+ * @property {MinimizerImplementation<ThirdArgument<T>>} implementation
  * @property {PredefinedOptions & ThirdArgument<T>} options
  */
 
@@ -108,7 +108,7 @@ import { minify as minimize } from "./minify";
 
 /**
  * @template T
- * @callback Implementation
+ * @callback BasicMinimizerImplementation
  * @param {Input} input
  * @param {RawSourceMap | undefined} sourceMap
  * @param {T} minifyOptions
@@ -117,23 +117,33 @@ import { minify as minimize } from "./minify";
  */
 
 /**
- * @typedef {Implementation<TerserOptions>} TerserMinimizer
+ * @typedef {object} MinimizeFunctionHelpers
+ * @property {() => string | undefined} [getMinimizerVersion]
  */
 
 /**
- * @typedef {Implementation<UglifyJSOptions>} UglifyJSMinimizer
+ * @template T
+ * @typedef {BasicMinimizerImplementation<T> & MinimizeFunctionHelpers } MinimizerImplementation
  */
 
 /**
- * @typedef {Implementation<SwcOptions>} SwcMinimizer
+ * @typedef {MinimizerImplementation<TerserOptions>} TerserMinimizer
  */
 
 /**
- * @typedef {Implementation<EsbuildOptions>} EsbuildMinimizer
+ * @typedef {MinimizerImplementation<UglifyJSOptions>} UglifyJSMinimizer
  */
 
 /**
- * @typedef {Implementation<CustomOptions>} CustomMinimizer
+ * @typedef {MinimizerImplementation<SwcOptions>} SwcMinimizer
+ */
+
+/**
+ * @typedef {MinimizerImplementation<EsbuildOptions>} EsbuildMinimizer
+ */
+
+/**
+ * @typedef {MinimizerImplementation<CustomOptions>} CustomMinimizer
  */
 
 /**
@@ -153,13 +163,13 @@ import { minify as minimize } from "./minify";
 /**
  * @template T
  * @typedef {Object} DefaultMinimizerImplementationAndOptions
- * @property {undefined | Implementation<ThirdArgument<T>>} [minify]
+ * @property {undefined | MinimizerImplementation<ThirdArgument<T>>} [minify]
  * @property {ThirdArgument<T> | undefined} [terserOptions]
  */
 
 /**
  * @template T
- * @typedef {T extends Implementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: Implementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
+ * @typedef {T extends MinimizerImplementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: MinimizerImplementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
  */
 
 // TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
@@ -187,7 +197,7 @@ class TerserPlugin {
     } = options || {};
 
     /**
-     * @type {BasePluginOptions & { minify: Implementation<ThirdArgument<T>>, terserOptions: ThirdArgument<T>}}
+     * @type {BasePluginOptions & { minify: MinimizerImplementation<ThirdArgument<T>>, terserOptions: ThirdArgument<T>}}
      */
     this.options = {
       test,
@@ -855,11 +865,8 @@ class TerserPlugin {
         );
       const data = serialize({
         minimizer:
-          // @ts-ignore
           typeof this.options.minify.getMinimizerVersion !== "undefined"
-            ? // eslint-disable-next-line line-comment-position
-              // @ts-ignore
-              this.options.minify.getMinimizerVersion()
+            ? this.options.minify.getMinimizerVersion() || "0.0.0"
             : "0.0.0",
         options: this.options.terserOptions,
       });
