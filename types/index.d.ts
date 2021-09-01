@@ -1,4 +1,4 @@
-export default TerserPlugin;
+export = TerserPlugin;
 export type Schema = import("schema-utils/declarations/validate").Schema;
 export type Compiler = import("webpack").Compiler;
 export type Compilation = import("webpack").Compilation;
