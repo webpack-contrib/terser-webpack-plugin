@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.0...v5.2.1) (2021-09-02)
+
+
+### Bug Fixes
+
+* types export ([#440](https://github.com/webpack-contrib/terser-webpack-plugin/issues/440)) ([c6dc40d](https://github.com/webpack-contrib/terser-webpack-plugin/commit/c6dc40d98917c1a743cd006f0a37ca461df80706))
+* types for optional peer dependencies ([7577b43](https://github.com/webpack-contrib/terser-webpack-plugin/commit/7577b43c37ba377dd50cf438e8d3171ad13631ae))
+
 ## [5.2.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.1.4...v5.2.0) (2021-08-31)
 
 ### Notes
