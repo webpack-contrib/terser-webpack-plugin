@@ -1,6 +1,7 @@
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("terser").FormatOptions} TerserFormatOptions */
 /** @typedef {import("terser").MinifyOptions} TerserOptions */
+/** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("uglify-js").OutputOptions} UglifyJSOutputOptions */
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */

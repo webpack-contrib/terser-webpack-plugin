@@ -1,6 +1,7 @@
 export type RawSourceMap = import("source-map").RawSourceMap;
 export type TerserFormatOptions = import("terser").FormatOptions;
 export type TerserOptions = import("terser").MinifyOptions;
+export type TerserECMA = import("terser").ECMA;
 export type UglifyJSOutputOptions = import("uglify-js").OutputOptions;
 export type UglifyJSOptions = import("uglify-js").MinifyOptions;
 export type SwcOptions = import("@swc/core").JsMinifyOptions;
@@ -42,6 +43,7 @@ export type ExtractedComments = Array<string>;
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("terser").FormatOptions} TerserFormatOptions */
 /** @typedef {import("terser").MinifyOptions} TerserOptions */
+/** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("uglify-js").OutputOptions} UglifyJSOutputOptions */
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */

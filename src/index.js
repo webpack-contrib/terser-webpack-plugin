@@ -22,11 +22,11 @@ import { minify as minimize } from "./minify";
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
-/** @typedef {import("terser").ECMA} TerserECMA */
-/** @typedef {import("terser").MinifyOptions} TerserOptions */
-/** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
-/** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */
-/** @typedef {import("esbuild").TransformOptions} EsbuildOptions */
+/** @typedef {import("./utils.js").TerserECMA} TerserECMA */
+/** @typedef {import("./utils.js").TerserOptions} TerserOptions */
+/** @typedef {import("./utils.js").UglifyJSOptions} UglifyJSOptions */
+/** @typedef {import("./utils.js").SwcOptions} SwcOptions */
+/** @typedef {import("./utils.js").EsbuildOptions} EsbuildOptions */
 /** @typedef {Object.<any, any>} CustomOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
