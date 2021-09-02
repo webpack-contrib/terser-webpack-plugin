@@ -1,6 +1,8 @@
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 /** @typedef {import("terser").FormatOptions} TerserFormatOptions */
 /** @typedef {import("terser").MinifyOptions} TerserOptions */
+/** @typedef {import("terser").ECMA} TerserECMA */
+// TODO do not forget to add `// @ts-ignore` on optional peer dependencies to avoid problem with `TS2307: Cannot find module 'module' or its corresponding type declarations.`
 /** @typedef {import("uglify-js").OutputOptions} UglifyJSOutputOptions */
 /** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
 /** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */

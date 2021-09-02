@@ -4,11 +4,11 @@ export type Compiler = import("webpack").Compiler;
 export type Compilation = import("webpack").Compilation;
 export type WebpackError = import("webpack").WebpackError;
 export type Asset = import("webpack").Asset;
-export type TerserECMA = import("terser").ECMA;
-export type TerserOptions = import("terser").MinifyOptions;
-export type UglifyJSOptions = import("uglify-js").MinifyOptions;
-export type SwcOptions = import("@swc/core").JsMinifyOptions;
-export type EsbuildOptions = import("esbuild").TransformOptions;
+export type TerserECMA = import("./utils.js").TerserECMA;
+export type TerserOptions = import("./utils.js").TerserOptions;
+export type UglifyJSOptions = import("./utils.js").UglifyJSOptions;
+export type SwcOptions = import("./utils.js").SwcOptions;
+export type EsbuildOptions = import("./utils.js").EsbuildOptions;
 export type CustomOptions = any;
 export type JestWorker = import("jest-worker").Worker;
 export type RawSourceMap = import("source-map").RawSourceMap;
@@ -119,11 +119,11 @@ export type PickMinimizerImplementationAndOptions<T> =
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
-/** @typedef {import("terser").ECMA} TerserECMA */
-/** @typedef {import("terser").MinifyOptions} TerserOptions */
-/** @typedef {import("uglify-js").MinifyOptions} UglifyJSOptions */
-/** @typedef {import("@swc/core").JsMinifyOptions} SwcOptions */
-/** @typedef {import("esbuild").TransformOptions} EsbuildOptions */
+/** @typedef {import("./utils.js").TerserECMA} TerserECMA */
+/** @typedef {import("./utils.js").TerserOptions} TerserOptions */
+/** @typedef {import("./utils.js").UglifyJSOptions} UglifyJSOptions */
+/** @typedef {import("./utils.js").SwcOptions} SwcOptions */
+/** @typedef {import("./utils.js").EsbuildOptions} EsbuildOptions */
 /** @typedef {Object.<any, any>} CustomOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
