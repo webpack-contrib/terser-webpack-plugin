@@ -251,7 +251,7 @@ declare class TerserPlugin<
     | UglifyJSMinimizer
     | SwcMinimizer
     | EsbuildMinimizer
-    | CustomMinimizer
+    | CustomMinimizer = TerserMinimizer
 > {
   /**
    * @private

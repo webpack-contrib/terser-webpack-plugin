@@ -2,9 +2,13 @@ export type RawSourceMap = import("source-map").RawSourceMap;
 export type TerserFormatOptions = import("terser").FormatOptions;
 export type TerserOptions = import("terser").MinifyOptions;
 export type TerserECMA = import("terser").ECMA;
+// @ts-ignore
 export type UglifyJSOutputOptions = import("uglify-js").OutputOptions;
+// @ts-ignore
 export type UglifyJSOptions = import("uglify-js").MinifyOptions;
+// @ts-ignore
 export type SwcOptions = import("@swc/core").JsMinifyOptions;
+// @ts-ignore
 export type EsbuildOptions = import("esbuild").TransformOptions;
 export type ExtractCommentsOptions =
   import("./index.js").ExtractCommentsOptions;
