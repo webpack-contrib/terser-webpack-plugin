@@ -90,10 +90,16 @@ export type BasePluginOptions = {
 export type InferDefault<T> = T extends infer U
   ? U
   : import("./utils").CustomOptions;
-export type DefinedDefaultMinimizerAndOptions<T> = {
-  minify?: MinimizerImplementation<InferDefault<T>> | undefined;
-  terserOptions?: InferDefault<T> | undefined;
-};
+export type DefinedDefaultMinimizerAndOptions<T> =
+  InferDefault<T> extends TerserOptions
+    ? {
+        minify?: MinimizerImplementation<InferDefault<T>> | undefined;
+        terserOptions?: InferDefault<T> | undefined;
+      }
+    : {
+        minify: MinimizerImplementation<InferDefault<T>>;
+        terserOptions?: InferDefault<T> | undefined;
+      };
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
@@ -196,7 +202,7 @@ export type DefinedDefaultMinimizerAndOptions<T> = {
  */
 /**
  * @template T
- * @typedef {{ minify?: MinimizerImplementation<InferDefault<T>> | undefined, terserOptions?: InferDefault<T> | undefined}} DefinedDefaultMinimizerAndOptions
+ * @typedef {InferDefault<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefault<T>> | undefined, terserOptions?: InferDefault<T> | undefined } : { minify: MinimizerImplementation<InferDefault<T>>, terserOptions?: InferDefault<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 /**
  * @template T
@@ -251,7 +257,9 @@ declare class TerserPlugin<T = TerserOptions> {
     include: Rules | undefined;
     exclude: Rules | undefined;
     minimizer: {
-      implementation: MinimizerImplementation<InferDefault<T>>;
+      implementation: MinimizerImplementation<
+        import("terser").MinifyOptions & InferDefault<T>
+      >;
       options: InferDefault<T>;
     };
   };

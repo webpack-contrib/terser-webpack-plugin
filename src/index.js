@@ -139,7 +139,7 @@ import { minify as minimize } from "./minify";
 
 /**
  * @template T
- * @typedef {{ minify?: MinimizerImplementation<InferDefault<T>> | undefined, terserOptions?: InferDefault<T> | undefined}} DefinedDefaultMinimizerAndOptions
+ * @typedef {InferDefault<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefault<T>> | undefined, terserOptions?: InferDefault<T> | undefined } : { minify: MinimizerImplementation<InferDefault<T>>, terserOptions?: InferDefault<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 
 // TODO please add manually `T = TerserOptions`, because typescript is not supported default value for templates yet
