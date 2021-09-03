@@ -676,16 +676,39 @@ module.exports = {
 With built-in minify functions:
 
 ```ts
-import type { JsMinifyOptions } from "@swc/core";
+import type { JsMinifyOptions as SwcOptions } from "@swc/core";
+import type { MinifyOptions as UglifyJSOptions } from "uglify-js";
+import type { TransformOptions as EsbuildOptions } from "esbuild";
+import type { MinifyOptions as TerserOptions } from "terser";
 
 module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin<JsMinifyOptions>({
+      new TerserPlugin<SwcOptions>({
         minify: TerserPlugin.swcMinify,
         terserOptions: {
-          compress: true,
+          // `swc` options
+        },
+      }),
+      new TerserPlugin<UglifyJSOptions>({
+        minify: TerserPlugin.uglifyJsMinify,
+        terserOptions: {
+          // `uglif-js` options
+        },
+      }),
+      new TerserPlugin<EsbuildOptions>({
+        minify: TerserPlugin.esbuildMinify,
+        terserOptions: {
+          // `esbuild` options
+        },
+      }),
+
+      // Alternative usage:
+      new TerserPlugin<TerserOptions>({
+        minify: TerserPlugin.terserMinify,
+        terserOptions: {
+          // `terser` options
         },
       }),
     ],
