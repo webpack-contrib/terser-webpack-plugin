@@ -33,9 +33,9 @@ export type ExtractCommentsBanner =
   | boolean
   | ((commentsFile: string) => string);
 export type ExtractCommentsObject = {
-  condition: ExtractCommentsCondition;
-  filename: ExtractCommentsFilename;
-  banner: ExtractCommentsBanner;
+  condition?: ExtractCommentsCondition | undefined;
+  filename?: ExtractCommentsFilename | undefined;
+  banner?: ExtractCommentsBanner | undefined;
 };
 export type ExtractCommentsOptions =
   | ExtractCommentsCondition
@@ -129,9 +129,9 @@ export type DefinedDefaultMinimizerAndOptions<T> =
  */
 /**
  * @typedef {Object} ExtractCommentsObject
- * @property {ExtractCommentsCondition} condition
- * @property {ExtractCommentsFilename} filename
- * @property {ExtractCommentsBanner} banner
+ * @property {ExtractCommentsCondition} [condition]
+ * @property {ExtractCommentsFilename} [filename]
+ * @property {ExtractCommentsBanner} [banner]
  */
 /**
  * @typedef {ExtractCommentsCondition | ExtractCommentsObject} ExtractCommentsOptions

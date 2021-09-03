@@ -53,9 +53,9 @@ import { minify as minimize } from "./minify";
 
 /**
  * @typedef {Object} ExtractCommentsObject
- * @property {ExtractCommentsCondition} condition
- * @property {ExtractCommentsFilename} filename
- * @property {ExtractCommentsBanner} banner
+ * @property {ExtractCommentsCondition} [condition]
+ * @property {ExtractCommentsFilename} [filename]
+ * @property {ExtractCommentsBanner} [banner]
  */
 
 /**
