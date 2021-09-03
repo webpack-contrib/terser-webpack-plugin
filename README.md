@@ -676,21 +676,13 @@ module.exports = {
 With built-in minify functions:
 
 ```ts
-import type { SwcMinifyFunction } from "terser-webpack-plugin";
+import type { JsMinifyOptions } from "@swc/core";
 
 module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin<SwcMinimizer>({
-        minify: TerserPlugin.swcMinify,
-        terserOptions: {
-          compress: true,
-        },
-      }),
-
-      // Alternative:
-      new TerserPlugin<typeof TerserPlugin.swcMinify>({
+      new TerserPlugin<JsMinifyOptions>({
         minify: TerserPlugin.swcMinify,
         terserOptions: {
           compress: true,

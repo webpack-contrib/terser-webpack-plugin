@@ -1,5 +1,7 @@
 export type MinimizedResult = import("./index.js").MinimizedResult;
+export type CustomOptions = import("./index.js").CustomOptions;
 /** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
+/** @typedef {import("./index.js").CustomOptions} CustomOptions */
 /**
  * @template T
  * @param {import("./index.js").InternalOptions<T>} options
