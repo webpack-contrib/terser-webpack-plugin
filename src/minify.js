@@ -1,4 +1,5 @@
 /** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
+/** @typedef {import("./index.js").CustomOptions} CustomOptions */
 
 /**
  * @template T

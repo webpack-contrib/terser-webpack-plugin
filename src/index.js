@@ -24,10 +24,7 @@ import { minify as minimize } from "./minify";
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("./utils.js").TerserECMA} TerserECMA */
 /** @typedef {import("./utils.js").TerserOptions} TerserOptions */
-/** @typedef {import("./utils.js").UglifyJSOptions} UglifyJSOptions */
-/** @typedef {import("./utils.js").SwcOptions} SwcOptions */
-/** @typedef {import("./utils.js").EsbuildOptions} EsbuildOptions */
-/** @typedef {Object.<any, any>} CustomOptions */
+/** @typedef {import("./utils.js").CustomOptions} CustomOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
@@ -81,14 +78,14 @@ import { minify as minimize } from "./minify";
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
- * @property {5 | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | number | string} [ecma]
+ * @property {any} [ecma]
  */
 
 /**
  * @template T
  * @typedef {Object} MinimizerImplementationAndOptions
- * @property {MinimizerImplementation<ThirdArgument<T>>} implementation
- * @property {PredefinedOptions & ThirdArgument<T>} options
+ * @property {MinimizerImplementation<T>} implementation
+ * @property {PredefinedOptions & T} options
  */
 
 /**
@@ -127,26 +124,6 @@ import { minify as minimize } from "./minify";
  */
 
 /**
- * @typedef {MinimizerImplementation<TerserOptions>} TerserMinimizer
- */
-
-/**
- * @typedef {MinimizerImplementation<UglifyJSOptions>} UglifyJSMinimizer
- */
-
-/**
- * @typedef {MinimizerImplementation<SwcOptions>} SwcMinimizer
- */
-
-/**
- * @typedef {MinimizerImplementation<EsbuildOptions>} EsbuildMinimizer
- */
-
-/**
- * @typedef {MinimizerImplementation<CustomOptions>} CustomMinimizer
- */
-
-/**
  * @typedef {Object} BasePluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
@@ -157,28 +134,21 @@ import { minify as minimize } from "./minify";
 
 /**
  * @template T
- * @typedef {T extends (arg1: any, arg2: any, arg3: infer U, ...args: any[]) => any ? U: never} ThirdArgument
+ * @typedef {T extends infer U ? U : CustomOptions} InferDefaultType
  */
 
 /**
  * @template T
- * @typedef {Object} DefaultMinimizerImplementationAndOptions
- * @property {undefined | MinimizerImplementation<ThirdArgument<T>>} [minify]
- * @property {ThirdArgument<T> | undefined} [terserOptions]
+ * @typedef {InferDefaultType<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefaultType<T>> | undefined, terserOptions?: InferDefaultType<T> | undefined } : { minify: MinimizerImplementation<InferDefaultType<T>>, terserOptions?: InferDefaultType<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 
+// TODO please add manually `T = TerserOptions`, because typescript is not supported default value for templates yet
 /**
  * @template T
- * @typedef {T extends MinimizerImplementation<TerserOptions> ? DefaultMinimizerImplementationAndOptions<T> : { minify: MinimizerImplementation<ThirdArgument<T>>, terserOptions?: ThirdArgument<T> | undefined}} PickMinimizerImplementationAndOptions
- */
-
-// TODO please add manually `T extends ... = TerserMinimizer`, because typescript is not supported default value for templates yet
-/**
- * @template {TerserMinimizer | UglifyJSMinimizer | SwcMinimizer | EsbuildMinimizer | CustomMinimizer} T=TerserMinimizer
  */
 class TerserPlugin {
   /**
-   * @param {BasePluginOptions & PickMinimizerImplementationAndOptions<T>} [options]
+   * @param {BasePluginOptions & DefinedDefaultMinimizerAndOptions<T>} [options]
    */
   constructor(options) {
     validate(/** @type {Schema} */ (schema), options || {}, {
@@ -186,9 +156,12 @@ class TerserPlugin {
       baseDataPath: "options",
     });
 
+    // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
     const {
-      minify = terserMinify,
-      terserOptions = {},
+      minify = /** @type {MinimizerImplementation<InferDefaultType<T>>} */ (
+        terserMinify
+      ),
+      terserOptions = /** @type {InferDefaultType<T>} */ ({}),
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
       parallel = true,
@@ -196,17 +169,16 @@ class TerserPlugin {
       exclude,
     } = options || {};
 
-    /**
-     * @type {BasePluginOptions & { minify: MinimizerImplementation<ThirdArgument<T>>, terserOptions: ThirdArgument<T>}}
-     */
     this.options = {
       test,
       extractComments,
       parallel,
       include,
       exclude,
-      minify,
-      terserOptions,
+      minimizer: {
+        implementation: minify,
+        options: terserOptions,
+      },
     };
   }
 
@@ -494,17 +466,14 @@ class TerserPlugin {
               input = input.toString();
             }
 
-            /** @type {InternalOptions<T>} */
             const options = {
               name,
               input,
               inputSourceMap,
-              // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
               minimizer: {
-                implementation: this.options.minify,
-                options: {
-                  ...this.options.terserOptions,
-                },
+                implementation: this.options.minimizer.implementation,
+                // @ts-ignore https://github.com/Microsoft/TypeScript/issues/10727
+                options: { ...this.options.minimizer.options },
               },
               extractComments: this.options.extractComments,
             };
@@ -865,10 +834,12 @@ class TerserPlugin {
         );
       const data = serialize({
         minimizer:
-          typeof this.options.minify.getMinimizerVersion !== "undefined"
-            ? this.options.minify.getMinimizerVersion() || "0.0.0"
+          typeof this.options.minimizer.implementation.getMinimizerVersion !==
+          "undefined"
+            ? this.options.minimizer.implementation.getMinimizerVersion() ||
+              "0.0.0"
             : "0.0.0",
-        options: this.options.terserOptions,
+        options: this.options.minimizer.options,
       });
 
       hooks.chunkHash.tap(pluginName, (chunk, hash) => {
