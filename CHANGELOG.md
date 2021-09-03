@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.1...v5.2.2) (2021-09-03)
+
+
+### Bug Fixes
+
+* types for optional dependencies have been removed in favor of the options provided by the developer (potential breaking change for types due invalid usage), please look at [example](https://github.com/webpack-contrib/terser-webpack-plugin#typescript) ([d7ea08f](https://github.com/webpack-contrib/terser-webpack-plugin/commit/d7ea08fada95a542c219a7c3beb0fea5abf6aab0))
+
 ### [5.2.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.0...v5.2.1) (2021-09-02)
 
 
