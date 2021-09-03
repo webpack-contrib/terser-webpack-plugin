@@ -17,8 +17,7 @@
     "node": ">= 10.13.0"
   },
   "scripts": {
-    "start": "npm run build -- -w",
-    "clean": "del-cli dist",
+    "clean": "del-cli dist types",
     "prebuild": "npm run clean",
     "build:types": "tsc --declaration --emitDeclarationOnly --outDir types && prettier \"types/**/*.ts\" --write && prettier types --write",
     "build:code": "cross-env NODE_ENV=production babel src -d dist --copy-files",
