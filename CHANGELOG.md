@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.2...v5.2.3) (2021-09-03)
+
+
+### Bug Fixes
+
+* types for the `extractComments` option ([#444](https://github.com/webpack-contrib/terser-webpack-plugin/issues/444)) ([14e5cbf](https://github.com/webpack-contrib/terser-webpack-plugin/commit/14e5cbf15b79c77fac46c30de209484737612f37))
+* unknown default type for terser  ([#445](https://github.com/webpack-contrib/terser-webpack-plugin/issues/445)) ([04f4d6d](https://github.com/webpack-contrib/terser-webpack-plugin/commit/04f4d6d40dc2658485913ff545584da1f8af7178))
+
 ### [5.2.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.1...v5.2.2) (2021-09-03)
 
 
