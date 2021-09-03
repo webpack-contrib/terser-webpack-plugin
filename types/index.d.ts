@@ -207,7 +207,7 @@ export type DefinedDefaultMinimizerAndOptions<T> =
 /**
  * @template T
  */
-declare class TerserPlugin<T> {
+declare class TerserPlugin<T = TerserOptions> {
   /**
    * @private
    * @param {any} input
