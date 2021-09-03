@@ -134,12 +134,12 @@ import { minify as minimize } from "./minify";
 
 /**
  * @template T
- * @typedef {T extends infer U ? U : CustomOptions} InferDefault
+ * @typedef {T extends infer U ? U : CustomOptions} InferDefaultType
  */
 
 /**
  * @template T
- * @typedef {InferDefault<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefault<T>> | undefined, terserOptions?: InferDefault<T> | undefined } : { minify: MinimizerImplementation<InferDefault<T>>, terserOptions?: InferDefault<T> | undefined }} DefinedDefaultMinimizerAndOptions
+ * @typedef {InferDefaultType<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefaultType<T>> | undefined, terserOptions?: InferDefaultType<T> | undefined } : { minify: MinimizerImplementation<InferDefaultType<T>>, terserOptions?: InferDefaultType<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 
 // TODO please add manually `T = TerserOptions`, because typescript is not supported default value for templates yet
@@ -158,10 +158,10 @@ class TerserPlugin {
 
     // TODO make `minimizer` option instead `minify` and `terserOptions` in the next major release, also rename `terserMinify` to `terserMinimize`
     const {
-      minify = /** @type {MinimizerImplementation<InferDefault<T>>} */ (
+      minify = /** @type {MinimizerImplementation<InferDefaultType<T>>} */ (
         terserMinify
       ),
-      terserOptions = /** @type {InferDefault<T>} */ ({}),
+      terserOptions = /** @type {InferDefaultType<T>} */ ({}),
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
       parallel = true,
