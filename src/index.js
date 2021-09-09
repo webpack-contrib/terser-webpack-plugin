@@ -124,12 +124,16 @@ import { minify as minimize } from "./minify";
  */
 
 /**
+ * @typedef {undefined | boolean | number} Parallel
+ */
+
+/**
  * @typedef {Object} BasePluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
  * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
+ * @property {Parallel} [parallel]
  */
 
 /**
@@ -307,7 +311,7 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {boolean | undefined} parallel
+   * @param {Parallel} parallel
    * @returns {number}
    */
   static getAvailableNumberOfCores(parallel) {
