@@ -80,12 +80,13 @@ export type MinimizeFunctionHelpers = {
 };
 export type MinimizerImplementation<T> = BasicMinimizerImplementation<T> &
   MinimizeFunctionHelpers;
+export type Parallel = undefined | boolean | number;
 export type BasePluginOptions = {
   test?: Rules | undefined;
   include?: Rules | undefined;
   exclude?: Rules | undefined;
   extractComments?: ExtractCommentsOptions | undefined;
-  parallel?: boolean | undefined;
+  parallel?: Parallel;
 };
 export type InferDefaultType<T> = T extends infer U
   ? U
@@ -189,12 +190,15 @@ export type DefinedDefaultMinimizerAndOptions<T> =
  * @typedef {BasicMinimizerImplementation<T> & MinimizeFunctionHelpers } MinimizerImplementation
  */
 /**
+ * @typedef {undefined | boolean | number} Parallel
+ */
+/**
  * @typedef {Object} BasePluginOptions
  * @property {Rules} [test]
  * @property {Rules} [include]
  * @property {Rules} [exclude]
  * @property {ExtractCommentsOptions} [extractComments]
- * @property {boolean} [parallel]
+ * @property {Parallel} [parallel]
  */
 /**
  * @template T
@@ -232,7 +236,7 @@ declare class TerserPlugin<T = TerserOptions> {
   private static buildError;
   /**
    * @private
-   * @param {boolean | undefined} parallel
+   * @param {Parallel} parallel
    * @returns {number}
    */
   private static getAvailableNumberOfCores;
@@ -253,7 +257,7 @@ declare class TerserPlugin<T = TerserOptions> {
   options: {
     test: Rules;
     extractComments: ExtractCommentsOptions;
-    parallel: boolean;
+    parallel: number | boolean;
     include: Rules | undefined;
     exclude: Rules | undefined;
     minimizer: {
