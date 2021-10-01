@@ -14,7 +14,7 @@
 
 # terser-webpack-plugin
 
-This plugin uses [terser](https://github.com/terser-js/terser) to minify/minimize your JavaScript.
+This plugin uses [terser](https://github.com/terser/terser) to minify/minimize your JavaScript.
 
 ## Getting Started
 
@@ -63,7 +63,7 @@ Using supported `devtool` values enable source map generation.
 |         **[`exclude`](#exclude)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to exclude.                                                            |
 |        **[`parallel`](#parallel)**        |                                `Boolean\|Number`                                |                             `true`                              | Use multi-process parallel running to improve the build speed.               |
 |          **[`minify`](#minify)**          |                                   `Function`                                    |                   `TerserPlugin.terserMinify`                   | Allows you to override default minify function.                              |
-|   **[`terserOptions`](#terseroptions)**   |                                    `Object`                                     | [`default`](https://github.com/terser-js/terser#minify-options) | Terser [minify options](https://github.com/terser-js/terser#minify-options). |
+|   **[`terserOptions`](#terseroptions)**   |                                    `Object`                                     | [`default`](https://github.com/terser/terser#minify-options) | Terser [minify options](https://github.com/terser/terser#minify-options). |
 | **[`extractComments`](#extractcomments)** | `Boolean\|String\|RegExp\|Function<(node, comment) -> Boolean\|Object>\|Object` |                             `true`                              | Whether comments shall be extracted to a separate file.                      |
 
 ### `test`
@@ -188,7 +188,7 @@ Type: `Function`
 Default: `TerserPlugin.terserMinify`
 
 Allows you to override default minify function.
-By default plugin uses [terser](https://github.com/terser-js/terser) package.
+By default plugin uses [terser](https://github.com/terser/terser) package.
 Useful for using and testing unpublished versions or forks.
 
 > ⚠️ **Always use `require` inside `minify` function when `parallel` option enabled**.
@@ -245,9 +245,9 @@ module.exports = {
 ### `terserOptions`
 
 Type: `Object`
-Default: [default](https://github.com/terser-js/terser#minify-options)
+Default: [default](https://github.com/terser/terser#minify-options)
 
-Terser [options](https://github.com/terser-js/terser#minify-options).
+Terser [options](https://github.com/terser/terser#minify-options).
 
 **webpack.config.js**
 
