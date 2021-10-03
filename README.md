@@ -56,15 +56,15 @@ Using supported `devtool` values enable source map generation.
 
 ## Options
 
-|                   Name                    |                                      Type                                       |                             Default                             | Description                                                                  |
-| :---------------------------------------: | :-----------------------------------------------------------------------------: | :-------------------------------------------------------------: | :--------------------------------------------------------------------------- |
-|            **[`test`](#test)**            |                     `String\|RegExp\|Array<String\|RegExp>`                     |                       `/\.m?js(\?.*)?$/i`                       | Test to match files against.                                                 |
-|         **[`include`](#include)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to include.                                                            |
-|         **[`exclude`](#exclude)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                           `undefined`                           | Files to exclude.                                                            |
-|        **[`parallel`](#parallel)**        |                                `Boolean\|Number`                                |                             `true`                              | Use multi-process parallel running to improve the build speed.               |
-|          **[`minify`](#minify)**          |                                   `Function`                                    |                   `TerserPlugin.terserMinify`                   | Allows you to override default minify function.                              |
+|                   Name                    |                                      Type                                       |                           Default                            | Description                                                               |
+| :---------------------------------------: | :-----------------------------------------------------------------------------: | :----------------------------------------------------------: | :------------------------------------------------------------------------ |
+|            **[`test`](#test)**            |                     `String\|RegExp\|Array<String\|RegExp>`                     |                     `/\.m?js(\?.*)?$/i`                      | Test to match files against.                                              |
+|         **[`include`](#include)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                         `undefined`                          | Files to include.                                                         |
+|         **[`exclude`](#exclude)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                         `undefined`                          | Files to exclude.                                                         |
+|        **[`parallel`](#parallel)**        |                                `Boolean\|Number`                                |                            `true`                            | Use multi-process parallel running to improve the build speed.            |
+|          **[`minify`](#minify)**          |                                   `Function`                                    |                 `TerserPlugin.terserMinify`                  | Allows you to override default minify function.                           |
 |   **[`terserOptions`](#terseroptions)**   |                                    `Object`                                     | [`default`](https://github.com/terser/terser#minify-options) | Terser [minify options](https://github.com/terser/terser#minify-options). |
-| **[`extractComments`](#extractcomments)** | `Boolean\|String\|RegExp\|Function<(node, comment) -> Boolean\|Object>\|Object` |                             `true`                              | Whether comments shall be extracted to a separate file.                      |
+| **[`extractComments`](#extractcomments)** | `Boolean\|String\|RegExp\|Function<(node, comment) -> Boolean\|Object>\|Object` |                            `true`                            | Whether comments shall be extracted to a separate file.                   |
 
 ### `test`
 
