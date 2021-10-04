@@ -586,10 +586,10 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   const esbuild = require("esbuild");
 
-  // Copy `swc` options
+  // Copy `esbuild` options
   const esbuildOptions = buildEsbuildOptions(minimizerOptions);
 
-  // Let `swc` generate a SourceMap
+  // Let `esbuild` generate a SourceMap
   if (sourceMap) {
     esbuildOptions.sourcemap = true;
     esbuildOptions.sourcesContent = false;
