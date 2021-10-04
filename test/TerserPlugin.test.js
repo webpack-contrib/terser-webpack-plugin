@@ -554,9 +554,9 @@ describe("TerserPlugin", () => {
       TerserPlugin.buildError(
         errorWithLineAndCol,
         "test.js",
+        new SourceMapConsumer(rawSourceMap),
         // eslint-disable-next-line no-undefined
-        undefined,
-        new SourceMapConsumer(rawSourceMap)
+        undefined
       )
     ).toMatchSnapshot();
 
@@ -570,8 +570,8 @@ describe("TerserPlugin", () => {
       TerserPlugin.buildError(
         otherErrorWithLineAndCol,
         "test.js",
-        new RequestShortener("/example.com/www/js/"),
-        new SourceMapConsumer(rawSourceMap)
+        new SourceMapConsumer(rawSourceMap),
+        new RequestShortener("/example.com/www/js/")
       )
     ).toMatchSnapshot();
 
