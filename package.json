@@ -77,7 +77,7 @@
     "cross-env": "^7.0.3",
     "del": "^6.0.0",
     "del-cli": "^3.0.1",
-    "esbuild": "^0.12.23",
+    "esbuild": "^0.13.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",

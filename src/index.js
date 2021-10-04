@@ -206,7 +206,7 @@ class TerserPlugin {
    * @private
    * @param {Error | string} warning
    * @param {string} file
-   * @returns {WebpackError}
+   * @returns {Error}
    */
   static buildWarning(warning, file) {
     /**
@@ -219,7 +219,6 @@ class TerserPlugin {
     builtWarning.hideStack = true;
     builtWarning.file = file;
 
-    // @ts-ignore
     return builtWarning;
   }
 
@@ -227,15 +226,14 @@ class TerserPlugin {
    * @private
    * @param {any} error
    * @param {string} file
-   * @param {Compilation["requestShortener"]} [requestShortener]
    * @param {SourceMapConsumer} [sourceMap]
-   * @returns {WebpackError}
+   * @param {Compilation["requestShortener"]} [requestShortener]
+   * @returns {Error}
    */
-  static buildError(error, file, requestShortener, sourceMap) {
+  static buildError(error, file, sourceMap, requestShortener) {
     /**
      * @type {Error & { file: string }}
      */
-    // @ts-ignore
     let builtError;
 
     if (typeof error === "string") {
@@ -243,7 +241,6 @@ class TerserPlugin {
       builtError = new Error(`${file} from Terser plugin\n${error}`);
       builtError.file = file;
 
-      // @ts-ignore
       return builtError;
     }
 
@@ -270,7 +267,6 @@ class TerserPlugin {
         );
         builtError.file = file;
 
-        // @ts-ignore
         return builtError;
       }
 
@@ -284,7 +280,6 @@ class TerserPlugin {
       );
       builtError.file = file;
 
-      // @ts-ignore
       return builtError;
     }
 
@@ -297,7 +292,6 @@ class TerserPlugin {
       );
       builtError.file = file;
 
-      // @ts-ignore
       return builtError;
     }
 
@@ -305,7 +299,6 @@ class TerserPlugin {
     builtError = new Error(`${file} from Terser plugin\n${error.message}`);
     builtError.file = file;
 
-    // @ts-ignore
     return builtError;
   }
 
@@ -511,14 +504,14 @@ class TerserPlugin {
                   TerserPlugin.buildError(
                     error,
                     name,
-                    // eslint-disable-next-line no-undefined
-                    hasSourceMap ? compilation.requestShortener : undefined,
                     hasSourceMap
                       ? new SourceMapConsumer(
                           /** @type {RawSourceMap} */ (inputSourceMap)
                         )
                       : // eslint-disable-next-line no-undefined
-                        undefined
+                        undefined,
+                    // eslint-disable-next-line no-undefined
+                    hasSourceMap ? compilation.requestShortener : undefined
                   )
                 )
               );
@@ -560,14 +553,14 @@ class TerserPlugin {
                   TerserPlugin.buildError(
                     item,
                     name,
-                    // eslint-disable-next-line no-undefined
-                    hasSourceMap ? compilation.requestShortener : undefined,
                     hasSourceMap
                       ? new SourceMapConsumer(
                           /** @type {RawSourceMap} */ (inputSourceMap)
                         )
                       : // eslint-disable-next-line no-undefined
-                        undefined
+                        undefined,
+                    // eslint-disable-next-line no-undefined
+                    hasSourceMap ? compilation.requestShortener : undefined
                   )
               );
             }
@@ -677,27 +670,15 @@ class TerserPlugin {
           }
 
           if (output.warnings && output.warnings.length > 0) {
-            output.warnings.forEach(
-              /**
-               * @param {Error} warning
-               */
-              (warning) => {
-                compilation.warnings.push(
-                  /** @type {WebpackError} */ (warning)
-                );
-              }
-            );
+            for (const warning of output.warnings) {
+              compilation.warnings.push(/** @type {WebpackError} */ (warning));
+            }
           }
 
           if (output.errors && output.errors.length > 0) {
-            output.errors.forEach(
-              /**
-               * @param {Error & { filename?: string }} error
-               */
-              (error) => {
-                compilation.errors.push(/** @type {WebpackError} */ (error));
-              }
-            );
+            for (const error of output.errors) {
+              compilation.errors.push(/** @type {WebpackError} */ (error));
+            }
           }
 
           /** @type {Record<string, any>} */
