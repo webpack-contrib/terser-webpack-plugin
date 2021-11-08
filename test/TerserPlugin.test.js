@@ -408,9 +408,6 @@ describe("TerserPlugin", () => {
   it('should work with "asset" module type', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "fixtures/asset-resource.js"),
-      experiments: {
-        asset: true,
-      },
       module: {
         rules: [
           {
