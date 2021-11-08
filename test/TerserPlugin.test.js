@@ -5,7 +5,7 @@ import path from "path";
 import { SourceMapConsumer } from "source-map";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import RequestShortener from "webpack/lib/RequestShortener";
-import { javascript, SourceMapDevToolPlugin } from "webpack";
+import { javascript, SourceMapDevToolPlugin, util } from "webpack";
 
 import del from "del";
 
@@ -935,7 +935,7 @@ describe("TerserPlugin", () => {
     for (const assetName of Object.keys(assets)) {
       const [, webpackHash] = assetName.match(/^.+?\.(.+?)\..+$/);
       const { hashDigestLength, hashDigest, hashFunction } = output;
-      const cryptoHash = crypto
+      const cryptoHash = util
         .createHash(hashFunction)
         .update(readAsset(assetName, compiler, stats))
         .digest(hashDigest)
