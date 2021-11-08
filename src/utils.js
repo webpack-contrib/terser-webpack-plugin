@@ -668,9 +668,42 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
     code: result.code,
     // eslint-disable-next-line no-undefined
     map: result.map ? JSON.parse(result.map) : undefined,
-    warnings: result.warnings
-      ? result.warnings.map((item) => item.toString())
-      : [],
+    warnings:
+      result.warnings.length > 0
+        ? result.warnings.map((item) => {
+            return {
+              name: "Warning",
+              source: item.location && item.location.file,
+              line: item.location && item.location.line,
+              column: item.location && item.location.column,
+              plugin: item.pluginName,
+              message: `${item.text}${
+                item.detail ? `\nDetails:\n${item.detail}` : ""
+              }${
+                item.notes.length > 0
+                  ? `\n\nNotes:\n${item.notes
+                      .map(
+                        (note) =>
+                          `${
+                            note.location
+                              ? `[${note.location.file}:${note.location.line}:${note.location.column}] `
+                              : ""
+                          }${note.text}${
+                            note.location
+                              ? `\nSuggestion: ${note.location.suggestion}`
+                              : ""
+                          }${
+                            note.location
+                              ? `\nLine text:\n${note.location.lineText}\n`
+                              : ""
+                          }`
+                      )
+                      .join("\n")}`
+                  : ""
+              }`,
+            };
+          })
+        : [],
   };
 }
 
