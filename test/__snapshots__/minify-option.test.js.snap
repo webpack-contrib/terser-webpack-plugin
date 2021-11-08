@@ -1,16 +1,489 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output warnings: assets 1`] = `
+exports[`minify option should snapshot with extracting comments: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/home/evilebottnawi/IdeaProjects/terser-webpack-plugin/test/helpers/dist/main.js'",
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+(()=>{var e={293:e=>{e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}},r={};(function t(n){var o=r[n];if(void 0!==o)return o.exports;var a=r[n]={exports:{}};return e[n](a,a.exports,t),a.exports})(293)})();",
+  "main.js.LICENSE.txt": "/* Foo */
+",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output warnings: errors 1`] = `
+exports[`minify option should snapshot with extracting comments: errors 1`] = `Array []`;
+
+exports[`minify option should snapshot with extracting comments: warnings 1`] = `Array []`;
+
+exports[`minify option should throw an error when an error when the "parallel" option is "false": errors 1`] = `
 Array [
   "Error: main.js from Terser plugin
+Error",
+]
+`;
+
+exports[`minify option should throw an error when an error when the "parallel" option is "false": warnings 1`] = `Array []`;
+
+exports[`minify option should throw an error when an error when the "parallel" option is "true": errors 1`] = `
+Array [
+  "Error: main.js from Terser plugin
+Error",
+]
+`;
+
+exports[`minify option should throw an error when an error when the "parallel" option is "true": warnings 1`] = `Array []`;
+
+exports[`minify option should throw an error when an error: errors 1`] = `
+Array [
+  "Error: main.js from Terser plugin
+Error",
+]
+`;
+
+exports[`minify option should throw an error when an error: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: assets 1`] = `
+Object {
+  "main.js": "var r={};(()=>{r.d=(_,e)=>{for(var t in e)r.o(e,t)&&!r.o(_,t)&&Object.defineProperty(_,t,{enumerable:!0,get:e[t]})}})(),(()=>{r.o=(_,e)=>Object.prototype.hasOwnProperty.call(_,e)})();var o={};r.d(o,{Z:()=>p});const c=2+2;function a(){const _=2+2;console.log(_+1+2+c)}a();const p=a;var s=o.Z;export{s as default};
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: assets 1`] = `
+Object {
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{/* @preserve*/const a=null;module.exports=function(){const b=2+2;console.log(b+1+2)}}},__webpack_module_cache__={};function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(cachedModule!==void 0)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}var __webpack_exports__=__webpack_require__(791)})();
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: assets 1`] = `
+Object {
+  "main.js": "(()=>{var a={791:e=>{/* @preserve*/const o=null;e.exports=function(){const n=2+2;console.log(n+1+2)}}},r={};function c(e){var o=r[e];if(o!==void 0)return o.exports;var _=r[e]={exports:{}};return a[e](_,_.exports,c),_.exports}var t=c(791)})();
+
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"qBACA,cAEA,KAAM,GAAI,KAEV,EAAO,QAAU,UAAe,CAC9B,KAAM,GAAI,EAAI,EACd,QAAQ,IAAI,EAAI,EAAI,MCNlB,EAA2B,GAG/B,WAA6B,EAAU,CAEtC,GAAI,GAAe,EAAyB,GAC5C,GAAI,IAAiB,OACpB,MAAO,GAAa,QAGrB,GAAI,GAAS,EAAyB,GAAY,CAGjD,QAAS,IAIV,SAAoB,GAAU,EAAQ,EAAO,QAAS,GAG/C,EAAO,QClBf,GAAI,GAAsB,EAAoB\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: assets 1`] = `
+Object {
+  "627.627.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{/*! Legal Comment *//** @license Copyright 2112 Moon. **/e.exports=Math.random()}}]);
+",
+  "main.js": "(()=>{var b={900:(e,o,t)=>{t.e(627).then(t.t.bind(t,627,23));/*! Legal Comment *//**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ *//**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ *//*! Legal Foo */e.exports=Math.random()}},g={};function r(e){var o=g[e];if(o!==void 0)return o.exports;var t=g[e]={exports:{}};return b[e](t,t.exports,r),t.exports}r.m=b,(()=>{var e=Object.getPrototypeOf?t=>Object.getPrototypeOf(t):t=>t.__proto__,o;r.t=function(t,a){if(a&1&&(t=this(t)),a&8||typeof t==\\"object\\"&&t&&(a&4&&t.__esModule||a&16&&typeof t.then==\\"function\\"))return t;var c=Object.create(null);r.r(c);var i={};o=o||[null,e({}),e([]),e(e)];for(var n=a&2&&t;typeof n==\\"object\\"&&!~o.indexOf(n);n=e(n))Object.getOwnPropertyNames(n).forEach(u=>i[u]=()=>t[u]);return i.default=()=>t,r.d(c,i),c}})(),(()=>{r.d=(e,o)=>{for(var t in o)r.o(o,t)&&!r.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:o[t]})}})(),(()=>{r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((o,t)=>(r.f[t](e,o),o),[]))})(),(()=>{r.u=e=>\\"\\"+e+\\".\\"+e+\\".js\\"})(),(()=>{r.g=function(){if(typeof globalThis==\\"object\\")return globalThis;try{return this||new Function(\\"return this\\")()}catch{if(typeof window==\\"object\\")return window}}()})(),(()=>{r.o=(e,o)=>Object.prototype.hasOwnProperty.call(e,o)})(),(()=>{var e={},o=\\"terser-webpack-plugin:\\";r.l=(t,a,c,i)=>{if(e[t]){e[t].push(a);return}var n,u;if(c!==void 0)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var f=l[p];if(f.getAttribute(\\"src\\")==t||f.getAttribute(\\"data-webpack\\")==o+c){n=f;break}}n||(u=!0,n=document.createElement(\\"script\\"),n.charset=\\"utf-8\\",n.timeout=120,r.nc&&n.setAttribute(\\"nonce\\",r.nc),n.setAttribute(\\"data-webpack\\",o+c),n.src=t),e[t]=[a];var s=(h,m)=>{n.onerror=n.onload=null,clearTimeout(d);var _=e[t];if(delete e[t],n.parentNode&&n.parentNode.removeChild(n),_&&_.forEach(w=>w(m)),h)return h(m)},d=setTimeout(s.bind(null,void 0,{type:\\"timeout\\",target:n}),12e4);n.onerror=s.bind(null,n.onerror),n.onload=s.bind(null,n.onload),u&&document.head.appendChild(n)}})(),(()=>{r.r=e=>{typeof Symbol!=\\"undefined\\"&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})}})(),(()=>{var e;r.g.importScripts&&(e=r.g.location+\\"\\");var o=r.g.document;if(!e&&o&&(o.currentScript&&(e=o.currentScript.src),!e)){var t=o.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),r.p=e})(),(()=>{var e={179:0};r.f.j=(a,c)=>{var i=r.o(e,a)?e[a]:void 0;if(i!==0)if(i)c.push(i[2]);else{var n=new Promise((f,s)=>i=e[a]=[f,s]);c.push(i[2]=n);var u=r.p+r.u(a),l=new Error,p=f=>{if(r.o(e,a)&&(i=e[a],i!==0&&(e[a]=void 0),i)){var s=f&&(f.type===\\"load\\"?\\"missing\\":f.type),d=f&&f.target&&f.target.src;l.message=\\"Loading chunk \\"+a+\` failed.
+(\`+s+\\": \\"+d+\\")\\",l.name=\\"ChunkLoadError\\",l.type=s,l.request=d,i[1](l)}};r.l(u,p,\\"chunk-\\"+a,a)}};var o=(a,c)=>{var[i,n,u]=c,l,p,f=0;if(i.some(d=>e[d]!==0)){for(l in n)r.o(n,l)&&(r.m[l]=n[l]);if(u)var s=u(r)}for(a&&a(c);f<i.length;f++)p=i[f],r.o(e,p)&&e[p]&&e[p][0](),e[i[f]]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(o.bind(null,0)),t.push=o.bind(null,t.push.bind(t))})();var v=r(900)})();
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output errors: errors 1`] = `
+Array [
+  "Error: broken.js from Terser plugin
 Transform failed with 1 error:",
 ]
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output warnings: warnings 1`] = `Array []`;
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output errors: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: assets 1`] = `
+Object {
+  "main.js": "(()=>{var a={791:e=>{/* @preserve*/const o=null;e.exports=function(){const n=2+2;console.log(n+1+2)}}},r={};function c(e){var o=r[e];if(o!==void 0)return o.exports;var _=r[e]={exports:{}};return a[e](_,_.exports,c),_.exports}var t=c(791)})();
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: assets 1`] = `
+Object {
+  "main.js": "var a={};a.d=(b,c)=>{for(var d in c)a.o(c,d)&&!a.o(b,d)&&Object.defineProperty(b,d,{enumerable:!0,get:c[d]})},a.o=(a,b)=>Object.prototype.hasOwnProperty.call(a,b);var b={};function c(){console.log(11)}a.d(b,{Z:()=>d}),c();const d=c;var e=b.Z;export{e as default}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: assets 1`] = `
+Object {
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(void 0!==cachedModule)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}__webpack_require__(791)})()",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: assets 1`] = `
+Object {
+  "main.js": "(()=>{var a={791:a=>{a.exports=function(){console.log(7)}}},b={};function c(d){var e=b[d];if(void 0!==e)return e.exports;var f=b[d]={exports:{}};return a[d](f,f.exports,c),f.exports}c(791)})()
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"sBAKM,CAACA,OAAO,CAAG,QAAQ,EAAO,CAAC,OAExB,CAACC,GAAG,CAACC,CAAS,CACvB,CAAC,C,ECPGC,CAAwB,CAAG,CAAC,CAAC,UAGxBC,CAAmB,CAACC,CAAQ,CAAE,CAAC,GAEpC,CAACC,CAAY,CAAGH,CAAwB,CAACE,CAAQ,EACpD,EAAE,CAAmBE,IAAI,CAAJA,CAAS,GAA1BD,CAAY,CACf,MAAM,CAACA,CAAY,CAACN,OAAO,CAG5B,GAAG,CAACQ,CAAM,CAAGL,CAAwB,CAACE,CAAQ,EAAI,CAAC,OAG3C,CAAE,CAAC,CAAC,CACX,CAMD,MAAM,CAHNI,CAAmB,CAACJ,CAAQ,EAAEG,CAAM,CAAEA,CAAM,CAACR,OAAO,CAAEI,CAAmB,EAGlEI,CAAM,CAACR,OAAO,CACrB,CCnB4C,CAAC,GAAG,C\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"exports\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"module\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and output errors: errors 1`] = `
+Array [
+  "Error: broken.js from Terser plugin
+error: Unexpected eof",
+]
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and output errors: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: assets 1`] = `
+Object {
+  "main.js": "(()=>{var a={791:a=>{a.exports=function(){console.log(7)}}},b={};function c(d){var e=b[d];if(void 0!==e)return e.exports;var f=b[d]={exports:{}};return a[d](f,f.exports,c),f.exports}c(791)})()",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: assets 1`] = `
+Object {
+  "main.js": "var e={d:(o,r)=>{for(var t in r)e.o(r,t)&&!e.o(o,t)&&Object.defineProperty(o,t,{enumerable:!0,get:r[t]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o)},o={};e.d(o,{Z:()=>t});function r(){console.log(11)}r();const t=r;var a=o.Z;export{a as default};",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: assets 1`] = `
+Object {
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};(function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(void 0!==cachedModule)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports})(791)})();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and extract comments by default: assets 1`] = `
+Object {
+  "627.627.js": "/*! For license information please see 627.627.js.LICENSE.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{e.exports=Math.random()}}]);",
+  "627.627.js.LICENSE.txt": "/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+",
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+(()=>{var e,t,r,o,n={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,23)),e.exports=Math.random()}},i={};function a(e){var t=i[e];if(void 0!==t)return t.exports;var r=i[e]={exports:{}};return n[e](r,r.exports,a),r.exports}a.m=n,t=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,a.t=function(r,o){if(1&o&&(r=this(r)),8&o)return r;if(\\"object\\"==typeof r&&r){if(4&o&&r.__esModule)return r;if(16&o&&\\"function\\"==typeof r.then)return r}var n=Object.create(null);a.r(n);var i={};e=e||[null,t({}),t([]),t(t)];for(var u=2&o&&r;\\"object\\"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((e=>i[e]=()=>r[e]));return i.default=()=>r,a.d(n,i),n},a.d=(e,t)=>{for(var r in t)a.o(t,r)&&!a.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},a.f={},a.e=e=>Promise.all(Object.keys(a.f).reduce(((t,r)=>(a.f[r](e,t),t)),[])),a.u=e=>e+\\".\\"+e+\\".js\\",a.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),a.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r={},o=\\"terser-webpack-plugin:\\",a.l=(e,t,n,i)=>{if(r[e])r[e].push(t);else{var u,c;if(void 0!==n)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var s=l[p];if(s.getAttribute(\\"src\\")==e||s.getAttribute(\\"data-webpack\\")==o+n){u=s;break}}u||(c=!0,(u=document.createElement(\\"script\\")).charset=\\"utf-8\\",u.timeout=120,a.nc&&u.setAttribute(\\"nonce\\",a.nc),u.setAttribute(\\"data-webpack\\",o+n),u.src=e),r[e]=[t];var f=(t,o)=>{u.onerror=u.onload=null,clearTimeout(d);var n=r[e];if(delete r[e],u.parentNode&&u.parentNode.removeChild(u),n&&n.forEach((e=>e(o))),t)return t(o)},d=setTimeout(f.bind(null,void 0,{type:\\"timeout\\",target:u}),12e4);u.onerror=f.bind(null,u.onerror),u.onload=f.bind(null,u.onload),c&&document.head.appendChild(u)}},a.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;a.g.importScripts&&(e=a.g.location+\\"\\");var t=a.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var r=t.getElementsByTagName(\\"script\\");r.length&&(e=r[r.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),a.p=e})(),(()=>{var e={179:0};a.f.j=(t,r)=>{var o=a.o(e,t)?e[t]:void 0;if(0!==o)if(o)r.push(o[2]);else{var n=new Promise(((r,n)=>o=e[t]=[r,n]));r.push(o[2]=n);var i=a.p+a.u(t),u=new Error;a.l(i,(r=>{if(a.o(e,t)&&(0!==(o=e[t])&&(e[t]=void 0),o)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=n,u.request=i,o[1](u)}}),\\"chunk-\\"+t,t)}};var t=(t,r)=>{var o,n,[i,u,c]=r,l=0;if(i.some((t=>0!==e[t]))){for(o in u)a.o(u,o)&&(a.m[o]=u[o]);if(c)c(a)}for(t&&t(r);l<i.length;l++)n=i[l],a.o(e,n)&&e[n]&&e[n][0](),e[i[l]]=0},r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})();a(900)})();",
+  "main.js.LICENSE.txt": "/*! Legal Comment */
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and extract comments by default: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and extract comments by default: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and generate source maps: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and generate source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and generate source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and keep legal comments when extract comments is disabled: assets 1`] = `
+Object {
+  "627.627.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{
+/*! Legal Comment */
+/** @license Copyright 2112 Moon. **/
+e.exports=Math.random()}}]);",
+  "main.js": "(()=>{var e,t,r,o,n={900:(e,t,r)=>{r.e(627).then(r.t.bind(r,627,23)),
+/*! Legal Comment */
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+/*! Legal Foo */
+// @lic
+e.exports=Math.random()}},i={};function a(e){var t=i[e];if(void 0!==t)return t.exports;var r=i[e]={exports:{}};return n[e](r,r.exports,a),r.exports}a.m=n,t=Object.getPrototypeOf?e=>Object.getPrototypeOf(e):e=>e.__proto__,a.t=function(r,o){if(1&o&&(r=this(r)),8&o)return r;if(\\"object\\"==typeof r&&r){if(4&o&&r.__esModule)return r;if(16&o&&\\"function\\"==typeof r.then)return r}var n=Object.create(null);a.r(n);var i={};e=e||[null,t({}),t([]),t(t)];for(var u=2&o&&r;\\"object\\"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((e=>i[e]=()=>r[e]));return i.default=()=>r,a.d(n,i),n},a.d=(e,t)=>{for(var r in t)a.o(t,r)&&!a.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},a.f={},a.e=e=>Promise.all(Object.keys(a.f).reduce(((t,r)=>(a.f[r](e,t),t)),[])),a.u=e=>e+\\".\\"+e+\\".js\\",a.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),a.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r={},o=\\"terser-webpack-plugin:\\",a.l=(e,t,n,i)=>{if(r[e])r[e].push(t);else{var u,c;if(void 0!==n)for(var l=document.getElementsByTagName(\\"script\\"),p=0;p<l.length;p++){var s=l[p];if(s.getAttribute(\\"src\\")==e||s.getAttribute(\\"data-webpack\\")==o+n){u=s;break}}u||(c=!0,(u=document.createElement(\\"script\\")).charset=\\"utf-8\\",u.timeout=120,a.nc&&u.setAttribute(\\"nonce\\",a.nc),u.setAttribute(\\"data-webpack\\",o+n),u.src=e),r[e]=[t];var f=(t,o)=>{u.onerror=u.onload=null,clearTimeout(d);var n=r[e];if(delete r[e],u.parentNode&&u.parentNode.removeChild(u),n&&n.forEach((e=>e(o))),t)return t(o)},d=setTimeout(f.bind(null,void 0,{type:\\"timeout\\",target:u}),12e4);u.onerror=f.bind(null,u.onerror),u.onload=f.bind(null,u.onload),c&&document.head.appendChild(u)}},a.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;a.g.importScripts&&(e=a.g.location+\\"\\");var t=a.g.document;if(!e&&t&&(t.currentScript&&(e=t.currentScript.src),!e)){var r=t.getElementsByTagName(\\"script\\");r.length&&(e=r[r.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),a.p=e})(),(()=>{var e={179:0};a.f.j=(t,r)=>{var o=a.o(e,t)?e[t]:void 0;if(0!==o)if(o)r.push(o[2]);else{var n=new Promise(((r,n)=>o=e[t]=[r,n]));r.push(o[2]=n);var i=a.p+a.u(t),u=new Error;a.l(i,(r=>{if(a.o(e,t)&&(0!==(o=e[t])&&(e[t]=void 0),o)){var n=r&&(\\"load\\"===r.type?\\"missing\\":r.type),i=r&&r.target&&r.target.src;u.message=\\"Loading chunk \\"+t+\\" failed.\\\\n(\\"+n+\\": \\"+i+\\")\\",u.name=\\"ChunkLoadError\\",u.type=n,u.request=i,o[1](u)}}),\\"chunk-\\"+t,t)}};var t=(t,r)=>{var o,n,[i,u,c]=r,l=0;if(i.some((t=>0!==e[t]))){for(o in u)a.o(u,o)&&(a.m[o]=u[o]);if(c)c(a)}for(t&&t(r);l<i.length;l++)n=i[l],a.o(e,n)&&e[n]&&e[n][0](),e[i[l]]=0},r=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})();a(900)})();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and keep legal comments when extract comments is disabled: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and keep legal comments when extract comments is disabled: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and output errors: errors 1`] = `
+Array [
+  "Error: broken.js from Terser plugin
+Unterminated template [broken.js:1,0]",
+]
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and output errors: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\`: assets 1`] = `
+Object {
+  "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\`: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\`: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and allows to set \`uglify-js\` options: assets 1`] = `
+Object {
+  "main.js": "!function(){var __webpack_modules__={791:function(module){module.exports=function(){console.log(7)}}},__webpack_module_cache__={};(function __webpack_require__(moduleId){var module=__webpack_module_cache__[moduleId];if(void 0!==module)return module.exports;module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports})(791)}();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and allows to set \`uglify-js\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and allows to set \`uglify-js\` options: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and extract comments by default: assets 1`] = `
+Object {
+  "627.627.js": "/*! For license information please see 627.627.js.LICENSE.txt */
+(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:function(e){e.exports=Math.random()}}]);",
+  "627.627.js.LICENSE.txt": "/*! Legal Comment */
+
+/** @license Copyright 2112 Moon. **/
+",
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+!function(){var i,u,l,p,r={900:function(e,t,r){r.e(627).then(r.t.bind(r,627,23)),e.exports=Math.random()}},n={};function s(e){var t=n[e];if(void 0!==t)return t.exports;t=n[e]={exports:{}};return r[e](t,t.exports,s),t.exports}s.m=r,u=Object.getPrototypeOf?function(e){return Object.getPrototypeOf(e)}:function(e){return e.__proto__},s.t=function(t,e){if(1&e&&(t=this(t)),8&e)return t;if(\\"object\\"==typeof t&&t){if(4&e&&t.__esModule)return t;if(16&e&&\\"function\\"==typeof t.then)return t}var r=Object.create(null);s.r(r);var n={};i=i||[null,u({}),u([]),u(u)];for(var o=2&e&&t;\\"object\\"==typeof o&&!~i.indexOf(o);o=u(o))Object.getOwnPropertyNames(o).forEach(function(e){n[e]=function(){return t[e]}});return n.default=function(){return t},s.d(r,n),r},s.d=function(e,t){for(var r in t)s.o(t,r)&&!s.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},s.f={},s.e=function(r){return Promise.all(Object.keys(s.f).reduce(function(e,t){return s.f[t](r,e),e},[]))},s.u=function(e){return e+\\".\\"+e+\\".js\\"},s.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),s.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},l={},p=\\"terser-webpack-plugin:\\",s.l=function(n,e,t,r){if(l[n])l[n].push(e);else{var o,i;if(void 0!==t)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var a=u[c];if(a.getAttribute(\\"src\\")==n||a.getAttribute(\\"data-webpack\\")==p+t){o=a;break}}o||(i=!0,(o=document.createElement(\\"script\\")).charset=\\"utf-8\\",o.timeout=120,s.nc&&o.setAttribute(\\"nonce\\",s.nc),o.setAttribute(\\"data-webpack\\",p+t),o.src=n),l[n]=[e];var e=function(e,t){o.onerror=o.onload=null,clearTimeout(f);var r=l[n];if(delete l[n],o.parentNode&&o.parentNode.removeChild(o),r&&r.forEach(function(e){return e(t)}),e)return e(t)},f=setTimeout(e.bind(null,void 0,{type:\\"timeout\\",target:o}),12e4);o.onerror=e.bind(null,o.onerror),o.onload=e.bind(null,o.onload),i&&document.head.appendChild(o)}},s.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},function(){var e;s.g.importScripts&&(e=s.g.location+\\"\\");var t=s.g.document;if(!e&&t&&((e=t.currentScript?t.currentScript.src:e)||(t=t.getElementsByTagName(\\"script\\")).length&&(e=t[t.length-1].src)),!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),s.p=e}(),function(){var a={179:0};s.f.j=function(r,e){var t,n,o=s.o(a,r)?a[r]:void 0;0!==o&&(o?e.push(o[2]):(t=new Promise(function(e,t){o=a[r]=[e,t]}),e.push(o[2]=t),t=s.p+s.u(r),n=new Error,s.l(t,function(e){var t;s.o(a,r)&&(0!==(o=a[r])&&(a[r]=void 0),o&&(t=e&&(\\"load\\"===e.type?\\"missing\\":e.type),e=e&&e.target&&e.target.src,n.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+t+\\": \\"+e+\\")\\",n.name=\\"ChunkLoadError\\",n.type=t,n.request=e,o[1](n)))},\\"chunk-\\"+r,r)))};function e(e,t){var r,n,o=t[0],i=t[1],u=t[2],c=0;if(o.some(function(e){return 0!==a[e]})){for(r in i)s.o(i,r)&&(s.m[r]=i[r]);u&&u(s)}for(e&&e(t);c<o.length;c++)n=o[c],s.o(a,n)&&a[n]&&a[n][0](),a[o[c]]=0}var t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(e.bind(null,0)),t.push=e.bind(null,t.push.bind(t))}();s(900)}();",
+  "main.js.LICENSE.txt": "/*! Legal Comment */
+
+/*! Legal Foo */
+
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+
+// @lic
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and extract comments by default: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and extract comments by default: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and generate source maps: assets 1`] = `
+Object {
+  "main.js": "!function(){var t={791:function(o){o.exports=function(){console.log(7)}}},e={};(function o(n){var r=e[n];if(void 0!==r)return r.exports;r=e[n]={exports:{}};return t[n](r,r.exports,o),r.exports})(791)}();
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mCAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGjBD,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,K\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and generate source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and generate source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and keep legal comments when extract comments is disabled: assets 1`] = `
+Object {
+  "627.627.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:function(e){
+/*! Legal Comment */
+/** @license Copyright 2112 Moon. **/
+e.exports=Math.random()}}]);",
+  "main.js": "!function(){var i,u,l,p,r={900:function(e,t,r){r.e(627).then(r.t.bind(r,627,23)),
+/*! Legal Comment */
+/**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ */
+/**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ */
+/*! Legal Foo */
+// @lic
+e.exports=Math.random()}},n={};function s(e){var t=n[e];if(void 0!==t)return t.exports;t=n[e]={exports:{}};return r[e](t,t.exports,s),t.exports}s.m=r,u=Object.getPrototypeOf?function(e){return Object.getPrototypeOf(e)}:function(e){return e.__proto__},s.t=function(t,e){if(1&e&&(t=this(t)),8&e)return t;if(\\"object\\"==typeof t&&t){if(4&e&&t.__esModule)return t;if(16&e&&\\"function\\"==typeof t.then)return t}var r=Object.create(null);s.r(r);var n={};i=i||[null,u({}),u([]),u(u)];for(var o=2&e&&t;\\"object\\"==typeof o&&!~i.indexOf(o);o=u(o))Object.getOwnPropertyNames(o).forEach(function(e){n[e]=function(){return t[e]}});return n.default=function(){return t},s.d(r,n),r},s.d=function(e,t){for(var r in t)s.o(t,r)&&!s.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},s.f={},s.e=function(r){return Promise.all(Object.keys(s.f).reduce(function(e,t){return s.f[t](r,e),e},[]))},s.u=function(e){return e+\\".\\"+e+\\".js\\"},s.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),s.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},l={},p=\\"terser-webpack-plugin:\\",s.l=function(n,e,t,r){if(l[n])l[n].push(e);else{var o,i;if(void 0!==t)for(var u=document.getElementsByTagName(\\"script\\"),c=0;c<u.length;c++){var a=u[c];if(a.getAttribute(\\"src\\")==n||a.getAttribute(\\"data-webpack\\")==p+t){o=a;break}}o||(i=!0,(o=document.createElement(\\"script\\")).charset=\\"utf-8\\",o.timeout=120,s.nc&&o.setAttribute(\\"nonce\\",s.nc),o.setAttribute(\\"data-webpack\\",p+t),o.src=n),l[n]=[e];var e=function(e,t){o.onerror=o.onload=null,clearTimeout(f);var r=l[n];if(delete l[n],o.parentNode&&o.parentNode.removeChild(o),r&&r.forEach(function(e){return e(t)}),e)return e(t)},f=setTimeout(e.bind(null,void 0,{type:\\"timeout\\",target:o}),12e4);o.onerror=e.bind(null,o.onerror),o.onload=e.bind(null,o.onload),i&&document.head.appendChild(o)}},s.r=function(e){\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},function(){var e;s.g.importScripts&&(e=s.g.location+\\"\\");var t=s.g.document;if(!e&&t&&((e=t.currentScript?t.currentScript.src:e)||(t=t.getElementsByTagName(\\"script\\")).length&&(e=t[t.length-1].src)),!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),s.p=e}(),function(){var a={179:0};s.f.j=function(r,e){var t,n,o=s.o(a,r)?a[r]:void 0;0!==o&&(o?e.push(o[2]):(t=new Promise(function(e,t){o=a[r]=[e,t]}),e.push(o[2]=t),t=s.p+s.u(r),n=new Error,s.l(t,function(e){var t;s.o(a,r)&&(0!==(o=a[r])&&(a[r]=void 0),o&&(t=e&&(\\"load\\"===e.type?\\"missing\\":e.type),e=e&&e.target&&e.target.src,n.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+t+\\": \\"+e+\\")\\",n.name=\\"ChunkLoadError\\",n.type=t,n.request=e,o[1](n)))},\\"chunk-\\"+r,r)))};function e(e,t){var r,n,o=t[0],i=t[1],u=t[2],c=0;if(o.some(function(e){return 0!==a[e]})){for(r in i)s.o(i,r)&&(s.m[r]=i[r]);u&&u(s)}for(e&&e(t);c<o.length;c++)n=o[c],s.o(a,n)&&a[n]&&a[n][0](),a[o[c]]=0}var t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(e.bind(null,0)),t.push=e.bind(null,t.push.bind(t))}();s(900)}();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and keep legal comments when extract comments is disabled: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and keep legal comments when extract comments is disabled: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output errors: errors 1`] = `
+Array [
+  "Error: broken.js from Terser plugin
+Minimizer doesn't return result",
+]
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output errors: warnings 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output warnings: assets 1`] = `
+Object {
+  "main.js": "(()=>{var e={791:o=>{o.exports=function(){console.log(7)}}},n={};(function o(r){var t=n[r];if(void 0!==t)return t.exports;t=n[r]={exports:{}};return e[r](t,t.exports,o),t.exports})(791)})();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output warnings: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\` and output warnings: warnings 1`] = `
+Array [
+  "Warning: WARN: Condition left of && always false [main.js:10,10]",
+  "Warning: WARN: Dropping unused variable f [main.js:10,6]",
+  "Warning: WARN: Side effects in initialization of unused variable d [main.js:51,14]",
+]
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\`: assets 1`] = `
+Object {
+  "main.js": "!function(){var t={791:function(o){o.exports=function(){console.log(7)}}},e={};(function o(n){var r=e[n];if(void 0!==r)return r.exports;r=e[n]={exports:{}};return t[n](r,r.exports,o),r.exports})(791)}();",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\`: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`uglifyJsMinify\`: warnings 1`] = `Array []`;
+
+exports[`minify option should work when the "parallel" option is "false": assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",
+}
+`;
+
+exports[`minify option should work when the "parallel" option is "false": errors 1`] = `Array []`;
+
+exports[`minify option should work when the "parallel" option is "false": warnings 1`] = `Array []`;
+
+exports[`minify option should work when the "parallel" option is "true": assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",
+}
+`;
+
+exports[`minify option should work when the "parallel" option is "true": errors 1`] = `Array []`;
+
+exports[`minify option should work when the "parallel" option is "true": warnings 1`] = `Array []`;
+
+exports[`minify option should work with "terser" minimizer: assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",
+}
+`;
+
+exports[`minify option should work with "terser" minimizer: errors 1`] = `Array []`;
+
+exports[`minify option should work with "terser" minimizer: warnings 1`] = `Array []`;
+
+exports[`minify option should work with "uglify-js" minimizer: assets 1`] = `
+Object {
+  "main.js": "!function(){var r={293:function(e){e.exports=function(){var baz=document.getElementById(\\"root\\").innerHTML;document.getElementById(\\"demo\\").innerHTML=\\"Paragraph changed.\\"+baz}}},o={};(function e(n){var t=o[n];if(void 0!==t)return t.exports;t=o[n]={exports:{}};return r[n](t,t.exports,e),t.exports})(293)}();",
+}
+`;
+
+exports[`minify option should work with "uglify-js" minimizer: errors 1`] = `Array []`;
+
+exports[`minify option should work with "uglify-js" minimizer: warnings 1`] = `Array []`;
+
+exports[`minify option should work with custom minimize function and support warnings and errors: errors 1`] = `
+Array [
+  "Error: main.js from Terser plugin
+Error 1",
+  "Error: main.js from Terser plugin
+Error 2",
+  "Error: main.js from Terser plugin
+Error 3",
+  "Error: main.js from Terser plugin
+Error 4",
+  "Error: main.js from Terser plugin
+Error 5",
+  "Error: main.js from Terser plugin
+Error 6 [main.js:1,1]",
+]
+`;
+
+exports[`minify option should work with custom minimize function and support warnings and errors: warnings 1`] = `
+Array [
+  "Warning: Error: Warning 1",
+  "Warning: Warnings 2",
+]
+`;
+
+exports[`minify option should work with source maps: assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mBAcAA,QAAAC,IAAA\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/minify/es6.js\\"],\\"sourcesContent\\":[\\"class Point {\\\\n  constructor(x, y) {\\\\n    this.x = x;\\\\n    this.y = y;\\\\n  }\\\\n\\\\n  static distance(a, b) {\\\\n    const dx = a.x - b.x;\\\\n    const dy = a.y - b.y;\\\\n\\\\n    return Math.hypot(dx, dy);\\\\n  }\\\\n}\\\\n\\\\nconsole.log('HERE');\\\\n\\\\nexport default Point;\\\\n\\"],\\"names\\":[\\"console\\",\\"log\\"],\\"sourceRoot\\":\\"\\"}",
+}
+`;
+
+exports[`minify option should work with source maps: errors 1`] = `Array []`;
+
+exports[`minify option should work with source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work: assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",
+}
+`;
+
+exports[`minify option should work: errors 1`] = `Array []`;
+
+exports[`minify option should work: warnings 1`] = `Array []`;
