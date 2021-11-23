@@ -147,7 +147,7 @@ import { minify as minimize } from "./minify";
  */
 
 /**
- * @template T
+ * @template [T=TerserOptions]
  */
 class TerserPlugin {
   /**
