@@ -209,9 +209,9 @@ export type DefinedDefaultMinimizerAndOptions<T> =
  * @typedef {InferDefaultType<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefaultType<T>> | undefined, terserOptions?: InferDefaultType<T> | undefined } : { minify: MinimizerImplementation<InferDefaultType<T>>, terserOptions?: InferDefaultType<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 /**
- * @template T
+ * @template [T=TerserOptions]
  */
-declare class TerserPlugin<T = TerserOptions> {
+declare class TerserPlugin<T = import("terser").MinifyOptions> {
   /**
    * @private
    * @param {any} input
