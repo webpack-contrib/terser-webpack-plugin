@@ -8,10 +8,7 @@
 /** @typedef {import("./index.js").Input} Input */
 /** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
 /** @typedef {import("./index.js").PredefinedOptions} PredefinedOptions */
-
-/**
- * @typedef {{ [key: string]: any }} CustomOptions
- */
+/** @typedef {import("./index.js").CustomOptions} CustomOptions */
 
 /**
  * @typedef {Array<string>} ExtractedComments
