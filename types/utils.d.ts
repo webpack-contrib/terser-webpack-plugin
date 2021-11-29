@@ -12,9 +12,7 @@ export type ExtractCommentsCondition =
 export type Input = import("./index.js").Input;
 export type MinimizedResult = import("./index.js").MinimizedResult;
 export type PredefinedOptions = import("./index.js").PredefinedOptions;
-export type CustomOptions = {
-  [key: string]: any;
-};
+export type CustomOptions = import("./index.js").CustomOptions;
 export type ExtractedComments = Array<string>;
 /**
  * @template T

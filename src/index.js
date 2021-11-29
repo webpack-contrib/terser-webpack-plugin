@@ -24,7 +24,6 @@ import { minify as minimize } from "./minify";
 /** @typedef {import("webpack").Asset} Asset */
 /** @typedef {import("./utils.js").TerserECMA} TerserECMA */
 /** @typedef {import("./utils.js").TerserOptions} TerserOptions */
-/** @typedef {import("./utils.js").CustomOptions} CustomOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("source-map").RawSourceMap} RawSourceMap */
 
@@ -63,10 +62,6 @@ import { minify as minimize } from "./minify";
  */
 
 /**
- * @typedef {{ [file: string]: string }} Input
- */
-
-/**
  * @typedef {Object} MinimizedResult
  * @property {string} code
  * @property {RawSourceMap} [map]
@@ -76,31 +71,7 @@ import { minify as minimize } from "./minify";
  */
 
 /**
- * @typedef {Object} PredefinedOptions
- * @property {boolean} [module]
- * @property {any} [ecma]
- */
-
-/**
- * @template T
- * @typedef {Object} MinimizerImplementationAndOptions
- * @property {MinimizerImplementation<T>} implementation
- * @property {PredefinedOptions & T} options
- */
-
-/**
- * @template T
- * @typedef {Object} InternalOptions
- * @property {string} name
- * @property {string} input
- * @property {RawSourceMap | undefined} inputSourceMap
- * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {MinimizerImplementationAndOptions<T>} minimizer
- */
-
-/**
- * @template T
- * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinimizerWorker
+ * @typedef {{ [file: string]: string }} Input
  */
 
 /**
@@ -114,13 +85,39 @@ import { minify as minimize } from "./minify";
  */
 
 /**
+ * @typedef {Object} PredefinedOptions
+ * @property {boolean} [module]
+ * @property {any} [ecma]
+ */
+
+/**
  * @typedef {object} MinimizeFunctionHelpers
  * @property {() => string | undefined} [getMinimizerVersion]
  */
 
 /**
  * @template T
- * @typedef {BasicMinimizerImplementation<T> & MinimizeFunctionHelpers } MinimizerImplementation
+ * @typedef {BasicMinimizerImplementation<T> & MinimizeFunctionHelpers} MinimizerImplementation
+ */
+
+/**
+ * @template T
+ * @typedef {PredefinedOptions & T} MinimizerOptions
+ */
+
+/**
+ * @template T
+ * @typedef {Object} InternalOptions
+ * @property {string} name
+ * @property {string} input
+ * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {ExtractCommentsOptions | undefined} extractComments
+ * @property {{ implementation: MinimizerImplementation<InferDefaultType<T>>, options: MinimizerOptions<InferDefaultType<T>> }} minimizer
+ */
+
+/**
+ * @template T
+ * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinimizerWorker
  */
 
 /**
@@ -137,13 +134,22 @@ import { minify as minimize } from "./minify";
  */
 
 /**
+ * @typedef {{ [key: string]: any }} CustomOptions
+ */
+
+/**
  * @template T
  * @typedef {T extends infer U ? U : CustomOptions} InferDefaultType
  */
 
 /**
  * @template T
- * @typedef {InferDefaultType<T> extends TerserOptions ? { minify?: MinimizerImplementation<InferDefaultType<T>> | undefined, terserOptions?: InferDefaultType<T> | undefined } : { minify: MinimizerImplementation<InferDefaultType<T>>, terserOptions?: InferDefaultType<T> | undefined }} DefinedDefaultMinimizerAndOptions
+ * @typedef {T extends TerserOptions ? { minify?: MinimizerImplementation<InferDefaultType<T>> | undefined, terserOptions?: MinimizerOptions<InferDefaultType<T>> | undefined } : { minify: MinimizerImplementation<InferDefaultType<T>>, terserOptions?: MinimizerOptions<InferDefaultType<T>> | undefined }} DefinedDefaultMinimizerAndOptions
+ */
+
+/**
+ * @template T
+ * @typedef {BasePluginOptions & { minimizer: { implementation: MinimizerImplementation<InferDefaultType<T>>, options: MinimizerOptions<InferDefaultType<T>> } }} InternalPluginOptions
  */
 
 /**
@@ -164,7 +170,7 @@ class TerserPlugin {
       minify = /** @type {MinimizerImplementation<InferDefaultType<T>>} */ (
         terserMinify
       ),
-      terserOptions = /** @type {InferDefaultType<T>} */ ({}),
+      terserOptions = /** @type {MinimizerOptions<InferDefaultType<T>>} */ ({}),
       test = /\.[cm]?js(\?.*)?$/i,
       extractComments = true,
       parallel = true,
@@ -172,6 +178,10 @@ class TerserPlugin {
       exclude,
     } = options || {};
 
+    /**
+     * @private
+     * @type {InternalPluginOptions<T>}
+     */
     this.options = {
       test,
       extractComments,
@@ -232,12 +242,11 @@ class TerserPlugin {
    */
   static buildError(error, file, sourceMap, requestShortener) {
     /**
-     * @type {Error & { file: string }}
+     * @type {Error & { file?: string }}
      */
     let builtError;
 
     if (typeof error === "string") {
-      // @ts-ignore
       builtError = new Error(`${file} from Terser plugin\n${error}`);
       builtError.file = file;
 
@@ -253,7 +262,6 @@ class TerserPlugin {
         });
 
       if (original && original.source && requestShortener) {
-        // @ts-ignore
         builtError = new Error(
           `${file} from Terser plugin\n${
             error.message
@@ -270,7 +278,6 @@ class TerserPlugin {
         return builtError;
       }
 
-      // @ts-ignore
       builtError = new Error(
         `${file} from Terser plugin\n${error.message} [${file}:${error.line},${
           error.col
@@ -284,7 +291,6 @@ class TerserPlugin {
     }
 
     if (error.stack) {
-      // @ts-ignore
       builtError = new Error(
         `${file} from Terser plugin\n${
           typeof error.message !== "undefined" ? error.message : ""
@@ -295,7 +301,6 @@ class TerserPlugin {
       return builtError;
     }
 
-    // @ts-ignore
     builtError = new Error(`${file} from Terser plugin\n${error.message}`);
     builtError.file = file;
 
@@ -444,15 +449,13 @@ class TerserPlugin {
           input = sourceFromInputSource;
 
           if (map) {
-            if (TerserPlugin.isSourceMap(map)) {
-              inputSourceMap = /** @type {RawSourceMap} */ (map);
-            } else {
-              inputSourceMap = /** @type {RawSourceMap} */ (map);
-
+            if (!TerserPlugin.isSourceMap(map)) {
               compilation.warnings.push(
                 /** @type {WebpackError} */
                 (new Error(`${name} contains invalid source map`))
               );
+            } else {
+              inputSourceMap = /** @type {RawSourceMap} */ (map);
             }
           }
 
@@ -460,6 +463,9 @@ class TerserPlugin {
             input = input.toString();
           }
 
+          /**
+           * @type {InternalOptions<T>}
+           */
           const options = {
             name,
             input,
