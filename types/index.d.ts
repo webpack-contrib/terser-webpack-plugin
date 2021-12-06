@@ -49,30 +49,34 @@ export type MinimizedResult = {
 export type Input = {
   [file: string]: string;
 };
-export type BasicMinimizerImplementation<T> = (
-  input: Input,
-  sourceMap: RawSourceMap | undefined,
-  minifyOptions: T,
-  extractComments: ExtractCommentsOptions | undefined
-) => Promise<MinimizedResult>;
+export type CustomOptions = {
+  [key: string]: any;
+};
+export type InferDefaultType<T> = T extends infer U ? U : CustomOptions;
 export type PredefinedOptions = {
   module?: boolean | undefined;
   ecma?: any;
 };
+export type MinimizerOptions<T> = PredefinedOptions & InferDefaultType<T>;
+export type BasicMinimizerImplementation<T> = (
+  input: Input,
+  sourceMap: RawSourceMap | undefined,
+  minifyOptions: MinimizerOptions<T>,
+  extractComments: ExtractCommentsOptions | undefined
+) => Promise<MinimizedResult>;
 export type MinimizeFunctionHelpers = {
   getMinimizerVersion?: (() => string | undefined) | undefined;
 };
 export type MinimizerImplementation<T> = BasicMinimizerImplementation<T> &
   MinimizeFunctionHelpers;
-export type MinimizerOptions<T> = PredefinedOptions & T;
 export type InternalOptions<T> = {
   name: string;
   input: string;
   inputSourceMap: RawSourceMap | undefined;
   extractComments: ExtractCommentsOptions | undefined;
   minimizer: {
-    implementation: MinimizerImplementation<InferDefaultType<T>>;
-    options: MinimizerOptions<InferDefaultType<T>>;
+    implementation: MinimizerImplementation<T>;
+    options: MinimizerOptions<T>;
   };
 };
 export type MinimizerWorker<T> = Worker & {
@@ -87,23 +91,19 @@ export type BasePluginOptions = {
   extractComments?: ExtractCommentsOptions | undefined;
   parallel?: Parallel;
 };
-export type CustomOptions = {
-  [key: string]: any;
-};
-export type InferDefaultType<T> = T extends infer U ? U : CustomOptions;
 export type DefinedDefaultMinimizerAndOptions<T> = T extends TerserOptions
   ? {
-      minify?: MinimizerImplementation<InferDefaultType<T>> | undefined;
-      terserOptions?: MinimizerOptions<InferDefaultType<T>> | undefined;
+      minify?: MinimizerImplementation<T> | undefined;
+      terserOptions?: MinimizerOptions<T> | undefined;
     }
   : {
-      minify: MinimizerImplementation<InferDefaultType<T>>;
-      terserOptions?: MinimizerOptions<InferDefaultType<T>> | undefined;
+      minify: MinimizerImplementation<T>;
+      terserOptions?: MinimizerOptions<T> | undefined;
     };
 export type InternalPluginOptions<T> = BasePluginOptions & {
   minimizer: {
-    implementation: MinimizerImplementation<InferDefaultType<T>>;
-    options: MinimizerOptions<InferDefaultType<T>>;
+    implementation: MinimizerImplementation<T>;
+    options: MinimizerOptions<T>;
   };
 };
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
@@ -153,18 +153,29 @@ export type InternalPluginOptions<T> = BasePluginOptions & {
  * @typedef {{ [file: string]: string }} Input
  */
 /**
+ * @typedef {{ [key: string]: any }} CustomOptions
+ */
+/**
  * @template T
- * @callback BasicMinimizerImplementation
- * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
- * @param {T} minifyOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<MinimizedResult>}
+ * @typedef {T extends infer U ? U : CustomOptions} InferDefaultType
  */
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
  * @property {any} [ecma]
+ */
+/**
+ * @template T
+ * @typedef {PredefinedOptions & InferDefaultType<T>} MinimizerOptions
+ */
+/**
+ * @template T
+ * @callback BasicMinimizerImplementation
+ * @param {Input} input
+ * @param {RawSourceMap | undefined} sourceMap
+ * @param {MinimizerOptions<T>} minifyOptions
+ * @param {ExtractCommentsOptions | undefined} extractComments
+ * @returns {Promise<MinimizedResult>}
  */
 /**
  * @typedef {object} MinimizeFunctionHelpers
@@ -176,16 +187,12 @@ export type InternalPluginOptions<T> = BasePluginOptions & {
  */
 /**
  * @template T
- * @typedef {PredefinedOptions & T} MinimizerOptions
- */
-/**
- * @template T
  * @typedef {Object} InternalOptions
  * @property {string} name
  * @property {string} input
  * @property {RawSourceMap | undefined} inputSourceMap
  * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {{ implementation: MinimizerImplementation<InferDefaultType<T>>, options: MinimizerOptions<InferDefaultType<T>> }} minimizer
+ * @property {{ implementation: MinimizerImplementation<T>, options: MinimizerOptions<T> }} minimizer
  */
 /**
  * @template T
@@ -203,19 +210,12 @@ export type InternalPluginOptions<T> = BasePluginOptions & {
  * @property {Parallel} [parallel]
  */
 /**
- * @typedef {{ [key: string]: any }} CustomOptions
+ * @template T
+ * @typedef {T extends TerserOptions ? { minify?: MinimizerImplementation<T> | undefined, terserOptions?: MinimizerOptions<T> | undefined } : { minify: MinimizerImplementation<T>, terserOptions?: MinimizerOptions<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 /**
  * @template T
- * @typedef {T extends infer U ? U : CustomOptions} InferDefaultType
- */
-/**
- * @template T
- * @typedef {T extends TerserOptions ? { minify?: MinimizerImplementation<InferDefaultType<T>> | undefined, terserOptions?: MinimizerOptions<InferDefaultType<T>> | undefined } : { minify: MinimizerImplementation<InferDefaultType<T>>, terserOptions?: MinimizerOptions<InferDefaultType<T>> | undefined }} DefinedDefaultMinimizerAndOptions
- */
-/**
- * @template T
- * @typedef {BasePluginOptions & { minimizer: { implementation: MinimizerImplementation<InferDefaultType<T>>, options: MinimizerOptions<InferDefaultType<T>> } }} InternalPluginOptions
+ * @typedef {BasePluginOptions & { minimizer: { implementation: MinimizerImplementation<T>, options: MinimizerOptions<T> } }} InternalPluginOptions
  */
 /**
  * @template [T=TerserOptions]
@@ -229,7 +229,7 @@ declare class TerserPlugin<T = import("terser").MinifyOptions> {
   private static isSourceMap;
   /**
    * @private
-   * @param {Error | string} warning
+   * @param {unknown} warning
    * @param {string} file
    * @returns {Error}
    */
