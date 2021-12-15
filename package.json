@@ -41,7 +41,7 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
-    "cacache": "^15.0.5",
+    "cacache": "^15.0.6",
     "find-cache-dir": "^3.3.1",
     "jest-worker": "^26.5.0",
     "p-limit": "^3.0.2",
