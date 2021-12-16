@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.0](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.5...v5.3.0) (2021-12-16)
+
+
+### Features
+
+* removed cjs wrapper and generated types in commonjs format (`export =` and `namespaces` used in types), now you can directly use exported types ([#463](https://github.com/webpack-contrib/terser-webpack-plugin/issues/463)) ([34fadde](https://github.com/webpack-contrib/terser-webpack-plugin/commit/34faddee763fed3f38c3ee5eb8edd1387c8b4b0a))
+
 ### [5.2.5](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.2.4...v5.2.5) (2021-11-08)
 
 
