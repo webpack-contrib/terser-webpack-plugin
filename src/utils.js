@@ -720,4 +720,10 @@ esbuildMinify.getMinimizerVersion = () => {
   return packageJson && packageJson.version;
 };
 
-export { throttleAll, terserMinify, uglifyJsMinify, swcMinify, esbuildMinify };
+module.exports = {
+  throttleAll,
+  terserMinify,
+  uglifyJsMinify,
+  swcMinify,
+  esbuildMinify,
+};
