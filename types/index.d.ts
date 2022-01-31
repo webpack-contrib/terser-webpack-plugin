@@ -55,7 +55,7 @@ export = TerserPlugin;
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
- * @property {any} [ecma]
+ * @property {TerserECMA} [ecma]
  */
 /**
  * @template T
@@ -290,7 +290,7 @@ type CustomOptions = {
 type InferDefaultType<T> = T extends infer U ? U : CustomOptions;
 type PredefinedOptions = {
   module?: boolean | undefined;
-  ecma?: any;
+  ecma?: import("terser").ECMA | undefined;
 };
 type MinimizerOptions<T> = PredefinedOptions & InferDefaultType<T>;
 type BasicMinimizerImplementation<T> = (
