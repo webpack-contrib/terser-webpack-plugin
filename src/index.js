@@ -86,7 +86,7 @@ const { minify } = require("./minify");
 /**
  * @typedef {Object} PredefinedOptions
  * @property {boolean} [module]
- * @property {any} [ecma]
+ * @property {TerserECMA} [ecma]
  */
 
 /**
