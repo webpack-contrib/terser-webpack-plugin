@@ -23,7 +23,19 @@ Webpack v5 comes with the latest `terser-webpack-plugin` out of the box. If you 
 To begin, you'll need to install `terser-webpack-plugin`:
 
 ```console
-$ npm install terser-webpack-plugin --save-dev
+npm install terser-webpack-plugin --save-dev
+```
+
+or
+
+```console
+yarn add -D terser-webpack-plugin
+```
+
+or
+
+```console
+pnpm add -D terser-webpack-plugin
 ```
 
 Then add the plugin to your `webpack` config. For example:
