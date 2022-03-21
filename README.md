@@ -217,7 +217,62 @@ module.exports = {
 Type:
 
 ```ts
-type minify = function;
+type minify = (
+  input: {
+    [file: string]: string;
+  },
+  sourceMap: import("source-map").RawSourceMap | undefined,
+  minifyOptions: {
+    module?: boolean | undefined;
+    ecma?: import("terser").ECMA | undefined;
+  },
+  extractComments:
+    | boolean
+    | "all"
+    | "some"
+    | RegExp
+    | ((
+        astNode: any,
+        comment: {
+          value: string;
+          type: "comment1" | "comment2" | "comment3" | "comment4";
+          pos: number;
+          line: number;
+          col: number;
+        }
+      ) => boolean)
+    | {
+        condition?:
+          | boolean
+          | "all"
+          | "some"
+          | RegExp
+          | ((
+              astNode: any,
+              comment: {
+                value: string;
+                type: "comment1" | "comment2" | "comment3" | "comment4";
+                pos: number;
+                line: number;
+                col: number;
+              }
+            ) => boolean)
+          | undefined;
+        filename?: string | ((fileData: any) => string) | undefined;
+        banner?:
+          | string
+          | boolean
+          | ((commentsFile: string) => string)
+          | undefined;
+      }
+    | undefined
+) => Promise<{
+  code: string;
+  map?: import("source-map").RawSourceMap | undefined;
+  errors?: (string | Error)[] | undefined;
+  warnings?: (string | Error)[] | undefined;
+  extractedComments?: string[] | undefined;
+}>;
 ```
 
 Default: `TerserPlugin.terserMinify`
