@@ -68,19 +68,22 @@ Using supported `devtool` values enable source map generation.
 
 ## Options
 
-|                   Name                    |                                      Type                                       |                           Default                            | Description                                                               |
-| :---------------------------------------: | :-----------------------------------------------------------------------------: | :----------------------------------------------------------: | :------------------------------------------------------------------------ |
-|            **[`test`](#test)**            |                     `String\|RegExp\|Array<String\|RegExp>`                     |                     `/\.m?js(\?.*)?$/i`                      | Test to match files against.                                              |
-|         **[`include`](#include)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                         `undefined`                          | Files to include.                                                         |
-|         **[`exclude`](#exclude)**         |                     `String\|RegExp\|Array<String\|RegExp>`                     |                         `undefined`                          | Files to exclude.                                                         |
-|        **[`parallel`](#parallel)**        |                                `Boolean\|Number`                                |                            `true`                            | Use multi-process parallel running to improve the build speed.            |
-|          **[`minify`](#minify)**          |                                   `Function`                                    |                 `TerserPlugin.terserMinify`                  | Allows you to override default minify function.                           |
-|   **[`terserOptions`](#terseroptions)**   |                                    `Object`                                     | [`default`](https://github.com/terser/terser#minify-options) | Terser [minify options](https://github.com/terser/terser#minify-options). |
-| **[`extractComments`](#extractcomments)** | `Boolean\|String\|RegExp\|Function<(node, comment) -> Boolean\|Object>\|Object` |                            `true`                            | Whether comments shall be extracted to a separate file.                   |
+- **[`test`](#test)**
+- **[`include`](#include)**
+- **[`exclude`](#exclude)**
+- **[`parallel`](#parallel)**
+- **[`minify`](#minify)**
+- **[`terserOptions`](#terseroptions)**
+- **[`extractComments`](#extractcomments)**
 
 ### `test`
 
-Type: `String|RegExp|Array<String|RegExp>`
+Type:
+
+```ts
+type test = string | RegExp | Array<string | RegExp>;
+```
+
 Default: `/\.m?js(\?.*)?$/i`
 
 Test to match files against.
@@ -102,7 +105,12 @@ module.exports = {
 
 ### `include`
 
-Type: `String|RegExp|Array<String|RegExp>`
+Type:
+
+```ts
+type include = string | RegExp | Array<string | RegExp>;
+```
+
 Default: `undefined`
 
 Files to include.
@@ -124,7 +132,12 @@ module.exports = {
 
 ### `exclude`
 
-Type: `String|RegExp|Array<String|RegExp>`
+Type:
+
+```ts
+type exclude = string | RegExp | Array<string | RegExp>;
+```
+
 Default: `undefined`
 
 Files to exclude.
@@ -146,7 +159,12 @@ module.exports = {
 
 ### `parallel`
 
-Type: `Boolean|Number`
+Type:
+
+```ts
+type parallel = boolean | number;
+```
+
 Default: `true`
 
 Use multi-process parallel running to improve the build speed.
@@ -156,7 +174,7 @@ Default number of concurrent runs: `os.cpus().length - 1`.
 
 > ⚠️ If you use **Circle CI** or any other environment that doesn't provide real available count of CPUs then you need to setup explicitly number of CPUs to avoid `Error: Call retries were exceeded` (see [#143](https://github.com/webpack-contrib/terser-webpack-plugin/issues/143), [#202](https://github.com/webpack-contrib/terser-webpack-plugin/issues/202)).
 
-#### `Boolean`
+#### `boolean`
 
 Enable/disable multi-process parallel running.
 
@@ -175,7 +193,7 @@ module.exports = {
 };
 ```
 
-#### `Number`
+#### `number`
 
 Enable multi-process parallel running and set number of concurrent runs.
 
@@ -196,7 +214,67 @@ module.exports = {
 
 ### `minify`
 
-Type: `Function`
+Type:
+
+```ts
+type minify = (
+  input: {
+    [file: string]: string;
+  },
+  sourceMap: import("source-map").RawSourceMap | undefined,
+  minifyOptions: {
+    module?: boolean | undefined;
+    ecma?: import("terser").ECMA | undefined;
+  },
+  extractComments:
+    | boolean
+    | "all"
+    | "some"
+    | RegExp
+    | ((
+        astNode: any,
+        comment: {
+          value: string;
+          type: "comment1" | "comment2" | "comment3" | "comment4";
+          pos: number;
+          line: number;
+          col: number;
+        }
+      ) => boolean)
+    | {
+        condition?:
+          | boolean
+          | "all"
+          | "some"
+          | RegExp
+          | ((
+              astNode: any,
+              comment: {
+                value: string;
+                type: "comment1" | "comment2" | "comment3" | "comment4";
+                pos: number;
+                line: number;
+                col: number;
+              }
+            ) => boolean)
+          | undefined;
+        filename?: string | ((fileData: any) => string) | undefined;
+        banner?:
+          | string
+          | boolean
+          | ((commentsFile: string) => string)
+          | undefined;
+      }
+    | undefined
+) => Promise<{
+  code: string;
+  map?: import("source-map").RawSourceMap | undefined;
+  errors?: (string | Error)[] | undefined;
+  warnings?: (string | Error)[] | undefined;
+  extractedComments?: string[] | undefined;
+}>;
+```
+
 Default: `TerserPlugin.terserMinify`
 
 Allows you to override default minify function.
@@ -256,7 +334,29 @@ module.exports = {
 
 ### `terserOptions`
 
-Type: `Object`
+Type:
+
+```ts
+type terserOptions = {
+  compress?: boolean | CompressOptions;
+  ecma?: ECMA;
+  enclose?: boolean | string;
+  ie8?: boolean;
+  keep_classnames?: boolean | RegExp;
+  keep_fnames?: boolean | RegExp;
+  mangle?: boolean | MangleOptions;
+  module?: boolean;
+  nameCache?: object;
+  format?: FormatOptions;
+  /** @deprecated */
+  output?: FormatOptions;
+  parse?: ParseOptions;
+  safari10?: boolean;
+  sourceMap?: boolean | SourceMapOptions;
+  toplevel?: boolean;
+};
+```
+
 Default: [default](https://github.com/terser/terser#minify-options)
 
 Terser [options](https://github.com/terser/terser#minify-options).
@@ -293,7 +393,49 @@ module.exports = {
 
 ### `extractComments`
 
-Type: `Boolean|String|RegExp|Function<(node, comment) -> Boolean|Object>|Object`
+Type:
+
+```ts
+type extractComments =
+  | boolean
+  | string
+  | RegExp
+  | ((
+      astNode: any,
+      comment: {
+        value: string;
+        type: "comment1" | "comment2" | "comment3" | "comment4";
+        pos: number;
+        line: number;
+        col: number;
+      }
+    ) => boolean)
+  | {
+      condition?:
+        | boolean
+        | "all"
+        | "some"
+        | RegExp
+        | ((
+            astNode: any,
+            comment: {
+              value: string;
+              type: "comment1" | "comment2" | "comment3" | "comment4";
+              pos: number;
+              line: number;
+              col: number;
+            }
+          ) => boolean)
+        | undefined;
+      filename?: string | ((fileData: any) => string) | undefined;
+      banner?:
+        | string
+        | boolean
+        | ((commentsFile: string) => string)
+        | undefined;
+    };
+```
+
 Default: `true`
 
 Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a)).
@@ -301,7 +443,7 @@ By default extract only comments using `/^\**!|@preserve|@license|@cc_on/i` rege
 If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE.txt`.
 The `terserOptions.format.comments` option specifies whether the comment will be preserved, i.e. it is possible to preserve some comments (e.g. annotations) while extracting others or even preserving comments that have been extracted.
 
-#### `Boolean`
+#### `boolean`
 
 Enable/disable extracting comments.
 
@@ -320,7 +462,7 @@ module.exports = {
 };
 ```
 
-#### `String`
+#### `string`
 
 Extract `all` or `some` (use `/^\**!|@preserve|@license|@cc_on/i` RegExp) comments.
 
@@ -358,7 +500,7 @@ module.exports = {
 };
 ```
 
-#### `Function<(node, comment) -> Boolean>`
+#### `function`
 
 All comments that match the given expression will be extracted to the separate file.
 
@@ -383,7 +525,7 @@ module.exports = {
 };
 ```
 
-#### `Object`
+#### `object`
 
 Allow to customize condition for extract comments, specify extracted file name and banner.
 
@@ -413,7 +555,26 @@ module.exports = {
 
 ##### `condition`
 
-Type: `Boolean|String|RegExp|Function<(node, comment) -> Boolean|Object>`
+Type:
+
+```ts
+type condition =
+  | boolean
+  | "all"
+  | "some"
+  | RegExp
+  | ((
+      astNode: any,
+      comment: {
+        value: string;
+        type: "comment1" | "comment2" | "comment3" | "comment4";
+        pos: number;
+        line: number;
+        col: number;
+      }
+    ) => boolean)
+  | undefined;
+```
 
 Condition what comments you need extract.
 
@@ -443,7 +604,12 @@ module.exports = {
 
 ##### `filename`
 
-Type: `String|Function<(string) -> String>`
+Type:
+
+```ts
+type filename = string | ((fileData: any) => string) | undefined;
+```
+
 Default: `[file].LICENSE.txt[query]`
 
 Available placeholders: `[file]`, `[query]` and `[filebase]` (`[base]` for webpack 5).
@@ -476,7 +642,12 @@ module.exports = {
 
 ##### `banner`
 
-Type: `Boolean|String|Function<(string) -> String>`
+Type:
+
+```ts
+type banner = string | boolean | ((commentsFile: string) => string) | undefined;
+```
+
 Default: `/*! For license information please see ${commentsFile} */`
 
 The banner text that points to the extracted file and will be added on top of the original file.
