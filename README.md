@@ -220,7 +220,7 @@ type minify = (
   input: {
     [file: string]: string;
   },
-  sourceMap: import("source-map").RawSourceMap | undefined,
+  sourceMap: import("@jridgewell/trace-mapping").SourceMapInput | undefined,
   minifyOptions: {
     module?: boolean | undefined;
     ecma?: import("terser").ECMA | undefined;
@@ -267,7 +267,7 @@ type minify = (
     | undefined
 ) => Promise<{
   code: string;
-  map?: import("source-map").RawSourceMap | undefined;
+  map?: import("@jridgewell/trace-mapping").SourceMapInput | undefined;
   errors?: (string | Error)[] | undefined;
   warnings?: (string | Error)[] | undefined;
   extractedComments?: string[] | undefined;

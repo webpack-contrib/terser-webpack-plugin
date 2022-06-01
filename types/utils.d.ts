@@ -1,5 +1,5 @@
 export type Task<T> = () => Promise<T>;
-export type RawSourceMap = import("source-map").RawSourceMap;
+export type SourceMapInput = import("@jridgewell/trace-mapping").SourceMapInput;
 export type TerserFormatOptions = import("terser").FormatOptions;
 export type TerserOptions = import("terser").MinifyOptions;
 export type TerserECMA = import("terser").ECMA;
@@ -28,14 +28,14 @@ export type ExtractedComments = Array<string>;
 export function throttleAll<T>(limit: number, tasks: Task<T>[]): Promise<T[]>;
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
 export function terserMinify(
   input: Input,
-  sourceMap: RawSourceMap | undefined,
+  sourceMap: SourceMapInput | undefined,
   minimizerOptions: PredefinedOptions & CustomOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
@@ -47,14 +47,14 @@ export namespace terserMinify {
 }
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
 export function uglifyJsMinify(
   input: Input,
-  sourceMap: RawSourceMap | undefined,
+  sourceMap: SourceMapInput | undefined,
   minimizerOptions: PredefinedOptions & CustomOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
@@ -66,13 +66,13 @@ export namespace uglifyJsMinify {
 }
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 export function swcMinify(
   input: Input,
-  sourceMap: RawSourceMap | undefined,
+  sourceMap: SourceMapInput | undefined,
   minimizerOptions: PredefinedOptions & CustomOptions
 ): Promise<MinimizedResult>;
 export namespace swcMinify {
@@ -83,13 +83,13 @@ export namespace swcMinify {
 }
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 export function esbuildMinify(
   input: Input,
-  sourceMap: RawSourceMap | undefined,
+  sourceMap: SourceMapInput | undefined,
   minimizerOptions: PredefinedOptions & CustomOptions
 ): Promise<MinimizedResult>;
 export namespace esbuildMinify {
