@@ -2,7 +2,7 @@ import crypto from "crypto";
 
 import path from "path";
 
-import { SourceMapConsumer } from "source-map";
+import { TraceMap } from "@jridgewell/trace-mapping";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import RequestShortener from "webpack/lib/RequestShortener";
 import { javascript, SourceMapDevToolPlugin, util } from "webpack";
@@ -551,7 +551,7 @@ describe("TerserPlugin", () => {
       TerserPlugin.buildError(
         errorWithLineAndCol,
         "test.js",
-        new SourceMapConsumer(rawSourceMap),
+        new TraceMap(rawSourceMap),
         // eslint-disable-next-line no-undefined
         undefined
       )
@@ -567,7 +567,7 @@ describe("TerserPlugin", () => {
       TerserPlugin.buildError(
         otherErrorWithLineAndCol,
         "test.js",
-        new SourceMapConsumer(rawSourceMap),
+        new TraceMap(rawSourceMap),
         new RequestShortener("/example.com/www/js/")
       )
     ).toMatchSnapshot();
