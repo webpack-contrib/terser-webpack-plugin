@@ -1,7 +1,7 @@
 const path = require("path");
 const os = require("os");
 
-const { SourceMapConsumer } = require("source-map");
+const { TraceMap, originalPositionFor } = require("@jridgewell/trace-mapping");
 const { validate } = require("schema-utils");
 const serialize = require("serialize-javascript");
 const { Worker } = require("jest-worker");
@@ -25,7 +25,7 @@ const { minify } = require("./minify");
 /** @typedef {import("./utils.js").TerserECMA} TerserECMA */
 /** @typedef {import("./utils.js").TerserOptions} TerserOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
-/** @typedef {import("source-map").RawSourceMap} RawSourceMap */
+/** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 
 /** @typedef {RegExp | string} Rule */
 
@@ -64,7 +64,7 @@ const { minify } = require("./minify");
 /**
  * @typedef {Object} MinimizedResult
  * @property {string} code
- * @property {RawSourceMap} [map]
+ * @property {SourceMapInput} [map]
  * @property {Array<Error | string>} [errors]
  * @property {Array<Error | string>} [warnings]
  * @property {Array<string>} [extractedComments]
@@ -98,7 +98,7 @@ const { minify } = require("./minify");
  * @template T
  * @callback BasicMinimizerImplementation
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {MinimizerOptions<T>} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinimizedResult>}
@@ -119,7 +119,7 @@ const { minify } = require("./minify");
  * @typedef {Object} InternalOptions
  * @property {string} name
  * @property {string} input
- * @property {RawSourceMap | undefined} inputSourceMap
+ * @property {SourceMapInput | undefined} inputSourceMap
  * @property {ExtractCommentsOptions | undefined} extractComments
  * @property {{ implementation: MinimizerImplementation<T>, options: MinimizerOptions<T> }} minimizer
  */
@@ -199,8 +199,8 @@ class TerserPlugin {
    * @returns {boolean}
    */
   static isSourceMap(input) {
-    // All required options for `new SourceMapConsumer(...options)`
-    // https://github.com/mozilla/source-map#new-sourcemapconsumerrawsourcemap
+    // All required options for `new TraceMap(...options)`
+    // https://github.com/jridgewell/trace-mapping#usage
     return Boolean(
       input &&
         input.version &&
@@ -234,7 +234,7 @@ class TerserPlugin {
    * @private
    * @param {any} error
    * @param {string} file
-   * @param {SourceMapConsumer} [sourceMap]
+   * @param {TraceMap} [sourceMap]
    * @param {Compilation["requestShortener"]} [requestShortener]
    * @returns {Error}
    */
@@ -254,7 +254,7 @@ class TerserPlugin {
     if (error.line) {
       const original =
         sourceMap &&
-        sourceMap.originalPositionFor({
+        originalPositionFor(sourceMap, {
           line: error.line,
           column: error.col,
         });
@@ -438,7 +438,7 @@ class TerserPlugin {
 
         if (!output) {
           let input;
-          /** @type {RawSourceMap | undefined} */
+          /** @type {SourceMapInput | undefined} */
           let inputSourceMap;
 
           const { source: sourceFromInputSource, map } =
@@ -453,7 +453,7 @@ class TerserPlugin {
                 (new Error(`${name} contains invalid source map`))
               );
             } else {
-              inputSourceMap = /** @type {RawSourceMap} */ (map);
+              inputSourceMap = /** @type {SourceMapInput} */ (map);
             }
           }
 
@@ -507,8 +507,8 @@ class TerserPlugin {
                   error,
                   name,
                   hasSourceMap
-                    ? new SourceMapConsumer(
-                        /** @type {RawSourceMap} */ (inputSourceMap)
+                    ? new TraceMap(
+                        /** @type {SourceMapInput} */ (inputSourceMap)
                       )
                     : // eslint-disable-next-line no-undefined
                       undefined,
@@ -556,8 +556,8 @@ class TerserPlugin {
                   item,
                   name,
                   hasSourceMap
-                    ? new SourceMapConsumer(
-                        /** @type {RawSourceMap} */ (inputSourceMap)
+                    ? new TraceMap(
+                        /** @type {SourceMapInput} */ (inputSourceMap)
                       )
                     : // eslint-disable-next-line no-undefined
                       undefined,
@@ -588,7 +588,7 @@ class TerserPlugin {
               name,
               output.map,
               input,
-              /** @type {RawSourceMap} */ (inputSourceMap),
+              /** @type {SourceMapInput} */ (inputSourceMap),
               true
             );
           } else {

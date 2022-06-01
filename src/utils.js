@@ -1,4 +1,4 @@
-/** @typedef {import("source-map").RawSourceMap} RawSourceMap */
+/** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 /** @typedef {import("terser").FormatOptions} TerserFormatOptions */
 /** @typedef {import("terser").MinifyOptions} TerserOptions */
 /** @typedef {import("terser").ECMA} TerserECMA */
@@ -80,7 +80,7 @@ function throttleAll(limit, tasks) {
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
@@ -287,7 +287,7 @@ async function terserMinify(
     code: /** @type {string} **/ (result.code),
     // @ts-ignore
     // eslint-disable-next-line no-undefined
-    map: result.map ? /** @type {RawSourceMap} **/ (result.map) : undefined,
+    map: result.map ? /** @type {SourceMapInput} **/ (result.map) : undefined,
     extractedComments,
   };
 }
@@ -311,7 +311,7 @@ terserMinify.getMinimizerVersion = () => {
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
@@ -529,7 +529,7 @@ uglifyJsMinify.getMinimizerVersion = () => {
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
@@ -613,7 +613,7 @@ swcMinify.getMinimizerVersion = () => {
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {RawSourceMap | undefined} sourceMap
+ * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
