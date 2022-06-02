@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.2](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.1...v5.3.2) (2022-06-02)
+
+### Chore
+
+* switched to `@jridgewell/source-map` for error generation
+
 ### [5.3.1](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.0...v5.3.1) (2022-02-01)
 
 
