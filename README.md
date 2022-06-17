@@ -169,9 +169,13 @@ Default: `true`
 Use multi-process parallel running to improve the build speed.
 Default number of concurrent runs: `os.cpus().length - 1`.
 
-> ℹ️ Parallelization can speedup your build significantly and is therefore **highly recommended**.
+> **Note**
+>
+> Parallelization can speedup your build significantly and is therefore **highly recommended**.
 
-> ⚠️ If you use **Circle CI** or any other environment that doesn't provide real available count of CPUs then you need to setup explicitly number of CPUs to avoid `Error: Call retries were exceeded` (see [#143](https://github.com/webpack-contrib/terser-webpack-plugin/issues/143), [#202](https://github.com/webpack-contrib/terser-webpack-plugin/issues/202)).
+> **Warning**
+>
+> If you use **Circle CI** or any other environment that doesn't provide real available count of CPUs then you need to setup explicitly number of CPUs to avoid `Error: Call retries were exceeded` (see [#143](https://github.com/webpack-contrib/terser-webpack-plugin/issues/143), [#202](https://github.com/webpack-contrib/terser-webpack-plugin/issues/202)).
 
 #### `boolean`
 
@@ -280,7 +284,9 @@ Allows you to override default minify function.
 By default plugin uses [terser](https://github.com/terser/terser) package.
 Useful for using and testing unpublished versions or forks.
 
-> ⚠️ **Always use `require` inside `minify` function when `parallel` option enabled**.
+> **Warning**
+>
+> **Always use `require` inside `minify` function when `parallel` option enabled**.
 
 **webpack.config.js**
 
@@ -616,7 +622,9 @@ Available placeholders: `[file]`, `[query]` and `[filebase]` (`[base]` for webpa
 The file where the extracted comments will be stored.
 Default is to append the suffix `.LICENSE.txt` to the original filename.
 
-> ⚠️ We highly recommend using the `txt` extension. Using `js`/`cjs`/`mjs` extensions may conflict with existing assets which leads to broken code.
+> **Warning**
+>
+> We highly recommend using the `txt` extension. Using `js`/`cjs`/`mjs` extensions may conflict with existing assets which leads to broken code.
 
 **webpack.config.js**
 
@@ -753,7 +761,9 @@ module.exports = {
 
 [`swc`](https://github.com/swc-project/swc) is a super-fast compiler written in rust; producing widely-supported javascript from modern standards and typescript.
 
-> ⚠ the `extractComments` option is not supported and all comments will be removed by default, it will be fixed in future
+> **Warning**
+>
+> the `extractComments` option is not supported and all comments will be removed by default, it will be fixed in future
 
 **webpack.config.js**
 
@@ -777,7 +787,9 @@ module.exports = {
 
 [`esbuild`](https://github.com/evanw/esbuild) is an extremely fast JavaScript bundler and minifier.
 
-> ⚠ the `extractComments` option is not supported and all legal comments (i.e. copyright, licenses and etc) will be preserved
+> **Warning**
+>
+> the `extractComments` option is not supported and all legal comments (i.e. copyright, licenses and etc) will be preserved
 
 **webpack.config.js**
 
