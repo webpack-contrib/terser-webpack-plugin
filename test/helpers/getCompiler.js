@@ -1,9 +1,9 @@
-import path from "path";
+const path = require("path");
 
-import webpack from "webpack";
-import { createFsFromVolume, Volume } from "memfs";
+const webpack = require("webpack");
+const { createFsFromVolume, Volume } = require("memfs");
 
-export default function getCompiler(options = {}) {
+module.exports = function getCompiler(options = {}) {
   const compiler = webpack(
     Array.isArray(options)
       ? options
@@ -28,4 +28,4 @@ export default function getCompiler(options = {}) {
   compiler.outputFileSystem = createFsFromVolume(new Volume());
 
   return compiler;
-}
+};

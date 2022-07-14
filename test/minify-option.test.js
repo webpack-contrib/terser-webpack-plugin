@@ -1,15 +1,15 @@
-import path from "path";
+const path = require("path");
 
-import TerserPlugin from "../src";
+const TerserPlugin = require("../src");
 
-import {
+const {
   BrokenCodePlugin,
   compile,
   getCompiler,
   getErrors,
   getWarnings,
-  readsAssets,
-} from "./helpers";
+  readsAssets
+} = require("./helpers");
 
 describe("minify option", () => {
   it("should work", async () => {

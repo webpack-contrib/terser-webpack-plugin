@@ -1,4 +1,4 @@
-export default function countPlugins({ hooks }) {
+module.exports = function countPlugins({ hooks }) {
   return Object.keys(hooks).reduce((aggregate, name) => {
     // eslint-disable-next-line no-param-reassign
     aggregate[name] = Array.isArray(hooks[name].taps)
@@ -6,4 +6,4 @@ export default function countPlugins({ hooks }) {
       : 0;
     return aggregate;
   }, {});
-}
+};

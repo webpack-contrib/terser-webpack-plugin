@@ -1,17 +1,17 @@
-import path from "path";
+const path = require("path");
 
-import webpack from "webpack";
+const webpack = require("webpack");
 
-import TerserPlugin from "../src/index";
+const TerserPlugin = require("../src/index");
 
-import {
+const {
   compile,
   getCompiler,
   getErrors,
   getWarnings,
   readsAssets,
   ExistingCommentsFile,
-} from "./helpers";
+} = require("./helpers");
 
 function createFilenameFn() {
   return (fileData) => {

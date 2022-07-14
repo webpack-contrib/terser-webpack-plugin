@@ -1,9 +1,9 @@
-import Module from "module";
-import path from "path";
+const Module = require("module");
+const path = require("path");
 
 const parentModule = module;
 
-export default (code) => {
+module.exports = (code) => {
   const resource = "test.js";
   const module = new Module(resource, parentModule);
   // eslint-disable-next-line no-underscore-dangle

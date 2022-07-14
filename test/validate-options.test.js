@@ -1,4 +1,4 @@
-import TerserPlugin from "../src";
+const TerserPlugin = require("../src");
 
 it("validation", () => {
   /* eslint-disable no-new */

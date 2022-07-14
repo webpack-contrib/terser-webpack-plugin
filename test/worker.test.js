@@ -1,7 +1,8 @@
-import serialize from "serialize-javascript";
+const serialize = require("serialize-javascript");
 
-import { transform } from "../src/minify";
-import { terserMinify } from "../src/utils";
+const { transform } = require("../src/minify");
+
+const { terserMinify } = require("../src/utils");
 
 describe("worker", () => {
   it('should match snapshot when options.extractComments is "false"', async () => {

@@ -1,6 +1,6 @@
-import webpack from "webpack";
+const webpack = require("webpack");
 
-export default class BrokenCodePlugin {
+module.exports = class BrokenCodePlugin {
   apply(compiler) {
     const plugin = { name: this.constructor.name };
 
@@ -13,4 +13,4 @@ export default class BrokenCodePlugin {
       });
     });
   }
-}
+};

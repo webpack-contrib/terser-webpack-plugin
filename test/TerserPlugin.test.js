@@ -1,17 +1,17 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
-import path from "path";
+const path = require("path");
 
-import { TraceMap } from "@jridgewell/trace-mapping";
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import RequestShortener from "webpack/lib/RequestShortener";
-import { javascript, SourceMapDevToolPlugin, util } from "webpack";
+const { TraceMap } = require("@jridgewell/trace-mapping");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const RequestShortener = require("webpack/lib/RequestShortener");
+const { javascript, SourceMapDevToolPlugin, util } = require("webpack");
 
-import del from "del";
+const del = require("del");
 
-import TerserPlugin from "../src/index";
+const TerserPlugin = require("../src/index");
 
-import {
+const {
   BrokenCodePlugin,
   ModifyExistingAsset,
   compile,
@@ -21,8 +21,8 @@ import {
   getErrors,
   getWarnings,
   readAsset,
-  readsAssets,
-} from "./helpers";
+  readsAssets
+} = require("./helpers");
 
 jest.setTimeout(30000);
 

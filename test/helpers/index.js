@@ -1,18 +1,18 @@
-import BrokenCodePlugin from "./BrokenCodePlugin";
-import compile from "./compile";
-import countPlugins from "./countPlugins";
-import EmitNewAsset from "./EmitNewAsset";
-import execute from "./execute";
-import ExistingCommentsFile from "./ExistingCommentsFile";
-import getCompiler from "./getCompiler";
-import getErrors from "./getErrors";
-import getWarnings from "./getWarnings";
-import ModifyExistingAsset from "./ModifyExistingAsset";
-import readAsset from "./readAsset";
-import readsAssets from "./readAssets";
-import normalizeErrors from "./normalizeErrors";
+const BrokenCodePlugin = require("./BrokenCodePlugin");
+const compile = require("./compile");
+const countPlugins = require("./countPlugins");
+const EmitNewAsset = require("./EmitNewAsset");
+const execute = require("./execute");
+const ExistingCommentsFile = require("./ExistingCommentsFile");
+const getCompiler = require("./getCompiler");
+const getErrors = require("./getErrors");
+const getWarnings = require("./getWarnings");
+const ModifyExistingAsset = require("./ModifyExistingAsset");
+const readAsset = require("./readAsset");
+const readsAssets = require("./readAssets");
+const normalizeErrors = require("./normalizeErrors");
 
-export {
+module.exports = {
   BrokenCodePlugin,
   compile,
   countPlugins,

@@ -1,6 +1,6 @@
-import webpack from "webpack";
+const webpack = require("webpack");
 
-export default class ExistingCommentsFile {
+module.exports = class ExistingCommentsFile {
   constructor(options = {}) {
     this.options = options;
   }
@@ -21,4 +21,4 @@ export default class ExistingCommentsFile {
       });
     });
   }
-}
+};

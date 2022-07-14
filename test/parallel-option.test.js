@@ -1,17 +1,17 @@
-import path from "path";
-import os from "os";
+const path = require("path");
+const os = require("os");
 
-import { Worker } from "jest-worker";
+const { Worker } = require("jest-worker");
 
-import TerserPlugin from "../src/index";
+const TerserPlugin = require("../src/index");
 
-import {
+const {
   compile,
   getCompiler,
   getErrors,
   getWarnings,
   readsAssets,
-} from "./helpers";
+} = require("./helpers");
 
 jest.mock("os", () => {
   const actualOs = jest.requireActual("os");
