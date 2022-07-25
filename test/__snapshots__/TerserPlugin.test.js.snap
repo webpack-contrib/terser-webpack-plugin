@@ -58,7 +58,7 @@ exports[`TerserPlugin should emit an error on a broken code in parallel mode: wa
 exports[`TerserPlugin should regenerate hash: assets 1`] = `
 Object {
   "598.598.fcfa82506be0724e60bc.js": "\\"use strict\\";(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
-  "AsyncImportExport.8e77d74f10606da802fc.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var i=o[e]={exports:{}};return t[e](i,i.exports,n),i.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".fcfa82506be0724e60bc.js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,i,a)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==i)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+i){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+i),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var i=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=i);var a=n.p+n.u(r),l=new Error;n.l(a,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var i=t&&(\\"load\\"===t.type?\\"missing\\":t.type),a=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+i+\\": \\"+a+\\")\\",l.name=\\"ChunkLoadError\\",l.type=i,l.request=a,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,i,[a,l,u]=t,c=0;if(a.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<a.length;c++)i=a[c],n.o(e,i)&&e[i]&&e[i][0](),e[i]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "AsyncImportExport.35dab62b9c76412684fd.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var a=o[e]={exports:{}};return t[e](a,a.exports,n),a.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".\\"+e+\\".fcfa82506be0724e60bc.js\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a,i)=>{if(e[t])e[t].push(o);else{var l,u;if(void 0!==a)for(var c=document.getElementsByTagName(\\"script\\"),s=0;s<c.length;s++){var p=c[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){l=p;break}}l||(u=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+a),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),u&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={988:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,a,[i,l,u]=t,c=0;if(i.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(u)u(n)}for(r&&r(t);c<i.length;c++)a=i[c],n.o(e,a)&&e[a]&&e[a][0](),e[a]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
   "importExport.99516598f0f48417cbb9.js": "(()=>{\\"use strict\\";function o(){const o=\`baz\${Math.random()}\`;return()=>({a:\\"foobar\\"+o,b:\\"foo\\",baz:o})}console.log(o())})();",
   "js.c9ed6ac3ba483bb3026c.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();",
   "mjs.46bcd65d7e1972401425.js": "(()=>{\\"use strict\\";function o(){console.log(11)}o()})();",
@@ -140,8 +140,8 @@ exports[`TerserPlugin should work and do not use memory cache when the "cache" o
 
 exports[`TerserPlugin should work and generate real content hash: assets 1`] = `
 Object {
-  "598.fcfa82506be0724e60bc.4e5ccb7a39e70a3c2f97.c0848f434172be1ab0f0.js": "\\"use strict\\";(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
-  "app.a8ce07232fc4cdb9a8b1.c58bd2a3d4211e5a8b3c.c0848f434172be1ab0f0.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var a=o[e]={exports:{}};return t[e](a,a.exports,n),a.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".fcfa82506be0724e60bc.4e5ccb7a39e70a3c2f97.\\"+n.h()+\\".js\\",n.h=()=>\\"c0848f434172be1ab0f0\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a,i)=>{if(e[t])e[t].push(o);else{var c,l;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),s=0;s<u.length;s++){var p=u[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){c=p;break}}c||(l=!0,(c=document.createElement(\\"script\\")).charset=\\"utf-8\\",c.timeout=120,n.nc&&c.setAttribute(\\"nonce\\",n.nc),c.setAttribute(\\"data-webpack\\",r+a),c.src=t),e[t]=[o];var d=(r,o)=>{c.onerror=c.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],c.parentNode&&c.parentNode.removeChild(c),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:c}),12e4);c.onerror=d.bind(null,c.onerror),c.onload=d.bind(null,c.onload),l&&document.head.appendChild(c)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={143:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=a);var i=n.p+n.u(r),c=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;c.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",c.name=\\"ChunkLoadError\\",c.type=a,c.request=i,o[1](c)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,a,[i,c,l]=t,u=0;if(i.some((r=>0!==e[r]))){for(o in c)n.o(c,o)&&(n.m[o]=c[o]);if(l)l(n)}for(r&&r(t);u<i.length;u++)a=i[u],n.o(e,a)&&e[a]&&e[a][0](),e[a]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
+  "598.fcfa82506be0724e60bc.9c9d33328f9b413ba124.588d7a3d907a8c419dab.js": "\\"use strict\\";(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[598],{598:(e,s,p)=>{p.r(s),p.d(s,{default:()=>c});const c=\\"async-dep\\"}}]);",
+  "app.5b6a6c2cb36f9ac93213.488ee72693c36dbf0c88.588d7a3d907a8c419dab.js": "(()=>{\\"use strict\\";var e,r,t={},o={};function n(e){var r=o[e];if(void 0!==r)return r.exports;var a=o[e]={exports:{}};return t[e](a,a.exports,n),a.exports}n.m=t,n.d=(e,r)=>{for(var t in r)n.o(r,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:r[t]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce(((r,t)=>(n.f[t](e,r),r)),[])),n.u=e=>e+\\".fcfa82506be0724e60bc.9c9d33328f9b413ba124.\\"+n.h()+\\".js\\",n.h=()=>\\"588d7a3d907a8c419dab\\",n.g=function(){if(\\"object\\"==typeof globalThis)return globalThis;try{return this||new Function(\\"return this\\")()}catch(e){if(\\"object\\"==typeof window)return window}}(),n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),e={},r=\\"terser-webpack-plugin:\\",n.l=(t,o,a,i)=>{if(e[t])e[t].push(o);else{var l,c;if(void 0!==a)for(var u=document.getElementsByTagName(\\"script\\"),s=0;s<u.length;s++){var p=u[s];if(p.getAttribute(\\"src\\")==t||p.getAttribute(\\"data-webpack\\")==r+a){l=p;break}}l||(c=!0,(l=document.createElement(\\"script\\")).charset=\\"utf-8\\",l.timeout=120,n.nc&&l.setAttribute(\\"nonce\\",n.nc),l.setAttribute(\\"data-webpack\\",r+a),l.src=t),e[t]=[o];var d=(r,o)=>{l.onerror=l.onload=null,clearTimeout(f);var n=e[t];if(delete e[t],l.parentNode&&l.parentNode.removeChild(l),n&&n.forEach((e=>e(o))),r)return r(o)},f=setTimeout(d.bind(null,void 0,{type:\\"timeout\\",target:l}),12e4);l.onerror=d.bind(null,l.onerror),l.onload=d.bind(null,l.onload),c&&document.head.appendChild(l)}},n.r=e=>{\\"undefined\\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;n.g.importScripts&&(e=n.g.location+\\"\\");var r=n.g.document;if(!e&&r&&(r.currentScript&&(e=r.currentScript.src),!e)){var t=r.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),n.p=e})(),(()=>{var e={143:0};n.f.j=(r,t)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)t.push(o[2]);else{var a=new Promise(((t,n)=>o=e[r]=[t,n]));t.push(o[2]=a);var i=n.p+n.u(r),l=new Error;n.l(i,(t=>{if(n.o(e,r)&&(0!==(o=e[r])&&(e[r]=void 0),o)){var a=t&&(\\"load\\"===t.type?\\"missing\\":t.type),i=t&&t.target&&t.target.src;l.message=\\"Loading chunk \\"+r+\\" failed.\\\\n(\\"+a+\\": \\"+i+\\")\\",l.name=\\"ChunkLoadError\\",l.type=a,l.request=i,o[1](l)}}),\\"chunk-\\"+r,r)}};var r=(r,t)=>{var o,a,[i,l,c]=t,u=0;if(i.some((r=>0!==e[r]))){for(o in l)n.o(l,o)&&(n.m[o]=l[o]);if(c)c(n)}for(r&&r(t);u<i.length;u++)a=i[u],n.o(e,a)&&e[a]&&e[a][0](),e[a]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(r.bind(null,0)),t.push=r.bind(null,t.push.bind(t))})(),n.e(598).then(n.bind(n,598)).then((()=>{console.log(\\"Good\\")}))})();",
 }
 `;
 
@@ -190,7 +190,7 @@ Object {
   "comments.js.map": {
   "version": 3,
   "file": "comments.js",
-  "mappings": ";qBAKAA,EAAOC,QAAUC,KAAKC,WCJlBC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaN,QAGrB,IAAID,EAASI,EAAyBE,GAAY,CAGjDL,QAAS,IAOV,OAHAQ,EAAoBH,GAAUN,EAAQA,EAAOC,QAASI,GAG/CL,EAAOC,SClBWI,CAAoB",
+  "mappings": ";qBAKAA,EAAOC,QAAUC,KAAKC,WCJlBC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaN,QAGrB,IAAID,EAASI,EAAyBE,GAAY,CAGjDL,QAAS,CAAC,GAOX,OAHAQ,EAAoBH,GAAUN,EAAQA,EAAOC,QAASI,GAG/CL,EAAOC,OACf,ECnB0BI,CAAoB",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/comments-4.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -624,7 +624,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -694,7 +694,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -730,7 +730,7 @@ exports[`TerserPlugin should work with "devtool" option and the "hidden-source-m
 exports[`TerserPlugin should work with "devtool" option and the "inline-source-map" value: assets 1`] = `
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsIm1hcHBpbmdzIjoicUJBS0FBLEVBQU9DLFFBQVUsV0FFZkMsUUFBUUMsSUFBSUMsTUNOVkMsRUFBMkIsSUFHL0IsU0FBU0MsRUFBb0JDLEdBRTVCLElBQUlDLEVBQWVILEVBQXlCRSxHQUM1QyxRQUFxQkUsSUFBakJELEVBQ0gsT0FBT0EsRUFBYVAsUUFHckIsSUFBSUQsRUFBU0ssRUFBeUJFLEdBQVksQ0FHakROLFFBQVMsSUFPVixPQUhBUyxFQUFvQkgsR0FBVVAsRUFBUUEsRUFBT0MsUUFBU0ssR0FHL0NOLEVBQU9DLFNDbEJXSyxDQUFvQixNIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vdGVyc2VyLXdlYnBhY2stcGx1Z2luLy4vdGVzdC9maXh0dXJlcy9lbnRyeS5qcyIsIndlYnBhY2s6Ly90ZXJzZXItd2VicGFjay1wbHVnaW4vd2VicGFjay9ib290c3RyYXAiLCJ3ZWJwYWNrOi8vdGVyc2VyLXdlYnBhY2stcGx1Z2luL3dlYnBhY2svc3RhcnR1cCJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBmb29cbi8qIEBwcmVzZXJ2ZSovXG4vLyBiYXJcbmNvbnN0IGEgPSAyICsgMjtcblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiBGb28oKSB7XG4gIGNvbnN0IGIgPSAyICsgMjtcbiAgY29uc29sZS5sb2coYiArIDEgKyAyKTtcbn07XG4iLCIvLyBUaGUgbW9kdWxlIGNhY2hlXG52YXIgX193ZWJwYWNrX21vZHVsZV9jYWNoZV9fID0ge307XG5cbi8vIFRoZSByZXF1aXJlIGZ1bmN0aW9uXG5mdW5jdGlvbiBfX3dlYnBhY2tfcmVxdWlyZV9fKG1vZHVsZUlkKSB7XG5cdC8vIENoZWNrIGlmIG1vZHVsZSBpcyBpbiBjYWNoZVxuXHR2YXIgY2FjaGVkTW9kdWxlID0gX193ZWJwYWNrX21vZHVsZV9jYWNoZV9fW21vZHVsZUlkXTtcblx0aWYgKGNhY2hlZE1vZHVsZSAhPT0gdW5kZWZpbmVkKSB7XG5cdFx0cmV0dXJuIGNhY2hlZE1vZHVsZS5leHBvcnRzO1xuXHR9XG5cdC8vIENyZWF0ZSBhIG5ldyBtb2R1bGUgKGFuZCBwdXQgaXQgaW50byB0aGUgY2FjaGUpXG5cdHZhciBtb2R1bGUgPSBfX3dlYnBhY2tfbW9kdWxlX2NhY2hlX19bbW9kdWxlSWRdID0ge1xuXHRcdC8vIG5vIG1vZHVsZS5pZCBuZWVkZWRcblx0XHQvLyBubyBtb2R1bGUubG9hZGVkIG5lZWRlZFxuXHRcdGV4cG9ydHM6IHt9XG5cdH07XG5cblx0Ly8gRXhlY3V0ZSB0aGUgbW9kdWxlIGZ1bmN0aW9uXG5cdF9fd2VicGFja19tb2R1bGVzX19bbW9kdWxlSWRdKG1vZHVsZSwgbW9kdWxlLmV4cG9ydHMsIF9fd2VicGFja19yZXF1aXJlX18pO1xuXG5cdC8vIFJldHVybiB0aGUgZXhwb3J0cyBvZiB0aGUgbW9kdWxlXG5cdHJldHVybiBtb2R1bGUuZXhwb3J0cztcbn1cblxuIiwiLy8gc3RhcnR1cFxuLy8gTG9hZCBlbnRyeSBtb2R1bGUgYW5kIHJldHVybiBleHBvcnRzXG4vLyBUaGlzIGVudHJ5IG1vZHVsZSBpcyByZWZlcmVuY2VkIGJ5IG90aGVyIG1vZHVsZXMgc28gaXQgY2FuJ3QgYmUgaW5saW5lZFxudmFyIF9fd2VicGFja19leHBvcnRzX18gPSBfX3dlYnBhY2tfcmVxdWlyZV9fKDc5MSk7XG4iXSwibmFtZXMiOlsibW9kdWxlIiwiZXhwb3J0cyIsImNvbnNvbGUiLCJsb2ciLCJiIiwiX193ZWJwYWNrX21vZHVsZV9jYWNoZV9fIiwiX193ZWJwYWNrX3JlcXVpcmVfXyIsIm1vZHVsZUlkIiwiY2FjaGVkTW9kdWxlIiwidW5kZWZpbmVkIiwiX193ZWJwYWNrX21vZHVsZXNfXyJdLCJzb3VyY2VSb290IjoiIn0=",
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsIm1hcHBpbmdzIjoicUJBS0FBLEVBQU9DLFFBQVUsV0FFZkMsUUFBUUMsSUFBSUMsRUFDZCxDLEdDUElDLEVBQTJCLENBQUMsR0FHaEMsU0FBU0MsRUFBb0JDLEdBRTVCLElBQUlDLEVBQWVILEVBQXlCRSxHQUM1QyxRQUFxQkUsSUFBakJELEVBQ0gsT0FBT0EsRUFBYVAsUUFHckIsSUFBSUQsRUFBU0ssRUFBeUJFLEdBQVksQ0FHakROLFFBQVMsQ0FBQyxHQU9YLE9BSEFTLEVBQW9CSCxHQUFVUCxFQUFRQSxFQUFPQyxRQUFTSyxHQUcvQ04sRUFBT0MsT0FDZixFQ25CMEJLLENBQW9CLEkiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly90ZXJzZXItd2VicGFjay1wbHVnaW4vLi90ZXN0L2ZpeHR1cmVzL2VudHJ5LmpzIiwid2VicGFjazovL3RlcnNlci13ZWJwYWNrLXBsdWdpbi93ZWJwYWNrL2Jvb3RzdHJhcCIsIndlYnBhY2s6Ly90ZXJzZXItd2VicGFjay1wbHVnaW4vd2VicGFjay9zdGFydHVwIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGZvb1xuLyogQHByZXNlcnZlKi9cbi8vIGJhclxuY29uc3QgYSA9IDIgKyAyO1xuXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uIEZvbygpIHtcbiAgY29uc3QgYiA9IDIgKyAyO1xuICBjb25zb2xlLmxvZyhiICsgMSArIDIpO1xufTtcbiIsIi8vIFRoZSBtb2R1bGUgY2FjaGVcbnZhciBfX3dlYnBhY2tfbW9kdWxlX2NhY2hlX18gPSB7fTtcblxuLy8gVGhlIHJlcXVpcmUgZnVuY3Rpb25cbmZ1bmN0aW9uIF9fd2VicGFja19yZXF1aXJlX18obW9kdWxlSWQpIHtcblx0Ly8gQ2hlY2sgaWYgbW9kdWxlIGlzIGluIGNhY2hlXG5cdHZhciBjYWNoZWRNb2R1bGUgPSBfX3dlYnBhY2tfbW9kdWxlX2NhY2hlX19bbW9kdWxlSWRdO1xuXHRpZiAoY2FjaGVkTW9kdWxlICE9PSB1bmRlZmluZWQpIHtcblx0XHRyZXR1cm4gY2FjaGVkTW9kdWxlLmV4cG9ydHM7XG5cdH1cblx0Ly8gQ3JlYXRlIGEgbmV3IG1vZHVsZSAoYW5kIHB1dCBpdCBpbnRvIHRoZSBjYWNoZSlcblx0dmFyIG1vZHVsZSA9IF9fd2VicGFja19tb2R1bGVfY2FjaGVfX1ttb2R1bGVJZF0gPSB7XG5cdFx0Ly8gbm8gbW9kdWxlLmlkIG5lZWRlZFxuXHRcdC8vIG5vIG1vZHVsZS5sb2FkZWQgbmVlZGVkXG5cdFx0ZXhwb3J0czoge31cblx0fTtcblxuXHQvLyBFeGVjdXRlIHRoZSBtb2R1bGUgZnVuY3Rpb25cblx0X193ZWJwYWNrX21vZHVsZXNfX1ttb2R1bGVJZF0obW9kdWxlLCBtb2R1bGUuZXhwb3J0cywgX193ZWJwYWNrX3JlcXVpcmVfXyk7XG5cblx0Ly8gUmV0dXJuIHRoZSBleHBvcnRzIG9mIHRoZSBtb2R1bGVcblx0cmV0dXJuIG1vZHVsZS5leHBvcnRzO1xufVxuXG4iLCIvLyBzdGFydHVwXG4vLyBMb2FkIGVudHJ5IG1vZHVsZSBhbmQgcmV0dXJuIGV4cG9ydHNcbi8vIFRoaXMgZW50cnkgbW9kdWxlIGlzIHJlZmVyZW5jZWQgYnkgb3RoZXIgbW9kdWxlcyBzbyBpdCBjYW4ndCBiZSBpbmxpbmVkXG52YXIgX193ZWJwYWNrX2V4cG9ydHNfXyA9IF9fd2VicGFja19yZXF1aXJlX18oNzkxKTtcbiJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwiY29uc29sZSIsImxvZyIsImIiLCJfX3dlYnBhY2tfbW9kdWxlX2NhY2hlX18iLCJfX3dlYnBhY2tfcmVxdWlyZV9fIiwibW9kdWxlSWQiLCJjYWNoZWRNb2R1bGUiLCJ1bmRlZmluZWQiLCJfX3dlYnBhY2tfbW9kdWxlc19fIl0sInNvdXJjZVJvb3QiOiIifQ==",
 }
 `;
 
@@ -745,7 +745,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -780,7 +780,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -820,7 +820,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -860,7 +860,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1175,7 +1175,7 @@ Object {
   "five.js.map": {
   "version": 3,
   "file": "five.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-4.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1206,7 +1206,7 @@ Object {
   "four.js.map": {
   "version": 3,
   "file": "four.js",
-  "mappings": "oBAAAA,EAAOC,QAAU,UCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,K",
+  "mappings": "oBAAAA,EAAOC,QAAU,O,GCCbC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,CAAC,GAOX,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,OACf,ECnB0BE,CAAoB,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-3.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1234,7 +1234,7 @@ Object {
   "one.js.map": {
   "version": 3,
   "file": "one.js",
-  "mappings": "oBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,K",
+  "mappings": "oBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1265,7 +1265,7 @@ Object {
   "three.js.map": {
   "version": 3,
   "file": "three.js",
-  "mappings": "qBAAAA,EAAOC,QAAU,IAAe,SCC5BC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "mappings": "qBAAAA,EAAOC,QAAU,IAAe,M,GCC5BC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,CAAC,GAOX,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,OACf,ECnB0BE,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-2.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1293,7 +1293,7 @@ Object {
   "two.js.map": {
   "version": 3,
   "file": "two.js",
-  "mappings": "qBAAAA,EAAOC,QAAU,WCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "mappings": "qBAAAA,EAAOC,QAAU,Q,GCCbC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,CAAC,GAOX,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,OACf,ECnB0BE,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-1.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1326,7 +1326,7 @@ Object {
   "five.js.map": {
   "version": 3,
   "file": "five.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-4.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1357,7 +1357,7 @@ Object {
   "four.js.map": {
   "version": 3,
   "file": "four.js",
-  "mappings": "oBAAAA,EAAOC,QAAU,UCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,K",
+  "mappings": "oBAAAA,EAAOC,QAAU,O,GCCbC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,CAAC,GAOX,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,OACf,ECnB0BE,CAAoB,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-3.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1385,7 +1385,7 @@ Object {
   "one.js.map": {
   "version": 3,
   "file": "one.js",
-  "mappings": "oBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,K",
+  "mappings": "oBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1416,7 +1416,7 @@ Object {
   "three.js.map": {
   "version": 3,
   "file": "three.js",
-  "mappings": "qBAAAA,EAAOC,QAAU,IAAe,SCC5BC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "mappings": "qBAAAA,EAAOC,QAAU,IAAe,M,GCC5BC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,CAAC,GAOX,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,OACf,ECnB0BE,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-2.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1444,7 +1444,7 @@ Object {
   "two.js.map": {
   "version": 3,
   "file": "two.js",
-  "mappings": "qBAAAA,EAAOC,QAAU,WCCbC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,IAOV,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,SClBWE,CAAoB,M",
+  "mappings": "qBAAAA,EAAOC,QAAU,Q,GCCbC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaJ,QAGrB,IAAID,EAASE,EAAyBE,GAAY,CAGjDH,QAAS,CAAC,GAOX,OAHAM,EAAoBH,GAAUJ,EAAQA,EAAOC,QAASE,GAG/CH,EAAOC,OACf,ECnB0BE,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/cache-1.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1752,7 +1752,7 @@ Object {
   "main-2.js.map": {
   "version": 3,
   "file": "main-2.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -1794,7 +1794,7 @@ Object {
   "main-4.js.map": {
   "version": 3,
   "file": "main-4.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack:///./test/fixtures/entry.js",
     "webpack:///webpack/bootstrap",
@@ -1846,7 +1846,7 @@ Object {
   "598.598.js.map": {
   "version": 3,
   "file": "598.598.js",
-  "mappings": "0JAAA",
+  "mappings": "0JAAA,mB",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/async-import-export/async-dep.js"
   ],
@@ -1861,7 +1861,7 @@ Object {
   "AsyncImportExport.js.map": {
   "version": 3,
   "file": "AsyncImportExport.js",
-  "mappings": "uBAAIA,EACAC,E,KCAAC,EAA2B,GAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaE,QAGrB,IAAIC,EAASN,EAAyBE,GAAY,CAGjDG,QAAS,IAOV,OAHAE,EAAoBL,GAAUI,EAAQA,EAAOD,QAASJ,GAG/CK,EAAOD,QAIfJ,EAAoBO,EAAID,ECxBxBN,EAAoBQ,EAAI,CAACJ,EAASK,KACjC,IAAI,IAAIC,KAAOD,EACXT,EAAoBW,EAAEF,EAAYC,KAASV,EAAoBW,EAAEP,EAASM,IAC5EE,OAAOC,eAAeT,EAASM,EAAK,CAAEI,YAAY,EAAMC,IAAKN,EAAWC,MCJ3EV,EAAoBgB,EAAI,GAGxBhB,EAAoBiB,EAAKC,GACjBC,QAAQC,IAAIR,OAAOS,KAAKrB,EAAoBgB,GAAGM,QAAO,CAACC,EAAUb,KACvEV,EAAoBgB,EAAEN,GAAKQ,EAASK,GAC7BA,IACL,KCNJvB,EAAoBwB,EAAKN,GAEZA,EAAU,IAAMA,EAAU,MCHvClB,EAAoByB,EAAI,WACvB,GAA0B,iBAAfC,WAAyB,OAAOA,WAC3C,IACC,OAAOC,MAAQ,IAAIC,SAAS,cAAb,GACd,MAAOX,GACR,GAAsB,iBAAXY,OAAqB,OAAOA,QALjB,GCAxB7B,EAAoBW,EAAI,CAACmB,EAAKC,IAAUnB,OAAOoB,UAAUC,eAAeC,KAAKJ,EAAKC,GNA9ElC,EAAa,GACbC,EAAoB,yBAExBE,EAAoBmC,EAAI,CAACC,EAAKC,EAAM3B,EAAKQ,KACxC,GAAGrB,EAAWuC,GAAQvC,EAAWuC,GAAKE,KAAKD,OAA3C,CACA,IAAIE,EAAQC,EACZ,QAAWrC,IAARO,EAEF,IADA,IAAI+B,EAAUC,SAASC,qBAAqB,UACpCC,EAAI,EAAGA,EAAIH,EAAQI,OAAQD,IAAK,CACvC,IAAIE,EAAIL,EAAQG,GAChB,GAAGE,EAAEC,aAAa,QAAUX,GAAOU,EAAEC,aAAa,iBAAmBjD,EAAoBY,EAAK,CAAE6B,EAASO,EAAG,OAG1GP,IACHC,GAAa,GACbD,EAASG,SAASM,cAAc,WAEzBC,QAAU,QACjBV,EAAOW,QAAU,IACblD,EAAoBmD,IACvBZ,EAAOa,aAAa,QAASpD,EAAoBmD,IAElDZ,EAAOa,aAAa,eAAgBtD,EAAoBY,GACxD6B,EAAOc,IAAMjB,GAEdvC,EAAWuC,GAAO,CAACC,GACnB,IAAIiB,EAAmB,CAACC,EAAMC,KAE7BjB,EAAOkB,QAAUlB,EAAOmB,OAAS,KACjCC,aAAaT,GACb,IAAIU,EAAU/D,EAAWuC,GAIzB,UAHOvC,EAAWuC,GAClBG,EAAOsB,YAActB,EAAOsB,WAAWC,YAAYvB,GACnDqB,GAAWA,EAAQG,SAASC,GAAQA,EAAGR,KACpCD,EAAM,OAAOA,EAAKC,IAGlBN,EAAUe,WAAWX,EAAiBY,KAAK,UAAM/D,EAAW,CAAEgE,KAAM,UAAWC,OAAQ7B,IAAW,MACtGA,EAAOkB,QAAUH,EAAiBY,KAAK,KAAM3B,EAAOkB,SACpDlB,EAAOmB,OAASJ,EAAiBY,KAAK,KAAM3B,EAAOmB,QACnDlB,GAAcE,SAAS2B,KAAKC,YAAY/B,KOvCzCvC,EAAoBuE,EAAKnE,IACH,oBAAXoE,QAA0BA,OAAOC,aAC1C7D,OAAOC,eAAeT,EAASoE,OAAOC,YAAa,CAAEC,MAAO,WAE7D9D,OAAOC,eAAeT,EAAS,aAAc,CAAEsE,OAAO,K,MCLvD,IAAIC,EACA3E,EAAoByB,EAAEmD,gBAAeD,EAAY3E,EAAoByB,EAAEoD,SAAW,IACtF,IAAInC,EAAW1C,EAAoByB,EAAEiB,SACrC,IAAKiC,GAAajC,IACbA,EAASoC,gBACZH,EAAYjC,EAASoC,cAAczB,MAC/BsB,GAAW,CACf,IAAIlC,EAAUC,EAASC,qBAAqB,UACzCF,EAAQI,SAAQ8B,EAAYlC,EAAQA,EAAQI,OAAS,GAAGQ,KAK7D,IAAKsB,EAAW,MAAM,IAAII,MAAM,yDAChCJ,EAAYA,EAAUK,QAAQ,OAAQ,IAAIA,QAAQ,QAAS,IAAIA,QAAQ,YAAa,KACpFhF,EAAoBiF,EAAIN,G,SCVxB,IAAIO,EAAkB,CACrB,IAAK,GAGNlF,EAAoBgB,EAAEmE,EAAI,CAACjE,EAASK,KAElC,IAAI6D,EAAqBpF,EAAoBW,EAAEuE,EAAiBhE,GAAWgE,EAAgBhE,QAAWf,EACtG,GAA0B,IAAvBiF,EAGF,GAAGA,EACF7D,EAASe,KAAK8C,EAAmB,QAC3B,CAGL,IAAIC,EAAU,IAAIlE,SAAQ,CAACmE,EAASC,IAAYH,EAAqBF,EAAgBhE,GAAW,CAACoE,EAASC,KAC1GhE,EAASe,KAAK8C,EAAmB,GAAKC,GAGtC,IAAIjD,EAAMpC,EAAoBiF,EAAIjF,EAAoBwB,EAAEN,GAEpDsE,EAAQ,IAAIT,MAgBhB/E,EAAoBmC,EAAEC,GAfFoB,IACnB,GAAGxD,EAAoBW,EAAEuE,EAAiBhE,KAEf,KAD1BkE,EAAqBF,EAAgBhE,MACRgE,EAAgBhE,QAAWf,GACrDiF,GAAoB,CACtB,IAAIK,EAAYjC,IAAyB,SAAfA,EAAMW,KAAkB,UAAYX,EAAMW,MAChEuB,EAAUlC,GAASA,EAAMY,QAAUZ,EAAMY,OAAOf,IACpDmC,EAAMG,QAAU,iBAAmBzE,EAAU,cAAgBuE,EAAY,KAAOC,EAAU,IAC1FF,EAAMI,KAAO,iBACbJ,EAAMrB,KAAOsB,EACbD,EAAMK,QAAUH,EAChBN,EAAmB,GAAGI,MAIgB,SAAWtE,EAASA,KAiBlE,IAAI4E,EAAuB,CAACC,EAA4BC,KACvD,IAGI/F,EAAUiB,GAHT+E,EAAUC,EAAaC,GAAWH,EAGhBpD,EAAI,EAC3B,GAAGqD,EAASG,MAAMC,GAAgC,IAAxBnB,EAAgBmB,KAAa,CACtD,IAAIpG,KAAYiG,EACZlG,EAAoBW,EAAEuF,EAAajG,KACrCD,EAAoBO,EAAEN,GAAYiG,EAAYjG,IAGhD,GAAGkG,EAAsBA,EAAQnG,GAGlC,IADG+F,GAA4BA,EAA2BC,GACrDpD,EAAIqD,EAASpD,OAAQD,IACzB1B,EAAU+E,EAASrD,GAChB5C,EAAoBW,EAAEuE,EAAiBhE,IAAYgE,EAAgBhE,IACrEgE,EAAgBhE,GAAS,KAE1BgE,EAAgBhE,GAAW,GAKzBoF,EAAqBC,KAAwC,kCAAIA,KAAwC,mCAAK,GAClHD,EAAmBvC,QAAQ+B,EAAqB5B,KAAK,KAAM,IAC3DoC,EAAmBhE,KAAOwD,EAAqB5B,KAAK,KAAMoC,EAAmBhE,KAAK4B,KAAKoC,K,GCrFvF,6BAAsBE,MAAK,KACzBC,QAAQC,IAAI,Y",
+  "mappings": "uBAAIA,EACAC,E,KCAAC,EAA2B,CAAC,EAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaE,QAGrB,IAAIC,EAASN,EAAyBE,GAAY,CAGjDG,QAAS,CAAC,GAOX,OAHAE,EAAoBL,GAAUI,EAAQA,EAAOD,QAASJ,GAG/CK,EAAOD,OACf,CAGAJ,EAAoBO,EAAID,ECxBxBN,EAAoBQ,EAAI,CAACJ,EAASK,KACjC,IAAI,IAAIC,KAAOD,EACXT,EAAoBW,EAAEF,EAAYC,KAASV,EAAoBW,EAAEP,EAASM,IAC5EE,OAAOC,eAAeT,EAASM,EAAK,CAAEI,YAAY,EAAMC,IAAKN,EAAWC,IAE1E,ECNDV,EAAoBgB,EAAI,CAAC,EAGzBhB,EAAoBiB,EAAKC,GACjBC,QAAQC,IAAIR,OAAOS,KAAKrB,EAAoBgB,GAAGM,QAAO,CAACC,EAAUb,KACvEV,EAAoBgB,EAAEN,GAAKQ,EAASK,GAC7BA,IACL,KCNJvB,EAAoBwB,EAAKN,GAEZA,EAAU,IAAMA,EAAU,MCHvClB,EAAoByB,EAAI,WACvB,GAA0B,iBAAfC,WAAyB,OAAOA,WAC3C,IACC,OAAOC,MAAQ,IAAIC,SAAS,cAAb,EAGhB,CAFE,MAAOX,GACR,GAAsB,iBAAXY,OAAqB,OAAOA,MACxC,CACA,CAPuB,GCAxB7B,EAAoBW,EAAI,CAACmB,EAAKC,IAAUnB,OAAOoB,UAAUC,eAAeC,KAAKJ,EAAKC,GNA9ElC,EAAa,CAAC,EACdC,EAAoB,yBAExBE,EAAoBmC,EAAI,CAACC,EAAKC,EAAM3B,EAAKQ,KACxC,GAAGrB,EAAWuC,GAAQvC,EAAWuC,GAAKE,KAAKD,OAA3C,CACA,IAAIE,EAAQC,EACZ,QAAWrC,IAARO,EAEF,IADA,IAAI+B,EAAUC,SAASC,qBAAqB,UACpCC,EAAI,EAAGA,EAAIH,EAAQI,OAAQD,IAAK,CACvC,IAAIE,EAAIL,EAAQG,GAChB,GAAGE,EAAEC,aAAa,QAAUX,GAAOU,EAAEC,aAAa,iBAAmBjD,EAAoBY,EAAK,CAAE6B,EAASO,EAAG,KAAO,CACpH,CAEGP,IACHC,GAAa,GACbD,EAASG,SAASM,cAAc,WAEzBC,QAAU,QACjBV,EAAOW,QAAU,IACblD,EAAoBmD,IACvBZ,EAAOa,aAAa,QAASpD,EAAoBmD,IAElDZ,EAAOa,aAAa,eAAgBtD,EAAoBY,GACxD6B,EAAOc,IAAMjB,GAEdvC,EAAWuC,GAAO,CAACC,GACnB,IAAIiB,EAAmB,CAACC,EAAMC,KAE7BjB,EAAOkB,QAAUlB,EAAOmB,OAAS,KACjCC,aAAaT,GACb,IAAIU,EAAU/D,EAAWuC,GAIzB,UAHOvC,EAAWuC,GAClBG,EAAOsB,YAActB,EAAOsB,WAAWC,YAAYvB,GACnDqB,GAAWA,EAAQG,SAASC,GAAQA,EAAGR,KACpCD,EAAM,OAAOA,EAAKC,EAAM,EAGxBN,EAAUe,WAAWX,EAAiBY,KAAK,UAAM/D,EAAW,CAAEgE,KAAM,UAAWC,OAAQ7B,IAAW,MACtGA,EAAOkB,QAAUH,EAAiBY,KAAK,KAAM3B,EAAOkB,SACpDlB,EAAOmB,OAASJ,EAAiBY,KAAK,KAAM3B,EAAOmB,QACnDlB,GAAcE,SAAS2B,KAAKC,YAAY/B,EApCkB,CAoCX,EOvChDvC,EAAoBuE,EAAKnE,IACH,oBAAXoE,QAA0BA,OAAOC,aAC1C7D,OAAOC,eAAeT,EAASoE,OAAOC,YAAa,CAAEC,MAAO,WAE7D9D,OAAOC,eAAeT,EAAS,aAAc,CAAEsE,OAAO,GAAO,E,MCL9D,IAAIC,EACA3E,EAAoByB,EAAEmD,gBAAeD,EAAY3E,EAAoByB,EAAEoD,SAAW,IACtF,IAAInC,EAAW1C,EAAoByB,EAAEiB,SACrC,IAAKiC,GAAajC,IACbA,EAASoC,gBACZH,EAAYjC,EAASoC,cAAczB,MAC/BsB,GAAW,CACf,IAAIlC,EAAUC,EAASC,qBAAqB,UACzCF,EAAQI,SAAQ8B,EAAYlC,EAAQA,EAAQI,OAAS,GAAGQ,IAC5D,CAID,IAAKsB,EAAW,MAAM,IAAII,MAAM,yDAChCJ,EAAYA,EAAUK,QAAQ,OAAQ,IAAIA,QAAQ,QAAS,IAAIA,QAAQ,YAAa,KACpFhF,EAAoBiF,EAAIN,C,WCVxB,IAAIO,EAAkB,CACrB,IAAK,GAGNlF,EAAoBgB,EAAEmE,EAAI,CAACjE,EAASK,KAElC,IAAI6D,EAAqBpF,EAAoBW,EAAEuE,EAAiBhE,GAAWgE,EAAgBhE,QAAWf,EACtG,GAA0B,IAAvBiF,EAGF,GAAGA,EACF7D,EAASe,KAAK8C,EAAmB,QAC3B,CAGL,IAAIC,EAAU,IAAIlE,SAAQ,CAACmE,EAASC,IAAYH,EAAqBF,EAAgBhE,GAAW,CAACoE,EAASC,KAC1GhE,EAASe,KAAK8C,EAAmB,GAAKC,GAGtC,IAAIjD,EAAMpC,EAAoBiF,EAAIjF,EAAoBwB,EAAEN,GAEpDsE,EAAQ,IAAIT,MAgBhB/E,EAAoBmC,EAAEC,GAfFoB,IACnB,GAAGxD,EAAoBW,EAAEuE,EAAiBhE,KAEf,KAD1BkE,EAAqBF,EAAgBhE,MACRgE,EAAgBhE,QAAWf,GACrDiF,GAAoB,CACtB,IAAIK,EAAYjC,IAAyB,SAAfA,EAAMW,KAAkB,UAAYX,EAAMW,MAChEuB,EAAUlC,GAASA,EAAMY,QAAUZ,EAAMY,OAAOf,IACpDmC,EAAMG,QAAU,iBAAmBzE,EAAU,cAAgBuE,EAAY,KAAOC,EAAU,IAC1FF,EAAMI,KAAO,iBACbJ,EAAMrB,KAAOsB,EACbD,EAAMK,QAAUH,EAChBN,EAAmB,GAAGI,EACvB,CACD,GAEwC,SAAWtE,EAASA,EAE/D,CACD,EAcF,IAAI4E,EAAuB,CAACC,EAA4BC,KACvD,IAGI/F,EAAUiB,GAHT+E,EAAUC,EAAaC,GAAWH,EAGhBpD,EAAI,EAC3B,GAAGqD,EAASG,MAAMC,GAAgC,IAAxBnB,EAAgBmB,KAAa,CACtD,IAAIpG,KAAYiG,EACZlG,EAAoBW,EAAEuF,EAAajG,KACrCD,EAAoBO,EAAEN,GAAYiG,EAAYjG,IAGhD,GAAGkG,EAAsBA,EAAQnG,EAClC,CAEA,IADG+F,GAA4BA,EAA2BC,GACrDpD,EAAIqD,EAASpD,OAAQD,IACzB1B,EAAU+E,EAASrD,GAChB5C,EAAoBW,EAAEuE,EAAiBhE,IAAYgE,EAAgBhE,IACrEgE,EAAgBhE,GAAS,KAE1BgE,EAAgBhE,GAAW,CAC5B,EAIGoF,EAAqBC,KAAwC,kCAAIA,KAAwC,mCAAK,GAClHD,EAAmBvC,QAAQ+B,EAAqB5B,KAAK,KAAM,IAC3DoC,EAAmBhE,KAAOwD,EAAqB5B,KAAK,KAAMoC,EAAmBhE,KAAK4B,KAAKoC,G,KCrFvF,6BAAsBE,MAAK,KACzBC,QAAQC,IAAI,OAAM,G",
   "sources": [
     "webpack://terser-webpack-plugin/webpack/runtime/load script",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2007,7 +2007,7 @@ Object {
   "importExport.js.map": {
   "version": 3,
   "file": "importExport.js",
-  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,QAKNK,QAAQC,IAAIP,M",
+  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,OAGN,CAEAK,QAAQC,IAAIP,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/entry.js",
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/dep.js"
@@ -2033,7 +2033,7 @@ Object {
   "js.js.map": {
   "version": 3,
   "file": "js.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2064,7 +2064,7 @@ Object {
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,GACd,CAEAH,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
@@ -2089,7 +2089,7 @@ Object {
   "598.598.js.map": {
   "version": 3,
   "file": "598.598.js",
-  "mappings": "0JAAA",
+  "mappings": "0JAAA,mB",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/async-import-export/async-dep.js"
   ],
@@ -2104,7 +2104,7 @@ Object {
   "AsyncImportExport.js.map": {
   "version": 3,
   "file": "AsyncImportExport.js",
-  "mappings": "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",
+  "mappings": "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",
   "sources": [
     "webpack://terser-webpack-plugin/webpack/runtime/load script",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2250,7 +2250,7 @@ Object {
   "importExport.js.map": {
   "version": 3,
   "file": "importExport.js",
-  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,QAKNK,QAAQC,IAAIP,M",
+  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,OAGN,CAEAK,QAAQC,IAAIP,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/entry.js",
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/dep.js"
@@ -2276,7 +2276,7 @@ Object {
   "js.js.map": {
   "version": 3,
   "file": "js.js",
-  "mappings": "yCAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "yCAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2307,7 +2307,7 @@ Object {
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,GACd,CAEAH,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
@@ -2340,7 +2340,7 @@ Object {
   "598.598.js.map": {
   "version": 3,
   "file": "598.598.js",
-  "mappings": "0JAAA",
+  "mappings": "0JAAA,mB",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/async-import-export/async-dep.js"
   ],
@@ -2355,7 +2355,7 @@ Object {
   "AsyncImportExport.js.map": {
   "version": 3,
   "file": "AsyncImportExport.js",
-  "mappings": "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",
+  "mappings": "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",
   "sources": [
     "webpack://terser-webpack-plugin/webpack/runtime/load script",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2501,7 +2501,7 @@ Object {
   "importExport.js.map": {
   "version": 3,
   "file": "importExport.js",
-  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,QAKNK,QAAQC,IAAIP,M",
+  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,OAGN,CAEAK,QAAQC,IAAIP,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/entry.js",
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/dep.js"
@@ -2527,7 +2527,7 @@ Object {
   "js.js.map": {
   "version": 3,
   "file": "js.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2558,7 +2558,7 @@ Object {
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,GACd,CAEAH,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
@@ -2583,7 +2583,7 @@ Object {
   "598.598.js.map": {
   "version": 3,
   "file": "598.598.js",
-  "mappings": "0JAAA",
+  "mappings": "0JAAA,mB",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/async-import-export/async-dep.js"
   ],
@@ -2598,7 +2598,7 @@ Object {
   "AsyncImportExport.js.map": {
   "version": 3,
   "file": "AsyncImportExport.js",
-  "mappings": "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",
+  "mappings": "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",
   "sources": [
     "webpack://terser-webpack-plugin/webpack/runtime/load script",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2744,7 +2744,7 @@ Object {
   "importExport.js.map": {
   "version": 3,
   "file": "importExport.js",
-  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,QAKNK,QAAQC,IAAIP,M",
+  "mappings": "mBAEA,SAASA,IACP,MACMC,EAAM,MAAMC,KAAKC,WACvB,MAAO,KACE,CACLC,EAAGC,SAAUJ,EACbI,ECPN,MDQMJ,OAGN,CAEAK,QAAQC,IAAIP,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/entry.js",
     "webpack://terser-webpack-plugin/./test/fixtures/import-export/dep.js"
@@ -2770,7 +2770,7 @@ Object {
   "js.js.map": {
   "version": 3,
   "file": "js.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.js",
     "webpack://terser-webpack-plugin/webpack/bootstrap",
@@ -2801,7 +2801,7 @@ Object {
   "mjs.js.map": {
   "version": 3,
   "file": "mjs.js",
-  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,IAGdH,K",
+  "mappings": "mBAIA,SAASA,IAEPC,QAAQC,IAAIC,GACd,CAEAH,G",
   "sources": [
     "webpack://terser-webpack-plugin/./test/fixtures/entry.mjs"
   ],
@@ -2844,7 +2844,7 @@ Object {
   "main.js.map": {
   "version": 3,
   "file": "main.js",
-  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,MCNVC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,IAOV,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,SClBWK,CAAoB,M",
+  "mappings": "qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I",
   "sources": [
     "webpack:///./test/fixtures/entry.js",
     "webpack:///webpack/bootstrap",
