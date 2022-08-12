@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.4](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.3...v5.3.4) (2022-08-12)
+
+
+### Bug Fixes
+
+* respect environment options for terser and swc compress options ([#509](https://github.com/webpack-contrib/terser-webpack-plugin/issues/509)) ([29bbc3a](https://github.com/webpack-contrib/terser-webpack-plugin/commit/29bbc3ae1c95097b010310217944f4145959f02a))
+
 ### [5.3.3](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.2...v5.3.3) (2022-06-02)
 
 ### Fixes
