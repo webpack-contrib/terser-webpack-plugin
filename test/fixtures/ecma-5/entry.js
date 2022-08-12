@@ -28,3 +28,14 @@ module.exports = {
   Employee: Employee,
   Manager: Manager
 };
+
+(function() {
+  var zzz = {};
+  var abc = {
+    data() {
+      return {
+        a: 2
+      };
+    }};
+  console.log(abc)
+})();

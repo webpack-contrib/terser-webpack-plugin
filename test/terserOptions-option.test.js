@@ -99,6 +99,29 @@ describe("terserOptions option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
+  it('should match snapshot for the "ecma" option with the "5" value ("swc")', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/ecma-5/entry.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+      terserOptions: {
+        ecma: 5,
+        mangle: false,
+        format: {
+          beautify: true,
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
   it('should match snapshot for the "ecma" option with the "6" value', async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "./fixtures/ecma-6/entry.js"),
@@ -109,6 +132,29 @@ describe("terserOptions option", () => {
         ecma: 6,
         mangle: false,
         output: {
+          beautify: true,
+        },
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it('should match snapshot for the "ecma" option with the "6" value ("swc")', async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/ecma-6/entry.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.swcMinify,
+      terserOptions: {
+        ecma: 6,
+        mangle: false,
+        format: {
           beautify: true,
         },
       },

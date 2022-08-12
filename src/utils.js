@@ -1,7 +1,10 @@
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 /** @typedef {import("terser").FormatOptions} TerserFormatOptions */
 /** @typedef {import("terser").MinifyOptions} TerserOptions */
+/** @typedef {import("terser").CompressOptions} TerserCompressOptions */
 /** @typedef {import("terser").ECMA} TerserECMA */
+/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
+/** @typedef {import("@swc/core").TerserCompressOptions} SwcCompressOptions */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
@@ -219,7 +222,7 @@ async function terserMinify(
 
   /**
    * @param {PredefinedOptions & TerserOptions} [terserOptions={}]
-   * @returns {TerserOptions & { sourceMap: undefined } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })}
+   * @returns {TerserOptions & { sourceMap: undefined } & { compress: TerserCompressOptions } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })}
    */
   const buildTerserOptions = (terserOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -227,7 +230,7 @@ async function terserMinify(
       ...terserOptions,
       compress:
         typeof terserOptions.compress === "boolean"
-          ? terserOptions.compress
+          ? {}
           : { ...terserOptions.compress },
       // ecma: terserOptions.ecma,
       // ie8: terserOptions.ie8,
@@ -278,6 +281,19 @@ async function terserMinify(
       terserOptions,
       extractedComments
     );
+  }
+
+  // More optimizations
+  if (typeof terserOptions.compress.ecma === "undefined") {
+    terserOptions.compress.ecma = terserOptions.ecma;
+  }
+
+  // https://github.com/webpack/webpack/issues/16135
+  if (
+    terserOptions.ecma === 5 &&
+    typeof terserOptions.compress.arrows === "undefined"
+  ) {
+    terserOptions.compress.arrows = false;
   }
 
   const [[filename, code]] = Object.entries(input);
@@ -536,7 +552,7 @@ uglifyJsMinify.getMinimizerVersion = () => {
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
    * @param {PredefinedOptions & import("@swc/core").JsMinifyOptions} [swcOptions={}]
-   * @returns {import("@swc/core").JsMinifyOptions & { sourceMap: undefined }}
+   * @returns {SwcMinifyOptions & { sourceMap: undefined } & { compress: SwcCompressOptions }}
    */
   const buildSwcOptions = (swcOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -544,7 +560,7 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
       ...swcOptions,
       compress:
         typeof swcOptions.compress === "boolean"
-          ? swcOptions.compress
+          ? {}
           : { ...swcOptions.compress },
       mangle:
         swcOptions.mangle == null
@@ -572,6 +588,19 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
   if (sourceMap) {
     // @ts-ignore
     swcOptions.sourceMap = true;
+  }
+
+  // More optimizations
+  if (typeof swcOptions.compress.ecma === "undefined") {
+    swcOptions.compress.ecma = swcOptions.ecma;
+  }
+
+  // https://github.com/webpack/webpack/issues/16135
+  if (
+    swcOptions.ecma === 5 &&
+    typeof swcOptions.compress.arrows === "undefined"
+  ) {
+    swcOptions.compress.arrows = false;
   }
 
   const [[filename, code]] = Object.entries(input);
