@@ -34,4 +34,15 @@ class Mortgage {
   }
 }
 
+(function() {
+  var zzz = {};
+  var abc = {
+    data() {
+      return {
+        a: 2
+      };
+    }};
+  console.log(abc)
+})();
+
 module.exports = Mortgage;
