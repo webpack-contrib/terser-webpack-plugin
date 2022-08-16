@@ -4,8 +4,6 @@ export type TerserFormatOptions = import("terser").FormatOptions;
 export type TerserOptions = import("terser").MinifyOptions;
 export type TerserCompressOptions = import("terser").CompressOptions;
 export type TerserECMA = import("terser").ECMA;
-export type SwcMinifyOptions = import("@swc/core").JsMinifyOptions;
-export type SwcCompressOptions = import("@swc/core").TerserCompressOptions;
 export type ExtractCommentsOptions =
   import("./index.js").ExtractCommentsOptions;
 export type ExtractCommentsFunction =
