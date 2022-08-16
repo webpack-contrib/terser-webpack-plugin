@@ -3,8 +3,6 @@
 /** @typedef {import("terser").MinifyOptions} TerserOptions */
 /** @typedef {import("terser").CompressOptions} TerserCompressOptions */
 /** @typedef {import("terser").ECMA} TerserECMA */
-/** @typedef {import("@swc/core").JsMinifyOptions} SwcMinifyOptions */
-/** @typedef {import("@swc/core").TerserCompressOptions} SwcCompressOptions */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
@@ -552,7 +550,7 @@ uglifyJsMinify.getMinimizerVersion = () => {
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
    * @param {PredefinedOptions & import("@swc/core").JsMinifyOptions} [swcOptions={}]
-   * @returns {SwcMinifyOptions & { sourceMap: undefined } & { compress: SwcCompressOptions }}
+   * @returns {import("@swc/core").JsMinifyOptions & { sourceMap: undefined } & { compress: import("@swc/core").TerserCompressOptions }}
    */
   const buildSwcOptions = (swcOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
