@@ -447,6 +447,23 @@ describe("minify option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
+  it("should work using when the `minify` option is `terserMinify` and allows to disable `compress` options", async () => {
+    const compiler = getCompiler();
+
+    new TerserPlugin({
+      minify: TerserPlugin.terserMinify,
+      terserOptions: {
+        compress: false,
+      },
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
   it("should work using when the `minify` option is `uglifyJsMinify`", async () => {
     const compiler = getCompiler({
       target: ["web", "es5"],
