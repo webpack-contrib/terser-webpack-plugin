@@ -178,6 +178,19 @@ exports[`minify option should work using when the \`minify\` option is \`terserM
 
 exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and ECMA modules output: warnings 1`] = `Array []`;
 
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to disable \`compress\` options: assets 1`] = `
+Object {
+  "main.js": "/*! For license information please see main.js.LICENSE.txt */
+(()=>{var r={791:r=>{const n=null&&2+2;r.exports=function r(){const n=2+2;console.log(n+1+2)}}};var n={};function o(t){var e=n[t];if(e!==undefined){return e.exports}var s=n[t]={exports:{}};r[t](s,s.exports,o);return s.exports}var t=o(791)})();",
+  "main.js.LICENSE.txt": "/* @preserve*/
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to disable \`compress\` options: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to disable \`compress\` options: warnings 1`] = `Array []`;
+
 exports[`minify option should work using when the \`minify\` option is \`terserMinify\` and allows to set \`terser\` options: assets 1`] = `
 Object {
   "main.js": "(()=>{var __webpack_modules__={791:module=>{module.exports=function(){console.log(7)}}},__webpack_module_cache__={};(function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(void 0!==cachedModule)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports})(791)})();",

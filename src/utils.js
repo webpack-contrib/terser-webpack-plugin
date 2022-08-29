@@ -228,7 +228,9 @@ async function terserMinify(
       ...terserOptions,
       compress:
         typeof terserOptions.compress === "boolean"
-          ? {}
+          ? terserOptions.compress
+            ? {}
+            : false
           : { ...terserOptions.compress },
       // ecma: terserOptions.ecma,
       // ie8: terserOptions.ie8,
@@ -281,17 +283,19 @@ async function terserMinify(
     );
   }
 
-  // More optimizations
-  if (typeof terserOptions.compress.ecma === "undefined") {
-    terserOptions.compress.ecma = terserOptions.ecma;
-  }
+  if (terserOptions.compress) {
+    // More optimizations
+    if (typeof terserOptions.compress.ecma === "undefined") {
+      terserOptions.compress.ecma = terserOptions.ecma;
+    }
 
-  // https://github.com/webpack/webpack/issues/16135
-  if (
-    terserOptions.ecma === 5 &&
-    typeof terserOptions.compress.arrows === "undefined"
-  ) {
-    terserOptions.compress.arrows = false;
+    // https://github.com/webpack/webpack/issues/16135
+    if (
+      terserOptions.ecma === 5 &&
+      typeof terserOptions.compress.arrows === "undefined"
+    ) {
+      terserOptions.compress.arrows = false;
+    }
   }
 
   const [[filename, code]] = Object.entries(input);
@@ -558,7 +562,9 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
       ...swcOptions,
       compress:
         typeof swcOptions.compress === "boolean"
-          ? {}
+          ? swcOptions.compress
+            ? {}
+            : false
           : { ...swcOptions.compress },
       mangle:
         swcOptions.mangle == null
@@ -588,17 +594,19 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
     swcOptions.sourceMap = true;
   }
 
-  // More optimizations
-  if (typeof swcOptions.compress.ecma === "undefined") {
-    swcOptions.compress.ecma = swcOptions.ecma;
-  }
+  if (swcOptions.compress) {
+    // More optimizations
+    if (typeof swcOptions.compress.ecma === "undefined") {
+      swcOptions.compress.ecma = swcOptions.ecma;
+    }
 
-  // https://github.com/webpack/webpack/issues/16135
-  if (
-    swcOptions.ecma === 5 &&
-    typeof swcOptions.compress.arrows === "undefined"
-  ) {
-    swcOptions.compress.arrows = false;
+    // https://github.com/webpack/webpack/issues/16135
+    if (
+      swcOptions.ecma === 5 &&
+      typeof swcOptions.compress.arrows === "undefined"
+    ) {
+      swcOptions.compress.arrows = false;
+    }
   }
 
   const [[filename, code]] = Object.entries(input);
