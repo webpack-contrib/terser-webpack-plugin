@@ -42,263 +42,65 @@ exports[`minify option should throw an error when an error: warnings 1`] = `Arra
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/dist/main.js'",
+  "main.js": "var r={};r.d=(_,e)=>{for(var t in e)r.o(e,t)&&!r.o(_,t)&&Object.defineProperty(_,t,{enumerable:!0,get:e[t]})},r.o=(_,e)=>Object.prototype.hasOwnProperty.call(_,e);var o={};r.d(o,{Z:()=>p});const c=2+2;function a(){console.log(4+1+2+c)}a();const p=a;var b=o.Z;export{b as default};
+",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and ECMA modules output: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
+  "main.js": "(()=>{var __webpack_modules__={791:module=>{/* @preserve*/module.exports=function(){console.log(7)}}},__webpack_module_cache__={};function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(cachedModule!==void 0)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}var __webpack_exports__=__webpack_require__(791)})();
+",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and allows to set \`esbuild\` options: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
-  "main.js.map": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js.map'",
+  "main.js": "(()=>{var a={791:e=>{/* @preserve*/e.exports=function(){console.log(7)}}},r={};function c(e){var o=r[e];if(o!==void 0)return o.exports;var _=r[e]={exports:{}};return a[e](_,_.exports,c),_.exports}var n=c(791)})();
+
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"qBACA,cAIAA,EAAO,QAAU,UAAe,CAE9B,QAAQ,IAAI,CAAS,CACvB,C,GCPIC,EAA2B,CAAC,EAGhC,SAASC,EAAoBC,EAAU,CAEtC,IAAIC,EAAeH,EAAyBE,GAC5C,GAAIC,IAAiB,OACpB,OAAOA,EAAa,QAGrB,IAAIJ,EAASC,EAAyBE,GAAY,CAGjD,QAAS,CAAC,CACX,EAGA,OAAAE,EAAoBF,GAAUH,EAAQA,EAAO,QAASE,CAAmB,EAGlEF,EAAO,OACf,CCnBA,IAAIM,EAAsBJ,EAAoB,GAAG,C\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"__webpack_modules__\\",\\"__webpack_exports__\\"],\\"sourceRoot\\":\\"\\"}",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: errors 1`] = `
-Array [
-  [Error: main.js from Terser plugin
-
-You installed esbuild on another platform than the one you're currently using.
-This won't work because esbuild is written with native code and needs to
-install a platform-specific binary executable.
-
-Specifically the "esbuild-windows-64" package is present but this platform
-needs the "esbuild-linux-64" package instead. People often get into this
-situation by installing esbuild on Windows or macOS and copying "node_modules"
-into a Docker image that runs Linux, or by copying "node_modules" between
-Windows and WSL environments.
-
-If you are installing with npm, you can try not copying the "node_modules"
-directory when you copy the files over, and running "npm ci" or "npm install"
-on the destination platform after the copy. Or you could consider using yarn
-instead which has built-in support for installing a package on multiple
-platforms simultaneously.
-
-If you are installing with yarn, you can try listing both this platform and the
-other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
-feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
-Keep in mind that this means multiple copies of esbuild will be present.
-
-Another alternative is to use the "esbuild-wasm" package instead, which works
-the same way on all platforms. But it comes with a heavy performance cost and
-can sometimes be 10x slower than the "esbuild" package, so you may also not
-want to do that.
-
-Error: 
-You installed esbuild on another platform than the one you're currently using.
-This won't work because esbuild is written with native code and needs to
-install a platform-specific binary executable.
-
-Specifically the "esbuild-windows-64" package is present but this platform
-needs the "esbuild-linux-64" package instead. People often get into this
-situation by installing esbuild on Windows or macOS and copying "node_modules"
-into a Docker image that runs Linux, or by copying "node_modules" between
-Windows and WSL environments.
-
-If you are installing with npm, you can try not copying the "node_modules"
-directory when you copy the files over, and running "npm ci" or "npm install"
-on the destination platform after the copy. Or you could consider using yarn
-instead which has built-in support for installing a package on multiple
-platforms simultaneously.
-
-If you are installing with yarn, you can try listing both this platform and the
-other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
-feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
-Keep in mind that this means multiple copies of esbuild will be present.
-
-Another alternative is to use the "esbuild-wasm" package instead, which works
-the same way on all platforms. But it comes with a heavy performance cost and
-can sometimes be 10x slower than the "esbuild" package, so you may also not
-want to do that.
-
-    at generateBinPath (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1815:17)
-    at esbuildCommandAndArgs (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1901:31)
-    at ensureServiceIsRunning (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:2065:25)
-    at Object.transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1958:37)
-    at esbuildMinify (eval at transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:36:7), <anonymous>:42:32)
-    at minify (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:13:10)
-    at Object.transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:46:10)
-    at execFunction (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:148:17)
-    at execHelper (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:127:5)
-    at execMethod (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:131:5)],
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and generate source maps: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: assets 1`] = `
 Object {
-  "627.627.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/627.627.js'",
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
+  "627.627.js": "(self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[]).push([[627],{627:e=>{/*! Legal Comment *//** @license Copyright 2112 Moon. **/e.exports=Math.random()}}]);
+",
+  "main.js": "(()=>{var b={900:(e,o,t)=>{t.e(627).then(t.t.bind(t,627,23));/*! Legal Comment *//**
+ * @preserve Copyright 2009 SomeThirdParty.
+ * Here is the full license text and copyright
+ * notice for this file. Note that the notice can span several
+ * lines and is only terminated by the closing star and slash:
+ *//**
+ * Utility functions for the foo package.
+ * @license Apache-2.0
+ *//*! Legal Foo */e.exports=Math.random()}},g={};function r(e){var o=g[e];if(o!==void 0)return o.exports;var t=g[e]={exports:{}};return b[e](t,t.exports,r),t.exports}r.m=b,(()=>{var e=Object.getPrototypeOf?t=>Object.getPrototypeOf(t):t=>t.__proto__,o;r.t=function(t,a){if(a&1&&(t=this(t)),a&8||typeof t==\\"object\\"&&t&&(a&4&&t.__esModule||a&16&&typeof t.then==\\"function\\"))return t;var c=Object.create(null);r.r(c);var i={};o=o||[null,e({}),e([]),e(e)];for(var n=a&2&&t;typeof n==\\"object\\"&&!~o.indexOf(n);n=e(n))Object.getOwnPropertyNames(n).forEach(p=>i[p]=()=>t[p]);return i.default=()=>t,r.d(c,i),c}})(),r.d=(e,o)=>{for(var t in o)r.o(o,t)&&!r.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:o[t]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((o,t)=>(r.f[t](e,o),o),[])),r.u=e=>\\"\\"+e+\\".\\"+e+\\".js\\",r.g=function(){if(typeof globalThis==\\"object\\")return globalThis;try{return this||new Function(\\"return this\\")()}catch{if(typeof window==\\"object\\")return window}}(),r.o=(e,o)=>Object.prototype.hasOwnProperty.call(e,o),(()=>{var e={},o=\\"terser-webpack-plugin:\\";r.l=(t,a,c,i)=>{if(e[t]){e[t].push(a);return}var n,p;if(c!==void 0)for(var l=document.getElementsByTagName(\\"script\\"),u=0;u<l.length;u++){var f=l[u];if(f.getAttribute(\\"src\\")==t||f.getAttribute(\\"data-webpack\\")==o+c){n=f;break}}n||(p=!0,n=document.createElement(\\"script\\"),n.charset=\\"utf-8\\",n.timeout=120,r.nc&&n.setAttribute(\\"nonce\\",r.nc),n.setAttribute(\\"data-webpack\\",o+c),n.src=t),e[t]=[a];var s=(h,m)=>{n.onerror=n.onload=null,clearTimeout(d);var _=e[t];if(delete e[t],n.parentNode&&n.parentNode.removeChild(n),_&&_.forEach(w=>w(m)),h)return h(m)},d=setTimeout(s.bind(null,void 0,{type:\\"timeout\\",target:n}),12e4);n.onerror=s.bind(null,n.onerror),n.onload=s.bind(null,n.onload),p&&document.head.appendChild(n)}})(),r.r=e=>{typeof Symbol<\\"u\\"&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\\"Module\\"}),Object.defineProperty(e,\\"__esModule\\",{value:!0})},(()=>{var e;r.g.importScripts&&(e=r.g.location+\\"\\");var o=r.g.document;if(!e&&o&&(o.currentScript&&(e=o.currentScript.src),!e)){var t=o.getElementsByTagName(\\"script\\");t.length&&(e=t[t.length-1].src)}if(!e)throw new Error(\\"Automatic publicPath is not supported in this browser\\");e=e.replace(/#.*$/,\\"\\").replace(/\\\\?.*$/,\\"\\").replace(/\\\\/[^\\\\/]+$/,\\"/\\"),r.p=e})(),(()=>{var e={179:0};r.f.j=(a,c)=>{var i=r.o(e,a)?e[a]:void 0;if(i!==0)if(i)c.push(i[2]);else{var n=new Promise((f,s)=>i=e[a]=[f,s]);c.push(i[2]=n);var p=r.p+r.u(a),l=new Error,u=f=>{if(r.o(e,a)&&(i=e[a],i!==0&&(e[a]=void 0),i)){var s=f&&(f.type===\\"load\\"?\\"missing\\":f.type),d=f&&f.target&&f.target.src;l.message=\\"Loading chunk \\"+a+\` failed.
+(\`+s+\\": \\"+d+\\")\\",l.name=\\"ChunkLoadError\\",l.type=s,l.request=d,i[1](l)}};r.l(p,u,\\"chunk-\\"+a,a)}};var o=(a,c)=>{var[i,n,p]=c,l,u,f=0;if(i.some(d=>e[d]!==0)){for(l in n)r.o(n,l)&&(r.m[l]=n[l]);if(p)var s=p(r)}for(a&&a(c);f<i.length;f++)u=i[f],r.o(e,u)&&e[u]&&e[u][0](),e[u]=0},t=self.webpackChunkterser_webpack_plugin=self.webpackChunkterser_webpack_plugin||[];t.forEach(o.bind(null,0)),t.push=o.bind(null,t.push.bind(t))})();var v=r(900)})();
+",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: errors 1`] = `
-Array [
-  [Error: 627.627.js from Terser plugin
-
-You installed esbuild on another platform than the one you're currently using.
-This won't work because esbuild is written with native code and needs to
-install a platform-specific binary executable.
-
-Specifically the "esbuild-windows-64" package is present but this platform
-needs the "esbuild-linux-64" package instead. People often get into this
-situation by installing esbuild on Windows or macOS and copying "node_modules"
-into a Docker image that runs Linux, or by copying "node_modules" between
-Windows and WSL environments.
-
-If you are installing with npm, you can try not copying the "node_modules"
-directory when you copy the files over, and running "npm ci" or "npm install"
-on the destination platform after the copy. Or you could consider using yarn
-instead which has built-in support for installing a package on multiple
-platforms simultaneously.
-
-If you are installing with yarn, you can try listing both this platform and the
-other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
-feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
-Keep in mind that this means multiple copies of esbuild will be present.
-
-Another alternative is to use the "esbuild-wasm" package instead, which works
-the same way on all platforms. But it comes with a heavy performance cost and
-can sometimes be 10x slower than the "esbuild" package, so you may also not
-want to do that.
-
-Error: 
-You installed esbuild on another platform than the one you're currently using.
-This won't work because esbuild is written with native code and needs to
-install a platform-specific binary executable.
-
-Specifically the "esbuild-windows-64" package is present but this platform
-needs the "esbuild-linux-64" package instead. People often get into this
-situation by installing esbuild on Windows or macOS and copying "node_modules"
-into a Docker image that runs Linux, or by copying "node_modules" between
-Windows and WSL environments.
-
-If you are installing with npm, you can try not copying the "node_modules"
-directory when you copy the files over, and running "npm ci" or "npm install"
-on the destination platform after the copy. Or you could consider using yarn
-instead which has built-in support for installing a package on multiple
-platforms simultaneously.
-
-If you are installing with yarn, you can try listing both this platform and the
-other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
-feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
-Keep in mind that this means multiple copies of esbuild will be present.
-
-Another alternative is to use the "esbuild-wasm" package instead, which works
-the same way on all platforms. But it comes with a heavy performance cost and
-can sometimes be 10x slower than the "esbuild" package, so you may also not
-want to do that.
-
-    at generateBinPath (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1815:17)
-    at esbuildCommandAndArgs (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1901:31)
-    at ensureServiceIsRunning (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:2065:25)
-    at Object.transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1958:37)
-    at esbuildMinify (eval at transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:36:7), <anonymous>:42:32)
-    at minify (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:13:10)
-    at Object.transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:46:10)
-    at execFunction (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:148:17)
-    at execHelper (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:127:5)
-    at execMethod (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:131:5)],
-  [Error: main.js from Terser plugin
-
-You installed esbuild on another platform than the one you're currently using.
-This won't work because esbuild is written with native code and needs to
-install a platform-specific binary executable.
-
-Specifically the "esbuild-windows-64" package is present but this platform
-needs the "esbuild-linux-64" package instead. People often get into this
-situation by installing esbuild on Windows or macOS and copying "node_modules"
-into a Docker image that runs Linux, or by copying "node_modules" between
-Windows and WSL environments.
-
-If you are installing with npm, you can try not copying the "node_modules"
-directory when you copy the files over, and running "npm ci" or "npm install"
-on the destination platform after the copy. Or you could consider using yarn
-instead which has built-in support for installing a package on multiple
-platforms simultaneously.
-
-If you are installing with yarn, you can try listing both this platform and the
-other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
-feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
-Keep in mind that this means multiple copies of esbuild will be present.
-
-Another alternative is to use the "esbuild-wasm" package instead, which works
-the same way on all platforms. But it comes with a heavy performance cost and
-can sometimes be 10x slower than the "esbuild" package, so you may also not
-want to do that.
-
-Error: 
-You installed esbuild on another platform than the one you're currently using.
-This won't work because esbuild is written with native code and needs to
-install a platform-specific binary executable.
-
-Specifically the "esbuild-windows-64" package is present but this platform
-needs the "esbuild-linux-64" package instead. People often get into this
-situation by installing esbuild on Windows or macOS and copying "node_modules"
-into a Docker image that runs Linux, or by copying "node_modules" between
-Windows and WSL environments.
-
-If you are installing with npm, you can try not copying the "node_modules"
-directory when you copy the files over, and running "npm ci" or "npm install"
-on the destination platform after the copy. Or you could consider using yarn
-instead which has built-in support for installing a package on multiple
-platforms simultaneously.
-
-If you are installing with yarn, you can try listing both this platform and the
-other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
-feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
-Keep in mind that this means multiple copies of esbuild will be present.
-
-Another alternative is to use the "esbuild-wasm" package instead, which works
-the same way on all platforms. But it comes with a heavy performance cost and
-can sometimes be 10x slower than the "esbuild" package, so you may also not
-want to do that.
-
-    at generateBinPath (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1815:17)
-    at esbuildCommandAndArgs (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1901:31)
-    at ensureServiceIsRunning (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:2065:25)
-    at Object.transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/esbuild/lib/main.js:1958:37)
-    at esbuildMinify (eval at transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:36:7), <anonymous>:42:32)
-    at minify (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:13:10)
-    at Object.transform (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/src/minify.js:46:10)
-    at execFunction (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:148:17)
-    at execHelper (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:127:5)
-    at execMethod (/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/node_modules/jest-worker/build/workers/threadChild.js:131:5)],
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and keep legal comments when extract comments is disabled: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output errors: errors 1`] = `
 Array [
   "Error: broken.js from Terser plugin
-",
-  "Error: main.js from Terser plugin
-",
+Transform failed with 1 error:",
 ]
 `;
 
@@ -306,71 +108,51 @@ exports[`minify option should work using when the \`minify\` option is \`esbuild
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
+  "main.js": "(()=>{var a={791:e=>{/* @preserve*/e.exports=function(){console.log(7)}}},r={};function c(e){var o=r[e];if(o!==void 0)return o.exports;var _=r[e]={exports:{}};return a[e](_,_.exports,c),_.exports}var n=c(791)})();
+",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/dist/main.js'",
+  "main.js": "var e={};e.d=(r,o)=>{for(var a in o)e.o(o,a)&&!e.o(r,a)&&Object.defineProperty(r,a,{enumerable:!0,get:o[a]})},e.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r);var r={};function o(){console.log(11)}e.d(r,{Z:()=>a}),o();let a=o;var t=r.Z;export{t as default};",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-Bindings not found.",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and ECMA modules output: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
+  "main.js": "(()=>{var __webpack_modules__={791(module){module.exports=function(){console.log(7)}}},__webpack_module_cache__={};function __webpack_require__(moduleId){var cachedModule=__webpack_module_cache__[moduleId];if(void 0!==cachedModule)return cachedModule.exports;var module=__webpack_module_cache__[moduleId]={exports:{}};return __webpack_modules__[moduleId](module,module.exports,__webpack_require__),module.exports}var __webpack_exports__=__webpack_require__(791)})();",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-Bindings not found.",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and allows to set \`swc\` options: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
-  "main.js.map": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js.map'",
+  "main.js": "(()=>{var r={791(r){r.exports=function(){console.log(7)}}},o={};function t(e){var n=o[e];if(void 0!==n)return n.exports;var p=o[e]={exports:{}};return r[e](p,p.exports,t),p.exports}var e=t(791)})();
+//# sourceMappingURL=main.js.map",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"oBAKAA,CAAM,CAACC,OAAO,CAAG,UAAe,CAE9BC,OAAO,CAACC,GAAG,CAACC,CAAS,CAAC,CACvB,C,ECPGC,CAAwB,CAAG,EAAE,UAGxBC,CAAmB,CAACC,CAAQ,CAAE,CAEtC,IAAIC,CAAY,CAAGH,CAAwB,CAACE,CAAQ,CAAC,IACjDC,KAAiBC,CAAS,GAA1BD,CAAY,CACf,OAAOA,CAAY,CAACP,OAAO,KAGxBD,CAAM,CAAGK,CAAwB,CAACE,CAAQ,CAAC,CAAG,CAGjDN,OAAO,CAAE,EAAE,CACX,QAGDS,CAAmB,CAACH,CAAQ,CAAC,CAACP,CAAM,CAAEA,CAAM,CAACC,OAAO,CAAEK,CAAmB,CAAC,CAGnEN,CAAM,CAACC,OAAO,CACrB,ICnBGU,CAAmB,CAAGL,CAAmB,CAAC,GAAG,CAAC,C\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\",\\"__webpack_exports__\\"],\\"sourceRoot\\":\\"\\"}",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-Bindings not found.",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and generate source maps: warnings 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\` and output errors: errors 1`] = `
 Array [
   "Error: broken.js from Terser plugin
-Bindings not found.",
-  "Error: main.js from Terser plugin
-Bindings not found.",
+",
 ]
 `;
 
@@ -378,16 +160,11 @@ exports[`minify option should work using when the \`minify\` option is \`swcMini
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: assets 1`] = `
 Object {
-  "main.js": "Error: ENOENT: no such file or directory, open '/mnt/c/Users/Lenovo/Desktop/webpack-contrib/terser-webpack-plugin/test/helpers/dist/main.js'",
+  "main.js": "(()=>{var r={791(r){r.exports=function(){console.log(7)}}},o={};function t(e){var n=o[e];if(void 0!==n)return n.exports;var p=o[e]={exports:{}};return r[e](p,p.exports,t),p.exports}var e=t(791)})();",
 }
 `;
 
-exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: errors 1`] = `
-Array [
-  "Error: main.js from Terser plugin
-Bindings not found.",
-]
-`;
+exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: errors 1`] = `Array []`;
 
 exports[`minify option should work using when the \`minify\` option is \`swcMinify\`: warnings 1`] = `Array []`;
 
@@ -463,7 +240,7 @@ exports[`minify option should work using when the \`minify\` option is \`terserM
 Object {
   "main.js": "(()=>{var r={791:r=>{r.exports=function(){console.log(7)}}},o={};(function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports})(791)})();
 //# sourceMappingURL=main.js.map",
-  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\r\\\\n/* @preserve*/\\\\r\\\\n// bar\\\\r\\\\nconst a = 2 + 2;\\\\r\\\\n\\\\r\\\\nmodule.exports = function Foo() {\\\\r\\\\n  const b = 2 + 2;\\\\r\\\\n  console.log(b + 1 + 2);\\\\r\\\\n};\\\\r\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"qBAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,EACd,C,GCPIC,EAA2B,CAAC,GAGhC,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,QAAqBE,IAAjBD,EACH,OAAOA,EAAaP,QAGrB,IAAID,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,CAAC,GAOX,OAHAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,GAG/CN,EAAOC,OACf,ECnB0BK,CAAoB,I\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
 }
 `;
 
@@ -567,7 +344,7 @@ exports[`minify option should work using when the \`minify\` option is \`uglifyJ
 Object {
   "main.js": "!function(){var r={791:function(o){o.exports=function(){console.log(7)}}},e={};(function o(n){var t=e[n];return void 0===t&&(t=e[n]={exports:{}},r[n](t,t.exports,o)),t.exports})(791)}();
 //# sourceMappingURL=main.js.map",
-  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mCAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,CAAS,CACvB,C,GCPIC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,OAAqBE,KAAAA,IAAjBD,IAIAR,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,EACV,EAGAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,CAAmB,GAVjEE,EAAaP,OActB,GCnB8C,GAAG,C\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\r\\\\n/* @preserve*/\\\\r\\\\n// bar\\\\r\\\\nconst a = 2 + 2;\\\\r\\\\n\\\\r\\\\nmodule.exports = function Foo() {\\\\r\\\\n  const b = 2 + 2;\\\\r\\\\n  console.log(b + 1 + 2);\\\\r\\\\n};\\\\r\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mCAKAA,EAAOC,QAAU,WAEfC,QAAQC,IAAIC,CAAS,CACvB,C,GCPIC,EAA2B,IAG/B,SAASC,EAAoBC,GAE5B,IAAIC,EAAeH,EAAyBE,GAC5C,OAAqBE,KAAAA,IAAjBD,IAIAR,EAASK,EAAyBE,GAAY,CAGjDN,QAAS,EACV,EAGAS,EAAoBH,GAAUP,EAAQA,EAAOC,QAASK,CAAmB,GAVjEE,EAAaP,OActB,GCnB8C,GAAG,C\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/entry.js\\",\\"webpack://terser-webpack-plugin/webpack/bootstrap\\",\\"webpack://terser-webpack-plugin/webpack/startup\\"],\\"sourcesContent\\":[\\"// foo\\\\n/* @preserve*/\\\\n// bar\\\\nconst a = 2 + 2;\\\\n\\\\nmodule.exports = function Foo() {\\\\n  const b = 2 + 2;\\\\n  console.log(b + 1 + 2);\\\\n};\\\\n\\",\\"// The module cache\\\\nvar __webpack_module_cache__ = {};\\\\n\\\\n// The require function\\\\nfunction __webpack_require__(moduleId) {\\\\n\\\\t// Check if module is in cache\\\\n\\\\tvar cachedModule = __webpack_module_cache__[moduleId];\\\\n\\\\tif (cachedModule !== undefined) {\\\\n\\\\t\\\\treturn cachedModule.exports;\\\\n\\\\t}\\\\n\\\\t// Create a new module (and put it into the cache)\\\\n\\\\tvar module = __webpack_module_cache__[moduleId] = {\\\\n\\\\t\\\\t// no module.id needed\\\\n\\\\t\\\\t// no module.loaded needed\\\\n\\\\t\\\\texports: {}\\\\n\\\\t};\\\\n\\\\n\\\\t// Execute the module function\\\\n\\\\t__webpack_modules__[moduleId](module, module.exports, __webpack_require__);\\\\n\\\\n\\\\t// Return the exports of the module\\\\n\\\\treturn module.exports;\\\\n}\\\\n\\\\n\\",\\"// startup\\\\n// Load entry module and return exports\\\\n// This entry module is referenced by other modules so it can't be inlined\\\\nvar __webpack_exports__ = __webpack_require__(791);\\\\n\\"],\\"names\\":[\\"module\\",\\"exports\\",\\"console\\",\\"log\\",\\"b\\",\\"__webpack_module_cache__\\",\\"__webpack_require__\\",\\"moduleId\\",\\"cachedModule\\",\\"undefined\\",\\"__webpack_modules__\\"],\\"sourceRoot\\":\\"\\"}",
 }
 `;
 
@@ -654,19 +431,9 @@ Object {
 }
 `;
 
-exports[`minify option should work when the "parallel" option is "true": assets 2`] = `
-Object {
-  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",
-}
-`;
-
 exports[`minify option should work when the "parallel" option is "true": errors 1`] = `Array []`;
 
-exports[`minify option should work when the "parallel" option is "true": errors 2`] = `Array []`;
-
 exports[`minify option should work when the "parallel" option is "true": warnings 1`] = `Array []`;
-
-exports[`minify option should work when the "parallel" option is "true": warnings 2`] = `Array []`;
 
 exports[`minify option should work with "terser" minimizer: assets 1`] = `
 Object {
@@ -716,10 +483,20 @@ exports[`minify option should work with source maps: assets 1`] = `
 Object {
   "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();
 //# sourceMappingURL=main.js.map",
-  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mBAcAA,QAAAC,IAAA,O\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/minify/es6.js\\"],\\"sourcesContent\\":[\\"class Point {\\\\r\\\\n  constructor(x, y) {\\\\r\\\\n    this.x = x;\\\\r\\\\n    this.y = y;\\\\r\\\\n  }\\\\r\\\\n\\\\r\\\\n  static distance(a, b) {\\\\r\\\\n    const dx = a.x - b.x;\\\\r\\\\n    const dy = a.y - b.y;\\\\r\\\\n\\\\r\\\\n    return Math.hypot(dx, dy);\\\\r\\\\n  }\\\\r\\\\n}\\\\r\\\\n\\\\r\\\\nconsole.log('HERE');\\\\r\\\\n\\\\r\\\\nexport default Point;\\\\r\\\\n\\"],\\"names\\":[\\"console\\",\\"log\\"],\\"sourceRoot\\":\\"\\"}",
+  "main.js.map": "{\\"version\\":3,\\"file\\":\\"main.js\\",\\"mappings\\":\\"mBAcAA,QAAAC,IAAA,O\\",\\"sources\\":[\\"webpack://terser-webpack-plugin/./test/fixtures/minify/es6.js\\"],\\"sourcesContent\\":[\\"class Point {\\\\n  constructor(x, y) {\\\\n    this.x = x;\\\\n    this.y = y;\\\\n  }\\\\n\\\\n  static distance(a, b) {\\\\n    const dx = a.x - b.x;\\\\n    const dy = a.y - b.y;\\\\n\\\\n    return Math.hypot(dx, dy);\\\\n  }\\\\n}\\\\n\\\\nconsole.log('HERE');\\\\n\\\\nexport default Point;\\\\n\\"],\\"names\\":[\\"console\\",\\"log\\"],\\"sourceRoot\\":\\"\\"}",
 }
 `;
 
 exports[`minify option should work with source maps: errors 1`] = `Array []`;
 
 exports[`minify option should work with source maps: warnings 1`] = `Array []`;
+
+exports[`minify option should work: assets 1`] = `
+Object {
+  "main.js": "(()=>{\\"use strict\\";console.log(\\"HERE\\")})();",
+}
+`;
+
+exports[`minify option should work: errors 1`] = `Array []`;
+
+exports[`minify option should work: warnings 1`] = `Array []`;
