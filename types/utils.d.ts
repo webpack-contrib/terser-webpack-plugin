@@ -20,7 +20,7 @@ export type ExtractedComments = Array<string>;
  * @typedef {() => Promise<T>} Task
  */
 /**
- * Run tasks with limited concurency.
+ * Run tasks with limited concurrency.
  * @template T
  * @param {number} limit - Limit of tasks that run at once.
  * @param {Task<T>[]} tasks - List of tasks to run.
