@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.7](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.6...v5.3.7) (2023-03-08)
+
+
+### Bug Fixes
+
+* esbuild warning output ([#550](https://github.com/webpack-contrib/terser-webpack-plugin/issues/550)) ([2e54869](https://github.com/webpack-contrib/terser-webpack-plugin/commit/2e54869a9f38cbaedd4d783ac81e1ac66e074809))
+
 ### [5.3.6](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.5...v5.3.6) (2022-08-29)
 
 
