@@ -106,6 +106,22 @@ Transform failed with 1 error:",
 
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output errors: warnings 1`] = `Array []`;
 
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output well formatted warnings: assets 1`] = `
+Object {
+  "main.js": "(()=>{var o={};!new Array instanceof FormData&&console.log(\\"error in form\\")})();
+",
+}
+`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output well formatted warnings: errors 1`] = `Array []`;
+
+exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\` and output well formatted warnings: warnings 1`] = `
+Array [
+  "Warning: Suspicious use of the \\"!\\" operator inside the \\"instanceof\\" operator [suspicious-boolean-not]
+",
+]
+`;
+
 exports[`minify option should work using when the \`minify\` option is \`esbuildMinify\`: assets 1`] = `
 Object {
   "main.js": "(()=>{var a={791:e=>{/* @preserve*/e.exports=function(){console.log(7)}}},r={};function c(e){var o=r[e];if(o!==void 0)return o.exports;var _=r[e]={exports:{}};return a[e](_,_.exports,c),_.exports}var n=c(791)})();
