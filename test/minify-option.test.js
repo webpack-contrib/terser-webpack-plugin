@@ -824,7 +824,23 @@ describe("minify option", () => {
     const stats = await compile(compiler);
 
     expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
-    expect(stats.compilation.errors).toMatchSnapshot("errors");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
+  it("should work using when the `minify` option is `esbuildMinify` and output well formatted warnings", async () => {
+    const compiler = getCompiler({
+      entry: path.resolve(__dirname, "./fixtures/warning.js"),
+    });
+
+    new TerserPlugin({
+      minify: TerserPlugin.esbuildMinify,
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 });
