@@ -527,9 +527,7 @@ class TerserPlugin {
 
           try {
             output = await (getWorker
-              ? getWorker().transform(
-                  getSerializeJavascript().serialize(options)
-                )
+              ? getWorker().transform(getSerializeJavascript()(options))
               : minify(options));
           } catch (error) {
             const hasSourceMap =
@@ -853,7 +851,7 @@ class TerserPlugin {
         compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
           compilation
         );
-      const data = getSerializeJavascript().serialize({
+      const data = getSerializeJavascript()({
         minimizer:
           typeof this.options.minimizer.implementation.getMinimizerVersion !==
           "undefined"
