@@ -1,10 +1,7 @@
 const path = require("path");
 const os = require("os");
 
-const { TraceMap, originalPositionFor } = require("@jridgewell/trace-mapping");
 const { validate } = require("schema-utils");
-const serialize = require("serialize-javascript");
-const { Worker } = require("jest-worker");
 
 const {
   throttleAll,
@@ -26,10 +23,9 @@ const { minify } = require("./minify");
 /** @typedef {import("./utils.js").TerserOptions} TerserOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
+/** @typedef {import("@jridgewell/trace-mapping").TraceMap} TraceMap */
 
-/** @typedef {RegExp | string} Rule */
-
-/** @typedef {Rule[] | Rule} Rules */
+/** @typedef {string | string[] | RegExp | RegExp[]} Rules */
 
 /**
  * @callback ExtractCommentsFunction
@@ -153,6 +149,40 @@ const { minify } = require("./minify");
  */
 
 /**
+ * @template T
+ * @param fn {(function(): any) | undefined}
+ * @returns {function(): T}
+ */
+const memoize = (fn) => {
+  let cache = false;
+  /** @type {T} */
+  let result;
+
+  return () => {
+    if (cache) {
+      return result;
+    }
+    result = /** @type {function(): any} */ (fn)();
+    cache = true;
+    // Allow to clean up memory for fn
+    // and all dependent resources
+    // eslint-disable-next-line no-undefined, no-param-reassign
+    fn = undefined;
+
+    return result;
+  };
+};
+
+const getTraceMapping = memoize(() =>
+  // eslint-disable-next-line global-require
+  require("@jridgewell/trace-mapping")
+);
+const getSerializeJavascript = memoize(() =>
+  // eslint-disable-next-line global-require
+  require("serialize-javascript")
+);
+
+/**
  * @template [T=TerserOptions]
  */
 class TerserPlugin {
@@ -254,7 +284,7 @@ class TerserPlugin {
     if (error.line) {
       const original =
         sourceMap &&
-        originalPositionFor(sourceMap, {
+        getTraceMapping().originalPositionFor(sourceMap, {
           line: error.line,
           column: error.col,
         });
@@ -397,6 +427,9 @@ class TerserPlugin {
           return initializedWorker;
         }
 
+        // eslint-disable-next-line global-require
+        const { Worker } = require("jest-worker");
+
         initializedWorker =
           /** @type {MinimizerWorker<T>} */
           (
@@ -494,7 +527,7 @@ class TerserPlugin {
 
           try {
             output = await (getWorker
-              ? getWorker().transform(serialize(options))
+              ? getWorker().transform(getSerializeJavascript()(options))
               : minify(options));
           } catch (error) {
             const hasSourceMap =
@@ -507,7 +540,7 @@ class TerserPlugin {
                   error,
                   name,
                   hasSourceMap
-                    ? new TraceMap(
+                    ? new (getTraceMapping().TraceMap)(
                         /** @type {SourceMapInput} */ (inputSourceMap)
                       )
                     : // eslint-disable-next-line no-undefined
@@ -556,7 +589,7 @@ class TerserPlugin {
                   item,
                   name,
                   hasSourceMap
-                    ? new TraceMap(
+                    ? new (getTraceMapping().TraceMap)(
                         /** @type {SourceMapInput} */ (inputSourceMap)
                       )
                     : // eslint-disable-next-line no-undefined
@@ -818,7 +851,7 @@ class TerserPlugin {
         compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
           compilation
         );
-      const data = serialize({
+      const data = getSerializeJavascript()({
         minimizer:
           typeof this.options.minimizer.implementation.getMinimizerVersion !==
           "undefined"
