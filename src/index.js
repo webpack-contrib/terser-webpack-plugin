@@ -27,9 +27,7 @@ const { minify } = require("./minify");
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 
-/** @typedef {RegExp | string} Rule */
-
-/** @typedef {Rule[] | Rule} Rules */
+/** @typedef {string | RegExp | string[] | RegExp[]} Rule */
 
 /**
  * @callback ExtractCommentsFunction
@@ -135,9 +133,9 @@ const { minify } = require("./minify");
 
 /**
  * @typedef {Object} BasePluginOptions
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
+ * @property {Rule} [test]
+ * @property {Rule} [include]
+ * @property {Rule} [exclude]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {Parallel} [parallel]
  */

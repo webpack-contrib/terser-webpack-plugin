@@ -8,8 +8,7 @@ export = TerserPlugin;
 /** @typedef {import("./utils.js").TerserOptions} TerserOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
-/** @typedef {RegExp | string} Rule */
-/** @typedef {Rule[] | Rule} Rules */
+/** @typedef {string | RegExp | string[] | RegExp[]} Rule */
 /**
  * @callback ExtractCommentsFunction
  * @param {any} astNode
@@ -96,9 +95,9 @@ export = TerserPlugin;
  */
 /**
  * @typedef {Object} BasePluginOptions
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
+ * @property {Rule} [test]
+ * @property {Rule} [include]
+ * @property {Rule} [exclude]
  * @property {ExtractCommentsOptions} [extractComments]
  * @property {Parallel} [parallel]
  */
@@ -192,7 +191,6 @@ declare namespace TerserPlugin {
     JestWorker,
     SourceMapInput,
     Rule,
-    Rules,
     ExtractCommentsFunction,
     ExtractCommentsCondition,
     ExtractCommentsFilename,
@@ -218,9 +216,9 @@ declare namespace TerserPlugin {
 }
 type Compiler = import("webpack").Compiler;
 type BasePluginOptions = {
-  test?: Rules | undefined;
-  include?: Rules | undefined;
-  exclude?: Rules | undefined;
+  test?: Rule | undefined;
+  include?: Rule | undefined;
+  exclude?: Rule | undefined;
   extractComments?: ExtractCommentsOptions | undefined;
   parallel?: Parallel;
 };
@@ -245,8 +243,7 @@ type TerserECMA = import("./utils.js").TerserECMA;
 type TerserOptions = import("./utils.js").TerserOptions;
 type JestWorker = import("jest-worker").Worker;
 type SourceMapInput = import("@jridgewell/trace-mapping").SourceMapInput;
-type Rule = RegExp | string;
-type Rules = Rule[] | Rule;
+type Rule = string | RegExp | string[] | RegExp[];
 type ExtractCommentsFunction = (
   astNode: any,
   comment: {
