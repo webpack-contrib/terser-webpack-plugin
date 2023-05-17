@@ -81,6 +81,7 @@ declare namespace TerserPlugin {
     JestWorker,
     SourceMapInput,
     TraceMap,
+    Rule,
     Rules,
     ExtractCommentsFunction,
     ExtractCommentsCondition,
@@ -135,7 +136,8 @@ type TerserOptions = import("./utils.js").TerserOptions;
 type JestWorker = import("jest-worker").Worker;
 type SourceMapInput = import("@jridgewell/trace-mapping").SourceMapInput;
 type TraceMap = import("@jridgewell/trace-mapping").TraceMap;
-type Rules = string | string[] | RegExp | RegExp[];
+type Rule = RegExp | string;
+type Rules = Rule[] | Rule;
 type ExtractCommentsFunction = (
   astNode: any,
   comment: {
