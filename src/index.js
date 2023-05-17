@@ -25,7 +25,8 @@ const { minify } = require("./minify");
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 /** @typedef {import("@jridgewell/trace-mapping").TraceMap} TraceMap */
 
-/** @typedef {string | string[] | RegExp | RegExp[]} Rules */
+/** @typedef {RegExp | string} Rule */
+/** @typedef {Rule[] | Rule} Rules */
 
 /**
  * @callback ExtractCommentsFunction
