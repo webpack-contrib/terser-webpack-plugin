@@ -28,6 +28,12 @@ export type ExtractedComments = Array<string>;
  */
 export function throttleAll<T>(limit: number, tasks: Task<T>[]): Promise<T[]>;
 /**
+ * @template T
+ * @param fn {(function(): any) | undefined}
+ * @returns {function(): T}
+ */
+export function memoize<T>(fn: (() => any) | undefined): () => T;
+/**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
  * @param {PredefinedOptions & CustomOptions} minimizerOptions
