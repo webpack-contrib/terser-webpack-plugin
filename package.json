@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@jridgewell/trace-mapping": "^0.3.18",
+    "get_cpus_length": "^1.0.3",
     "jest-worker": "^27.4.5",
     "schema-utils": "^3.1.1",
     "serialize-javascript": "^6.0.1",
