@@ -3,6 +3,8 @@ const os = require("os");
 
 const { validate } = require("schema-utils");
 
+const getCpusLength = require("get_cpus_length");
+
 const {
   throttleAll,
   memoize,
@@ -323,7 +325,7 @@ class TerserPlugin {
     const cpus = os.cpus() || { length: 1 };
 
     return parallel === true
-      ? cpus.length - 1
+      ? getCpusLength()
       : Math.min(Number(parallel) || 0, cpus.length - 1);
   }
 
