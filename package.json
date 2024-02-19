@@ -62,7 +62,7 @@
     "@jridgewell/trace-mapping": "^0.3.20",
     "jest-worker": "^27.4.5",
     "schema-utils": "^3.1.1",
-    "serialize-javascript": "^6.0.1",
+    "serialize-javascript": "^6.0.2",
     "terser": "^5.26.0"
   },
   "devDependencies": {
