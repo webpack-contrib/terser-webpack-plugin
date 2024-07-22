@@ -248,8 +248,7 @@ class TerserPlugin {
                 // eslint-disable-next-line global-require
                 'terser-webpack-plugin': require('../package.json').version,
                 'terser-webpack-plugin-options': this.options,
-                hash: internalCreateHash
-                  .createHash('md4')
+                hash: internalCreateHash('md4')
                   .update(input)
                   .digest('hex'),
               };
