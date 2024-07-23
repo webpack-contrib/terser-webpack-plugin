@@ -1,7 +1,6 @@
 /* eslint-disable
   no-param-reassign
 */
-import crypto from 'crypto';
 import path from 'path';
 
 import { SourceMapConsumer } from 'source-map';
@@ -16,6 +15,19 @@ import schema from './options.json';
 import TaskRunner from './TaskRunner';
 
 const warningRegex = /\[.+:([0-9]+),([0-9]+)\]/;
+const internalCreateHash = (algorithm) => {
+  try {
+    // eslint-disable-next-line global-require
+    const createHash = require('webpack/lib/util/createHash');
+
+    return createHash(algorithm);
+  } catch (err) {
+    // Ignore
+  }
+
+  // eslint-disable-next-line global-require
+  return require('crypto').createHash(algorithm);
+};
 
 class TerserPlugin {
   constructor(options = {}) {
@@ -236,8 +248,7 @@ class TerserPlugin {
                 // eslint-disable-next-line global-require
                 'terser-webpack-plugin': require('../package.json').version,
                 'terser-webpack-plugin-options': this.options,
-                hash: crypto
-                  .createHash('md4')
+                hash: internalCreateHash('md4')
                   .update(input)
                   .digest('hex'),
               };
