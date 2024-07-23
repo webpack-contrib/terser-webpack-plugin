@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.6](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.4.5...v1.4.6) (2024-07-23)
+
+
+### Bug Fixes
+
+* compatibility with Node.js@18 ([#608](https://github.com/webpack-contrib/terser-webpack-plugin/issues/608)) ([c47d231](https://github.com/webpack-contrib/terser-webpack-plugin/commit/c47d231920268c217040fe58e3df37ff6ac405e9))
+
 ### [1.4.5](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v1.4.4...v1.4.5) (2020-08-12)
 
 * update `serialize-javascript`
