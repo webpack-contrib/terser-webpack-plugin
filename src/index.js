@@ -412,7 +412,8 @@ class TerserPlugin {
           (
             new Worker(require.resolve("./minify"), {
               numWorkers: numberOfWorkers,
-              enableWorkerThreads: true,
+              enableWorkerThreads:
+                this.options.minimizer.implementation === terserMinify,
             })
           );
 
