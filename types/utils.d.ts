@@ -51,6 +51,10 @@ export namespace terserMinify {
    * @returns {string | undefined}
    */
   function getMinimizerVersion(): string | undefined;
+  /**
+   * @returns {boolean | undefined}
+   */
+  function supportsWorkerThreads(): boolean | undefined;
 }
 /**
  * @param {Input} input
@@ -70,6 +74,10 @@ export namespace uglifyJsMinify {
    * @returns {string | undefined}
    */
   function getMinimizerVersion(): string | undefined;
+  /**
+   * @returns {boolean | undefined}
+   */
+  function supportsWorkerThreads(): boolean | undefined;
 }
 /**
  * @param {Input} input
@@ -87,6 +95,10 @@ export namespace swcMinify {
    * @returns {string | undefined}
    */
   function getMinimizerVersion(): string | undefined;
+  /**
+   * @returns {boolean | undefined}
+   */
+  function supportsWorkerThreads(): boolean | undefined;
 }
 /**
  * @param {Input} input
@@ -104,4 +116,8 @@ export namespace esbuildMinify {
    * @returns {string | undefined}
    */
   function getMinimizerVersion(): string | undefined;
+  /**
+   * @returns {boolean | undefined}
+   */
+  function supportsWorkerThreads(): boolean | undefined;
 }
