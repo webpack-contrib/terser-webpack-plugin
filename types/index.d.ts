@@ -192,6 +192,7 @@ type BasicMinimizerImplementation<T> = (
 ) => Promise<MinimizedResult>;
 type MinimizeFunctionHelpers = {
   getMinimizerVersion?: (() => string | undefined) | undefined;
+  supportsWorkerThreads?: (() => boolean | undefined) | undefined;
 };
 type MinimizerImplementation<T> = BasicMinimizerImplementation<T> &
   MinimizeFunctionHelpers;

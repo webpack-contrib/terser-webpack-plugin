@@ -105,6 +105,7 @@ const { minify } = require("./minify");
 /**
  * @typedef {object} MinimizeFunctionHelpers
  * @property {() => string | undefined} [getMinimizerVersion]
+ * @property {() => boolean | undefined} [supportsWorkerThreads]
  */
 
 /**
@@ -412,7 +413,12 @@ class TerserPlugin {
           (
             new Worker(require.resolve("./minify"), {
               numWorkers: numberOfWorkers,
-              enableWorkerThreads: true,
+              enableWorkerThreads:
+                typeof this.options.minimizer.implementation
+                  .supportsWorkerThreads !== "undefined"
+                  ? this.options.minimizer.implementation.supportsWorkerThreads() !==
+                    false
+                  : true,
             })
           );
 

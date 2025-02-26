@@ -326,6 +326,11 @@ terserMinify.getMinimizerVersion = () => {
   return packageJson && packageJson.version;
 };
 
+/**
+ * @returns {boolean | undefined}
+ */
+terserMinify.supportsWorkerThreads = () => true;
+
 /* istanbul ignore next */
 /**
  * @param {Input} input
@@ -544,6 +549,11 @@ uglifyJsMinify.getMinimizerVersion = () => {
   return packageJson && packageJson.version;
 };
 
+/**
+ * @returns {boolean | undefined}
+ */
+uglifyJsMinify.supportsWorkerThreads = () => true;
+
 /* istanbul ignore next */
 /**
  * @param {Input} input
@@ -644,6 +654,11 @@ swcMinify.getMinimizerVersion = () => {
 
   return packageJson && packageJson.version;
 };
+
+/**
+ * @returns {boolean | undefined}
+ */
+swcMinify.supportsWorkerThreads = () => false;
 
 /* istanbul ignore next */
 /**
@@ -754,6 +769,11 @@ esbuildMinify.getMinimizerVersion = () => {
 
   return packageJson && packageJson.version;
 };
+
+/**
+ * @returns {boolean | undefined}
+ */
+esbuildMinify.supportsWorkerThreads = () => false;
 
 /**
  * @template T
