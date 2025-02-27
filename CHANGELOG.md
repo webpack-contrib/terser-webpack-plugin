@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.12](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.11...v5.3.12) (2025-02-27)
+
+
+### Bug Fixes
+
+* allows minimizers to set worker thread support and don't use worker thread for `swc` and `esbuild` ([#619](https://github.com/webpack-contrib/terser-webpack-plugin/issues/619)) ([15ddaab](https://github.com/webpack-contrib/terser-webpack-plugin/commit/15ddaabe1401d54a52447a9b6453f958ccf3b87e))
+
 ### [5.3.11](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.10...v5.3.11) (2024-12-13)
 
 
