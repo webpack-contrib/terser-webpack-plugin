@@ -1,6 +1,6 @@
 export = TerserPlugin;
 /**
- * @template [T=TerserOptions]
+ * @template [T=import("terser").MinifyOptions]
  */
 declare class TerserPlugin<T = import("terser").MinifyOptions> {
   /**
@@ -34,7 +34,7 @@ declare class TerserPlugin<T = import("terser").MinifyOptions> {
   /**
    * @private
    * @param {any} environment
-   * @returns {TerserECMA}
+   * @returns {number}
    */
   private static getEcmaVersion;
   /**
@@ -76,8 +76,6 @@ declare namespace TerserPlugin {
     Compilation,
     WebpackError,
     Asset,
-    TerserECMA,
-    TerserOptions,
     JestWorker,
     SourceMapInput,
     TraceMap,
@@ -114,15 +112,16 @@ type BasePluginOptions = {
   extractComments?: ExtractCommentsOptions | undefined;
   parallel?: Parallel;
 };
-type DefinedDefaultMinimizerAndOptions<T> = T extends TerserOptions
-  ? {
-      minify?: MinimizerImplementation<T> | undefined;
-      terserOptions?: MinimizerOptions<T> | undefined;
-    }
-  : {
-      minify: MinimizerImplementation<T>;
-      terserOptions?: MinimizerOptions<T> | undefined;
-    };
+type DefinedDefaultMinimizerAndOptions<T> =
+  T extends import("terser").MinifyOptions
+    ? {
+        minify?: MinimizerImplementation<T> | undefined;
+        terserOptions?: MinimizerOptions<T> | undefined;
+      }
+    : {
+        minify: MinimizerImplementation<T>;
+        terserOptions?: MinimizerOptions<T> | undefined;
+      };
 import { terserMinify } from "./utils";
 import { uglifyJsMinify } from "./utils";
 import { swcMinify } from "./utils";
@@ -131,8 +130,6 @@ type Schema = import("schema-utils/declarations/validate").Schema;
 type Compilation = import("webpack").Compilation;
 type WebpackError = import("webpack").WebpackError;
 type Asset = import("webpack").Asset;
-type TerserECMA = import("./utils.js").TerserECMA;
-type TerserOptions = import("./utils.js").TerserOptions;
 type JestWorker = import("jest-worker").Worker;
 type SourceMapInput = import("@jridgewell/trace-mapping").SourceMapInput;
 type TraceMap = import("@jridgewell/trace-mapping").TraceMap;
@@ -179,11 +176,23 @@ type CustomOptions = {
   [key: string]: any;
 };
 type InferDefaultType<T> = T extends infer U ? U : CustomOptions;
-type PredefinedOptions = {
-  module?: boolean | undefined;
-  ecma?: import("terser").ECMA | undefined;
+type PredefinedOptions<T> = {
+  module?:
+    | (T extends {
+        module?: infer P | undefined;
+      }
+        ? P
+        : string | boolean)
+    | undefined;
+  ecma?:
+    | (T extends {
+        ecma?: infer P_1 | undefined;
+      }
+        ? P_1
+        : string | number)
+    | undefined;
 };
-type MinimizerOptions<T> = PredefinedOptions & InferDefaultType<T>;
+type MinimizerOptions<T> = PredefinedOptions<T> & InferDefaultType<T>;
 type BasicMinimizerImplementation<T> = (
   input: Input,
   sourceMap: SourceMapInput | undefined,

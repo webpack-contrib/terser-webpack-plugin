@@ -1,9 +1,5 @@
 export type Task<T> = () => Promise<T>;
 export type SourceMapInput = import("@jridgewell/trace-mapping").SourceMapInput;
-export type TerserFormatOptions = import("terser").FormatOptions;
-export type TerserOptions = import("terser").MinifyOptions;
-export type TerserCompressOptions = import("terser").CompressOptions;
-export type TerserECMA = import("terser").ECMA;
 export type ExtractCommentsOptions =
   import("./index.js").ExtractCommentsOptions;
 export type ExtractCommentsFunction =
@@ -12,8 +8,8 @@ export type ExtractCommentsCondition =
   import("./index.js").ExtractCommentsCondition;
 export type Input = import("./index.js").Input;
 export type MinimizedResult = import("./index.js").MinimizedResult;
-export type PredefinedOptions = import("./index.js").PredefinedOptions;
 export type CustomOptions = import("./index.js").CustomOptions;
+export type PredefinedOptions<T> = import("./index.js").PredefinedOptions<T>;
 export type ExtractedComments = Array<string>;
 /**
  * @template T
@@ -36,14 +32,15 @@ export function memoize<T>(fn: (() => any) | undefined): () => T;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("terser").MinifyOptions> & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
 export function terserMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions & CustomOptions,
+  minimizerOptions: PredefinedOptions<import("terser").MinifyOptions> &
+    CustomOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace terserMinify {
@@ -59,14 +56,15 @@ export namespace terserMinify {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
 export function uglifyJsMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions & CustomOptions,
+  minimizerOptions: PredefinedOptions<import("uglify-js").MinifyOptions> &
+    CustomOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace uglifyJsMinify {
@@ -82,13 +80,14 @@ export namespace uglifyJsMinify {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 export function swcMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions & CustomOptions
+  minimizerOptions: PredefinedOptions<import("@swc/core").JsMinifyOptions> &
+    CustomOptions
 ): Promise<MinimizedResult>;
 export namespace swcMinify {
   /**
@@ -103,13 +102,14 @@ export namespace swcMinify {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("esbuild").TransformOptions> & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 export function esbuildMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions & CustomOptions
+  minimizerOptions: PredefinedOptions<import("esbuild").TransformOptions> &
+    CustomOptions
 ): Promise<MinimizedResult>;
 export namespace esbuildMinify {
   /**

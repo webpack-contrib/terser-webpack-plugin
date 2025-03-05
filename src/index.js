@@ -20,8 +20,6 @@ const { minify } = require("./minify");
 /** @typedef {import("webpack").Compilation} Compilation */
 /** @typedef {import("webpack").WebpackError} WebpackError */
 /** @typedef {import("webpack").Asset} Asset */
-/** @typedef {import("./utils.js").TerserECMA} TerserECMA */
-/** @typedef {import("./utils.js").TerserOptions} TerserOptions */
 /** @typedef {import("jest-worker").Worker} JestWorker */
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 /** @typedef {import("@jridgewell/trace-mapping").TraceMap} TraceMap */
@@ -82,14 +80,15 @@ const { minify } = require("./minify");
  */
 
 /**
+ * @template T
  * @typedef {Object} PredefinedOptions
- * @property {boolean} [module]
- * @property {TerserECMA} [ecma]
+ * @property {T extends { module?: infer P } ? P : boolean | string} [module]
+ * @property {T extends { ecma?: infer P } ? P : number | string} [ecma]
  */
 
 /**
  * @template T
- * @typedef {PredefinedOptions & InferDefaultType<T>} MinimizerOptions
+ * @typedef {PredefinedOptions<T> & InferDefaultType<T>} MinimizerOptions
  */
 
 /**
@@ -143,7 +142,7 @@ const { minify } = require("./minify");
 
 /**
  * @template T
- * @typedef {T extends TerserOptions ? { minify?: MinimizerImplementation<T> | undefined, terserOptions?: MinimizerOptions<T> | undefined } : { minify: MinimizerImplementation<T>, terserOptions?: MinimizerOptions<T> | undefined }} DefinedDefaultMinimizerAndOptions
+ * @typedef {T extends import("terser").MinifyOptions ? { minify?: MinimizerImplementation<T> | undefined, terserOptions?: MinimizerOptions<T> | undefined } : { minify: MinimizerImplementation<T>, terserOptions?: MinimizerOptions<T> | undefined }} DefinedDefaultMinimizerAndOptions
  */
 
 /**
@@ -161,7 +160,7 @@ const getSerializeJavascript = memoize(() =>
 );
 
 /**
- * @template [T=TerserOptions]
+ * @template [T=import("terser").MinifyOptions]
  */
 class TerserPlugin {
   /**
@@ -494,18 +493,26 @@ class TerserPlugin {
 
           if (typeof options.minimizer.options.module === "undefined") {
             if (typeof info.javascriptModule !== "undefined") {
-              options.minimizer.options.module = info.javascriptModule;
+              options.minimizer.options.module =
+                /** @type {PredefinedOptions<T>["module"]} */
+                (info.javascriptModule);
             } else if (/\.mjs(\?.*)?$/i.test(name)) {
-              options.minimizer.options.module = true;
+              options.minimizer.options.module =
+                /** @type {PredefinedOptions<T>["module"]} */ (true);
             } else if (/\.cjs(\?.*)?$/i.test(name)) {
-              options.minimizer.options.module = false;
+              options.minimizer.options.module =
+                /** @type {PredefinedOptions<T>["module"]} */ (false);
             }
           }
 
           if (typeof options.minimizer.options.ecma === "undefined") {
-            options.minimizer.options.ecma = TerserPlugin.getEcmaVersion(
-              compiler.options.output.environment || {}
-            );
+            options.minimizer.options.ecma =
+              /** @type {PredefinedOptions<T>["ecma"]} */
+              (
+                TerserPlugin.getEcmaVersion(
+                  compiler.options.output.environment || {}
+                )
+              );
           }
 
           try {
@@ -797,7 +804,7 @@ class TerserPlugin {
   /**
    * @private
    * @param {any} environment
-   * @returns {TerserECMA}
+   * @returns {number}
    */
   static getEcmaVersion(environment) {
     // ES 6th
