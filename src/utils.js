@@ -1,15 +1,15 @@
 /** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
-/** @typedef {import("terser").FormatOptions} TerserFormatOptions */
-/** @typedef {import("terser").MinifyOptions} TerserOptions */
-/** @typedef {import("terser").CompressOptions} TerserCompressOptions */
-/** @typedef {import("terser").ECMA} TerserECMA */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 /** @typedef {import("./index.js").Input} Input */
 /** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
-/** @typedef {import("./index.js").PredefinedOptions} PredefinedOptions */
 /** @typedef {import("./index.js").CustomOptions} CustomOptions */
+
+/**
+ * @template T
+ * @typedef {import("./index.js").PredefinedOptions<T>} PredefinedOptions
+ */
 
 /**
  * @typedef {Array<string>} ExtractedComments
@@ -82,7 +82,7 @@ function throttleAll(limit, tasks) {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("terser").MinifyOptions> & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
@@ -103,7 +103,7 @@ async function terserMinify(
   };
 
   /**
-   * @param {TerserOptions & { sourceMap: undefined } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })} terserOptions
+   * @param {import("terser").MinifyOptions & { sourceMap: undefined } & ({ output: import("terser").FormatOptions & { beautify: boolean } } | { format: import("terser").FormatOptions & { beautify: boolean } })} terserOptions
    * @param {ExtractedComments} extractedComments
    * @returns {ExtractCommentsFunction}
    */
@@ -219,8 +219,8 @@ async function terserMinify(
   };
 
   /**
-   * @param {PredefinedOptions & TerserOptions} [terserOptions={}]
-   * @returns {TerserOptions & { sourceMap: undefined } & { compress: TerserCompressOptions } & ({ output: TerserFormatOptions & { beautify: boolean } } | { format: TerserFormatOptions & { beautify: boolean } })}
+   * @param {PredefinedOptions<import("terser").MinifyOptions> & import("terser").MinifyOptions} [terserOptions={}]
+   * @returns {import("terser").MinifyOptions & { sourceMap: undefined } & { compress: import("terser").CompressOptions } & ({ output: import("terser").FormatOptions & { beautify: boolean } } | { format: import("terser").FormatOptions & { beautify: boolean } })}
    */
   const buildTerserOptions = (terserOptions = {}) => {
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -335,7 +335,7 @@ terserMinify.supportsWorkerThreads = () => true;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
@@ -464,7 +464,7 @@ async function uglifyJsMinify(
   };
 
   /**
-   * @param {PredefinedOptions & import("uglify-js").MinifyOptions} [uglifyJsOptions={}]
+   * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & import("uglify-js").MinifyOptions} [uglifyJsOptions={}]
    * @returns {import("uglify-js").MinifyOptions & { sourceMap: undefined } & { output: import("uglify-js").OutputOptions & { beautify: boolean }}}
    */
   const buildUglifyJsOptions = (uglifyJsOptions = {}) => {
@@ -558,12 +558,12 @@ uglifyJsMinify.supportsWorkerThreads = () => true;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
-   * @param {PredefinedOptions & import("@swc/core").JsMinifyOptions} [swcOptions={}]
+   * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & import("@swc/core").JsMinifyOptions} [swcOptions={}]
    * @returns {import("@swc/core").JsMinifyOptions & { sourceMap: undefined } & { compress: import("@swc/core").TerserCompressOptions }}
    */
   const buildSwcOptions = (swcOptions = {}) => {
@@ -664,12 +664,12 @@ swcMinify.supportsWorkerThreads = () => false;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions & CustomOptions} minimizerOptions
+ * @param {PredefinedOptions<import("esbuild").TransformOptions> & CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {
   /**
-   * @param {PredefinedOptions & import("esbuild").TransformOptions} [esbuildOptions={}]
+   * @param {PredefinedOptions<import("esbuild").TransformOptions> & import("esbuild").TransformOptions} [esbuildOptions={}]
    * @returns {import("esbuild").TransformOptions}
    */
   const buildEsbuildOptions = (esbuildOptions = {}) => {
