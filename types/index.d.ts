@@ -198,7 +198,7 @@ type BasicMinimizerImplementation<T> = (
   sourceMap: SourceMapInput | undefined,
   minifyOptions: MinimizerOptions<T>,
   extractComments: ExtractCommentsOptions | undefined
-) => Promise<MinimizedResult>;
+) => Promise<MinimizedResult> | MinimizedResult;
 type MinimizeFunctionHelpers = {
   getMinimizerVersion?: (() => string | undefined) | undefined;
   supportsWorkerThreads?: (() => boolean | undefined) | undefined;
@@ -216,8 +216,8 @@ type InternalOptions<T> = {
   };
 };
 type MinimizerWorker<T> = import("jest-worker").Worker & {
-  transform: (options: string) => MinimizedResult;
-  minify: (options: InternalOptions<T>) => MinimizedResult;
+  transform: (options: string) => Promise<MinimizedResult>;
+  minify: (options: InternalOptions<T>) => Promise<MinimizedResult>;
 };
 type Parallel = undefined | boolean | number;
 type InternalPluginOptions<T> = BasePluginOptions & {
