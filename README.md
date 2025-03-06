@@ -37,6 +37,12 @@ or
 pnpm add -D terser-webpack-plugin
 ```
 
+or
+
+```console
+bun add -D terser-webpack-plugin
+```
+
 Then add the plugin to your `webpack` config. For example:
 
 **webpack.config.js**
