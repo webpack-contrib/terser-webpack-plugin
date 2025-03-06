@@ -32,15 +32,14 @@ export function memoize<T>(fn: (() => any) | undefined): () => T;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("terser").MinifyOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
 export function terserMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions<import("terser").MinifyOptions> &
-    CustomOptions,
+  minimizerOptions: CustomOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace terserMinify {
@@ -56,15 +55,14 @@ export namespace terserMinify {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
 export function uglifyJsMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions<import("uglify-js").MinifyOptions> &
-    CustomOptions,
+  minimizerOptions: CustomOptions,
   extractComments: ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace uglifyJsMinify {
@@ -80,14 +78,13 @@ export namespace uglifyJsMinify {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 export function swcMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions<import("@swc/core").JsMinifyOptions> &
-    CustomOptions
+  minimizerOptions: CustomOptions
 ): Promise<MinimizedResult>;
 export namespace swcMinify {
   /**
@@ -102,14 +99,13 @@ export namespace swcMinify {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("esbuild").TransformOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 export function esbuildMinify(
   input: Input,
   sourceMap: SourceMapInput | undefined,
-  minimizerOptions: PredefinedOptions<import("esbuild").TransformOptions> &
-    CustomOptions
+  minimizerOptions: CustomOptions
 ): Promise<MinimizedResult>;
 export namespace esbuildMinify {
   /**
