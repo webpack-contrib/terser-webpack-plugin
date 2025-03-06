@@ -82,7 +82,7 @@ function throttleAll(limit, tasks) {
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("terser").MinifyOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
@@ -335,7 +335,7 @@ terserMinify.supportsWorkerThreads = () => true;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @return {Promise<MinimizedResult>}
  */
@@ -558,7 +558,7 @@ uglifyJsMinify.supportsWorkerThreads = () => true;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
@@ -664,7 +664,7 @@ swcMinify.supportsWorkerThreads = () => false;
 /**
  * @param {Input} input
  * @param {SourceMapInput | undefined} sourceMap
- * @param {PredefinedOptions<import("esbuild").TransformOptions> & CustomOptions} minimizerOptions
+ * @param {CustomOptions} minimizerOptions
  * @return {Promise<MinimizedResult>}
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {
