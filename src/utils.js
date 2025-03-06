@@ -473,7 +473,7 @@ async function uglifyJsMinify(
       delete uglifyJsOptions.ecma;
     }
 
-    if (uglifyJsOptions.module) {
+    if (typeof uglifyJsOptions.module !== "undefined") {
       // eslint-disable-next-line no-param-reassign
       delete uglifyJsOptions.module;
     }
