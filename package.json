@@ -95,7 +95,7 @@
     "prettier": "^2.8.7",
     "standard-version": "^9.3.1",
     "typescript": "^4.9.5",
-    "uglify-js": "^3.18.0",
+    "uglify-js": "^3.19.3",
     "webpack": "^5.92.1",
     "webpack-cli": "^4.10.0",
     "worker-loader": "^3.0.8"

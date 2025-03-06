@@ -98,7 +98,7 @@ const { minify } = require("./minify");
  * @param {SourceMapInput | undefined} sourceMap
  * @param {MinimizerOptions<T>} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
- * @returns {Promise<MinimizedResult>}
+ * @returns {Promise<MinimizedResult> | MinimizedResult}
  */
 
 /**
@@ -124,7 +124,7 @@ const { minify } = require("./minify");
 
 /**
  * @template T
- * @typedef {JestWorker & { transform: (options: string) => MinimizedResult, minify: (options: InternalOptions<T>) => MinimizedResult }} MinimizerWorker
+ * @typedef {JestWorker & { transform: (options: string) => Promise<MinimizedResult>, minify: (options: InternalOptions<T>) => Promise<MinimizedResult> }} MinimizerWorker
  */
 
 /**

@@ -81,9 +81,9 @@ function throttleAll(limit, tasks) {
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
+ * @param {ExtractCommentsOptions} [extractComments]
  * @return {Promise<MinimizedResult>}
  */
 async function terserMinify(
@@ -334,9 +334,9 @@ terserMinify.supportsWorkerThreads = () => true;
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
+ * @param {ExtractCommentsOptions} [extractComments]
  * @return {Promise<MinimizedResult>}
  */
 async function uglifyJsMinify(
@@ -468,10 +468,15 @@ async function uglifyJsMinify(
    * @returns {import("uglify-js").MinifyOptions & { sourceMap: undefined } & { output: import("uglify-js").OutputOptions & { beautify: boolean }}}
    */
   const buildUglifyJsOptions = (uglifyJsOptions = {}) => {
-    // eslint-disable-next-line no-param-reassign
-    delete minimizerOptions.ecma;
-    // eslint-disable-next-line no-param-reassign
-    delete minimizerOptions.module;
+    if (typeof uglifyJsOptions.ecma !== "undefined") {
+      // eslint-disable-next-line no-param-reassign
+      delete uglifyJsOptions.ecma;
+    }
+
+    if (typeof uglifyJsOptions.module !== "undefined") {
+      // eslint-disable-next-line no-param-reassign
+      delete uglifyJsOptions.module;
+    }
 
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
     return {
@@ -557,8 +562,8 @@ uglifyJsMinify.supportsWorkerThreads = () => true;
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
  * @return {Promise<MinimizedResult>}
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
@@ -663,8 +668,8 @@ swcMinify.supportsWorkerThreads = () => false;
 /* istanbul ignore next */
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
  * @return {Promise<MinimizedResult>}
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {

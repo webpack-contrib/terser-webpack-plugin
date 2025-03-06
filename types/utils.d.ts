@@ -31,16 +31,16 @@ export function throttleAll<T>(limit: number, tasks: Task<T>[]): Promise<T[]>;
 export function memoize<T>(fn: (() => any) | undefined): () => T;
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
+ * @param {ExtractCommentsOptions} [extractComments]
  * @return {Promise<MinimizedResult>}
  */
 export function terserMinify(
   input: Input,
-  sourceMap: SourceMapInput | undefined,
-  minimizerOptions: CustomOptions,
-  extractComments: ExtractCommentsOptions | undefined
+  sourceMap?: import("@jridgewell/trace-mapping").SourceMapInput | undefined,
+  minimizerOptions?: import("./index.js").CustomOptions | undefined,
+  extractComments?: import("./index.js").ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace terserMinify {
   /**
@@ -54,16 +54,16 @@ export namespace terserMinify {
 }
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
- * @param {ExtractCommentsOptions | undefined} extractComments
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
+ * @param {ExtractCommentsOptions} [extractComments]
  * @return {Promise<MinimizedResult>}
  */
 export function uglifyJsMinify(
   input: Input,
-  sourceMap: SourceMapInput | undefined,
-  minimizerOptions: CustomOptions,
-  extractComments: ExtractCommentsOptions | undefined
+  sourceMap?: import("@jridgewell/trace-mapping").SourceMapInput | undefined,
+  minimizerOptions?: import("./index.js").CustomOptions | undefined,
+  extractComments?: import("./index.js").ExtractCommentsOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace uglifyJsMinify {
   /**
@@ -77,14 +77,14 @@ export namespace uglifyJsMinify {
 }
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
  * @return {Promise<MinimizedResult>}
  */
 export function swcMinify(
   input: Input,
-  sourceMap: SourceMapInput | undefined,
-  minimizerOptions: CustomOptions
+  sourceMap?: import("@jridgewell/trace-mapping").SourceMapInput | undefined,
+  minimizerOptions?: import("./index.js").CustomOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace swcMinify {
   /**
@@ -98,14 +98,14 @@ export namespace swcMinify {
 }
 /**
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
- * @param {CustomOptions} minimizerOptions
+ * @param {SourceMapInput} [sourceMap]
+ * @param {CustomOptions} [minimizerOptions]
  * @return {Promise<MinimizedResult>}
  */
 export function esbuildMinify(
   input: Input,
-  sourceMap: SourceMapInput | undefined,
-  minimizerOptions: CustomOptions
+  sourceMap?: import("@jridgewell/trace-mapping").SourceMapInput | undefined,
+  minimizerOptions?: import("./index.js").CustomOptions | undefined
 ): Promise<MinimizedResult>;
 export namespace esbuildMinify {
   /**
