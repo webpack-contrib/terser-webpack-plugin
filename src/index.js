@@ -325,7 +325,7 @@ class TerserPlugin {
         ? { length: os.availableParallelism() }
         : os.cpus() || { length: 1 };
 
-    return parallel === true
+    return parallel === true || typeof parallel === "undefined"
       ? cpus.length - 1
       : Math.min(parallel || 0, cpus.length - 1);
   }
