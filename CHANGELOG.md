@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.14](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.13...v5.3.14) (2025-03-06)
+
+
+### Bug Fixes
+
+* types ([#622](https://github.com/webpack-contrib/terser-webpack-plugin/issues/622)) ([84bb19b](https://github.com/webpack-contrib/terser-webpack-plugin/commit/84bb19bcfd043d0923915abec45211e5e5662d47))
+* use `os.availableParallelism()` for parallelism when it is available ([#623](https://github.com/webpack-contrib/terser-webpack-plugin/issues/623)) ([1357994](https://github.com/webpack-contrib/terser-webpack-plugin/commit/1357994b1c4bdcbed4c463fbb1f6f14855a68ac5))
+
 ### [5.3.13](https://github.com/webpack-contrib/terser-webpack-plugin/compare/v5.3.12...v5.3.13) (2025-03-05)
 
 
