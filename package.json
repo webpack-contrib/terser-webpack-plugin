@@ -45,7 +45,9 @@
     "types"
   ],
   "peerDependencies": {
-    "webpack": "^5.1.0"
+    "webpack": "^5.1.0",
+    "@swc/core": "^1.2.78",
+    "esbuild": "^0.25.0"
   },
   "peerDependenciesMeta": {
     "@swc/core": {
