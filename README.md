@@ -17,7 +17,9 @@ This plugin uses [terser](https://github.com/terser/terser) to minify/minimize y
 
 ## Getting Started
 
-Webpack v5 comes with the latest `terser-webpack-plugin` out of the box. If you are using Webpack v5 or above and wish to customize the options, you will still need to install `terser-webpack-plugin`. Using Webpack v4, you have to install `terser-webpack-plugin` v4.
+Webpack v5 comes with the latest `terser-webpack-plugin` out of the box.
+If you are using Webpack v5 or above and wish to customize the options, you will still need to install `terser-webpack-plugin`.
+Using Webpack v4, you have to install `terser-webpack-plugin` v4.
 
 To begin, you'll need to install `terser-webpack-plugin`:
 
@@ -37,7 +39,7 @@ or
 pnpm add -D terser-webpack-plugin
 ```
 
-Then add the plugin to your `webpack` config. For example:
+Then add the plugin to your `webpack` configuration. For example:
 
 **webpack.config.js**
 
@@ -52,7 +54,7 @@ module.exports = {
 };
 ```
 
-And run `webpack` via your preferred method.
+Finally, run `webpack` using the method you normally use (e.g., via CLI or an npm script).
 
 ## Note about source maps
 
@@ -61,7 +63,7 @@ And run `webpack` via your preferred method.
 Why?
 
 - `eval` wraps modules in `eval("string")` and the minimizer does not handle strings.
-- `cheap` has not column information and minimizer generate only a single line, which leave only a single mapping.
+- `cheap` has no column information and the minimizer generates only a single line, which leaves only a single mapping.
 
 Using supported `devtool` values enable source map generation.
 
@@ -167,6 +169,7 @@ type parallel = boolean | number;
 Default: `true`
 
 Use multi-process parallel running to improve the build speed.
+
 Default number of concurrent runs: `os.cpus().length - 1` or `os.availableParallelism() - 1` (if this function is supported).
 
 > **Note**
@@ -175,7 +178,7 @@ Default number of concurrent runs: `os.cpus().length - 1` or `os.availableParall
 
 > **Warning**
 >
-> If you use **Circle CI** or any other environment that doesn't provide real available count of CPUs then you need to setup explicitly number of CPUs to avoid `Error: Call retries were exceeded` (see [#143](https://github.com/webpack-contrib/terser-webpack-plugin/issues/143), [#202](https://github.com/webpack-contrib/terser-webpack-plugin/issues/202)).
+> If you use **Circle CI** or any other environment that doesn't provide the real available count of CPUs then you need to explicitly set up the number of CPUs to avoid `Error: Call retries were exceeded` (see [#143](https://github.com/webpack-contrib/terser-webpack-plugin/issues/143), [#202](https://github.com/webpack-contrib/terser-webpack-plugin/issues/202)).
 
 #### `boolean`
 
@@ -280,7 +283,7 @@ type minify = (
 
 Default: `TerserPlugin.terserMinify`
 
-Allows you to override default minify function.
+Allows you to override the default minify function.
 By default plugin uses [terser](https://github.com/terser/terser) package.
 Useful for using and testing unpublished versions or forks.
 
@@ -444,9 +447,12 @@ type extractComments =
 Default: `true`
 
 Whether comments shall be extracted to a separate file, (see [details](https://github.com/webpack/webpack/commit/71933e979e51c533b432658d5e37917f9e71595a)).
-By default extract only comments using `/^\**!|@preserve|@license|@cc_on/i` regexp condition and remove remaining comments.
+
+By default, extract only comments using `/^\**!|@preserve|@license|@cc_on/i` RegExp condition and remove remaining comments.
+
 If the original file is named `foo.js`, then the comments will be stored to `foo.js.LICENSE.txt`.
-The `terserOptions.format.comments` option specifies whether the comment will be preserved, i.e. it is possible to preserve some comments (e.g. annotations) while extracting others or even preserving comments that have been extracted.
+
+The `terserOptions.format.comments` option specifies whether the comment will be preserved - i.e., it is possible to preserve some comments (e.g. annotations) while extracting others, or even preserve comments that have already been extracted.
 
 #### `boolean`
 
@@ -469,7 +475,7 @@ module.exports = {
 
 #### `string`
 
-Extract `all` or `some` (use `/^\**!|@preserve|@license|@cc_on/i` RegExp) comments.
+Extract `all` or `some` (use the `/^\**!|@preserve|@license|@cc_on/i` RegExp) comments.
 
 **webpack.config.js**
 
@@ -488,7 +494,7 @@ module.exports = {
 
 #### `RegExp`
 
-All comments that match the given expression will be extracted to the separate file.
+All comments that match the given expression will be extracted to a separate file.
 
 **webpack.config.js**
 
@@ -507,7 +513,7 @@ module.exports = {
 
 #### `function`
 
-All comments that match the given expression will be extracted to the separate file.
+All comments that match the given expression will be extracted to a separate file.
 
 **webpack.config.js**
 
@@ -532,7 +538,7 @@ module.exports = {
 
 #### `object`
 
-Allow to customize condition for extract comments, specify extracted file name and banner.
+Allows you to customize condition for extracting comments, and specify the extracted file name and banner.
 
 **webpack.config.js**
 
@@ -581,7 +587,7 @@ type condition =
   | undefined;
 ```
 
-Condition what comments you need extract.
+The condition that determines which comments should be extracted.
 
 **webpack.config.js**
 
@@ -620,11 +626,12 @@ Default: `[file].LICENSE.txt[query]`
 Available placeholders: `[file]`, `[query]` and `[filebase]` (`[base]` for webpack 5).
 
 The file where the extracted comments will be stored.
+
 Default is to append the suffix `.LICENSE.txt` to the original filename.
 
 > **Warning**
 >
-> We highly recommend using the `txt` extension. Using `js`/`cjs`/`mjs` extensions may conflict with existing assets which leads to broken code.
+> We highly recommend using the `.txt` extension. Using `.js`/`.cjs`/`.mjs` extensions may conflict with existing assets, which leads to broken code.
 
 **webpack.config.js**
 
@@ -657,9 +664,11 @@ type banner = string | boolean | ((commentsFile: string) => string) | undefined;
 
 Default: `/*! For license information please see ${commentsFile} */`
 
-The banner text that points to the extracted file and will be added on top of the original file.
-Can be `false` (no banner), a `String`, or a `Function<(string) -> String>` that will be called with the filename where extracted comments have been stored.
-Will be wrapped into comment.
+The banner text that points to the extracted file and will be added at the top of the original file.
+
+It can be `false` (no banner), a `String`, or a `function<(string) -> String>` that will be called with the filename where the extracted comments have been stored.
+
+The banner will be wrapped in a comment.
 
 **webpack.config.js**
 
@@ -713,7 +722,7 @@ module.exports = {
 
 ### Remove Comments
 
-If you avoid building with comments, use this config:
+If you want to build without comments, use this config:
 
 **webpack.config.js**
 
@@ -759,11 +768,11 @@ module.exports = {
 
 ### [`swc`](https://github.com/swc-project/swc)
 
-[`swc`](https://github.com/swc-project/swc) is a super-fast compiler written in rust; producing widely-supported javascript from modern standards and typescript.
+[`swc`](https://github.com/swc-project/swc) is a super-fast compiler written in `Rust`, producing widely supported JavaScript from modern standards and TypeScript.
 
 > **Warning**
 >
-> the `extractComments` option is not supported and all comments will be removed by default, it will be fixed in future
+> The `extractComments` option is not supported, and all comments will be removed by default. This will be fixed in future
 
 **webpack.config.js**
 
@@ -789,7 +798,7 @@ module.exports = {
 
 > **Warning**
 >
-> the `extractComments` option is not supported and all legal comments (i.e. copyright, licenses and etc) will be preserved
+> The `extractComments` option is not supported, and all legal comments (i.e. copyright, licenses and etc) will be preserved.
 
 **webpack.config.js**
 
@@ -818,7 +827,7 @@ module.exports = {
 
 ### Custom Minify Function
 
-Override default minify function - use `uglify-js` for minification.
+Override the default minify function - use `uglify-js` for minification.
 
 **webpack.config.js**
 
@@ -850,7 +859,7 @@ module.exports = {
 
 ### Typescript
 
-With default terser minify function:
+With default Terser minify function:
 
 ```ts
 module.exports = {
@@ -912,7 +921,8 @@ module.exports = {
 
 ## Contributing
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+We welcome all contributions!
+If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
