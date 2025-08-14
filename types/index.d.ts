@@ -28,7 +28,7 @@ declare class TerserPlugin<T = import("terser").MinifyOptions> {
   /**
    * @private
    * @param {Parallel} parallel value of the `parallel` option
-   * @returns {number} number of core for parallilism
+   * @returns {number} number of cores for parallelism
    */
   private static getAvailableNumberOfCores;
   /**
@@ -197,7 +197,7 @@ type MinimizedResult = {
    */
   warnings?: Array<Error | string> | undefined;
   /**
-   * extacted comments
+   * extracted comments
    */
   extractedComments?: Array<string> | undefined;
 };

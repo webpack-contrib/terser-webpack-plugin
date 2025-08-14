@@ -35,9 +35,9 @@
     "minifier",
     "filebase",
     "toplevel",
-    "commitlint"
+    "commitlint",
+    "tapable"
   ],
-
   "ignorePaths": [
     "CHANGELOG.md",
     "package.json",

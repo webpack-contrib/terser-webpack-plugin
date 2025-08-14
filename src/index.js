@@ -73,7 +73,7 @@ const {
  * @property {RawSourceMap=} map source map
  * @property {Array<Error | string>=} errors errors
  * @property {Array<Error | string>=} warnings warnings
- * @property {Array<string>=} extractedComments extacted comments
+ * @property {Array<string>=} extractedComments extracted comments
  */
 
 /**
@@ -325,7 +325,7 @@ class TerserPlugin {
   /**
    * @private
    * @param {Parallel} parallel value of the `parallel` option
-   * @returns {number} number of core for parallilism
+   * @returns {number} number of cores for parallelism
    */
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
