@@ -4,19 +4,18 @@ import path from "path";
 
 import { TraceMap } from "@jridgewell/trace-mapping";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import RequestShortener from "webpack/lib/RequestShortener";
-import { javascript, SourceMapDevToolPlugin, util } from "webpack";
-
 import del from "del";
+import { SourceMapDevToolPlugin, javascript, util } from "webpack";
+import RequestShortener from "webpack/lib/RequestShortener";
 
 import TerserPlugin from "../src/index";
 
 import {
   BrokenCodePlugin,
+  EmitNewAsset,
   ModifyExistingAsset,
   compile,
   countPlugins,
-  EmitNewAsset,
   getCompiler,
   getErrors,
   getWarnings,
@@ -35,7 +34,7 @@ expect.addSnapshotSerializer({
 
     try {
       return typeof JSON.parse(value) === "object";
-    } catch (e) {
+    } catch (_err) {
       return false;
     }
   },
@@ -60,27 +59,27 @@ describe("TerserPlugin", () => {
 
   const fileSystemCacheDirectory = path.resolve(
     __dirname,
-    "./outputs/type-filesystem"
+    "./outputs/type-filesystem",
   );
   const fileSystemCacheDirectory1 = path.resolve(
     __dirname,
-    "./outputs/type-filesystem-1"
+    "./outputs/type-filesystem-1",
   );
   const fileSystemCacheDirectory2 = path.resolve(
     __dirname,
-    "./outputs/type-filesystem-2"
+    "./outputs/type-filesystem-2",
   );
   const fileSystemCacheDirectory3 = path.resolve(
     __dirname,
-    "./outputs/type-filesystem-3"
+    "./outputs/type-filesystem-3",
   );
   const fileSystemCacheDirectory4 = path.resolve(
     __dirname,
-    "./outputs/type-filesystem-4"
+    "./outputs/type-filesystem-4",
   );
   const fileSystemCacheDirectory5 = path.resolve(
     __dirname,
-    "./outputs/type-filesystem-5"
+    "./outputs/type-filesystem-5",
   );
 
   beforeAll(() =>
@@ -91,7 +90,7 @@ describe("TerserPlugin", () => {
       del(fileSystemCacheDirectory3),
       del(fileSystemCacheDirectory4),
       del(fileSystemCacheDirectory5),
-    ])
+    ]),
   );
 
   it("should work (without options)", async () => {
@@ -159,23 +158,23 @@ describe("TerserPlugin", () => {
 
     expect(emptyPluginCount).not.toEqual(expectedPluginCount);
 
-    multiCompiler.compilers.slice(2).forEach((compiler) => {
+    for (const compiler of multiCompiler.compilers.slice(2)) {
       const pluginCount = countPlugins(compiler);
 
       expect(pluginCount).not.toEqual(emptyPluginCount);
       expect(pluginCount).toEqual(expectedPluginCount);
       expect(pluginCount).toMatchSnapshot("compiler plugin count");
-    });
+    }
 
     const multiStats = await compile(multiCompiler);
 
-    multiStats.stats.forEach((stats, index) => {
+    for (const [index, stats] of multiStats.stats.entries()) {
       expect(
-        readsAssets(multiCompiler.compilers[index], stats)
+        readsAssets(multiCompiler.compilers[index], stats),
       ).toMatchSnapshot("assets");
       expect(getErrors(stats)).toMatchSnapshot("errors");
       expect(getWarnings(stats)).toMatchSnapshot("warnings");
-    });
+    }
   });
 
   it("should work when some of assets do not contain source maps", async () => {
@@ -254,23 +253,23 @@ describe("TerserPlugin", () => {
 
     expect(emptyPluginCount).not.toEqual(expectedPluginCount);
 
-    multiCompiler.compilers.slice(2).forEach((compiler) => {
+    for (const compiler of multiCompiler.compilers.slice(2)) {
       const pluginCount = countPlugins(compiler);
 
       expect(pluginCount).not.toEqual(emptyPluginCount);
       expect(pluginCount).toEqual(expectedPluginCount);
       expect(pluginCount).toMatchSnapshot("compiler plugin count");
-    });
+    }
 
     const multiStats = await compile(multiCompiler);
 
-    multiStats.stats.forEach((stats, index) => {
+    for (const [index, stats] of multiStats.stats.entries()) {
       expect(
-        readsAssets(multiCompiler.compilers[index], stats)
+        readsAssets(multiCompiler.compilers[index], stats),
       ).toMatchSnapshot("assets");
       expect(getErrors(stats)).toMatchSnapshot("errors");
       expect(getWarnings(stats)).toMatchSnapshot("warnings");
-    });
+    }
   });
 
   it("should work in multi compiler mode with the one plugin and with the same file", async () => {
@@ -355,13 +354,13 @@ describe("TerserPlugin", () => {
 
     const multiStats = await compile(multiCompiler);
 
-    multiStats.stats.forEach((stats, index) => {
+    for (const [index, stats] of multiStats.stats.entries()) {
       expect(
-        readsAssets(multiCompiler.compilers[index], stats)
+        readsAssets(multiCompiler.compilers[index], stats),
       ).toMatchSnapshot("assets");
       expect(getErrors(stats)).toMatchSnapshot("errors");
       expect(getWarnings(stats)).toMatchSnapshot("warnings");
-    });
+    }
   });
 
   it("should work as a plugin", async () => {
@@ -436,7 +435,6 @@ describe("TerserPlugin", () => {
     new TerserPlugin({
       parallel: true,
       minify(input) {
-        // eslint-disable-next-line global-require
         return require("terser").minify(`${input}1()2()3()`);
       },
     }).apply(compiler);
@@ -444,7 +442,7 @@ describe("TerserPlugin", () => {
     const stats = await compile(compiler);
 
     expect(/node_modules(\/|\\)terser/.test(stats.compilation.errors[0])).toBe(
-      true
+      true,
     );
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -456,7 +454,6 @@ describe("TerserPlugin", () => {
     new TerserPlugin({
       parallel: false,
       minify(input) {
-        // eslint-disable-next-line global-require
         return require("terser").minify(`${input}1()2()3()`);
       },
     }).apply(compiler);
@@ -464,7 +461,7 @@ describe("TerserPlugin", () => {
     const stats = await compile(compiler);
 
     expect(/node_modules(\/|\\)terser/.test(stats.compilation.errors[0])).toBe(
-      true
+      true,
     );
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -478,11 +475,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       output: {
@@ -494,7 +491,7 @@ describe("TerserPlugin", () => {
 
     compiler.hooks.thisCompilation.tap("TerserPlugin", (compilation) => {
       javascript.JavascriptModulesPlugin.getCompilationHooks(
-        compilation
+        compilation,
       ).chunkHash.tap("TerserPlugin", mockUpdateHashForChunk);
     });
 
@@ -528,7 +525,7 @@ describe("TerserPlugin", () => {
     expect(TerserPlugin.isSourceMap({ version: 3, mappings: [] })).toBe(false);
     expect(TerserPlugin.isSourceMap({ sources: "", mappings: [] })).toBe(false);
     expect(
-      TerserPlugin.isSourceMap({ version: 3, sources: "", mappings: [] })
+      TerserPlugin.isSourceMap({ version: 3, sources: "", mappings: [] }),
     ).toBe(false);
     expect(TerserPlugin.isSourceMap(rawSourceMap)).toBe(true);
     expect(TerserPlugin.isSourceMap(emptyRawSourceMap)).toBe(true);
@@ -552,9 +549,9 @@ describe("TerserPlugin", () => {
         errorWithLineAndCol,
         "test.js",
         new TraceMap(rawSourceMap),
-        // eslint-disable-next-line no-undefined
-        undefined
-      )
+
+        undefined,
+      ),
     ).toMatchSnapshot();
 
     const otherErrorWithLineAndCol = new Error("Message");
@@ -568,8 +565,8 @@ describe("TerserPlugin", () => {
         otherErrorWithLineAndCol,
         "test.js",
         new TraceMap(rawSourceMap),
-        new RequestShortener("/example.com/www/js/")
-      )
+        new RequestShortener("/example.com/www/js/"),
+      ),
     ).toMatchSnapshot();
 
     const errorWithStack = new Error("Message");
@@ -577,7 +574,7 @@ describe("TerserPlugin", () => {
     errorWithStack.stack = "Stack";
 
     expect(
-      TerserPlugin.buildError(errorWithStack, "test.js")
+      TerserPlugin.buildError(errorWithStack, "test.js"),
     ).toMatchSnapshot();
   });
 
@@ -702,9 +699,8 @@ describe("TerserPlugin", () => {
     new TerserPlugin({
       parallel: true,
       minify: () => {
-        // eslint-disable-next-line no-console
         process.stdout.write("stdout\n");
-        // eslint-disable-next-line no-console
+
         process.stderr.write("stderr\n");
 
         return { code: "" };
@@ -748,9 +744,8 @@ describe("TerserPlugin", () => {
     new TerserPlugin({
       parallel: false,
       minify: () => {
-        // eslint-disable-next-line no-console
         process.stdout.write("stdout\n");
-        // eslint-disable-next-line no-console
+
         process.stderr.write("stderr\n");
 
         return { code: "" };
@@ -838,13 +833,13 @@ describe("TerserPlugin", () => {
 
     const multiStats = await compile(multiCompiler);
 
-    multiStats.stats.forEach((stats, index) => {
+    for (const [index, stats] of multiStats.stats.entries()) {
       expect(
-        readsAssets(multiCompiler.compilers[index], stats)
+        readsAssets(multiCompiler.compilers[index], stats),
       ).toMatchSnapshot("assets");
       expect(getErrors(stats)).toMatchSnapshot("errors");
       expect(getWarnings(stats)).toMatchSnapshot("warnings");
-    });
+    }
   });
 
   it("should work with child compilation", async () => {
@@ -899,7 +894,7 @@ describe("TerserPlugin", () => {
 
     const stats = await compile(compiler);
 
-    expect(stats.toString().indexOf("2 related asset") !== -1).toBe(true);
+    expect(stats.toString()).toContain("2 related asset");
     expect(readsAssets(compiler, stats)).toMatchSnapshot("assets");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -956,11 +951,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       cache: true,
@@ -980,16 +975,12 @@ describe("TerserPlugin", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(0);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(0);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work and use memory cache when the "cache" option is "true"', async () => {
@@ -999,11 +990,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       cache: true,
@@ -1023,16 +1014,12 @@ describe("TerserPlugin", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(0);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(0);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work and use memory cache when the "cache" option is "true" and the asset has been changed', async () => {
@@ -1042,11 +1029,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       cache: true,
@@ -1068,16 +1055,12 @@ describe("TerserPlugin", () => {
 
     new ModifyExistingAsset({ name: "js.js" }).apply(compiler);
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(1);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(1);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work with source map and use memory cache when the "cache" option is "true"', async () => {
@@ -1088,11 +1071,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       cache: true,
@@ -1112,16 +1095,12 @@ describe("TerserPlugin", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(0);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(0);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work with source map and use memory cache when the "cache" option is "true" and the asset has been changed', async () => {
@@ -1132,11 +1111,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       cache: true,
@@ -1158,16 +1137,12 @@ describe("TerserPlugin", () => {
 
     new ModifyExistingAsset({ name: "js.js" }).apply(compiler);
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(2);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(2);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work, extract comments in different files and use memory cache memory cache when the "cache" option is "true"', async () => {
@@ -1195,16 +1170,12 @@ describe("TerserPlugin", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(0);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(0);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work, extract comments in different files and use memory cache memory cache when the "cache" option is "true" and the asset has been changed', async () => {
@@ -1234,16 +1205,12 @@ describe("TerserPlugin", () => {
 
     new ModifyExistingAsset({ name: "two.js", comment: true }).apply(compiler);
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(2);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(2);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work, extract comments in one file and use memory cache memory cache when the "cache" option is "true"', async () => {
@@ -1275,16 +1242,12 @@ describe("TerserPlugin", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(0);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(0);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work, extract comments in one file and use memory cache memory cache when the "cache" option is "true" and the asset has been changed', async () => {
@@ -1318,16 +1281,12 @@ describe("TerserPlugin", () => {
 
     new ModifyExistingAsset({ name: "two.js", comment: true }).apply(compiler);
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(2);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(2);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work and do not use memory cache when the "cache" option is "false"', async () => {
@@ -1337,11 +1296,11 @@ describe("TerserPlugin", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       cache: false,
@@ -1361,16 +1320,12 @@ describe("TerserPlugin", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
     expect(getErrors(stats)).toMatchSnapshot("errors");
 
-    await new Promise(async (resolve) => {
-      const newStats = await compile(compiler);
+    const newStats = await compile(compiler);
 
-      expect(newStats.compilation.emittedAssets.size).toBe(5);
-      expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
-      expect(getWarnings(newStats)).toMatchSnapshot("errors");
-      expect(getErrors(newStats)).toMatchSnapshot("warnings");
-
-      resolve();
-    });
+    expect(newStats.compilation.emittedAssets.size).toBe(5);
+    expect(readsAssets(compiler, newStats)).toMatchSnapshot("assets");
+    expect(getWarnings(newStats)).toMatchSnapshot("errors");
+    expect(getErrors(newStats)).toMatchSnapshot("warnings");
   });
 
   it('should work with the "devtool" option and the "false" value', async () => {
@@ -1606,13 +1561,13 @@ describe("TerserPlugin", () => {
 
     const multiStats = await compile(multiCompiler);
 
-    multiStats.stats.forEach((stats, index) => {
+    for (const [index, stats] of multiStats.stats.entries()) {
       expect(
-        readsAssets(multiCompiler.compilers[index], stats)
+        readsAssets(multiCompiler.compilers[index], stats),
       ).toMatchSnapshot("assets");
       expect(getErrors(stats)).toMatchSnapshot("errors");
       expect(getWarnings(stats)).toMatchSnapshot("warnings");
-    });
+    }
   });
 
   it('should work with "devtool" option and the "source-map" value (the "parallel" option is "false")', async () => {
@@ -1679,10 +1634,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -1690,10 +1645,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -1753,10 +1708,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -1764,10 +1719,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -1822,10 +1777,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -1833,10 +1788,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -1898,10 +1853,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -1909,10 +1864,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -1972,10 +1927,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -1983,10 +1938,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -2050,10 +2005,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -2061,10 +2016,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -2131,10 +2086,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -2142,10 +2097,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);
@@ -2209,10 +2164,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.get.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           getCounter += 1;
         }
-      }
+      },
     );
 
     let storeCounter = 0;
@@ -2220,10 +2175,10 @@ describe("TerserPlugin", () => {
     compiler.cache.hooks.store.tap(
       { name: "TestCache", stage: -100 },
       (identifier) => {
-        if (identifier.indexOf("TerserWebpackPlugin") !== -1) {
+        if (identifier.includes("TerserWebpackPlugin")) {
           storeCounter += 1;
         }
-      }
+      },
     );
 
     const stats = await compile(compiler);

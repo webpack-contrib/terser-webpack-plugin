@@ -297,7 +297,7 @@ describe("worker", () => {
     expect(workerResult).toMatchSnapshot();
   });
 
-  it('should match snapshot when options.extractComments is "true"', async () => {
+  it('should match snapshot when options.output.comments is "some"', async () => {
     const options = {
       name: "test1.js",
       input:

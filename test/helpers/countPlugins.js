@@ -1,6 +1,10 @@
+/**
+ * @param {object} root0 options
+ * @param {import("tapable").Hook[]} root0.hooks hooks
+ * @returns {number} count of plugins
+ */
 export default function countPlugins({ hooks }) {
   return Object.keys(hooks).reduce((aggregate, name) => {
-    // eslint-disable-next-line no-param-reassign
     aggregate[name] = Array.isArray(hooks[name].taps)
       ? hooks[name].taps.length
       : 0;

@@ -1,29 +1,13 @@
-import BrokenCodePlugin from "./BrokenCodePlugin";
-import compile from "./compile";
-import countPlugins from "./countPlugins";
-import EmitNewAsset from "./EmitNewAsset";
-import execute from "./execute";
-import ExistingCommentsFile from "./ExistingCommentsFile";
-import getCompiler from "./getCompiler";
-import getErrors from "./getErrors";
-import getWarnings from "./getWarnings";
-import ModifyExistingAsset from "./ModifyExistingAsset";
-import readAsset from "./readAsset";
-import readsAssets from "./readAssets";
-import normalizeErrors from "./normalizeErrors";
-
-export {
-  BrokenCodePlugin,
-  compile,
-  countPlugins,
-  EmitNewAsset,
-  ExistingCommentsFile,
-  execute,
-  getCompiler,
-  getErrors,
-  getWarnings,
-  ModifyExistingAsset,
-  normalizeErrors,
-  readAsset,
-  readsAssets,
-};
+export { default as BrokenCodePlugin } from "./BrokenCodePlugin";
+export { default as countPlugins } from "./countPlugins";
+export { default as ExistingCommentsFile } from "./ExistingCommentsFile";
+export { default as EmitNewAsset } from "./EmitNewAsset";
+export { default as execute } from "./execute";
+export { default as readsAssets } from "./readAssets";
+export { default as ModifyExistingAsset } from "./ModifyExistingAsset";
+export { default as getCompiler } from "./getCompiler";
+export { default as compile } from "./compile";
+export { default as getWarnings } from "./getWarnings";
+export { default as getErrors } from "./getErrors";
+export { default as normalizeErrors } from "./normalizeErrors";
+export { default as readAsset } from "./readAsset";

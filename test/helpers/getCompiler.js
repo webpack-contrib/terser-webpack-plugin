@@ -1,8 +1,12 @@
 import path from "path";
 
+import { Volume, createFsFromVolume } from "memfs";
 import webpack from "webpack";
-import { createFsFromVolume, Volume } from "memfs";
 
+/**
+ * @param {import("webpack").Configuration | import("webpack").Configuration[]} options options
+ * @returns {import("webpack").Compiler | import("webpack").MultiCompiler} compiler
+ */
 export default function getCompiler(options = {}) {
   const compiler = webpack(
     Array.isArray(options)
@@ -22,7 +26,7 @@ export default function getCompiler(options = {}) {
           },
           plugins: [],
           ...options,
-        }
+        },
   );
 
   compiler.outputFileSystem = createFsFromVolume(new Volume());

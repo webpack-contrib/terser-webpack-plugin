@@ -103,13 +103,6 @@ Object {
 }
 `;
 
-exports[`worker should match snapshot when options.extractComments is "true" 2`] = `
-"var foo = 1;/* hello */
-// Comment
-/* duplicate */
-/* duplicate */"
-`;
-
 exports[`worker should match snapshot when options.extractComments is Function 1`] = `
 Object {
   "code": "var foo=1;",
@@ -166,6 +159,13 @@ Object {
   "extractedComments": Array [],
   "map": undefined,
 }
+`;
+
+exports[`worker should match snapshot when options.output.comments is "some" 1`] = `
+"var foo = 1;/* hello */
+// Comment
+/* duplicate */
+/* duplicate */"
 `;
 
 exports[`worker should match snapshot with extract option set to a single file 1`] = `

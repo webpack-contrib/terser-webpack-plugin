@@ -30,7 +30,6 @@ describe("minify option", () => {
         },
       },
       minify(file, inputSourceMap, minimizerOptions) {
-        // eslint-disable-next-line global-require
         return require("terser").minify(file, minimizerOptions);
       },
     }).apply(compiler);
@@ -55,7 +54,6 @@ describe("minify option", () => {
     new TerserPlugin({
       parallel: true,
       minify(file, inputSourceMap, minimizerOptions) {
-        // eslint-disable-next-line global-require
         return require("terser").minify(file, minimizerOptions);
       },
     }).apply(compiler);
@@ -80,7 +78,6 @@ describe("minify option", () => {
     new TerserPlugin({
       parallel: false,
       minify(file, inputSourceMap, minimizerOptions) {
-        // eslint-disable-next-line global-require
         return require("terser").minify(file, minimizerOptions);
       },
     }).apply(compiler);
@@ -104,7 +101,7 @@ describe("minify option", () => {
 
     new TerserPlugin({
       minify() {
-        throw Error("Error");
+        throw new Error("Error");
       },
     }).apply(compiler);
 
@@ -127,7 +124,7 @@ describe("minify option", () => {
     new TerserPlugin({
       parallel: true,
       minify: () => {
-        throw Error("Error");
+        throw new Error("Error");
       },
     }).apply(compiler);
 
@@ -150,7 +147,7 @@ describe("minify option", () => {
     new TerserPlugin({
       parallel: false,
       minify: () => {
-        throw Error("Error");
+        throw new Error("Error");
       },
     }).apply(compiler);
 
@@ -173,7 +170,6 @@ describe("minify option", () => {
     new TerserPlugin({
       extractComments: true,
       async minify(file) {
-        // eslint-disable-next-line global-require
         const result = await require("terser").minify(file, {
           mangle: {
             reserved: ["baz"],
@@ -216,7 +212,6 @@ describe("minify option", () => {
           };
         }
 
-        // eslint-disable-next-line global-require
         return require("terser").minify(file, terserOption);
       },
     }).apply(compiler);
@@ -241,7 +236,6 @@ describe("minify option", () => {
 
     new TerserPlugin({
       minify(file) {
-        // eslint-disable-next-line global-require
         return require("uglify-js").minify(file, {
           mangle: {
             reserved: ["baz"],
@@ -269,7 +263,6 @@ describe("minify option", () => {
 
     new TerserPlugin({
       minify(file) {
-        // eslint-disable-next-line global-require
         return require("terser").minify(file, {
           mangle: {
             reserved: ["baz"],
@@ -678,12 +671,13 @@ describe("minify option", () => {
     const stats = await compile(compiler);
 
     expect(
-      getErrors(stats).map((item) => item.replace(" [GenericFailure]", ""))
+      getErrors(stats).map((item) => item.replace(" [GenericFailure]", "")),
     ).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
   // TODO fix it after `swc` do the new release with support extract comments
+  // eslint-disable-next-line jest/no-disabled-tests
   it.skip("should work using when the `minify` option is `swcMinify` and extract comments by default", async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "./fixtures/comments.js"),
@@ -701,6 +695,7 @@ describe("minify option", () => {
   });
 
   // TODO fix it after `swc` do the new release with support extract comments
+  // eslint-disable-next-line jest/no-disabled-tests
   it.skip("should work using when the `minify` option is `swcMinify` and keep legal comments when extract comments is disabled", async () => {
     const compiler = getCompiler({
       entry: path.resolve(__dirname, "./fixtures/comments.js"),

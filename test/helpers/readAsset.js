@@ -1,5 +1,11 @@
 import path from "path";
 
+/**
+ * @param {string} asset asset name
+ * @param {import("webpack").Compiler} compiler compiler
+ * @param {import("webpack").Stats} stats stats
+ * @returns {string} asset code
+ */
 export default (asset, compiler, stats) => {
   const usedFs = compiler.outputFileSystem;
   const outputPath = stats.compilation.outputOptions.path;
