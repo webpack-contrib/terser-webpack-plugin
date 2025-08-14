@@ -101,7 +101,7 @@ jobs:
 
       - name: Install dependencies (old)
         run: |
-          npm i -D typescript@4
+          npm i -D typescript@4 --force
           npm install
         if: matrix.node-version == '10.x' || matrix.node-version == '12.x' || matrix.node-version == '14.x' || matrix.node-version == '16.x' || matrix.node-version == '18.x'
 
