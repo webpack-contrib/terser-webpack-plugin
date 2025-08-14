@@ -100,7 +100,9 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies (old)
-        run: npm ci --ignore-scripts
+        run: |
+          npm i -D typescript@4
+          npm install
         if: matrix.node-version == '10.x' || matrix.node-version == '12.x' || matrix.node-version == '14.x' || matrix.node-version == '16.x' || matrix.node-version == '18.x'
 
       - name: Install dependencies
