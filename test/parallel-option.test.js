@@ -1,5 +1,5 @@
-import path from "path";
 import os from "os";
+import path from "path";
 
 import { Worker } from "jest-worker";
 
@@ -20,9 +20,7 @@ jest.mock("os", () => {
 
   const mocked = {
     availableParallelism: isAvailableParallelism ? jest.fn(() => 4) : undefined,
-    cpus: jest.fn(() => {
-      return { length: 4 };
-    }),
+    cpus: jest.fn(() => ({ length: 4 })),
   };
 
   return { ...actualOs, ...mocked };
@@ -37,22 +35,16 @@ const ENABLE_WORKER_THREADS =
     ? process.env.ENABLE_WORKER_THREADS === "true"
     : true;
 
-jest.mock("jest-worker", () => {
-  return {
-    Worker: jest.fn().mockImplementation((workerPath) => {
-      return {
-        // eslint-disable-next-line global-require, import/no-dynamic-require
-        transform: (workerTransform = jest.fn((data) =>
-          // eslint-disable-next-line global-require, import/no-dynamic-require
-          require(workerPath).transform(data)
-        )),
-        end: (workerEnd = jest.fn()),
-        getStderr: jest.fn(),
-        getStdout: jest.fn(),
-      };
-    }),
-  };
-});
+jest.mock("jest-worker", () => ({
+  Worker: jest.fn().mockImplementation((workerPath) => ({
+    transform: (workerTransform = jest.fn((data) =>
+      require(workerPath).transform(data),
+    )),
+    end: (workerEnd = jest.fn()),
+    getStderr: jest.fn(),
+    getStdout: jest.fn(),
+  })),
+}));
 
 const workerPath = require.resolve("../src/minify");
 
@@ -91,7 +83,7 @@ describe("parallel option", () => {
       numWorkers: getParallelism() - 1,
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -123,7 +115,7 @@ describe("parallel option", () => {
       numWorkers: getParallelism() - 1,
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -143,7 +135,7 @@ describe("parallel option", () => {
       numWorkers: getParallelism() - 1,
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -163,7 +155,7 @@ describe("parallel option", () => {
       numWorkers: 2,
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -187,7 +179,7 @@ describe("parallel option", () => {
       numWorkers: Math.min(1, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -215,7 +207,7 @@ describe("parallel option", () => {
       numWorkers: Math.min(Object.keys(entries).length, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -243,7 +235,7 @@ describe("parallel option", () => {
       numWorkers: Math.min(Object.keys(entries).length, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 
@@ -282,7 +274,7 @@ describe("parallel option", () => {
       numWorkers: Math.min(Object.keys(entries).length, os.cpus().length - 1),
     });
     expect(workerTransform).toHaveBeenCalledTimes(
-      Object.keys(stats.compilation.assets).length
+      Object.keys(stats.compilation.assets).length,
     );
     expect(workerEnd).toHaveBeenCalledTimes(1);
 

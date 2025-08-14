@@ -2,7 +2,6 @@ const path = require("path");
 
 const webpack = require("webpack");
 
-// eslint-disable-next-line global-require
 const [webpackVersion] = webpack.version;
 const snapshotExtension = `.snap.webpack${webpackVersion}`;
 
@@ -14,7 +13,7 @@ module.exports = {
     path.join(
       path.dirname(testPath),
       "__snapshots__",
-      `${path.basename(testPath)}${snapshotExtension}`
+      `${path.basename(testPath)}${snapshotExtension}`,
     ),
   resolveTestPath: (snapshotPath) =>
     snapshotPath
@@ -23,6 +22,6 @@ module.exports = {
   testPathForConsistencyCheck: path.join(
     "consistency_check",
     "__tests__",
-    "example.test.js"
+    "example.test.js",
   ),
 };

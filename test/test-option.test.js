@@ -20,17 +20,17 @@ describe("test option", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: `[name].js?var=[fullhash]`,
-        chunkFilename: `[id].[name].js?ver=[fullhash]`,
+        filename: "[name].js?var=[fullhash]",
+        chunkFilename: "[id].[name].js?ver=[fullhash]",
       },
     });
   });
@@ -100,17 +100,17 @@ describe("test option", () => {
         mjs: path.resolve(__dirname, "./fixtures/entry.mjs"),
         importExport: path.resolve(
           __dirname,
-          "./fixtures/import-export/entry.js"
+          "./fixtures/import-export/entry.js",
         ),
         AsyncImportExport: path.resolve(
           __dirname,
-          "./fixtures/async-import-export/entry.js"
+          "./fixtures/async-import-export/entry.js",
         ),
       },
       output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: `[name].mjs?var=[fullhash]`,
-        chunkFilename: `[id].[name].mjs?ver=[fullhash]`,
+        filename: "[name].mjs?var=[fullhash]",
+        chunkFilename: "[id].[name].mjs?ver=[fullhash]",
       },
     });
 

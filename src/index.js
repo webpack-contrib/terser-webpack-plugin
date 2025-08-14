@@ -1,43 +1,45 @@
-const path = require("path");
 const os = require("os");
+const path = require("path");
 
 const { validate } = require("schema-utils");
 
-const {
-  throttleAll,
-  memoize,
-  terserMinify,
-  uglifyJsMinify,
-  swcMinify,
-  esbuildMinify,
-} = require("./utils");
-
-const schema = require("./options.json");
 const { minify } = require("./minify");
+const schema = require("./options.json");
+const {
+  esbuildMinify,
+  memoize,
+  swcMinify,
+  terserMinify,
+  throttleAll,
+  uglifyJsMinify,
+} = require("./utils");
 
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
 /** @typedef {import("webpack").Compiler} Compiler */
 /** @typedef {import("webpack").Compilation} Compilation */
-/** @typedef {import("webpack").WebpackError} WebpackError */
+/** @typedef {import("webpack").Configuration} Configuration */
 /** @typedef {import("webpack").Asset} Asset */
+/** @typedef {import("webpack").AssetInfo} AssetInfo */
 /** @typedef {import("jest-worker").Worker} JestWorker */
-/** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
+/** @typedef {import("@jridgewell/trace-mapping").EncodedSourceMap & { sources: string[], sourcesContent?: string[], file: string }} RawSourceMap */
 /** @typedef {import("@jridgewell/trace-mapping").TraceMap} TraceMap */
 
 /** @typedef {RegExp | string} Rule */
 /** @typedef {Rule[] | Rule} Rules */
 
+// eslint-disable-next-line jsdoc/no-restricted-syntax
 /**
  * @callback ExtractCommentsFunction
- * @param {any} astNode
- * @param {{ value: string, type: 'comment1' | 'comment2' | 'comment3' | 'comment4', pos: number, line: number, col: number }} comment
- * @returns {boolean}
+ * @param {any} astNode ast Node
+ * @param {{ value: string, type: 'comment1' | 'comment2' | 'comment3' | 'comment4', pos: number, line: number, col: number }} comment comment node
+ * @returns {boolean} true when need to extract comment, otherwise false
  */
 
 /**
  * @typedef {boolean | 'all' | 'some' | RegExp | ExtractCommentsFunction} ExtractCommentsCondition
  */
 
+// eslint-disable-next-line jsdoc/no-restricted-syntax
 /**
  * @typedef {string | ((fileData: any) => string)} ExtractCommentsFilename
  */
@@ -47,10 +49,10 @@ const { minify } = require("./minify");
  */
 
 /**
- * @typedef {Object} ExtractCommentsObject
- * @property {ExtractCommentsCondition} [condition]
- * @property {ExtractCommentsFilename} [filename]
- * @property {ExtractCommentsBanner} [banner]
+ * @typedef {object} ExtractCommentsObject
+ * @property {ExtractCommentsCondition=} condition condition which comments need to be expected
+ * @property {ExtractCommentsFilename=} filename filename for extracted comments
+ * @property {ExtractCommentsBanner=} banner banner in filename for extracted comments
  */
 
 /**
@@ -58,18 +60,27 @@ const { minify } = require("./minify");
  */
 
 /**
- * @typedef {Object} MinimizedResult
- * @property {string} code
- * @property {SourceMapInput} [map]
- * @property {Array<Error | string>} [errors]
- * @property {Array<Error | string>} [warnings]
- * @property {Array<string>} [extractedComments]
+ * @typedef {object} ErrorObject
+ * @property {string} message message
+ * @property {number=} line line number
+ * @property {number=} column column number
+ * @property {string=} stack error stack trace
+ */
+
+/**
+ * @typedef {object} MinimizedResult
+ * @property {string} code code
+ * @property {RawSourceMap=} map source map
+ * @property {Array<Error | string>=} errors errors
+ * @property {Array<Error | string>=} warnings warnings
+ * @property {Array<string>=} extractedComments extracted comments
  */
 
 /**
  * @typedef {{ [file: string]: string }} Input
  */
 
+// eslint-disable-next-line jsdoc/no-restricted-syntax
 /**
  * @typedef {{ [key: string]: any }} CustomOptions
  */
@@ -81,9 +92,9 @@ const { minify } = require("./minify");
 
 /**
  * @template T
- * @typedef {Object} PredefinedOptions
- * @property {T extends { module?: infer P } ? P : boolean | string} [module]
- * @property {T extends { ecma?: infer P } ? P : number | string} [ecma]
+ * @typedef {object} PredefinedOptions
+ * @property {T extends { module?: infer P } ? P : boolean | string=} module true when code is a EC module, otherwise false
+ * @property {T extends { ecma?: infer P } ? P : number | string=} ecma ecma version
  */
 
 /**
@@ -95,7 +106,7 @@ const { minify } = require("./minify");
  * @template T
  * @callback BasicMinimizerImplementation
  * @param {Input} input
- * @param {SourceMapInput | undefined} sourceMap
+ * @param {RawSourceMap | undefined} sourceMap
  * @param {MinimizerOptions<T>} minifyOptions
  * @param {ExtractCommentsOptions | undefined} extractComments
  * @returns {Promise<MinimizedResult> | MinimizedResult}
@@ -103,8 +114,8 @@ const { minify } = require("./minify");
 
 /**
  * @typedef {object} MinimizeFunctionHelpers
- * @property {() => string | undefined} [getMinimizerVersion]
- * @property {() => boolean | undefined} [supportsWorkerThreads]
+ * @property {() => string | undefined=} getMinimizerVersion function that returns version of minimizer
+ * @property {() => boolean | undefined=} supportsWorkerThreads true when minimizer support worker threads, otherwise false
  */
 
 /**
@@ -114,12 +125,12 @@ const { minify } = require("./minify");
 
 /**
  * @template T
- * @typedef {Object} InternalOptions
- * @property {string} name
- * @property {string} input
- * @property {SourceMapInput | undefined} inputSourceMap
- * @property {ExtractCommentsOptions | undefined} extractComments
- * @property {{ implementation: MinimizerImplementation<T>, options: MinimizerOptions<T> }} minimizer
+ * @typedef {object} InternalOptions
+ * @property {string} name name
+ * @property {string} input input
+ * @property {RawSourceMap | undefined} inputSourceMap input source map
+ * @property {ExtractCommentsOptions | undefined} extractComments extract comments option
+ * @property {{ implementation: MinimizerImplementation<T>, options: MinimizerOptions<T> }} minimizer minimizer
  */
 
 /**
@@ -132,12 +143,12 @@ const { minify } = require("./minify");
  */
 
 /**
- * @typedef {Object} BasePluginOptions
- * @property {Rules} [test]
- * @property {Rules} [include]
- * @property {Rules} [exclude]
- * @property {ExtractCommentsOptions} [extractComments]
- * @property {Parallel} [parallel]
+ * @typedef {object} BasePluginOptions
+ * @property {Rules=} test test rule
+ * @property {Rules=} include include rile
+ * @property {Rules=} exclude exclude rule
+ * @property {ExtractCommentsOptions=} extractComments extract comments options
+ * @property {Parallel=} parallel parallel option
  */
 
 /**
@@ -150,21 +161,15 @@ const { minify } = require("./minify");
  * @typedef {BasePluginOptions & { minimizer: { implementation: MinimizerImplementation<T>, options: MinimizerOptions<T> } }} InternalPluginOptions
  */
 
-const getTraceMapping = memoize(() =>
-  // eslint-disable-next-line global-require
-  require("@jridgewell/trace-mapping")
-);
-const getSerializeJavascript = memoize(() =>
-  // eslint-disable-next-line global-require
-  require("serialize-javascript")
-);
+const getTraceMapping = memoize(() => require("@jridgewell/trace-mapping"));
+const getSerializeJavascript = memoize(() => require("serialize-javascript"));
 
 /**
  * @template [T=import("terser").MinifyOptions]
  */
 class TerserPlugin {
   /**
-   * @param {BasePluginOptions & DefinedDefaultMinimizerAndOptions<T>} [options]
+   * @param {BasePluginOptions & DefinedDefaultMinimizerAndOptions<T>=} options options
    */
   constructor(options) {
     validate(/** @type {Schema} */ (schema), options || {}, {
@@ -202,32 +207,35 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {any} input
-   * @returns {boolean}
+   * @param {unknown} input Input to check
+   * @returns {boolean} Whether input is a source map
    */
   static isSourceMap(input) {
     // All required options for `new TraceMap(...options)`
     // https://github.com/jridgewell/trace-mapping#usage
     return Boolean(
       input &&
-        input.version &&
-        input.sources &&
+        typeof input === "object" &&
+        input !== null &&
+        "version" in input &&
+        "sources" in input &&
         Array.isArray(input.sources) &&
-        typeof input.mappings === "string"
+        "mappings" in input &&
+        typeof input.mappings === "string",
     );
   }
 
   /**
    * @private
-   * @param {unknown} warning
-   * @param {string} file
-   * @returns {Error}
+   * @param {unknown} warning warning
+   * @param {string} file file
+   * @returns {Error} built warning
    */
   static buildWarning(warning, file) {
     /**
      * @type {Error & { hideStack: true, file: string }}
      */
-    // @ts-ignore
+    // @ts-expect-error
     const builtWarning = new Error(warning.toString());
 
     builtWarning.name = "Warning";
@@ -239,11 +247,11 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {any} error
-   * @param {string} file
-   * @param {TraceMap} [sourceMap]
-   * @param {Compilation["requestShortener"]} [requestShortener]
-   * @returns {Error}
+   * @param {Error | ErrorObject | string} error error
+   * @param {string} file file
+   * @param {TraceMap=} sourceMap source map
+   * @param {Compilation["requestShortener"]=} requestShortener request shortener
+   * @returns {Error} built error
    */
   static buildError(error, file, sourceMap, requestShortener) {
     /**
@@ -258,12 +266,14 @@ class TerserPlugin {
       return builtError;
     }
 
-    if (error.line) {
+    if (/** @type {ErrorObject} */ (error).line) {
+      const { line, column } =
+        /** @type {ErrorObject & { line: number, column: number }} */ (error);
       const original =
         sourceMap &&
         getTraceMapping().originalPositionFor(sourceMap, {
-          line: error.line,
-          column: error.col,
+          line,
+          column,
         });
 
       if (original && original.source && requestShortener) {
@@ -272,11 +282,11 @@ class TerserPlugin {
             error.message
           } [${requestShortener.shorten(original.source)}:${original.line},${
             original.column
-          }][${file}:${error.line},${error.col}]${
+          }][${file}:${line},${column}]${
             error.stack
               ? `\n${error.stack.split("\n").slice(1).join("\n")}`
               : ""
-          }`
+          }`,
         );
         builtError.file = file;
 
@@ -284,11 +294,11 @@ class TerserPlugin {
       }
 
       builtError = new Error(
-        `${file} from Terser plugin\n${error.message} [${file}:${error.line},${
-          error.col
+        `${file} from Terser plugin\n${error.message} [${file}:${line},${
+          column
         }]${
           error.stack ? `\n${error.stack.split("\n").slice(1).join("\n")}` : ""
-        }`
+        }`,
       );
       builtError.file = file;
 
@@ -299,7 +309,7 @@ class TerserPlugin {
       builtError = new Error(
         `${file} from Terser plugin\n${
           typeof error.message !== "undefined" ? error.message : ""
-        }\n${error.stack}`
+        }\n${error.stack}`,
       );
       builtError.file = file;
 
@@ -314,15 +324,17 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {Parallel} parallel
-   * @returns {number}
+   * @param {Parallel} parallel value of the `parallel` option
+   * @returns {number} number of cores for parallelism
    */
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
     const cpus =
+      // eslint-disable-next-line n/no-unsupported-features/node-builtins
       typeof os.availableParallelism === "function"
-        ? { length: os.availableParallelism() }
+        ? // eslint-disable-next-line n/no-unsupported-features/node-builtins
+          { length: os.availableParallelism() }
         : os.cpus() || { length: 1 };
 
     return parallel === true || typeof parallel === "undefined"
@@ -332,10 +344,10 @@ class TerserPlugin {
 
   /**
    * @private
-   * @param {Compiler} compiler
-   * @param {Compilation} compilation
-   * @param {Record<string, import("webpack").sources.Source>} assets
-   * @param {{availableNumberOfCores: number}} optimizeOptions
+   * @param {Compiler} compiler compiler
+   * @param {Compilation} compilation compilation
+   * @param {Record<string, import("webpack").sources.Source>} assets assets
+   * @param {{ availableNumberOfCores: number }} optimizeOptions optimize options
    * @returns {Promise<void>}
    */
   async optimize(compiler, compilation, assets, optimizeOptions) {
@@ -357,9 +369,8 @@ class TerserPlugin {
 
           if (
             !compiler.webpack.ModuleFilenameHelpers.matchObject.bind(
-              // eslint-disable-next-line no-undefined
               undefined,
-              this.options
+              this.options,
             )(name)
           ) {
             return false;
@@ -381,7 +392,7 @@ class TerserPlugin {
           }
 
           return { name, info, inputSource: source, output, cacheItem };
-        })
+        }),
     );
 
     if (assetsForMinify.length === 0) {
@@ -399,15 +410,14 @@ class TerserPlugin {
       // Do not create unnecessary workers when the number of files is less than the available cores, it saves memory
       numberOfWorkers = Math.min(
         numberOfAssets,
-        optimizeOptions.availableNumberOfCores
+        optimizeOptions.availableNumberOfCores,
       );
-      // eslint-disable-next-line consistent-return
+
       getWorker = () => {
         if (initializedWorker) {
           return initializedWorker;
         }
 
-        // eslint-disable-next-line global-require
         const { Worker } = require("jest-worker");
 
         initializedWorker =
@@ -456,7 +466,7 @@ class TerserPlugin {
 
         if (!output) {
           let input;
-          /** @type {SourceMapInput | undefined} */
+          /** @type {RawSourceMap | undefined} */
           let inputSourceMap;
 
           const { source: sourceFromInputSource, map } =
@@ -467,11 +477,10 @@ class TerserPlugin {
           if (map) {
             if (!TerserPlugin.isSourceMap(map)) {
               compilation.warnings.push(
-                /** @type {WebpackError} */
-                (new Error(`${name} contains invalid source map`))
+                new Error(`${name} contains invalid source map`),
               );
             } else {
-              inputSourceMap = /** @type {SourceMapInput} */ (map);
+              inputSourceMap = /** @type {RawSourceMap} */ (map);
             }
           }
 
@@ -488,7 +497,6 @@ class TerserPlugin {
             inputSourceMap,
             minimizer: {
               implementation: this.options.minimizer.implementation,
-              // @ts-ignore https://github.com/Microsoft/TypeScript/issues/10727
               options: { ...this.options.minimizer.options },
             },
             extractComments: this.options.extractComments,
@@ -513,7 +521,7 @@ class TerserPlugin {
               /** @type {PredefinedOptions<T>["ecma"]} */
               (
                 TerserPlugin.getEcmaVersion(
-                  compiler.options.output.environment || {}
+                  compiler.options.output.environment || {},
                 )
               );
           }
@@ -527,21 +535,19 @@ class TerserPlugin {
               inputSourceMap && TerserPlugin.isSourceMap(inputSourceMap);
 
             compilation.errors.push(
-              /** @type {WebpackError} */
-              (
-                TerserPlugin.buildError(
-                  error,
-                  name,
-                  hasSourceMap
-                    ? new (getTraceMapping().TraceMap)(
-                        /** @type {SourceMapInput} */ (inputSourceMap)
-                      )
-                    : // eslint-disable-next-line no-undefined
-                      undefined,
-                  // eslint-disable-next-line no-undefined
-                  hasSourceMap ? compilation.requestShortener : undefined
-                )
-              )
+              TerserPlugin.buildError(
+                /** @type {Error | ErrorObject | string} */
+                (error),
+                name,
+                hasSourceMap
+                  ? new (getTraceMapping().TraceMap)(
+                      /** @type {RawSourceMap} */
+                      (inputSourceMap),
+                    )
+                  : undefined,
+
+                hasSourceMap ? compilation.requestShortener : undefined,
+              ),
             );
 
             return;
@@ -549,12 +555,9 @@ class TerserPlugin {
 
           if (typeof output.code === "undefined") {
             compilation.errors.push(
-              /** @type {WebpackError} */
-              (
-                new Error(
-                  `${name} from Terser plugin\nMinimizer doesn't return result`
-                )
-              )
+              new Error(
+                `${name} from Terser plugin\nMinimizer doesn't return result`,
+              ),
             );
 
             return;
@@ -563,9 +566,10 @@ class TerserPlugin {
           if (output.warnings && output.warnings.length > 0) {
             output.warnings = output.warnings.map(
               /**
-               * @param {Error | string} item
+               * @param {Error | string} item a warning
+               * @returns {Error} built warning with extra info
                */
-              (item) => TerserPlugin.buildWarning(item, name)
+              (item) => TerserPlugin.buildWarning(item, name),
             );
           }
 
@@ -575,7 +579,8 @@ class TerserPlugin {
 
             output.errors = output.errors.map(
               /**
-               * @param {Error | string} item
+               * @param {Error | string} item an error
+               * @returns {Error} built error with extra info
                */
               (item) =>
                 TerserPlugin.buildError(
@@ -583,13 +588,13 @@ class TerserPlugin {
                   name,
                   hasSourceMap
                     ? new (getTraceMapping().TraceMap)(
-                        /** @type {SourceMapInput} */ (inputSourceMap)
+                        /** @type {RawSourceMap} */
+                        (inputSourceMap),
                       )
-                    : // eslint-disable-next-line no-undefined
-                      undefined,
-                  // eslint-disable-next-line no-undefined
-                  hasSourceMap ? compilation.requestShortener : undefined
-                )
+                    : undefined,
+
+                  hasSourceMap ? compilation.requestShortener : undefined,
+                ),
             );
           }
 
@@ -604,8 +609,10 @@ class TerserPlugin {
           ) {
             const firstNewlinePosition = output.code.indexOf("\n");
 
-            shebang = output.code.substring(0, firstNewlinePosition);
-            output.code = output.code.substring(firstNewlinePosition + 1);
+            shebang = output.code.slice(0, Math.max(0, firstNewlinePosition));
+            output.code = output.code.slice(
+              Math.max(0, firstNewlinePosition + 1),
+            );
           }
 
           if (output.map) {
@@ -614,8 +621,9 @@ class TerserPlugin {
               name,
               output.map,
               input,
-              /** @type {SourceMapInput} */ (inputSourceMap),
-              true
+              /** @type {RawSourceMap} */
+              (inputSourceMap),
+              true,
             );
           } else {
             output.source = new RawSource(output.code);
@@ -646,7 +654,7 @@ class TerserPlugin {
 
             output.commentsFilename = compilation.getPath(
               commentsFilename,
-              data
+              data,
             );
 
             let banner;
@@ -671,7 +679,7 @@ class TerserPlugin {
                 output.source = new ConcatSource(
                   shebang ? `${shebang}\n` : "",
                   `/*! ${banner} */\n`,
-                  output.source
+                  output.source,
                 );
               }
             }
@@ -681,7 +689,7 @@ class TerserPlugin {
               .join("\n\n");
 
             output.extractedCommentsSource = new RawSource(
-              `${extractedCommentsString}\n`
+              `${extractedCommentsString}\n`,
             );
           }
 
@@ -696,17 +704,17 @@ class TerserPlugin {
 
         if (output.warnings && output.warnings.length > 0) {
           for (const warning of output.warnings) {
-            compilation.warnings.push(/** @type {WebpackError} */ (warning));
+            compilation.warnings.push(warning);
           }
         }
 
         if (output.errors && output.errors.length > 0) {
           for (const error of output.errors) {
-            compilation.errors.push(/** @type {WebpackError} */ (error));
+            compilation.errors.push(error);
           }
         }
 
-        /** @type {Record<string, any>} */
+        /** @type {AssetInfo} */
         const newInfo = { minimized: true };
         const { source, extractedCommentsSource } = output;
 
@@ -736,78 +744,76 @@ class TerserPlugin {
       await initializedWorker.end();
     }
 
-    /** @typedef {{ source: import("webpack").sources.Source, commentsFilename: string, from: string }} ExtractedCommentsInfoWIthFrom */
-    await Array.from(allExtractedComments)
-      .sort()
-      .reduce(
-        /**
-         * @param {Promise<unknown>} previousPromise
-         * @param {[string, ExtractedCommentsInfo]} extractedComments
-         * @returns {Promise<ExtractedCommentsInfoWIthFrom>}
-         */
-        async (previousPromise, [from, value]) => {
-          const previous =
-            /** @type {ExtractedCommentsInfoWIthFrom | undefined} **/ (
-              await previousPromise
+    /** @typedef {{ source: import("webpack").sources.Source, commentsFilename: string, from: string }} ExtractedCommentsInfoWithFrom */
+    await [...allExtractedComments].sort().reduce(
+      /**
+       * @param {Promise<unknown>} previousPromise previous result
+       * @param {[string, ExtractedCommentsInfo]} extractedComments extracted comments
+       * @returns {Promise<ExtractedCommentsInfoWithFrom>} extract comments with info
+       */
+      async (previousPromise, [from, value]) => {
+        const previous =
+          /** @type {ExtractedCommentsInfoWithFrom | undefined} * */ (
+            await previousPromise
+          );
+        const { commentsFilename, extractedCommentsSource } = value;
+
+        if (previous && previous.commentsFilename === commentsFilename) {
+          const { from: previousFrom, source: prevSource } = previous;
+          const mergedName = `${previousFrom}|${from}`;
+          const name = `${commentsFilename}|${mergedName}`;
+          const eTag = [prevSource, extractedCommentsSource]
+            .map((item) => cache.getLazyHashedEtag(item))
+            .reduce((previousValue, currentValue) =>
+              cache.mergeEtags(previousValue, currentValue),
             );
-          const { commentsFilename, extractedCommentsSource } = value;
 
-          if (previous && previous.commentsFilename === commentsFilename) {
-            const { from: previousFrom, source: prevSource } = previous;
-            const mergedName = `${previousFrom}|${from}`;
-            const name = `${commentsFilename}|${mergedName}`;
-            const eTag = [prevSource, extractedCommentsSource]
-              .map((item) => cache.getLazyHashedEtag(item))
-              .reduce((previousValue, currentValue) =>
-                cache.mergeEtags(previousValue, currentValue)
-              );
+          let source = await cache.getPromise(name, eTag);
 
-            let source = await cache.getPromise(name, eTag);
+          if (!source) {
+            source = new ConcatSource(
+              [
+                ...new Set([
+                  .../** @type {string} */ (prevSource.source()).split("\n\n"),
+                  .../** @type {string} */ (
+                    extractedCommentsSource.source()
+                  ).split("\n\n"),
+                ]),
+              ].join("\n\n"),
+            );
 
-            if (!source) {
-              source = new ConcatSource(
-                Array.from(
-                  new Set([
-                    .../** @type {string}*/ (prevSource.source()).split("\n\n"),
-                    .../** @type {string}*/ (
-                      extractedCommentsSource.source()
-                    ).split("\n\n"),
-                  ])
-                ).join("\n\n")
-              );
-
-              await cache.storePromise(name, eTag, source);
-            }
-
-            compilation.updateAsset(commentsFilename, source);
-
-            return { source, commentsFilename, from: mergedName };
+            await cache.storePromise(name, eTag, source);
           }
 
-          const existingAsset = compilation.getAsset(commentsFilename);
+          compilation.updateAsset(commentsFilename, source);
 
-          if (existingAsset) {
-            return {
-              source: existingAsset.source,
-              commentsFilename,
-              from: commentsFilename,
-            };
-          }
+          return { source, commentsFilename, from: mergedName };
+        }
 
-          compilation.emitAsset(commentsFilename, extractedCommentsSource, {
-            extractedComments: true,
-          });
+        const existingAsset = compilation.getAsset(commentsFilename);
 
-          return { source: extractedCommentsSource, commentsFilename, from };
-        },
-        /** @type {Promise<unknown>} */ (Promise.resolve())
-      );
+        if (existingAsset) {
+          return {
+            source: existingAsset.source,
+            commentsFilename,
+            from: commentsFilename,
+          };
+        }
+
+        compilation.emitAsset(commentsFilename, extractedCommentsSource, {
+          extractedComments: true,
+        });
+
+        return { source: extractedCommentsSource, commentsFilename, from };
+      },
+      /** @type {Promise<unknown>} */ (Promise.resolve()),
+    );
   }
 
   /**
    * @private
-   * @param {any} environment
-   * @returns {number}
+   * @param {NonNullable<NonNullable<Configuration["output"]>["environment"]>} environment environment
+   * @returns {number} ecma version
    */
   static getEcmaVersion(environment) {
     // ES 6th
@@ -830,19 +836,19 @@ class TerserPlugin {
   }
 
   /**
-   * @param {Compiler} compiler
+   * @param {Compiler} compiler compiler
    * @returns {void}
    */
   apply(compiler) {
     const pluginName = this.constructor.name;
     const availableNumberOfCores = TerserPlugin.getAvailableNumberOfCores(
-      this.options.parallel
+      this.options.parallel,
     );
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {
       const hooks =
         compiler.webpack.javascript.JavascriptModulesPlugin.getCompilationHooks(
-          compilation
+          compilation,
         );
       const data = getSerializeJavascript()({
         minimizer:
@@ -869,7 +875,7 @@ class TerserPlugin {
         (assets) =>
           this.optimize(compiler, compilation, assets, {
             availableNumberOfCores,
-          })
+          }),
       );
 
       compilation.hooks.statsPrinter.tap(pluginName, (stats) => {
@@ -877,10 +883,12 @@ class TerserPlugin {
           .for("asset.info.minimized")
           .tap("terser-webpack-plugin", (minimized, { green, formatFlag }) =>
             minimized
-              ? /** @type {Function} */ (green)(
-                  /** @type {Function} */ (formatFlag)("minimized")
+              ? /** @type {(text: string) => string} */ (green)(
+                  /** @type {(flag: string) => string} */ (formatFlag)(
+                    "minimized",
+                  ),
                 )
-              : ""
+              : "",
           );
       });
     });

@@ -5,12 +5,12 @@ import webpack from "webpack";
 import TerserPlugin from "../src/index";
 
 import {
+  ExistingCommentsFile,
   compile,
   getCompiler,
   getErrors,
   getWarnings,
   readsAssets,
-  ExistingCommentsFile,
 } from "./helpers";
 
 function createFilenameFn() {
@@ -298,7 +298,7 @@ describe("extractComments option", () => {
     new TerserPlugin({
       extractComments: {
         condition: true,
-        filename: `[file].LICENSE.txt?query=[query]&filebase=[base]`,
+        filename: "[file].LICENSE.txt?query=[query]&filebase=[base]",
         banner(licenseFile) {
           return `License information can be found in ${licenseFile}`;
         },
@@ -445,7 +445,7 @@ describe("extractComments option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it('should match snapshot and do not preserve and extract "all" comments', async () => {
+  it('should match snapshot and do not preserve and extract "all" comments when the option if a function', async () => {
     new TerserPlugin({
       extractComments: () => true,
     }).apply(compiler);
@@ -457,7 +457,7 @@ describe("extractComments option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it('should match snapshot and preserve "all" and extract "all" comments', async () => {
+  it('should match snapshot and preserve "all" and extract "all" comments with output.comments "all"', async () => {
     new TerserPlugin({
       extractComments: () => true,
       terserOptions: {
@@ -486,7 +486,7 @@ describe("extractComments option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it('should match snapshot and preserve "all" and extract "some" comments', async () => {
+  it('should match snapshot and preserve "all" and extract comments with output.comments "all"', async () => {
     new TerserPlugin({
       extractComments: {},
       terserOptions: {
@@ -503,7 +503,7 @@ describe("extractComments option", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it('should match snapshot and preserve "all" and extract "some" comments', async () => {
+  it('should match snapshot and preserve "all" and extract "some" comments with output.comments "all"', async () => {
     new TerserPlugin({
       extractComments: {
         condition: "some",

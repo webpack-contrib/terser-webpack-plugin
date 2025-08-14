@@ -1,10 +1,10 @@
-/** @typedef {import("@jridgewell/trace-mapping").SourceMapInput} SourceMapInput */
 /** @typedef {import("./index.js").ExtractCommentsOptions} ExtractCommentsOptions */
 /** @typedef {import("./index.js").ExtractCommentsFunction} ExtractCommentsFunction */
 /** @typedef {import("./index.js").ExtractCommentsCondition} ExtractCommentsCondition */
 /** @typedef {import("./index.js").Input} Input */
 /** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
 /** @typedef {import("./index.js").CustomOptions} CustomOptions */
+/** @typedef {import("./index.js").RawSourceMap} RawSourceMap */
 
 /**
  * @template T
@@ -15,7 +15,7 @@
  * @typedef {Array<string>} ExtractedComments
  */
 
-const notSettled = Symbol(`not-settled`);
+const notSettled = Symbol("not-settled");
 
 /**
  * @template T
@@ -25,38 +25,21 @@ const notSettled = Symbol(`not-settled`);
 /**
  * Run tasks with limited concurrency.
  * @template T
- * @param {number} limit - Limit of tasks that run at once.
- * @param {Task<T>[]} tasks - List of tasks to run.
+ * @param {number} limit Limit of tasks that run at once.
+ * @param {Task<T>[]} tasks List of tasks to run.
  * @returns {Promise<T[]>} A promise that fulfills to an array of the results
  */
 function throttleAll(limit, tasks) {
-  if (!Number.isInteger(limit) || limit < 1) {
-    throw new TypeError(
-      `Expected \`limit\` to be a finite number > 0, got \`${limit}\` (${typeof limit})`
-    );
-  }
-
-  if (
-    !Array.isArray(tasks) ||
-    !tasks.every((task) => typeof task === `function`)
-  ) {
-    throw new TypeError(
-      `Expected \`tasks\` to be a list of functions returning a promise`
-    );
-  }
-
   return new Promise((resolve, reject) => {
-    const result = Array(tasks.length).fill(notSettled);
-
+    const result = Array.from({ length: tasks.length }).fill(notSettled);
     const entries = tasks.entries();
-
     const next = () => {
       const { done, value } = entries.next();
 
       if (done) {
         const isLast = !result.includes(notSettled);
 
-        if (isLast) resolve(/** @type{T[]} **/ (result));
+        if (isLast) resolve(result);
 
         return;
       }
@@ -64,48 +47,52 @@ function throttleAll(limit, tasks) {
       const [index, task] = value;
 
       /**
-       * @param {T} x
+       * @param {T} resultValue Result value
        */
-      const onFulfilled = (x) => {
-        result[index] = x;
+      const onFulfilled = (resultValue) => {
+        result[index] = resultValue;
         next();
       };
 
       task().then(onFulfilled, reject);
     };
 
-    Array(limit).fill(0).forEach(next);
+    for (let i = 0; i < limit; i++) {
+      next();
+    }
   });
 }
 
 /* istanbul ignore next */
 /**
- * @param {Input} input
- * @param {SourceMapInput} [sourceMap]
- * @param {CustomOptions} [minimizerOptions]
- * @param {ExtractCommentsOptions} [extractComments]
- * @return {Promise<MinimizedResult>}
+ * @param {Input} input input
+ * @param {RawSourceMap=} sourceMap source map
+ * @param {CustomOptions=} minimizerOptions options
+ * @param {ExtractCommentsOptions=} extractComments extract comments option
+ * @returns {Promise<MinimizedResult>} minimized result
  */
 async function terserMinify(
   input,
   sourceMap,
   minimizerOptions,
-  extractComments
+  extractComments,
 ) {
+  // eslint-disable-next-line jsdoc/no-restricted-syntax
   /**
-   * @param {any} value
-   * @returns {boolean}
+   * @param {unknown} value value
+   * @returns {value is object} true when value is object or function
    */
   const isObject = (value) => {
     const type = typeof value;
 
+    // eslint-disable-next-line no-eq-null, eqeqeq
     return value != null && (type === "object" || type === "function");
   };
 
   /**
-   * @param {import("terser").MinifyOptions & { sourceMap: undefined } & ({ output: import("terser").FormatOptions & { beautify: boolean } } | { format: import("terser").FormatOptions & { beautify: boolean } })} terserOptions
-   * @param {ExtractedComments} extractedComments
-   * @returns {ExtractCommentsFunction}
+   * @param {import("terser").MinifyOptions & { sourceMap: import("terser").SourceMapOptions | undefined  } & ({ output: import("terser").FormatOptions & { beautify: boolean } } | { format: import("terser").FormatOptions & { beautify: boolean } })} terserOptions terser options
+   * @param {ExtractedComments} extractedComments extracted comments
+   * @returns {ExtractCommentsFunction} function to extract comments
    */
   const buildComments = (terserOptions, extractedComments) => {
     /** @type {{ [index: string]: ExtractCommentsCondition }} */
@@ -136,8 +123,8 @@ async function terserMinify(
         extractComments.condition
           ? "some"
           : typeof extractComments.condition !== "undefined"
-          ? extractComments.condition
-          : "some";
+            ? extractComments.condition
+            : "some";
     } else {
       // No extract
       // Preserve using "commentsOpts" or "some"
@@ -146,7 +133,7 @@ async function terserMinify(
     }
 
     // Ensure that both conditions are functions
-    ["preserve", "extract"].forEach((key) => {
+    for (const key of ["preserve", "extract"]) {
       /** @type {undefined | string} */
       let regexStr;
       /** @type {undefined | RegExp} */
@@ -192,7 +179,7 @@ async function terserMinify(
               /** @type {RegExp} */ (regex).test(comment.value)
           );
       }
-    });
+    }
 
     // Redefine the comments function to extract and preserve
     // comments according to the two conditions
@@ -219,12 +206,12 @@ async function terserMinify(
   };
 
   /**
-   * @param {PredefinedOptions<import("terser").MinifyOptions> & import("terser").MinifyOptions} [terserOptions={}]
-   * @returns {import("terser").MinifyOptions & { sourceMap: undefined } & { compress: import("terser").CompressOptions } & ({ output: import("terser").FormatOptions & { beautify: boolean } } | { format: import("terser").FormatOptions & { beautify: boolean } })}
+   * @param {PredefinedOptions<import("terser").MinifyOptions> & import("terser").MinifyOptions=} terserOptions terser options
+   * @returns {import("terser").MinifyOptions & { sourceMap: import("terser").SourceMapOptions | undefined } & { compress: import("terser").CompressOptions } & ({ output: import("terser").FormatOptions & { beautify: boolean } } | { format: import("terser").FormatOptions & { beautify: boolean } })} built terser options
    */
-  const buildTerserOptions = (terserOptions = {}) => {
+  const buildTerserOptions = (terserOptions = {}) =>
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
-    return {
+    ({
       ...terserOptions,
       compress:
         typeof terserOptions.compress === "boolean"
@@ -237,11 +224,12 @@ async function terserMinify(
       // keep_classnames: terserOptions.keep_classnames,
       // keep_fnames: terserOptions.keep_fnames,
       mangle:
+        // eslint-disable-next-line no-eq-null, eqeqeq
         terserOptions.mangle == null
           ? true
           : typeof terserOptions.mangle === "boolean"
-          ? terserOptions.mangle
-          : { ...terserOptions.mangle },
+            ? terserOptions.mangle
+            : { ...terserOptions.mangle },
       // module: terserOptions.module,
       // nameCache: { ...terserOptions.toplevel },
       // the `output` option is deprecated
@@ -251,20 +239,17 @@ async function terserMinify(
       parse: { ...terserOptions.parse },
       // safari10: terserOptions.safari10,
       // Ignoring sourceMap from options
-      // eslint-disable-next-line no-undefined
       sourceMap: undefined,
       // toplevel: terserOptions.toplevel
-    };
-  };
+    });
 
-  // eslint-disable-next-line global-require
   const { minify } = require("terser");
+
   // Copy `terser` options
   const terserOptions = buildTerserOptions(minimizerOptions);
 
   // Let terser generate a SourceMap
   if (sourceMap) {
-    // @ts-ignore
     terserOptions.sourceMap = { asObject: true };
   }
 
@@ -274,12 +259,12 @@ async function terserMinify(
   if (terserOptions.output) {
     terserOptions.output.comments = buildComments(
       terserOptions,
-      extractedComments
+      extractedComments,
     );
   } else if (terserOptions.format) {
     terserOptions.format.comments = buildComments(
       terserOptions,
-      extractedComments
+      extractedComments,
     );
   }
 
@@ -302,24 +287,21 @@ async function terserMinify(
   const result = await minify({ [filename]: code }, terserOptions);
 
   return {
-    code: /** @type {string} **/ (result.code),
-    // @ts-ignore
-    // eslint-disable-next-line no-undefined
-    map: result.map ? /** @type {SourceMapInput} **/ (result.map) : undefined,
+    code: /** @type {string} * */ (result.code),
+    map: result.map ? /** @type {RawSourceMap} * */ (result.map) : undefined,
     extractedComments,
   };
 }
 
 /**
- * @returns {string | undefined}
+ * @returns {string | undefined} the minimizer version
  */
 terserMinify.getMinimizerVersion = () => {
   let packageJson;
 
   try {
-    // eslint-disable-next-line global-require
     packageJson = require("terser/package.json");
-  } catch (error) {
+  } catch (_err) {
     // Ignore
   }
 
@@ -327,38 +309,40 @@ terserMinify.getMinimizerVersion = () => {
 };
 
 /**
- * @returns {boolean | undefined}
+ * @returns {boolean | undefined} true if worker thread is supported, false otherwise
  */
 terserMinify.supportsWorkerThreads = () => true;
 
 /* istanbul ignore next */
 /**
- * @param {Input} input
- * @param {SourceMapInput} [sourceMap]
- * @param {CustomOptions} [minimizerOptions]
- * @param {ExtractCommentsOptions} [extractComments]
- * @return {Promise<MinimizedResult>}
+ * @param {Input} input input
+ * @param {RawSourceMap=} sourceMap source map
+ * @param {CustomOptions=} minimizerOptions options
+ * @param {ExtractCommentsOptions=} extractComments extract comments option
+ * @returns {Promise<MinimizedResult>} minimized result
  */
 async function uglifyJsMinify(
   input,
   sourceMap,
   minimizerOptions,
-  extractComments
+  extractComments,
 ) {
+  // eslint-disable-next-line jsdoc/no-restricted-syntax
   /**
-   * @param {any} value
-   * @returns {boolean}
+   * @param {unknown} value value
+   * @returns {value is object} true when value is object or function
    */
   const isObject = (value) => {
     const type = typeof value;
 
+    // eslint-disable-next-line no-eq-null, eqeqeq
     return value != null && (type === "object" || type === "function");
   };
 
   /**
-   * @param {import("uglify-js").MinifyOptions & { sourceMap: undefined } & { output: import("uglify-js").OutputOptions & { beautify: boolean }}} uglifyJsOptions
-   * @param {ExtractedComments} extractedComments
-   * @returns {ExtractCommentsFunction}
+   * @param {import("uglify-js").MinifyOptions & { sourceMap: boolean | import("uglify-js").SourceMapOptions | undefined } & { output: import("uglify-js").OutputOptions & { beautify: boolean }}} uglifyJsOptions uglify-js options
+   * @param {ExtractedComments} extractedComments extracted comments
+   * @returns {ExtractCommentsFunction} extract comments function
    */
   const buildComments = (uglifyJsOptions, extractedComments) => {
     /** @type {{ [index: string]: ExtractCommentsCondition }} */
@@ -382,8 +366,8 @@ async function uglifyJsMinify(
         extractComments.condition
           ? "some"
           : typeof extractComments.condition !== "undefined"
-          ? extractComments.condition
-          : "some";
+            ? extractComments.condition
+            : "some";
     } else {
       // No extract
       // Preserve using "commentsOpts" or "some"
@@ -392,7 +376,7 @@ async function uglifyJsMinify(
     }
 
     // Ensure that both conditions are functions
-    ["preserve", "extract"].forEach((key) => {
+    for (const key of ["preserve", "extract"]) {
       /** @type {undefined | string} */
       let regexStr;
       /** @type {undefined | RegExp} */
@@ -437,7 +421,7 @@ async function uglifyJsMinify(
               /** @type {RegExp} */ (regex).test(comment.value)
           );
       }
-    });
+    }
 
     // Redefine the comments function to extract and preserve
     // comments according to the two conditions
@@ -464,17 +448,15 @@ async function uglifyJsMinify(
   };
 
   /**
-   * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & import("uglify-js").MinifyOptions} [uglifyJsOptions={}]
-   * @returns {import("uglify-js").MinifyOptions & { sourceMap: undefined } & { output: import("uglify-js").OutputOptions & { beautify: boolean }}}
+   * @param {PredefinedOptions<import("uglify-js").MinifyOptions> & import("uglify-js").MinifyOptions=} uglifyJsOptions uglify-js options
+   * @returns {import("uglify-js").MinifyOptions & { sourceMap: boolean | import("uglify-js").SourceMapOptions | undefined } & { output: import("uglify-js").OutputOptions & { beautify: boolean }}} uglify-js options
    */
   const buildUglifyJsOptions = (uglifyJsOptions = {}) => {
     if (typeof uglifyJsOptions.ecma !== "undefined") {
-      // eslint-disable-next-line no-param-reassign
       delete uglifyJsOptions.ecma;
     }
 
     if (typeof uglifyJsOptions.module !== "undefined") {
-      // eslint-disable-next-line no-param-reassign
       delete uglifyJsOptions.module;
     }
 
@@ -488,14 +470,15 @@ async function uglifyJsMinify(
           ? uglifyJsOptions.compress
           : { ...uglifyJsOptions.compress },
       mangle:
+        // eslint-disable-next-line no-eq-null, eqeqeq
         uglifyJsOptions.mangle == null
           ? true
           : typeof uglifyJsOptions.mangle === "boolean"
-          ? uglifyJsOptions.mangle
-          : { ...uglifyJsOptions.mangle },
+            ? uglifyJsOptions.mangle
+            : { ...uglifyJsOptions.mangle },
       output: { beautify: false, ...uglifyJsOptions.output },
       // Ignoring sourceMap from options
-      // eslint-disable-next-line no-undefined
+
       sourceMap: undefined,
       // toplevel: uglifyJsOptions.toplevel
       // nameCache: { ...uglifyJsOptions.toplevel },
@@ -504,7 +487,6 @@ async function uglifyJsMinify(
     };
   };
 
-  // eslint-disable-next-line global-require, import/no-extraneous-dependencies
   const { minify } = require("uglify-js");
 
   // Copy `uglify-js` options
@@ -512,17 +494,16 @@ async function uglifyJsMinify(
 
   // Let terser generate a SourceMap
   if (sourceMap) {
-    // @ts-ignore
     uglifyJsOptions.sourceMap = true;
   }
 
   /** @type {ExtractedComments} */
   const extractedComments = [];
 
-  // @ts-ignore
+  // @ts-expect-error wrong types in uglify-js
   uglifyJsOptions.output.comments = buildComments(
     uglifyJsOptions,
-    extractedComments
+    extractedComments,
   );
 
   const [[filename, code]] = Object.entries(input);
@@ -530,7 +511,7 @@ async function uglifyJsMinify(
 
   return {
     code: result.code,
-    // eslint-disable-next-line no-undefined
+
     map: result.map ? JSON.parse(result.map) : undefined,
     errors: result.error ? [result.error] : [],
     warnings: result.warnings || [],
@@ -539,15 +520,14 @@ async function uglifyJsMinify(
 }
 
 /**
- * @returns {string | undefined}
+ * @returns {string | undefined} the minimizer version
  */
 uglifyJsMinify.getMinimizerVersion = () => {
   let packageJson;
 
   try {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
     packageJson = require("uglify-js/package.json");
-  } catch (error) {
+  } catch (_err) {
     // Ignore
   }
 
@@ -555,25 +535,25 @@ uglifyJsMinify.getMinimizerVersion = () => {
 };
 
 /**
- * @returns {boolean | undefined}
+ * @returns {boolean | undefined} true if worker thread is supported, false otherwise
  */
 uglifyJsMinify.supportsWorkerThreads = () => true;
 
 /* istanbul ignore next */
 /**
- * @param {Input} input
- * @param {SourceMapInput} [sourceMap]
- * @param {CustomOptions} [minimizerOptions]
- * @return {Promise<MinimizedResult>}
+ * @param {Input} input input
+ * @param {RawSourceMap=} sourceMap source map
+ * @param {CustomOptions=} minimizerOptions options
+ * @returns {Promise<MinimizedResult>} minimized result
  */
 async function swcMinify(input, sourceMap, minimizerOptions) {
   /**
-   * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & import("@swc/core").JsMinifyOptions} [swcOptions={}]
-   * @returns {import("@swc/core").JsMinifyOptions & { sourceMap: undefined } & { compress: import("@swc/core").TerserCompressOptions }}
+   * @param {PredefinedOptions<import("@swc/core").JsMinifyOptions> & import("@swc/core").JsMinifyOptions=} swcOptions swc options
+   * @returns {import("@swc/core").JsMinifyOptions & { sourceMap: undefined | boolean } & { compress: import("@swc/core").TerserCompressOptions }} built swc options
    */
-  const buildSwcOptions = (swcOptions = {}) => {
+  const buildSwcOptions = (swcOptions = {}) =>
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
-    return {
+    ({
       ...swcOptions,
       compress:
         typeof swcOptions.compress === "boolean"
@@ -582,30 +562,29 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
             : false
           : { ...swcOptions.compress },
       mangle:
+        // eslint-disable-next-line no-eq-null, eqeqeq
         swcOptions.mangle == null
           ? true
           : typeof swcOptions.mangle === "boolean"
-          ? swcOptions.mangle
-          : { ...swcOptions.mangle },
+            ? swcOptions.mangle
+            : { ...swcOptions.mangle },
       // ecma: swcOptions.ecma,
       // keep_classnames: swcOptions.keep_classnames,
       // keep_fnames: swcOptions.keep_fnames,
       // module: swcOptions.module,
       // safari10: swcOptions.safari10,
       // toplevel: swcOptions.toplevel
-      // eslint-disable-next-line no-undefined
-      sourceMap: undefined,
-    };
-  };
 
-  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
+      sourceMap: undefined,
+    });
+
   const swc = require("@swc/core");
+
   // Copy `swc` options
   const swcOptions = buildSwcOptions(minimizerOptions);
 
   // Let `swc` generate a SourceMap
   if (sourceMap) {
-    // @ts-ignore
     swcOptions.sourceMap = true;
   }
 
@@ -645,15 +624,14 @@ async function swcMinify(input, sourceMap, minimizerOptions) {
 }
 
 /**
- * @returns {string | undefined}
+ * @returns {string | undefined} the minimizer version
  */
 swcMinify.getMinimizerVersion = () => {
   let packageJson;
 
   try {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
     packageJson = require("@swc/core/package.json");
-  } catch (error) {
+  } catch (_err) {
     // Ignore
   }
 
@@ -661,32 +639,29 @@ swcMinify.getMinimizerVersion = () => {
 };
 
 /**
- * @returns {boolean | undefined}
+ * @returns {boolean | undefined} true if worker thread is supported, false otherwise
  */
 swcMinify.supportsWorkerThreads = () => false;
 
 /* istanbul ignore next */
 /**
- * @param {Input} input
- * @param {SourceMapInput} [sourceMap]
- * @param {CustomOptions} [minimizerOptions]
- * @return {Promise<MinimizedResult>}
+ * @param {Input} input input
+ * @param {RawSourceMap=} sourceMap source map
+ * @param {CustomOptions=} minimizerOptions options
+ * @returns {Promise<MinimizedResult>} minimized result
  */
 async function esbuildMinify(input, sourceMap, minimizerOptions) {
   /**
-   * @param {PredefinedOptions<import("esbuild").TransformOptions> & import("esbuild").TransformOptions} [esbuildOptions={}]
-   * @returns {import("esbuild").TransformOptions}
+   * @param {PredefinedOptions<import("esbuild").TransformOptions> & import("esbuild").TransformOptions=} esbuildOptions esbuild options
+   * @returns {import("esbuild").TransformOptions} built esbuild options
    */
   const buildEsbuildOptions = (esbuildOptions = {}) => {
-    // eslint-disable-next-line no-param-reassign
     delete esbuildOptions.ecma;
 
     if (esbuildOptions.module) {
-      // eslint-disable-next-line no-param-reassign
       esbuildOptions.format = "esm";
     }
 
-    // eslint-disable-next-line no-param-reassign
     delete esbuildOptions.module;
 
     // Need deep copy objects to avoid https://github.com/terser/terser/issues/366
@@ -698,7 +673,6 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
     };
   };
 
-  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   const esbuild = require("esbuild");
 
   // Copy `esbuild` options
@@ -718,7 +692,6 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
 
   return {
     code: result.code,
-    // eslint-disable-next-line no-undefined
     map: result.map ? JSON.parse(result.map) : undefined,
     warnings:
       result.warnings.length > 0
@@ -746,7 +719,7 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
                           note.location
                             ? `\nLine text:\n${note.location.lineText}\n`
                             : ""
-                        }`
+                        }`,
                     )
                     .join("\n")}`
                 : "";
@@ -760,15 +733,14 @@ async function esbuildMinify(input, sourceMap, minimizerOptions) {
 }
 
 /**
- * @returns {string | undefined}
+ * @returns {string | undefined} the minimizer version
  */
 esbuildMinify.getMinimizerVersion = () => {
   let packageJson;
 
   try {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
     packageJson = require("esbuild/package.json");
-  } catch (error) {
+  } catch (_err) {
     // Ignore
   }
 
@@ -776,14 +748,19 @@ esbuildMinify.getMinimizerVersion = () => {
 };
 
 /**
- * @returns {boolean | undefined}
+ * @returns {boolean | undefined} true if worker thread is supported, false otherwise
  */
 esbuildMinify.supportsWorkerThreads = () => false;
 
 /**
  * @template T
- * @param fn {(function(): any) | undefined}
- * @returns {function(): T}
+ * @typedef {() => T} FunctionReturning
+ */
+
+/**
+ * @template T
+ * @param {FunctionReturning<T>} fn memorized function
+ * @returns {FunctionReturning<T>} new function
  */
 function memoize(fn) {
   let cache = false;
@@ -794,22 +771,21 @@ function memoize(fn) {
     if (cache) {
       return result;
     }
-    result = /** @type {function(): any} */ (fn)();
+    result = fn();
     cache = true;
     // Allow to clean up memory for fn
     // and all dependent resources
-    // eslint-disable-next-line no-undefined, no-param-reassign
-    fn = undefined;
-
-    return result;
+    /** @type {FunctionReturning<T> | undefined} */
+    (fn) = undefined;
+    return /** @type {T} */ (result);
   };
 }
 
 module.exports = {
-  throttleAll,
-  memoize,
-  terserMinify,
-  uglifyJsMinify,
-  swcMinify,
   esbuildMinify,
+  memoize,
+  swcMinify,
+  terserMinify,
+  throttleAll,
+  uglifyJsMinify,
 };
