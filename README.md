@@ -82,7 +82,7 @@ Using supported `devtool` values enable source map generation.
 Type:
 
 ```ts
-type test = string | RegExp | Array<string | RegExp>;
+type test = string | RegExp | (string | RegExp)[];
 ```
 
 Default: `/\.m?js(\?.*)?$/i`
@@ -109,7 +109,7 @@ module.exports = {
 Type:
 
 ```ts
-type include = string | RegExp | Array<string | RegExp>;
+type include = string | RegExp | (string | RegExp)[];
 ```
 
 Default: `undefined`
@@ -136,7 +136,7 @@ module.exports = {
 Type:
 
 ```ts
-type exclude = string | RegExp | Array<string | RegExp>;
+type exclude = string | RegExp | (string | RegExp)[];
 ```
 
 Default: `undefined`
@@ -224,9 +224,7 @@ Type:
 
 ```ts
 type minify = (
-  input: {
-    [file: string]: string;
-  },
+  input: Record<string, string>,
   sourceMap: import("@jridgewell/trace-mapping").SourceMapInput | undefined,
   minifyOptions: {
     module?: boolean | undefined;
@@ -245,7 +243,7 @@ type minify = (
           pos: number;
           line: number;
           col: number;
-        }
+        },
       ) => boolean)
     | {
         condition?:
@@ -261,7 +259,7 @@ type minify = (
                 pos: number;
                 line: number;
                 col: number;
-              }
+              },
             ) => boolean)
           | undefined;
         filename?: string | ((fileData: any) => string) | undefined;
@@ -271,7 +269,7 @@ type minify = (
           | ((commentsFile: string) => string)
           | undefined;
       }
-    | undefined
+    | undefined,
 ) => Promise<{
   code: string;
   map?: import("@jridgewell/trace-mapping").SourceMapInput | undefined;
@@ -316,7 +314,6 @@ minify.getMinimizerVersion = () => {
   let packageJson;
 
   try {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
     packageJson = require("uglify-module/package.json");
   } catch (error) {
     // Ignore
@@ -345,7 +342,7 @@ module.exports = {
 Type:
 
 ```ts
-type terserOptions = {
+interface terserOptions {
   compress?: boolean | CompressOptions;
   ecma?: ECMA;
   enclose?: boolean | string;
@@ -362,7 +359,7 @@ type terserOptions = {
   safari10?: boolean;
   sourceMap?: boolean | SourceMapOptions;
   toplevel?: boolean;
-};
+}
 ```
 
 Default: [default](https://github.com/terser/terser#minify-options)
@@ -416,7 +413,7 @@ type extractComments =
         pos: number;
         line: number;
         col: number;
-      }
+      },
     ) => boolean)
   | {
       condition?:
@@ -432,7 +429,7 @@ type extractComments =
               pos: number;
               line: number;
               col: number;
-            }
+            },
           ) => boolean)
         | undefined;
       filename?: string | ((fileData: any) => string) | undefined;
@@ -550,13 +547,11 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
-          filename: (fileData) => {
+          filename: (fileData) =>
             // The "fileData" argument contains object with "filename", "basename", "query" and "hash"
-            return `${fileData.filename}.LICENSE.txt${fileData.query}`;
-          },
-          banner: (licenseFile) => {
-            return `License information can be found in ${licenseFile}`;
-          },
+            `${fileData.filename}.LICENSE.txt${fileData.query}`,
+          banner: (licenseFile) =>
+            `License information can be found in ${licenseFile}`,
         },
       }),
     ],
@@ -582,7 +577,7 @@ type condition =
         pos: number;
         line: number;
         col: number;
-      }
+      },
     ) => boolean)
   | undefined;
 ```
@@ -599,13 +594,11 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: "some",
-          filename: (fileData) => {
+          filename: (fileData) =>
             // The "fileData" argument contains object with "filename", "basename", "query" and "hash"
-            return `${fileData.filename}.LICENSE.txt${fileData.query}`;
-          },
-          banner: (licenseFile) => {
-            return `License information can be found in ${licenseFile}`;
-          },
+            `${fileData.filename}.LICENSE.txt${fileData.query}`,
+          banner: (licenseFile) =>
+            `License information can be found in ${licenseFile}`,
         },
       }),
     ],
@@ -644,9 +637,8 @@ module.exports = {
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
           filename: "extracted-comments.js",
-          banner: (licenseFile) => {
-            return `License information can be found in ${licenseFile}`;
-          },
+          banner: (licenseFile) =>
+            `License information can be found in ${licenseFile}`,
         },
       }),
     ],
@@ -680,13 +672,11 @@ module.exports = {
       new TerserPlugin({
         extractComments: {
           condition: true,
-          filename: (fileData) => {
+          filename: (fileData) =>
             // The "fileData" argument contains object with "filename", "basename", "query" and "hash"
-            return `${fileData.filename}.LICENSE.txt${fileData.query}`;
-          },
-          banner: (commentsFile) => {
-            return `My custom banner about license information ${commentsFile}`;
-          },
+            `${fileData.filename}.LICENSE.txt${fileData.query}`,
+          banner: (commentsFile) =>
+            `My custom banner about license information ${commentsFile}`,
         },
       }),
     ],
@@ -879,10 +869,10 @@ module.exports = {
 With built-in minify functions:
 
 ```ts
-import type { JsMinifyOptions as SwcOptions } from "@swc/core";
-import type { MinifyOptions as UglifyJSOptions } from "uglify-js";
-import type { TransformOptions as EsbuildOptions } from "esbuild";
-import type { MinifyOptions as TerserOptions } from "terser";
+import { type JsMinifyOptions as SwcOptions } from "@swc/core";
+import { type TransformOptions as EsbuildOptions } from "esbuild";
+import { type MinifyOptions as TerserOptions } from "terser";
+import { type MinifyOptions as UglifyJSOptions } from "uglify-js";
 
 module.exports = {
   optimization: {
